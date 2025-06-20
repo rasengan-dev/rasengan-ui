@@ -21,6 +21,14 @@ export const Navbar = ({ className }: Props) => {
 			)}
 		>
 			<div className='flex items-center gap-2'>
+				<Button
+					size='icon'
+					className='size-8 md:hidden'
+					variant={"ghost"}
+					onClick={() => setIsOpen((prev) => !prev)}
+				>
+					<AlignJustify />
+				</Button>
 				<Button size={"icon"} variant={"ghost"} className='size-8'>
 					<AppLogo size='sm' />
 				</Button>
@@ -61,20 +69,12 @@ export const Navbar = ({ className }: Props) => {
 					<span>Unlock Premium</span>
 				</Button>
 				<ThemeButton />
-
-				<Button
-					size='icon'
-					className='md:hidden'
-					onClick={() => setIsOpen((prev) => !prev)}
-				>
-					<AlignJustify />
-				</Button>
 			</div>
 
 			<div
 				className={twMerge(
-					"fixed right-0 top-0 bottom-0 max-w-[300px] w-full bg-background z-30 p-4 transition-all duration-300",
-					isOpen ? "translate-x-0" : "translate-x-full"
+					"fixed left-0 top-0 bottom-0 max-w-[300px] w-full bg-background z-30 p-4 transition-all duration-300",
+					isOpen ? "translate-x-0" : "-translate-x-full"
 				)}
 			>
 				<nav className='mt-10'>
