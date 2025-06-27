@@ -19,7 +19,7 @@ export default function ThemeButton({ size = "normal" }: Props) {
 			size='icon'
 			onClick={handleThemeChange}
 			className={twMerge(
-				"relative aspect-square rounded-md border-[1px] border-border bg-primary/5 hover:bg-muted flex shrink-0 items-center justify-center overflow-hidden hover:cursor-pointer",
+				"relative aspect-square rounded-md border-[1px] border-border bg-primary/5 hover:bg-muted flex shrink-0 items-center justify-center overflow-hidden hover:cursor-pointer dark:hover:bg-muted/30",
 				size === "small" ? "size-7" : "size-8"
 			)}
 		>
