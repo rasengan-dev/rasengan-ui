@@ -59,4 +59,9 @@ const Page: PageComponent = () => {
 	);
 };
 
+Page.metadata = {
+	title: "Home",
+	description: "Rasengan UI home page",
+};
+
 export default Page;

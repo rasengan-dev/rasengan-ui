@@ -10,8 +10,8 @@ export function Footer() {
 					<span className='text-foreground font-medium'>Rasengan UI</span>
 				</div>
 				<p className='text-foreground/70 text-sm mt-2 max-w-[340px]'>
-					Rasengan UI is a collection of ready-to-use UI components built for
-					any React app.
+					A collection of ready-to-use UI components built for any React app —
+					powered by shadcn
 				</p>
 			</div>
 

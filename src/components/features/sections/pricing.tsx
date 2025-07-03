@@ -1,7 +1,7 @@
 export default function PricingSection() {
 	return (
-		<section className='w-full pt-20'>
-			<div className='p-4 w-full border-y-[1px] border-y-border'>
+		<section className='w-full'>
+			<div className='p-4 w-full border-b-[1px] border-b-border'>
 				<h1 className='text-[50px] leading-[60px] text-start max-w-[700px] text-foreground text-pretty'>
 					Pricing
 				</h1>

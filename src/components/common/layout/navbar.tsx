@@ -17,7 +17,7 @@ export const Navbar = ({ className }: Props) => {
 		<>
 			<header
 				className={twMerge(
-					"bg-background/60 backdrop-blur-md w-full h-[60px] border-b-[1px] border-b-border flex items-center justify-between px-4",
+					"bg-background backdrop-blur-mdd w-full h-[60px] border-b-[1px] border-b-border flex items-center justify-between px-4",
 					className
 				)}
 			>

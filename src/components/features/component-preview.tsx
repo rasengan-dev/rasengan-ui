@@ -48,7 +48,7 @@ export default function ComponentPreview() {
 						className='min-w-[340px] z-10 relative border-r border-border'
 					>
 						<iframe
-							src='https://ui.shadcn.com/view/dashboard-01'
+							src='http://localhost:3000/marketing/sections/hero08'
 							className='w-full h-full border-l border-border'
 						></iframe>
 					</ResizablePanel>
@@ -56,16 +56,10 @@ export default function ComponentPreview() {
 					<ResizablePanel defaultSize={0}>
 						<div className='flex h-full items-center justify-center p-6'></div>
 					</ResizablePanel>
-
-					{/* <div className='absolute -top-10 left-0 w-full h-full z-0'>
-						<Image
-							src={grid}
-							alt='grid'
-							className='object-cover dark:opacity-40'
-						/>
-					</div> */}
 				</ResizablePanelGroup>
 			</div>
+
+			<div className='h-20 w-full flex items-center justify-between p-2 border-t-[1px] border-t-border'></div>
 		</section>
 	);
 }
