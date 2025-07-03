@@ -8,10 +8,12 @@ export default function ComponentItem() {
 			{/* Header Info */}
 			<div className='flex items-center justify-between p-2'>
 				<div className='flex items-center gap-1'>
-					<h2 className='text-foreground text-sm'>Hero Section with Image</h2>
+					<h2 className='text-foreground text-sm'>Tiny Text Input</h2>
+					{/* <h2 className='text-foreground text-sm'>Hero Section with Image</h2> */}
 					<Dot className='text-foreground' />
 					<span className='text-foreground/70 text-sm'>
-						Marketing & Business
+						{/* Marketing & Business */}
+						Application UI
 					</span>
 				</div>
 

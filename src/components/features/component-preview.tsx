@@ -38,7 +38,7 @@ export default function ComponentPreview() {
 			</div>
 
 			{/* Preview */}
-			<div className='w-full h-[800px]'>
+			<div className='w-full h-[500px]'>
 				<ResizablePanelGroup
 					direction='horizontal'
 					className='relative min-h-[200px] w-full md:min-w-[450px] bg-border/70f dark:bg-borderf'
@@ -48,7 +48,7 @@ export default function ComponentPreview() {
 						className='min-w-[340px] z-10 relative border-r border-border'
 					>
 						<iframe
-							src='http://localhost:3000/marketing/sections/hero08'
+							src='http://localhost:3000/application-ui/forms/input-04'
 							className='w-full h-full border-l border-border'
 						></iframe>
 					</ResizablePanel>
