@@ -10,26 +10,41 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
-import Image from "@rasenganjs/image";
-import grid from "@/assets/images/illustrations/grid.svg";
+import { Component } from "@/data/components/type";
+import { Link, useParams } from "rasengan";
 
-export default function ComponentPreview() {
+type Props = {
+	component: Component;
+};
+
+export default function ComponentPreview({ component }: Props) {
+	const { category, group, type } = useParams();
+
 	return (
 		<section className='w-full border-b-[1px] border-b-border'>
 			{/* Actions command */}
 			<div className='flex items-center justify-between p-2 border-y-[1px] border-y-border'>
 				<div className='flex items-center gap-2'>
-					<Button variant={"outline"} className='text-foreground/70'>
-						<Lock />
-						<span>Get the Code</span>
-					</Button>
+					{component.pricing === "premium" ? (
+						<Button variant={"outline"} className='text-foreground/70'>
+							<Lock />
+							<span>Get the Code</span>
+						</Button>
+					) : (
+						<span>Free</span>
+					)}
 				</div>
 
 				<Tooltip>
 					<TooltipTrigger>
-						<Button size='icon' variant='outline' className='border-border'>
-							<Expand size={16} className='text-foreground/70' />
-						</Button>
+						<Link
+							to={`/preview/${category}/${group}/${type}/${component.label}`}
+							target='_blank'
+						>
+							<Button size='icon' variant='outline' className='border-border'>
+								<Expand size={16} className='text-foreground/70' />
+							</Button>
+						</Link>
 					</TooltipTrigger>
 					<TooltipContent side='left'>
 						<p>Preview in full screen</p>
@@ -38,7 +53,7 @@ export default function ComponentPreview() {
 			</div>
 
 			{/* Preview */}
-			<div className='w-full h-[500px]'>
+			<div className='w-full' style={{ height: component.height }}>
 				<ResizablePanelGroup
 					direction='horizontal'
 					className='relative min-h-[200px] w-full md:min-w-[450px] bg-border/70f dark:bg-borderf'
@@ -48,7 +63,7 @@ export default function ComponentPreview() {
 						className='min-w-[340px] z-10 relative border-r border-border'
 					>
 						<iframe
-							src='http://localhost:3000/application-ui/forms/input-04'
+							src={component.link}
 							className='w-full h-full border-l border-border'
 						></iframe>
 					</ResizablePanel>

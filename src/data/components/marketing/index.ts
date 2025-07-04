@@ -1,0 +1,235 @@
+import { ComponentGroup } from "../type";
+
+const { RASENGAN_PREVIEW_BASE_URL } = import.meta.env;
+
+export const marketingComponents: ComponentGroup[] = [
+	// Page section components
+	{
+		label: "page-section",
+		name: "Page Section",
+		componentsType: [
+			{
+				label: "heroes",
+				name: "Heroes Section",
+				description: `Use these chakra-infused React sections to showcase key messaging, product highlights, and calls-to-action at the top of your site. Each section is thoughtfully designed, production-ready, and powered by Shadcn UI — so you can summon beautiful UIs into any React project with ease.`,
+				image: "",
+				components: [
+					{
+						label: "hero-01",
+						name: "Hero with centered text",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-01`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+					{
+						label: "hero-02",
+						name: "Hero with centered text and floating navbar",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-02`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+					{
+						label: "hero-03",
+						name: "Hero with left text 01",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-03`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+					{
+						label: "hero-04",
+						name: "Hero with left text 02",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-04`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+					{
+						label: "hero-05",
+						name: "Hero with left text 03",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-05`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+					{
+						label: "hero-06",
+						name: "Hero with centered text and image 01",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-06`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+					{
+						label: "hero-07",
+						name: "Hero with centered text and image 02",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-07`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+					{
+						label: "hero-08",
+						name: "Hero with centered text and image 03",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-08`,
+						code: "",
+						height: 800,
+						isDarkEnabled: true,
+						pricing: "premium",
+					},
+				],
+			},
+
+			{
+				label: "teams",
+				name: "Teams Section",
+				description: `Showcase the shinobi behind your mission with beautifully crafted team sections.
+Highlight profiles, roles, and bios — all ready to drop into your React app and styled to reflect your brand’s unique chakra.`,
+				image: "",
+				components: [
+					{
+						label: "team-01",
+						name: "Team with carousel 01",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/team-01`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+					{
+						label: "team-02",
+						name: "Team with carousel 02",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/team-02`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+					{
+						label: "team-03",
+						name: "Team with grid display 03",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/team-03`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+				],
+			},
+
+			{
+				label: "pricings",
+				name: "Pricings Section",
+				description: `Present your offers with clarity and confidence using beautifully crafted, responsive pricing blocks.
+Designed to convert, chakra-infused, and ready to drop into any React app — so your users see value at a glance.`,
+				image: "",
+				components: [
+					{
+						label: "pricing-01",
+						name: "Pricing with left text and tabs 01",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/pricing-01`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+					{
+						label: "pricing-02",
+						name: "Pricing with centered text and tabs 02",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/pricing-02`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+					{
+						label: "pricing-03",
+						name: "Pricing with centered text and tabs 03",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/pricing-03`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+				],
+			},
+		],
+	},
+
+	// Elements components
+	{
+		label: "elements",
+		name: "Elements",
+		componentsType: [
+			{
+				label: "navbars",
+				name: "Navbars Elements",
+				description: `Use these chakra-infused React sections to showcase key messaging, product highlights, and calls-to-action at the top of your site. Each section is thoughtfully designed, production-ready, and powered by Shadcn UI — so you can summon beautiful UIs into any React project with ease.`,
+				image: "",
+				components: [
+					{
+						label: "navbar-01",
+						name: "Navbar with left text 01",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/elements/navbar-01`,
+						code: "",
+						height: 500,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+					{
+						label: "navbar-02",
+						name: "Navbar with centered text 02",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/elements/navbar-02`,
+						code: "",
+						height: 500,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+					{
+						label: "navbar-03",
+						name: "Navbar with right text 03",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/elements/navbar-03`,
+						code: "",
+						height: 500,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+					{
+						label: "navbar-04",
+						name: "Floating Navbar with medium border rounded 04",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/elements/navbar-04`,
+						code: "",
+						height: 500,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+					{
+						label: "navbar-05",
+						name: "Floating Navbar with full border rounded 05",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/elements/navbar-05`,
+						code: "",
+						height: 500,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+				],
+			},
+		],
+	},
+
+	// Feedbacks components
+	{
+		label: "feedbacks",
+		name: "Feedbacks",
+		componentsType: [],
+	},
+];

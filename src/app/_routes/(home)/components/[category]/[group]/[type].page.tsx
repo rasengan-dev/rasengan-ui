@@ -1,8 +1,43 @@
 import { SidebarBanner } from "@/components/common/layout/sidebar";
 import ComponentItem from "@/components/features/component-item";
-import { PageComponent } from "rasengan";
+import { PageComponent, useParams } from "rasengan";
+import { useComponentStore } from "@/store/components";
+import { useMemo } from "react";
+import { ComponentCategoryLabel, ComponentType } from "@/data/components/type";
 
 const Page: PageComponent = () => {
+	const { components } = useComponentStore();
+
+	const { category, group: groupName, type: typeName } = useParams();
+
+	const { componentsList } = useMemo(() => {
+		// Get components by categories
+		const componentsByCategory = components[category as ComponentCategoryLabel];
+
+		// Find the current group component list
+		const componentsByGroup = componentsByCategory.components.find(
+			(group) => group.label === groupName
+		);
+
+		if (componentsByGroup) {
+			// Find the current type component list
+			const componentsByType: ComponentType | undefined =
+				componentsByGroup.componentsType.find(
+					(type) => type.label === typeName
+				);
+
+			if (componentsByType) {
+				return { componentsList: componentsByType };
+			}
+		}
+
+		return { componentsList: null };
+	}, [components, category, groupName, typeName]);
+
+	if (!componentsList) {
+		return null;
+	}
+
 	return (
 		<section className='relative'>
 			<div className='fixed inset-x-0 top-15 z-20'>
@@ -11,18 +46,22 @@ const Page: PageComponent = () => {
 
 			<div className='p-4 w-full border-b-[1px] border-b-border flex flex-col gap-4 pt-24'>
 				<h1 className='text-[50px] lg:text-[60px] leading-[60px] text-start max-w-[700px] text-foreground text-pretty'>
-					Hero Sections
+					{componentsList.name}
 				</h1>
 				<p className='max-w-[700px] text-start mt-2 text-foreground text-pretty'>
-					Use these chakra-infused React sections to showcase key messaging,
-					product highlights, and calls-to-action at the top of your site. Each
-					section is thoughtfully designed, production-ready, and powered by
-					Shadcn UI — so you can summon beautiful UIs into any React project
-					with ease.
+					{componentsList.description}
 				</p>
 			</div>
 
-			<ComponentItem />
+			<div className='w-full'>
+				{componentsList.components.map((component) => (
+					<ComponentItem
+						key={component.label}
+						component={component}
+						category={components[category as ComponentCategoryLabel].name}
+					/>
+				))}
+			</div>
 		</section>
 	);
 };

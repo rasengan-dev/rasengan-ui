@@ -43,8 +43,8 @@ const Page: PageComponent = () => {
 
 			{/* Components Preview */}
 			<section className='relative mt-20 flex flex-col border-t-[1px] border-t-border'>
-				<ComponentItem />
-				<ComponentItem />
+				{/* <ComponentItem />
+				<ComponentItem /> */}
 			</section>
 
 			{/* Pricing */}
