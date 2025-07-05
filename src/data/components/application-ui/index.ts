@@ -170,6 +170,24 @@ Chakra-infused, responsive, and ready to drop into any React app — making file
 					},
 				],
 			},
+			{
+				label: "calendar",
+				name: "Calendar Card",
+				description: `Beautifully crafted cards to display events, schedules, or dates at a glance.
+Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to keep track of what matters.`,
+				image: "",
+				components: [
+					{
+						label: "calendar-01",
+						name: "Calendar card with range selection 01",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/calendar-01`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+				],
+			},
 		],
 	},
 
