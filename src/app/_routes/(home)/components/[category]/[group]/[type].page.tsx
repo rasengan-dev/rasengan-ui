@@ -59,6 +59,9 @@ const Page: PageComponent = () => {
 						key={component.label}
 						component={component}
 						category={components[category as ComponentCategoryLabel].name}
+						categoryLabel={category as ComponentCategoryLabel}
+						groupName={groupName || ""}
+						typeLabel={typeName || ""}
 					/>
 				))}
 			</div>

@@ -35,5 +35,6 @@ export type Component = {
 	code?: string;
 	height?: number;
 	isDarkEnabled: boolean;
+	isPopular?: boolean;
 	pricing: "free" | "premium";
 };

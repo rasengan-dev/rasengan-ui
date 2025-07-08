@@ -2,6 +2,7 @@ import ComponentGroupItem from "@/components/features/component-group-item";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { componentCategories } from "@/data/components/type";
+import { scrollToSection } from "@/lib/utils";
 import { useComponentStore } from "@/store/components";
 import { ArrowRight } from "lucide-react";
 import { Link, PageComponent } from "rasengan";
@@ -46,7 +47,11 @@ const Page: PageComponent = () => {
 			<section className='w-full mt-20 min-h-[calc(100vh-80px)] relative'>
 				<div className='sticky -top-[1px] z-30 w-full flex items-center border-[1px] border-border bg-background'>
 					{Object.entries(components).map(([key, category]) => (
-						<Link key={key} to={`#${key}`}>
+						<Link
+							key={key}
+							to={`#${key}`}
+							onClick={(e) => scrollToSection(e, key)}
+						>
 							<div className='border-r-[1px] border-r-border py-2 px-4 flex items-center justify-center hover:bg-muted/60 hover:cursor-pointer transition-all'>
 								<span className='text-foreground'>{category.name}</span>
 							</div>

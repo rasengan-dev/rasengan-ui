@@ -1,15 +1,24 @@
 import { ArrowRight, Dot } from "lucide-react";
 import { Button } from "../ui/button";
 import ComponentPreview from "./component-preview";
-import { Component } from "@/data/components/type";
+import { Component, ComponentCategoryLabel } from "@/data/components/type";
+import { Link } from "rasengan";
 
 type Props = {
 	component: Component;
 	category: string;
+	categoryLabel: ComponentCategoryLabel;
+	groupName: string;
+	typeLabel: string;
 };
 
-export default function ComponentItem({ component, category }: Props) {
-	console.log({ component, category });
+export default function ComponentItem({
+	component,
+	category,
+	categoryLabel,
+	groupName,
+	typeLabel,
+}: Props) {
 	return (
 		<section className='w-full h-auto'>
 			{/* Header Info */}
@@ -22,10 +31,12 @@ export default function ComponentItem({ component, category }: Props) {
 				</div>
 
 				<div>
-					<Button size='sm' variant='outline' className='text-foreground/70'>
-						<span className='text-sm'>See more</span>
-						<ArrowRight size={16} />
-					</Button>
+					<Link to={`/components/${categoryLabel}/${groupName}/${typeLabel}`}>
+						<Button size='sm' variant='outline' className='text-foreground/70'>
+							<span className='text-sm'>See more</span>
+							<ArrowRight size={16} />
+						</Button>
+					</Link>
 				</div>
 			</div>
 

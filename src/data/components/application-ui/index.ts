@@ -23,6 +23,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 						height: 800,
 						isDarkEnabled: false,
 						pricing: "premium",
+						isPopular: true,
 					},
 					{
 						label: "profile-02",
@@ -41,6 +42,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 						height: 800,
 						isDarkEnabled: false,
 						pricing: "premium",
+						isPopular: true,
 					},
 					{
 						label: "profile-04",
@@ -68,6 +70,7 @@ Chakra-infused, responsive, and ready to drop into any React app — perfect for
 						height: 500,
 						isDarkEnabled: false,
 						pricing: "premium",
+						isPopular: true,
 					},
 					{
 						label: "join-02",
@@ -158,6 +161,7 @@ Responsive, themeable, and chakra-infused — ready to drop into any React app t
 						height: 800,
 						isDarkEnabled: false,
 						pricing: "premium",
+						isPopular: true,
 					},
 					{
 						label: "invite-02",
@@ -194,6 +198,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making file
 						height: 800,
 						isDarkEnabled: false,
 						pricing: "premium",
+						isPopular: true,
 					},
 				],
 			},
@@ -212,6 +217,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 						height: 800,
 						isDarkEnabled: false,
 						pricing: "premium",
+						isPopular: true,
 					},
 				],
 			},
@@ -256,6 +262,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 						height: 500,
 						isDarkEnabled: false,
 						pricing: "premium",
+						isPopular: true,
 					},
 					{
 						label: "input-04",
@@ -274,6 +281,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 						height: 500,
 						isDarkEnabled: false,
 						pricing: "premium",
+						isPopular: true,
 					},
 					{
 						label: "input-06",
@@ -302,6 +310,7 @@ These chakra-infused, ready-to-use filter components drop seamlessly into any Re
 						height: 500,
 						isDarkEnabled: false,
 						pricing: "premium",
+						isPopular: true,
 					},
 				],
 			},
@@ -348,6 +357,7 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 						height: 800,
 						isDarkEnabled: false,
 						pricing: "premium",
+						isPopular: true,
 					},
 					{
 						label: "registration-05",

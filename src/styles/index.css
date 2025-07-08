@@ -127,3 +127,38 @@
 		@apply bg-background text-foreground;
 	}
 }
+
+/* Pricing grid template */
+.pricing-grid {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	grid-template-areas: "a a b b c c" "a a b b c c" "a a b b c c";
+}
+
+.pricing-grid > .area-1 {
+	grid-area: a;
+}
+.pricing-grid > .area-2 {
+	grid-area: b;
+}
+.pricing-grid > .area-3 {
+	grid-area: c;
+}
+
+@media screen and (max-width: 1024px) {
+	.pricing-grid {
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+		grid-template-areas: "a a b b" "a a b b" "c c c c";
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.pricing-grid {
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+		grid-template-areas: "a a" "b b" "c c";
+	}
+}

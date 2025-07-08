@@ -13,8 +13,7 @@ const Layout: LayoutComponent = () => {
 	useEffect(() => {
 		if (typeof window === "undefined") return;
 
-		window.scrollTo({
-			top: 0,
+		window.scroll({
 			behavior: "smooth",
 		});
 	}, [pathname]);

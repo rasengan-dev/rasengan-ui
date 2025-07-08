@@ -6,8 +6,14 @@ import ComponentItem from "@/components/features/component-item";
 import PricingSection from "@/components/features/sections/pricing";
 import TestimonialsSection from "@/components/features/sections/testimonials";
 import FaqSection from "@/components/features/sections/faq";
+import { useComponentStore } from "@/store/components";
+import { ComponentCategoryLabel } from "@/data/components/type";
 
 const Page: PageComponent = () => {
+	const { getPopularComponents } = useComponentStore();
+
+	const popularComponents = getPopularComponents();
+
 	return (
 		<section className='w-full h-full bg-background py-4'>
 			{/* Gradient */}
@@ -43,8 +49,34 @@ const Page: PageComponent = () => {
 
 			{/* Components Preview */}
 			<section className='relative mt-20 flex flex-col border-t-[1px] border-t-border'>
-				{/* <ComponentItem />
-				<ComponentItem /> */}
+				<div className='w-full'>
+					{popularComponents[0].components.map((component) => (
+						<ComponentItem
+							key={component.label}
+							component={component}
+							category={popularComponents[0].category}
+							categoryLabel={
+								popularComponents[0].categoryLabel as ComponentCategoryLabel
+							}
+							groupName={popularComponents[0].groupName}
+							typeLabel={popularComponents[0].typeLabel}
+						/>
+					))}
+				</div>
+				<div className='w-full'>
+					{popularComponents[1].components.map((component) => (
+						<ComponentItem
+							key={component.label}
+							component={component}
+							category={popularComponents[1].category}
+							categoryLabel={
+								popularComponents[1].categoryLabel as ComponentCategoryLabel
+							}
+							groupName={popularComponents[1].groupName}
+							typeLabel={popularComponents[1].typeLabel}
+						/>
+					))}
+				</div>
 			</section>
 
 			{/* Pricing */}

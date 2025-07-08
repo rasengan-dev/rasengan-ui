@@ -5,6 +5,7 @@ import { ComponentProps, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import ThemeButton from "../atoms/theme-button";
 import AppLogo from "../atoms/app-logo";
+import { scrollToSection } from "@/lib/utils";
 
 type Props = {
 	className?: ComponentProps<"header">["className"];
@@ -59,8 +60,9 @@ export const Navbar = ({ className }: Props) => {
 								<li className='font-medium'>Templates</li>
 							</Link>
 							<Link
-								to='/pricing'
+								to='/#pricing'
 								className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
+								onClick={(e) => scrollToSection(e, "pricing")}
 							>
 								<li className='font-medium'>Pricing</li>
 							</Link>
