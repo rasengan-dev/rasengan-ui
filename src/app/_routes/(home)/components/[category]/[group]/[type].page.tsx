@@ -40,6 +40,8 @@ const Page: PageComponent = () => {
 
 	return (
 		<section className='relative'>
+			<div id='top'></div>
+
 			<div className='fixed inset-x-0 top-15 z-20'>
 				<SidebarBanner />
 			</div>

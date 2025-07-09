@@ -6,13 +6,16 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function scrollToSection(
-	e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-	id: string
+	e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | null,
+	id: string,
+	behavior: ScrollBehavior = "smooth"
 ) {
-	e.preventDefault();
+	if (e) e.preventDefault();
 
 	const element = document.getElementById(id);
-	element?.scrollIntoView({ behavior: "smooth" });
+	element?.scrollIntoView({ behavior });
 
-	history.pushState(null, "", `#${id}`); // Update the URL
+	if (e) {
+		history.pushState(null, "", `#${id}`); // Update the URL
+	}
 }

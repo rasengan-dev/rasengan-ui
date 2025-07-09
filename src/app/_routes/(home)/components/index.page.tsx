@@ -12,12 +12,17 @@ const Page: PageComponent = () => {
 
 	return (
 		<section className='w-full h-full bg-background py-4'>
+			<div id='top'></div>
+
 			{/* Gradient */}
 			<div className='absolute -top-[300px] left-1/2 -translate-x-1/2 size-[400px] rounded-full bg-primary/70 blur-[500px] z-0'></div>
 
 			{/* Hero */}
 			<section className='relative w-full flex flex-col items-center mt-20'>
-				<Badge variant='outline' className='bg-accent/30'>
+				<Badge
+					variant='default'
+					className='bg-accent/30f bg-primary px-4 py-1 rounded-full'
+				>
 					<span>Rasengan.js v1.1.0 is available</span>
 					<ArrowRight />
 				</Badge>
@@ -35,12 +40,12 @@ const Page: PageComponent = () => {
 						summon in any React project.
 					</span>
 				</p>
-				<div className='mt-6 flex gap-2'>
+				{/* <div className='mt-6 flex gap-2'>
 					<Button>Browse components</Button>
 					<Button variant='outline' className='text-foreground'>
 						<span>Explore Templates</span>
 					</Button>
-				</div>
+				</div> */}
 			</section>
 
 			{/* Tabs */}

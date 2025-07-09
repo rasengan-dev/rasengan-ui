@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { AlignJustify, Lock } from "lucide-react";
-import { Link } from "rasengan";
+import { Link, useNavigate } from "rasengan";
 import { ComponentProps, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import ThemeButton from "../atoms/theme-button";
@@ -14,9 +14,26 @@ type Props = {
 export const Navbar = ({ className }: Props) => {
 	const [isOpen, setIsOpen] = useState(false);
 
+	const navigate = useNavigate();
+
+	const handleNavigateToSection = (
+		e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+		sectionId: string
+	) => {
+		// Check if we are on the home page
+		if (window.location.pathname === "/") {
+			scrollToSection(e, sectionId);
+			return;
+		}
+
+		// Redirect to the pricing page
+		navigate("/#pricing");
+	};
+
 	return (
 		<>
 			<header
+				id='navbar'
 				className={twMerge(
 					"bg-background backdrop-blur-mdd w-full h-[60px] border-b-[1px] border-b-border flex items-center justify-between px-4",
 					className
@@ -62,7 +79,7 @@ export const Navbar = ({ className }: Props) => {
 							<Link
 								to='/#pricing'
 								className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
-								onClick={(e) => scrollToSection(e, "pricing")}
+								onClick={(e) => handleNavigateToSection(e, "pricing")}
 							>
 								<li className='font-medium'>Pricing</li>
 							</Link>
@@ -71,11 +88,18 @@ export const Navbar = ({ className }: Props) => {
 				</div>
 
 				<div className='flex items-center gap-2'>
-					<Button className='h-8 text-foreground/70' variant='outline'>
-						<Lock />
-						<span>Unlock Premium</span>
-					</Button>
-					<Button className='h-8'>Sign In</Button>
+					<Link
+						to='/#pricing'
+						onClick={(e) => handleNavigateToSection(e, "pricing")}
+					>
+						<Button className='h-8 text-foreground/70' variant='outline'>
+							<Lock />
+							<span>Unlock Premium</span>
+						</Button>
+					</Link>
+					{/* <Link to='/auth/signin' className='h-8'>
+						<Button className='h-8'>Sign In</Button>
+					</Link> */}
 
 					{/* vertical separator */}
 					<div className='h-6 w-[1px] bg-border'></div>

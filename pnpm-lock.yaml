@@ -29,6 +29,9 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.*
         version: 4.1.10(vite@6.3.5(jiti@2.4.2)(lightningcss@1.30.1))
+      appwrite:
+        specifier: ^18.1.1
+        version: 18.1.1
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -873,6 +876,9 @@ packages:
   ansi-styles@4.3.0:
     resolution: {integrity: sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==}
     engines: {node: '>=8'}
+
+  appwrite@18.1.1:
+    resolution: {integrity: sha512-krwHjuwJcF+9Ig2+nqOEKMA/5kPIFhwwZsaLc7Gb8y2oP6EnG4ZMRPeHTFscdevOtVQj2Ax92cYYWAEvzlrc7A==}
 
   array-flatten@1.1.1:
     resolution: {integrity: sha512-PCVAQswWemu6UdxsDFFX/+gVeYqKAod3D3UVm91jHwynguOwAvYPhx8nNlM++NqRcK6CxxpUafjmhIdKiHibqg==}
@@ -2589,6 +2595,8 @@ snapshots:
   ansi-styles@4.3.0:
     dependencies:
       color-convert: 2.0.1
+
+  appwrite@18.1.1: {}
 
   array-flatten@1.1.1: {}
 

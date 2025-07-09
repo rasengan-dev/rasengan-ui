@@ -8,6 +8,7 @@ const pricingsData = [
 		id: 1,
 		plan: "Indie Ninja",
 		price: "$59",
+		duration: "3 months purchase",
 		description: `Perfect for solo developers and indie hackers who want to move fast and build beautiful UIs.
 Includes the full collection of ready-to-use sections`,
 		features: {
@@ -27,6 +28,7 @@ Includes the full collection of ready-to-use sections`,
 		id: 2,
 		plan: "Pro Shinobi",
 		price: "$119",
+		duration: "Annual purchase",
 		description: `Ideal for small teams working on client projects, SaaS products, or internal tools.
 Share components across your team, access priority support.`,
 		features: {
@@ -46,6 +48,7 @@ Share components across your team, access priority support.`,
 		id: 3,
 		plan: "Hokage License",
 		price: "$249",
+		duration: "One time purchase",
 		description: `Designed for agencies, larger teams, and companies building at scale.
 Use across unlimited projects and teams, get top-tier priority support.`,
 		features: {
@@ -93,7 +96,7 @@ const PricingItem = ({ pricing }: { pricing: (typeof pricingsData)[0] }) => {
 			className={cn(
 				"w-full h-full min-w-[300px] rounded-3xl p-4 border mx-auto flex flex-col justify-between",
 				pricing.isPopular
-					? "bg-gradient-to-b from-primary/40 dark:from-primary/30 to-transparent to-70%"
+					? "bg-gradient-to-b from-primary/40 dark:from-primary/30 to-transparent to-70% border-primary/60"
 					: "bg-background"
 			)}
 		>
@@ -115,7 +118,7 @@ const PricingItem = ({ pricing }: { pricing: (typeof pricingsData)[0] }) => {
 				<div className='flex flex-col items-baseline gap-1 text-foreground'>
 					<p className='text-5xl font-medium'>{pricing.price}</p>
 					<div className='flex flex-col text-[12px]'>
-						<span>One time purchase</span>
+						<span>{pricing.duration}</span>
 					</div>
 				</div>
 
@@ -134,8 +137,8 @@ const PricingItem = ({ pricing }: { pricing: (typeof pricingsData)[0] }) => {
 
 			<div className='mt-4 border-t pt-4 border-t-border'>
 				<div className='mt-4 flex flex-col gap-2'>
-					{pricing.features.items.map((feature) => (
-						<div className='flex gap-2 items-center'>
+					{pricing.features.items.map((feature, index) => (
+						<div key={index} className='flex gap-2 items-center'>
 							<Button
 								size={"icon"}
 								className='size-6 rounded-full bg-transparent'

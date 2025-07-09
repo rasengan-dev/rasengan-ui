@@ -11,7 +11,8 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Component } from "@/data/components/type";
-import { Link, useParams } from "rasengan";
+import { Link, useNavigate, useParams } from "rasengan";
+import { scrollToSection } from "@/lib/utils";
 
 type Props = {
 	component: Component;
@@ -20,16 +21,37 @@ type Props = {
 export default function ComponentPreview({ component }: Props) {
 	const { category, group, type } = useParams();
 
+	const navigate = useNavigate();
+
+	const handleNavigateToSection = (
+		e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+		sectionId: string
+	) => {
+		// Check if we are on the home page
+		if (window.location.pathname === "/") {
+			scrollToSection(e, sectionId);
+			return;
+		}
+
+		// Redirect to the pricing page
+		navigate("/#pricing");
+	};
+
 	return (
 		<section className='w-full border-b-[1px] border-b-border'>
 			{/* Actions command */}
 			<div className='flex items-center justify-between p-2 border-y-[1px] border-y-border'>
 				<div className='flex items-center gap-2'>
 					{component.pricing === "premium" ? (
-						<Button variant={"outline"} className='text-foreground/70'>
-							<Lock />
-							<span>Get the Code</span>
-						</Button>
+						<Link
+							to='/#pricing'
+							onClick={(e) => handleNavigateToSection(e, "pricing")}
+						>
+							<Button variant={"outline"} className='text-foreground/70'>
+								<Lock />
+								<span>Get the Code</span>
+							</Button>
+						</Link>
 					) : (
 						<span>Free</span>
 					)}

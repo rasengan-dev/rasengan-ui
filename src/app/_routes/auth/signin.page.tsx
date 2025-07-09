@@ -2,11 +2,25 @@ import AppLogo from "@/components/common/atoms/app-logo";
 import ThemeButton from "@/components/common/atoms/theme-button";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { PageComponent } from "rasengan";
+import { Link, PageComponent } from "rasengan";
 import Image from "@rasenganjs/image";
 import { Input } from "@/components/ui/input";
+import { authProvider } from "@/provider/data/auth";
+import { OAuthProvider } from "appwrite";
 
 const Page: PageComponent = () => {
+	const handleLoginWithMagicLink = async () => {
+		const { data } = await authProvider.loginWithMagicLink(
+			"komboudilane125@gmail.com"
+		);
+	};
+
+	const handleLoginWithOAuth = async (
+		provider: OAuthProvider.Github | OAuthProvider.Google
+	) => {
+		const { data } = await authProvider.loginWithOAuth(provider);
+	};
+
 	return (
 		<section
 			className={cn(
@@ -14,7 +28,11 @@ const Page: PageComponent = () => {
 			)}
 		>
 			<header className='w-full h-auto flex justify-between items-center'>
-				<AppLogo size='sm' />
+				<Link to='/' className='size-8'>
+					<Button size={"icon"} variant={"ghost"} className='size-8'>
+						<AppLogo size='sm' />
+					</Button>
+				</Link>
 
 				<div className='w-auto h-auto flex items-center gap-2'>
 					<ThemeButton />
@@ -49,6 +67,7 @@ const Page: PageComponent = () => {
 						<Button
 							variant='outline'
 							className='w-full mt-4 h-12 text-foreground rounded-xl'
+							onClick={() => handleLoginWithOAuth(OAuthProvider.Github)}
 						>
 							<div className='rounded-full p-[1px] bg-transparent dark:bg-white'>
 								<Image
@@ -77,7 +96,12 @@ const Page: PageComponent = () => {
 							/>
 						</div>
 
-						<Button className='w-full mt-4 h-12 rounded-xl'>Continue</Button>
+						<Button
+							className='w-full mt-4 h-12 rounded-xl'
+							onClick={handleLoginWithMagicLink}
+						>
+							Continue
+						</Button>
 					</div>
 
 					<div className='w-full mt-4 flex items-center justify-center'>

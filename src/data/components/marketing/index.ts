@@ -145,6 +145,15 @@ Highlight profiles, roles, and bios — all ready to drop into your React app an
 						isDarkEnabled: false,
 						pricing: "premium",
 					},
+					{
+						label: "team-04",
+						name: "Team with grid display 04",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/team-04`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
 				],
 			},
 

@@ -2,6 +2,7 @@ import { Outlet, LayoutComponent, useLocation } from "rasengan";
 import { useTheme } from "@rasenganjs/theme";
 import { twMerge } from "tailwind-merge";
 import { useEffect } from "react";
+import { scrollToSection } from "@/lib/utils";
 
 const Layout: LayoutComponent = () => {
 	const { isDark } = useTheme();
@@ -13,9 +14,9 @@ const Layout: LayoutComponent = () => {
 	useEffect(() => {
 		if (typeof window === "undefined") return;
 
-		window.scroll({
-			behavior: "smooth",
-		});
+		(() => {
+			scrollToSection(null, "top", "auto");
+		})();
 	}, [pathname]);
 
 	return (

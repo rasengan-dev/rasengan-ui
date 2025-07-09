@@ -1,13 +1,14 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Lock } from "lucide-react";
-import { PageComponent } from "rasengan";
+import { Link, PageComponent } from "rasengan";
 import ComponentItem from "@/components/features/component-item";
 import PricingSection from "@/components/features/sections/pricing";
 import TestimonialsSection from "@/components/features/sections/testimonials";
 import FaqSection from "@/components/features/sections/faq";
 import { useComponentStore } from "@/store/components";
 import { ComponentCategoryLabel } from "@/data/components/type";
+import { scrollToSection } from "@/lib/utils";
 
 const Page: PageComponent = () => {
 	const { getPopularComponents } = useComponentStore();
@@ -16,12 +17,17 @@ const Page: PageComponent = () => {
 
 	return (
 		<section className='w-full h-full bg-background py-4'>
+			<div id='top'></div>
+
 			{/* Gradient */}
 			<div className='absolute -top-[300px] left-1/2 -translate-x-1/2 size-[400px] rounded-full bg-primary/70 blur-[500px] z-0'></div>
 
 			{/* Hero */}
 			<section className='relative w-full flex flex-col items-center mt-20'>
-				<Badge variant='outline' className='bg-accent/30'>
+				<Badge
+					variant='default'
+					className='bg-accent/30f bg-primary px-4 py-1 rounded-full'
+				>
 					<span>Rasengan.js v1.1.0 is available</span>
 					<ArrowRight />
 				</Badge>
@@ -39,11 +45,15 @@ const Page: PageComponent = () => {
 					</span>
 				</p>
 				<div className='mt-6 flex gap-2'>
-					<Button>Browse components</Button>
-					<Button variant='outline' className='text-foreground'>
-						<Lock />
-						<span>Unlock Premium</span>
-					</Button>
+					<Link to='/components'>
+						<Button>Browse components</Button>
+					</Link>
+					<Link to='/#pricing' onClick={(e) => scrollToSection(e, "pricing")}>
+						<Button className='h-8 text-foreground/70' variant='outline'>
+							<Lock />
+							<span>Unlock Premium</span>
+						</Button>
+					</Link>
 				</div>
 			</section>
 
