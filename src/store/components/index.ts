@@ -16,9 +16,11 @@ type Actions = {
 	getPopularComponents: () => {
 		category: string;
 		categoryLabel: ComponentCategoryLabel;
-		components: Component[];
-		groupName: string;
-		typeLabel: string;
+		components: {
+			component: Component;
+			groupName: string;
+			typeLabel: string;
+		}[];
 	}[];
 };
 
@@ -37,9 +39,11 @@ export const useComponentStore = create<State & Actions>((_, get) => ({
 		const popularComponents: {
 			category: string;
 			categoryLabel: ComponentCategoryLabel;
-			groupName: string;
-			typeLabel: string;
-			components: Component[];
+			components: {
+				component: Component;
+				groupName: string;
+				typeLabel: string;
+			}[];
 		}[] = [];
 
 		for (const [, category] of Object.entries(categories)) {
@@ -56,12 +60,20 @@ export const useComponentStore = create<State & Actions>((_, get) => ({
 								popularComponents.push({
 									category: category.name,
 									categoryLabel: category.label,
-									components: [component],
+									components: [
+										{
+											component,
+											groupName: group.label,
+											typeLabel: type.label,
+										},
+									],
+								});
+							} else {
+								popularComponents[categoryIndex].components.push({
+									component,
 									groupName: group.label,
 									typeLabel: type.label,
 								});
-							} else {
-								popularComponents[categoryIndex].components.push(component);
 							}
 						}
 					}

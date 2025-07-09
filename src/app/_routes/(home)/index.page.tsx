@@ -69,28 +69,28 @@ const Page: PageComponent = () => {
 				<div className='w-full'>
 					{popularComponents[0].components.map((component) => (
 						<ComponentItem
-							key={component.label}
-							component={component}
+							key={component.component.label}
+							component={component.component}
 							category={popularComponents[0].category}
 							categoryLabel={
 								popularComponents[0].categoryLabel as ComponentCategoryLabel
 							}
-							groupName={popularComponents[0].groupName}
-							typeLabel={popularComponents[0].typeLabel}
+							groupName={component.groupName}
+							typeLabel={component.typeLabel}
 						/>
 					))}
 				</div>
 				<div className='w-full'>
 					{popularComponents[1].components.map((component) => (
 						<ComponentItem
-							key={component.label}
-							component={component}
+							key={component.component.label}
+							component={component.component}
 							category={popularComponents[1].category}
 							categoryLabel={
 								popularComponents[1].categoryLabel as ComponentCategoryLabel
 							}
-							groupName={popularComponents[1].groupName}
-							typeLabel={popularComponents[1].typeLabel}
+							groupName={component.groupName}
+							typeLabel={component.typeLabel}
 						/>
 					))}
 				</div>
