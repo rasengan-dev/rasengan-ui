@@ -10,17 +10,23 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Component } from "@/data/components/type";
-import { Link, useNavigate, useParams } from "rasengan";
+import { Component, ComponentCategoryLabel } from "@/data/components/type";
+import { Link, useNavigate } from "rasengan";
 import { scrollToSection } from "@/lib/utils";
 
 type Props = {
 	component: Component;
+	category: ComponentCategoryLabel;
+	group: string;
+	type: string;
 };
 
-export default function ComponentPreview({ component }: Props) {
-	const { category, group, type } = useParams();
-
+export default function ComponentPreview({
+	component,
+	category,
+	group,
+	type,
+}: Props) {
 	const navigate = useNavigate();
 
 	const handleNavigateToSection = (

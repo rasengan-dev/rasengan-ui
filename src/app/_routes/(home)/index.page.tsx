@@ -31,10 +31,10 @@ const Page: PageComponent = () => {
 					<span>Rasengan.js v1.1.0 is available</span>
 					<ArrowRight />
 				</Badge>
-				<h1 className='font-bold text-[50px] leading-[60px] text-center max-w-[700px] text-foreground mt-4 text-pretty'>
+				<h1 className='font-bold text-[50px] leading-[60px] text-center max-w-[700px] text-foreground mt-4 text-pretty px-4'>
 					Build Faster. Style Sharper.
 				</h1>
-				<p className='max-w-[700px] text-center mt-2 text-foreground text-pretty'>
+				<p className='max-w-[700px] text-center mt-2 text-foreground text-pretty px-4'>
 					<span className='font-medium'>
 						Rasengan UI gives you chakra-infused, beautifully crafted UI
 						components built for any React app.
@@ -44,12 +44,19 @@ const Page: PageComponent = () => {
 						code — powered by Shadcn UI.
 					</span>
 				</p>
-				<div className='mt-6 flex gap-2'>
-					<Link to='/components'>
-						<Button>Browse components</Button>
+				<div className='mt-6 w-full items-center justify-center flex flex-col sm:flex-row gap-2 px-4'>
+					<Link to='/components' className='w-full sm:w-auto'>
+						<Button className='w-full sm:w-auto'>Browse components</Button>
 					</Link>
-					<Link to='/#pricing' onClick={(e) => scrollToSection(e, "pricing")}>
-						<Button className='h-8 text-foreground/70' variant='outline'>
+					<Link
+						to='/#pricing'
+						onClick={(e) => scrollToSection(e, "pricing")}
+						className='w-full sm:w-auto'
+					>
+						<Button
+							className='w-full sm:w-auto h-8 text-foreground/70'
+							variant='outline'
+						>
 							<Lock />
 							<span>Unlock Premium</span>
 						</Button>
