@@ -15,10 +15,12 @@ export const authProvider = {
 	 */
 	loginWithMagicLink: async (email: string) => {
 		try {
+			const origin = window.location.origin;
+
 			await account.createMagicURLToken(
 				ID.unique(),
 				email,
-				RASENGAN_APPWRITE_VERIFY_URL
+				origin + RASENGAN_APPWRITE_VERIFY_URL
 			);
 
 			return { data: true };
@@ -102,11 +104,13 @@ export const authProvider = {
 	loginWithOAuth: async (
 		provider: OAuthProvider.Github | OAuthProvider.Google
 	) => {
+		const origin = window.location.origin;
+
 		try {
 			account.createOAuth2Session(
 				provider,
-				RASENGAN_APPWRITE_VERIFY_URL,
-				RASENGAN_APPWRITE_FAILED_URL,
+				origin + RASENGAN_APPWRITE_VERIFY_URL,
+				origin + RASENGAN_APPWRITE_FAILED_URL,
 				["email", "name"]
 			);
 
