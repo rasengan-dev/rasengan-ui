@@ -6,6 +6,9 @@ import { twMerge } from "tailwind-merge";
 import ThemeButton from "../atoms/theme-button";
 import AppLogo from "../atoms/app-logo";
 import { scrollToSection } from "@/lib/utils";
+import { useAuthStore } from "@/store/auth";
+import ProfileDropdown from "../molecules/profile-dropdown";
+import Image from "@rasenganjs/image";
 
 type Props = {
 	className?: ComponentProps<"header">["className"];
@@ -13,6 +16,8 @@ type Props = {
 
 export const Navbar = ({ className }: Props) => {
 	const [isOpen, setIsOpen] = useState(false);
+
+	const { user } = useAuthStore();
 
 	const navigate = useNavigate();
 
@@ -70,12 +75,12 @@ export const Navbar = ({ className }: Props) => {
 							>
 								<li className='font-medium'>Components</li>
 							</Link>
-							<Link
+							{/* <Link
 								to='/templates'
 								className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
 							>
 								<li className='font-medium'>Templates</li>
-							</Link>
+							</Link> */}
 							<Link
 								to='/#pricing'
 								className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
@@ -89,6 +94,7 @@ export const Navbar = ({ className }: Props) => {
 
 				<div className='flex items-center gap-2'>
 					<Link
+						className='hidden sm:block'
 						to='/#pricing'
 						onClick={(e) => handleNavigateToSection(e, "pricing")}
 					>
@@ -97,9 +103,22 @@ export const Navbar = ({ className }: Props) => {
 							<span>Unlock Premium</span>
 						</Button>
 					</Link>
-					{/* <Link to='/auth/signin' className='h-8'>
-						<Button className='h-8'>Sign In</Button>
-					</Link> */}
+
+					{user ? (
+						<ProfileDropdown>
+							<Image
+								src={user.avatar || ""}
+								alt='avatar'
+								className='w-[32px] h-[32px] rounded-full'
+								width={32}
+								height={32}
+							/>
+						</ProfileDropdown>
+					) : (
+						<Link to='/auth/signin' className='h-8'>
+							<Button className='h-8'>Sign In</Button>
+						</Link>
+					)}
 
 					{/* vertical separator */}
 					<div className='h-6 w-[1px] bg-border'></div>
@@ -110,26 +129,59 @@ export const Navbar = ({ className }: Props) => {
 
 			<div
 				className={twMerge(
-					"fixed left-0 top-0 bottom-0 max-w-[300px] w-full bg-background z-50 p-4 transition-all duration-300",
+					"fixed left-0 top-0 bottom-0 max-w-[300px] w-full bg-background z-50 p-4 transition-all duration-300 flex flex-col justify-between",
 					isOpen ? "translate-x-0" : "-translate-x-full"
 				)}
 			>
 				<nav className='mt-10'>
-					<ul className='flex flex-col justify-center gap-8 text-foreground'>
-						<Link to='#'>
-							<li className='font-medium text-md'>Home</li>
+					<ul className='flex flex-col justify-center gap-4 text-foreground'>
+						<Link
+							to='https://rasengan.dev'
+							target='_blank'
+							className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
+							onClick={() => setIsOpen(false)}
+						>
+							<li className='font-medium'>Docs</li>
 						</Link>
-						<Link to='#'>
-							<li className='font-medium text-md'>About</li>
+						<Link
+							to='/components'
+							className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
+							onClick={() => setIsOpen(false)}
+						>
+							<li className='font-medium'>Components</li>
 						</Link>
-						<Link to='#'>
-							<li className='font-medium text-md'>Contact</li>
-						</Link>
-						<Link to='#'>
-							<li className='font-medium text-md'>Blog</li>
+						{/* <Link
+							to='/templates'
+							className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
+							onClick={() => setIsOpen(false)}
+						>
+							<li className='font-medium'>Templates</li>
+						</Link> */}
+						<Link
+							to='/#pricing'
+							className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
+							onClick={(e) => {
+								handleNavigateToSection(e, "pricing");
+								setIsOpen(false);
+							}}
+						>
+							<li className='font-medium'>Pricing</li>
 						</Link>
 					</ul>
 				</nav>
+
+				<Link
+					to='/#pricing'
+					onClick={(e) => {
+						handleNavigateToSection(e, "pricing");
+						setIsOpen(false);
+					}}
+				>
+					<Button className='h-8 text-foreground/70 w-full' variant='outline'>
+						<Lock />
+						<span>Unlock Premium</span>
+					</Button>
+				</Link>
 			</div>
 			<div
 				className={twMerge(

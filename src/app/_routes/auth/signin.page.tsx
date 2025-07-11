@@ -7,12 +7,27 @@ import Image from "@rasenganjs/image";
 import { Input } from "@/components/ui/input";
 import { authProvider } from "@/provider/data/auth";
 import { OAuthProvider } from "appwrite";
+import { useCallback, useState } from "react";
+import { z } from "zod/v4";
+import { toast } from "sonner";
+
+const emailSchema = z.email();
 
 const Page: PageComponent = () => {
+	const [email, setEmail] = useState("");
+	const [loading, setLoading] = useState(false);
+
 	const handleLoginWithMagicLink = async () => {
-		const { data } = await authProvider.loginWithMagicLink(
-			"komboudilane125@gmail.com"
-		);
+		if (!handleVerifyForm()) {
+			return;
+		}
+
+		setLoading(true);
+
+		await authProvider.loginWithMagicLink(email);
+		setLoading(false);
+
+		toast.success("Check your email for the magic link");
 	};
 
 	const handleLoginWithOAuth = async (
@@ -20,6 +35,17 @@ const Page: PageComponent = () => {
 	) => {
 		const { data } = await authProvider.loginWithOAuth(provider);
 	};
+
+	const handleVerifyForm = useCallback(() => {
+		// Check the schema
+		const result = emailSchema.safeParse(email);
+
+		if (!result.success) {
+			return false;
+		}
+
+		return true;
+	}, [email]);
 
 	return (
 		<section
@@ -52,7 +78,7 @@ const Page: PageComponent = () => {
 					</div>
 
 					<div className='w-full mt-4'>
-						<Button
+						{/* <Button
 							variant='outline'
 							className='w-full mt-4 h-12 text-foreground rounded-xl'
 						>
@@ -63,7 +89,7 @@ const Page: PageComponent = () => {
 								height={24}
 							/>
 							<span>Continue with Google</span>
-						</Button>
+						</Button> */}
 						<Button
 							variant='outline'
 							className='w-full mt-4 h-12 text-foreground rounded-xl'
@@ -93,14 +119,17 @@ const Page: PageComponent = () => {
 							<Input
 								placeholder='Enter your email'
 								className='h-12 text-foreground rounded-xl'
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
 							/>
 						</div>
 
 						<Button
-							className='w-full mt-4 h-12 rounded-xl'
+							className='w-full mt-4 h-12 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed'
 							onClick={handleLoginWithMagicLink}
+							disabled={!handleVerifyForm() || loading}
 						>
-							Continue
+							{loading ? "Loading..." : "Continue"}
 						</Button>
 					</div>
 

@@ -16,13 +16,29 @@ export function Footer() {
 			</div>
 
 			<div className='mt-10 w-full border-y-[1px] border-y-border px-4 py-1 flex items-center gap-2'>
-				<p className='text-foreground/70 text-sm mr-2'>
+				<p className='text-foreground/70 text-sm mr-2 py-2'>
 					© 2025 Rasengan Labs. All rights reserved.
 				</p>
 
 				{/* Vertical line */}
-				<div className='w-[1px] h-6 bg-border'></div>
+				<div className='w-[1px] h-6 bg-border hidden sm:block'></div>
 
+				<Link to='/privacy' className='hidden sm:block'>
+					<div className='py-2 px-2 flex items-center justify-center text-foreground/70 hover:text-foreground hover:cursor-pointer transition-all'>
+						<span className='text-sm'>Privacy Policy</span>
+					</div>
+				</Link>
+
+				{/* Vertical line */}
+				<div className='w-[1px] h-6 bg-border hidden sm:block'></div>
+
+				<Link to='/change-log' className='hidden sm:block'>
+					<div className='py-2 px-2 flex items-center justify-center text-foreground/70 hover:text-foreground hover:cursor-pointer transition-all'>
+						<span className='text-sm'>Change Log</span>
+					</div>
+				</Link>
+			</div>
+			<div className='sm:hidden w-full border-b-[1px] border-b-border px-4 py-1 flex items-center gap-2'>
 				<Link to='/privacy'>
 					<div className='py-2 px-2 flex items-center justify-center text-foreground/70 hover:text-foreground hover:cursor-pointer transition-all'>
 						<span className='text-sm'>Privacy Policy</span>

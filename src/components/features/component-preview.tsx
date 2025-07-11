@@ -13,6 +13,7 @@ import {
 import { Component, ComponentCategoryLabel } from "@/data/components/type";
 import { Link, useNavigate } from "rasengan";
 import { scrollToSection } from "@/lib/utils";
+import { useEffect, useRef, useState } from "react";
 
 type Props = {
 	component: Component;
@@ -28,6 +29,45 @@ export default function ComponentPreview({
 	type,
 }: Props) {
 	const navigate = useNavigate();
+
+	// Reference
+	const iframeRef = useRef<HTMLDivElement | null>(null);
+
+	// Load the component iframe when in the view port
+	const [iframeLoaded, setIframeLoaded] = useState(false);
+
+	useEffect(() => {
+		// Check if IntersectionObserver is supported
+		if (!("IntersectionObserver" in window)) {
+			setIframeLoaded(true);
+			return;
+		}
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						setIframeLoaded(true);
+					}
+				});
+			},
+			{
+				root: null,
+				rootMargin: "0px",
+				threshold: 0.1,
+			}
+		);
+
+		const element = iframeRef.current;
+
+		if (element) {
+			observer.observe(element);
+		}
+
+		return () => {
+			observer.disconnect();
+		};
+	}, []);
 
 	const handleNavigateToSection = (
 		e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
@@ -81,7 +121,11 @@ export default function ComponentPreview({
 			</div>
 
 			{/* Preview */}
-			<div className='w-full' style={{ height: component.height }}>
+			<div
+				ref={iframeRef}
+				className='w-full'
+				style={{ height: component.height }}
+			>
 				<ResizablePanelGroup
 					direction='horizontal'
 					className='relative min-h-[200px] w-full md:min-w-[450px] bg-border/70f dark:bg-borderf'
@@ -90,10 +134,12 @@ export default function ComponentPreview({
 						defaultSize={100}
 						className='min-w-[340px] z-10 relative border-r border-border'
 					>
-						<iframe
-							src={component.link}
-							className='w-full h-full border-l border-border'
-						></iframe>
+						{iframeLoaded && (
+							<iframe
+								src={component.link}
+								className='w-full h-full border-l border-border'
+							></iframe>
+						)}
 					</ResizablePanel>
 					<ResizableHandle withHandle className='' />
 					<ResizablePanel defaultSize={0}>

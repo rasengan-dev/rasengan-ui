@@ -3,9 +3,12 @@ import { useTheme } from "@rasenganjs/theme";
 import { twMerge } from "tailwind-merge";
 import { Navbar } from "@/components/common/layout/navbar";
 import { Footer } from "@/components/common/layout/footer";
+import { useAuth } from "@/hooks/use-auth";
 
 const Layout: LayoutComponent = () => {
 	const { isDark } = useTheme();
+
+	useAuth();
 
 	return (
 		<section

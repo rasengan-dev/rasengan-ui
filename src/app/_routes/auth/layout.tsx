@@ -7,7 +7,7 @@ const Layout: LayoutComponent = () => {
 			className={twMerge("w-screen h-screen overflow-hidden font-raleway")}
 		>
 			<main className='bg-background h-screen overflow-auto w-full'>
-				<section className='relative h-auto max-w-[1500px] w-full mx-auto px-4 xl:px-10'>
+				<section className='relative h-auto max-w-[1500px] w-full mx-auto px-0 xl:px-10'>
 					<div className='min-h-screen'>
 						<Outlet />
 					</div>

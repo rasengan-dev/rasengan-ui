@@ -23,10 +23,10 @@ export default function ComponentItem({
 		<section className='w-full h-auto'>
 			{/* Header Info */}
 			<div className='flex flex-col gap-2 md:flex-row md:items-center justify-between p-2'>
-				<div className='flex flex-col sm:flex-row sm:items-center gap-1'>
+				<div className='flex flex-row flex-wrap sm:items-center gap-1'>
 					<h2 className='text-foreground text-sm'>{component.name}</h2>
 					{/* <h2 className='text-foreground text-sm'>Hero Section with Image</h2> */}
-					<Dot className='text-foreground hidden sm:block' />
+					<Dot className='text-foreground hiddenf sm:block' />
 					<span className='text-foreground/70 text-sm'>{category}</span>
 				</div>
 
