@@ -65,7 +65,7 @@ export const authProvider = {
 					return { error: "Failed to get personal information" };
 				}
 
-				const avatar = avatars.getInitials(personalInformation.name || name!);
+				const avatar = avatars.getInitials(personalInformation.email);
 
 				await userProvider.createUser(
 					session.userId,

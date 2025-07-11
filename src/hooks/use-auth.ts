@@ -1,12 +1,13 @@
 import { authProvider } from "@/provider/data/auth";
 import { useAuthStore } from "@/store/auth";
-import { useNavigate } from "rasengan";
+import { useLocation, useNavigate } from "rasengan";
 import { useEffect } from "react";
 
 export const useAuth = () => {
 	const { setUser } = useAuthStore();
 
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	useEffect(() => {
 		(async () => {
@@ -22,7 +23,9 @@ export const useAuth = () => {
 
 			setUser(user);
 		} else {
-			navigate("/");
+			if (location.pathname === "/profile") {
+				navigate("/");
+			}
 		}
 	};
 };

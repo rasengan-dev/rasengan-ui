@@ -4,7 +4,7 @@ import {
 	ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { Button } from "@/components/ui/button";
-import { Lock, Expand } from "lucide-react";
+import { Lock, Expand, Eye } from "lucide-react";
 import {
 	Tooltip,
 	TooltipContent,
@@ -14,6 +14,7 @@ import { Component, ComponentCategoryLabel } from "@/data/components/type";
 import { Link, useNavigate } from "rasengan";
 import { scrollToSection } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
+import PricingSection from "./sections/pricing";
 
 type Props = {
 	component: Component;
@@ -29,6 +30,8 @@ export default function ComponentPreview({
 	type,
 }: Props) {
 	const navigate = useNavigate();
+
+	const [showCode, setShowCode] = useState(false);
 
 	// Reference
 	const iframeRef = useRef<HTMLDivElement | null>(null);
@@ -87,22 +90,6 @@ export default function ComponentPreview({
 		<section className='w-full border-b-[1px] border-b-border'>
 			{/* Actions command */}
 			<div className='flex items-center justify-between p-2 border-y-[1px] border-y-border'>
-				<div className='flex items-center gap-2'>
-					{component.pricing === "premium" ? (
-						<Link
-							to='/#pricing'
-							onClick={(e) => handleNavigateToSection(e, "pricing")}
-						>
-							<Button variant={"outline"} className='text-foreground/70'>
-								<Lock />
-								<span>Get the Code</span>
-							</Button>
-						</Link>
-					) : (
-						<span>Free</span>
-					)}
-				</div>
-
 				<Tooltip>
 					<TooltipTrigger>
 						<Link
@@ -118,6 +105,17 @@ export default function ComponentPreview({
 						<p>Preview in full screen</p>
 					</TooltipContent>
 				</Tooltip>
+
+				<div className='flex items-center gap-2'>
+					{component.pricing === "premium" ? (
+						<Button onClick={() => setShowCode((prev) => !prev)}>
+							{showCode ? <Eye /> : <Lock />}
+							<span>{showCode ? "Show Preview" : "Get the Code"}</span>
+						</Button>
+					) : (
+						<span>Free</span>
+					)}
+				</div>
 			</div>
 
 			{/* Preview */}
@@ -126,26 +124,30 @@ export default function ComponentPreview({
 				className='w-full'
 				style={{ height: component.height }}
 			>
-				<ResizablePanelGroup
-					direction='horizontal'
-					className='relative min-h-[200px] w-full md:min-w-[450px] bg-border/70f dark:bg-borderf'
-				>
-					<ResizablePanel
-						defaultSize={100}
-						className='min-w-[340px] z-10 relative border-r border-border'
+				{showCode ? (
+					<PricingSection />
+				) : (
+					<ResizablePanelGroup
+						direction='horizontal'
+						className='relative min-h-[200px] w-full md:min-w-[450px] bg-border/70f dark:bg-borderf'
 					>
-						{iframeLoaded && (
-							<iframe
-								src={component.link}
-								className='w-full h-full border-l border-border'
-							></iframe>
-						)}
-					</ResizablePanel>
-					<ResizableHandle withHandle className='' />
-					<ResizablePanel defaultSize={0}>
-						<div className='flex h-full items-center justify-center p-6'></div>
-					</ResizablePanel>
-				</ResizablePanelGroup>
+						<ResizablePanel
+							defaultSize={100}
+							className='min-w-[340px] z-10 relative border-r border-border'
+						>
+							{iframeLoaded && (
+								<iframe
+									src={component.link}
+									className='w-full h-full border-l border-border'
+								></iframe>
+							)}
+						</ResizablePanel>
+						<ResizableHandle withHandle className='' />
+						<ResizablePanel defaultSize={0}>
+							<div className='flex h-full items-center justify-center p-6'></div>
+						</ResizablePanel>
+					</ResizablePanelGroup>
+				)}
 			</div>
 
 			<div className='h-20 w-full flex items-center justify-between p-2 border-t-[1px] border-t-border'></div>

@@ -130,7 +130,7 @@ const PricingItem = ({ pricing }: { pricing: (typeof pricingsData)[0] }) => {
 							pricing.isPopular ? "bg-primary" : "dark:text-foreground"
 						)}
 					>
-						Get UI Collection
+						Buy now
 					</Button>
 				</div>
 			</div>

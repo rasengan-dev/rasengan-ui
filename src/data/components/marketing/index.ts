@@ -107,6 +107,15 @@ export const marketingComponents: ComponentGroup[] = [
 						isDarkEnabled: true,
 						pricing: "premium",
 					},
+					{
+						label: "hero-11",
+						name: "Hero with centered text and image 04",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-11`,
+						code: "",
+						height: 800,
+						isDarkEnabled: true,
+						pricing: "premium",
+					},
 				],
 			},
 
