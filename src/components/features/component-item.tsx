@@ -10,6 +10,7 @@ type Props = {
 	categoryLabel: ComponentCategoryLabel;
 	groupName: string;
 	typeLabel: string;
+	disableSeeMore?: boolean;
 };
 
 export default function ComponentItem({
@@ -18,6 +19,7 @@ export default function ComponentItem({
 	categoryLabel,
 	groupName,
 	typeLabel,
+	disableSeeMore = false,
 }: Props) {
 	return (
 		<section className='w-full h-auto'>
@@ -31,12 +33,18 @@ export default function ComponentItem({
 				</div>
 
 				<div>
-					<Link to={`/components/${categoryLabel}/${groupName}/${typeLabel}`}>
-						<Button size='sm' variant='outline' className='text-foreground/70'>
-							<span className='text-sm'>See more</span>
-							<ArrowRight size={16} />
-						</Button>
-					</Link>
+					{!disableSeeMore && (
+						<Link to={`/components/${categoryLabel}/${groupName}/${typeLabel}`}>
+							<Button
+								size='sm'
+								variant='outline'
+								className='text-foreground/70'
+							>
+								<span className='text-sm'>See more</span>
+								<ArrowRight size={16} />
+							</Button>
+						</Link>
+					)}
 				</div>
 			</div>
 

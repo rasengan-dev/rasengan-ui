@@ -64,6 +64,7 @@ const Page: PageComponent = () => {
 						categoryLabel={category as ComponentCategoryLabel}
 						groupName={groupName || ""}
 						typeLabel={typeName || ""}
+						disableSeeMore
 					/>
 				))}
 			</div>

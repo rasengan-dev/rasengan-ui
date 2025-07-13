@@ -36,12 +36,12 @@ const Page: PageComponent = () => {
 				</h1>
 				<p className='max-w-[700px] text-center mt-2 text-foreground text-pretty px-4'>
 					<span className='font-medium'>
-						Rasengan UI gives you chakra-infused, beautifully crafted UI
-						components built for any React app.
+						Chakra-infused UI sections for any React app — Rasengan.js, Next.js,
+						Remix, TanStack, React Router, and more.
 					</span>{" "}
 					<span>
-						Each component is themeable, responsive, and ready to drop into your
-						code — powered by Shadcn UI.
+						Themeable, responsive, and powered by Shadcn UI — just drop them
+						into your project and build faster.
 					</span>
 				</p>
 				<div className='mt-6 w-full items-center justify-center flex flex-col sm:flex-row gap-2 px-4'>
@@ -54,7 +54,7 @@ const Page: PageComponent = () => {
 						className='w-full sm:w-auto'
 					>
 						<Button
-							className='w-full sm:w-auto h-8 text-foreground/70'
+							className='w-full sm:w-auto text-foreground/70'
 							variant='outline'
 						>
 							<Lock />

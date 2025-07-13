@@ -33,7 +33,7 @@ export type Component = {
 	name: string;
 	link: string;
 	code?: string;
-	height?: number;
+	height?: number | "auto";
 	isDarkEnabled: boolean;
 	isPopular?: boolean;
 	pricing: "free" | "premium";

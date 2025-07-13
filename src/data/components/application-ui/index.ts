@@ -373,6 +373,73 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 		],
 	},
 
+	// Lists components
+	{
+		label: "lists",
+		name: "Lists",
+		componentsType: [
+			{
+				label: "grid",
+				name: "Grid List",
+				description: `Beautifully crafted lists to display items in a grid layout.
+Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to explore and interact with your content.`,
+				image: "",
+				components: [
+					{
+						label: "grid-01",
+						name: "Contact cards with small portraits",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/lists/grid-01`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: true,
+					},
+					{
+						label: "grid-02",
+						name: "Contact cards with large portraits",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/lists/grid-02`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: true,
+					},
+					{
+						label: "grid-03",
+						name: "Simple cards list",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/lists/grid-03`,
+						code: "",
+						height: 500,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: true,
+					},
+					{
+						label: "grid-04",
+						name: "Images list",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/lists/grid-04`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: true,
+					},
+					{
+						label: "grid-05",
+						name: "Cards with shared borders",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/lists/grid-05`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: true,
+					},
+				],
+			},
+		],
+	},
+
 	// Elements components
 	{
 		label: "elements",

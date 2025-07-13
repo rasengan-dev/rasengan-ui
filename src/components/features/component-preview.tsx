@@ -122,7 +122,7 @@ export default function ComponentPreview({
 			<div
 				ref={iframeRef}
 				className='w-full'
-				style={{ height: component.height }}
+				style={{ height: showCode ? "auto" : component.height }}
 			>
 				{showCode ? (
 					<PricingSection />
