@@ -5,6 +5,16 @@ import { configure } from "@rasenganjs/vercel";
 
 export default defineConfig(async () => {
 	return {
+		// Boost performance
+		// sageMode: {
+		// 	// Enable React Compiler
+		// 	rc: true,
+
+		// 	// Enable React Server Components
+		// 	rsc: true
+		// },
+
+		// Vite configuration
 		vite: {
 			plugins: [rasengan({ adapter: configure() }), tailwindcss()],
 		},
