@@ -311,6 +311,34 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					},
 				],
 			},
+
+			{
+				label: "footers",
+				name: "Footers Section",
+				description: `Showcase footers with beautifully crafted, responsive footer components. Easily customizable, theme-ready, and designed to provide clear answers and build trust in any React app.`,
+				image: "",
+				components: [
+					{
+						label: "footer-01",
+						name: "Simple Footer 01",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/footer-01`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+					{
+						label: "footer-02",
+						name: "Footer with call to action 02",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/footer-02`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: true,
+					},
+				],
+			},
 		],
 	},
 
