@@ -393,7 +393,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 						height: 800,
 						isDarkEnabled: false,
 						pricing: "premium",
-						isPopular: true,
+						isPopular: false,
 					},
 					{
 						label: "grid-02",
@@ -403,7 +403,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 						height: 800,
 						isDarkEnabled: false,
 						pricing: "premium",
-						isPopular: true,
+						isPopular: false,
 					},
 					{
 						label: "grid-03",
@@ -413,7 +413,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 						height: 500,
 						isDarkEnabled: false,
 						pricing: "premium",
-						isPopular: true,
+						isPopular: false,
 					},
 					{
 						label: "grid-04",
