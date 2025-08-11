@@ -447,6 +447,63 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 		componentsType: [],
 	},
 
+	// Overlays components
+	{
+		label: "overlays",
+		name: "Overlays",
+		componentsType: [
+			{
+				label: "notifications",
+				name: "Notifications",
+				description: `Beautifully crafted notification overlays.
+Chakra-infused, responsive, and ready to drop into any React app — making it nice to show feedbacks to users`,
+				image: "",
+				components: [
+					{
+						label: "notification-01",
+						name: "Simple Notification 01",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/notification-01`,
+						code: "",
+						height: 200,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
+					{
+						label: "notification-02",
+						name: "Condensed Notification 02",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/notification-02`,
+						code: "",
+						height: 200,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
+					{
+						label: "notification-03",
+						name: "Notification with actions 03",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/notification-03`,
+						code: "",
+						height: 300,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
+					{
+						label: "notification-04",
+						name: "Reply Notification 04",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/notification-04`,
+						code: "",
+						height: 200,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
+				],
+			},
+		],
+	},
+
 	// Feedbacks components
 	{
 		label: "feedbacks",
