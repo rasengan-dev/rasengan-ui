@@ -501,6 +501,35 @@ Chakra-infused, responsive, and ready to drop into any React app — making it n
 					},
 				],
 			},
+			{
+				label: "toolbar",
+				name: "Toolbar",
+				description: `Beautifully crafted toolbars to display items in a toolbar layout.
+Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to explore and interact with your content.`,
+				image: "",
+				components: [
+					{
+						label: "toolbar-01",
+						name: "Video Call Toolbar 01",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/toolbar-01`,
+						code: "",
+						height: 500,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
+					{
+						label: "toolbar-02",
+						name: "Design app Toolbar 02",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/toolbar-02`,
+						code: "",
+						height: 500,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
+				],
+			},
 		],
 	},
 
