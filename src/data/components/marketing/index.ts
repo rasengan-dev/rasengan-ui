@@ -357,6 +357,16 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 						pricing: "premium",
 						isPopular: false,
 					},
+					{
+						label: "footer-05",
+						name: "Footer with call to action 05",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/footer-05`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
 				],
 			},
 

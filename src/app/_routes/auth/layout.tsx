@@ -4,9 +4,9 @@ import { twMerge } from "tailwind-merge";
 const Layout: LayoutComponent = () => {
 	return (
 		<section
-			className={twMerge("w-screen h-screen overflow-hidden font-raleway")}
+			className={twMerge("w-screen min-h-screen overflow-hidden font-raleway")}
 		>
-			<main className='bg-background h-screen overflow-auto w-full'>
+			<main className='bg-background h-auto overflow-auto w-full'>
 				<section className='relative h-auto max-w-[1500px] w-full mx-auto px-0 xl:px-10'>
 					<div className='min-h-screen'>
 						<Outlet />

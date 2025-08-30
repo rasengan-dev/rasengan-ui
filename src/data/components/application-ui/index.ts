@@ -437,6 +437,25 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					},
 				],
 			},
+			{
+				label: "animated",
+				name: "Animated List",
+				description: `Beautifully crafted lists to display items with animations.
+Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to explore and interact with your content.`,
+				image: "",
+				components: [
+					{
+						label: "animated-01",
+						name: "List of animated destination",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/lists/animated-01`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
+				],
+			},
 		],
 	},
 

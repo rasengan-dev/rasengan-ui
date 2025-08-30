@@ -24,14 +24,14 @@ importers:
         specifier: ^1.0.0
         version: 1.1.3(react@19.1.0)
       '@rasenganjs/serve':
-        specifier: ^1.0.0
-        version: 1.0.1(rasengan@1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1)))
+        specifier: ^1.1.0
+        version: 1.1.0(rasengan@1.1.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1)))
       '@rasenganjs/theme':
         specifier: ^1.0.1
         version: 1.0.1(react@19.1.0)
       '@rasenganjs/vercel':
         specifier: ^1.0.0
-        version: 1.0.0(rasengan@1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1)))
+        version: 1.0.0(rasengan@1.1.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1)))
       '@tailwindcss/vite':
         specifier: ^4.*
         version: 4.1.10(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1))
@@ -51,8 +51,8 @@ importers:
         specifier: ^12.18.1
         version: 12.18.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       rasengan:
-        specifier: 1.1.2
-        version: 1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1))
+        specifier: 1.1.3
+        version: 1.1.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1))
       react:
         specifier: ^19.0.0
         version: 19.1.0
@@ -157,11 +157,6 @@ packages:
     resolution: {integrity: sha512-PTNtvUQihsAsDHMOP5pfobP8C6CM4JWXmP8DrEIt46c3r2bf87Ua1zoqevsMo9g+tWDwgWrFP5EIxuBx5RudAw==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/parser@7.27.5':
-    resolution: {integrity: sha512-OsQd175SxWkGlzbny8J3K8TnnDD0N3lrIUtB92xwyRpzaenGZhxDvxN/JgU00U3CDZNj9tPuDJ5H0WS4Nt3vKg==}
-    engines: {node: '>=6.0.0'}
-    hasBin: true
-
   '@babel/parser@7.28.3':
     resolution: {integrity: sha512-7+Ey1mAgYqFAx2h0RuoxcQT5+MlG3GTV0TQrgr7/ZliKsm/MNDxVVutlWaziMq7wJNAz8MTqz55XLpWvva6StA==}
     engines: {node: '>=6.0.0'}
@@ -185,10 +180,6 @@ packages:
 
   '@babel/traverse@7.28.3':
     resolution: {integrity: sha512-7w4kZYHneL3A6NP2nxzHvT3HCZ7puDZZjFMqDpBPECub79sTtSO5CGXDkKrTQq8ksAwfD/XI2MRFX23njdDaIQ==}
-    engines: {node: '>=6.9.0'}
-
-  '@babel/types@7.27.6':
-    resolution: {integrity: sha512-ETyHEk2VHHvl9b9jZP5IHPavHYk57EhanlRRuae9XCpb/j5bDCbPPMOBfCWhnl/7EDJz0jEMCi/RhccCE8r1+Q==}
     engines: {node: '>=6.9.0'}
 
   '@babel/types@7.28.2':
@@ -702,11 +693,11 @@ packages:
     peerDependencies:
       react: ^19.0.0
 
-  '@rasenganjs/serve@1.0.1':
-    resolution: {integrity: sha512-9US3yXVQqX+CZHXIuPAsyDmGt+UteG66arEsiBtSjHP8LDjj+vB4w+ICyPRk/5FfR+IPJ4xx+WUcnpTJXZK7GA==}
+  '@rasenganjs/serve@1.1.0':
+    resolution: {integrity: sha512-vzM3mPyMWuU28oOL9wI3cI4L/l8EYqSc6Ts2ywcmtnV6aM6rDLGwL0GX8nkx6tdMg8iv98vIPG/nMg1NtWJDIQ==}
     hasBin: true
     peerDependencies:
-      rasengan: ^1.0.0-beta.61
+      rasengan: ^1.1.3
 
   '@rasenganjs/theme@1.0.1':
     resolution: {integrity: sha512-uQdZmNINss+ow/8OJtpW+OT5g7iQNIWED3XMOuTlOy2yDQBMMldo8iweXSrywAnCV1dTNuXSMciwD1ZKOgF3Qg==}
@@ -1673,8 +1664,8 @@ packages:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
     engines: {node: '>= 0.6'}
 
-  rasengan@1.1.2:
-    resolution: {integrity: sha512-PR5bIXcuMyXdqAtYvVrZtweKeLkcM7tfu8NTXh/F7B7prG+qDn12gPONsVbKlRl4t8aknTH54rpJAxmUAP3EEA==}
+  rasengan@1.1.3:
+    resolution: {integrity: sha512-emY5RZyZ4unEh8KVBd/vuh+1XxAM3ZQmUSwLrMpwzzSuAkOtGbCrcnR6Q5/w/chs9MeLfEtkAKfkg7VFsOi31w==}
     engines: {node: '>=22.12.0'}
     hasBin: true
     peerDependencies:
@@ -1685,7 +1676,7 @@ packages:
       react-dom: ^19.0.0
       sass: '*'
       stylus: '*'
-      vite: ^7.0.0
+      vite: ^6.3.0 || ^7.0.0
     peerDependenciesMeta:
       '@rasenganjs/mdx':
         optional: true
@@ -2154,10 +2145,6 @@ snapshots:
       '@babel/template': 7.27.2
       '@babel/types': 7.28.2
 
-  '@babel/parser@7.27.5':
-    dependencies:
-      '@babel/types': 7.27.6
-
   '@babel/parser@7.28.3':
     dependencies:
       '@babel/types': 7.28.2
@@ -2189,11 +2176,6 @@ snapshots:
       debug: 4.4.1
     transitivePeerDependencies:
       - supports-color
-
-  '@babel/types@7.27.6':
-    dependencies:
-      '@babel/helper-string-parser': 7.27.1
-      '@babel/helper-validator-identifier': 7.27.1
 
   '@babel/types@7.28.2':
     dependencies:
@@ -2614,14 +2596,14 @@ snapshots:
     dependencies:
       react: 19.1.0
 
-  '@rasenganjs/serve@1.0.1(rasengan@1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1)))':
+  '@rasenganjs/serve@1.1.0(rasengan@1.1.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1)))':
     dependencies:
       chalk: 5.4.1
       compression: 1.8.0
       express: 4.21.2
       get-port: 7.1.0
       morgan: 1.10.0
-      rasengan: 1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1))
+      rasengan: 1.1.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1))
       source-map-support: 0.5.21
     transitivePeerDependencies:
       - supports-color
@@ -2630,10 +2612,10 @@ snapshots:
     dependencies:
       react: 19.1.0
 
-  '@rasenganjs/vercel@1.0.0(rasengan@1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1)))':
+  '@rasenganjs/vercel@1.0.0(rasengan@1.1.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1)))':
     dependencies:
       execa: 8.0.1
-      rasengan: 1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1))
+      rasengan: 1.1.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1))
 
   '@rolldown/pluginutils@1.0.0-beta.30': {}
 
@@ -2770,24 +2752,24 @@ snapshots:
 
   '@types/babel__core@7.20.5':
     dependencies:
-      '@babel/parser': 7.27.5
-      '@babel/types': 7.27.6
+      '@babel/parser': 7.28.3
+      '@babel/types': 7.28.2
       '@types/babel__generator': 7.27.0
       '@types/babel__template': 7.4.4
       '@types/babel__traverse': 7.20.7
 
   '@types/babel__generator@7.27.0':
     dependencies:
-      '@babel/types': 7.27.6
+      '@babel/types': 7.28.2
 
   '@types/babel__template@7.4.4':
     dependencies:
-      '@babel/parser': 7.27.5
-      '@babel/types': 7.27.6
+      '@babel/parser': 7.28.3
+      '@babel/types': 7.28.2
 
   '@types/babel__traverse@7.20.7':
     dependencies:
-      '@babel/types': 7.27.6
+      '@babel/types': 7.28.2
 
   '@types/estree@1.0.8': {}
 
@@ -3501,7 +3483,7 @@ snapshots:
 
   range-parser@1.2.1: {}
 
-  rasengan@1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1)):
+  rasengan@1.1.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1)):
     dependencies:
       '@vitejs/plugin-react': 5.0.0(vite@7.1.2(jiti@2.4.2)(lightningcss@1.30.1))
       chalk: 5.4.1

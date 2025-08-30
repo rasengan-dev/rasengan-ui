@@ -70,7 +70,7 @@ export const Navbar = ({ className }: Props) => {
 								<li className='font-medium'>Docs</li>
 							</Link>
 							<Link
-								to='/components'
+								to='/ui-components'
 								className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
 							>
 								<li className='font-medium'>Components</li>

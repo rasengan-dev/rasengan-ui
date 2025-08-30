@@ -45,7 +45,7 @@ const Page: PageComponent = () => {
 					</span>
 				</p>
 				<div className='mt-6 w-full items-center justify-center flex flex-col sm:flex-row gap-2 px-4'>
-					<Link to='/components' className='w-full sm:w-auto'>
+					<Link to='/ui-components' className='w-full sm:w-auto'>
 						<Button className='w-full sm:w-auto'>Browse components</Button>
 					</Link>
 					<Link

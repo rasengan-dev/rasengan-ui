@@ -11,9 +11,7 @@ const Page: PageComponent = () => {
 	const { components } = useComponentStore();
 
 	return (
-		<section className='w-full h-full bg-background py-4'>
-			<div id='top'></div>
-
+		<section className='w-full min-h-screen h-auto bg-background py-4'>
 			{/* Gradient */}
 			<div className='absolute -top-[300px] left-1/2 -translate-x-1/2 size-[400px] rounded-full bg-primary/70 blur-[500px] z-0'></div>
 
@@ -29,7 +27,7 @@ const Page: PageComponent = () => {
 				<h1 className='font-bold text-[50px] leading-[60px] text-center max-w-[700px] text-foreground mt-4 text-pretty'>
 					Assemble your UI like a true shinobi.
 				</h1>
-				<p className='max-w-[700px] text-center mt-2 text-foreground text-pretty'>
+				<p className='max-w-[700px] text-center mt-2 text-foreground text-pretty px-4'>
 					<span className='font-medium'>
 						Rasengan UI offers a curated set of high-quality, ready-to-use UI
 						sections — like hero blocks, pricing sections, testimonials, and
@@ -50,7 +48,7 @@ const Page: PageComponent = () => {
 
 			{/* Tabs */}
 			<section className='w-full mt-20 min-h-[calc(100vh-80px)] relative'>
-				<div className='sticky -top-[1px] z-30 w-full flex items-center border-[1px] border-border bg-background'>
+				<div className='sticky -top-[1px] z-20 w-full flex items-center border-[1px] border-border bg-background'>
 					{Object.entries(components).map(([key, category]) => (
 						<Link
 							key={key}
@@ -89,7 +87,7 @@ const Page: PageComponent = () => {
 											key={type.label}
 											title={type.name}
 											components={type.components.length}
-											link={`/components/${category.label}/${group.label}/${type.label}`}
+											link={`/ui-components/${category.label}/${group.label}/${type.label}`}
 										/>
 									))}
 								</div>
