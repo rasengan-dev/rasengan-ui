@@ -51,7 +51,7 @@ export const SidebarBanner = () => {
 	}, [components, categoryLabel, groupName, typeName]);
 
 	return (
-		<div className='h-15 w-full border-b-[1px] border-b-border bg-background px-4 flex items-center gap-4'>
+		<div className='h-15 w-full border-b-[1px] border-b-border bg-background/80 backdrop-blur-md px-4 flex items-center gap-4'>
 			<Button size={"icon"} variant={"ghost"} className='text-foreground/70'>
 				<AlignLeft />
 			</Button>

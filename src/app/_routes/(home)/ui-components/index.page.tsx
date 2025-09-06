@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { componentCategories } from "@/data/components/type";
 import { scrollToSection } from "@/lib/utils";
 import { useComponentStore } from "@/store/components";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Lock } from "lucide-react";
 import { Link, PageComponent } from "rasengan";
 
 const Page: PageComponent = () => {
@@ -17,14 +17,19 @@ const Page: PageComponent = () => {
 
 			{/* Hero */}
 			<section className='relative w-full flex flex-col items-center mt-20'>
-				<Badge
-					variant='default'
-					className='bg-accent/30f bg-primary px-4 py-1 rounded-full'
-				>
-					<span>Rasengan.js v1.1.0 is available</span>
-					<ArrowRight />
-				</Badge>
-				<h1 className='font-bold text-[50px] leading-[60px] text-center max-w-[700px] text-foreground mt-4 text-pretty'>
+				<Link to='/pricing'>
+					<Badge
+						variant='default'
+						className='bg-accent/30f bg-primary px-4 py-1 rounded-full'
+					>
+						<span>
+							Get 50% off to the{" "}
+							<span className='font-bold'>Chakra Launch Pack</span>
+						</span>
+						<ArrowRight />
+					</Badge>
+				</Link>
+				<h1 className='font-bold text-[50px] lg:text-[60px] leading-[60px] text-center max-w-[700px] text-foreground mt-4 text-pretty'>
 					Assemble your UI like a true shinobi.
 				</h1>
 				<p className='max-w-[700px] text-center mt-2 text-foreground text-pretty px-4'>
@@ -38,17 +43,23 @@ const Page: PageComponent = () => {
 						summon in any React project.
 					</span>
 				</p>
-				{/* <div className='mt-6 flex gap-2'>
+				<div className='mt-6 flex gap-2'>
 					<Button>Browse components</Button>
-					<Button variant='outline' className='text-foreground'>
-						<span>Explore Templates</span>
-					</Button>
-				</div> */}
+					<Link to='/pricing' className='w-full sm:w-auto'>
+						<Button
+							className='w-full sm:w-auto text-foreground/70'
+							variant='outline'
+						>
+							<Lock />
+							<span>Unlock Premium</span>
+						</Button>
+					</Link>
+				</div>
 			</section>
 
 			{/* Tabs */}
 			<section className='w-full mt-20 min-h-[calc(100vh-80px)] relative'>
-				<div className='sticky -top-[1px] z-20 w-full flex items-center border-[1px] border-border bg-background'>
+				<div className='sticky -top-[1px] z-20 w-full flex items-center border-[1px] border-border bg-background/80 backdrop-blur-md '>
 					{Object.entries(components).map(([key, category]) => (
 						<Link
 							key={key}

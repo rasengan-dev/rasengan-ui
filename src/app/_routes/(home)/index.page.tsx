@@ -3,12 +3,10 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Lock } from "lucide-react";
 import { Link, PageComponent } from "rasengan";
 import ComponentItem from "@/components/features/component-item";
-import PricingSection from "@/components/features/sections/pricing";
 import TestimonialsSection from "@/components/features/sections/testimonials";
 import FaqSection from "@/components/features/sections/faq";
 import { useComponentStore } from "@/store/components";
 import { ComponentCategoryLabel } from "@/data/components/type";
-import { scrollToSection } from "@/lib/utils";
 
 const Page: PageComponent = () => {
 	const { getPopularComponents } = useComponentStore();
@@ -24,14 +22,19 @@ const Page: PageComponent = () => {
 
 			{/* Hero */}
 			<section className='relative w-full flex flex-col items-center mt-20'>
-				<Badge
-					variant='default'
-					className='bg-accent/30f bg-primary px-4 py-1 rounded-full'
-				>
-					<span>Rasengan.js v1.1.0 is available</span>
-					<ArrowRight />
-				</Badge>
-				<h1 className='font-bold text-[50px] leading-[60px] text-center max-w-[700px] text-foreground mt-4 text-pretty px-4'>
+				<Link to='/pricing'>
+					<Badge
+						variant='default'
+						className='bg-accent/30f bg-primary px-4 py-1 rounded-full'
+					>
+						<span>
+							Get 50% off to the{" "}
+							<span className='font-bold'>Chakra Launch Pack</span>
+						</span>
+						<ArrowRight />
+					</Badge>
+				</Link>
+				<h1 className='font-bold text-[50px] lg:text-[60px] leading-[60px] text-center max-w-[700px] text-foreground mt-4 text-pretty px-4'>
 					Build Faster. Style Sharper.
 				</h1>
 				<p className='max-w-[700px] text-center mt-2 text-foreground text-pretty px-4'>
@@ -48,11 +51,7 @@ const Page: PageComponent = () => {
 					<Link to='/ui-components' className='w-full sm:w-auto'>
 						<Button className='w-full sm:w-auto'>Browse components</Button>
 					</Link>
-					<Link
-						to='/#pricing'
-						onClick={(e) => scrollToSection(e, "pricing")}
-						className='w-full sm:w-auto'
-					>
+					<Link to='/pricing' className='w-full sm:w-auto'>
 						<Button
 							className='w-full sm:w-auto text-foreground/70'
 							variant='outline'
@@ -97,7 +96,7 @@ const Page: PageComponent = () => {
 			</section>
 
 			{/* Pricing */}
-			<PricingSection />
+			{/* <PricingSection /> */}
 
 			{/* Testimonials */}
 			<TestimonialsSection />

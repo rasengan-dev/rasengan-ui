@@ -40,7 +40,7 @@ export const Navbar = ({ className }: Props) => {
 			<header
 				id='navbar'
 				className={twMerge(
-					"bg-background backdrop-blur-mdd w-full h-[60px] border-b-[1px] border-b-border flex items-center justify-between px-4",
+					"bg-background/80 backdrop-blur-md w-full h-[60px] border-b-[1px] border-b-border flex items-center justify-between px-4",
 					className
 				)}
 			>
@@ -82,9 +82,8 @@ export const Navbar = ({ className }: Props) => {
 								<li className='font-medium'>Templates</li>
 							</Link> */}
 							<Link
-								to='/#pricing'
+								to='/pricing'
 								className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
-								onClick={(e) => handleNavigateToSection(e, "pricing")}
 							>
 								<li className='font-medium'>Pricing</li>
 							</Link>
@@ -93,18 +92,14 @@ export const Navbar = ({ className }: Props) => {
 				</div>
 
 				<div className='flex items-center gap-2'>
-					<Link
-						className='hidden sm:block'
-						to='/#pricing'
-						onClick={(e) => handleNavigateToSection(e, "pricing")}
-					>
+					<Link className='hidden sm:block' to='/pricing'>
 						<Button className='h-8 text-foreground/70' variant='outline'>
 							<Lock />
 							<span>Unlock Premium</span>
 						</Button>
 					</Link>
 
-					{user ? (
+					{/* {user ? (
 						<ProfileDropdown>
 							<Image
 								src={user.avatar || ""}
@@ -118,7 +113,7 @@ export const Navbar = ({ className }: Props) => {
 						<Link to='/auth/signin' className='h-8'>
 							<Button className='h-8'>Sign In</Button>
 						</Link>
-					)}
+					)} */}
 
 					{/* vertical separator */}
 					<div className='h-6 w-[1px] bg-border'></div>
