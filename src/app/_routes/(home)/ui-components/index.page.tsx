@@ -59,7 +59,7 @@ const Page: PageComponent = () => {
 
 			{/* Tabs */}
 			<section className='w-full mt-20 min-h-[calc(100vh-80px)] relative'>
-				<div className='sticky -top-[1px] z-20 w-full flex items-center border-[1px] border-border bg-background/80 backdrop-blur-md '>
+				<div className='sticky -top-[1px] z-20 w-full flex items-center border-[1px] border-border bg-background'>
 					{Object.entries(components).map(([key, category]) => (
 						<Link
 							key={key}

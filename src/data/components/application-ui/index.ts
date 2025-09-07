@@ -460,11 +460,11 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 	},
 
 	// Elements components
-	{
-		label: "elements",
-		name: "Elements",
-		componentsType: [],
-	},
+	// {
+	// 	label: "elements",
+	// 	name: "Elements",
+	// 	componentsType: [],
+	// },
 
 	// Overlays components
 	{
@@ -547,15 +547,35 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 						pricing: "premium",
 						isPopular: false,
 					},
+					{
+						label: "toolbar-03",
+						name: "Jira Toolbar 03",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/toolbar-03`,
+						code: "",
+						height: 500,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
+					{
+						label: "toolbar-04",
+						name: "Design Toolbar 04",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/toolbar-04`,
+						code: "",
+						height: 500,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
 				],
 			},
 		],
 	},
 
 	// Feedbacks components
-	{
-		label: "feedbacks",
-		name: "Feedbacks",
-		componentsType: [],
-	},
+	// {
+	// 	label: "feedbacks",
+	// 	name: "Feedbacks",
+	// 	componentsType: [],
+	// },
 ];

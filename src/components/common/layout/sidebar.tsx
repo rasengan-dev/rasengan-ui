@@ -1,78 +1,281 @@
-import { Button } from "@/components/ui/button";
-import { AlignLeft } from "lucide-react";
-import {
-	Breadcrumb,
-	BreadcrumbItem,
-	BreadcrumbLink,
-	BreadcrumbList,
-	BreadcrumbPage,
-	BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Link, useParams } from "rasengan";
-import { ComponentCategoryLabel, ComponentType } from "@/data/components/type";
-import { useComponentStore } from "@/store/components";
-import { useMemo } from "react";
+import { NavigationData, NavigationItem } from "@/data/components/navigation";
+import { ChevronDown, FlaskConical } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import { Link, useLocation, useNavigate } from "rasengan";
+import { ComponentProps, Fragment, useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
-export const SidebarBanner = () => {
-	const { components } = useComponentStore();
+type Props = {
+	className?: ComponentProps<"aside">["className"];
+	onClose?: () => void;
+};
 
-	const {
-		category: categoryLabel,
-		group: groupName,
-		type: typeName,
-	} = useParams();
+export default function SidebarNavigation({ className, onClose }: Props) {
+	const { pathname } = useLocation();
 
-	const { type, category } = useMemo(() => {
-		// Get components by categories
-		const componentsByCategory =
-			components[categoryLabel as ComponentCategoryLabel];
+	const isActive = (path: string) => {
+		return pathname.includes(path);
+	};
 
-		// Find the current group component list
-		const componentsByGroup = componentsByCategory.components.find(
-			(group) => group.label === groupName
-		);
-
-		if (componentsByGroup) {
-			// Find the current type component list
-			const componentsByType: ComponentType | undefined =
-				componentsByGroup.componentsType.find(
-					(type) => type.label === typeName
-				);
-
-			if (componentsByType) {
-				return {
-					type: componentsByType.name,
-					category: componentsByCategory.name,
-				};
-			}
+	const sortNavigation = (nav: NavigationItem[]) => {
+		if (nav.some((item) => item.level === 4)) {
+			return nav;
 		}
 
-		return { type: "", category: "" };
-	}, [components, categoryLabel, groupName, typeName]);
+		// sort by name
+		return nav.sort((a, b) => a.name.localeCompare(b.name));
+	};
 
 	return (
-		<div className='h-15 w-full border-b-[1px] border-b-border bg-background/80 backdrop-blur-md px-4 flex items-center gap-4'>
-			<Button size={"icon"} variant={"ghost"} className='text-foreground/70'>
-				<AlignLeft />
-			</Button>
+		<aside
+			className={twMerge(
+				"w-[280px] border-r-[1px] border-r-border/60 text-foreground",
+				className
+			)}
+		>
+			<section className='lg:sticky w-full h-(--sidebar-height) max-h-[calc(100vh)] overflow-y-auto pb-16 p-6'>
+				{/* <div className='flex flex-col gap-4 text-sm border-b-[1px] border-b-border pb-8f'>
+					<div className='flex items-center mb-6 gap-2'>
+						<div className='size-10 rounded-md border-[1px] border-primary/40 bg-primary/10 flex items-center justify-center'>
+							<Tag size={20} className='text-primary' />
+						</div>
 
-			<Breadcrumb>
-				<BreadcrumbList>
-					<BreadcrumbItem>
-						<BreadcrumbLink asChild>
-							<Link to='/components'>Components</Link>
-						</BreadcrumbLink>
-					</BreadcrumbItem>
-					<BreadcrumbSeparator />
-					<BreadcrumbItem>
-						<span>{category}</span>
-					</BreadcrumbItem>
-					<BreadcrumbSeparator />
-					<BreadcrumbItem>
-						<BreadcrumbPage>{type}</BreadcrumbPage>
-					</BreadcrumbItem>
-				</BreadcrumbList>
-			</Breadcrumb>
+						<div className='flex flex-col gap-1'>
+							<span>Using stable version</span>
+							<span className='text-[12px] text-foreground/60'>v1.1.3</span>
+						</div>
+					</div>
+				</div> */}
+
+				{NavigationData.map((nav) => {
+					return (
+						<div key={nav.id} className='mt-8k'>
+							<div className='flex items-center gap-2 text-foreground/60'>
+								{nav.icon}
+								<span className='font-mono text-[12px]'>{nav.name}</span>
+							</div>
+
+							<div className='flex flex-col w-full text-sm py-4'>
+								{nav.children &&
+									sortNavigation(nav.children).map((item) => {
+										if (item.visible === false) return null;
+
+										return (
+											<Fragment key={item.id}>
+												<NavItem
+													item={item}
+													isActive={isActive}
+													onClose={onClose}
+												/>
+											</Fragment>
+										);
+									})}
+							</div>
+						</div>
+					);
+				})}
+			</section>
+		</aside>
+	);
+}
+
+type NavItemProps = {
+	item: NavigationItem;
+	className?: ComponentProps<"div">["className"];
+	isActive: (path: string) => boolean;
+	onClose?: () => void;
+};
+
+export const NavItem = ({
+	item,
+	className,
+	isActive,
+	onClose,
+}: NavItemProps) => {
+	const [isOpen, setIsOpen] = useState(false);
+
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		const active = hasActiveChild();
+
+		if (active) {
+			setIsOpen(true);
+		}
+	}, []);
+
+	const hasActiveChild = () => {
+		if (!item.children) return false;
+
+		return item.children.some((item) =>
+			isActive(item.link?.split("#")[0] ?? "#nothing")
+		);
+	};
+
+	const handleNavigate = (
+		e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+		link?: string
+	) => {
+		e.preventDefault();
+
+		navigate(link || "#");
+
+		if (onClose) onClose();
+	};
+
+	const sortNavigation = (nav: NavigationItem[]) => {
+		if (nav.some((item) => item.level === 4)) {
+			return nav;
+		}
+
+		// sort by name
+		return nav.sort((a, b) => a.name.localeCompare(b.name));
+	};
+
+	return item.link ? (
+		<Link to={item.link} onClick={(e) => handleNavigate(e, item.link)}>
+			<div
+				className={twMerge(
+					"flex items-center justify-between pl-4 py-1 border-l-[1px] border-l-border  cursor-pointer hover:text-primary/80 hover:border-l-primary/60 transition-all duration-300",
+					className,
+					isActive(item.link)
+						? "text-primary border-l-primary hover:text-primary hover:border-l-primary font-lexend-medium"
+						: "text-foreground/90",
+					item.isComingSoon && "text-foreground/40 hover:text-foreground/40"
+				)}
+				onClick={() => {
+					setIsOpen((prev) => !prev);
+					if (onClose) onClose();
+				}}
+			>
+				{item.isBeta ? (
+					<div className='flex items-center gap-2'>
+						<span>{item.name}</span>
+						<FlaskConical size={16} className='text-green-500' />
+					</div>
+				) : (
+					<span className='flex-nowrap text-nowrap overflow-hidden text-ellipsis'>
+						{item.name}
+					</span>
+				)}
+
+				{item.isNew && (
+					<span className='text-[10px] text-primary-foreground bg-primary px-2 py-1 rounded-full'>
+						New
+					</span>
+				)}
+
+				{item.isComingSoon && (
+					<span className='text-[10px] text-primary-foreground bg-orange-500 px-2 py-1 rounded-full'>
+						Coming Soon
+					</span>
+				)}
+
+				{item.children && item.children.length > 0 && (
+					<ChevronDown
+						size={16}
+						className={twMerge(
+							"transition-all duration-300",
+							isOpen ? "" : "-rotate-90"
+						)}
+					/>
+				)}
+			</div>
+
+			<AnimatePresence>
+				{isOpen && (
+					<motion.div
+						key={item.id}
+						initial='collapsed'
+						animate='open'
+						exit='collapsed'
+						variants={{
+							open: { height: "auto" },
+							collapsed: { height: 0 },
+						}}
+						transition={{ duration: 0.3, ease: "easeInOut" }}
+						className='overflow-hidden'
+					>
+						{item.children &&
+							sortNavigation(item.children).map((item) => {
+								if (item.visible === false) return null;
+
+								return (
+									<NavItem
+										key={item.id}
+										item={item}
+										className={item.level === 2 ? "" : "pl-8"}
+										isActive={isActive}
+										onClose={onClose}
+									/>
+								);
+							})}
+					</motion.div>
+				)}
+			</AnimatePresence>
+		</Link>
+	) : (
+		<div>
+			<div
+				className={twMerge(
+					"flex items-center justify-between pl-4 py-1 border-l-[1px] border-l-border text-foreground/90 cursor-pointer hover:text-primary/80 hover:border-l-primary/60 transition-all",
+					className,
+					hasActiveChild()
+						? "text-primary border-l-primary hover:text-primary hover:border-l-primary font-lexend-medium"
+						: "text-foreground/90"
+				)}
+				onClick={() => setIsOpen((prev) => !prev)}
+			>
+				<span>{item.name}</span>
+
+				{item.children && item.children.length > 0 && (
+					<ChevronDown
+						size={16}
+						className={twMerge(
+							"transition-all duration-300",
+							isOpen ? "" : "-rotate-90"
+						)}
+					/>
+				)}
+			</div>
+
+			<AnimatePresence>
+				{isOpen && (
+					<motion.div
+						key={item.id}
+						initial='collapsed'
+						animate='open'
+						exit='collapsed'
+						variants={{
+							open: { height: "auto" },
+							collapsed: { height: 0 },
+						}}
+						transition={{ duration: 0.3, ease: "easeInOut" }}
+						className='overflow-hidden'
+					>
+						{item.children &&
+							sortNavigation(item.children).map((item) => {
+								if (item.visible === false) return null;
+
+								return (
+									<NavItem
+										key={item.id}
+										item={item}
+										className={
+											item.level === 2
+												? ""
+												: item.level === 3
+												? "pl-8"
+												: "pl-12"
+										}
+										isActive={isActive}
+										onClose={onClose}
+									/>
+								);
+							})}
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</div>
 	);
 };

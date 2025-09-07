@@ -117,6 +117,11 @@
 	/* Fonts */
 	--font-sans: Geist, sans-serif;
 	--font-raleway: Raleway, sans-serif;
+
+	/* Width and height */
+	--hero-height: calc(100vh - 120px);
+	--mobile-main-height: calc(100vh - 110px);
+	--sidebar-height: calc(100vh - 120px);
 }
 
 @layer base {

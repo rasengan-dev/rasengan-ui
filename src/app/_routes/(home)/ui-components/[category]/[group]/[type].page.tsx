@@ -1,14 +1,33 @@
-import { SidebarBanner } from "@/components/common/layout/sidebar";
+import { SidebarBanner } from "@/components/common/layout/sidebar-banner";
 import ComponentItem from "@/components/features/component-item";
-import { PageComponent, useParams } from "rasengan";
+import {
+	PageComponent,
+	useLocation,
+	useParams,
+	useSearchParams,
+} from "rasengan";
 import { useComponentStore } from "@/store/components";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { ComponentCategoryLabel, ComponentType } from "@/data/components/type";
 
 const Page: PageComponent = () => {
 	const { components } = useComponentStore();
 
 	const { category, group: groupName, type: typeName } = useParams();
+	const { pathname, hash } = useLocation();
+
+	useEffect(() => {
+		if (typeof window === undefined) return;
+
+		(() => {
+			console.log(hash);
+			const compomentItemElement = document.getElementById(hash.slice(1));
+
+			if (compomentItemElement) {
+				compomentItemElement.scrollIntoView({ behavior: "smooth" });
+			}
+		})();
+	}, [hash]);
 
 	const { componentsList } = useMemo(() => {
 		// Get components by categories

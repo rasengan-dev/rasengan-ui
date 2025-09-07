@@ -23,3 +23,7 @@ export function scrollToSection(
 export function sleep(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+export const randomId = () => {
+	return Math.floor(Math.random() * 1000000);
+};

@@ -542,9 +542,9 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 	},
 
 	// Feedbacks components
-	{
-		label: "feedbacks",
-		name: "Feedbacks",
-		componentsType: [],
-	},
+	// {
+	// 	label: "feedbacks",
+	// 	name: "Feedbacks",
+	// 	componentsType: [],
+	// },
 ];

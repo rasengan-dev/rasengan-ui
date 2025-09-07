@@ -8,6 +8,9 @@ import { Link, PageComponent } from "rasengan";
 const Page: PageComponent = () => {
 	return (
 		<section>
+			{/* Gradient */}
+			<div className='absolute -top-[300px] left-1/2 -translate-x-1/2 size-[400px] rounded-full bg-primary/70 blur-[500px] z-0'></div>
+
 			{/* Hero */}
 			<section className='relative w-full flex flex-col items-center pt-20'>
 				<h1 className='font-bold text-[50px] lg:text-[60px] leading-[60px] text-center max-w-[800px] text-foreground mt-4 text-pretty px-4'>

@@ -1,4 +1,4 @@
-import { SidebarBanner } from "@/components/common/layout/sidebar";
+import { SidebarBanner } from "@/components/common/layout/sidebar-banner";
 import ComponentItem from "@/components/features/component-item";
 import { PageComponent, useParams } from "rasengan";
 import { useComponentStore } from "@/store/components";
