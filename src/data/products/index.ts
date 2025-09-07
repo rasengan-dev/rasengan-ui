@@ -6,7 +6,7 @@ export const productsList = [
 		description:
 			"Unlock the full power of Rasengan UI with 100+ battle-tested components. Special launch price for early shinobi (adopters).",
 		image: "",
-		price: 149.99,
+		price: 199.99,
 		currency: "EUR",
 		symbol: "€",
 		duration: "lifetime access",
@@ -38,7 +38,7 @@ export const productsList = [
 		description:
 			"Everything in the Chakra Launch Pack, plus advanced animated components crafted with Framer Motion for stunning micro-interactions and smooth transitions.",
 		image: "",
-		price: 229.99,
+		price: 329.99,
 		currency: "EUR",
 		symbol: "€",
 		duration: "lifetime access",

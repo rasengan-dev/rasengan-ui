@@ -19,7 +19,7 @@ export default function FaqSection() {
 				</p>
 			</div>
 
-			<div className='w-full flex flex-col justify-start items-center min-h-[200px] py-20'>
+			<div className='w-full flex flex-col justify-start items-center min-h-[200px] pt-20 px-4'>
 				<Accordion type='single' collapsible className='w-full max-w-[800px]'>
 					{faqsList.map((faq) => {
 						return (

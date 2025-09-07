@@ -28,11 +28,11 @@ Seamlessly drop them into your React app to create polished user experiences tha
 	},
 
 	// ECOMMERCE Components
-	[componentCategories.ECOMMERCE]: {
-		label: componentCategories.ECOMMERCE,
-		name: "Ecommerce",
-		description: `Product showcases, feature sections, pricing tables, and checkout-ready blocks.
-Crafted to convert, styled to impress — so you can focus on scaling your shop, not building it from scratch.`,
-		components: [],
-	},
+	// 	[componentCategories.ECOMMERCE]: {
+	// 		label: componentCategories.ECOMMERCE,
+	// 		name: "Ecommerce",
+	// 		description: `Product showcases, feature sections, pricing tables, and checkout-ready blocks.
+	// Crafted to convert, styled to impress — so you can focus on scaling your shop, not building it from scratch.`,
+	// 		components: [],
+	// 	},
 };

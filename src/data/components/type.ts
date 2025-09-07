@@ -1,7 +1,7 @@
 export const componentCategories = {
 	MARKETING: "marketing",
 	APPLICATION_UI: "application-ui",
-	ECOMMERCE: "ecommerce",
+	// ECOMMERCE: "ecommerce",
 } as const;
 
 export type ComponentCategoryLabel =
