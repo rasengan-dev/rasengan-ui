@@ -92,13 +92,14 @@ const Page: PageComponent = () => {
 									</h3>
 								</div>
 
-								<div className='mt-4 w-full px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-4 gap-x-4'>
+								<div className='mt-4 w-full px-4 grid grid-cols-1 sm:grid-cols-2f md:grid-cols-2 lg:grid-cols-3 gap-2f'>
 									{group.componentsType.map((type) => (
 										<ComponentGroupItem
 											key={type.label}
 											title={type.name}
 											components={type.components.length}
 											link={`/ui-components/${category.label}/${group.label}/${type.label}`}
+											image={type.image}
 										/>
 									))}
 								</div>

@@ -13,7 +13,7 @@ export const applicationUIComponents: ComponentGroup[] = [
 				name: "Profile Card",
 				description: `A chakra-infused profile card to display user information in a visually appealing way.
 Ready to drop into any React app, this card is designed to be both functional and aesthetically pleasing.`,
-				image: "",
+				image: "/static/images/components/application-ui/profile.png",
 				components: [
 					{
 						label: "profile-01",
@@ -60,7 +60,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 				name: "Join Card",
 				description: `Beautifully crafted cards inviting users to sign up, join a community, or unlock special content.
 Chakra-infused, responsive, and ready to drop into any React app — perfect for growing your ninja clan.`,
-				image: "",
+				image: "/static/images/components/application-ui/join.png",
 				components: [
 					{
 						label: "join-01",

@@ -12,7 +12,7 @@ export const marketingComponents: ComponentGroup[] = [
 				label: "heroes",
 				name: "Heroes Section",
 				description: `Use these chakra-infused React sections to showcase key messaging, product highlights, and calls-to-action at the top of your site. Each section is thoughtfully designed, production-ready, and powered by Shadcn UI — so you can summon beautiful UIs into any React project with ease.`,
-				image: "",
+				image: "/static/images/components/marketing/hero.png",
 				components: [
 					{
 						label: "hero-01",
@@ -142,7 +142,7 @@ export const marketingComponents: ComponentGroup[] = [
 				name: "Teams Section",
 				description: `Showcase the shinobi behind your mission with beautifully crafted team sections.
 Highlight profiles, roles, and bios — all ready to drop into your React app and styled to reflect your brand’s unique chakra.`,
-				image: "",
+				image: "/static/images/components/marketing/team.png",
 				components: [
 					{
 						label: "team-01",
@@ -189,7 +189,7 @@ Highlight profiles, roles, and bios — all ready to drop into your React app an
 				name: "Pricings Section",
 				description: `Present your offers with clarity and confidence using beautifully crafted, responsive pricing blocks.
 Designed to convert, chakra-infused, and ready to drop into any React app — so your users see value at a glance.`,
-				image: "",
+				image: "/static/images/components/marketing/pricing.png",
 				components: [
 					{
 						label: "pricing-01",
@@ -226,7 +226,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 				label: "testimonials",
 				name: "Testimonials Section",
 				description: `Showcase real feedback from your users with elegant, responsive testimonial components. Easily customizable, theme-ready, and designed to build trust in any React app.`,
-				image: "",
+				image: "/static/images/components/marketing/testimonial.png",
 				components: [
 					{
 						label: "testimonials-01",
@@ -262,7 +262,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 				label: "faqs",
 				name: "FAQs Section",
 				description: `Showcase Frequently Asked Questions (FAQs) with beautifully crafted, responsive FAQ components. Easily customizable, theme-ready, and designed to provide clear answers and build trust in any React app.`,
-				image: "",
+				image: "/static/images/components/marketing/faq.png",
 				components: [
 					{
 						label: "faq-01",
@@ -316,7 +316,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 				label: "footers",
 				name: "Footers Section",
 				description: `Showcase footers with beautifully crafted, responsive footer components. Easily customizable, theme-ready, and designed to provide clear answers and build trust in any React app.`,
-				image: "",
+				image: "/static/images/components/marketing/footer.png",
 				components: [
 					{
 						label: "footer-01",
@@ -374,7 +374,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 				label: "ctas",
 				name: "CTAs Section",
 				description: `Showcase CTAs with beautifully crafted, responsive CTAs components. Easily customizable, theme-ready, and designed to provide clear answers and build trust in any React app.`,
-				image: "",
+				image: "/static/images/components/marketing/cta.png",
 				components: [
 					{
 						label: "cta-01",
@@ -422,7 +422,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 				label: "contacts",
 				name: "Contacts Section",
 				description: `Showcase CTAs with beautifully crafted, responsive CTAs components. Easily customizable, theme-ready, and designed to provide clear answers and build trust in any React app.`,
-				image: "",
+				image: "/static/images/components/marketing/contact.png",
 				components: [
 					{
 						label: "contact-01",
@@ -487,7 +487,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 				label: "navbars",
 				name: "Navbars Elements",
 				description: `Use these chakra-infused React sections to showcase key messaging, product highlights, and calls-to-action at the top of your site. Each section is thoughtfully designed, production-ready, and powered by Shadcn UI — so you can summon beautiful UIs into any React project with ease.`,
-				image: "",
+				image: "/static/images/components/marketing/navbar.png",
 				components: [
 					{
 						label: "navbar-01",

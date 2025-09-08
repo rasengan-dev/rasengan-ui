@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { AlignJustify, Lock } from "lucide-react";
+import { AlignJustify, Coffee, Lock } from "lucide-react";
 import { Link, useNavigate } from "rasengan";
 import { ComponentProps, useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -92,10 +92,20 @@ export const Navbar = ({ className }: Props) => {
 				</div>
 
 				<div className='flex items-center gap-2'>
-					<Link className='hidden sm:block' to='/pricing'>
+					<Link className='' to='/pricing'>
 						<Button className='h-8 text-foreground/70' variant='outline'>
 							<Lock />
 							<span>Unlock Premium</span>
+						</Button>
+					</Link>
+					<Link
+						to='https://buymeacoffee.com/dilane3'
+						target='_blank'
+						className='h-8'
+					>
+						<Button className='h-8 hidden sm:flex bg-[#FFC133] hover:bg-[#FFC133]/80 text-black'>
+							<Coffee />
+							<span>Buy me a coffee</span>
 						</Button>
 					</Link>
 
@@ -165,18 +175,33 @@ export const Navbar = ({ className }: Props) => {
 					</ul>
 				</nav>
 
-				<Link
-					to='/#pricing'
-					onClick={(e) => {
-						handleNavigateToSection(e, "pricing");
-						setIsOpen(false);
-					}}
-				>
-					<Button className='h-8 text-foreground/70 w-full' variant='outline'>
-						<Lock />
-						<span>Unlock Premium</span>
-					</Button>
-				</Link>
+				<div>
+					<Link
+						to='https://buymeacoffee.com/dilane3'
+						target='_blank'
+						className='h-8'
+					>
+						<Button className='w-full h-8 bg-[#FFC133] hover:bg-[#FFC133]/80 text-black'>
+							<Coffee />
+							<span>Buy me a coffee</span>
+						</Button>
+					</Link>
+					<Link
+						to='/#pricing'
+						onClick={(e) => {
+							handleNavigateToSection(e, "pricing");
+							setIsOpen(false);
+						}}
+					>
+						<Button
+							className='mt-2 h-8 text-foreground/70 w-full'
+							variant='outline'
+						>
+							<Lock />
+							<span>Unlock Premium</span>
+						</Button>
+					</Link>
+				</div>
 			</div>
 			<div
 				className={twMerge(

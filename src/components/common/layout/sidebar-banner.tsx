@@ -87,6 +87,7 @@ export const SidebarBanner = () => {
 
 			<motion.div
 				className='fixed bottom-0 left-0 top-[120px] bg-background z-30'
+				initial={{ x: "-100%" }}
 				animate={{ x: open ? 0 : "-100%" }}
 				// exit={{ x: open ? 0 : -100 }}
 			>
