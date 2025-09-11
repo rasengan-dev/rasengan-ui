@@ -62,13 +62,13 @@ export const Navbar = ({ className }: Props) => {
 
 					<nav className='hidden md:block'>
 						<ul className='flex items-center gap-1 text-foreground text-sm'>
-							<Link
+							{/* <Link
 								to='https://rasengan.dev'
 								target='_blank'
 								className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
 							>
 								<li className='font-medium'>Docs</li>
-							</Link>
+							</Link> */}
 							<Link
 								to='/ui-components'
 								className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
@@ -101,9 +101,9 @@ export const Navbar = ({ className }: Props) => {
 					<Link
 						to='https://buymeacoffee.com/dilane3'
 						target='_blank'
-						className='h-8'
+						className='h-8 hidden sm:flex'
 					>
-						<Button className='h-8 hidden sm:flex bg-[#FFC133] hover:bg-[#FFC133]/80 text-black'>
+						<Button className='h-8  bg-[#FFC133] hover:bg-[#FFC133]/80 text-black'>
 							<Coffee />
 							<span>Buy me a coffee</span>
 						</Button>
@@ -140,16 +140,16 @@ export const Navbar = ({ className }: Props) => {
 			>
 				<nav className='mt-10'>
 					<ul className='flex flex-col justify-center gap-4 text-foreground'>
-						<Link
+						{/* <Link
 							to='https://rasengan.dev'
 							target='_blank'
 							className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
 							onClick={() => setIsOpen(false)}
 						>
 							<li className='font-medium'>Docs</li>
-						</Link>
+						</Link> */}
 						<Link
-							to='/components'
+							to='/ui-components'
 							className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
 							onClick={() => setIsOpen(false)}
 						>

@@ -1,12 +1,15 @@
-import { Outlet, LayoutComponent } from "rasengan";
+import { Outlet, LayoutComponent, ScrollRestoration } from "rasengan";
 import { useTheme } from "@rasenganjs/theme";
 import { twMerge } from "tailwind-merge";
 import { Navbar } from "@/components/common/layout/navbar";
 import { Footer } from "@/components/common/layout/footer";
 // import { useAuth } from "@/hooks/use-auth";
+import { useRef } from "react";
 
 const Layout: LayoutComponent = () => {
 	const { isDark } = useTheme();
+
+	const ref = useRef<HTMLDivElement>(null);
 
 	// useAuth();
 
@@ -17,11 +20,16 @@ const Layout: LayoutComponent = () => {
 				isDark && "dark"
 			)}
 		>
+			<ScrollRestoration target={ref} />
+
 			<section className='fixed top-0 inset-x-0 z-30'>
 				<Navbar />
 			</section>
 
-			<main className='bg-background pt-[60px] h-screen overflow-y-auto overflow-x-hidden w-full'>
+			<main
+				ref={ref}
+				className='bg-background pt-[60px] h-screen overflow-y-auto overflow-x-hidden w-full'
+			>
 				<section className='relative h-auto max-w-[1500px] w-full mx-auto sm:px-4 xl:px-10'>
 					<div className='h-auto min-h-screen'>
 						<Outlet />

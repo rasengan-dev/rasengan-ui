@@ -34,7 +34,9 @@ export default function ComponentItem({
 
 				<div>
 					{!disableSeeMore && (
-						<Link to={`/components/${categoryLabel}/${groupName}/${typeLabel}`}>
+						<Link
+							to={`/ui-components/${categoryLabel}/${groupName}/${typeLabel}`}
+						>
 							<Button
 								size='sm'
 								variant='outline'

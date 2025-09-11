@@ -106,7 +106,7 @@ Chakra-infused, responsive, and ready to drop into any React app — perfect for
 				name: "Booking Card",
 				description: `Elegant, ready-to-use cards to showcase appointments, events, or reservations.
 Fully responsive, themeable, and built to drop effortlessly into any React app — so users can book with the speed of a shinobi.`,
-				image: "",
+				image: "/static/images/components/application-ui/booking.png",
 				components: [
 					{
 						label: "booking-01",
@@ -151,7 +151,7 @@ Fully responsive, themeable, and built to drop effortlessly into any React app �
 				name: "Invite Card",
 				description: `Beautifully designed cards that prompt users to join your team, project, or workspace.
 Responsive, themeable, and chakra-infused — ready to drop into any React app to turn visitors into collaborators.`,
-				image: "",
+				image: "/static/images/components/application-ui/invite.png",
 				components: [
 					{
 						label: "invite-01",
@@ -179,7 +179,7 @@ Responsive, themeable, and chakra-infused — ready to drop into any React app t
 				name: "Upload Card",
 				description: `Intuitive, beautifully styled cards for users to upload files, images, or documents.
 Chakra-infused, responsive, and ready to drop into any React app — making file uploads feel seamless and elegant.`,
-				image: "",
+				image: "/static/images/components/application-ui/upload.png",
 				components: [
 					{
 						label: "upload-01",
@@ -207,7 +207,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making file
 				name: "Calendar Card",
 				description: `Beautifully crafted cards to display events, schedules, or dates at a glance.
 Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to keep track of what matters.`,
-				image: "",
+				image: "/static/images/components/application-ui/calendar.png",
 				components: [
 					{
 						label: "calendar-01",
@@ -234,7 +234,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 				name: "Text Input",
 				description: `Clean, accessible, and themeable input fields to capture user data effortlessly.
 From simple text boxes to complex form patterns — all chakra-infused and styled to blend seamlessly into any React app.`,
-				image: "",
+				image: "/static/images/components/application-ui/input.png",
 				components: [
 					{
 						label: "input-01",
@@ -300,7 +300,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 				name: "Filters",
 				description: `Empower users to refine, sort, and explore your content effortlessly.
 These chakra-infused, ready-to-use filter components drop seamlessly into any React app — keeping experiences fast, intuitive, and beautifully organized.`,
-				image: "",
+				image: "/static/images/components/application-ui/filter.png",
 				components: [
 					{
 						label: "filter-01",
@@ -320,7 +320,7 @@ These chakra-infused, ready-to-use filter components drop seamlessly into any Re
 				name: "Registration",
 				description: `Smooth, secure, and beautifully styled auth pages to onboard your users like true shinobi.
 Ready-to-use, themeable, and built to drop effortlessly into any React app — because first impressions matter.`,
-				image: "",
+				image: "/static/images/components/application-ui/register.png",
 				components: [
 					{
 						label: "registration-01",
@@ -383,7 +383,7 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 				name: "Grid List",
 				description: `Beautifully crafted lists to display items in a grid layout.
 Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to explore and interact with your content.`,
-				image: "",
+				image: "/static/images/components/application-ui/grid.png",
 				components: [
 					{
 						label: "grid-01",
@@ -442,12 +442,31 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 				name: "Animated List",
 				description: `Beautifully crafted lists to display items with animations.
 Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to explore and interact with your content.`,
-				image: "",
+				image: "/static/images/components/application-ui/animated.png",
 				components: [
 					{
 						label: "animated-01",
 						name: "List of animated destination",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/lists/animated-01`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
+				],
+			},
+			{
+				label: "tables",
+				name: "Table List",
+				description: `Beautifully crafted data table to display items with too much actions or operations.
+Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to explore and interact with your content.`,
+				image: "/static/images/components/application-ui/table.png",
+				components: [
+					{
+						label: "table-01",
+						name: "Data Table for customers",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/lists/table-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -476,7 +495,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 				name: "Notifications",
 				description: `Beautifully crafted notification overlays.
 Chakra-infused, responsive, and ready to drop into any React app — making it nice to show feedbacks to users`,
-				image: "",
+				image: "/static/images/components/application-ui/notification.png",
 				components: [
 					{
 						label: "notification-01",
@@ -525,7 +544,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it n
 				name: "Toolbar",
 				description: `Beautifully crafted toolbars to display items in a toolbar layout.
 Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to explore and interact with your content.`,
-				image: "",
+				image: "/static/images/components/application-ui/toolbar.png",
 				components: [
 					{
 						label: "toolbar-01",
@@ -563,6 +582,43 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/toolbar-04`,
 						code: "",
 						height: 500,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
+				],
+			},
+		],
+	},
+
+	// Layouts components
+	{
+		label: "layouts",
+		name: "Layouts",
+		componentsType: [
+			{
+				label: "sidebars",
+				name: "Sidebars",
+				description: `Beautifully crafted sidebars for dashboard applications to display menu items.
+Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to explore and interact with your content.`,
+				image: "/static/images/components/application-ui/sidebars.png",
+				components: [
+					{
+						label: "sidebar-01",
+						name: "Dashboard sidebar 01",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/layouts/sidebar-01`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
+					{
+						label: "sidebar-02",
+						name: "Dashboard sidebar 02",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/layouts/sidebar-02`,
+						code: "",
+						height: 800,
 						isDarkEnabled: false,
 						pricing: "premium",
 						isPopular: false,

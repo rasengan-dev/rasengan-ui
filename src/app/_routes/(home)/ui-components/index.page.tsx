@@ -1,7 +1,6 @@
 import ComponentGroupItem from "@/components/features/component-group-item";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { componentCategories } from "@/data/components/type";
 import { scrollToSection } from "@/lib/utils";
 import { useComponentStore } from "@/store/components";
 import { ArrowRight, Lock } from "lucide-react";
@@ -23,7 +22,7 @@ const Page: PageComponent = () => {
 						className='bg-accent/30f bg-primary px-4 py-1 rounded-full'
 					>
 						<span>
-							Get 50% off to the{" "}
+							Get 40% off to the{" "}
 							<span className='font-bold'>Chakra Launch Pack</span>
 						</span>
 						<ArrowRight />

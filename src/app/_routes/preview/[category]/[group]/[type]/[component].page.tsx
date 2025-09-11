@@ -52,7 +52,7 @@ const Page: PageComponent = () => {
 
 	return (
 		<section className='relative h-screen w-screen overflow-hidden'>
-			<iframe src={component.link} className='w-full h-full'></iframe>
+			<iframe src={`${component.link}`} className='w-full h-full'></iframe>
 		</section>
 	);
 };

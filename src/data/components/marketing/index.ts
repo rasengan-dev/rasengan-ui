@@ -5,7 +5,7 @@ const { RASENGAN_PREVIEW_BASE_URL } = import.meta.env;
 export const marketingComponents: ComponentGroup[] = [
 	// Page section components
 	{
-		label: "page-section",
+		label: "sections",
 		name: "Page Section",
 		componentsType: [
 			{

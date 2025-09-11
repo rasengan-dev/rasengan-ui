@@ -137,7 +137,7 @@ export default function ComponentPreview({
 						>
 							{iframeLoaded && (
 								<iframe
-									src={component.link}
+									src={`${component.link}?view=preview`}
 									className='w-full h-full border-l border-border'
 								></iframe>
 							)}

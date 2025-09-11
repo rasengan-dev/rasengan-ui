@@ -1,12 +1,12 @@
 export const productsList = [
 	{
-		id: 628683,
-		variantId: 985383,
+		id: 633656,
+		variantId: 994679,
 		name: "Chakra Launch Pack",
 		description:
 			"Unlock the full power of Rasengan UI with 100+ battle-tested components. Special launch price for early shinobi (adopters).",
 		image: "",
-		price: 199.99,
+		price: 149.99,
 		currency: "EUR",
 		symbol: "€",
 		duration: "lifetime access",
@@ -23,12 +23,12 @@ export const productsList = [
 				"One-time payment (no subscription)",
 			],
 		},
-		link: "https://rasenganui.lemonsqueezy.com/buy/eb2d23ba-6cf1-45d0-ba04-23e5513446d3",
+		link: "https://rasenganui.lemonsqueezy.com/buy/2ff0eada-1b62-47d6-9707-40c99f77d1c2",
 		isActive: true,
 		discount: {
-			percentage: 50,
-			duration: "1 month",
-			code: "RASENGAN50",
+			percentage: 40,
+			duration: "3 month",
+			code: "RASENGANUI40",
 		},
 	},
 	{

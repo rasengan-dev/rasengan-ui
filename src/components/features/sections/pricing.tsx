@@ -106,7 +106,7 @@ const PricingItem = ({ product }: { product: (typeof productsList)[0] }) => {
 									<span>{product.price}</span>
 								</span>
 
-								<span className='text-md text-green-500/70'>
+								<span className='text-md text-green-600/70 font-bold border border-green-600 px-2 py-1 rounded-lg'>
 									{product.discount
 										? `${product.discount.percentage}% off`
 										: ""}

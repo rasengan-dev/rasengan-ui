@@ -28,7 +28,7 @@ const Page: PageComponent = () => {
 						className='bg-accent/30f bg-primary px-4 py-1 rounded-full'
 					>
 						<span>
-							Get 50% off to the{" "}
+							Get 40% off to the{" "}
 							<span className='font-bold'>Chakra Launch Pack</span>
 						</span>
 						<ArrowRight />

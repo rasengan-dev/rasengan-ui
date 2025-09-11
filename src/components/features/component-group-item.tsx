@@ -15,14 +15,14 @@ export default function ComponentGroupItem({
 	return (
 		<Link to={link}>
 			<article className='w-full relative hover:bg-muted/30 p-4 transition-all'>
-				<div className='w-full aspect-[16/12] rounded-lg  bg-muted/50 relative flex items-center border p-6 before:absolute before:inset-0 before:bg-[radial-gradient(var(--dots-color)_1px,transparent_1px)] before:[--dots-color:--alpha(var(--color-foreground)/15%)] before:[background-size:16px_16px] max-sm:min-h-64 sm:p-10'>
-					<div className='border-[1px] rounded-lg overflow-hidden relative m-auto max-h-56f object-contain'>
-						<img
-							src={image}
-							alt={title}
-							className='object-cover h-auto w-full border-2 pointer-events-none border-background rounded-md sm:rounded-lg object-coverf ring-1 ring-foreground/[0.065] shadow-lg shadow-black/5'
-						/>
-					</div>
+				<div className='w-full aspect-[16/12] rounded-lg bg-muted/50 relative flex items-center border p-6 before:absolute before:inset-0 before:bg-[radial-gradient(var(--dots-color)_1px,transparent_1px)] before:[--dots-color:--alpha(var(--color-foreground)/15%)] before:[background-size:16px_16px] max-sm:min-h-64 sm:p-10'>
+					{/* <div className='border-[1px] h-fullk bg-white/60 rounded-lg overflow-hidden relative m-auto max-h-56f object-contain'> */}
+					<img
+						src={image}
+						alt={title}
+						className='object-contain min-h-full h-full mw-full border-2n pointer-events-none border-background rounded-lg sm:rounded-lg object-coverf ring-1j mx-auto ring-foreground/[0.065] shadow-lg shadow-black/5 z-10'
+					/>
+					{/* </div> */}
 				</div>
 
 				<div className='mt-4'>
