@@ -100,7 +100,7 @@ const PricingItem = ({ product }: { product: (typeof productsList)[0] }) => {
 				<div className='w-full flex flex-col items-baseline gap-0 text-foreground'>
 					{discount && (
 						<div className='flex items-center justify-between w-full'>
-							<div className='flex items-center gap-2'>
+							<div className='flex flex-col-reverse sm:flex-row items-center gap-2'>
 								<span className='line-through text-foreground/70'>
 									<span className='text-md'>{product.symbol}</span>
 									<span>{product.price}</span>

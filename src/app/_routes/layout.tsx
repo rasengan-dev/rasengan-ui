@@ -14,7 +14,7 @@ const Layout: LayoutComponent = () => {
 				isDark && "dark"
 			)}
 		>
-			<Analytics framework='rasengan.js' />
+			<Analytics framework='rasengan' />
 
 			<Outlet />
 			<Toaster />
