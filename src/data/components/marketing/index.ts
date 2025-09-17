@@ -478,6 +478,31 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 		],
 	},
 
+	// Page examples
+	{
+		label: "page-examples",
+		name: "Page Examples",
+		componentsType: [
+			{
+				label: "landing",
+				name: "Landing Page",
+				description: `Build landing pages with beautifully crafted, responsive landing page components. Easily customizable, theme-ready, and designed to provide clear answers and build trust in any React app.`,
+				image: "/static/images/components/marketing/landing.png",
+				components: [
+					{
+						label: "landing-01",
+						name: "Landing page 01",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/page-examples/landing-01`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+				],
+			},
+		],
+	},
+
 	// Elements components
 	{
 		label: "elements",
