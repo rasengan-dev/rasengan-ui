@@ -500,6 +500,23 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					},
 				],
 			},
+			{
+				label: "user-profile",
+				name: "User Profile",
+				description: `Build landing pages with beautifully crafted, responsive landing page components. Easily customizable, theme-ready, and designed to provide clear answers and build trust in any React app.`,
+				image: "/static/images/components/marketing/user-profile.png",
+				components: [
+					{
+						label: "user-profile-01",
+						name: "User profile 01",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/page-examples/user-profile-01`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+					},
+				],
+			},
 		],
 	},
 
