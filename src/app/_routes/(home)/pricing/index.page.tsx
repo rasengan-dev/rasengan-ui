@@ -1,8 +1,5 @@
 import PricingSection from "@/components/features/sections/pricing";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { scrollToSection } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
 import { Link, PageComponent } from "rasengan";
 
 const Page: PageComponent = () => {
@@ -37,6 +34,12 @@ const Page: PageComponent = () => {
 			<PricingSection />
 		</section>
 	);
+};
+
+Page.metadata = {
+	title: "Pricing - Rasengan UI",
+	description:
+		"Build stunning interfaces at ninja speed - Get access to all our premium components and features by choosing a plan that best fit with your goal.",
 };
 
 export default Page;

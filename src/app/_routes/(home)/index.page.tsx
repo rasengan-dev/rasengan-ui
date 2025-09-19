@@ -108,8 +108,9 @@ const Page: PageComponent = () => {
 };
 
 Page.metadata = {
-	title: "Home",
-	description: "Rasengan UI home page",
+	title: "Rasengan UI",
+	description:
+		"Build Faster. Style Sharper - Chakra-infused UI sections for any React app — Rasengan.js, Next.js, Remix, TanStack, React Router, and more. Themeable, responsive, and powered by Shadcn UI — just drop them into your project and build faster.",
 };
 
 export default Page;

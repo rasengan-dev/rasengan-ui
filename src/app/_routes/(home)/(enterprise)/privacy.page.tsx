@@ -8,4 +8,9 @@ const Page: PageComponent = () => {
 	);
 };
 
+Page.metadata = {
+	title: "Privacy - Rasengan UI",
+	description: "Privacy - Rasengan UI",
+};
+
 export default Page;

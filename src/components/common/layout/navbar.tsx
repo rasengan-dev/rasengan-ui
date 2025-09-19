@@ -17,7 +17,7 @@ type Props = {
 export const Navbar = ({ className }: Props) => {
 	const [isOpen, setIsOpen] = useState(false);
 
-	const { user } = useAuthStore();
+	// const { user } = useAuthStore();
 
 	const navigate = useNavigate();
 
@@ -163,12 +163,9 @@ export const Navbar = ({ className }: Props) => {
 							<li className='font-medium'>Templates</li>
 						</Link> */}
 						<Link
-							to='/#pricing'
+							to='/pricing'
 							className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
-							onClick={(e) => {
-								handleNavigateToSection(e, "pricing");
-								setIsOpen(false);
-							}}
+							onClick={() => setIsOpen(false)}
 						>
 							<li className='font-medium'>Pricing</li>
 						</Link>
@@ -187,7 +184,7 @@ export const Navbar = ({ className }: Props) => {
 						</Button>
 					</Link>
 					<Link
-						to='/#pricing'
+						to='/pricing'
 						onClick={(e) => {
 							handleNavigateToSection(e, "pricing");
 							setIsOpen(false);

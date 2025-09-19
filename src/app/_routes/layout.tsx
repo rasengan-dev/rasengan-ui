@@ -22,4 +22,6 @@ const Layout: LayoutComponent = () => {
 	);
 };
 
+Layout.metadata = {};
+
 export default Layout;

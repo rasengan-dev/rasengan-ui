@@ -112,8 +112,9 @@ const Page: PageComponent = () => {
 };
 
 Page.metadata = {
-	title: "Components",
-	description: "Rasengan UI components",
+	title: "Components - Rasengan UI",
+	description:
+		"Assemble your UI like a true shinobi - Rasengan UI offers a curated set of high-quality, ready-to-use UI sections — like hero blocks, pricing sections, testimonials, and more",
 };
 
 export default Page;

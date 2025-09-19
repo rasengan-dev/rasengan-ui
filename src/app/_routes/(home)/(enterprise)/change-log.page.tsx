@@ -8,4 +8,9 @@ const Page: PageComponent = () => {
 	);
 };
 
+Page.metadata = {
+	title: "Change log - Rasengan UI",
+	description: "Change log - Rasengan UI",
+};
+
 export default Page;
