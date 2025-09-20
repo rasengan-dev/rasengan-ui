@@ -25,11 +25,11 @@ const Page: PageComponent = () => {
 				<Link to='/pricing'>
 					<Badge
 						variant='default'
-						className='bg-accent/30f bg-primary px-4 py-1 rounded-full'
+						className='bg-accent/30f text-sm bg-primary px-4 py-1 rounded-full'
 					>
 						<span>
-							Get 40% off to the{" "}
-							<span className='font-bold'>Chakra Launch Pack</span>
+							🔥 40% OFF –{" "}
+							<span className='font-bold'>First 100 shinobi only</span>
 						</span>
 						<ArrowRight />
 					</Badge>
