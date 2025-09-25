@@ -4,7 +4,7 @@
 	"version": "1.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "rasengan dev",
+		"dev": "rasengan dev -p 3000",
 		"build": "rasengan build",
 		"serve": "rasengan-serve ./dist"
 	},

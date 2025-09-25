@@ -7,6 +7,19 @@ import { Link } from "rasengan";
 import { useEffect, useMemo, useState } from "react";
 
 export default function PricingSection() {
+	const [isCopied, setIsCopied] = useState(false);
+
+	useEffect(() => {
+		if (isCopied) {
+			setTimeout(() => setIsCopied(false), 2000);
+		}
+	}, [isCopied]);
+
+	const handleCopyDiscountCode = (code: string) => {
+		navigator.clipboard.writeText(code);
+		setIsCopied(true);
+	};
+
 	return (
 		<section id='pricing' className='w-full'>
 			<div className='p-4 w-full border-b-[1px] border-b-border'>
@@ -19,9 +32,45 @@ export default function PricingSection() {
 				</p>
 			</div>
 
-			<div className='w-full max-w-[1000px] mx-auto min-h-[400px] py-4 pt-20 flex flex-col lg:flex-row items-center gap-4 pricing-gridf px-4'>
+			{/* DISPLAY COUPON */}
+			<div className='w-full flex flex-col items-center max-w-[500px] p-2 rounded-2xl border border-border border-dashed my-8 mt-16 mx-auto'>
+				<div className='w-full flex flex-col items-center gap-2 border p-4 rounded-lg bg-input/20'>
+					<h2 className='text-xl font-bold text-foreground text-pretty'>
+						Get 40% discount for your purchase
+					</h2>
+					<p className='mt-2 text-foreground text-pretty'>
+						Use this coupon code:{" "}
+						<span className='font-bold'>RASENGANUI40</span>
+					</p>
+					<div className='w-full mt-2 flex items-center gap-2 text-foreground'>
+						<input
+							type='text'
+							className='border border-border rounded-lg px-4 py-2 w-full'
+							defaultValue='RASENGANUI40'
+							readOnly
+						/>
+						<Button
+							variant='outline'
+							onClick={() => handleCopyDiscountCode("RASENGANUI40")}
+						>
+							{isCopied ? (
+								<Check className='h-4 w-4' />
+							) : (
+								<Copy className='h-4 w-4' />
+							)}
+						</Button>
+					</div>
+				</div>
+			</div>
+
+			<div className='w-full max-w-[1300px] mx-auto min-h-[400px] py-4 pt-10 flex flex-col items-center lg:flex-row gap-10 px-4'>
+				<div className='w-full h-full lg:w-1/2 flex flex-col gap-4'>
+					<PricingItemChild product={productsList[0].children[0]} />
+					<PricingItemChild product={productsList[0].children[1]} />
+				</div>
+
 				{productsList.map((product) => (
-					<div key={product.id} className={`h-full area-${product.id}`}>
+					<div key={product.id} className={`w-full h-full lg:w-1/2`}>
 						<PricingItem product={product} />
 					</div>
 				))}
@@ -63,7 +112,7 @@ const PricingItem = ({ product }: { product: (typeof productsList)[0] }) => {
 	return (
 		<article
 			className={cn(
-				"relative w-full h-full min-w-[300px] md:min-w-[400px] rounded-3xl p-4 border mx-auto flex flex-col justify-between",
+				"relative w-full h-full min-w-[300px] md:min-w-[400px] rounded-3xl p-8 border mx-auto flex flex-col justify-between",
 				product.isPopular
 					? "bg-gradient-to-b from-primary/40 dark:from-primary/30 to-transparent to-70% border-primary/60"
 					: "bg-background",
@@ -98,7 +147,7 @@ const PricingItem = ({ product }: { product: (typeof productsList)[0] }) => {
 
 			<div className='w-full flex items-end justify-between mt-10'>
 				<div className='w-full flex flex-col items-baseline gap-0 text-foreground'>
-					{discount && (
+					{/* {discount && (
 						<div className='flex items-center justify-between w-full'>
 							<div className='flex flex-col-reverse sm:flex-row items-center gap-2'>
 								<span className='line-through text-foreground/70'>
@@ -113,7 +162,6 @@ const PricingItem = ({ product }: { product: (typeof productsList)[0] }) => {
 								</span>
 							</div>
 
-							{/* Copy discount code */}
 							<Button
 								variant='ghost'
 								className='ml-2 text-[12px]'
@@ -123,13 +171,13 @@ const PricingItem = ({ product }: { product: (typeof productsList)[0] }) => {
 								<span>Copy discount code</span>
 							</Button>
 						</div>
-					)}
+					)} */}
 
 					<div className='w-full flex items-center justify-between'>
 						<div>
 							<p className='text-5xl font-medium'>
 								<span className='text-3xl'>{product.symbol}</span>
-								<span>{price}</span>
+								<span>{product.price}</span>
 							</p>
 							<div className='flex flex-col text-[12px] mt-1'>
 								<span>{product.duration}</span>
@@ -173,6 +221,49 @@ const PricingItem = ({ product }: { product: (typeof productsList)[0] }) => {
 					))}
 				</div>
 			</div>
+		</article>
+	);
+};
+
+const PricingItemChild = ({
+	product,
+}: {
+	product: (typeof productsList)[0]["children"][number];
+}) => {
+	return (
+		<article
+			className={cn(
+				"relative w-full h-full min-w-[300px] md:min-w-[400px] rounded-3xl p-8 border mx-auto flex flex-col justify-between",
+				product.isPopular
+					? "bg-gradient-to-b from-primary/40 dark:from-primary/30 to-transparent to-70% border-primary/60"
+					: "bg-background",
+				!product.isActive ? "opacity-50" : ""
+			)}
+		>
+			<h2 className='text-lg font-medium text-foreground'>{product.name}</h2>
+			<div className='w-full flex items-center justify-between mt-4'>
+				<div className='flex flex-col sm:flex-row gap-2 sm:items-center'>
+					<p className='text-5xl font-medium text-foreground'>
+						<span className='text-3xl'>{product.symbol}</span>
+						<span>{product.price}</span>
+					</p>
+					<div className='flex flex-col text-[12px]'>
+						<span className='text-foreground'>One-time payment</span>
+						<span className='text-foreground/70'>{product.duration}</span>
+					</div>
+				</div>
+
+				<Link
+					to={product.isActive ? product.link : "#"}
+					target={product.isActive ? "_blank" : "_self"}
+				>
+					<Button className={cn("w-full px-4")} disabled={!product.isActive}>
+						Get the pack
+					</Button>
+				</Link>
+			</div>
+
+			<p className='mt-4 text-sm text-foreground/70'>{product.description}</p>
 		</article>
 	);
 };
