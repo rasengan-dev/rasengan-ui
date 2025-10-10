@@ -1,5 +1,5 @@
 import { ArrowRight, Dot } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import ComponentPreview from "./component-preview";
 import { Component, ComponentCategoryLabel } from "@/data/components/type";
 import { Link } from "rasengan";

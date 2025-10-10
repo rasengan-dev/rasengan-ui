@@ -1,4 +1,4 @@
-import ComponentGroupItem from "@/components/features/component-group-item";
+import ComponentGroupItem from "@/components/features/ui-components/component-group-item";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { scrollToSection } from "@/lib/utils";
@@ -43,7 +43,9 @@ const Page: PageComponent = () => {
 					</span>
 				</p>
 				<div className='mt-6 flex gap-2'>
-					<Button>Browse components</Button>
+					<Link to='#browse'>
+						<Button>Browse components</Button>
+					</Link>
 					<Link to='/pricing' className='w-full sm:w-auto'>
 						<Button
 							className='w-full sm:w-auto text-foreground/70'
@@ -57,7 +59,10 @@ const Page: PageComponent = () => {
 			</section>
 
 			{/* Tabs */}
-			<section className='w-full mt-20 min-h-[calc(100vh-80px)] relative'>
+			<section
+				id='browse'
+				className='w-full mt-20 min-h-[calc(100vh-80px)] relative'
+			>
 				<div className='sticky -top-[1px] z-20 w-full flex items-center border-[1px] border-border bg-background'>
 					{Object.entries(components).map(([key, category]) => (
 						<Link

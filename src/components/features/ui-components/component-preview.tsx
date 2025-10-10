@@ -14,7 +14,7 @@ import { Component, ComponentCategoryLabel } from "@/data/components/type";
 import { Link, useNavigate } from "rasengan";
 import { scrollToSection } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
-import PricingSection from "./sections/pricing";
+import PricingSection from "../sections/pricing";
 
 type Props = {
 	component: Component;

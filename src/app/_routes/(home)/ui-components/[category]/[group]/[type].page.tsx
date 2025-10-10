@@ -1,5 +1,5 @@
 import { SidebarBanner } from "@/components/common/layout/sidebar-banner";
-import ComponentItem from "@/components/features/component-item";
+import ComponentItem from "@/components/features/ui-components/component-item";
 import {
 	PageComponent,
 	useLocation,

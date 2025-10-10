@@ -27,6 +27,11 @@ const Page: PageComponent = () => {
 					<Link to='/ui-components' className='w-full sm:w-auto'>
 						<Button className='w-full sm:w-auto'>Browse components</Button>
 					</Link>
+					<Link to='/templates' className='w-full sm:w-auto'>
+						<Button variant={"outline"} className='w-full sm:w-auto'>
+							Browse templates
+						</Button>
+					</Link>
 				</div>
 			</section>
 

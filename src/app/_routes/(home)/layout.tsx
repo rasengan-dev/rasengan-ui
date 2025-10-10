@@ -20,7 +20,7 @@ const Layout: LayoutComponent = () => {
 				isDark && "dark"
 			)}
 		>
-			<ScrollRestoration target={ref} />
+			<ScrollRestoration target={ref} alwaysToTop />
 
 			<section className='fixed top-0 inset-x-0 z-30'>
 				<Navbar />

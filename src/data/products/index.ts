@@ -11,11 +11,12 @@ export const productsList = [
 		symbol: "€",
 		duration: "lifetime access",
 		pricing: "one-time",
-		isPopular: true,
+		isPopular: false,
 		features: {
 			description: "Everything you need to build world-class UIs:",
 			items: [
 				"100+ beautifully crafted components",
+				"All templates included",
 				"Responsive design out of the box",
 				"Dark mode support",
 				"Lifetime license for v1.x",
@@ -207,3 +208,34 @@ export const productsList = [
 	// 	link: "https://rasenganui.lemonsqueezy.com/buy/31e4ed54-6587-4cbe-b9b4-a00eb2f25545",
 	// },
 ];
+
+export const templateProductsList = [
+	{
+		id: 1,
+		variantId: 1,
+		name: "Levelup",
+		heading: "Personal website template",
+		description:
+			"Stunning and cute portfolio website to showcase your work online.",
+		images: [
+			"/static/images/templates/levelup1/1.png",
+			"/static/images/templates/levelup1/2.png",
+		],
+		preview: "https://rasengan-ui-levelup.vercel.app",
+		price: 59,
+		currency: "EUR",
+		symbol: "€",
+		duration: "lifetime access",
+		pricing: "one-time",
+		isPopular: false,
+		features: {
+			description:
+				"Stunning and cute portfolio website to showcase your work online.",
+			items: ["Unlimited projects", "Free updates", "Simple .zip file"],
+		},
+		link: "https://rasenganui.lemonsqueezy.com/buy/0b09fb32-8ef5-489d-bb39-d3d37d4dbd28",
+		isActive: true,
+	},
+];
+
+export type Template = (typeof templateProductsList)[0];

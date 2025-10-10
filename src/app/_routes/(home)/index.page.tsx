@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Lock } from "lucide-react";
 import { Link, PageComponent } from "rasengan";
-import ComponentItem from "@/components/features/component-item";
+import ComponentItem from "@/components/features/ui-components/component-item";
 import TestimonialsSection from "@/components/features/sections/testimonials";
 import FaqSection from "@/components/features/sections/faq";
 import { useComponentStore } from "@/store/components";

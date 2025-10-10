@@ -79,7 +79,11 @@ export default function PricingSection() {
 	);
 }
 
-const PricingItem = ({ product }: { product: (typeof productsList)[0] }) => {
+export const PricingItem = ({
+	product,
+}: {
+	product: (typeof productsList)[0];
+}) => {
 	const [isCopied, setIsCopied] = useState(false);
 
 	useEffect(() => {
@@ -131,11 +135,14 @@ const PricingItem = ({ product }: { product: (typeof productsList)[0] }) => {
 				</Badge>
 			)}
 
-			<div className='flex items-center justify-between'>
+			<div className='flex flex-col items-start justify-between'>
+				<span className='text-sm text-foreground/70 font-medium'>
+					GET EVERYTHING WITH
+				</span>
 				<Badge
 					variant='outline'
 					className={cn(
-						"bg-primary py-2 px-4 rounded-full text-sm text-primary-foreground border-0"
+						"bg-primary py-2 px-4 rounded-full text-sm text-primary-foreground border-0 mt-4"
 						// product.isPopular && "bg-primary/10 border-primary text-foreground"
 					)}
 				>
