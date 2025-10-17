@@ -7,6 +7,7 @@ import TestimonialsSection from "@/components/features/sections/testimonials";
 import FaqSection from "@/components/features/sections/faq";
 import { useComponentStore } from "@/store/components";
 import { ComponentCategoryLabel } from "@/data/components/type";
+import { AnnouncementBadge } from "@/components/common/molecules/announcement-badge";
 
 const Page: PageComponent = () => {
 	const { getPopularComponents } = useComponentStore();
@@ -22,18 +23,8 @@ const Page: PageComponent = () => {
 
 			{/* Hero */}
 			<section className='relative w-full flex flex-col items-center mt-20'>
-				<Link to='/pricing'>
-					<Badge
-						variant='default'
-						className='bg-accent/30f text-sm bg-primary px-4 py-1 rounded-full'
-					>
-						<span>
-							🔥 40% OFF –{" "}
-							<span className='font-bold'>First 100 shinobi only</span>
-						</span>
-						<ArrowRight />
-					</Badge>
-				</Link>
+				<AnnouncementBadge />
+
 				<h1 className='font-bold text-[50px] lg:text-[60px] leading-[60px] text-center max-w-[700px] text-foreground mt-4 text-pretty px-4'>
 					Build Faster. Style Sharper.
 				</h1>

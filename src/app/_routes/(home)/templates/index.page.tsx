@@ -1,7 +1,6 @@
 import TemplateItem from "@/components/features/templates/template-item";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Lock } from "lucide-react";
+import { Lock } from "lucide-react";
 import { Link, PageComponent } from "rasengan";
 import { useTemplateStore } from "@/store/templates";
 
@@ -15,18 +14,6 @@ const Page: PageComponent = () => {
 
 			{/* Hero */}
 			<section className='relative w-full flex flex-col items-center mt-20 px-4'>
-				<Link to='/pricing'>
-					<Badge
-						variant='default'
-						className='bg-accent/30f text-sm bg-primary px-4 py-1 rounded-full'
-					>
-						<span>
-							🔥 40% OFF –{" "}
-							<span className='font-bold'>The whole Collection</span>
-						</span>
-						<ArrowRight />
-					</Badge>
-				</Link>
 				<h1 className='font-bold text-[50px] lg:text-[60px] leading-[60px] text-center max-w-[700px] text-foreground mt-4 text-pretty'>
 					Build less. Ship more.
 				</h1>
