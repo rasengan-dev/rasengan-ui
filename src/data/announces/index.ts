@@ -1,7 +1,7 @@
 export const announcesList = [
 	{
 		id: 1,
-		label: "Introducing Rasengan UI Templates — design meets simplicity ✨",
+		label: "Introducing Rasengan UI Templates ✨",
 		description: "",
 		link: "/templates",
 	},

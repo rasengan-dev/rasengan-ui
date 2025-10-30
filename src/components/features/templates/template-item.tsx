@@ -4,7 +4,7 @@ import { Link } from "rasengan";
 
 export default function TemplateItem({ template }: { template: Template }) {
 	return (
-		<Link to={`/templates/${template.name.toLocaleLowerCase()}`}>
+		<Link to={`/templates/${template.slug}`}>
 			<article className='mt-10 border-y border-y-border flex flex-col xl:flex-row justify-between'>
 				<div className='w-full flex flex-col justify-between border-b border-b-border xl:border-b-0'>
 					<div className='p-4 flex h-full flex-col justify-between'>

@@ -214,6 +214,7 @@ export const templateProductsList = [
 		id: 1,
 		variantId: 1,
 		name: "Levelup",
+		slug: "levelup",
 		heading: "Personal website template",
 		description:
 			"Stunning and cute portfolio website to showcase your work online.",
@@ -234,6 +235,33 @@ export const templateProductsList = [
 			items: ["Unlimited projects", "Free updates", "Simple .zip file"],
 		},
 		link: "https://rasenganui.lemonsqueezy.com/buy/0b09fb32-8ef5-489d-bb39-d3d37d4dbd28",
+		isActive: true,
+	},
+	{
+		id: 2,
+		variantId: 2,
+		name: "Plus Ultra",
+		slug: "plus-ultra",
+		heading: "Personal website template",
+		description:
+			"Developer portfolio to showcase your work and experience in your domain",
+		images: [
+			"/static/images/templates/plus-ultra/1.png",
+			"/static/images/templates/plus-ultra/2.png",
+		],
+		preview: "https://rasengan-ui-plus-ultra.vercel.app",
+		price: 59,
+		currency: "EUR",
+		symbol: "€",
+		duration: "lifetime access",
+		pricing: "one-time",
+		isPopular: false,
+		features: {
+			description:
+				"Stunning and cute portfolio website to showcase your work online.",
+			items: ["Unlimited projects", "Free updates", "Simple .zip file"],
+		},
+		link: "#",
 		isActive: true,
 	},
 ];

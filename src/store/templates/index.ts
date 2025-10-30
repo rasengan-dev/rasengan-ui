@@ -13,8 +13,6 @@ export const useTemplateStore = create<State & Actions>((_, get) => ({
 	templates: templateProductsList,
 
 	getTemplate: (name: string) => {
-		return get().templates.find(
-			(template) => template.name.toLowerCase() === name.toLowerCase()
-		);
+		return get().templates.find((template) => template.slug === name);
 	},
 }));

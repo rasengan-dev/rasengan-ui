@@ -196,16 +196,14 @@ export const PricingItem = ({
 							target={product.isActive ? "_blank" : "_self"}
 						>
 							<Button
-								variant={product.isPopular ? "default" : "outline"}
+								// variant={product.isPopular ? "default" : "outline"}
 								className={cn(
 									"w-full px-4",
-									product.isPopular
-										? "bg-primary"
-										: "dark:text-foreground border dark:border-primary"
+									product.isPopular ? "bg-primary" : ""
 								)}
 								disabled={!product.isActive}
 							>
-								Buy now
+								Get Collection
 							</Button>
 						</Link>
 					</div>

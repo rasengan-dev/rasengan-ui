@@ -171,7 +171,7 @@ const Page: PageComponent = () => {
 
 Page.loader = async ({ params }) => {
 	const template = templateProductsList.find(
-		(template) => template.name.toLowerCase() === params.name.toLowerCase()
+		(template) => template.slug === params.name
 	);
 
 	return {
