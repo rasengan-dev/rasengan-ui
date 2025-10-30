@@ -244,7 +244,11 @@ export const templateProductsList = [
 		slug: "plus-ultra",
 		heading: "Personal website template",
 		description:
-			"Developer portfolio to showcase your work and experience in your domain",
+			"Developer portfolio to showcase your work and experience in your domain.",
+		inspiration: {
+			name: "Valery Melou",
+			url: "https://valerymelou.com",
+		},
 		images: [
 			"/static/images/templates/plus-ultra/1.png",
 			"/static/images/templates/plus-ultra/2.png",

@@ -35,10 +35,22 @@ const Page: PageComponent = () => {
 				</div>
 				<div className='w-20 h-[50px] md:h-[180px]'></div>
 				<div className='w-full h-[180px] flex flex-col justify-between border-t md:border-t-0 md:border-l md:border-l-border'>
-					<div className='p-4 text-foreground flex flex-col justify-center h-full'>
+					<div className='relative p-4 text-foreground flex flex-col justify-center h-full'>
 						<p className='text-foreground/70 text-lg'>
 							{template?.description}
 						</p>
+						{template?.inspiration && (
+							<p className='absolute bottom-4 right-4 text-foreground/70 text-sm mt-2'>
+								Inspired by{" "}
+								<Link
+									to={template?.inspiration?.url || "#"}
+									target='_blank'
+									className='text-primary hover:underline'
+								>
+									{template?.inspiration?.name}
+								</Link>
+							</p>
+						)}
 					</div>
 					<div className='w-full h-[50px] border-t border-t-border p-2 text-foreground flex items-center'>
 						<div className='flex gap-2'>
