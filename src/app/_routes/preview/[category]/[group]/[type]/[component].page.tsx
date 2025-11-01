@@ -56,8 +56,8 @@ const Page: PageComponent = () => {
 
 	return (
 		<section className='bg-background relative h-screen w-screen overflow-hidden p-4'>
-			<div className='flex h-[3rem] items-center justify-between'>
-				<div>
+			<div className='flex flex-col-reverse sm:flex-row gap-4 min-h-[3rem] items-center justify-between'>
+				<div className='w-full sm:w-auto'>
 					<div className='text-foreground flex gap-1'>
 						<span>{category}</span>
 						{"/"}
@@ -72,7 +72,7 @@ const Page: PageComponent = () => {
 					</span>
 				</div>
 
-				<div>
+				<div className='hidden lg:block'>
 					<div className='flex items-center gap-2'>
 						<Button
 							size='icon'
@@ -103,8 +103,8 @@ const Page: PageComponent = () => {
 					</div>
 				</div>
 
-				<div className='flex items-center gap-2'>
-					<Link to='/pricing' className='w-full sm:w-auto'>
+				<div className='flex items-center justify-between sm:justify-start gap-2 w-full sm:w-auto'>
+					<Link to='/pricing' className='w-fullf sm:w-auto'>
 						<Button
 							className='w-full sm:w-auto'
 							// variant='outline'

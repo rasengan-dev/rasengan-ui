@@ -18,14 +18,14 @@ const Page: PageComponent = () => {
 		<section className='w-full min-h-screen h-auto bg-background py-4'>
 			<section
 				id='browse'
-				className='w-full flex flex-col md:flex-row items-start justify-between mt-20 relative border-y border-y-border'
+				className='w-full flex flex-col lg:flex-row items-start justify-between mt-20 relative border-y border-y-border'
 			>
-				<div className='w-full h-[180px] flex flex-col border-b md:border-b-0 md:border-r md:border-r-border'>
+				<div className='w-full min-h-[180px] flex flex-col border-b lg:border-b-0 lg:border-r lg:border-r-border'>
 					<div className='p-4 text-foreground flex flex-col justify-center h-full'>
 						<p className='text-foreground/70 text-sm uppercase'>
 							{template?.heading}
 						</p>
-						<h2 className='font-bold text-[70px] leading-12 mt-4'>
+						<h2 className='font-bold text-[60px] sm:text-[70px] leading-12 mt-4'>
 							{template?.name}
 						</h2>
 					</div>
@@ -33,14 +33,14 @@ const Page: PageComponent = () => {
 						<TemplateTechnologies />
 					</div>
 				</div>
-				<div className='w-20 h-[50px] md:h-[180px]'></div>
-				<div className='w-full h-[180px] flex flex-col justify-between border-t md:border-t-0 md:border-l md:border-l-border'>
-					<div className='relative p-4 text-foreground flex flex-col justify-center h-full'>
+				<div className='w-20 h-[50px] lg:h-[180px]'></div>
+				<div className='w-full min-h-[180px] h-full flex flex-col justify-between border-t lg:border-t-0 lg:border-l lg:border-l-border'>
+					<div className='relative p-4 text-foreground flex flex-col justify-center gap-4 h-full'>
 						<p className='text-foreground/70 text-lg'>
 							{template?.description}
 						</p>
 						{template?.inspiration && (
-							<p className='absolute bottom-4 right-4 text-foreground/70 text-sm mt-2'>
+							<p className='text-end text-foreground/70 text-sm'>
 								Inspired by{" "}
 								<Link
 									to={template?.inspiration?.url || "#"}
