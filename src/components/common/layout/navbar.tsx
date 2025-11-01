@@ -155,13 +155,13 @@ export const Navbar = ({ className }: Props) => {
 						>
 							<li className='font-medium'>Components</li>
 						</Link>
-						{/* <Link
+						<Link
 							to='/templates'
 							className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
 							onClick={() => setIsOpen(false)}
 						>
 							<li className='font-medium'>Templates</li>
-						</Link> */}
+						</Link>
 						<Link
 							to='/pricing'
 							className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'

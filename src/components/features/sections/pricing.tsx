@@ -180,7 +180,7 @@ export const PricingItem = ({
 						</div>
 					)} */}
 
-					<div className='w-full flex items-center justify-between'>
+					<div className='w-full flex flex-col gap-4 sm:flex-row sm:items-center justify-between'>
 						<div>
 							<p className='text-5xl font-medium'>
 								<span className='text-3xl'>{product.symbol}</span>
@@ -203,7 +203,7 @@ export const PricingItem = ({
 								)}
 								disabled={!product.isActive}
 							>
-								Get Collection
+								Get Full Collection
 							</Button>
 						</Link>
 					</div>

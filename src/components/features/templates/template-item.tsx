@@ -21,11 +21,17 @@ export default function TemplateItem({ template }: { template: Template }) {
 						</div>
 					</div>
 
-					<div className='w-full border-t border-t-border p-4 text-foreground'>
-						<span className='font-bold'>
-							{template.symbol}
-							{template.price}
-						</span>{" "}
+					<div className='w-full border-t border-t-border p-4 text-foreground flex gap-2'>
+						<div className='flex gap-2'>
+							<span className='font-medium text-foreground/70 line-through'>
+								{template.symbol}
+								{template.price}
+							</span>{" "}
+							<span className='font-bold'>
+								{template.symbol}
+								{template.newPrice}
+							</span>
+						</div>
 						{"  -  "}
 						<span className='text-foreground/70'>
 							Or included with Rasengan UI Collection
