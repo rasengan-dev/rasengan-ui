@@ -270,6 +270,33 @@ export const templateProductsList = [
 		link: "https://rasenganui.lemonsqueezy.com/buy/42c1a379-dae2-4740-918b-998ceeabd83d",
 		isActive: true,
 	},
+	{
+		id: 3,
+		variantId: 3,
+		name: "Kira Board",
+		slug: "kira-board",
+		heading: "Kanban board template",
+		description:
+			"A beautiful kanban board template to manage your tasks and projects.",
+		images: [
+			"/static/images/templates/kira-board/1.png",
+			"/static/images/templates/kira-board/2.png",
+		],
+		preview: "https://rasengan-ui-kira-board.vercel.app",
+		price: 0,
+		currency: "EUR",
+		symbol: "€",
+		duration: "lifetime access",
+		pricing: "one-time",
+		isPopular: false,
+		features: {
+			description:
+				"A beautiful kanban board template to manage your tasks and projects.",
+			items: ["Unlimited projects", "Free updates", "Open source"],
+		},
+		link: "https://rasenganui.lemonsqueezy.com/buy/a9500b8c-a197-4826-afa7-685e17566ade",
+		isActive: true,
+	},
 ];
 
 export type Template = (typeof templateProductsList)[0];

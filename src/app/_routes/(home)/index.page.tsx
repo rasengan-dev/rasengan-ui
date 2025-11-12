@@ -1,6 +1,5 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Lock } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { Link, PageComponent } from "rasengan";
 import ComponentItem from "@/components/features/ui-components/component-item";
 import TestimonialsSection from "@/components/features/sections/testimonials";
@@ -42,13 +41,17 @@ const Page: PageComponent = () => {
 					<Link to='/ui-components' className='w-full sm:w-auto'>
 						<Button className='w-full sm:w-auto'>Browse components</Button>
 					</Link>
-					<Link to='/pricing' className='w-full sm:w-auto'>
+					<Link
+						to='https://ui-kit.rasengan.dev'
+						target='_blank'
+						className='w-full sm:w-auto'
+					>
 						<Button
 							className='w-full sm:w-auto text-foreground/70'
 							variant='outline'
 						>
-							<Lock />
-							<span>Unlock Premium</span>
+							<ExternalLink />
+							<span>Open Playground</span>
 						</Button>
 					</Link>
 				</div>

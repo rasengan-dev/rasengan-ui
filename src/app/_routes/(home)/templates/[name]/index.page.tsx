@@ -109,14 +109,25 @@ const Page: PageComponent = () => {
 							<div className='w-full flex flex-col sm:flex-row gap-4 sm:items-center justify-between mt-4'>
 								<div className='flex flex-col sm:flex-row gap-2 sm:items-center'>
 									<div className='flex items-center gap-2'>
-										<span className='text-4xl font-medium text-foreground/70'>
-											<span className='text-3xl'>{template?.symbol}</span>
-											<span className='line-through'>{template?.price}</span>
-										</span>
-										<span className='text-5xl font-medium text-foreground'>
-											<span className='text-3xl'>{template?.symbol}</span>
-											<span>{template?.newPrice}</span>
-										</span>
+										{template?.newPrice ? (
+											<>
+												<span className='text-4xl font-medium text-foreground/70'>
+													<span className='text-3xl'>{template?.symbol}</span>
+													<span className='line-through'>
+														{template?.price}
+													</span>
+												</span>
+												<span className='text-5xl font-medium text-foreground'>
+													<span className='text-3xl'>{template?.symbol}</span>
+													<span>{template?.newPrice}</span>
+												</span>
+											</>
+										) : (
+											<span className='text-5xl font-medium text-foreground'>
+												<span className='text-3xl'>{template?.symbol}</span>
+												<span>{template?.price}</span>
+											</span>
+										)}
 									</div>
 									<div className='flex flex-col text-[12px]'>
 										<span className='text-foreground'>One-time payment</span>
@@ -135,42 +146,18 @@ const Page: PageComponent = () => {
 
 							<div className='mt-4 border-t pt-4 border-t-border'>
 								<div className='mt-2 flex flex-col gap-2'>
-									<div className='flex gap-2 items-center'>
-										<Button
-											size={"icon"}
-											className='size-6 rounded-full bg-transparent'
-										>
-											<Check className='text-foreground' />
-										</Button>
+									{template?.features.items.map((item, index) => (
+										<div key={index} className='flex gap-2 items-center'>
+											<Button
+												size={"icon"}
+												className='size-6 rounded-full bg-transparent'
+											>
+												<Check className='text-foreground' />
+											</Button>
 
-										<span className='text-sm text-foreground'>
-											Unlimited projects
-										</span>
-									</div>
-									<div className='flex gap-2 items-center'>
-										<Button
-											size={"icon"}
-											className='size-6 rounded-full bg-transparent'
-										>
-											<Check className='text-foreground' />
-										</Button>
-
-										<span className='text-sm text-foreground'>
-											Free updates
-										</span>
-									</div>
-									<div className='flex gap-2 items-center'>
-										<Button
-											size={"icon"}
-											className='size-6 rounded-full bg-transparent'
-										>
-											<Check className='text-foreground' />
-										</Button>
-
-										<span className='text-sm text-foreground'>
-											Simple .zip file
-										</span>
-									</div>
+											<span className='text-sm text-foreground'>{item}</span>
+										</div>
+									))}
 								</div>
 							</div>
 						</article>

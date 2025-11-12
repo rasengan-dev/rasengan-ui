@@ -1,10 +1,9 @@
 import { AnnouncementBadge } from "@/components/common/molecules/announcement-badge";
 import ComponentGroupItem from "@/components/features/ui-components/component-group-item";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { scrollToSection } from "@/lib/utils";
 import { useComponentStore } from "@/store/components";
-import { ArrowRight, Lock } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { Link, PageComponent } from "rasengan";
 
 const Page: PageComponent = () => {
@@ -37,13 +36,17 @@ const Page: PageComponent = () => {
 					<Link to='#browse'>
 						<Button>Browse components</Button>
 					</Link>
-					<Link to='/pricing' className='w-full sm:w-auto'>
+					<Link
+						to='https://ui-kit.rasengan.dev'
+						target='_blank'
+						className='w-full sm:w-auto'
+					>
 						<Button
 							className='w-full sm:w-auto text-foreground/70'
 							variant='outline'
 						>
-							<Lock />
-							<span>Unlock Premium</span>
+							<ExternalLink />
+							<span>Open Playground</span>
 						</Button>
 					</Link>
 				</div>

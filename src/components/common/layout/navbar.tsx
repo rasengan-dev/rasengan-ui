@@ -1,14 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { AlignJustify, Coffee, Lock } from "lucide-react";
+import { AlignJustify, Coffee, ExternalLink, Lock } from "lucide-react";
 import { Link, useNavigate } from "rasengan";
 import { ComponentProps, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import ThemeButton from "../atoms/theme-button";
 import AppLogo from "../atoms/app-logo";
 import { scrollToSection } from "@/lib/utils";
-import { useAuthStore } from "@/store/auth";
-import ProfileDropdown from "../molecules/profile-dropdown";
-import Image from "@rasenganjs/image";
 
 type Props = {
 	className?: ComponentProps<"header">["className"];
@@ -16,8 +13,6 @@ type Props = {
 
 export const Navbar = ({ className }: Props) => {
 	const [isOpen, setIsOpen] = useState(false);
-
-	// const { user } = useAuthStore();
 
 	const navigate = useNavigate();
 
@@ -47,7 +42,7 @@ export const Navbar = ({ className }: Props) => {
 				<div className='flex items-center gap-1'>
 					<Button
 						size='icon'
-						className='size-8 md:hidden text-foreground/70'
+						className='size-8 lg:hidden text-foreground/70'
 						variant={"ghost"}
 						onClick={() => setIsOpen((prev) => !prev)}
 					>
@@ -60,15 +55,8 @@ export const Navbar = ({ className }: Props) => {
 						</Button>
 					</Link>
 
-					<nav className='hidden md:block'>
+					<nav className='hidden lg:block'>
 						<ul className='flex items-center gap-1 text-foreground text-sm'>
-							{/* <Link
-								to='https://rasengan.dev'
-								target='_blank'
-								className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
-							>
-								<li className='font-medium'>Docs</li>
-							</Link> */}
 							<Link
 								to='/ui-components'
 								className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
@@ -86,6 +74,12 @@ export const Navbar = ({ className }: Props) => {
 								className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
 							>
 								<li className='font-medium'>Pricing</li>
+							</Link>
+							<Link to='https://ui-kit.rasengan.dev' target='_blank'>
+								<li className='font-medium hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center gap-2 rounded-md h-8'>
+									<span>Playground</span>
+									<ExternalLink className='size-4' />
+								</li>
 							</Link>
 						</ul>
 					</nav>
@@ -109,22 +103,6 @@ export const Navbar = ({ className }: Props) => {
 						</Button>
 					</Link>
 
-					{/* {user ? (
-						<ProfileDropdown>
-							<Image
-								src={user.avatar || ""}
-								alt='avatar'
-								className='w-[32px] h-[32px] rounded-full'
-								width={32}
-								height={32}
-							/>
-						</ProfileDropdown>
-					) : (
-						<Link to='/auth/signin' className='h-8'>
-							<Button className='h-8'>Sign In</Button>
-						</Link>
-					)} */}
-
 					{/* vertical separator */}
 					<div className='h-6 w-[1px] bg-border'></div>
 
@@ -140,14 +118,6 @@ export const Navbar = ({ className }: Props) => {
 			>
 				<nav className='mt-10'>
 					<ul className='flex flex-col justify-center gap-4 text-foreground'>
-						{/* <Link
-							to='https://rasengan.dev'
-							target='_blank'
-							className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
-							onClick={() => setIsOpen(false)}
-						>
-							<li className='font-medium'>Docs</li>
-						</Link> */}
 						<Link
 							to='/ui-components'
 							className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center rounded-md h-8'
@@ -168,6 +138,12 @@ export const Navbar = ({ className }: Props) => {
 							onClick={() => setIsOpen(false)}
 						>
 							<li className='font-medium'>Pricing</li>
+						</Link>
+						<Link to='https://ui-kit.rasengan.dev' target='_blank'>
+							<li className='font-medium hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-4 flex items-center gap-2 rounded-md h-8'>
+								<span>Playground</span>
+								<ExternalLink className='size-4' />
+							</li>
 						</Link>
 					</ul>
 				</nav>
