@@ -33,7 +33,7 @@ export default function PricingSection() {
 			</div>
 
 			{/* DISPLAY COUPON */}
-			<div className='w-full flex flex-col items-center max-w-[500px] p-2 rounded-2xl border border-border border-dashed my-8 mt-16 mx-auto'>
+			{/* <div className='w-full flex flex-col items-center max-w-[500px] p-2 rounded-2xl border border-border border-dashed my-8 mt-16 mx-auto'>
 				<div className='w-full flex flex-col items-center gap-2 border p-4 rounded-lg bg-input/20'>
 					<h2 className='text-xl font-bold text-foreground text-pretty'>
 						Get 40% discount for your purchase
@@ -61,7 +61,7 @@ export default function PricingSection() {
 						</Button>
 					</div>
 				</div>
-			</div>
+			</div> */}
 
 			<div className='w-full max-w-[1300px] mx-auto min-h-[400px] py-4 pt-10 flex flex-col items-center lg:flex-row gap-10 px-4'>
 				<div className='w-full h-full lg:w-1/2 flex flex-col gap-4'>
@@ -182,10 +182,26 @@ export const PricingItem = ({
 
 					<div className='w-full flex flex-col gap-4 sm:flex-row sm:items-center justify-between'>
 						<div>
-							<p className='text-5xl font-medium'>
-								<span className='text-3xl'>{product.symbol}</span>
-								<span>{product.price}</span>
-							</p>
+							<div>
+								{product.newPrice ? (
+									<div className='flex items-center gap-2'>
+										<p className='text-3xl font-medium opacity-50'>
+											<span className='text-3xl'>{product.symbol}</span>
+											<span className='line-through'>{product.price}</span>
+										</p>
+										<p className='text-5xl font-medium'>
+											<span className='text-3xl'>{product.symbol}</span>
+											<span>{product.newPrice}</span>
+										</p>
+									</div>
+								) : (
+									<p className='text-5xl font-medium'>
+										<span className='text-3xl'>{product.symbol}</span>
+										<span>{product.price}</span>
+									</p>
+								)}
+							</div>
+
 							<div className='flex flex-col text-[12px] mt-1'>
 								<span>{product.duration}</span>
 							</div>
@@ -246,12 +262,25 @@ const PricingItemChild = ({
 			)}
 		>
 			<h2 className='text-lg font-medium text-foreground'>{product.name}</h2>
-			<div className='w-full flex items-center justify-between mt-4'>
+			<div className='w-full flex flex-col gap-4 sm:flex-row sm:items-center justify-between mt-4'>
 				<div className='flex flex-col sm:flex-row gap-2 sm:items-center'>
-					<p className='text-5xl font-medium text-foreground'>
-						<span className='text-3xl'>{product.symbol}</span>
-						<span>{product.price}</span>
-					</p>
+					{product.newPrice ? (
+						<div className='flex items-center gap-2'>
+							<p className='text-3xl font-medium text-foreground opacity-50'>
+								<span className='text-3xl'>{product.symbol}</span>
+								<span className='line-through'>{product.price}</span>
+							</p>
+							<p className='text-5xl font-medium text-foreground'>
+								<span className='text-3xl'>{product.symbol}</span>
+								<span>{product.newPrice}</span>
+							</p>
+						</div>
+					) : (
+						<p className='text-5xl font-medium text-foreground'>
+							<span className='text-3xl'>{product.symbol}</span>
+							<span>{product.price}</span>
+						</p>
+					)}
 					<div className='flex flex-col text-[12px]'>
 						<span className='text-foreground'>One-time payment</span>
 						<span className='text-foreground/70'>{product.duration}</span>
