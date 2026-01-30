@@ -122,6 +122,9 @@
 	--hero-height: calc(100vh - 120px);
 	--mobile-main-height: calc(100vh - 110px);
 	--sidebar-height: calc(100vh - 120px);
+
+	/* Measurement Documentation */
+	--main-height: calc(100vh - 50px);
 }
 
 @layer base {
@@ -166,4 +169,8 @@
 		grid-template-rows: repeat(2, 1fr);
 		grid-template-areas: "a a" "b b" "c c";
 	}
+}
+
+input[type="search"]::-webkit-search-decoration,input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-results-button,input[type="search"]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
 }

@@ -1,0 +1,52 @@
+---
+metadata:
+    title: Animated List Components - Rasengan UI
+
+toc: true
+---
+
+import Note from "@/components/features/docs/molecules/note";
+import Pagination from "@/components/features/docs/molecules/pagination";
+import TabsComponent from "@/components/common/molecules/tabs";
+import Stepper from "@/components/common/molecules/stepper";
+import ComponentPreview from "@/components/features/docs/molecules/component-preview";
+import { TabsContent } from "@/components/ui/tabs"
+
+
+
+# Animated List Components
+
+Beautifully crafted lists to display items with animations.
+`Chakra-infused`, `responsive`, and ready to drop into any React app — making it effortless for users to explore and interact with your content.
+
+
+<Note title="Inportant">
+Make sure to configure the `@rasengan-ui` registry into your `components.json` file.
+</Note>
+
+## Animated 01
+
+### Installation
+
+```bash title="Terminal"
+npx shadcn@latest add @rasengan-ui/animated-01
+```
+
+
+### Preview
+
+<ComponentPreview componentId="animated-01" />
+
+
+
+
+<Pagination
+  previous={{
+    to: "/docs",
+    label: "Team 04",
+  }}
+  next={{
+    to: "/docs/quick-start",
+    label: "Hero 02",
+  }}
+/>

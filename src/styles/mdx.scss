@@ -1,0 +1,56 @@
+.docs {
+  .rasengan-markdown-body {
+    & code.code-block {
+      background-color: #1c202a;
+      border-radius: 12px;
+      border: 1px solid #353740;
+    }
+
+    & code.code-block {
+      -ms-overflow-style: none;
+      /* IE & Edge */
+      scrollbar-width: none;
+      /* Firefox */
+    }
+
+    & code.code-block::-webkit-scrollbar {
+      display: none;
+      /* Chrome, Safari */
+    }
+
+    & figure:has(pre[data-language]) {
+      padding: 4px;
+      border-radius: 16px;
+      border: 1px solid #353740;
+      background-color: #10141e;
+
+      & figcaption {
+        font-size: 12px;
+        height: 30px;
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 10px;
+        display: flex;
+        align-items: center;
+        background-color: #10141e;
+        border: none;
+      }
+    }
+
+    & figure pre {
+      background-color: transparent !important;
+    }
+
+    & pre[data-language] {
+      & span[data-highlighted-line] {
+        background-color: rgba(43, 99, 245, 0.1);
+        /* 50% opacity */
+      }
+
+      & mark[data-highlighted-chars] {
+        background-color: rgba(43, 99, 245, 0.2);
+        border: 1px solid rgba(43, 99, 245, 0.3);
+      }
+    }
+  }
+}

@@ -36,7 +36,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 					},
 					{
 						label: "profile-03",
-						name: "Edit Profile card 03",
+						name: "Profile edit card 03",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/profile-03`,
 						code: "",
 						height: 800,
@@ -100,7 +100,7 @@ Chakra-infused, responsive, and ready to drop into any React app — perfect for
 				components: [
 					{
 						label: "join-01",
-						name: "Invite to join Community card 01",
+						name: "Invite minimal card 01",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/join-01`,
 						code: "",
 						height: 500,
@@ -110,7 +110,7 @@ Chakra-infused, responsive, and ready to drop into any React app — perfect for
 					},
 					{
 						label: "join-02",
-						name: "Invite to join Community card 02",
+						name: "Invite minimal card 02",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/join-02`,
 						code: "",
 						height: 500,
@@ -119,7 +119,7 @@ Chakra-infused, responsive, and ready to drop into any React app — perfect for
 					},
 					{
 						label: "join-03",
-						name: "Invite to join Community card 03",
+						name: "Invite minimal card 03",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/join-03`,
 						code: "",
 						height: 500,
@@ -128,7 +128,7 @@ Chakra-infused, responsive, and ready to drop into any React app — perfect for
 					},
 					{
 						label: "join-04",
-						name: "Invite to join Community card 04",
+						name: "Invite minimal card 04",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/join-04`,
 						code: "",
 						height: 500,
@@ -155,7 +155,7 @@ Fully responsive, themeable, and built to drop effortlessly into any React app �
 					},
 					{
 						label: "booking-02",
-						name: "Job card 02",
+						name: "Job card 01",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/booking-02`,
 						code: "",
 						height: 800,
@@ -164,7 +164,7 @@ Fully responsive, themeable, and built to drop effortlessly into any React app �
 					},
 					{
 						label: "booking-03",
-						name: "Booking place card 03",
+						name: "Booking place card 02",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/booking-03`,
 						code: "",
 						height: 800,
@@ -173,7 +173,7 @@ Fully responsive, themeable, and built to drop effortlessly into any React app �
 					},
 					{
 						label: "booking-04",
-						name: "Booking place card reversed 04",
+						name: "Booking place card 03",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/booking-04`,
 						code: "",
 						height: 800,
@@ -191,7 +191,7 @@ Responsive, themeable, and chakra-infused — ready to drop into any React app t
 				components: [
 					{
 						label: "invite-01",
-						name: "Invite for collaboration card 01",
+						name: "Invite large card 01",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/invite-01`,
 						code: "",
 						height: 800,
@@ -201,7 +201,7 @@ Responsive, themeable, and chakra-infused — ready to drop into any React app t
 					},
 					{
 						label: "invite-02",
-						name: "Invite for collaboration card 02",
+						name: "Invite large card 02",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/invite-02`,
 						code: "",
 						height: 800,
@@ -247,7 +247,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 				components: [
 					{
 						label: "calendar-01",
-						name: "Calendar card with range selection 01",
+						name: "Event Calendar with range",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/calendar-01`,
 						code: "",
 						height: 800,
@@ -274,7 +274,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 				components: [
 					{
 						label: "input-01",
-						name: "Chatbot text input 01",
+						name: "Chatbot input 01",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/input-01`,
 						code: "",
 						height: 500,
@@ -283,7 +283,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 					},
 					{
 						label: "input-02",
-						name: "Chatbot text input 02",
+						name: "Chatbot input 02",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/input-02`,
 						code: "",
 						height: 500,
@@ -292,7 +292,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 					},
 					{
 						label: "input-03",
-						name: "Tiny text input 03",
+						name: "Chabot tiny input 01",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/input-03`,
 						code: "",
 						height: 500,
@@ -302,7 +302,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 					},
 					{
 						label: "input-04",
-						name: "Tiny text input 04",
+						name: "Chabot tiny input 02",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/input-04`,
 						code: "",
 						height: 500,
@@ -311,7 +311,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 					},
 					{
 						label: "input-05",
-						name: "Chatbot text input 05",
+						name: "Chatbot input 03",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/input-05`,
 						code: "",
 						height: 500,
@@ -340,7 +340,7 @@ These chakra-infused, ready-to-use filter components drop seamlessly into any Re
 				components: [
 					{
 						label: "filter-01",
-						name: "Dashboard filter 01",
+						name: "Dashboard filter",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/filter-01`,
 						code: "",
 						height: 500,
@@ -432,7 +432,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 				components: [
 					{
 						label: "grid-01",
-						name: "Contact cards with small portraits",
+						name: "Grid contacts cards 01",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/lists/grid-01`,
 						code: "",
 						height: 800,
@@ -442,7 +442,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					},
 					{
 						label: "grid-02",
-						name: "Contact cards with large portraits",
+						name: "Grid contacts cards 02",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/lists/grid-02`,
 						code: "",
 						height: 800,

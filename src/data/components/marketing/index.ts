@@ -134,6 +134,42 @@ export const marketingComponents: ComponentGroup[] = [
 						isDarkEnabled: true,
 						pricing: "premium",
 					},
+					{
+						label: "hero-14",
+						name: "Hero with centered text and image 06",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-14`,
+						code: "",
+						height: 800,
+						isDarkEnabled: true,
+						pricing: "premium",
+					},
+					{
+						label: "hero-15",
+						name: "Hero with centered text and image 06",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-15`,
+						code: "",
+						height: 800,
+						isDarkEnabled: true,
+						pricing: "premium",
+					},
+					{
+						label: "hero-16",
+						name: "Hero with centered text and image 06",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-16`,
+						code: "",
+						height: 800,
+						isDarkEnabled: true,
+						pricing: "premium",
+					},
+					{
+						label: "hero-17",
+						name: "Hero with centered text and image 06",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-17`,
+						code: "",
+						height: 800,
+						isDarkEnabled: true,
+						pricing: "premium",
+					},
 				],
 			},
 
@@ -421,7 +457,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 			{
 				label: "contacts",
 				name: "Contacts Section",
-				description: `Showcase CTAs with beautifully crafted, responsive CTAs components. Easily customizable, theme-ready, and designed to provide clear answers and build trust in any React app.`,
+				description: `Present beautiful Contacts sections, responsive Contacts components. Easily customizable, theme-ready, and designed to provide clear answers and build trust in any React app.`,
 				image: "/static/images/components/marketing/contact.png",
 				components: [
 					{

@@ -1,0 +1,206 @@
+import { NavLink } from "rasengan"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import { cn } from "@/lib/utils";
+import { useComponentStore } from "@/store/components";
+
+export type NavigationLink = {
+  label: string;
+  to: string;
+  level: number;
+};
+
+export type NavigationSection = {
+  title: string;
+  items: (NavigationLink)[];
+};
+
+export type Navigation = NavigationSection[];
+
+// Navigation data structure
+const navigation: Navigation = [
+  {
+    title: "Getting Started",
+    items: [
+      { label: "Overview", to: "/docs", level: 1 },
+      { label: "Installation", to: "/docs/installation", level: 1 },
+      // { label: "Registry", to: "/docs/registry", level: 1 },
+      // { label: "Theming", to: "/docs/theming", level: 1 },
+    ]
+  },
+  {
+    title: "Components",
+    items: [
+      {
+        label: "Hero 01",
+        to: "/docs/components/marketing/hero-01",
+        level: 3
+      },
+      {
+        label: "Hero 01",
+        to: "/docs/components/marketing/hero-01",
+        level: 3
+      },
+      {
+        label: "Hero 01",
+        to: "/docs/components/marketing/hero/hero-01",
+        level: 3
+      },
+      {
+        label: "Hero 01",
+        to: "/docs/components/marketing/hero/hero-01",
+        level: 3
+      },
+      {
+        label: "Hero 01",
+        to: "/docs/components/marketing/hero/hero-01",
+        level: 3
+      },
+      {
+        label: "Hero 01",
+        to: "/docs/components/marketing/hero/hero-01",
+        level: 3
+      },
+      {
+        label: "Hero 01",
+        to: "/docs/components/marketing/hero/hero-01",
+        level: 3
+      },
+      {
+        label: "Hero 01",
+        to: "/docs/components/marketing/hero/hero-01",
+        level: 3
+      },
+      {
+        label: "Hero 01",
+        to: "/docs/components/marketing/hero/hero-01",
+        level: 3
+      },
+      {
+        label: "Card 01",
+        to: "/docs/components/marketing/card/card-01",
+        level: 3
+      },
+      {
+        label: "Card 01",
+        to: "/docs/components/marketing/card/card-01",
+        level: 3
+      },
+      {
+        label: "Card 01",
+        to: "/docs/components/marketing/card/card-01",
+        level: 3
+      },
+      {
+        label: "Card 01",
+        to: "/docs/components/marketing/card/card-01",
+        level: 3
+      },
+      {
+        label: "Hero 01",
+        to: "/docs/components/marketing/hero/hero-01",
+        level: 3
+      },
+      {
+        label: "Card 01",
+        to: "/docs/components/marketing/card/card-01",
+        level: 3
+      },
+      {
+        label: "Card 01",
+        to: "/docs/components/marketing/card/card-01",
+        level: 3
+      },
+      {
+        label: "Card 01",
+        to: "/docs/components/marketing/card/card-01",
+        level: 3
+      },
+      {
+        label: "Card 01",
+        to: "/docs/components/marketing/card/card-01",
+        level: 3
+      }
+    ]
+  },
+  {
+    title: "Resources",
+    items: [
+      { label: "Roadmap", to: "/docs/resources/roadmap", level: 1 },
+      { label: "Changelog", to: "/docs/resources/changelog", level: 1 },
+      { label: "FAQ", to: "/docs/resources/faq", level: 1 },
+    ]
+  }
+];
+
+export default function Sidebar({ onClose = () => { } }: { onClose?: () => void }) {
+  const { getNavigation } = useComponentStore();
+
+  return (
+    <aside className="absolute top-0 w-[276px] h-full pl-6 pr-4 py-16 pb-[100px] bg-background text-sm overflow-auto hide-scrollbar">
+      {getNavigation().map((section, index) => (
+        <div key={section.title} className={`flex flex-col text-foreground ${index > 0 ? 'mt-10' : ''}`}>
+          <span className="text-foreground/60 text-xs font-semibold px-2">{section.title}</span>
+          <nav className="mt-2 flex flex-col gap-1 w-auto">
+            {section.items.map((item) => (
+              <NavLink
+                key={item.to}
+                end={item.to === '/docs'}
+                to={item.to || "#"}
+                onClick={onClose}
+              >
+                {
+                  ({ isActive }) => (
+                    <span className={cn("inline-block text-xs font-semibold px-2 py-[6px] hover:bg-muted/70 dark:hover:bg-input/70 rounded-md cursor-pointer",
+                      isActive ? "bg-muted dark:bg-input" : ""
+                    )}>
+                      {item.label}
+                    </span>
+                  )
+                }
+              </NavLink>
+            ))}
+          </nav>
+        </div>
+      ))}
+    </aside>
+  )
+}
+
+
+export function AccordionDemo() {
+  return (
+    <Accordion
+      type="single"
+      collapsible
+      defaultValue="shipping"
+      className="max-w-lg"
+    >
+      <AccordionItem value="shipping">
+        <AccordionTrigger>What are your shipping options?</AccordionTrigger>
+        <AccordionContent>
+          We offer standard (5-7 days), express (2-3 days), and overnight
+          shipping. Free shipping on international orders.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="returns">
+        <AccordionTrigger>What is your return policy?</AccordionTrigger>
+        <AccordionContent>
+          Returns accepted within 30 days. Items must be unused and in original
+          packaging. Refunds processed within 5-7 business days.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="support">
+        <AccordionTrigger>How can I contact customer support?</AccordionTrigger>
+        <AccordionContent>
+          Reach us via email, live chat, or phone. We respond within 24 hours
+          during business days.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  )
+}

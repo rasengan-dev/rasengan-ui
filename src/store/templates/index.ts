@@ -1,5 +1,5 @@
 import { Template, templateProductsList } from "@/data/products";
-import { create } from "zustand";
+import { createStore } from "@rasenganjs/kurama";
 
 type State = {
 	templates: Template[];
@@ -9,7 +9,7 @@ type Actions = {
 	getTemplate: (name: string) => Template | undefined;
 };
 
-export const useTemplateStore = create<State & Actions>((_, get) => ({
+export const useTemplateStore = createStore<State & Actions>((_, get) => ({
 	templates: templateProductsList,
 
 	getTemplate: (name: string) => {

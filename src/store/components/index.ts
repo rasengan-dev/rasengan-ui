@@ -1,10 +1,12 @@
+import { NavigationLink, NavigationSection } from "@/components/features/docs/layouts/sidebar";
 import { componentsData } from "@/data/components";
 import {
 	Component,
 	ComponentCategory,
 	ComponentCategoryLabel,
 } from "@/data/components/type";
-import { create } from "zustand";
+import { capitalize } from "@/lib/utils";
+import { createStore } from "@rasenganjs/kurama";
 
 type State = {
 	components: {
@@ -22,9 +24,13 @@ type Actions = {
 			typeLabel: string;
 		}[];
 	}[];
+
+	getNavigation: () => NavigationSection[],
+
+	getCompoment: (label: string) => Component,
 };
 
-export const useComponentStore = create<State & Actions>((_, get) => ({
+export const useComponentStore = createStore<State & Actions>((_, get) => ({
 	components: componentsData,
 
 	// Actions
@@ -83,4 +89,70 @@ export const useComponentStore = create<State & Actions>((_, get) => ({
 
 		return popularComponents;
 	},
+
+	getNavigation: () => {
+		const categories = get().components;
+		const navigationSections: NavigationSection[] = [];
+
+		// Add Getting Started section
+		navigationSections.push({
+			title: "Getting Started",
+			items: [
+				{ label: "Overview", to: "/docs", level: 1 },
+				{ label: "Installation", to: "/docs/installation", level: 1 },
+			]
+		});
+
+		// Add Components section
+		const componentsSection: NavigationSection = {
+			title: "Components",
+			items: []
+		};
+
+		// Add components to the Components section
+		for (const [categoryLabel, category] of Object.entries(categories)) {
+			for (const group of category.components) {
+				for (const type of group.componentsType) {
+					componentsSection.items.push({
+						label: capitalize(type.name),
+						// label: capitalize(component.label.replace(/-/g, " ")),
+						to: `/docs/components/${categoryLabel}/${type.label}`,
+						level: 3
+					});
+				}
+			}
+		}
+
+		// Sort the component list asc by alpha numeric order
+		componentsSection.items.sort((a, b) => a.label.localeCompare(b.label));
+
+		navigationSections.push(componentsSection);
+
+		// Add Resources section
+		navigationSections.push({
+			title: "Resources",
+			items: [
+				{ label: "Roadmap", to: "/docs/resources/roadmap", level: 1 },
+				{ label: "Changelog", to: "/docs/resources/changelog", level: 1 },
+				{ label: "FAQ", to: "/docs/resources/faq", level: 1 },
+			]
+		});
+
+		return navigationSections;
+	},
+
+	getCompoment(label) {
+		const categories = get().components;
+
+		for (const [categoryLabel, category] of Object.entries(categories)) {
+			for (const group of category.components) {
+				for (const type of group.componentsType) {
+					const component = type.components.find(comp => comp.label === label);
+					if (component) return component;
+				}
+			}
+		}
+
+		throw new Error(`Component with label "${label}" not found`);
+	}
 }));

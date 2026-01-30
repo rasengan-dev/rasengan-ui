@@ -27,3 +27,9 @@ export function sleep(ms: number) {
 export const randomId = () => {
 	return Math.floor(Math.random() * 1000000);
 };
+
+export const capitalize = (text: string) => {
+	const splittedText = text.split(" ");
+
+	return splittedText.map((text) => text.charAt(0).toUpperCase() + text.slice(1).toLowerCase()).join(" ");
+}
