@@ -7,11 +7,13 @@ import {
 } from "@/components/ui/accordion"
 import { cn } from "@/lib/utils";
 import { useComponentStore } from "@/store/components";
+import { Badge } from "@/components/ui/badge";
 
 export type NavigationLink = {
   label: string;
   to: string;
   level: number;
+  data?: Record<string, any>
 };
 
 export type NavigationSection = {
@@ -152,14 +154,24 @@ export default function Sidebar({ onClose = () => { } }: { onClose?: () => void 
                 end={item.to === '/docs'}
                 to={item.to || "#"}
                 onClick={onClose}
+                caseSensitive
+                className={"flex justify-between pr-4"}
               >
                 {
                   ({ isActive }) => (
-                    <span className={cn("inline-block text-xs font-semibold px-2 py-[6px] hover:bg-muted/70 dark:hover:bg-input/70 rounded-md cursor-pointer",
-                      isActive ? "bg-muted dark:bg-input" : ""
-                    )}>
-                      {item.label}
-                    </span>
+                    <>
+                      <span className={cn("inline-block text-xs font-semibold px-2 py-[6px] hover:bg-muted/70 dark:hover:bg-input/70 rounded-md cursor-pointer",
+                        isActive ? "bg-primary text-primary-foreground hover:bg-primary dark:hover:bg-primary" : ""
+                      )}>
+                        {item.label}
+                      </span>
+
+                      {
+                        item.data && item.data["count"] && (
+                          <Badge className="px-2 py-0 size-6 rounded-full text-[10px]" variant={"outline"}>{item.data.count}</Badge>
+                        )
+                      }
+                    </>
                   )
                 }
               </NavLink>

@@ -1,4 +1,4 @@
-import { NavigationLink, NavigationSection } from "@/components/features/docs/layouts/sidebar";
+import { NavigationSection } from "@/components/features/docs/layouts/sidebar";
 import { componentsData } from "@/data/components";
 import {
 	Component,
@@ -28,6 +28,8 @@ type Actions = {
 	getNavigation: () => NavigationSection[],
 
 	getCompoment: (label: string) => Component,
+
+	getComponentsType: () => ComponentCategory["components"][number]["componentsType"]
 };
 
 export const useComponentStore = createStore<State & Actions>((_, get) => ({
@@ -114,10 +116,12 @@ export const useComponentStore = createStore<State & Actions>((_, get) => ({
 			for (const group of category.components) {
 				for (const type of group.componentsType) {
 					componentsSection.items.push({
-						label: capitalize(type.name),
-						// label: capitalize(component.label.replace(/-/g, " ")),
+						label: type.name,
 						to: `/docs/components/${categoryLabel}/${type.label}`,
-						level: 3
+						level: 3,
+						data: {
+							count: type.components.length
+						}
 					});
 				}
 			}
@@ -144,7 +148,7 @@ export const useComponentStore = createStore<State & Actions>((_, get) => ({
 	getCompoment(label) {
 		const categories = get().components;
 
-		for (const [categoryLabel, category] of Object.entries(categories)) {
+		for (const [, category] of Object.entries(categories)) {
 			for (const group of category.components) {
 				for (const type of group.componentsType) {
 					const component = type.components.find(comp => comp.label === label);
@@ -154,5 +158,24 @@ export const useComponentStore = createStore<State & Actions>((_, get) => ({
 		}
 
 		throw new Error(`Component with label "${label}" not found`);
-	}
+	},
+
+	getComponentsType() {
+		const categories = get().components;
+
+		const componentTypes: ComponentCategory["components"][number]["componentsType"] = [];
+
+		for (const [, category] of Object.entries(categories)) {
+			for (const group of category.components) {
+				for (const type of group.componentsType) {
+					componentTypes.push(type);
+				}
+			}
+		}
+
+		// Sort the component list asc by alpha numeric order
+		componentTypes.sort((a, b) => a.label.localeCompare(b.label));
+
+		return componentTypes;
+	},
 }));

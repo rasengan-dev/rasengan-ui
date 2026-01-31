@@ -23,6 +23,7 @@ export type ComponentGroup = {
 export type ComponentType = {
 	label: string; // eg. heroes
 	name: string;
+	category: ComponentCategoryLabel;
 	description: string;
 	image: string;
 	components: Component[];

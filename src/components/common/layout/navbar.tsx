@@ -67,7 +67,7 @@ export const Navbar = ({ className }: Props) => {
 								<li className='font-medium'>Components</li>
 							</Link> */}
 							<Link
-								to='/docs/introduction'
+								to='/docs'
 								className='hover:bg-muted/70 dark:hover:bg-muted/30 transition-all px-2 flex items-center rounded-md h-8'
 							>
 								<li className='font-semibold'>Docs</li>
@@ -153,7 +153,7 @@ export const Navbar = ({ className }: Props) => {
 					<ThemeButton />
 
 					{/* vertical separator */}
-					<div className='h-4 w-[1px] bg-border dark:bg-input'></div>
+					<div className='h-4 w-[1px] bg-border dark:bg-input hidden sm:flex'></div>
 
 					<Link
 						to='https://buymeacoffee.com/dilane3'

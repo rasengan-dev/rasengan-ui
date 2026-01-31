@@ -1,4 +1,4 @@
-import { ComponentGroup } from "../type";
+import { componentCategories, ComponentGroup } from "../type";
 
 const { RASENGAN_PREVIEW_BASE_URL } = import.meta.env;
 
@@ -11,6 +11,7 @@ export const applicationUIComponents: ComponentGroup[] = [
 			{
 				label: "profile",
 				name: "Profile Card",
+				category: componentCategories.APPLICATION_UI,
 				description: `A chakra-infused profile card to display user information in a visually appealing way.
 Ready to drop into any React app, this card is designed to be both functional and aesthetically pleasing.`,
 				image: "/static/images/components/application-ui/profile.png",
@@ -94,6 +95,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 			{
 				label: "join",
 				name: "Join Card",
+				category: componentCategories.APPLICATION_UI,
 				description: `Beautifully crafted cards inviting users to sign up, join a community, or unlock special content.
 Chakra-infused, responsive, and ready to drop into any React app — perfect for growing your ninja clan.`,
 				image: "/static/images/components/application-ui/join.png",
@@ -140,6 +142,7 @@ Chakra-infused, responsive, and ready to drop into any React app — perfect for
 			{
 				label: "booking",
 				name: "Booking Card",
+				category: componentCategories.APPLICATION_UI,
 				description: `Elegant, ready-to-use cards to showcase appointments, events, or reservations.
 Fully responsive, themeable, and built to drop effortlessly into any React app — so users can book with the speed of a shinobi.`,
 				image: "/static/images/components/application-ui/booking.png",
@@ -185,6 +188,7 @@ Fully responsive, themeable, and built to drop effortlessly into any React app �
 			{
 				label: "invite",
 				name: "Invite Card",
+				category: componentCategories.APPLICATION_UI,
 				description: `Beautifully designed cards that prompt users to join your team, project, or workspace.
 Responsive, themeable, and chakra-infused — ready to drop into any React app to turn visitors into collaborators.`,
 				image: "/static/images/components/application-ui/invite.png",
@@ -213,6 +217,7 @@ Responsive, themeable, and chakra-infused — ready to drop into any React app t
 			{
 				label: "upload",
 				name: "Upload Card",
+				category: componentCategories.APPLICATION_UI,
 				description: `Intuitive, beautifully styled cards for users to upload files, images, or documents.
 Chakra-infused, responsive, and ready to drop into any React app — making file uploads feel seamless and elegant.`,
 				image: "/static/images/components/application-ui/upload.png",
@@ -241,6 +246,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making file
 			{
 				label: "calendar",
 				name: "Calendar Card",
+				category: componentCategories.APPLICATION_UI,
 				description: `Beautifully crafted cards to display events, schedules, or dates at a glance.
 Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to keep track of what matters.`,
 				image: "/static/images/components/application-ui/calendar.png",
@@ -268,6 +274,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 			{
 				label: "inputs",
 				name: "Text Input",
+				category: componentCategories.APPLICATION_UI,
 				description: `Clean, accessible, and themeable input fields to capture user data effortlessly.
 From simple text boxes to complex form patterns — all chakra-infused and styled to blend seamlessly into any React app.`,
 				image: "/static/images/components/application-ui/input.png",
@@ -334,6 +341,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 			{
 				label: "filters",
 				name: "Filters",
+				category: componentCategories.APPLICATION_UI,
 				description: `Empower users to refine, sort, and explore your content effortlessly.
 These chakra-infused, ready-to-use filter components drop seamlessly into any React app — keeping experiences fast, intuitive, and beautifully organized.`,
 				image: "/static/images/components/application-ui/filter.png",
@@ -354,6 +362,7 @@ These chakra-infused, ready-to-use filter components drop seamlessly into any Re
 			{
 				label: "registration",
 				name: "Registration",
+				category: componentCategories.APPLICATION_UI,
 				description: `Smooth, secure, and beautifully styled auth pages to onboard your users like true shinobi.
 Ready-to-use, themeable, and built to drop effortlessly into any React app — because first impressions matter.`,
 				image: "/static/images/components/application-ui/register.png",
@@ -426,6 +435,7 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 			{
 				label: "grid",
 				name: "Grid List",
+				category: componentCategories.APPLICATION_UI,
 				description: `Beautifully crafted lists to display items in a grid layout.
 Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to explore and interact with your content.`,
 				image: "/static/images/components/application-ui/grid.png",
@@ -485,6 +495,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 			{
 				label: "animated",
 				name: "Animated List",
+				category: componentCategories.APPLICATION_UI,
 				description: `Beautifully crafted lists to display items with animations.
 Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to explore and interact with your content.`,
 				image: "/static/images/components/application-ui/animated.png",
@@ -504,6 +515,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 			{
 				label: "tables",
 				name: "Table List",
+				category: componentCategories.APPLICATION_UI,
 				description: `Beautifully crafted data table to display items with too much actions or operations.
 Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to explore and interact with your content.`,
 				image: "/static/images/components/application-ui/table.png",
@@ -538,6 +550,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 			{
 				label: "notifications",
 				name: "Notifications",
+				category: componentCategories.APPLICATION_UI,
 				description: `Beautifully crafted notification overlays.
 Chakra-infused, responsive, and ready to drop into any React app — making it nice to show feedbacks to users`,
 				image: "/static/images/components/application-ui/notification.png",
@@ -587,6 +600,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it n
 			{
 				label: "toolbar",
 				name: "Toolbar",
+				category: componentCategories.APPLICATION_UI,
 				description: `Beautifully crafted toolbars to display items in a toolbar layout.
 Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to explore and interact with your content.`,
 				image: "/static/images/components/application-ui/toolbar.png",
@@ -644,6 +658,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 			{
 				label: "sidebars",
 				name: "Sidebars",
+				category: componentCategories.APPLICATION_UI,
 				description: `Beautifully crafted sidebars for dashboard applications to display menu items.
 Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to explore and interact with your content.`,
 				image: "/static/images/components/application-ui/sidebars.png",

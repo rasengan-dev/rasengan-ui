@@ -81,7 +81,7 @@ export default function ComponentPreview({
 			<div className='flex items-center justify-between p-2 border-b-[1px] border-y-border bg-background'>
 				<div className='flex items-center gap-2'>
 					{/* <ThemeButton /> */}
-					<span className="font-semibold text-foreground">{component.name}</span>
+					<span className="font-semibold text-foreground text-sm">{component.name}</span>
 				</div>
 
 				<div className="flex items-center gap-2">

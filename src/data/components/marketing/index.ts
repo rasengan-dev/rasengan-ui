@@ -1,4 +1,4 @@
-import { ComponentGroup } from "../type";
+import { componentCategories, ComponentGroup } from "../type";
 
 const { RASENGAN_PREVIEW_BASE_URL } = import.meta.env;
 
@@ -11,6 +11,7 @@ export const marketingComponents: ComponentGroup[] = [
 			{
 				label: "heroes",
 				name: "Heroes Section",
+				category: componentCategories.MARKETING,
 				description: `Use these chakra-infused React sections to showcase key messaging, product highlights, and calls-to-action at the top of your site. Each section is thoughtfully designed, production-ready, and powered by Shadcn UI — so you can summon beautiful UIs into any React project with ease.`,
 				image: "/static/images/components/marketing/hero.png",
 				components: [
@@ -176,6 +177,7 @@ export const marketingComponents: ComponentGroup[] = [
 			{
 				label: "teams",
 				name: "Teams Section",
+				category: componentCategories.MARKETING,
 				description: `Showcase the shinobi behind your mission with beautifully crafted team sections.
 Highlight profiles, roles, and bios — all ready to drop into your React app and styled to reflect your brand’s unique chakra.`,
 				image: "/static/images/components/marketing/team.png",
@@ -223,6 +225,7 @@ Highlight profiles, roles, and bios — all ready to drop into your React app an
 			{
 				label: "pricings",
 				name: "Pricings Section",
+				category: componentCategories.MARKETING,
 				description: `Present your offers with clarity and confidence using beautifully crafted, responsive pricing blocks.
 Designed to convert, chakra-infused, and ready to drop into any React app — so your users see value at a glance.`,
 				image: "/static/images/components/marketing/pricing.png",
@@ -261,6 +264,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 			{
 				label: "testimonials",
 				name: "Testimonials Section",
+				category: componentCategories.MARKETING,
 				description: `Showcase real feedback from your users with elegant, responsive testimonial components. Easily customizable, theme-ready, and designed to build trust in any React app.`,
 				image: "/static/images/components/marketing/testimonial.png",
 				components: [
@@ -297,6 +301,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 			{
 				label: "faqs",
 				name: "FAQs Section",
+				category: componentCategories.MARKETING,
 				description: `Showcase Frequently Asked Questions (FAQs) with beautifully crafted, responsive FAQ components. Easily customizable, theme-ready, and designed to provide clear answers and build trust in any React app.`,
 				image: "/static/images/components/marketing/faq.png",
 				components: [
@@ -351,6 +356,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 			{
 				label: "footers",
 				name: "Footers Section",
+				category: componentCategories.MARKETING,
 				description: `Showcase footers with beautifully crafted, responsive footer components. Easily customizable, theme-ready, and designed to provide clear answers and build trust in any React app.`,
 				image: "/static/images/components/marketing/footer.png",
 				components: [
@@ -409,6 +415,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 			{
 				label: "ctas",
 				name: "CTAs Section",
+				category: componentCategories.MARKETING,
 				description: `Showcase CTAs with beautifully crafted, responsive CTAs components. Easily customizable, theme-ready, and designed to provide clear answers and build trust in any React app.`,
 				image: "/static/images/components/marketing/cta.png",
 				components: [
@@ -457,6 +464,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 			{
 				label: "contacts",
 				name: "Contacts Section",
+				category: componentCategories.MARKETING,
 				description: `Present beautiful Contacts sections, responsive Contacts components. Easily customizable, theme-ready, and designed to provide clear answers and build trust in any React app.`,
 				image: "/static/images/components/marketing/contact.png",
 				components: [
@@ -522,6 +530,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 			{
 				label: "landing",
 				name: "Landing Page",
+				category: componentCategories.MARKETING,
 				description: `Build landing pages with beautifully crafted, responsive landing page components. Easily customizable, theme-ready, and designed to provide clear answers and build trust in any React app.`,
 				image: "/static/images/components/marketing/landing.png",
 				components: [
@@ -539,6 +548,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 			{
 				label: "user-profile",
 				name: "User Profile",
+				category: componentCategories.MARKETING,
 				description: `Build landing pages with beautifully crafted, responsive landing page components. Easily customizable, theme-ready, and designed to provide clear answers and build trust in any React app.`,
 				image: "/static/images/components/marketing/user-profile.png",
 				components: [
@@ -564,6 +574,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 			{
 				label: "navbars",
 				name: "Navbars Elements",
+				category: componentCategories.MARKETING,
 				description: `Use these chakra-infused React sections to showcase key messaging, product highlights, and calls-to-action at the top of your site. Each section is thoughtfully designed, production-ready, and powered by Shadcn UI — so you can summon beautiful UIs into any React project with ease.`,
 				image: "/static/images/components/marketing/navbar.png",
 				components: [

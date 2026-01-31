@@ -11,7 +11,7 @@ export function Footer() {
 				</div>
 				<p className='text-foreground/70 text-sm mt-2 max-w-[340px]'>
 					A collection of ready-to-use UI components built for any React app —
-					powered by shadcn
+					powered by <a href='https://ui.shadcn.com' target="_blank" className="underline underline-offset-4 text-primary font-medium">Shadcn UI</a>
 				</p>
 			</div>
 
@@ -32,7 +32,7 @@ export function Footer() {
 				{/* Vertical line */}
 				<div className='w-[1px] h-6 bg-border hidden sm:block'></div>
 
-				<Link to='/change-log' className='hidden sm:block'>
+				<Link to='/docs/resources/changelog' className='hidden sm:block'>
 					<div className='py-2 px-2 flex items-center justify-center text-foreground/70 hover:text-foreground hover:cursor-pointer transition-all'>
 						<span className='text-sm'>Change Log</span>
 					</div>
