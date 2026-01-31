@@ -136,9 +136,9 @@ export const useComponentStore = createStore<State & Actions>((_, get) => ({
 		navigationSections.push({
 			title: "Resources",
 			items: [
-				{ label: "Roadmap", to: "/docs/resources/roadmap", level: 1 },
+				// { label: "Roadmap", to: "/docs/resources/roadmap", level: 1 },
 				{ label: "Changelog", to: "/docs/resources/changelog", level: 1 },
-				{ label: "FAQ", to: "/docs/resources/faq", level: 1 },
+				// { label: "FAQ", to: "/docs/resources/faq", level: 1 },
 			]
 		});
 
