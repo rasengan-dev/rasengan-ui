@@ -18,7 +18,7 @@ export default defineMDXConfig({
 				return <CodeBlock children={children} {...rest} className="bg-input/5 border-border" />
 			}
 
-			return <code {...rest} className="bg-muted relative rounded-md px-[0.3rem] py-[0.2rem] font-mono text-[0.9rem] break-words outline-none">{children}</code>
+			return <code {...rest} className="bg-muted relative rounded-md px-[0.3rem] py-[0.2rem] font-mono text-[0.85rem] break-words outline-none">{children}</code>
 		}
 	},
 
