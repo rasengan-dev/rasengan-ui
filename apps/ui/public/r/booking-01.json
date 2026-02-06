@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "booking-01",
+  "title": "Booking place card",
+  "description": "Booking place card",
+  "dependencies": [],
+  "registryDependencies": [
+    "button",
+    "carousel"
+  ],
+  "files": [
+    {
+      "path": "src/registry/application-ui/cards/booking/booking1.tsx",
+      "content": "import {\n\tCarousel,\n\tCarouselContent,\n\tCarouselItem,\n\tCarouselNext,\n\tCarouselPrevious,\n} from \"@/components/ui/carousel\";\nimport { Button } from \"@/components/ui/button\";\nimport { ComponentProps } from \"react\";\nimport { cn } from \"@/lib/utils\";\n\ntype Props = {\n\tclassName?: ComponentProps<\"article\">[\"className\"];\n};\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\nexport const BookingCard1 = ({ className }: Props) => {\n\treturn (\n\t\t<article\n\t\t\tclassName={cn(\n\t\t\t\t\"w-full max-w-[350px] rounded-3xl shadow-md bg-background dark:bg-input/70 overflow-hidden\",\n\t\t\t\tclassName\n\t\t\t)}\n\t\t>\n\t\t\t<div className='relative w-full'>\n\t\t\t\t<Carousel\n\t\t\t\t\tclassName='w-full'\n\t\t\t\t\topts={{\n\t\t\t\t\t\talign: \"start\",\n\t\t\t\t\t\tloop: true,\n\t\t\t\t\t}}\n\t\t\t\t>\n\t\t\t\t\t<CarouselContent>\n\t\t\t\t\t\t{Array.from({ length: 4 }).map((_, index) => (\n\t\t\t\t\t\t\t<CarouselItem key={index}>\n\t\t\t\t\t\t\t\t<div className='p-0'>\n\t\t\t\t\t\t\t\t\t<img\n\t\t\t\t\t\t\t\t\t\tsrc={`${registryUrl}/static/images/booking/${index + 1}.jpeg`}\n\t\t\t\t\t\t\t\t\t\talt='Avatar'\n\t\t\t\t\t\t\t\t\t\tclassName='rounded-3xl w-full h-[250px]'\n\t\t\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</CarouselItem>\n\t\t\t\t\t\t))}\n\t\t\t\t\t</CarouselContent>\n\t\t\t\t\t<CarouselPrevious className='translate-x-16 bg-white dark:bg-white hover:bg-white/80 dark:hover:bg-white/80 hover:text-black/90 dark:border-transparent' />\n\t\t\t\t\t<CarouselNext className='-translate-x-16 bg-white dark:bg-white hover:bg-white/80 dark:hover:bg-white/80 hover:text-black/90 dark:border-transparent' />\n\t\t\t\t</Carousel>\n\t\t\t</div>\n\n\t\t\t<div className='p-4'>\n\t\t\t\t<div className='flex flex-col items-start justify-between'>\n\t\t\t\t\t<h1 className='font-medium text-foreground'>The Ubud Jungle Villa</h1>\n\t\t\t\t\t<span className='text-sm text-muted-foreground'>\n\t\t\t\t\t\tLocated in Ubud, Bali, Indonesia\n\t\t\t\t\t</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div className='mt-4 text-sm'>\n\t\t\t\t\t<p className='text-foreground'>\n\t\t\t\t\t\tPerched above the lush tropical rainforest, this open-air Balinese\n\t\t\t\t\t\tvilla features thatched roofs, bamboo...\n\t\t\t\t\t</p>\n\n\t\t\t\t\t<span className='block text-muted-foreground underline mt-2 cursor-pointer'>\n\t\t\t\t\t\tRead more\n\t\t\t\t\t</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div className='my-4 font-medium text-foreground'>\n\t\t\t\t\t<p>From $199.99 / night</p>\n\t\t\t\t</div>\n\n\t\t\t\t<div className='flex items-center gap-4'>\n\t\t\t\t\t<Button\n\t\t\t\t\t\tvariant={\"outline\"}\n\t\t\t\t\t\tclassName='rounded-full w-full text-foreground'\n\t\t\t\t\t>\n\t\t\t\t\t\tAdd to Favorites\n\t\t\t\t\t</Button>\n\t\t\t\t\t<Button className='rounded-full w-full'>Book Now</Button>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</article>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

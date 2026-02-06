@@ -2,7 +2,7 @@ import { PageComponent } from "rasengan";
 import ThemeButton from "@/components/common/atoms/theme-button";
 import { useTheme } from "@rasenganjs/theme";
 import { cn } from "@/lib/utils";
-import { Cta1 } from "@/components/marketing/page-sections/ctas/cta1";
+import { Cta1 } from "@/registry/marketing/page-sections/ctas/cta1";
 
 const Page: PageComponent = () => {
 	const { isDark } = useTheme();

@@ -1,5 +1,5 @@
 import ThemeButton from "@/components/common/atoms/theme-button";
-import { Footer5 } from "@/components/marketing/page-sections/footers/footer5";
+import { Footer5 } from "@/registry/marketing/page-sections/footers/footer5";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@rasenganjs/theme";
 import { PageComponent } from "rasengan";

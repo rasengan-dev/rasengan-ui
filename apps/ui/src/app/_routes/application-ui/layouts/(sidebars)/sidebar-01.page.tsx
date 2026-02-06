@@ -16,7 +16,7 @@ import ThemeButton from "@/components/common/atoms/theme-button";
 import ProfileDropdown from "@/components/common/molecules/dropdowns/profile-dropdown";
 import Image from "@rasenganjs/image";
 import { Card } from "@/components/ui/card";
-import { Sidebar1 } from "@/components/application-ui/layouts/sidebars/sidebar1";
+import { Sidebar1 } from "@/registry/application-ui/layouts/sidebars/sidebar1";
 
 const Page: PageComponent = () => {
 	const { isDark } = useTheme();

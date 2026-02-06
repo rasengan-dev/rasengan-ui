@@ -1,11 +1,12 @@
 {
 	"name": "@rasengan-ui/kit",
-	"private": true,
+	"private": false,
 	"version": "1.0.2",
 	"type": "module",
 	"scripts": {
 		"dev": "rasengan dev",
 		"build": "rasengan build",
+		"registry:build": "pnpm dlx shadcn@latest build",
 		"serve": "rasengan-serve ./dist"
 	},
 	"dependencies": {

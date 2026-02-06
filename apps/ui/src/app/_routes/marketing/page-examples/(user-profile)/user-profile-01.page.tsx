@@ -1,4 +1,4 @@
-import { UserProfile1 } from "@/components/marketing/page-examples/user-profiles";
+import { UserProfile1 } from "@/registry/marketing/page-examples/user-profiles";
 import { PageComponent } from "rasengan";
 
 const Page: PageComponent = () => {

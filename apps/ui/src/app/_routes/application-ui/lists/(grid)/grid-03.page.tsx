@@ -1,4 +1,4 @@
-import { GridList3 } from "@/components/application-ui/lists/grid/grid3";
+import { GridList3 } from "@/registry/application-ui/lists/grid/grid3";
 import ThemeButton from "@/components/common/atoms/theme-button";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@rasenganjs/theme";

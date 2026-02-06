@@ -1,4 +1,4 @@
-import Table1 from "@/components/application-ui/lists/tables/table1";
+import Table1 from "@/registry/application-ui/lists/tables/table1";
 import ThemeButton from "@/components/common/atoms/theme-button";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@rasenganjs/theme";

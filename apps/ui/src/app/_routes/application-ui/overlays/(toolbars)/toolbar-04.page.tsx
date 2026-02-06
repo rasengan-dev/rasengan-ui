@@ -2,7 +2,7 @@ import { PageComponent } from "rasengan";
 import ThemeButton from "@/components/common/atoms/theme-button";
 import { useTheme } from "@rasenganjs/theme";
 import { cn } from "@/lib/utils";
-import { Toolbar4 } from "@/components/application-ui/overlays/toolbars/toolbar4";
+import { Toolbar4 } from "@/registry/application-ui/overlays/toolbars/toolbar4";
 
 const Page: PageComponent = () => {
 	const { isDark } = useTheme();

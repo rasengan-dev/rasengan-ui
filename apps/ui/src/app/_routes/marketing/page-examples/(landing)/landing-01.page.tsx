@@ -1,4 +1,4 @@
-import { LandingPage1 } from "@/components/marketing/page-examples/landings";
+import { LandingPage1 } from "@/registry/marketing/page-examples/landings";
 import { PageComponent } from "rasengan";
 
 const Page: PageComponent = () => {

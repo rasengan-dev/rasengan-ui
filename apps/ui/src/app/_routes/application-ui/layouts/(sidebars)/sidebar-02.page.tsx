@@ -7,7 +7,7 @@ import ProfileDropdown from "@/components/common/molecules/dropdowns/profile-dro
 import Image from "@rasenganjs/image";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Sidebar2 } from "@/components/application-ui/layouts/sidebars/sidebar2";
+import { Sidebar2 } from "@/registry/application-ui/layouts/sidebars/sidebar2";
 
 const Page: PageComponent = () => {
 	const { isDark } = useTheme();

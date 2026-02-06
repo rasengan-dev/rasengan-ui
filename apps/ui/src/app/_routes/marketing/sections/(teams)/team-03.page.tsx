@@ -1,4 +1,4 @@
-import TeamSection3 from "@/components/marketing/page-sections/teams/team3";
+import TeamSection3 from "@/registry/marketing/page-sections/teams/team3";
 import { useTheme } from "@rasenganjs/theme";
 import { PageComponent } from "rasengan";
 import { twMerge } from "tailwind-merge";

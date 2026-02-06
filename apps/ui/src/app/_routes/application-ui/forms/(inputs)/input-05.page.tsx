@@ -1,5 +1,5 @@
 import { PageComponent } from "rasengan";
-import { Input5 } from "@/components/application-ui/forms/inputs";
+import { Input5 } from "@/registry/application-ui/forms/inputs";
 import ThemeButton from "@/components/common/atoms/theme-button";
 import { useTheme } from "@rasenganjs/theme";
 import { cn } from "@/lib/utils";

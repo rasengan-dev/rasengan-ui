@@ -2,7 +2,7 @@ import { PageComponent } from "rasengan";
 import ThemeButton from "@/components/common/atoms/theme-button";
 import { useTheme } from "@rasenganjs/theme";
 import { cn } from "@/lib/utils";
-import { InviteCard2 } from "@/components/application-ui/cards/invite";
+import { InviteCard2 } from "@/registry/application-ui/cards/invite";
 
 const Page: PageComponent = () => {
 	const { isDark } = useTheme();

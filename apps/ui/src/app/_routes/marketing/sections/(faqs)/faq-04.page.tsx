@@ -1,5 +1,5 @@
 import ThemeButton from "@/components/common/atoms/theme-button";
-import { Faq4 } from "@/components/marketing/page-sections/faqs/faq4";
+import { Faq4 } from "@/registry/marketing/page-sections/faqs/faq4";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@rasenganjs/theme";
 import { PageComponent } from "rasengan";

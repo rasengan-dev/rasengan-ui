@@ -1,4 +1,4 @@
-import { Hero9 } from "@/components/marketing/page-sections/heroes";
+import { Hero9 } from "@/registry/marketing/page-sections/heroes";
 import { PageComponent } from "rasengan";
 
 const Page: PageComponent = () => {

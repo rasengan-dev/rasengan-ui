@@ -2,7 +2,7 @@ import { PageComponent } from "rasengan";
 import ThemeButton from "@/components/common/atoms/theme-button";
 import { useTheme } from "@rasenganjs/theme";
 import { cn } from "@/lib/utils";
-import { ProfileCard6 } from "@/components/application-ui/cards/profile";
+import { ProfileCard6 } from "@/registry/application-ui/cards/profile";
 
 const Page: PageComponent = () => {
 	const { isDark } = useTheme();

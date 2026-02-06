@@ -2,7 +2,7 @@ import { PageComponent } from "rasengan";
 import ThemeButton from "@/components/common/atoms/theme-button";
 import { useTheme } from "@rasenganjs/theme";
 import { cn } from "@/lib/utils";
-import { DashboardFilter } from "@/components/application-ui/forms/filters";
+import { DashboardFilter } from "@/registry/application-ui/forms/filters";
 
 const Page: PageComponent = () => {
 	const { isDark } = useTheme();

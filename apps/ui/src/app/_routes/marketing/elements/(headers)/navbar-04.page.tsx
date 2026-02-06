@@ -1,4 +1,4 @@
-import { FloatingNavbar1 } from "@/components/marketing/elements/headers";
+import { FloatingNavbar1 } from "@/registry/marketing/elements/headers";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@rasenganjs/theme";
 import { PageComponent } from "rasengan";

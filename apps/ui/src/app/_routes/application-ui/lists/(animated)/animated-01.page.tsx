@@ -1,4 +1,4 @@
-import AnimatedList1 from "@/components/application-ui/lists/animated-list/animated1";
+import AnimatedList1 from "@/registry/application-ui/lists/animated-list/animated1";
 import ThemeButton from "@/components/common/atoms/theme-button";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@rasenganjs/theme";

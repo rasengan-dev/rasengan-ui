@@ -146,7 +146,7 @@ Fully responsive, themeable, and built to drop effortlessly into any React app â
 				components: [
 					{
 						label: "booking-01",
-						name: "Booking place card 01",
+						name: "Booking place card",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/booking-01`,
 						code: "",
 						height: 800,
@@ -155,7 +155,7 @@ Fully responsive, themeable, and built to drop effortlessly into any React app â
 					},
 					{
 						label: "booking-02",
-						name: "Job card 02",
+						name: "Job card",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/booking-02`,
 						code: "",
 						height: 800,
@@ -164,7 +164,7 @@ Fully responsive, themeable, and built to drop effortlessly into any React app â
 					},
 					{
 						label: "booking-03",
-						name: "Booking place card 03",
+						name: "Booking place card",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/booking-03`,
 						code: "",
 						height: 800,
@@ -173,7 +173,7 @@ Fully responsive, themeable, and built to drop effortlessly into any React app â
 					},
 					{
 						label: "booking-04",
-						name: "Booking place card reversed 04",
+						name: "Booking place card reversed",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/booking-04`,
 						code: "",
 						height: 800,

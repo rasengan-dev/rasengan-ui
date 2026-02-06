@@ -1,7 +1,7 @@
 import { PageComponent } from "rasengan";
 import { useTheme } from "@rasenganjs/theme";
 import { twMerge } from "tailwind-merge";
-import PricingSection3 from "@/components/marketing/page-sections/pricings/pricing3";
+import PricingSection3 from "@/registry/marketing/page-sections/pricings/pricing3";
 
 const Page: PageComponent = () => {
 	const { isDark } = useTheme();

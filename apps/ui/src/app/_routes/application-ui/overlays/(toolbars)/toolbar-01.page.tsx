@@ -1,9 +1,9 @@
 import { PageComponent } from "rasengan";
-import { Notification1 } from "@/components/application-ui/overlays/notifications/notification1";
+import { Notification1 } from "@/registry/application-ui/overlays/notifications/notification1";
 import ThemeButton from "@/components/common/atoms/theme-button";
 import { useTheme } from "@rasenganjs/theme";
 import { cn } from "@/lib/utils";
-import { Toolbar1 } from "@/components/application-ui/overlays/toolbars/toolbar1";
+import { Toolbar1 } from "@/registry/application-ui/overlays/toolbars/toolbar1";
 
 const Page: PageComponent = () => {
 	const { isDark } = useTheme();

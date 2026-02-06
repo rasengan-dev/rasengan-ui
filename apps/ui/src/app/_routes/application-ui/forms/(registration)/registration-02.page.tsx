@@ -1,4 +1,4 @@
-import { SigninPage2 } from "@/components/application-ui/forms/registration";
+import { SigninPage2 } from "@/registry/application-ui/forms/registration";
 import { PageComponent } from "rasengan";
 
 const Page: PageComponent = () => {

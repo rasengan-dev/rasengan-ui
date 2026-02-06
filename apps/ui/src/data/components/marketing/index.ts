@@ -418,7 +418,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
         components: [
           {
             label: "cta-01",
-            name: "CTA for newsletter 01",
+            name: "CTA for newsletter",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/cta-01`,
             code: "",
             height: 800,
@@ -427,7 +427,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "cta-02",
-            name: "CTA for download action 02",
+            name: "CTA for download action",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/cta-02`,
             code: "",
             height: 800,
@@ -437,7 +437,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "cta-03",
-            name: "CTA with one action 03",
+            name: "CTA with one action",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/cta-03`,
             code: "",
             height: 800,
@@ -447,7 +447,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "cta-04",
-            name: "CTA with one action and image 04",
+            name: "CTA with one action and image",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/cta-04`,
             code: "",
             height: 800,
@@ -466,7 +466,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
         components: [
           {
             label: "contact-01",
-            name: "Contact form 01",
+            name: "Contact form",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/contact-01`,
             code: "",
             height: 800,
@@ -475,7 +475,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "contact-02",
-            name: "Contact form with map 02",
+            name: "Contact form with map",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/contact-02`,
             code: "",
             height: 800,
@@ -485,7 +485,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "contact-03",
-            name: "Contact form in one column 03",
+            name: "Contact form in one column",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/contact-03`,
             code: "",
             height: 800,
@@ -495,7 +495,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "contact-04",
-            name: "Contact form with image 04",
+            name: "Contact form with image",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/contact-04`,
             code: "",
             height: 800,
@@ -505,7 +505,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "contact-05",
-            name: "Contact form with info on right 05",
+            name: "Contact form with info on right",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/contact-05`,
             code: "",
             height: 800,

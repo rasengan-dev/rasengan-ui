@@ -1,4 +1,4 @@
-import { Footer1 } from "@/components/marketing/page-sections/footers/footer1";
+import { Footer1 } from "@/registry/marketing/page-sections/footers/footer1";
 import { cn } from "@/lib/utils";
 import { PageComponent } from "rasengan";
 

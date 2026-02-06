@@ -1,0 +1,161 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "rasengan ui",
+  "homepage": "https://registry.rasengan.dev",
+  "items": [
+    {
+      "name": "animated-01",
+      "type": "registry:block",
+      "title": "Animated List",
+      "description": "List of animated destination",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/application-ui/lists/animated-list/animated1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "booking-01",
+      "type": "registry:block",
+      "title": "Booking place card",
+      "description": "Booking place card",
+      "registryDependencies": ["button", "carousel"],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/booking/booking1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "booking-02",
+      "type": "registry:block",
+      "title": "Job card",
+      "description": "Job card",
+      "registryDependencies": ["button", "badge"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/booking/booking2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "booking-03",
+      "type": "registry:block",
+      "title": "Booking place card",
+      "description": "Booking place card",
+      "registryDependencies": ["button", "carousel", "badge"],
+      "dependencies": ["lucide-react", "embla-carousel-autoplay"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/booking/booking3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "booking-04",
+      "type": "registry:block",
+      "title": "Booking place card reversed",
+      "description": "Booking place card reversed",
+      "registryDependencies": ["button", "carousel", "badge"],
+      "dependencies": ["lucide-react", "embla-carousel-autoplay"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/booking/booking4.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "calendar-01",
+      "type": "registry:block",
+      "title": "Calendar card with range selection",
+      "description": "Calendar card with range selection",
+      "registryDependencies": ["button", "calendar", "checkbox", "input"],
+      "dependencies": ["lucide-react", "react-day-picker"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/calendar/calendar1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "contact-01",
+      "type": "registry:block",
+      "title": "Contact form",
+      "description": "Contact form",
+      "registryDependencies": ["button", "badge", "input"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/contacts/contact1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "contact-02",
+      "type": "registry:block",
+      "title": "Contact form with map",
+      "description": "Contact form with map",
+      "registryDependencies": ["button", "badge", "input"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/contacts/contact2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "contact-03",
+      "type": "registry:block",
+      "title": "Contact form in one column",
+      "description": "Contact form in one column",
+      "registryDependencies": ["button", "input"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/contacts/contact3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "contact-04",
+      "type": "registry:block",
+      "title": "Contact form with image",
+      "description": "Contact form with image",
+      "registryDependencies": ["button", "input"],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/contacts/contact4.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "contact-05",
+      "type": "registry:block",
+      "title": "Contact form with info on right",
+      "description": "Contact form with info on right",
+      "registryDependencies": ["button", "input"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/contacts/contact5.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}

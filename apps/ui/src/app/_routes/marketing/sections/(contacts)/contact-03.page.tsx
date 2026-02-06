@@ -1,5 +1,5 @@
 import ThemeButton from "@/components/common/atoms/theme-button";
-import { Contact3 } from "@/components/marketing/page-sections/contacts/contact3";
+import { Contact3 } from "@/registry/marketing/page-sections/contacts/contact3";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@rasenganjs/theme";
 import { PageComponent } from "rasengan";
