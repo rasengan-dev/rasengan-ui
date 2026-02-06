@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "rasengan ui",
+  "homepage": "https://registry.rasengan.dev",
+  "items": [
+    {
+      "name": "markdown-editor",
+      "type": "registry:block",
+      "title": "Markdown Editor",
+      "description": "A simple Markdown Editor component",
+      "registryDependencies": ["button", "card"],
+      "dependencies": ["lucide-react", "react-markdown", "remark-gfm", "react-syntax-highlighter", "@rasenganjs/theme"],
+      "files": [
+        {
+          "path": "src/registry/nindo/editors/markdown-editor.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}

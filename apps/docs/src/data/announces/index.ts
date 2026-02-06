@@ -1,9 +1,9 @@
 export const announcesList = [
 	{
 		id: 1,
-		label: "Black Friday Sale — 80% off ✨",
+		label: "Rasengan UI is now Free and Open Source ✨",
 		description: "",
-		link: "/pricing",
+		link: "/docs/components",
 	},
 	{
 		id: 2,

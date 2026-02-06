@@ -17,7 +17,7 @@ export function Footer() {
 
 			<div className='mt-10 w-full border-y-[1px] border-y-border px-4 py-1 flex items-center gap-2'>
 				<p className='text-foreground/70 text-sm mr-2 py-2'>
-					© 2025 Rasengan Labs. All rights reserved.
+					© 2025 - {new Date().getFullYear()} Rasengan Labs. All rights reserved.
 				</p>
 
 				{/* Vertical line */}

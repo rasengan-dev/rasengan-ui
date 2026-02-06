@@ -44,8 +44,8 @@ export default function Sidebar({ onClose = () => { } }: { onClose?: () => void 
                 {
                   ({ isActive }) => (
                     <>
-                      <span className={cn("inline-block text-xs font-semibold px-2 py-[6px] hover:bg-muted/70 dark:hover:bg-input/70 rounded-md cursor-pointer",
-                        isActive ? "bg-primary text-primary-foreground hover:bg-primary dark:hover:bg-primary" : ""
+                      <span className={cn("inline-block text-xs font-semibold px-2 py-[6px] hover:bg-muted/70 dark:hover:bg-input/70 rounded-md cursor-pointer transition-all",
+                        isActive ? "bg-primary/5 dark:bg-primary/20 text-primary borderd border-primary hover:bg-primary/5 dark:hover:bg-primary/20" : ""
                       )}>
                         {item.label}
                       </span>

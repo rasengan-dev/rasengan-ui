@@ -1,18 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
 import { Link, PageComponent } from "rasengan";
-import ComponentItem from "@/components/features/ui-components/component-item";
 import TestimonialsSection from "@/components/features/sections/testimonials";
 import FaqSection from "@/components/features/sections/faq";
-import { useComponentStore } from "@/store/components";
-import { ComponentCategoryLabel } from "@/data/components/type";
 import { AnnouncementBadge } from "@/components/common/molecules/announcement-badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import HeroExample from "@/components/features/examples/landing/hero";
+import TeamExample from "@/components/features/examples/landing/team";
+import PricingExample from "@/components/features/examples/landing/pricing";
+import ExampleComponent from "@/components/features/examples/landing/example";
 
 const Page: PageComponent = () => {
-	const { getPopularComponents } = useComponentStore();
-
-	const popularComponents = getPopularComponents();
-
 	return (
 		<section className='w-full h-full bg-background py-4'>
 			<div id='top'></div>
@@ -29,8 +26,7 @@ const Page: PageComponent = () => {
 				</h1>
 				<p className='max-w-[700px] text-center mt-2 text-foreground text-pretty px-4'>
 					<span className='font-medium'>
-						Chakra-infused UI sections for any React app — Rasengan.js, Next.js,
-						Remix, TanStack, React Router, and more.
+						A collection of well crafted and stunning UI components for your React app.
 					</span>{" "}
 					<span>
 						Themeable, responsive, and powered by Shadcn UI — just drop them
@@ -42,16 +38,14 @@ const Page: PageComponent = () => {
 						<Button className='w-full sm:w-auto'>Browse components</Button>
 					</Link>
 					<Link
-						to='https://ui-kit.rasengan.dev'
-						target='_blank'
+						to='/templates'
 						className='w-full sm:w-auto'
 					>
 						<Button
 							className='w-full sm:w-auto text-foreground/70'
 							variant='outline'
 						>
-							<ExternalLink />
-							<span>Open Playground</span>
+							<span>Explore Templates</span>
 						</Button>
 					</Link>
 				</div>
@@ -59,7 +53,29 @@ const Page: PageComponent = () => {
 
 			{/* Components Preview */}
 			<section className='relative mt-20 flex flex-col border-t-[1px] border-t-border'>
-				<div className='w-full'>
+				<div className="w-full p-2">
+					<Tabs defaultValue="example">
+						<TabsList variant="line" className="h-[40px]">
+							<TabsTrigger value="example">Example</TabsTrigger>
+							<TabsTrigger value="hero">Hero Section</TabsTrigger>
+							<TabsTrigger value="team">Team Section</TabsTrigger>
+							<TabsTrigger value="pricing">Pricing Section</TabsTrigger>
+						</TabsList>
+						<TabsContent value="example">
+							<ExampleComponent />
+						</TabsContent>
+						<TabsContent value="hero">
+							<HeroExample />
+						</TabsContent>
+						<TabsContent value="team">
+							<TeamExample />
+						</TabsContent>
+						<TabsContent value="pricing">
+							<PricingExample />
+						</TabsContent>
+					</Tabs>
+				</div>
+				{/* <div className='w-full'>
 					{popularComponents[0].components.map((component) => (
 						<ComponentItem
 							key={component.component.label}
@@ -72,21 +88,7 @@ const Page: PageComponent = () => {
 							typeLabel={component.typeLabel}
 						/>
 					))}
-				</div>
-				<div className='w-full'>
-					{popularComponents[1].components.map((component) => (
-						<ComponentItem
-							key={component.component.label}
-							component={component.component}
-							category={popularComponents[1].category}
-							categoryLabel={
-								popularComponents[1].categoryLabel as ComponentCategoryLabel
-							}
-							groupName={component.groupName}
-							typeLabel={component.typeLabel}
-						/>
-					))}
-				</div>
+				</div> */}
 			</section>
 
 			{/* Pricing */}
@@ -96,7 +98,7 @@ const Page: PageComponent = () => {
 			<TestimonialsSection />
 
 			{/* FAQ */}
-			<FaqSection />
+			{/* <FaqSection /> */}
 		</section>
 	);
 };
