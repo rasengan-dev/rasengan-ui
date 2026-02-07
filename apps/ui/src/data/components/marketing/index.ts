@@ -306,7 +306,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
         components: [
           {
             label: "faq-01",
-            name: "FAQs with tabs 01",
+            name: "FAQs with tabs 1",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/faq-01`,
             code: "",
             height: 800,
@@ -315,7 +315,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "faq-02",
-            name: "FAQs with tabs 02",
+            name: "FAQs with tabs 2",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/faq-02`,
             code: "",
             height: 800,
@@ -324,7 +324,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "faq-03",
-            name: "FAQs with grid 03",
+            name: "FAQs with grid",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/faq-03`,
             code: "",
             height: 800,
@@ -333,7 +333,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "faq-04",
-            name: "FAQs with tabs 04",
+            name: "FAQs with tabs 3",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/faq-04`,
             code: "",
             height: 800,
@@ -342,7 +342,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "faq-05",
-            name: "FAQs with contact form 05",
+            name: "FAQs with contact form",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/faq-05`,
             code: "",
             height: 800,
@@ -360,7 +360,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
         components: [
           {
             label: "footer-01",
-            name: "Simple Footer 01",
+            name: "Simple Footer 1",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/footer-01`,
             code: "",
             height: 800,
@@ -369,7 +369,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "footer-02",
-            name: "Footer with call to action 02",
+            name: "Footer with call to action",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/footer-02`,
             code: "",
             height: 800,
@@ -379,7 +379,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "footer-03",
-            name: "Simple Footer 03",
+            name: "Simple Footer 2",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/footer-03`,
             code: "",
             height: 800,
@@ -389,7 +389,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "footer-04",
-            name: "Simple Footer 04",
+            name: "Simple Footer 3",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/footer-04`,
             code: "",
             height: 800,
@@ -399,7 +399,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "footer-05",
-            name: "Footer with call to action 05",
+            name: "Footer with call to action",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/footer-05`,
             code: "",
             height: 800,

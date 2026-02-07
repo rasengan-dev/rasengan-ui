@@ -8,6 +8,13 @@ export default defineConfig(async () => {
 	return {
 		vite: {
 			plugins: [rasengan({ adapter: configure() }), tailwindcss(), mdx()],
+
+			resolve: [
+				{
+					find: "@/libs",
+					replacement: "./src/registry/lib"
+				}
+			]
 		},
 	};
 });

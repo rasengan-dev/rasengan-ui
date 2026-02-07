@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cta-03",
+  "title": "CTA with one action",
+  "description": "CTA with one action",
+  "dependencies": [],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "src/registry/marketing/page-sections/ctas/cta3.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\n\nexport const Cta3 = () => {\n\treturn (\n\t\t<section className='w-full flex items-center justify-center'>\n\t\t\t<div className='relative overflow-hidden w-full max-w-[1200px] min-h-[250px] mt-16 flex flex-col lg:flex-row md:items-center text-white md:justify-between gap-8 rounded-4xl bg-[#282828] px-8 md:px-12 lg:py-20 py-10'>\n\t\t\t\t<div className='w-full flex flex-col items-center text-center'>\n\t\t\t\t\t<div className='mb-4 flex items-center gap-2 rounded-full p-1 pr-4 bg-white'>\n\t\t\t\t\t\t<span className='bg-[#D06237] text-white rounded-full px-2 py-1 text-xs'>\n\t\t\t\t\t\t\tNew\n\t\t\t\t\t\t</span>\n\t\t\t\t\t\t<span className='text-black text-sm'>\n\t\t\t\t\t\t\tConnect, Engage, and Grow with our tool\n\t\t\t\t\t\t</span>\n\t\t\t\t\t</div>\n\t\t\t\t\t<h1 className='text-4xl md:text-5xl font-bold mb-4 text-pretty'>\n\t\t\t\t\t\tStart building stronger{\" \"}\n\t\t\t\t\t\t<span className='text-[#D06237]'>connections</span>\n\t\t\t\t\t</h1>\n\t\t\t\t\t<p className='md:max-w-[700px] text-pretty'>\n\t\t\t\t\t\tSign up for free and start building stronger connections with your\n\t\t\t\t\t\tteam.\n\t\t\t\t\t</p>\n\n\t\t\t\t\t<div className='mt-6 flex gap-2'>\n\t\t\t\t\t\t<a href='#'>\n\t\t\t\t\t\t\t<Button className='rounded-full px-6 bg-white hover:bg-white/80 text-black h-12 items-center'>\n\t\t\t\t\t\t\t\tGet started\n\t\t\t\t\t\t\t</Button>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</section>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

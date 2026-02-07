@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "grid-03",
+  "title": "Simple cards list",
+  "description": "Simple cards list",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "src/registry/application-ui/lists/grid/grid3.tsx",
+      "content": "const registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\nconst cards = [\n\t{\n\t\tname: \"Jane Cooper\",\n\t\tstatus: \"Active\",\n\t\tjob: \"Regional Paradigm Technician\",\n\t\tavatar: `${registryUrl}/static/images/avatars/1.jpeg`,\n\t},\n\t{\n\t\tname: \"Dilane Kombou\",\n\t\tstatus: \"Active\",\n\t\tjob: \"Software Engineer\",\n\t\tavatar: `${registryUrl}/static/images/avatars/2.jpeg`,\n\t},\n\t{\n\t\tname: \"Andy Royer\",\n\t\tstatus: \"Active\",\n\t\tjob: \"Software Engineer\",\n\t\tavatar: `${registryUrl}/static/images/avatars/3.jpeg`,\n\t},\n\t{\n\t\tname: \"Rosine Tindou\",\n\t\tstatus: \"Active\",\n\t\tjob: \"UI Designer\",\n\t\tavatar: `${registryUrl}/static/images/avatars/4.jpeg`,\n\t},\n\t{\n\t\tname: \"Pedro Castanou\",\n\t\tstatus: \"Active\",\n\t\tjob: \"Product Manager\",\n\t\tavatar: `${registryUrl}/static/images/avatars/5.jpeg`,\n\t},\n\t{\n\t\tname: \"Emilie Lefevre\",\n\t\tstatus: \"Active\",\n\t\tjob: \"UX/UI Designer\",\n\t\tavatar: `${registryUrl}/static/images/avatars/6.jpeg`,\n\t},\n];\n\nexport const GridList3 = () => {\n\treturn (\n\t\t<div className='w-full h-full px-4 md:px-20 py-4'>\n\t\t\t<section className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-30 pb-20'>\n\t\t\t\t{cards.map((card, index) => (\n\t\t\t\t\t<Card key={index} card={card} />\n\t\t\t\t))}\n\t\t\t</section>\n\t\t</div>\n\t);\n};\n\nexport const Card = ({ card }: { card: (typeof cards)[0] }) => {\n\treturn (\n\t\t<article className='w-full flex flex-col shadow rounded-lg border hover:border-primary/50 transition-colors'>\n\t\t\t<div className='w-full h-auto flex items-center gap-2 p-4'>\n\t\t\t\t<img\n\t\t\t\t\tsrc={card.avatar}\n\t\t\t\t\talt='Avatar'\n\t\t\t\t\tclassName='rounded-full'\n\t\t\t\t\twidth={40}\n\t\t\t\t\theight={40}\n\t\t\t\t/>\n\t\t\t\t<div className='flex flex-col items-start gap-1'>\n\t\t\t\t\t<div className='flex items-center gap-2'>\n\t\t\t\t\t\t<h2 className='text-md font-medium text-foreground'>{card.name}</h2>\n\t\t\t\t\t</div>\n\t\t\t\t\t<span className='text-sm text-muted-foreground'>{card.job}</span>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</article>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

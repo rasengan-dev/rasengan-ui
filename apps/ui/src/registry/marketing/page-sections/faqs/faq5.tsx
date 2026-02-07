@@ -1,15 +1,16 @@
-import { Badge } from "@/components/ui/badge";
-import { Loader, Send, Sparkle } from "lucide-react";
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useMemo, useRef, useState } from "react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { cn, sleep } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
+import { Loader, Send, Sparkle } from "lucide-react";
+import { useMemo, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
+import { sleep } from "@/lib/sleep";
 
 type Faq = {
 	id: number;
@@ -94,7 +95,6 @@ export const Faq5 = () => {
 	const messageRef = useRef<HTMLDivElement>(null);
 
 	const [category, setCategory] = useState(faqs[0].category);
-	const [formOpen, setFormOpen] = useState(false);
 	const [sending, setSending] = useState(false);
 
 	const faqsByCategory = useMemo(() => {
@@ -154,7 +154,6 @@ export const Faq5 = () => {
 								)}
 								onClick={() => {
 									setCategory(cat);
-									setFormOpen(false);
 								}}
 							>
 								{cat}

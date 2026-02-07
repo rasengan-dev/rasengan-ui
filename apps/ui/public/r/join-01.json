@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "join-01",
+  "title": "Invite minimal card 1",
+  "description": "Invite minimal card 1",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "src/registry/application-ui/cards/join/join1.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { cn } from \"@/lib/utils\";\nimport { Heart } from \"lucide-react\";\nimport { ComponentProps } from \"react\";\n\ntype Props = {\n\tclassName?: ComponentProps<\"div\">[\"className\"];\n};\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\nexport const JoinCard1 = ({ className }: Props) => {\n\treturn (\n\t\t<div\n\t\t\tclassName={cn(\n\t\t\t\t\"max-w-[300px] border border-border bg-background rounded-3xl p-4 flex flex-col items-center justify-between gap-2\",\n\t\t\t\tclassName\n\t\t\t)}\n\t\t>\n\t\t\t<div className='w-full flex items-center justify-between gap-2'>\n\t\t\t\t<img\n\t\t\t\t\tsrc={`${registryUrl}/static/images/avatars/2.jpeg`}\n\t\t\t\t\talt='avatar'\n\t\t\t\t\tclassName='rounded-full'\n\t\t\t\t\twidth={40}\n\t\t\t\t\theight={40}\n\t\t\t\t/>\n\n\t\t\t\t<div className='flex justify-end items-center relative bg-muted w-[100px] h-8 rounded-full py-1 px-3 text-foreground'>\n\t\t\t\t\t<div className='absolute left-0 top-1/2 -translate-y-1/2 z-10'>\n\t\t\t\t\t\t<img\n\t\t\t\t\t\t\tsrc={`${registryUrl}/static/images/avatars/5.jpeg`}\n\t\t\t\t\t\t\talt='avatar'\n\t\t\t\t\t\t\tclassName='rounded-full'\n\t\t\t\t\t\t\twidth={25}\n\t\t\t\t\t\t\theight={25}\n\t\t\t\t\t\t/>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div className='absolute left-4 top-1/2 -translate-y-1/2 z-8'>\n\t\t\t\t\t\t<img\n\t\t\t\t\t\t\tsrc={`${registryUrl}/static/images/avatars/3.jpeg`}\n\t\t\t\t\t\t\talt='avatar'\n\t\t\t\t\t\t\tclassName='rounded-full'\n\t\t\t\t\t\t\twidth={25}\n\t\t\t\t\t\t\theight={25}\n\t\t\t\t\t\t/>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div className='absolute left-8 top-1/2 -translate-y-1/2 z-6'>\n\t\t\t\t\t\t<img\n\t\t\t\t\t\t\tsrc={`${registryUrl}/static/images/avatars/6.jpeg`}\n\t\t\t\t\t\t\talt='avatar'\n\t\t\t\t\t\t\tclassName='rounded-full'\n\t\t\t\t\t\t\twidth={25}\n\t\t\t\t\t\t\theight={25}\n\t\t\t\t\t\t/>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<span className='text-[12px] font-medium'>+4k</span>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div className='my-2'>\n\t\t\t\t<h1 className='font-bold text-foreground'>Mboa Coders</h1>\n\t\t\t\t<p className='text-sm text-muted-foreground'>\n\t\t\t\t\tWe are a community of developers prepping for coding interviews,\n\t\t\t\t\tparticipating to hackatons and so on\n\t\t\t\t</p>\n\t\t\t</div>\n\n\t\t\t<div className='w-full flex items-center justify-between gap-2'>\n\t\t\t\t<Button size={\"icon\"} variant={\"outline\"} className='rounded-xl'>\n\t\t\t\t\t<Heart className='h-4 w-4 opacity-70 text-foreground' />\n\t\t\t\t</Button>\n\n\t\t\t\t<div className='flex items-center gap-2'>\n\t\t\t\t\t<Button variant='outline' className='rounded-xl text-foreground'>\n\t\t\t\t\t\tView\n\t\t\t\t\t</Button>\n\t\t\t\t\t<Button className='rounded-xl'>Join</Button>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

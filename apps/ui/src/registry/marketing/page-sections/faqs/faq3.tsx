@@ -1,14 +1,11 @@
-import { Badge } from "@/components/ui/badge";
-import { Sparkle } from "lucide-react";
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useMemo, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
+import { Sparkle } from "lucide-react";
 
 type Faq = {
 	id: number;
@@ -90,24 +87,6 @@ export const faqs: Faq[] = [
 ];
 
 export const Faq3 = () => {
-	const [category, setCategory] = useState(faqs[0].category);
-
-	const faqsByCategory = useMemo(() => {
-		return faqs.filter((faq) => faq.category === category);
-	}, [category]);
-
-	const categories = useMemo(() => {
-		const categories: string[] = [];
-
-		faqs.forEach((faq) => {
-			if (!categories.includes(faq.category)) {
-				categories.push(faq.category);
-			}
-		});
-
-		return categories;
-	}, []);
-
 	return (
 		<section className='w-full min-h-screen max-w-[1000px] mx-auto flex flex-col items-center justifyl-start gap-8 mt-20 px-4 lg:px-20'>
 			<div className='w-full flex flex-col items-center'>

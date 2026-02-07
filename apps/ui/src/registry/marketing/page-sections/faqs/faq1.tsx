@@ -1,14 +1,15 @@
-import { Badge } from "@/components/ui/badge";
-import { Loader, Send, Sparkle } from "lucide-react";
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { cn, sleep } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
+import { useMemo, useRef, useState } from "react";
+import { Loader, Send, Sparkle } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { sleep } from "@/lib/sleep";
 
 type Faq = {
 	id: number;

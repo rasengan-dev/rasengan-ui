@@ -1,24 +1,25 @@
 import { Button } from "@/components/ui/button";
-import Image from "@rasenganjs/image";
+import { cn } from "@/lib/utils";
 import { ArrowRightCircle } from "lucide-react";
 import { ComponentProps } from "react";
-import { twMerge } from "tailwind-merge";
 
 type Props = {
 	className?: ComponentProps<"div">["className"];
 };
 
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
+
 export const JoinCard4 = ({ className }: Props) => {
 	return (
 		<div
-			className={twMerge(
+			className={cn(
 				"max-w-[300px] border border-border bg-background rounded-3xl p-4 flex items-center justify-between gap-8",
 				className
 			)}
 		>
 			<div className='flex items-center gap-2'>
-				<Image
-					src='/static/images/avatars/1.jpeg'
+				<img
+					src={`${registryUrl}/static/images/avatars/1.jpeg`}
 					alt='Avatar'
 					className='rounded-full bg-primary/20 flex items-center justify-center'
 					width={40}

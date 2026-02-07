@@ -2,7 +2,7 @@ import { PageComponent } from "rasengan";
 import ThemeButton from "@/components/common/atoms/theme-button";
 import { useTheme } from "@rasenganjs/theme";
 import { cn } from "@/lib/utils";
-import { DashboardFilter } from "@/registry/application-ui/forms/filters";
+import { Filter01 } from "@/registry/application-ui/forms/filters";
 
 const Page: PageComponent = () => {
 	const { isDark } = useTheme();
@@ -20,7 +20,7 @@ const Page: PageComponent = () => {
 				</div>
 
 				<div className='w-full px-4 flex flex-col gap-2 items-center justify-center'>
-					<DashboardFilter />
+					<Filter01 />
 				</div>
 			</div>
 		</section>

@@ -7,19 +7,20 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 import { Copy, Mail, UserRoundPlus } from "lucide-react";
-import Image from "@rasenganjs/image";
 import { ComponentProps } from "react";
-import { twMerge } from "tailwind-merge";
 
 type Props = {
 	className?: ComponentProps<"div">["className"];
 };
 
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
+
 export const InviteCard1 = ({ className }: Props) => {
 	return (
 		<div
-			className={twMerge(
+			className={cn(
 				"max-w-[500px] w-full min-h-[400px] border border-border bg-background rounded-3xl p-4 gap-8",
 				className
 			)}
@@ -95,8 +96,8 @@ export const InviteCard1 = ({ className }: Props) => {
 				<div className='w-full relative flex flex-col items-center gap-2 mt-4'>
 					<article className='w-full py-2 flex items-center justify-between gap-4'>
 						<div className='flex items-center gap-2'>
-							<Image
-								src='/static/images/avatars/1.jpeg'
+							<img
+								src={`${registryUrl}/static/images/avatars/1.jpeg`}
 								alt='Avatar'
 								className='rounded-full bg-primary/20 flex items-center justify-center'
 								width={40}
@@ -130,8 +131,8 @@ export const InviteCard1 = ({ className }: Props) => {
 					</article>
 					<article className='w-full py-2 flex items-center justify-between gap-4'>
 						<div className='flex items-center gap-2'>
-							<Image
-								src='/static/images/avatars/2.jpeg'
+							<img
+								src={`${registryUrl}/static/images/avatars/2.jpeg`}
 								alt='Avatar'
 								className='rounded-full bg-primary/20 flex items-center justify-center'
 								width={40}
@@ -165,8 +166,8 @@ export const InviteCard1 = ({ className }: Props) => {
 					</article>
 					<article className='w-full py-2 flex items-center justify-between gap-4'>
 						<div className='flex items-center gap-2'>
-							<Image
-								src='/static/images/avatars/3.jpeg'
+							<img
+								src={`${registryUrl}/static/images/avatars/3.jpeg`}
 								alt='Avatar'
 								className='rounded-full bg-primary/20 flex items-center justify-center'
 								width={40}
@@ -200,8 +201,8 @@ export const InviteCard1 = ({ className }: Props) => {
 					</article>
 					<article className='w-full py-2 flex items-center justify-between gap-4'>
 						<div className='flex items-center gap-2'>
-							<Image
-								src='/static/images/avatars/4.jpeg'
+							<img
+								src={`${registryUrl}/static/images/avatars/4.jpeg`}
 								alt='Avatar'
 								className='rounded-full bg-primary/20 flex items-center justify-center'
 								width={40}

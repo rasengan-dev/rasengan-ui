@@ -1,15 +1,8 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
 	ArrowUpRight,
 	Banknote,
 	Calendar,
-	Coins,
-	DollarSign,
-	ExternalLink,
 	Leaf,
-	Mail,
-	Phone,
 	Rocket,
 	Sparkles,
 	Users,

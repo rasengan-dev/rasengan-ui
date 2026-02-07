@@ -427,6 +427,72 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 		],
 	},
 
+	// Granular components
+	{
+		label: "granulars",
+		name: "Granulars",
+		componentsType: [
+			{
+				label: "logos",
+				name: "Logo Components",
+				category: componentCategories.APPLICATION_UI,
+				description: `Beautifully crafted logos component that represent the identity of your website.
+Chakra-infused, responsive, and ready to drop into any React app.`,
+				image: "",
+				components: [
+					{
+						label: "logo-01",
+						name: "App logo",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/granulars/logo-01`,
+						code: "",
+						height: 300,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
+				]
+			}
+		]
+	},
+
+	// Layouts components
+	{
+		label: "layouts",
+		name: "Layouts",
+		componentsType: [
+			{
+				label: "sidebars",
+				name: "Sidebars",
+				category: componentCategories.APPLICATION_UI,
+				description: `Beautifully crafted sidebars for dashboard applications to display menu items.
+Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to explore and interact with your content.`,
+				image: "/static/images/components/application-ui/sidebars.png",
+				components: [
+					{
+						label: "sidebar-01",
+						name: "Dashboard sidebar 01",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/layouts/sidebar-01`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
+					{
+						label: "sidebar-02",
+						name: "Dashboard sidebar 02",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/layouts/sidebar-02`,
+						code: "",
+						height: 800,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
+				],
+			},
+		],
+	},
+
 	// Lists components
 	{
 		label: "lists",
@@ -641,44 +707,6 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/toolbar-04`,
 						code: "",
 						height: 500,
-						isDarkEnabled: false,
-						pricing: "premium",
-						isPopular: false,
-					},
-				],
-			},
-		],
-	},
-
-	// Layouts components
-	{
-		label: "layouts",
-		name: "Layouts",
-		componentsType: [
-			{
-				label: "sidebars",
-				name: "Sidebars",
-				category: componentCategories.APPLICATION_UI,
-				description: `Beautifully crafted sidebars for dashboard applications to display menu items.
-Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to explore and interact with your content.`,
-				image: "/static/images/components/application-ui/sidebars.png",
-				components: [
-					{
-						label: "sidebar-01",
-						name: "Dashboard sidebar 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/layouts/sidebar-01`,
-						code: "",
-						height: 800,
-						isDarkEnabled: false,
-						pricing: "premium",
-						isPopular: false,
-					},
-					{
-						label: "sidebar-02",
-						name: "Dashboard sidebar 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/layouts/sidebar-02`,
-						code: "",
-						height: 800,
 						isDarkEnabled: false,
 						pricing: "premium",
 						isPopular: false,

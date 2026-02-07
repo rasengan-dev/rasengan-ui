@@ -34,12 +34,13 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useTheme } from "@rasenganjs/theme";
-import Image from "@rasenganjs/image";
 
 type Props = {
 	placeholder?: string;
 	className?: ComponentProps<"div">["className"];
 };
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
 
 export const Input6 = ({ placeholder, className }: Props) => {
 	const { isDark } = useTheme();
@@ -60,8 +61,8 @@ export const Input6 = ({ placeholder, className }: Props) => {
 							)}
 						>
 							<div className='size-[30px]'>
-								<Image
-									src={"/static/images/avatars/3.jpeg"}
+								<img
+									src={`${registryUrl}/static/images/avatars/3.jpeg`}
 									alt='avatar'
 									className='size-[30px] aspect-square rounded-full'
 									width={30}

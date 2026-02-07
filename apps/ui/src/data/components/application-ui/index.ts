@@ -100,7 +100,7 @@ Chakra-infused, responsive, and ready to drop into any React app — perfect for
 				components: [
 					{
 						label: "join-01",
-						name: "Invite to join Community card 01",
+						name: "Invite minimal card 1",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/join-01`,
 						code: "",
 						height: 500,
@@ -110,7 +110,7 @@ Chakra-infused, responsive, and ready to drop into any React app — perfect for
 					},
 					{
 						label: "join-02",
-						name: "Invite to join Community card 02",
+						name: "Invite minimal card 2",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/join-02`,
 						code: "",
 						height: 500,
@@ -119,7 +119,7 @@ Chakra-infused, responsive, and ready to drop into any React app — perfect for
 					},
 					{
 						label: "join-03",
-						name: "Invite to join Community card 03",
+						name: "Invite minimal card 3",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/join-03`,
 						code: "",
 						height: 500,
@@ -128,7 +128,7 @@ Chakra-infused, responsive, and ready to drop into any React app — perfect for
 					},
 					{
 						label: "join-04",
-						name: "Invite to join Community card 04",
+						name: "Invite minimal card 4",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/join-04`,
 						code: "",
 						height: 500,
@@ -191,7 +191,7 @@ Responsive, themeable, and chakra-infused — ready to drop into any React app t
 				components: [
 					{
 						label: "invite-01",
-						name: "Invite for collaboration card 01",
+						name: "Invite for collaboration card 1",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/invite-01`,
 						code: "",
 						height: 800,
@@ -201,7 +201,7 @@ Responsive, themeable, and chakra-infused — ready to drop into any React app t
 					},
 					{
 						label: "invite-02",
-						name: "Invite for collaboration card 02",
+						name: "Invite for collaboration card 2",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/invite-02`,
 						code: "",
 						height: 800,
@@ -274,7 +274,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 				components: [
 					{
 						label: "input-01",
-						name: "Chatbot text input 01",
+						name: "Chatbot text input 1",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/input-01`,
 						code: "",
 						height: 500,
@@ -283,7 +283,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 					},
 					{
 						label: "input-02",
-						name: "Chatbot text input 02",
+						name: "Chatbot text input 2",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/input-02`,
 						code: "",
 						height: 500,
@@ -292,7 +292,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 					},
 					{
 						label: "input-03",
-						name: "Tiny text input 03",
+						name: "Tiny text input 1",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/input-03`,
 						code: "",
 						height: 500,
@@ -302,7 +302,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 					},
 					{
 						label: "input-04",
-						name: "Tiny text input 04",
+						name: "Tiny text input 2",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/input-04`,
 						code: "",
 						height: 500,
@@ -311,7 +311,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 					},
 					{
 						label: "input-05",
-						name: "Chatbot text input 05",
+						name: "Chatbot text input 3",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/input-05`,
 						code: "",
 						height: 500,
@@ -321,7 +321,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 					},
 					{
 						label: "input-06",
-						name: "Social Network text input 06",
+						name: "Social Network text input",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/input-06`,
 						code: "",
 						height: 800,
@@ -340,7 +340,7 @@ These chakra-infused, ready-to-use filter components drop seamlessly into any Re
 				components: [
 					{
 						label: "filter-01",
-						name: "Dashboard filter 01",
+						name: "Dashboard filter",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/filter-01`,
 						code: "",
 						height: 500,
@@ -412,6 +412,70 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 						height: 800,
 						isDarkEnabled: false,
 						pricing: "premium",
+					},
+				],
+			},
+		],
+	},
+
+	// Granulars components
+	{
+		label: "granulars",
+		name: "Granulars",
+		componentsType: [
+			{
+				label: "logos",
+				name: "Logo Components",
+				description: `Beautifully crafted logos component that represent the identity of your website.
+Chakra-infused, responsive, and ready to drop into any React app.`,
+				image: "",
+				components: [
+					{
+						label: "logo-01",
+						name: "App logo",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/granulars/logo-01`,
+						code: "",
+						height: 300,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
+				]
+			}
+		]
+	},
+
+	// Layouts components
+	{
+		label: "layouts",
+		name: "Layouts",
+		componentsType: [
+			{
+				label: "sidebars",
+				name: "Sidebars",
+				description: `Beautifully crafted sidebars for dashboard applications to display menu items.
+Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to explore and interact with your content.`,
+				image: "/static/images/components/application-ui/sidebars.png",
+				components: [
+					{
+						label: "sidebar-01",
+						name: "Dashboard sidebar 01",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/layouts/sidebar-01`,
+						code: "",
+						height: 500,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
+					},
+					{
+						label: "sidebar-02",
+						name: "Dashboard sidebar 02",
+						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/layouts/sidebar-02`,
+						code: "",
+						height: 500,
+						isDarkEnabled: false,
+						pricing: "premium",
+						isPopular: false,
 					},
 				],
 			},
@@ -625,43 +689,6 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 						label: "toolbar-04",
 						name: "Design Toolbar 04",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/toolbar-04`,
-						code: "",
-						height: 500,
-						isDarkEnabled: false,
-						pricing: "premium",
-						isPopular: false,
-					},
-				],
-			},
-		],
-	},
-
-	// Layouts components
-	{
-		label: "layouts",
-		name: "Layouts",
-		componentsType: [
-			{
-				label: "sidebars",
-				name: "Sidebars",
-				description: `Beautifully crafted sidebars for dashboard applications to display menu items.
-Chakra-infused, responsive, and ready to drop into any React app — making it effortless for users to explore and interact with your content.`,
-				image: "/static/images/components/application-ui/sidebars.png",
-				components: [
-					{
-						label: "sidebar-01",
-						name: "Dashboard sidebar 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/layouts/sidebar-01`,
-						code: "",
-						height: 500,
-						isDarkEnabled: false,
-						pricing: "premium",
-						isPopular: false,
-					},
-					{
-						label: "sidebar-02",
-						name: "Dashboard sidebar 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/layouts/sidebar-02`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,

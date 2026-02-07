@@ -1,15 +1,20 @@
 import { useScreen } from "@/hooks/use-screen";
 import { cn } from "@/lib/utils";
-import Image from "@rasenganjs/image";
 import { ComponentProps } from "react";
 
 type Props = {
+	src?: string;
+	text?: string;
 	size?: "sm" | "md" | "lg";
 	minimal?: boolean;
 	className?: ComponentProps<"div">["className"];
 };
 
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
+
 export default function AppLogo({
+	src = registryUrl + "/rasengan.svg",
+	text = "Rasengan UI",
 	size = "md",
 	minimal = false,
 	className,
@@ -39,9 +44,9 @@ export default function AppLogo({
 			)}
 		>
 			<div>
-				<Image
-					src='/rasengan.svg'
-					alt='Logo'
+				<img
+					src={src}
+					alt='Rasengan UI Logo'
 					width={sizes[size].width}
 					height={sizes[size].height}
 				/>
@@ -49,7 +54,7 @@ export default function AppLogo({
 
 			{screen !== "xs" && screen !== "sm" && !minimal && (
 				<h2 className='font-bold text-lg break-keep text-nowrap'>
-					Rasengan UI
+					{text}
 				</h2>
 			)}
 		</div>

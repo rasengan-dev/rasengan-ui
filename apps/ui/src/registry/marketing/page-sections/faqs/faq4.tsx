@@ -1,14 +1,14 @@
-import { Badge } from "@/components/ui/badge";
-import { Loader, Send, Sparkle } from "lucide-react";
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useMemo, useRef, useState } from "react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { cn, sleep } from "@/lib/utils";
+import { Sparkle } from "lucide-react";
+import { useMemo, useState } from "react";
+import { cn } from "@/lib/utils";
 
 type Faq = {
 	id: number;
@@ -90,11 +90,7 @@ export const faqs: Faq[] = [
 ];
 
 export const Faq4 = () => {
-	const messageRef = useRef<HTMLDivElement>(null);
-
 	const [category, setCategory] = useState(faqs[0].category);
-	const [formOpen, setFormOpen] = useState(false);
-	const [sending, setSending] = useState(false);
 
 	const faqsByCategory = useMemo(() => {
 		return faqs.filter((faq) => faq.category === category);
@@ -111,21 +107,6 @@ export const Faq4 = () => {
 
 		return categories;
 	}, []);
-
-	const handleSend = async () => {
-		if (!messageRef.current) return;
-
-		setSending(true);
-		// setFormOpen(false);
-
-		await sleep(1500);
-
-		setSending(false);
-
-		// reset form
-		messageRef.current.blur();
-		messageRef.current.textContent = "";
-	};
 
 	return (
 		<section className='w-full max-w-[1000px] mx-auto flex flex-col items-center mt-20 px-4'>
@@ -152,7 +133,6 @@ export const Faq4 = () => {
 							)}
 							onClick={() => {
 								setCategory(cat);
-								setFormOpen(false);
 							}}
 						>
 							{cat}

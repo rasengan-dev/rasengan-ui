@@ -1,43 +1,41 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Mail, Phone } from "lucide-react";
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
 
 const cards = [
 	{
 		name: "Jane Cooper",
 		status: "Active",
 		job: "Regional Paradigm Technician",
-		avatar: "/static/images/avatars/1.jpeg",
+		avatar: `${registryUrl}/static/images/avatars/1.jpeg`,
 	},
 	{
 		name: "Dilane Kombou",
 		status: "Active",
 		job: "Software Engineer",
-		avatar: "/static/images/avatars/2.jpeg",
+		avatar: `${registryUrl}/static/images/avatars/2.jpeg`,
 	},
 	{
 		name: "Andy Royer",
 		status: "Active",
 		job: "Software Engineer",
-		avatar: "/static/images/avatars/3.jpeg",
+		avatar: `${registryUrl}/static/images/avatars/3.jpeg`,
 	},
 	{
 		name: "Rosine Tindou",
 		status: "Active",
 		job: "UI Designer",
-		avatar: "/static/images/avatars/4.jpeg",
+		avatar: `${registryUrl}/static/images/avatars/4.jpeg`,
 	},
 	{
 		name: "Pedro Castanou",
 		status: "Active",
 		job: "Product Manager",
-		avatar: "/static/images/avatars/5.jpeg",
+		avatar: `${registryUrl}/static/images/avatars/5.jpeg`,
 	},
 	{
 		name: "Emilie Lefevre",
 		status: "Active",
 		job: "UX/UI Designer",
-		avatar: "/static/images/avatars/6.jpeg",
+		avatar: `${registryUrl}/static/images/avatars/6.jpeg`,
 	},
 ];
 

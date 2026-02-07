@@ -1,13 +1,13 @@
-import { Badge } from "@/components/ui/badge";
-import { Sparkle } from "lucide-react";
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useMemo, useState } from "react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useMemo, useState } from "react";
+import { Sparkle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Faq = {

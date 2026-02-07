@@ -1,6 +1,6 @@
-import AppLogo from "@/components/common/atoms/app-logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import AppLogo from "@/registry/application-ui/granulars/logos/logo1";
 
 export const Footer5 = () => {
 	return (

@@ -1,12 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Search, User } from "lucide-react";
-import AppLogo from "@/components/common/atoms/app-logo";
-import { Link } from "rasengan";
-import { Input2 } from "@/registry/application-ui/forms/inputs";
 import { useState, useEffect, useRef } from "react";
-import { useScroll } from "@/hooks/use-scroll";
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
+import { Search, User } from "lucide-react";
 import {
 	Select,
 	SelectContent,
@@ -14,7 +7,13 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { Footer4 } from "../../page-sections/footers/footer4";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Input2 } from "@/registry/application-ui/forms/inputs";
+import { Footer4 } from "@/registry/marketing/page-sections/footers/footer4";
+import AppLogo from "@/registry/application-ui/granulars/logos/logo1";
+import { useScroll } from "@/hooks/use-scroll";
+import { cn } from "@/lib/utils";
 
 const useTypewriter = (
 	words = [
@@ -125,22 +124,22 @@ export const LandingPage1 = () => {
 
 					<nav className='hidden lg:block px-4 py-2'>
 						<ul className='flex items-center gap-4 text-white/70 text-sm'>
-							<Link to='#'>
+							<a href='#'>
 								<li className='font-medium px-3 py-1 hover:text-white'>Home</li>
-							</Link>
-							<Link to='#'>
+							</a>
+							<a href='#'>
 								<li className='font-medium px-3 py-1 hover:text-white'>
 									About
 								</li>
-							</Link>
-							<Link to='#'>
+							</a>
+							<a href='#'>
 								<li className='font-medium px-3 py-1 hover:text-white'>
 									Contact
 								</li>
-							</Link>
-							<Link to='#'>
+							</a>
+							<a href='#'>
 								<li className='font-medium px-3 py-1 hover:text-white'>Blog</li>
-							</Link>
+							</a>
 						</ul>
 					</nav>
 

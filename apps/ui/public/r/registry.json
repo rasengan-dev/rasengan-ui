@@ -156,6 +156,498 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "cta-01",
+      "type": "registry:block",
+      "title": "CTA for newsletter",
+      "description": "CTA for newsletter",
+      "registryDependencies": ["button", "input"],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/ctas/cta1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-02",
+      "type": "registry:block",
+      "title": "CTA for download action",
+      "description": "CTA for download action",
+      "registryDependencies": ["button"],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/ctas/cta2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-03",
+      "type": "registry:block",
+      "title": "CTA with one action",
+      "description": "CTA with one action",
+      "registryDependencies": ["button"],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/ctas/cta3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-04",
+      "type": "registry:block",
+      "title": "CTA with one action and image",
+      "description": "CTA with one action and image",
+      "registryDependencies": ["button"],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/ctas/cta4.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "faq-01",
+      "type": "registry:block",
+      "title": "FAQs with tabs 1",
+      "description": "FAQs with tabs and text input",
+      "registryDependencies": ["button", "badge", "accordion"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/faqs/faq1.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/lib/sleep.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "faq-02",
+      "type": "registry:block",
+      "title": "FAQs with tabs 2",
+      "description": "FAQs with tabs and no text input",
+      "registryDependencies": ["button", "badge", "accordion"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/faqs/faq2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "faq-03",
+      "type": "registry:block",
+      "title": "FAQs with grid",
+      "description": "FAQs with tabs and no text input",
+      "registryDependencies": ["badge", "accordion"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/faqs/faq3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "faq-04",
+      "type": "registry:block",
+      "title": "FAQs with tabs 3",
+      "description": "FAQs with tabs on the left",
+      "registryDependencies": ["badge", "button", "accordion"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/faqs/faq4.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "faq-05",
+      "type": "registry:block",
+      "title": "FAQs with contact form",
+      "description": "FAQs with contact form",
+      "registryDependencies": ["badge", "button", "accordion", "input"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/faqs/faq5.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/lib/sleep.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "filter-01",
+      "type": "registry:block",
+      "title": "Dashboard filter",
+      "description": "Dashboard filter",
+      "registryDependencies": ["button", "select", "input"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/forms/filters/filter1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "footer-01",
+      "type": "registry:block",
+      "title": "Simple Footer 1",
+      "description": "Simple Footer 1",
+      "registryDependencies": ["button", "input", "@rasengan-ui/logo-01"],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/footers/footer1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "footer-02",
+      "type": "registry:block",
+      "title": "Footer with call to action",
+      "description": "Footer with call to action",
+      "registryDependencies": ["button", "input", "@rasengan-ui/logo-01"],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/footers/footer2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "footer-03",
+      "type": "registry:block",
+      "title": "Simple Footer 2",
+      "description": "Simple Footer 2",
+      "registryDependencies": ["button", "input", "@rasengan-ui/logo-01"],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/footers/footer3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "footer-04",
+      "type": "registry:block",
+      "title": "Simple Footer 3",
+      "description": "Simple Footer 3",
+      "registryDependencies": ["button", "input", "@rasengan-ui/logo-01"],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/footers/footer4.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "footer-05",
+      "type": "registry:block",
+      "title": "Footer with call to action",
+      "description": "Footer with call to action",
+      "registryDependencies": ["button", "input", "@rasengan-ui/logo-01"],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/footers/footer5.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "grid-01",
+      "type": "registry:block",
+      "title": "Contact cards with small portraits",
+      "description": "Contact cards with small portraits",
+      "registryDependencies": ["button", "badge"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/lists/grid/grid1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "grid-02",
+      "type": "registry:block",
+      "title": "Contact cards with large portraits",
+      "description": "Contact cards with large portraits",
+      "registryDependencies": ["button", "badge"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/lists/grid/grid2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "grid-03",
+      "type": "registry:block",
+      "title": "Simple cards list",
+      "description": "Simple cards list",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/application-ui/lists/grid/grid3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "grid-04",
+      "type": "registry:block",
+      "title": "Images list",
+      "description": "Images list",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/application-ui/lists/grid/grid4.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "grid-05",
+      "type": "registry:block",
+      "title": "Cards with shared borders",
+      "description": "Cards with shared borders",
+      "registryDependencies": [],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/lists/grid/grid5.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "input-01",
+      "type": "registry:block",
+      "title": "Chatbot text input 1",
+      "description": "Chatbot text input 1",
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/forms/inputs/input1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "input-02",
+      "type": "registry:block",
+      "title": "Chatbot text input 2",
+      "description": "Chatbot text input 2",
+      "registryDependencies": ["button", "select"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/forms/inputs/input2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "input-03",
+      "type": "registry:block",
+      "title": "Tiny text input 1",
+      "description": "Tiny text input 1",
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/forms/inputs/input3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "input-04",
+      "type": "registry:block",
+      "title": "Tiny text input 2",
+      "description": "Tiny text input 2",
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/forms/inputs/input4.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "input-05",
+      "type": "registry:block",
+      "title": "Chatbot text input 3",
+      "description": "Chatbot text input 3",
+      "registryDependencies": ["button", "dropdown-menu", "tooltip"],
+      "dependencies": ["lucide-react", "@rasenganjs/theme"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/forms/inputs/input5.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "input-06",
+      "type": "registry:block",
+      "title": "Social Network text input",
+      "description": "Social Network text input",
+      "registryDependencies": ["button", "dropdown-menu", "tooltip"],
+      "dependencies": ["lucide-react", "@rasenganjs/theme"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/forms/inputs/input6.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "invite-01",
+      "type": "registry:block",
+      "title": "Invite for collaboration card 1",
+      "description": "Invite for collaboration card 1",
+      "registryDependencies": ["button", "input", "select"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/invite/invite1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "invite-02",
+      "type": "registry:block",
+      "title": "Invite for collaboration card 2",
+      "description": "Invite for collaboration card 2",
+      "registryDependencies": ["button", "input", "select", "tooltip"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/invite/invite2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "join-01",
+      "type": "registry:block",
+      "title": "Invite minimal card 1",
+      "description": "Invite minimal card 1",
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/join/join1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "join-02",
+      "type": "registry:block",
+      "title": "Invite minimal card 2",
+      "description": "Invite minimal card 2",
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/join/join2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "join-03",
+      "type": "registry:block",
+      "title": "Invite minimal card 3",
+      "description": "Invite minimal card 3",
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/join/join3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "join-04",
+      "type": "registry:block",
+      "title": "Invite minimal card 4",
+      "description": "Invite minimal card 4",
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/join/join4.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "landing-01",
+      "type": "registry:block",
+      "title": "Invite minimal card 4",
+      "description": "Invite minimal card 4",
+      "registryDependencies": ["button", "input", "select", "@rasengan-ui/input-02", "@rasengan-ui/footer-04", "@rasengan-ui/logo-01"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-examples/landings/landing-page1.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/hooks/use-scroll.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "logo-01",
+      "type": "registry:block",
+      "title": "App logo",
+      "description": "App logo",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/application-ui/granulars/logos/logo1.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/hooks/use-screen.ts",
+          "type": "registry:hook"
+        }
+      ]
     }
   ]
 }
