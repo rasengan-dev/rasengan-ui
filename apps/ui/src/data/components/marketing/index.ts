@@ -573,7 +573,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
         components: [
           {
             label: "navbar-01",
-            name: "Navbar with left text 01",
+            name: "Navbar with left text",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/elements/navbar-01`,
             code: "",
             height: 500,
@@ -582,7 +582,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "navbar-02",
-            name: "Navbar with centered text 02",
+            name: "Navbar with centered text",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/elements/navbar-02`,
             code: "",
             height: 500,
@@ -592,7 +592,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "navbar-03",
-            name: "Navbar with right text 03",
+            name: "Navbar with right text",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/elements/navbar-03`,
             code: "",
             height: 500,
@@ -601,7 +601,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "navbar-04",
-            name: "Floating Navbar with medium border rounded 04",
+            name: "Floating Navbar with medium border rounded",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/elements/navbar-04`,
             code: "",
             height: 500,
@@ -610,7 +610,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "navbar-05",
-            name: "Floating Navbar with full border rounded 05",
+            name: "Floating Navbar with full border rounded",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/elements/navbar-05`,
             code: "",
             height: 500,

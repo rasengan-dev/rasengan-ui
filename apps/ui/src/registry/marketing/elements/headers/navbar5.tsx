@@ -1,10 +1,9 @@
-import AppLogo from "@/components/common/atoms/app-logo";
-import ThemeButton from "@/components/common/atoms/theme-button";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import ThemeButton from "@/registry/application-ui/granulars/buttons/theme-button1";
+import AppLogo from "@/registry/application-ui/granulars/logos/logo1";
 import { AlignJustify } from "lucide-react";
-import { Link } from "rasengan";
 import { ComponentProps, useState } from "react";
-import { twMerge } from "tailwind-merge";
 
 type Props = {
 	className?: ComponentProps<"div">["className"];
@@ -21,7 +20,7 @@ export const FloatingNavbar2 = ({ className, enableTheme }: Props) => {
 
 	return (
 		<header
-			className={twMerge(
+			className={cn(
 				"w-full bg-background max-w-[1000px] h-[60px] border-[1px] border-border flex items-center justify-between px-3 rounded-full mx-auto",
 				className
 			)}
@@ -32,26 +31,26 @@ export const FloatingNavbar2 = ({ className, enableTheme }: Props) => {
 
 			<nav className='hidden md:block'>
 				<ul className='flex items-center gap-4 text-foreground'>
-					<Link to='#'>
+					<a href='#'>
 						<li className='font-medium text-md bg-muted px-3 py-1 rounded-full'>
 							Home
 						</li>
-					</Link>
-					<Link to='#'>
+					</a>
+					<a href='#'>
 						<li className='font-medium text-md px-3 py-1 rounded-full hover:bg-muted'>
 							About
 						</li>
-					</Link>
-					<Link to='#'>
+					</a>
+					<a href='#'>
 						<li className='font-medium text-md px-3 py-1 rounded-full hover:bg-muted'>
 							Contact
 						</li>
-					</Link>
-					<Link to='#'>
+					</a>
+					<a href='#'>
 						<li className='font-medium text-md px-3 py-1 rounded-full hover:bg-muted'>
 							Blog
 						</li>
-					</Link>
+					</a>
 				</ul>
 			</nav>
 
@@ -69,30 +68,30 @@ export const FloatingNavbar2 = ({ className, enableTheme }: Props) => {
 			</div>
 
 			<div
-				className={twMerge(
+				className={cn(
 					"fixed right-0 top-0 bottom-0 max-w-[300px] w-full bg-background z-30 p-4 transition-all duration-300",
 					isOpen ? "translate-x-0" : "translate-x-full"
 				)}
 			>
 				<nav className='mt-10'>
 					<ul className='flex flex-col justify-center gap-8 text-foreground'>
-						<Link to='#'>
+						<a href='#'>
 							<li className='font-medium text-md'>Home</li>
-						</Link>
-						<Link to='#'>
+						</a>
+						<a href='#'>
 							<li className='font-medium text-md'>About</li>
-						</Link>
-						<Link to='#'>
+						</a>
+						<a href='#'>
 							<li className='font-medium text-md'>Contact</li>
-						</Link>
-						<Link to='#'>
+						</a>
+						<a href='#'>
 							<li className='font-medium text-md'>Blog</li>
-						</Link>
+						</a>
 					</ul>
 				</nav>
 			</div>
 			<div
-				className={twMerge(
+				className={cn(
 					"fixed top-0 right-0 left-0 bottom-0 bg-black/70 z-10",
 					isOpen ? "block" : "hidden"
 				)}

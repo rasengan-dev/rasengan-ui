@@ -648,6 +648,90 @@
           "type": "registry:hook"
         }
       ]
+    },
+    {
+      "name": "navbar-01",
+      "type": "registry:block",
+      "title": "Navbar with left text",
+      "description": "Navbar with left text",
+      "registryDependencies": ["button", "@rasengan-ui/logo-01", "@rasengan-ui/theme-button-01"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/elements/headers/navbar1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "navbar-02",
+      "type": "registry:block",
+      "title": "Navbar with centered text",
+      "description": "Navbar with centered text",
+      "registryDependencies": ["button", "@rasengan-ui/logo-01", "@rasengan-ui/theme-button-01"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/elements/headers/navbar2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "navbar-03",
+      "type": "registry:block",
+      "title": "Navbar with right text",
+      "description": "Navbar with right text",
+      "registryDependencies": ["button", "@rasengan-ui/logo-01", "@rasengan-ui/theme-button-01"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/elements/headers/navbar3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "navbar-04",
+      "type": "registry:block",
+      "title": "Floating Navbar with medium border rounded",
+      "description": "Floating Navbar with medium border rounded",
+      "registryDependencies": ["button", "@rasengan-ui/logo-01", "@rasengan-ui/theme-button-01"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/elements/headers/navbar4.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "navbar-05",
+      "type": "registry:block",
+      "title": "Floating Navbar with full border rounded",
+      "description": "Floating Navbar with full border rounded",
+      "registryDependencies": ["button", "@rasengan-ui/logo-01", "@rasengan-ui/theme-button-01"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/elements/headers/navbar5.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "theme-button-01",
+      "type": "registry:block",
+      "title": "Theme Button",
+      "description": "Theme Button",
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react", "@rasenganjs/theme"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/granulars/buttons/theme-button1.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
