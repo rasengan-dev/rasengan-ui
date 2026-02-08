@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
 import { useState } from "react";
-import { twMerge } from "tailwind-merge";
-import { Badge } from "@/components/ui/badge";
-import { Navbar1 } from "../../elements/headers";
+import { Navbar1 } from "@/registry/marketing/elements/headers";
+import { cn } from "@/lib/utils";
 
 const pricingsData = [
 	{
@@ -155,7 +155,7 @@ const PricingItem = ({
 }) => {
 	return (
 		<article
-			className={twMerge(
+			className={cn(
 				"w-full min-w-[280px] max-w-[340px] rounded-3xl p-4 border mx-auto flex flex-col justify-between",
 				pricing.isPopular
 					? "bg-gradient-to-b from-[#E2D8FA] dark:from-[#835EE9]/30 to-transparent to-70%"
@@ -165,7 +165,7 @@ const PricingItem = ({
 			<div className='flex items-center justify-between'>
 				<Badge
 					variant='default'
-					className={twMerge(
+					className={cn(
 						"bg-[#835EE9] py-2 px-4 rounded-xl text-sm dark:text-foreground",
 						pricing.isPopular &&
 							"bg-white text-foreground dark:text-primary-foreground"
@@ -210,7 +210,7 @@ const PricingItem = ({
 			<div className='w-full mt-4 border-t pt-4 border-t-border dark:border-t-foreground/20'>
 				<Button
 					variant={pricing.isPopular ? "default" : "outline"}
-					className={twMerge(
+					className={cn(
 						"w-full",
 						pricing.isPopular ? "bg-primary" : "dark:text-foreground"
 					)}

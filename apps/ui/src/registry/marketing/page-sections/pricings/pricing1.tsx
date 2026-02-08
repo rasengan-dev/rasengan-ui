@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { Navbar1 } from "@/registry/marketing/elements/headers/navbar1";
 import { Check } from "lucide-react";
 import { useState } from "react";
-import { twMerge } from "tailwind-merge";
-import { Badge } from "@/components/ui/badge";
-import { Navbar1 } from "../../elements/headers";
+import { cn } from "@/lib/utils";
 
 const pricingsData = [
 	{
@@ -145,14 +145,14 @@ const PricingItem = ({
 }) => {
 	return (
 		<article
-			className={twMerge(
+			className={cn(
 				"w-full max-w-[400px] rounded-3xl p-6 border mx-auto",
 				pricing.isPopular && "bg-[#111727] dark"
 			)}
 		>
 			<div className='flex items-center justify-between'>
 				<h2
-					className={twMerge(
+					className={cn(
 						"font-bold text-foreground",
 						pricing.isPopular && "text-blue-400"
 					)}
@@ -179,13 +179,13 @@ const PricingItem = ({
 
 			<div className='w-full mt-4'>
 				<Button
-					className={twMerge("w-full", pricing.isPopular && "bg-blue-400")}
+					className={cn("w-full", pricing.isPopular && "bg-blue-400")}
 				>
 					Get started
 				</Button>
 				<Button
 					variant={"outline"}
-					className={twMerge(
+					className={cn(
 						"w-full mt-2 dark:text-foreground",
 						pricing.isPopular && "dark:text-foreground bg-primary"
 					)}

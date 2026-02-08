@@ -233,7 +233,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
         components: [
           {
             label: "pricing-01",
-            name: "Pricing with left text and tabs 01",
+            name: "Pricing with left text and tabs",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/pricing-01`,
             code: "",
             height: 800,
@@ -242,7 +242,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "pricing-02",
-            name: "Pricing with centered text and tabs 02",
+            name: "Pricing with centered text and tabs",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/pricing-02`,
             code: "",
             height: 800,
@@ -251,7 +251,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "pricing-03",
-            name: "Pricing with centered text and tabs 03",
+            name: "Pricing with centered text and tabs",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/pricing-03`,
             code: "",
             height: 800,

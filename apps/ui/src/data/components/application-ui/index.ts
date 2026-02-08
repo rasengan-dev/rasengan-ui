@@ -608,7 +608,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it n
 				components: [
 					{
 						label: "notification-01",
-						name: "Simple Notification 01",
+						name: "Simple Notification",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/notification-01`,
 						code: "",
 						height: 200,
@@ -618,7 +618,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it n
 					},
 					{
 						label: "notification-02",
-						name: "Condensed Notification 02",
+						name: "Condensed Notification",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/notification-02`,
 						code: "",
 						height: 200,
@@ -628,7 +628,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it n
 					},
 					{
 						label: "notification-03",
-						name: "Notification with actions 03",
+						name: "Notification with actions",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/notification-03`,
 						code: "",
 						height: 300,
@@ -638,7 +638,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it n
 					},
 					{
 						label: "notification-04",
-						name: "Reply Notification 04",
+						name: "Reply Notification",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/notification-04`,
 						code: "",
 						height: 200,

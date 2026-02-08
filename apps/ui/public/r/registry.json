@@ -720,6 +720,104 @@
       ]
     },
     {
+      "name": "notification-01",
+      "type": "registry:block",
+      "title": "Simple Notification",
+      "description": "Simple Notification",
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/overlays/notifications/notification1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "notification-02",
+      "type": "registry:block",
+      "title": "Condensed Notification",
+      "description": "Condensed Notification",
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/overlays/notifications/notification2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "notification-03",
+      "type": "registry:block",
+      "title": "Notification with actions",
+      "description": "Notification with actions",
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/overlays/notifications/notification3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "notification-04",
+      "type": "registry:block",
+      "title": "Reply Notification",
+      "description": "Reply Notification",
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/overlays/notifications/notification4.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pricing-01",
+      "type": "registry:block",
+      "title": "Pricing with left text and tabs",
+      "description": "Pricing with left text and tabs",
+      "registryDependencies": ["button", "tabs", "badge", "@rasengan-ui/navbar-01"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/pricings/pricing1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pricing-02",
+      "type": "registry:block",
+      "title": "Pricing with centered text and tabs",
+      "description": "Pricing with centered text and tabs",
+      "registryDependencies": ["button", "tabs", "badge", "@rasengan-ui/navbar-01"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/pricings/pricing2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pricing-03",
+      "type": "registry:block",
+      "title": "Pricing with centered text and tabs",
+      "description": "Pricing with centered text and tabs",
+      "registryDependencies": ["button", "tabs", "badge", "@rasengan-ui/navbar-01"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/pricings/pricing3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "theme-button-01",
       "type": "registry:block",
       "title": "Theme Button",

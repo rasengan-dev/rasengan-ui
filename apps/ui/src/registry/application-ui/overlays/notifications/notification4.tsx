@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Reply, Undo, X } from "lucide-react";
+import { Reply } from "lucide-react";
 
 export const Notification4 = () => {
 	return (
