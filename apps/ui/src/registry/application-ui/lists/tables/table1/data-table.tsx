@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
 	ColumnDef,
 	ColumnFiltersState,
@@ -21,7 +22,6 @@ import {
 } from "@/components/ui/table";
 
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { Input } from "@/components/ui/input";
 
 import {
@@ -30,7 +30,7 @@ import {
 	DropdownMenuContent,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { DataTablePagination } from "@/components/common/molecules/table/data-table-pagination";
+import { DataTablePagination } from "./data-table-pagination";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];

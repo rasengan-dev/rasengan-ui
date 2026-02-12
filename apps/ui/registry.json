@@ -1014,6 +1014,36 @@
       ]
     },
     {
+      "name": "table-01",
+      "type": "registry:block",
+      "title": "Dashboard sidebar 2",
+      "description": "Dashboard sidebar 2",
+      "registryDependencies": ["badge", "checkbox", "button", "dropdown-menu", "input", "table", "select"],
+      "dependencies": ["lucide-react", "@tanstack/react-table", "@rasenganjs/theme"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/lists/tables/table1/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/application-ui/lists/tables/table1/data-table.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/application-ui/lists/tables/table1/columns.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/application-ui/lists/tables/table1/data-table-column-header.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/application-ui/lists/tables/table1/data-table-pagination.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "theme-button-01",
       "type": "registry:block",
       "title": "Theme Button",

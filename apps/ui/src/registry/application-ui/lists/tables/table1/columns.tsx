@@ -14,7 +14,7 @@ import { useTheme } from "@rasenganjs/theme";
 import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
-import { DataTableColumnHeader } from "@/components/common/molecules/table/data-table-column-header";
+import { DataTableColumnHeader } from "./data-table-column-header";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
