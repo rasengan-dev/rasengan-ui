@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Image from "@rasenganjs/image";
+import { cn } from "@/lib/utils";
 import { Plus, X } from "lucide-react";
 import { ComponentProps, useRef, useState } from "react";
-import { twMerge } from "tailwind-merge";
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
 
 type Props = {
 	className?: ComponentProps<"article">["className"];
@@ -31,7 +32,7 @@ export const ProfileCard3 = ({ className }: Props) => {
 
 	return (
 		<article
-			className={twMerge(
+			className={cn(
 				"relative w-full max-w-[600px] rounded-2xl shadow-md bg-background border-[1px] border-border",
 				className
 			)}
@@ -48,9 +49,9 @@ export const ProfileCard3 = ({ className }: Props) => {
 			<div className='w-full flex flex-col sm:flex-row mt-6 mb-4'>
 				<div className='w-full sm:w-1/3 min-h-[100px] sm:border-r sm:border-dashed sm:border-border p-4 flex flex-col items-center'>
 					<div className='relative'>
-						<Image
+						<img
 							src={
-								readableFile ? readableFile : "/static/images/avatars/3.jpeg"
+								readableFile ? readableFile : registryUrl + "/static/images/avatars/3.jpeg"
 							}
 							alt='Avatar'
 							className='rounded-full'

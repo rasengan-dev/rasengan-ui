@@ -1,17 +1,16 @@
 import { Button } from "@/components/ui/button";
-import Image from "@rasenganjs/image";
 import { Bookmark, Star } from "lucide-react";
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
 
 export const ProfileCard2 = () => {
 	return (
 		<article className='relative w-full max-w-[280px] rounded-2xl p-2 shadow-md bg-background dark:bg-input/70'>
 			<div className='absolute inset-1'>
-				<Image
-					src={"/static/images/bg/2.jpeg"}
+				<img
+					src={`${registryUrl}/static/images/bg/2.jpeg`}
 					alt='Avatar'
-					className='rounded-2xl'
-					width={"100%"}
-					height={"100%"}
+					className='rounded-2xl h-full w-full object-cover'
 				/>
 
 				<div className='absolute inset-x-0 bottom-0 h-[60%] z-10 rounded-2xl bg-gradient-to-t from-black/60 from-30% to-transparent to-80% backdrop-blur-md backdrop-opacity-90'></div>
@@ -19,8 +18,8 @@ export const ProfileCard2 = () => {
 
 			<div className='relative h-[150px] z-30'>
 				<div className='absolute -bottom-4 left-2'>
-					<Image
-						src={"/static/images/avatars/3.jpeg"}
+					<img
+						src={`${registryUrl}/static/images/avatars/3.jpeg`}
 						alt='Avatar'
 						className='rounded-full'
 						width={60}
@@ -41,8 +40,8 @@ export const ProfileCard2 = () => {
 
 				<div className='flex items-center gap-2'>
 					<div className='flex items-center gap-1 mt-2 w-auto bg-muted px-1 py-1 rounded-full'>
-						<Image
-							src={"/rasengan.svg"}
+						<img
+							src={`${registryUrl}/rasengan.svg`}
 							alt='Avatar'
 							className='rounded-full'
 							width={24}

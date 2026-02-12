@@ -17,7 +17,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 				components: [
 					{
 						label: "profile-01",
-						name: "Profile card 01",
+						name: "Profile card 1",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/profile-01`,
 						code: "",
 						height: 800,
@@ -27,7 +27,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 					},
 					{
 						label: "profile-02",
-						name: "Profile card 02",
+						name: "Profile card 2",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/profile-02`,
 						code: "",
 						height: 800,
@@ -36,7 +36,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 					},
 					{
 						label: "profile-03",
-						name: "Edit Profile card 03",
+						name: "Edit Profile card",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/profile-03`,
 						code: "",
 						height: 800,
@@ -46,7 +46,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 					},
 					{
 						label: "profile-04",
-						name: "Profile card 04",
+						name: "Profile card 3",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/profile-04`,
 						code: "",
 						height: 800,
@@ -55,7 +55,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 					},
 					{
 						label: "profile-05",
-						name: "Profile card 05",
+						name: "Profile card 4",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/profile-05`,
 						code: "",
 						height: 800,
@@ -64,7 +64,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 					},
 					{
 						label: "profile-06",
-						name: "Profile card 06",
+						name: "Profile card 5",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/profile-06`,
 						code: "",
 						height: 800,
@@ -73,7 +73,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 					},
 					{
 						label: "profile-07",
-						name: "Profile card 07",
+						name: "Profile card 6",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/profile-07`,
 						code: "",
 						height: 800,
@@ -82,7 +82,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 					},
 					{
 						label: "profile-08",
-						name: "Profile card 08",
+						name: "Profile card 7",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/profile-08`,
 						code: "",
 						height: 800,
@@ -360,7 +360,7 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 				components: [
 					{
 						label: "registration-01",
-						name: "Signin page 01",
+						name: "Signin page 1",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/registration-01`,
 						code: "",
 						height: 800,
@@ -369,7 +369,7 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 					},
 					{
 						label: "registration-02",
-						name: "Signin page 02",
+						name: "Signin page 2",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/registration-02`,
 						code: "",
 						height: 800,
@@ -378,7 +378,7 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 					},
 					{
 						label: "registration-03",
-						name: "Signin page 03",
+						name: "Signin page 3",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/registration-03`,
 						code: "",
 						height: 800,
@@ -387,7 +387,7 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 					},
 					{
 						label: "registration-04",
-						name: "Signin page 04",
+						name: "Signin page 4",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/registration-04`,
 						code: "",
 						height: 800,
@@ -397,7 +397,7 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 					},
 					{
 						label: "registration-05",
-						name: "Signin page 05",
+						name: "Signin page 5",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/registration-05`,
 						code: "",
 						height: 800,
@@ -406,7 +406,7 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 					},
 					{
 						label: "registration-06",
-						name: "Signin page 06",
+						name: "Signin page 6",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/registration-06`,
 						code: "",
 						height: 800,

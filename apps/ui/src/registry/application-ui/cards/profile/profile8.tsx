@@ -1,17 +1,18 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Briefcase, Edit2, Ellipsis, Search, UserPlus } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Edit2, Ellipsis, Search, UserPlus } from "lucide-react";
 import { ComponentProps } from "react";
-import { twMerge } from "tailwind-merge";
 
 type Props = {
 	className?: ComponentProps<"article">["className"];
 };
 
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
+
 export const ProfileCard8 = ({ className }: Props) => {
 	return (
 		<article
-			className={twMerge(
+			className={cn(
 				"relative w-full max-w-[800px] rounded-2xl shadow-md bg-background border-[1px] border-border overflow-hidden",
 				className
 			)}
@@ -19,7 +20,7 @@ export const ProfileCard8 = ({ className }: Props) => {
 			<div className='relative'>
 				<div className='relative w-full h-46 border-b border-border flex items-center justify-between overflow-hidden'>
 					<img
-						src='/static/images/gradients/4.jpeg'
+						src={`${registryUrl}/static/images/gradients/4.jpeg`}
 						alt='Gradient'
 						width={"100%"}
 						height={"100%"}
@@ -39,7 +40,7 @@ export const ProfileCard8 = ({ className }: Props) => {
 
 				<div className='absolute -bottom-[75px] left-4'>
 					<img
-						src='/static/images/avatars/4.jpeg'
+						src={`${registryUrl}/static/images/avatars/4.jpeg`}
 						alt='Avatar'
 						width={"130px"}
 						height={"130px"}

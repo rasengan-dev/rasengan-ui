@@ -1,7 +1,8 @@
-import AppLogo from "@/components/common/atoms/app-logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Image from "@rasenganjs/image";
+import AppLogo from "@/registry/application-ui/granulars/logos/logo1";
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
 
 export const SigninPage1 = () => {
 	return (
@@ -75,8 +76,8 @@ export const SigninPage1 = () => {
 					</div>
 				</div>
 				<div className='hidden lg:block relative w-[55%] rounded-3xl overflow-hidden'>
-					<Image
-						src='/static/images/auth/1.jpeg'
+					<img
+						src={`${registryUrl}/static/images/auth/1.jpeg`}
 						alt='signin'
 						width={"100%"}
 						className='w-full h-auto max-h-[800px] object-cover'

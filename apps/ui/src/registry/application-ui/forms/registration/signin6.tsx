@@ -1,17 +1,18 @@
-import AppLogo from "@/components/common/atoms/app-logo";
-import ThemeButton from "@/components/common/atoms/theme-button";
+import AppLogo from "@/registry/application-ui/granulars/logos/logo1";
+import ThemeButton from "@/registry/application-ui/granulars/buttons/theme-button1";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Image from "@rasenganjs/image";
 import { useTheme } from "@rasenganjs/theme";
-import { twMerge } from "tailwind-merge";
+import { cn } from "@/lib/utils";
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
 
 export const SigninPage6 = () => {
 	const { isDark } = useTheme();
 
 	return (
 		<section
-			className={twMerge(
+			className={cn(
 				"w-full min-h-screen h-auto flex flex-col bg-background",
 				isDark && "dark"
 			)}
@@ -19,7 +20,7 @@ export const SigninPage6 = () => {
 			<div className='fixed inset-0'>
 				<img
 					className='w-full h-full object-cover'
-					src='/static/images/gradients/6.jpeg'
+					src={`${registryUrl}/static/images/gradients/6.jpeg`}
 					alt=''
 				/>
 			</div>
@@ -89,8 +90,8 @@ export const SigninPage6 = () => {
 								variant='outline'
 								className='w-full mt-4 h-12 text-foreground rounded-full'
 							>
-								<Image
-									src='/static/images/icons/google.png'
+								<img
+									src={`${registryUrl}/static/images/icons/google.png`}
 									alt='google'
 									width={24}
 									height={24}

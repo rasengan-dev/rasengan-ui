@@ -1,18 +1,19 @@
-import AppLogo from "@/components/common/atoms/app-logo";
-import ThemeButton from "@/components/common/atoms/theme-button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Image from "@rasenganjs/image";
+import AppLogo from "@/registry/application-ui/granulars/logos/logo1";
+import ThemeButton from "@/registry/application-ui/granulars/buttons/theme-button1";
 import { useTheme } from "@rasenganjs/theme";
 import { Key, Lock } from "lucide-react";
-import { twMerge } from "tailwind-merge";
+import { cn } from "@/lib/utils";
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
 
 export const SigninPage2 = () => {
 	const { isDark } = useTheme();
 
 	return (
 		<section
-			className={twMerge(
+			className={cn(
 				"w-full min-h-screen h-auto flex flex-col p-4 bg-background",
 				isDark && "dark"
 			)}
@@ -54,8 +55,8 @@ export const SigninPage2 = () => {
 							variant='outline'
 							className='w-full mt-4 h-12 text-foreground'
 						>
-							<Image
-								src='/static/images/icons/google.png'
+							<img
+								src={`${registryUrl}/static/images/icons/google.png`}
 								alt='google'
 								width={24}
 								height={24}
@@ -66,8 +67,8 @@ export const SigninPage2 = () => {
 							variant='outline'
 							className='w-full mt-4 h-12 text-foreground'
 						>
-							<Image
-								src='/static/images/icons/github.svg'
+							<img
+								src={`${registryUrl}/static/images/icons/github.svg`}
 								alt='github'
 								width={24}
 								height={24}

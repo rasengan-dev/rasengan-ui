@@ -818,6 +818,160 @@
       ]
     },
     {
+      "name": "profile-01",
+      "type": "registry:block",
+      "title": "Profile card 1",
+      "description": "Profile card 1",
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/profile/profile1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "profile-02",
+      "type": "registry:block",
+      "title": "Profile card 2",
+      "description": "Profile card 2",
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/profile/profile2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "profile-03",
+      "type": "registry:block",
+      "title": "Edit Profile card",
+      "description": "Edit Profile card",
+      "registryDependencies": ["button", "input"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/profile/profile3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "profile-04",
+      "type": "registry:block",
+      "title": "Profile card 3",
+      "description": "Profile card 3",
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/profile/profile4.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "profile-05",
+      "type": "registry:block",
+      "title": "Profile card 4",
+      "description": "Profile card 4",
+      "registryDependencies": ["button", "badge"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/profile/profile5.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "profile-06",
+      "type": "registry:block",
+      "title": "Profile card 5",
+      "description": "Profile card 5",
+      "registryDependencies": ["button", "badge"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/profile/profile6.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "profile-07",
+      "type": "registry:block",
+      "title": "Profile card 6",
+      "description": "Profile card 6",
+      "registryDependencies": ["button", "badge"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/profile/profile7.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "profile-08",
+      "type": "registry:block",
+      "title": "Profile card 7",
+      "description": "Profile card 7",
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/profile/profile8.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "registration-01",
+      "type": "registry:block",
+      "title": "Signin page 1",
+      "description": "Signin page 1",
+      "registryDependencies": ["button", "input", "@rasengan-ui/logo1"],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/application-ui/forms/registration/signin1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "registration-02",
+      "type": "registry:block",
+      "title": "Signin page 2",
+      "description": "Signin page 2",
+      "registryDependencies": ["button", "input", "@rasengan-ui/logo1", "@rasengan-ui/theme-button-01"],
+      "dependencies": ["lucide-react", "@rasenganjs/theme"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/forms/registration/signin2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "registration-03",
+      "type": "registry:block",
+      "title": "Signin page 3",
+      "description": "Signin page 3",
+      "registryDependencies": ["button", "input", "@rasengan-ui/logo1", "@rasengan-ui/theme-button-01"],
+      "dependencies": ["@rasenganjs/theme"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/forms/registration/signin3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "theme-button-01",
       "type": "registry:block",
       "title": "Theme Button",

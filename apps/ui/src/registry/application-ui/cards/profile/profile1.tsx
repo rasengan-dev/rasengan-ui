@@ -1,13 +1,14 @@
 import { Button } from "@/components/ui/button";
-import Image from "@rasenganjs/image";
 import { Bookmark, Star } from "lucide-react";
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
 
 export const ProfileCard1 = () => {
 	return (
 		<article className='w-full max-w-[280px] rounded-3xl p-1 shadow-md bg-background dark:bg-input/70'>
 			<div className='relative'>
-				<Image
-					src={"/static/images/bg/2.jpeg"}
+				<img
+					src={`${registryUrl}/static/images/bg/2.jpeg`}
 					alt='Avatar'
 					className='rounded-2xl'
 					width={"100%"}
@@ -15,8 +16,8 @@ export const ProfileCard1 = () => {
 				/>
 
 				<div className='absolute -bottom-4 left-2'>
-					<Image
-						src={"/static/images/avatars/3.jpeg"}
+					<img
+						src={`${registryUrl}/static/images/avatars/3.jpeg`}
 						alt='Avatar'
 						className='rounded-full'
 						width={60}
@@ -41,8 +42,8 @@ export const ProfileCard1 = () => {
 
 				<div className='flex items-center gap-2'>
 					<div className='flex items-center gap-1 mt-2 w-auto bg-muted px-1 py-1 rounded-full'>
-						<Image
-							src={"/rasengan.svg"}
+						<img
+							src={`${registryUrl}/rasengan.svg`}
 							alt='Avatar'
 							className='rounded-full'
 							width={24}

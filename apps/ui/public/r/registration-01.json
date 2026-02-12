@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "registration-01",
+  "title": "Signin page 1",
+  "description": "Signin page 1",
+  "dependencies": [],
+  "registryDependencies": [
+    "button",
+    "input",
+    "@rasengan-ui/logo1"
+  ],
+  "files": [
+    {
+      "path": "src/registry/application-ui/forms/registration/signin1.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { Input } from \"@/components/ui/input\";\nimport AppLogo from \"@/registry/application-ui/granulars/logos/logo1\";\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\nexport const SigninPage1 = () => {\n\treturn (\n\t\t<section className='w-screen min-h-screen h-auto flex justify-between lg:items-center p-4 bg-[#02101a]'>\n\t\t\t<div className='flex justify-between min-h-[600px] w-full max-h-[1000px] max-w-[1500px] mx-auto dark:border-[1px] dark:border-border p-4 shadow-md bg-background rounded-4xl'>\n\t\t\t\t<div className='w-full lg:w-[45%] max-w-[600px] mx-auto lg:mx-0 h-full px-2 sm:px-4 xl:px-20'>\n\t\t\t\t\t<AppLogo size='sm' />\n\n\t\t\t\t\t<div className='mt-20 text-foreground'>\n\t\t\t\t\t\t<h1 className='text-4xl sm:text-5xl font-medium'>\n\t\t\t\t\t\t\tKeep your online business organized\n\t\t\t\t\t\t</h1>\n\t\t\t\t\t\t<p className='text-foreground mt-4'>\n\t\t\t\t\t\t\tSignup to start your 30 days free trial\n\t\t\t\t\t\t</p>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div className='mt-10'>\n\t\t\t\t\t\t<div className='flex flex-col gap-4'>\n\t\t\t\t\t\t\t<Button className='w-full text-foreground' variant='outline'>\n\t\t\t\t\t\t\t\tSign in with Google\n\t\t\t\t\t\t\t</Button>\n\n\t\t\t\t\t\t\t<Button className='w-full text-foreground' variant='outline'>\n\t\t\t\t\t\t\t\tSign in with Github\n\t\t\t\t\t\t\t</Button>\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<div className='flex items-center justify-center mt-4 gap-4'>\n\t\t\t\t\t\t\t<div className='w-full h-[1px] bg-muted'></div>\n\t\t\t\t\t\t\t<p className='text-muted-foreground text-center'>or</p>\n\t\t\t\t\t\t\t<div className='w-full h-[1px] bg-muted'></div>\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<div className='mt-4'>\n\t\t\t\t\t\t\t<form action='' className='flex flex-col gap-4'>\n\t\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t\t<label htmlFor='Name' className='text-sm font-medium'>\n\t\t\t\t\t\t\t\t\t\tName\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t<Input placeholder='Enter your name' />\n\t\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t\t<label htmlFor='Email' className='text-sm font-medium'>\n\t\t\t\t\t\t\t\t\t\tEmail\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t<Input placeholder='Enter your email' />\n\t\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t\t<label htmlFor='Password' className='text-sm font-medium'>\n\t\t\t\t\t\t\t\t\t\tPassword\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t<Input placeholder='Enter your password' type='password' />\n\t\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t\t\t<div className='mt-4'>\n\t\t\t\t\t\t\t\t\t<Button className='w-full'>Create Account</Button>\n\t\t\t\t\t\t\t\t\t<div className='mt-4 text-center text-sm text-muted-foreground'>\n\t\t\t\t\t\t\t\t\t\t<p>\n\t\t\t\t\t\t\t\t\t\t\tAlready have an account?{\" \"}\n\t\t\t\t\t\t\t\t\t\t\t<span className='font-medium underline text-foreground cursor-pointer'>\n\t\t\t\t\t\t\t\t\t\t\t\tLogin Here\n\t\t\t\t\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div className='hidden lg:block relative w-[55%] rounded-3xl overflow-hidden'>\n\t\t\t\t\t<img\n\t\t\t\t\t\tsrc={`${registryUrl}/static/images/auth/1.jpeg`}\n\t\t\t\t\t\talt='signin'\n\t\t\t\t\t\twidth={\"100%\"}\n\t\t\t\t\t\tclassName='w-full h-auto max-h-[800px] object-cover'\n\t\t\t\t\t/>\n\n\t\t\t\t\t<div className='w-full h-full absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent'></div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</section>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}
