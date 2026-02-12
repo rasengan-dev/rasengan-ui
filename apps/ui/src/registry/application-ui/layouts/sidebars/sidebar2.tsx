@@ -1,4 +1,3 @@
-import AppLogo from "@/components/common/atoms/app-logo";
 import {
 	Bell,
 	ChevronLeft,
@@ -6,18 +5,12 @@ import {
 	House,
 	Info,
 	MessagesSquare,
-	Package2,
-	Palette,
-	RefreshCcw,
 	Settings,
-	ShieldCheck,
-	ThumbsUp,
 	TrendingUp,
 	Users,
 	Users2,
 } from "lucide-react";
 import { ComponentProps, ReactNode, useState } from "react";
-import { twMerge } from "tailwind-merge";
 import {
 	Tooltip,
 	TooltipContent,
@@ -25,8 +18,9 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
-import Image from "@rasenganjs/image";
-import ProfileDropdown from "@/components/common/molecules/dropdowns/profile-dropdown";
+import { cn } from "@/lib/utils";
+import AppLogo from "@/registry/application-ui/granulars/logos/logo1";
+import ProfileDropdown from "@/registry/application-ui/granulars/dropdowns/dropdown1";
 
 const sidebarData = [
 	{
@@ -130,14 +124,14 @@ export const Sidebar2 = ({ className }: Props) => {
 
 	return (
 		<aside
-			className={twMerge(
+			className={cn(
 				"relative h-full shrink-0 flex flex-col border-r border-border border-dashed bg-background transition-all duration-300",
 				className,
 				expanded ? "w-[280px]" : "w-[80px]"
 			)}
 		>
 			<div
-				className={twMerge(
+				className={cn(
 					"p-4 relative border-b border-b-border h-[70px]",
 					!expanded && "flex items-center justify-center"
 				)}
@@ -151,7 +145,7 @@ export const Sidebar2 = ({ className }: Props) => {
 					className='size-8 absolute -right-4 top-1/2 -translate-y-1/2 rounded-full'
 				>
 					<ChevronLeft
-						className={twMerge(
+						className={cn(
 							"text-foreground transition-all",
 							!expanded && "rotate-180"
 						)}
@@ -163,10 +157,10 @@ export const Sidebar2 = ({ className }: Props) => {
 				{sidebarData.map((group, index) => (
 					<div
 						key={index}
-						className={twMerge("flex flex-col", !expanded && "items-center")}
+						className={cn("flex flex-col", !expanded && "items-center")}
 					>
 						<h2
-							className={twMerge(
+							className={cn(
 								"text-[12px] text-muted-foreground ml-3",
 								!expanded && "ml-0"
 							)}
@@ -175,7 +169,7 @@ export const Sidebar2 = ({ className }: Props) => {
 						</h2>
 
 						<div
-							className={twMerge(
+							className={cn(
 								"mt-4 flex flex-col gap-2",
 								!expanded && "items-center"
 							)}
@@ -206,13 +200,13 @@ export const Sidebar2 = ({ className }: Props) => {
 			<div className='px-4 w-full mt-auto flex items-center shrink-0 overflow-hidden  h-[70px] border-t border-b-border'>
 				<ProfileDropdown>
 					<div
-						className={twMerge(
+						className={cn(
 							"w-full flex items-center gap-2 hover:bg-muted rounded-md px-2 py-1 cursor-pointer transition-all duration-300",
 							expanded ? "h-12" : "size-12"
 						)}
 					>
 						<div className='size-[30px]'>
-							<Image
+							<img
 								src={"/static/images/avatars/1.jpeg"}
 								alt='avatar'
 								className='size-[30px] aspect-square rounded-full'
@@ -253,7 +247,7 @@ const SidebarItem = ({
 }) => {
 	return (
 		<div
-			className={twMerge(
+			className={cn(
 				"relative flex items-center h-12 gap-2 text-muted-foreground py-2 px-3 rounded-lg cursor-pointer transition-all duration-300 break-keep text-nowrap",
 				item.active
 					? "bg-[#ECEEFD] dark:bg-[#ECEEFD]/5 text-[#4461D0]"
@@ -264,7 +258,7 @@ const SidebarItem = ({
 			<div>{item.icon}</div>
 
 			{expanded && (
-				<div className={twMerge("flex items-center gap-2")}>
+				<div className={cn("flex items-center gap-2")}>
 					<span className='font-medium text-sm'>{item.label}</span>
 					{item.badge && (
 						<span className='font-medium rounded-full px-2 py-0 text-[12px] bg-[#F1323B]/20 dark:bg-[#F1323B] text-[#F1323B] dark:text-foreground'>

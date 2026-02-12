@@ -9,7 +9,7 @@
   "registryDependencies": [
     "button",
     "input",
-    "@rasengan-ui/logo1",
+    "@rasengan-ui/logo-01",
     "@rasengan-ui/theme-button-01"
   ],
   "files": [

@@ -1,4 +1,3 @@
-import AppLogo from "@/components/common/atoms/app-logo";
 import {
 	LayoutDashboard,
 	NotebookPen,
@@ -10,13 +9,14 @@ import {
 	TrendingUp,
 } from "lucide-react";
 import { ComponentProps, ReactNode } from "react";
-import { twMerge } from "tailwind-merge";
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import AppLogo from "@/registry/application-ui/granulars/logos/logo1";
 
 const sidebarData = [
 	{
@@ -104,14 +104,14 @@ type Props = {
 export const Sidebar1 = ({ className, expanded = true }: Props) => {
 	return (
 		<aside
-			className={twMerge(
+			className={cn(
 				"relative h-full flex flex-col border-r p-4 border-border border-dashed bg-background transition-all duration-300 overflow-x-hidden overflow-y-auto [&::-webkit-scrollbar]:w-0",
 				className,
 				expanded ? "w-[280px]" : "w-[80px]"
 			)}
 		>
 			<div
-				className={twMerge(
+				className={cn(
 					"pb-4 border-b border-b-border",
 					!expanded && "flex items-center justify-center"
 				)}
@@ -122,10 +122,10 @@ export const Sidebar1 = ({ className, expanded = true }: Props) => {
 			<div className='mt-6 flex flex-col gap-8'>
 				{sidebarData.map((group) => (
 					<div
-						className={twMerge("flex flex-col", !expanded && "items-center")}
+						className={cn("flex flex-col", !expanded && "items-center")}
 					>
 						<h2
-							className={twMerge(
+							className={cn(
 								"text-[11px] text-muted-foreground ml-3",
 								!expanded && "ml-0"
 							)}
@@ -134,7 +134,7 @@ export const Sidebar1 = ({ className, expanded = true }: Props) => {
 						</h2>
 
 						<div
-							className={twMerge(
+							className={cn(
 								"mt-4 flex flex-col gap-2",
 								!expanded && "items-center"
 							)}
@@ -176,7 +176,7 @@ const SidebarItem = ({
 }) => {
 	return (
 		<div
-			className={twMerge(
+			className={cn(
 				"relative flex items-center h-12 gap-2 text-muted-foreground py-2 px-3 rounded-lg cursor-pointer transition-all duration-300 break-keep text-nowrap",
 				item.active
 					? "bg-[#ECEEFD] dark:bg-[#ECEEFD]/5 text-[#4461D0]"
@@ -187,7 +187,7 @@ const SidebarItem = ({
 			<div>{item.icon}</div>
 
 			{expanded && (
-				<div className={twMerge("flex items-center gap-2")}>
+				<div className={cn("flex items-center gap-2")}>
 					<span className='font-medium text-sm'>{item.label}</span>
 					{item.badge && (
 						<span className='font-medium rounded-full px-2 py-0 text-[12px] bg-[#F1323B]/20 dark:bg-[#F1323B] text-[#F1323B] dark:text-foreground'>

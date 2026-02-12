@@ -459,7 +459,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 				components: [
 					{
 						label: "sidebar-01",
-						name: "Dashboard sidebar 01",
+						name: "Dashboard sidebar 1",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/layouts/sidebar-01`,
 						code: "",
 						height: 500,
@@ -469,7 +469,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					},
 					{
 						label: "sidebar-02",
-						name: "Dashboard sidebar 02",
+						name: "Dashboard sidebar 2",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/layouts/sidebar-02`,
 						code: "",
 						height: 500,

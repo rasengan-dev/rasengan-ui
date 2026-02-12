@@ -214,6 +214,20 @@
       ]
     },
     {
+      "name": "dropdown-01",
+      "type": "registry:block",
+      "title": "Profile dropdown",
+      "description": "Profile dropdown",
+      "registryDependencies": ["dropdown-menu"],
+      "dependencies": ["@rasenganjs/theme"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/granulars/dropdowns/dropdown1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "faq-01",
       "type": "registry:block",
       "title": "FAQs with tabs 1",
@@ -934,7 +948,7 @@
       "type": "registry:block",
       "title": "Signin page 1",
       "description": "Signin page 1",
-      "registryDependencies": ["button", "input", "@rasengan-ui/logo1"],
+      "registryDependencies": ["button", "input", "@rasengan-ui/logo-01"],
       "dependencies": [],
       "files": [
         {
@@ -948,7 +962,7 @@
       "type": "registry:block",
       "title": "Signin page 2",
       "description": "Signin page 2",
-      "registryDependencies": ["button", "input", "@rasengan-ui/logo1", "@rasengan-ui/theme-button-01"],
+      "registryDependencies": ["button", "input", "@rasengan-ui/logo-01", "@rasengan-ui/theme-button-01"],
       "dependencies": ["lucide-react", "@rasenganjs/theme"],
       "files": [
         {
@@ -962,11 +976,39 @@
       "type": "registry:block",
       "title": "Signin page 3",
       "description": "Signin page 3",
-      "registryDependencies": ["button", "input", "@rasengan-ui/logo1", "@rasengan-ui/theme-button-01"],
+      "registryDependencies": ["button", "input", "@rasengan-ui/logo-01", "@rasengan-ui/theme-button-01"],
       "dependencies": ["@rasenganjs/theme"],
       "files": [
         {
           "path": "src/registry/application-ui/forms/registration/signin3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-01",
+      "type": "registry:block",
+      "title": "Dashboard sidebar 1",
+      "description": "Dashboard sidebar 1",
+      "registryDependencies": ["tooltip", "@rasengan-ui/logo-01"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/layouts/sidebars/sidebar1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-02",
+      "type": "registry:block",
+      "title": "Dashboard sidebar 2",
+      "description": "Dashboard sidebar 2",
+      "registryDependencies": ["tooltip", "button", "@rasengan-ui/logo-01", "@rasengan-ui/dropdown-01"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/application-ui/layouts/sidebars/sidebar2.tsx",
           "type": "registry:component"
         }
       ]

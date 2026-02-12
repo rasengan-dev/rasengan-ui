@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dropdown-01",
+  "title": "Profile dropdown",
+  "description": "Profile dropdown",
+  "dependencies": [
+    "@rasenganjs/theme"
+  ],
+  "registryDependencies": [
+    "dropdown-menu"
+  ],
+  "files": [
+    {
+      "path": "src/registry/application-ui/granulars/dropdowns/dropdown1.tsx",
+      "content": "import {\n\tDropdownMenu,\n\tDropdownMenuContent,\n\tDropdownMenuGroup,\n\tDropdownMenuItem,\n\tDropdownMenuLabel,\n\tDropdownMenuPortal,\n\tDropdownMenuSeparator,\n\tDropdownMenuShortcut,\n\tDropdownMenuSub,\n\tDropdownMenuSubContent,\n\tDropdownMenuSubTrigger,\n\tDropdownMenuTrigger,\n} from \"@/components/ui/dropdown-menu\";\nimport { cn } from \"@/lib/utils\";\nimport { useTheme } from \"@rasenganjs/theme\";\n\ntype Props = {\n\tchildren: React.ReactNode;\n};\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\nexport default function ProfileDropdown({ children }: Props) {\n\tconst { theme } = useTheme();\n\n\treturn (\n\t\t<DropdownMenu>\n\t\t\t<DropdownMenuTrigger className='w-full'>{children}</DropdownMenuTrigger>\n\t\t\t<DropdownMenuContent\n\t\t\t\tclassName={cn(\"min-w-[200px] mr-4\", theme === \"dark\" && \"dark\")}\n\t\t\t>\n\t\t\t\t<div className='flex items-center gap-2 p-1'>\n\t\t\t\t\t<img\n\t\t\t\t\t\tsrc={`${registryUrl}/static/images/avatars/1.jpeg`}\n\t\t\t\t\t\talt='avatar'\n\t\t\t\t\t\tclassName='w-[40px] h-[40px] rounded-full'\n\t\t\t\t\t\twidth={40}\n\t\t\t\t\t\theight={40}\n\t\t\t\t\t/>\n\t\t\t\t\t<div className='flex flex-col'>\n\t\t\t\t\t\t<span>Dilane Kombou</span>\n\t\t\t\t\t\t<span className='text-sm text-muted-foreground'>Administrator</span>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<DropdownMenuLabel>My Account</DropdownMenuLabel>\n\t\t\t\t<DropdownMenuSeparator />\n\t\t\t\t<DropdownMenuGroup>\n\t\t\t\t\t<DropdownMenuItem>\n\t\t\t\t\t\tProfile\n\t\t\t\t\t\t<DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>\n\t\t\t\t\t</DropdownMenuItem>\n\t\t\t\t\t<DropdownMenuItem>\n\t\t\t\t\t\tBilling\n\t\t\t\t\t\t<DropdownMenuShortcut>⌘B</DropdownMenuShortcut>\n\t\t\t\t\t</DropdownMenuItem>\n\t\t\t\t\t<DropdownMenuItem>\n\t\t\t\t\t\tSettings\n\t\t\t\t\t\t<DropdownMenuShortcut>⌘S</DropdownMenuShortcut>\n\t\t\t\t\t</DropdownMenuItem>\n\t\t\t\t\t<DropdownMenuItem>\n\t\t\t\t\t\tKeyboard shortcuts\n\t\t\t\t\t\t<DropdownMenuShortcut>⌘K</DropdownMenuShortcut>\n\t\t\t\t\t</DropdownMenuItem>\n\t\t\t\t</DropdownMenuGroup>\n\t\t\t\t<DropdownMenuSeparator />\n\t\t\t\t<DropdownMenuGroup>\n\t\t\t\t\t<DropdownMenuItem>Team</DropdownMenuItem>\n\t\t\t\t\t<DropdownMenuSub>\n\t\t\t\t\t\t<DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>\n\t\t\t\t\t\t<DropdownMenuPortal>\n\t\t\t\t\t\t\t<DropdownMenuSubContent>\n\t\t\t\t\t\t\t\t<DropdownMenuItem>Email</DropdownMenuItem>\n\t\t\t\t\t\t\t\t<DropdownMenuItem>Message</DropdownMenuItem>\n\t\t\t\t\t\t\t\t<DropdownMenuSeparator />\n\t\t\t\t\t\t\t\t<DropdownMenuItem>More...</DropdownMenuItem>\n\t\t\t\t\t\t\t</DropdownMenuSubContent>\n\t\t\t\t\t\t</DropdownMenuPortal>\n\t\t\t\t\t</DropdownMenuSub>\n\t\t\t\t\t<DropdownMenuItem>\n\t\t\t\t\t\tNew Team\n\t\t\t\t\t\t<DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>\n\t\t\t\t\t</DropdownMenuItem>\n\t\t\t\t</DropdownMenuGroup>\n\t\t\t\t<DropdownMenuSeparator />\n\t\t\t\t<DropdownMenuItem>GitHub</DropdownMenuItem>\n\t\t\t\t<DropdownMenuItem>Support</DropdownMenuItem>\n\t\t\t\t<DropdownMenuItem disabled>API</DropdownMenuItem>\n\t\t\t\t<DropdownMenuSeparator />\n\t\t\t\t<DropdownMenuItem>\n\t\t\t\t\tLog out\n\t\t\t\t\t<DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>\n\t\t\t\t</DropdownMenuItem>\n\t\t\t</DropdownMenuContent>\n\t\t</DropdownMenu>\n\t);\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}
