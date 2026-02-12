@@ -22,7 +22,10 @@
       "type": "registry:block",
       "title": "Booking place card",
       "description": "Booking place card",
-      "registryDependencies": ["button", "carousel"],
+      "registryDependencies": [
+        "button",
+        "carousel"
+      ],
       "dependencies": [],
       "files": [
         {
@@ -36,8 +39,13 @@
       "type": "registry:block",
       "title": "Job card",
       "description": "Job card",
-      "registryDependencies": ["button", "badge"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "badge"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/booking/booking2.tsx",
@@ -50,8 +58,15 @@
       "type": "registry:block",
       "title": "Booking place card",
       "description": "Booking place card",
-      "registryDependencies": ["button", "carousel", "badge"],
-      "dependencies": ["lucide-react", "embla-carousel-autoplay"],
+      "registryDependencies": [
+        "button",
+        "carousel",
+        "badge"
+      ],
+      "dependencies": [
+        "lucide-react",
+        "embla-carousel-autoplay"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/booking/booking3.tsx",
@@ -64,8 +79,15 @@
       "type": "registry:block",
       "title": "Booking place card reversed",
       "description": "Booking place card reversed",
-      "registryDependencies": ["button", "carousel", "badge"],
-      "dependencies": ["lucide-react", "embla-carousel-autoplay"],
+      "registryDependencies": [
+        "button",
+        "carousel",
+        "badge"
+      ],
+      "dependencies": [
+        "lucide-react",
+        "embla-carousel-autoplay"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/booking/booking4.tsx",
@@ -78,8 +100,16 @@
       "type": "registry:block",
       "title": "Calendar card with range selection",
       "description": "Calendar card with range selection",
-      "registryDependencies": ["button", "calendar", "checkbox", "input"],
-      "dependencies": ["lucide-react", "react-day-picker"],
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "checkbox",
+        "input"
+      ],
+      "dependencies": [
+        "lucide-react",
+        "react-day-picker"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/calendar/calendar1.tsx",
@@ -92,8 +122,14 @@
       "type": "registry:block",
       "title": "Contact form",
       "description": "Contact form",
-      "registryDependencies": ["button", "badge", "input"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "badge",
+        "input"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/page-sections/contacts/contact1.tsx",
@@ -106,8 +142,14 @@
       "type": "registry:block",
       "title": "Contact form with map",
       "description": "Contact form with map",
-      "registryDependencies": ["button", "badge", "input"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "badge",
+        "input"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/page-sections/contacts/contact2.tsx",
@@ -120,8 +162,13 @@
       "type": "registry:block",
       "title": "Contact form in one column",
       "description": "Contact form in one column",
-      "registryDependencies": ["button", "input"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "input"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/page-sections/contacts/contact3.tsx",
@@ -134,7 +181,10 @@
       "type": "registry:block",
       "title": "Contact form with image",
       "description": "Contact form with image",
-      "registryDependencies": ["button", "input"],
+      "registryDependencies": [
+        "button",
+        "input"
+      ],
       "dependencies": [],
       "files": [
         {
@@ -148,8 +198,13 @@
       "type": "registry:block",
       "title": "Contact form with info on right",
       "description": "Contact form with info on right",
-      "registryDependencies": ["button", "input"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "input"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/page-sections/contacts/contact5.tsx",
@@ -162,7 +217,10 @@
       "type": "registry:block",
       "title": "CTA for newsletter",
       "description": "CTA for newsletter",
-      "registryDependencies": ["button", "input"],
+      "registryDependencies": [
+        "button",
+        "input"
+      ],
       "dependencies": [],
       "files": [
         {
@@ -176,7 +234,9 @@
       "type": "registry:block",
       "title": "CTA for download action",
       "description": "CTA for download action",
-      "registryDependencies": ["button"],
+      "registryDependencies": [
+        "button"
+      ],
       "dependencies": [],
       "files": [
         {
@@ -190,7 +250,9 @@
       "type": "registry:block",
       "title": "CTA with one action",
       "description": "CTA with one action",
-      "registryDependencies": ["button"],
+      "registryDependencies": [
+        "button"
+      ],
       "dependencies": [],
       "files": [
         {
@@ -204,7 +266,9 @@
       "type": "registry:block",
       "title": "CTA with one action and image",
       "description": "CTA with one action and image",
-      "registryDependencies": ["button"],
+      "registryDependencies": [
+        "button"
+      ],
       "dependencies": [],
       "files": [
         {
@@ -218,8 +282,12 @@
       "type": "registry:block",
       "title": "Profile dropdown",
       "description": "Profile dropdown",
-      "registryDependencies": ["dropdown-menu"],
-      "dependencies": ["@rasenganjs/theme"],
+      "registryDependencies": [
+        "dropdown-menu"
+      ],
+      "dependencies": [
+        "@rasenganjs/theme"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/granulars/dropdowns/dropdown1.tsx",
@@ -232,8 +300,14 @@
       "type": "registry:block",
       "title": "FAQs with tabs 1",
       "description": "FAQs with tabs and text input",
-      "registryDependencies": ["button", "badge", "accordion"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "badge",
+        "accordion"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/page-sections/faqs/faq1.tsx",
@@ -250,8 +324,14 @@
       "type": "registry:block",
       "title": "FAQs with tabs 2",
       "description": "FAQs with tabs and no text input",
-      "registryDependencies": ["button", "badge", "accordion"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "badge",
+        "accordion"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/page-sections/faqs/faq2.tsx",
@@ -264,8 +344,13 @@
       "type": "registry:block",
       "title": "FAQs with grid",
       "description": "FAQs with tabs and no text input",
-      "registryDependencies": ["badge", "accordion"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "badge",
+        "accordion"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/page-sections/faqs/faq3.tsx",
@@ -278,8 +363,14 @@
       "type": "registry:block",
       "title": "FAQs with tabs 3",
       "description": "FAQs with tabs on the left",
-      "registryDependencies": ["badge", "button", "accordion"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "accordion"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/page-sections/faqs/faq4.tsx",
@@ -292,8 +383,15 @@
       "type": "registry:block",
       "title": "FAQs with contact form",
       "description": "FAQs with contact form",
-      "registryDependencies": ["badge", "button", "accordion", "input"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "accordion",
+        "input"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/page-sections/faqs/faq5.tsx",
@@ -310,8 +408,14 @@
       "type": "registry:block",
       "title": "Dashboard filter",
       "description": "Dashboard filter",
-      "registryDependencies": ["button", "select", "input"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "select",
+        "input"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/forms/filters/filter1.tsx",
@@ -324,7 +428,11 @@
       "type": "registry:block",
       "title": "Simple Footer 1",
       "description": "Simple Footer 1",
-      "registryDependencies": ["button", "input", "@rasengan-ui/logo-01"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "@rasengan-ui/logo-01"
+      ],
       "dependencies": [],
       "files": [
         {
@@ -338,7 +446,11 @@
       "type": "registry:block",
       "title": "Footer with call to action",
       "description": "Footer with call to action",
-      "registryDependencies": ["button", "input", "@rasengan-ui/logo-01"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "@rasengan-ui/logo-01"
+      ],
       "dependencies": [],
       "files": [
         {
@@ -352,7 +464,11 @@
       "type": "registry:block",
       "title": "Simple Footer 2",
       "description": "Simple Footer 2",
-      "registryDependencies": ["button", "input", "@rasengan-ui/logo-01"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "@rasengan-ui/logo-01"
+      ],
       "dependencies": [],
       "files": [
         {
@@ -366,7 +482,11 @@
       "type": "registry:block",
       "title": "Simple Footer 3",
       "description": "Simple Footer 3",
-      "registryDependencies": ["button", "input", "@rasengan-ui/logo-01"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "@rasengan-ui/logo-01"
+      ],
       "dependencies": [],
       "files": [
         {
@@ -380,7 +500,11 @@
       "type": "registry:block",
       "title": "Footer with call to action",
       "description": "Footer with call to action",
-      "registryDependencies": ["button", "input", "@rasengan-ui/logo-01"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "@rasengan-ui/logo-01"
+      ],
       "dependencies": [],
       "files": [
         {
@@ -394,8 +518,13 @@
       "type": "registry:block",
       "title": "Contact cards with small portraits",
       "description": "Contact cards with small portraits",
-      "registryDependencies": ["button", "badge"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "badge"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/lists/grid/grid1.tsx",
@@ -408,8 +537,13 @@
       "type": "registry:block",
       "title": "Contact cards with large portraits",
       "description": "Contact cards with large portraits",
-      "registryDependencies": ["button", "badge"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "badge"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/lists/grid/grid2.tsx",
@@ -451,7 +585,9 @@
       "title": "Cards with shared borders",
       "description": "Cards with shared borders",
       "registryDependencies": [],
-      "dependencies": ["lucide-react"],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/lists/grid/grid5.tsx",
@@ -464,8 +600,12 @@
       "type": "registry:block",
       "title": "Chatbot text input 1",
       "description": "Chatbot text input 1",
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/forms/inputs/input1.tsx",
@@ -478,8 +618,13 @@
       "type": "registry:block",
       "title": "Chatbot text input 2",
       "description": "Chatbot text input 2",
-      "registryDependencies": ["button", "select"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "select"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/forms/inputs/input2.tsx",
@@ -492,8 +637,12 @@
       "type": "registry:block",
       "title": "Tiny text input 1",
       "description": "Tiny text input 1",
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/forms/inputs/input3.tsx",
@@ -506,8 +655,12 @@
       "type": "registry:block",
       "title": "Tiny text input 2",
       "description": "Tiny text input 2",
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/forms/inputs/input4.tsx",
@@ -520,8 +673,15 @@
       "type": "registry:block",
       "title": "Chatbot text input 3",
       "description": "Chatbot text input 3",
-      "registryDependencies": ["button", "dropdown-menu", "tooltip"],
-      "dependencies": ["lucide-react", "@rasenganjs/theme"],
+      "registryDependencies": [
+        "button",
+        "dropdown-menu",
+        "tooltip"
+      ],
+      "dependencies": [
+        "lucide-react",
+        "@rasenganjs/theme"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/forms/inputs/input5.tsx",
@@ -534,8 +694,15 @@
       "type": "registry:block",
       "title": "Social Network text input",
       "description": "Social Network text input",
-      "registryDependencies": ["button", "dropdown-menu", "tooltip"],
-      "dependencies": ["lucide-react", "@rasenganjs/theme"],
+      "registryDependencies": [
+        "button",
+        "dropdown-menu",
+        "tooltip"
+      ],
+      "dependencies": [
+        "lucide-react",
+        "@rasenganjs/theme"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/forms/inputs/input6.tsx",
@@ -548,8 +715,14 @@
       "type": "registry:block",
       "title": "Invite for collaboration card 1",
       "description": "Invite for collaboration card 1",
-      "registryDependencies": ["button", "input", "select"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "select"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/invite/invite1.tsx",
@@ -562,8 +735,15 @@
       "type": "registry:block",
       "title": "Invite for collaboration card 2",
       "description": "Invite for collaboration card 2",
-      "registryDependencies": ["button", "input", "select", "tooltip"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "select",
+        "tooltip"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/invite/invite2.tsx",
@@ -576,8 +756,12 @@
       "type": "registry:block",
       "title": "Invite minimal card 1",
       "description": "Invite minimal card 1",
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/join/join1.tsx",
@@ -590,8 +774,12 @@
       "type": "registry:block",
       "title": "Invite minimal card 2",
       "description": "Invite minimal card 2",
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/join/join2.tsx",
@@ -604,8 +792,12 @@
       "type": "registry:block",
       "title": "Invite minimal card 3",
       "description": "Invite minimal card 3",
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/join/join3.tsx",
@@ -618,8 +810,12 @@
       "type": "registry:block",
       "title": "Invite minimal card 4",
       "description": "Invite minimal card 4",
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/join/join4.tsx",
@@ -632,8 +828,17 @@
       "type": "registry:block",
       "title": "Invite minimal card 4",
       "description": "Invite minimal card 4",
-      "registryDependencies": ["button", "input", "select", "@rasengan-ui/input-02", "@rasengan-ui/footer-04", "@rasengan-ui/logo-01"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "select",
+        "@rasengan-ui/input-02",
+        "@rasengan-ui/footer-04",
+        "@rasengan-ui/logo-01"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/page-examples/landings/landing-page1.tsx",
@@ -668,8 +873,14 @@
       "type": "registry:block",
       "title": "Navbar with left text",
       "description": "Navbar with left text",
-      "registryDependencies": ["button", "@rasengan-ui/logo-01", "@rasengan-ui/theme-button-01"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/logo-01",
+        "@rasengan-ui/theme-button-01"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/elements/headers/navbar1.tsx",
@@ -682,8 +893,14 @@
       "type": "registry:block",
       "title": "Navbar with centered text",
       "description": "Navbar with centered text",
-      "registryDependencies": ["button", "@rasengan-ui/logo-01", "@rasengan-ui/theme-button-01"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/logo-01",
+        "@rasengan-ui/theme-button-01"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/elements/headers/navbar2.tsx",
@@ -696,8 +913,14 @@
       "type": "registry:block",
       "title": "Navbar with right text",
       "description": "Navbar with right text",
-      "registryDependencies": ["button", "@rasengan-ui/logo-01", "@rasengan-ui/theme-button-01"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/logo-01",
+        "@rasengan-ui/theme-button-01"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/elements/headers/navbar3.tsx",
@@ -710,8 +933,14 @@
       "type": "registry:block",
       "title": "Floating Navbar with medium border rounded",
       "description": "Floating Navbar with medium border rounded",
-      "registryDependencies": ["button", "@rasengan-ui/logo-01", "@rasengan-ui/theme-button-01"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/logo-01",
+        "@rasengan-ui/theme-button-01"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/elements/headers/navbar4.tsx",
@@ -724,8 +953,14 @@
       "type": "registry:block",
       "title": "Floating Navbar with full border rounded",
       "description": "Floating Navbar with full border rounded",
-      "registryDependencies": ["button", "@rasengan-ui/logo-01", "@rasengan-ui/theme-button-01"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/logo-01",
+        "@rasengan-ui/theme-button-01"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/elements/headers/navbar5.tsx",
@@ -738,8 +973,12 @@
       "type": "registry:block",
       "title": "Simple Notification",
       "description": "Simple Notification",
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/overlays/notifications/notification1.tsx",
@@ -752,8 +991,12 @@
       "type": "registry:block",
       "title": "Condensed Notification",
       "description": "Condensed Notification",
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/overlays/notifications/notification2.tsx",
@@ -766,8 +1009,12 @@
       "type": "registry:block",
       "title": "Notification with actions",
       "description": "Notification with actions",
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/overlays/notifications/notification3.tsx",
@@ -780,8 +1027,12 @@
       "type": "registry:block",
       "title": "Reply Notification",
       "description": "Reply Notification",
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/overlays/notifications/notification4.tsx",
@@ -794,8 +1045,15 @@
       "type": "registry:block",
       "title": "Pricing with left text and tabs",
       "description": "Pricing with left text and tabs",
-      "registryDependencies": ["button", "tabs", "badge", "@rasengan-ui/navbar-01"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "tabs",
+        "badge",
+        "@rasengan-ui/navbar-01"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/page-sections/pricings/pricing1.tsx",
@@ -808,8 +1066,15 @@
       "type": "registry:block",
       "title": "Pricing with centered text and tabs",
       "description": "Pricing with centered text and tabs",
-      "registryDependencies": ["button", "tabs", "badge", "@rasengan-ui/navbar-01"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "tabs",
+        "badge",
+        "@rasengan-ui/navbar-01"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/page-sections/pricings/pricing2.tsx",
@@ -822,8 +1087,15 @@
       "type": "registry:block",
       "title": "Pricing with centered text and tabs",
       "description": "Pricing with centered text and tabs",
-      "registryDependencies": ["button", "tabs", "badge", "@rasengan-ui/navbar-01"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "tabs",
+        "badge",
+        "@rasengan-ui/navbar-01"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/marketing/page-sections/pricings/pricing3.tsx",
@@ -836,8 +1108,12 @@
       "type": "registry:block",
       "title": "Profile card 1",
       "description": "Profile card 1",
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/profile/profile1.tsx",
@@ -850,8 +1126,12 @@
       "type": "registry:block",
       "title": "Profile card 2",
       "description": "Profile card 2",
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/profile/profile2.tsx",
@@ -864,8 +1144,13 @@
       "type": "registry:block",
       "title": "Edit Profile card",
       "description": "Edit Profile card",
-      "registryDependencies": ["button", "input"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "input"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/profile/profile3.tsx",
@@ -878,8 +1163,12 @@
       "type": "registry:block",
       "title": "Profile card 3",
       "description": "Profile card 3",
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/profile/profile4.tsx",
@@ -892,8 +1181,13 @@
       "type": "registry:block",
       "title": "Profile card 4",
       "description": "Profile card 4",
-      "registryDependencies": ["button", "badge"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "badge"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/profile/profile5.tsx",
@@ -906,8 +1200,13 @@
       "type": "registry:block",
       "title": "Profile card 5",
       "description": "Profile card 5",
-      "registryDependencies": ["button", "badge"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "badge"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/profile/profile6.tsx",
@@ -920,8 +1219,13 @@
       "type": "registry:block",
       "title": "Profile card 6",
       "description": "Profile card 6",
-      "registryDependencies": ["button", "badge"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button",
+        "badge"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/profile/profile7.tsx",
@@ -934,8 +1238,12 @@
       "type": "registry:block",
       "title": "Profile card 7",
       "description": "Profile card 7",
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/cards/profile/profile8.tsx",
@@ -948,7 +1256,11 @@
       "type": "registry:block",
       "title": "Signin page 1",
       "description": "Signin page 1",
-      "registryDependencies": ["button", "input", "@rasengan-ui/logo-01"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "@rasengan-ui/logo-01"
+      ],
       "dependencies": [],
       "files": [
         {
@@ -962,8 +1274,16 @@
       "type": "registry:block",
       "title": "Signin page 2",
       "description": "Signin page 2",
-      "registryDependencies": ["button", "input", "@rasengan-ui/logo-01", "@rasengan-ui/theme-button-01"],
-      "dependencies": ["lucide-react", "@rasenganjs/theme"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "@rasengan-ui/logo-01",
+        "@rasengan-ui/theme-button-01"
+      ],
+      "dependencies": [
+        "lucide-react",
+        "@rasenganjs/theme"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/forms/registration/signin2.tsx",
@@ -976,8 +1296,15 @@
       "type": "registry:block",
       "title": "Signin page 3",
       "description": "Signin page 3",
-      "registryDependencies": ["button", "input", "@rasengan-ui/logo-01", "@rasengan-ui/theme-button-01"],
-      "dependencies": ["@rasenganjs/theme"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "@rasengan-ui/logo-01",
+        "@rasengan-ui/theme-button-01"
+      ],
+      "dependencies": [
+        "@rasenganjs/theme"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/forms/registration/signin3.tsx",
@@ -990,8 +1317,13 @@
       "type": "registry:block",
       "title": "Dashboard sidebar 1",
       "description": "Dashboard sidebar 1",
-      "registryDependencies": ["tooltip", "@rasengan-ui/logo-01"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "tooltip",
+        "@rasengan-ui/logo-01"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/layouts/sidebars/sidebar1.tsx",
@@ -1004,8 +1336,15 @@
       "type": "registry:block",
       "title": "Dashboard sidebar 2",
       "description": "Dashboard sidebar 2",
-      "registryDependencies": ["tooltip", "button", "@rasengan-ui/logo-01", "@rasengan-ui/dropdown-01"],
-      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "tooltip",
+        "button",
+        "@rasengan-ui/logo-01",
+        "@rasengan-ui/dropdown-01"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/layouts/sidebars/sidebar2.tsx",
@@ -1016,10 +1355,22 @@
     {
       "name": "table-01",
       "type": "registry:block",
-      "title": "Dashboard sidebar 2",
-      "description": "Dashboard sidebar 2",
-      "registryDependencies": ["badge", "checkbox", "button", "dropdown-menu", "input", "table", "select"],
-      "dependencies": ["lucide-react", "@tanstack/react-table", "@rasenganjs/theme"],
+      "title": "Data Table for customers",
+      "description": "Data Table for customers",
+      "registryDependencies": [
+        "badge",
+        "checkbox",
+        "button",
+        "dropdown-menu",
+        "input",
+        "table",
+        "select"
+      ],
+      "dependencies": [
+        "lucide-react",
+        "@tanstack/react-table",
+        "@rasenganjs/theme"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/lists/tables/table1/index.tsx",
@@ -1044,12 +1395,94 @@
       ]
     },
     {
+      "name": "team-01",
+      "type": "registry:block",
+      "title": "Team with carousel 1",
+      "description": "Team with carousel 1",
+      "registryDependencies": [
+        "carousel",
+        "@rasengan-ui/navbar-03"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/teams/team1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "team-02",
+      "type": "registry:block",
+      "title": "Team with carousel 2",
+      "description": "Team with carousel 2",
+      "registryDependencies": [
+        "button",
+        "carousel",
+        "@rasengan-ui/navbar-02"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/teams/team2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "team-03",
+      "type": "registry:block",
+      "title": "Team with grid display 1",
+      "description": "Team with grid display 1",
+      "registryDependencies": [
+        "button",
+        "badge",
+        "@rasengan-ui/navbar-02"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/teams/team3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "team-04",
+      "type": "registry:block",
+      "title": "Team with grid display 2",
+      "description": "Team with grid display 2",
+      "registryDependencies": [
+        "button",
+        "badge",
+        "@rasengan-ui/navbar-02"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/teams/team4.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "theme-button-01",
       "type": "registry:block",
       "title": "Theme Button",
       "description": "Theme Button",
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react", "@rasenganjs/theme"],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react",
+        "@rasenganjs/theme"
+      ],
       "files": [
         {
           "path": "src/registry/application-ui/granulars/buttons/theme-button1.tsx",

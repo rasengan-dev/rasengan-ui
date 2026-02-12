@@ -1,8 +1,7 @@
-import Image from "@rasenganjs/image";
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Navbar2 } from "../../elements/headers";
+import { Navbar2 } from "@/registry/marketing/elements/headers/navbar2";
 
 type Member = {
 	name: string;
@@ -11,60 +10,62 @@ type Member = {
 	description?: string;
 };
 
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
+
 const teams: Member[] = [
 	{
 		name: "Dilane Kombou",
 		role: "Founder & CEO",
-		image: "/static/images/teams/dilane-kombou.png",
+		image: `${registryUrl}/static/images/teams/dilane-kombou.png`,
 		description:
 			"Founder and CEO of Rasengan Labs, leading the team with vision and innovation.",
 	},
 	{
 		name: "Jane Doe",
 		role: "CTO",
-		image: "/static/images/teams/2.jpeg",
+		image: `${registryUrl}/static/images/teams/2.jpeg`,
 		description:
 			"Chief Technology Officer, overseeing all technical aspects and strategy.",
 	},
 	{
 		name: "John Smith",
 		role: "Lead Developer",
-		image: "/static/images/teams/3.jpeg",
+		image: `${registryUrl}/static/images/teams/3.jpeg`,
 		description:
 			"Lead Developer, responsible for the core development of our products.",
 	},
 	{
 		name: "Bob Brown",
 		role: "Marketing Specialist",
-		image: "/static/images/teams/5.jpeg",
+		image: `${registryUrl}/static/images/teams/5.jpeg`,
 		description:
 			"Marketing Specialist, driving our brand and outreach strategies.",
 	},
 	{
 		name: "Charlie White",
 		role: "Data Scientist",
-		image: "/static/images/teams/6.jpeg",
+		image: `${registryUrl}/static/images/teams/6.jpeg`,
 		description:
 			"Data Scientist, analyzing data to drive insights and decisions.",
 	},
 	{
 		name: "Ethan Blue",
 		role: "QA Engineer",
-		image: "/static/images/teams/4.jpeg",
+		image: `${registryUrl}/static/images/teams/4.jpeg`,
 		description:
 			"QA Engineer, ensuring the quality and reliability of our products.",
 	},
 	{
 		name: "Diana Green",
 		role: "Project Manager",
-		image: "/static/images/teams/8.jpeg",
+		image: `${registryUrl}/static/images/teams/8.jpeg`,
 		description:
 			"Project Manager, coordinating projects and ensuring timely delivery.",
 	},
 	{
 		name: "Alice Johnson",
 		role: "UX Designer",
-		image: "/static/images/teams/7.jpeg",
+		image: `${registryUrl}/static/images/teams/7.jpeg`,
 		description:
 			"UX Designer, crafting user experiences that delight and engage.",
 	},
@@ -110,12 +111,10 @@ export default function TeamSection3() {
 const TeamItem = ({ member }: { member: Member }) => {
 	return (
 		<article className='relative w-full hover:scale-95 transition-all duration-300 ease-in-out'>
-			<Image
+			<img
 				src={member.image}
 				alt={member.name}
-				width={"100%"}
-				height={300}
-				className='object-top rounded-2xl'
+				className='object-top rounded-2xl object-cover w-full h-[300px]'
 			/>
 
 			<div className='mt-4 rounded-lg'>

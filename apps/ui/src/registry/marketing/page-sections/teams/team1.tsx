@@ -1,4 +1,3 @@
-import Image from "@rasenganjs/image";
 import {
 	Carousel,
 	CarouselContent,
@@ -6,7 +5,7 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Navbar3 } from "../../elements/headers";
+import { Navbar3 } from "@/registry/marketing/elements/headers/navbar3";
 
 type Member = {
 	name: string;
@@ -14,46 +13,48 @@ type Member = {
 	image: string;
 };
 
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
+
 const teams: Member[] = [
 	{
 		name: "Dilane Kombou",
 		role: "Founder & CEO",
-		image: "/static/images/teams/dilane-kombou.png",
+		image: `${registryUrl}/static/images/teams/dilane-kombou.png`,
 	},
 	{
 		name: "Jane Doe",
 		role: "CTO",
-		image: "/static/images/teams/2.jpeg",
+		image: `${registryUrl}/static/images/teams/2.jpeg`,
 	},
 	{
 		name: "John Smith",
 		role: "Lead Developer",
-		image: "/static/images/teams/3.jpeg",
+		image: `${registryUrl}/static/images/teams/3.jpeg`,
 	},
 	{
 		name: "Bob Brown",
 		role: "Marketing Specialist",
-		image: "/static/images/teams/5.jpeg",
+		image: `${registryUrl}/static/images/teams/5.jpeg`,
 	},
 	{
 		name: "Charlie White",
 		role: "Data Scientist",
-		image: "/static/images/teams/6.jpeg",
+		image: `${registryUrl}/static/images/teams/6.jpeg`,
 	},
 	{
 		name: "Ethan Blue",
 		role: "QA Engineer",
-		image: "/static/images/teams/4.jpeg",
+		image: `${registryUrl}/static/images/teams/4.jpeg`,
 	},
 	{
 		name: "Diana Green",
 		role: "Project Manager",
-		image: "/static/images/teams/8.jpeg",
+		image: `${registryUrl}/static/images/teams/8.jpeg`,
 	},
 	{
 		name: "Alice Johnson",
 		role: "UX Designer",
-		image: "/static/images/teams/7.jpeg",
+		image: `${registryUrl}/static/images/teams/7.jpeg`,
 	},
 ];
 
@@ -117,12 +118,10 @@ export default function TeamSection1() {
 const TeamItem = ({ member }: { member: Member }) => {
 	return (
 		<article className='w-full hover:scale-95 transition-all duration-300 ease-in-out'>
-			<Image
+			<img
 				src={member.image}
 				alt={member.name}
-				width={"100%"}
-				height={300}
-				className='object-top'
+				className='object-top w-full h-[300px] object-top object-cover'
 			/>
 
 			<div className='mt-4'>

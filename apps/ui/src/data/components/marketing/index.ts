@@ -186,7 +186,7 @@ Highlight profiles, roles, and bios — all ready to drop into your React app an
         components: [
           {
             label: "team-01",
-            name: "Team with carousel 01",
+            name: "Team with carousel 1",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/team-01`,
             code: "",
             height: 800,
@@ -195,7 +195,7 @@ Highlight profiles, roles, and bios — all ready to drop into your React app an
           },
           {
             label: "team-02",
-            name: "Team with carousel 02",
+            name: "Team with carousel 2",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/team-02`,
             code: "",
             height: 800,
@@ -205,7 +205,7 @@ Highlight profiles, roles, and bios — all ready to drop into your React app an
           },
           {
             label: "team-03",
-            name: "Team with grid display 03",
+            name: "Team with grid display 1",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/team-03`,
             code: "",
             height: 800,
@@ -214,7 +214,7 @@ Highlight profiles, roles, and bios — all ready to drop into your React app an
           },
           {
             label: "team-04",
-            name: "Team with grid display 04",
+            name: "Team with grid display 2",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/team-04`,
             code: "",
             height: 800,

@@ -1,8 +1,8 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "table-01",
-  "title": "Dashboard sidebar 2",
-  "description": "Dashboard sidebar 2",
+  "title": "Data Table for customers",
+  "description": "Data Table for customers",
   "dependencies": [
     "lucide-react",
     "@tanstack/react-table",
