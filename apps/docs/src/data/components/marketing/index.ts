@@ -1,6 +1,6 @@
 import { componentCategories, ComponentGroup } from "../type";
 
-const { RASENGAN_PREVIEW_BASE_URL } = import.meta.env;
+const { RASENGAN_REGISTRY_URL } = import.meta.env;
 
 export const marketingComponents: ComponentGroup[] = [
 	// Page section components
@@ -18,7 +18,7 @@ export const marketingComponents: ComponentGroup[] = [
 					{
 						label: "hero-01",
 						name: "Hero with centered text",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-01`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/hero-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -27,7 +27,7 @@ export const marketingComponents: ComponentGroup[] = [
 					{
 						label: "hero-02",
 						name: "Hero with centered text and floating navbar",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-02`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/hero-02`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -36,7 +36,7 @@ export const marketingComponents: ComponentGroup[] = [
 					{
 						label: "hero-03",
 						name: "Hero with left text 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-03`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/hero-03`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -46,7 +46,7 @@ export const marketingComponents: ComponentGroup[] = [
 					{
 						label: "hero-04",
 						name: "Hero with left text 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-04`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/hero-04`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -55,7 +55,7 @@ export const marketingComponents: ComponentGroup[] = [
 					{
 						label: "hero-05",
 						name: "Hero with left text 03",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-05`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/hero-05`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -64,7 +64,7 @@ export const marketingComponents: ComponentGroup[] = [
 					{
 						label: "hero-06",
 						name: "Hero with centered text and image 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-06`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/hero-06`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -73,7 +73,7 @@ export const marketingComponents: ComponentGroup[] = [
 					{
 						label: "hero-07",
 						name: "Hero with centered text and image 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-07`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/hero-07`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -83,7 +83,7 @@ export const marketingComponents: ComponentGroup[] = [
 					{
 						label: "hero-08",
 						name: "Hero with centered text and image 03",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-08`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/hero-08`,
 						code: "",
 						height: 800,
 						isDarkEnabled: true,
@@ -92,7 +92,7 @@ export const marketingComponents: ComponentGroup[] = [
 					{
 						label: "hero-09",
 						name: "Hero with centered bottom text and background image",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-09`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/hero-09`,
 						code: "",
 						height: 800,
 						isDarkEnabled: true,
@@ -102,7 +102,7 @@ export const marketingComponents: ComponentGroup[] = [
 					{
 						label: "hero-10",
 						name: "Hero with left bottom text and background image",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-10`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/hero-10`,
 						code: "",
 						height: 800,
 						isDarkEnabled: true,
@@ -111,7 +111,7 @@ export const marketingComponents: ComponentGroup[] = [
 					{
 						label: "hero-11",
 						name: "Hero with centered text and image 04",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-11`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/hero-11`,
 						code: "",
 						height: 800,
 						isDarkEnabled: true,
@@ -120,7 +120,7 @@ export const marketingComponents: ComponentGroup[] = [
 					{
 						label: "hero-12",
 						name: "Hero with centered text and image 05",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-12`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/hero-12`,
 						code: "",
 						height: 800,
 						isDarkEnabled: true,
@@ -129,7 +129,7 @@ export const marketingComponents: ComponentGroup[] = [
 					{
 						label: "hero-13",
 						name: "Hero with centered text and image 06",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-13`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/hero-13`,
 						code: "",
 						height: 800,
 						isDarkEnabled: true,
@@ -138,7 +138,7 @@ export const marketingComponents: ComponentGroup[] = [
 					{
 						label: "hero-14",
 						name: "Hero with centered text and image 06",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-14`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/hero-14`,
 						code: "",
 						height: 800,
 						isDarkEnabled: true,
@@ -147,7 +147,7 @@ export const marketingComponents: ComponentGroup[] = [
 					{
 						label: "hero-15",
 						name: "Hero with centered text and image 06",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-15`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/hero-15`,
 						code: "",
 						height: 800,
 						isDarkEnabled: true,
@@ -156,7 +156,7 @@ export const marketingComponents: ComponentGroup[] = [
 					{
 						label: "hero-16",
 						name: "Hero with centered text and image 06",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-16`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/hero-16`,
 						code: "",
 						height: 800,
 						isDarkEnabled: true,
@@ -165,7 +165,7 @@ export const marketingComponents: ComponentGroup[] = [
 					{
 						label: "hero-17",
 						name: "Hero with centered text and image 06",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/hero-17`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/hero-17`,
 						code: "",
 						height: 800,
 						isDarkEnabled: true,
@@ -185,7 +185,7 @@ Highlight profiles, roles, and bios — all ready to drop into your React app an
 					{
 						label: "team-01",
 						name: "Team with carousel 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/team-01`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/team-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -194,7 +194,7 @@ Highlight profiles, roles, and bios — all ready to drop into your React app an
 					{
 						label: "team-02",
 						name: "Team with carousel 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/team-02`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/team-02`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -204,7 +204,7 @@ Highlight profiles, roles, and bios — all ready to drop into your React app an
 					{
 						label: "team-03",
 						name: "Team with grid display 03",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/team-03`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/team-03`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -213,7 +213,7 @@ Highlight profiles, roles, and bios — all ready to drop into your React app an
 					{
 						label: "team-04",
 						name: "Team with grid display 04",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/team-04`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/team-04`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -233,7 +233,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "pricing-01",
 						name: "Pricing with left text and tabs 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/pricing-01`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/pricing-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -242,7 +242,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "pricing-02",
 						name: "Pricing with centered text and tabs 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/pricing-02`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/pricing-02`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -251,7 +251,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "pricing-03",
 						name: "Pricing with centered text and tabs 03",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/pricing-03`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/pricing-03`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -271,7 +271,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "testimonials-01",
 						name: "Testimonials in carousel 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/testimonials-01`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/testimonials-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -280,7 +280,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "testimonials-02",
 						name: "Testimonials in grid display 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/testimonials-02`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/testimonials-02`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -289,7 +289,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "testimonials-03",
 						name: "Testimonials with reveal animation 03",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/testimonials-03`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/testimonials-03`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -308,7 +308,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "faq-01",
 						name: "FAQs with tabs 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/faq-01`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/faq-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -317,7 +317,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "faq-02",
 						name: "FAQs with tabs 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/faq-02`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/faq-02`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -326,7 +326,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "faq-03",
 						name: "FAQs with grid 03",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/faq-03`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/faq-03`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -335,7 +335,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "faq-04",
 						name: "FAQs with tabs 04",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/faq-04`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/faq-04`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -344,7 +344,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "faq-05",
 						name: "FAQs with contact form 05",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/faq-05`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/faq-05`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -363,7 +363,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "footer-01",
 						name: "Simple Footer 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/footer-01`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/footer-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -372,7 +372,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "footer-02",
 						name: "Footer with call to action 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/footer-02`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/footer-02`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -382,7 +382,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "footer-03",
 						name: "Simple Footer 03",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/footer-03`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/footer-03`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -392,7 +392,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "footer-04",
 						name: "Simple Footer 04",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/footer-04`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/footer-04`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -402,7 +402,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "footer-05",
 						name: "Footer with call to action 05",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/footer-05`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/footer-05`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -422,7 +422,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "cta-01",
 						name: "CTA for newsletter 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/cta-01`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/cta-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -431,7 +431,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "cta-02",
 						name: "CTA for download action 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/cta-02`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/cta-02`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -441,7 +441,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "cta-03",
 						name: "CTA with one action 03",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/cta-03`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/cta-03`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -451,7 +451,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "cta-04",
 						name: "CTA with one action and image 04",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/cta-04`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/cta-04`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -471,7 +471,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "contact-01",
 						name: "Contact form 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/contact-01`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/contact-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -480,7 +480,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "contact-02",
 						name: "Contact form with map 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/contact-02`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/contact-02`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -490,7 +490,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "contact-03",
 						name: "Contact form in one column 03",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/contact-03`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/contact-03`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -500,7 +500,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "contact-04",
 						name: "Contact form with image 04",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/contact-04`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/contact-04`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -510,7 +510,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "contact-05",
 						name: "Contact form with info on right 05",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/contact-05`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/sections/contact-05`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -537,7 +537,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "landing-01",
 						name: "Landing page 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/page-examples/landing-01`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/page-examples/landing-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -555,7 +555,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "user-profile-01",
 						name: "User profile 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/page-examples/user-profile-01`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/page-examples/user-profile-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -581,7 +581,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "navbar-01",
 						name: "Navbar with left text 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/elements/navbar-01`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/elements/navbar-01`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -590,7 +590,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "navbar-02",
 						name: "Navbar with centered text 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/elements/navbar-02`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/elements/navbar-02`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -600,7 +600,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "navbar-03",
 						name: "Navbar with right text 03",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/elements/navbar-03`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/elements/navbar-03`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -609,7 +609,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "navbar-04",
 						name: "Floating Navbar with medium border rounded 04",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/elements/navbar-04`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/elements/navbar-04`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -618,7 +618,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
 					{
 						label: "navbar-05",
 						name: "Floating Navbar with full border rounded 05",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/elements/navbar-05`,
+						link: `${RASENGAN_REGISTRY_URL}/marketing/elements/navbar-05`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,

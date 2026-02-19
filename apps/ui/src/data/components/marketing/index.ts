@@ -270,7 +270,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
         components: [
           {
             label: "testimonials-01",
-            name: "Testimonials in carousel 01",
+            name: "Testimonials in carousel",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/testimonials-01`,
             code: "",
             height: 800,
@@ -279,7 +279,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "testimonials-02",
-            name: "Testimonials in grid display 02",
+            name: "Testimonials in grid display",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/testimonials-02`,
             code: "",
             height: 800,
@@ -288,7 +288,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
           },
           {
             label: "testimonials-03",
-            name: "Testimonials with reveal animation 03",
+            name: "Testimonials with reveal animation",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/sections/testimonials-03`,
             code: "",
             height: 800,
@@ -548,7 +548,7 @@ Designed to convert, chakra-infused, and ready to drop into any React app — so
         components: [
           {
             label: "user-profile-01",
-            name: "User profile 01",
+            name: "User profile page",
             link: `${RASENGAN_PREVIEW_BASE_URL}/marketing/page-examples/user-profile-01`,
             code: "",
             height: 500,

@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
-import Image from "@rasenganjs/image";
+import { cn } from "@/lib/utils";
 import { UploadCloud, X } from "lucide-react";
 import { ComponentProps, useRef, useState } from "react";
-import { twMerge } from "tailwind-merge";
 
 type Props = {
 	className?: ComponentProps<"section">["className"];
@@ -83,7 +82,7 @@ export const UploadFileCard2 = ({ className }: Props) => {
 
 	return (
 		<article
-			className={twMerge(
+			className={cn(
 				"relative w-full max-w-[600px] rounded-2xl shadow-md bg-background dark:border-[1px] border-border",
 				className
 			)}
@@ -99,7 +98,7 @@ export const UploadFileCard2 = ({ className }: Props) => {
 
 			<div className='w-full flex flex-col p-4'>
 				<div
-					className={twMerge(
+					className={cn(
 						"border-[1px] border-border border-dashed min-h-[200px] w-full rounded-xl flex flex-col items-center justify-center gap-4 py-4",
 						isDragging && "bg-muted"
 					)}
@@ -152,11 +151,10 @@ export const UploadFileCard2 = ({ className }: Props) => {
 							key={file.id}
 							className='relative bg-muted aspect-square rounded-lg overflow-hidden'
 						>
-							<Image
+							<img
 								src={generateReadableImage(file.data)}
 								alt='Image'
-								width={"100%"}
-								height={"100%"}
+								className="w-full h-full object-cover"
 							/>
 
 							<span

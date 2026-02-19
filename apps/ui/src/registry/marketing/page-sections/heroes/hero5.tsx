@@ -1,11 +1,13 @@
-import Image from "@rasenganjs/image";
 import { Button } from "@/components/ui/button";
-import { Navbar3 } from "../../elements/headers";
+import { Navbar3 } from "@/registry/marketing/elements/headers/navbar3";
+
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
 
 /**
  * Hero 5
  *
- * Hero with left text and floating navbar
+ * Hero with left text
  */
 export const Hero5 = () => {
 	return (
@@ -32,8 +34,8 @@ export const Hero5 = () => {
 			</div>
 
 			<div className='absolute top-0 left-0 right-0 bottom-0 w-full h-full'>
-				<Image
-					src='/static/images/bg/6.png'
+				<img
+					src={`${registryUrl}/static/images/bg/6.png`}
 					alt='Background Image'
 					className='object-cover w-full h-full'
 					width={"100%"}

@@ -22,11 +22,16 @@ const Layout: LayoutComponent = () => {
 
 			<section className='relative flex h-(--main-height) mt-[50px]'>
 				<div className='relative w-64 h-full overflow-x-hidden overflow-y-auto hidden lg:block'>
+					{/* Top blur mask */}
 					<div className='absolute left-0 top-0 bg-linear-to-b from-background to-transparent from-30% w-full h-[80px] z-20'></div>
 
 					<Sidebar />
 
+					{/* Bottom blur mask */}
 					<div className='absolute left-0 bottom-0 bg-linear-to-t from-background to-transparent from-30% w-full h-[80px] z-20'></div>
+
+					{/* Vertical ligne */}
+					<div className='absolute top-0 bottom-0 right-0 w-px bg-linear-to-b from-transparent via-border to-transparent'></div>
 				</div>
 
 				<div className={cn('fixed top-[50px] z-50 left-0 z-30 w-64 h-full lg:hidden transition-all duration-300 ease-in-out', open ? "" : "translate-x-[calc(-100%-20px)]")}>

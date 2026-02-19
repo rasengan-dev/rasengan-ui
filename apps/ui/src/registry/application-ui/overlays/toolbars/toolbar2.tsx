@@ -3,20 +3,14 @@ import {
 	Braces,
 	CalendarPlus,
 	ChevronDown,
-	ChevronRight,
 	Circle,
 	Contact,
 	Ellipsis,
 	FileInput,
 	Frame,
-	Grid2X2Plus,
-	Hand,
 	ImagePlus,
 	Link2,
-	LogOut,
 	MessageSquareText,
-	Mic,
-	MicOff,
 	MousePointer,
 	MousePointerClick,
 	Scan,
@@ -25,10 +19,7 @@ import {
 	Square,
 	Trash,
 	Triangle,
-	Upload,
 	UserPlus,
-	Video,
-	VideoOff,
 } from "lucide-react";
 import {
 	Tooltip,
@@ -49,7 +40,6 @@ import {
 	DropdownMenuSubContent,
 	DropdownMenuSubTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@rasenganjs/theme";
 

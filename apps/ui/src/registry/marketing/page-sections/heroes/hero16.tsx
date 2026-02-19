@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
-import Image from "@rasenganjs/image";
-import { useTheme } from "@rasenganjs/theme";
 import { cn } from "@/lib/utils";
-import { Brands2 } from "@/components/common/molecules/brands/index";
 import { Navbar1 } from "@/registry/marketing/elements/headers/navbar1";
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
+
 /**
  * Hero 15
  *
@@ -22,13 +22,13 @@ export const Hero16 = () => {
       w-full h-full overflow-hidden"
         >
           <img
-            src="/static/images/illustrations/5.jpg"
+            src={`${registryUrl}/static/images/illustrations/5.jpg`}
             alt="Blue light ray"
             className=" w-full h-full"
           />
         </div>
 
-        <section className="w-full flex-1 flex flex-col justify-start relative overflow-hidden">
+        <section className="w-full flex-1 flex flex-col justify-start relative overflow-hidden max-w-[1500px] mx-auto">
           <div className="flex justify-center mx-autol items-center gap-5   ">
             <Navbar1 enableTheme={false} className="bg-transparent border-0" />
           </div>

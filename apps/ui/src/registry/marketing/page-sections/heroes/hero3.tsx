@@ -1,6 +1,8 @@
-import Image from "@rasenganjs/image";
 import { Button } from "@/components/ui/button";
-import { Navbar2 } from "../../elements/headers";
+import { Navbar2 } from "@/registry/marketing/elements/headers/navbar2";
+
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
 
 /**
  * Hero 3
@@ -32,8 +34,8 @@ export const Hero3 = () => {
 			</div>
 
 			<div className='absolute top-0 left-0 right-0 bottom-0 w-full h-full'>
-				<Image
-					src='/static/images/bg/4.png'
+				<img
+					src={`${registryUrl}/static/images/bg/4.png`}
 					alt='Background Image'
 					className='object-cover w-full h-full'
 					width={"100%"}

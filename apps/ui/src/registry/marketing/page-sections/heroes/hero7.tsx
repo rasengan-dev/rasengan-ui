@@ -1,7 +1,7 @@
-import Image from "@rasenganjs/image";
 import { Button } from "@/components/ui/button";
-import AppLogo from "@/components/common/atoms/app-logo";
-import { Link } from "rasengan";
+import AppLogo from "@/registry/application-ui/granulars/logos/logo1";
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
 
 /**
  * Hero 7
@@ -16,26 +16,26 @@ export const Hero7 = () => {
 
 				<nav className='hidden lg:block rounded-full h-12 px-4 py-2 border-foreground/10 border-[1px]'>
 					<ul className='flex items-center gap-8 text-foreground text-sm'>
-						<Link to='#'>
+						<a href='#'>
 							<li className='font-medium text-foreground px-3 py-1 rounded-full'>
 								Home
 							</li>
-						</Link>
-						<Link to='#'>
+						</a>
+						<a href='#'>
 							<li className='font-medium text-foreground/70 px-3 py-1 rounded-full hover:text-foreground'>
 								About
 							</li>
-						</Link>
-						<Link to='#'>
+						</a>
+						<a href='#'>
 							<li className='font-medium text-foreground/70 px-3 py-1 rounded-full hover:text-foreground'>
 								Contact
 							</li>
-						</Link>
-						<Link to='#'>
+						</a>
+						<a href='#'>
 							<li className='font-medium text-foreground/70 px-3 py-1 rounded-full hover:text-foreground'>
 								Blog
 							</li>
-						</Link>
+						</a>
 					</ul>
 				</nav>
 
@@ -72,8 +72,8 @@ export const Hero7 = () => {
 
 			<div className='relative z-10 mt-6'>
 				<div className='relative z-10 px-4'>
-					<Image
-						src='/static/images/hero/3.png'
+					<img
+						src={`${registryUrl}/static/images/hero/3.png`}
 						alt='Background Image'
 						className='object-cover max-w-[1200px] w-full h-auto rounded-3xl '
 						width={"100%"}

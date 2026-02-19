@@ -1,10 +1,10 @@
 import { useTheme } from "@rasenganjs/theme";
-import AppLogo from "@/components/common/atoms/app-logo";
-import ThemeButton from "@/components/common/atoms/theme-button";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight, Bell, Coffee } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import AppLogo from "@/registry/application-ui/granulars/logos/logo1";
+import ThemeButton from "@/registry/application-ui/granulars/buttons/theme-button1";
 
 const socials = [
 	{

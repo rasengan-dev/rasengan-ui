@@ -1,7 +1,8 @@
-import Image from "@rasenganjs/image";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight, Play } from "lucide-react";
-import { FloatingNavbar1 } from "../../elements/headers";
+import { FloatingNavbar1 } from "@/registry/marketing/elements/headers/navbar4";
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
 
 /**
  * Hero 11
@@ -40,8 +41,8 @@ export const Hero11 = () => {
 
 				<div className='relative z-10 mt-6'>
 					<div className='relative z-10'>
-						<Image
-							src='/static/images/hero/5.png'
+						<img
+							src={`${registryUrl}/static/images/hero/5.png`}
 							alt='Background Image'
 							className='object-cover max-w-[1200px] w-full h-auto rounded-3xl '
 							width={"100%"}
@@ -54,8 +55,8 @@ export const Hero11 = () => {
 			</div>
 
 			<div className='absolute top-0 left-0 right-0 bottom-0 w-full h-full'>
-				<Image
-					src='/static/images/bg/11.png'
+				<img
+					src={`${registryUrl}/static/images/bg/11.png`}
 					alt='Background Image'
 					className='object-cover w-full h-full'
 					width={"100%"}

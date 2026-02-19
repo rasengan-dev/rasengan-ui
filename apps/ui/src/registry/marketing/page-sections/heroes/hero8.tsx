@@ -1,8 +1,9 @@
-import Image from "@rasenganjs/image";
 import { Button } from "@/components/ui/button";
-import AppLogo from "@/components/common/atoms/app-logo";
-import ThemeButton from "@/components/common/atoms/theme-button";
+import ThemeButton from "@/registry/application-ui/granulars/buttons/theme-button1";
+import AppLogo from "@/registry/application-ui/granulars/logos/logo1";
 import { useTheme } from "@rasenganjs/theme";
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
 
 /**
  * Hero 8
@@ -54,8 +55,8 @@ export const Hero8 = () => {
 						<div className='absolute top-0 -translate-x-1/2 left-1/2 h-[1px] w-[140%] bg-gradient-to-r from-0% to-100% from-transparent via-primary/10 to-transparent'></div>
 
 						<div className='w-full'>
-							<Image
-								src='/static/images/hero/4.png'
+							<img
+								src={`${registryUrl}/static/images/hero/4.png`}
 								alt='Background Image'
 								className='object-cover w-full h-full rounded-3xl '
 								width={"100%"}
@@ -79,8 +80,8 @@ export const Hero8 = () => {
 
 					<div className='relative mt-2 mb-20'>
 						<div className='absolute left-0'>
-							<Image
-								src='/static/images/avatars/1.jpeg'
+							<img
+								src={`${registryUrl}/static/images/avatars/1.jpeg`}
 								alt='Avatar Image'
 								width={40}
 								height={40}
@@ -88,8 +89,8 @@ export const Hero8 = () => {
 							/>
 						</div>
 						<div className='absolute left-6'>
-							<Image
-								src='/static/images/avatars/2.jpeg'
+							<img
+								src={`${registryUrl}/static/images/avatars/2.jpeg`}
 								alt='Avatar Image'
 								width={40}
 								height={40}
@@ -97,8 +98,8 @@ export const Hero8 = () => {
 							/>
 						</div>
 						<div className='absolute left-12'>
-							<Image
-								src='/static/images/avatars/3.jpeg'
+							<img
+								src={`${registryUrl}/static/images/avatars/3.jpeg`}
 								alt='Avatar Image'
 								width={40}
 								height={40}
@@ -106,8 +107,8 @@ export const Hero8 = () => {
 							/>
 						</div>
 						<div className='absolute left-18'>
-							<Image
-								src='/static/images/avatars/5.jpeg'
+							<img
+								src={`${registryUrl}/static/images/avatars/5.jpeg`}
 								alt='Avatar Image'
 								width={40}
 								height={40}

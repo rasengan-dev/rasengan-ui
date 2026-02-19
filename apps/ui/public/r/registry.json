@@ -1472,6 +1472,67 @@
       ]
     },
     {
+      "name": "testimonials-01",
+      "type": "registry:block",
+      "title": "Testimonials in carousel",
+      "description": "Testimonials in carousel",
+      "registryDependencies": [
+        "button",
+        "badge",
+        "carousel"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/testimonials/testimonials1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "testimonials-02",
+      "type": "registry:block",
+      "title": "Testimonials in grid",
+      "description": "Testimonials in carousel",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/testimonials/testimonials2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "testimonials-03",
+      "type": "registry:block",
+      "title": "Testimonials with reveal animation",
+      "description": "Testimonials with reveal animation",
+      "registryDependencies": [
+        "badge",
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/testimonials/testimonials3.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/hooks/use-observer.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "theme-button-01",
       "type": "registry:block",
       "title": "Theme Button",
@@ -1486,6 +1547,149 @@
       "files": [
         {
           "path": "src/registry/application-ui/granulars/buttons/theme-button1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "toolbar-01",
+      "type": "registry:block",
+      "title": "Video Call Toolbar",
+      "description": "Video Call Toolbar",
+      "registryDependencies": [
+        "button",
+        "tooltip",
+        "dropdown-menu"
+      ],
+      "dependencies": [
+        "lucide-react",
+        "@rasenganjs/theme"
+      ],
+      "files": [
+        {
+          "path": "src/registry/application-ui/overlays/toolbars/toolbar1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "toolbar-02",
+      "type": "registry:block",
+      "title": "Design app Toolbar",
+      "description": "Design app Toolbar",
+      "registryDependencies": [
+        "button",
+        "tooltip",
+        "dropdown-menu"
+      ],
+      "dependencies": [
+        "lucide-react",
+        "@rasenganjs/theme"
+      ],
+      "files": [
+        {
+          "path": "src/registry/application-ui/overlays/toolbars/toolbar2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "toolbar-03",
+      "type": "registry:block",
+      "title": "Jira Toolbar",
+      "description": "Jira Toolbar",
+      "registryDependencies": [
+        "button",
+        "tooltip",
+        "dropdown-menu",
+        "popover"
+      ],
+      "dependencies": [
+        "lucide-react",
+        "@rasenganjs/theme"
+      ],
+      "files": [
+        {
+          "path": "src/registry/application-ui/overlays/toolbars/toolbar3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "toolbar-04",
+      "type": "registry:block",
+      "title": "Design Toolbar",
+      "description": "Design Toolbar",
+      "registryDependencies": [
+        "button",
+        "tooltip",
+        "popover"
+      ],
+      "dependencies": [
+        "lucide-react",
+        "@rasenganjs/theme"
+      ],
+      "files": [
+        {
+          "path": "src/registry/application-ui/overlays/toolbars/toolbar4.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "upload-01",
+      "type": "registry:block",
+      "title": "Upload card 1",
+      "description": "Upload card 1",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/upload/upload1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "upload-02",
+      "type": "registry:block",
+      "title": "Upload card 2",
+      "description": "Upload card 2",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/registry/application-ui/cards/upload/upload2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "user-profile-01",
+      "type": "registry:block",
+      "title": "User profile page",
+      "description": "User profile page",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "@rasengan-ui/logo-01",
+        "@rasengan-ui/theme-button-01"
+      ],
+      "dependencies": [
+        "lucide-react",
+        "@rasenganjs/theme"
+      ],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-examples/user-profiles/user-profile1.tsx",
           "type": "registry:component"
         }
       ]

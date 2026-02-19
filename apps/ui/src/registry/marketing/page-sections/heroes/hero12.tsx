@@ -1,8 +1,7 @@
-import Image from "@rasenganjs/image";
 import { Button } from "@/components/ui/button";
-import AppLogo from "@/components/common/atoms/app-logo";
-import { Link } from "rasengan";
-import { Brands1 } from "@/components/common/molecules/brands";
+import AppLogo from "@/registry/application-ui/granulars/logos/logo1";
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
 
 /**
  * Hero 10
@@ -18,22 +17,22 @@ export const Hero12 = () => {
 
 					<nav className='hidden lg:block px-4 py-2'>
 						<ul className='flex items-center gap-4 text-white/70 text-sm'>
-							<Link to='#'>
+							<a href='#'>
 								<li className='font-medium px-3 py-1 hover:text-white'>Home</li>
-							</Link>
-							<Link to='#'>
+							</a>
+							<a href='#'>
 								<li className='font-medium px-3 py-1 hover:text-white'>
 									About
 								</li>
-							</Link>
-							<Link to='#'>
+							</a>
+							<a href='#'>
 								<li className='font-medium px-3 py-1 hover:text-white'>
 									Contact
 								</li>
-							</Link>
-							<Link to='#'>
+							</a>
+							<a href='#'>
 								<li className='font-medium px-3 py-1 hover:text-white'>Blog</li>
-							</Link>
+							</a>
 						</ul>
 					</nav>
 				</div>
@@ -74,16 +73,57 @@ export const Hero12 = () => {
 			</div>
 
 			<div className='absolute top-24 left-0 right-0 bottom-0 w-full'>
-				<Image
-					src='/static/images/bg/12.png'
+				<img
+					src={`${registryUrl}/static/images/bg/12.png`}
 					alt='Background Image'
-					className='object-cover w-full'
-					width={"100%"}
-					height={"100%"}
+					className='object-cover w-full h-full'
 				/>
 			</div>
 
 			{/* <div className='absolute inset-0 bg-gradient-to-b from-transparent to-black/80'></div> */}
 		</section>
+	);
+};
+
+
+export const Brands1 = () => {
+	return (
+		<div className='flex items-start justify-center flex-wrap gap-x-8 gap-y-4'>
+			<img
+				src={`${registryUrl}/static/images/brands/white/1.png`}
+				alt='Brand'
+				height={50}
+				width='auto'
+				className='object-contain'
+			/>
+			<img
+				src={`${registryUrl}/static/images/brands/white/2.png`}
+				alt='Brand'
+				height={50}
+				width='auto'
+				className='object-contain'
+			/>
+			<img
+				src={`${registryUrl}/static/images/brands/white/3.png`}
+				alt='Brand'
+				height={50}
+				width='auto'
+				className='object-contain'
+			/>
+			<img
+				src={`${registryUrl}/static/images/brands/white/4.png`}
+				alt='Brand'
+				height={50}
+				width='auto'
+				className='object-contain'
+			/>
+			<img
+				src={`${registryUrl}/static/images/brands/white/5.png`}
+				alt='Brand'
+				height={50}
+				width='auto'
+				className='object-contain'
+			/>
+		</div>
 	);
 };

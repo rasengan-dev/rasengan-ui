@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { detectFileFormat, formatFileSize, truncateMiddle } from "@/lib/utils";
-import Image from "@rasenganjs/image";
+import { cn, detectFileFormat, formatFileSize, truncateMiddle } from "@/lib/utils";
 import { CheckCircle, Dot, Trash2, UploadCloud, X } from "lucide-react";
 import {
 	ComponentProps,
@@ -10,7 +9,6 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { twMerge } from "tailwind-merge";
 
 type Props = {
 	className?: ComponentProps<"section">["className"];
@@ -96,7 +94,7 @@ export const UploadFileCard1 = ({ className }: Props) => {
 
 	return (
 		<section
-			className={twMerge(
+			className={cn(
 				"w-full max-w-[400px] rounded-xl bg-background overflow-hidden shadow-md dark:border-[1px] border-border",
 				className
 			)}
@@ -115,7 +113,7 @@ export const UploadFileCard1 = ({ className }: Props) => {
 
 			<section className='p-4'>
 				<div
-					className={twMerge(
+					className={cn(
 						"border-[1px] border-border border-dashed min-h-[200px] rounded-xl flex flex-col items-center justify-center gap-4 py-4",
 						isDragging && "bg-muted"
 					)}
@@ -223,7 +221,7 @@ const FileItem = ({
 		<article className='rounded-xl p-4 border-[1px] border-border transition-all'>
 			<div>
 				<div className='flex items-center gap-2 relative'>
-					<Image src={fileImage} alt='File Icon' width={35} height={"auto"} />
+					<img src={fileImage} alt='File Icon' width={35} height={"auto"} />
 
 					<div>
 						<h2 className='font-medium text-sm text-foreground'>
@@ -262,7 +260,7 @@ const FileItem = ({
 				</div>
 			</div>
 			<div
-				className={twMerge(
+				className={cn(
 					"w-full mt-0 transition-all flex flex-col items-end",
 					!file.uploading && "hidden"
 				)}

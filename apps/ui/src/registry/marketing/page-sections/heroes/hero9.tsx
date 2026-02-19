@@ -1,9 +1,9 @@
-import Image from "@rasenganjs/image";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight } from "lucide-react";
-import AppLogo from "@/components/common/atoms/app-logo";
-import { Link } from "rasengan";
 import { Badge } from "@/components/ui/badge";
+import { ArrowUpRight } from "lucide-react";
+import AppLogo from "@/registry/application-ui/granulars/logos/logo1";
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
 
 /**
  * Hero 9
@@ -18,26 +18,26 @@ export const Hero9 = () => {
 
 				<nav className='hidden md:block rounded-full h-12 px-4 py-2 backdrop-blur-sm border-white/30 bg-white/10 border-[1px]'>
 					<ul className='flex items-center gap-8 text-white/70 text-sm'>
-						<Link to='#'>
+						<a href='#'>
 							<li className='font-medium px-3 py-1 rounded-full hover:text-white'>
 								Home
 							</li>
-						</Link>
-						<Link to='#'>
+						</a>
+						<a href='#'>
 							<li className='font-medium px-3 py-1 rounded-full hover:text-white'>
 								About
 							</li>
-						</Link>
-						<Link to='#'>
+						</a>
+						<a href='#'>
 							<li className='font-medium px-3 py-1 rounded-full hover:text-white'>
 								Contact
 							</li>
-						</Link>
-						<Link to='#'>
+						</a>
+						<a href='#'>
 							<li className='font-medium px-3 py-1 rounded-full hover:text-white'>
 								Blog
 							</li>
-						</Link>
+						</a>
 					</ul>
 				</nav>
 
@@ -80,8 +80,8 @@ export const Hero9 = () => {
 			</div>
 
 			<div className='absolute top-0 left-0 right-0 bottom-0 w-full h-full'>
-				<Image
-					src='/static/images/bg/9.jpeg'
+				<img
+					src={`${registryUrl}/static/images/bg/9.jpeg`}
 					alt='Background Image'
 					className='object-cover w-full h-full'
 					width={"100%"}

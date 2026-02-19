@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
-import Image from "@rasenganjs/image";
 import { useTheme } from "@rasenganjs/theme";
 import { cn } from "@/lib/utils";
-import { Brands2 } from "@/components/common/molecules/brands/index";
 import { Navbar1 } from "@/registry/marketing/elements/headers/navbar1";
+import { ComponentProps } from "react";
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
+
 /**
  * Hero 15
  *
@@ -64,6 +66,89 @@ export const Hero15 = () => {
           </div>
         </section>
       </section>
+    </div>
+  );
+};
+
+export const Brands2 = ({
+  className,
+}: {
+  className?: ComponentProps<"div">["className"];
+}) => {
+  return (
+    <div
+      className={"flex items-start justify-center flex-wrap gap-x-8 gap-y-4"}
+    >
+      <div
+        className={cn(
+          "flex items-center justify-center p-4 rounded-2xl",
+          className
+        )}
+      >
+        <img
+          src={`${registryUrl}/static/images/brands/white/6.png`}
+          alt='Brand'
+          height={50}
+          width='auto'
+          className='object-contain'
+        />
+      </div>
+      <div
+        className={cn(
+          "flex items-center justify-center p-4 rounded-2xl",
+          className
+        )}
+      >
+        <img
+          src={`${registryUrl}/static/images/brands/white/7.png`}
+          alt='Brand'
+          height={50}
+          width='auto'
+          className='object-contain'
+        />
+      </div>
+      <div
+        className={cn(
+          "flex items-center justify-center p-4 rounded-2xl",
+          className
+        )}
+      >
+        <img
+          src={`${registryUrl}/static/images/brands/white/8.png`}
+          alt='Brand'
+          height={50}
+          width='auto'
+          className='object-contain'
+        />
+      </div>
+      <div
+        className={cn(
+          "flex items-center justify-center p-4 rounded-2xl",
+          className
+        )}
+      >
+        <img
+          src={`${registryUrl}/static/images/brands/white/9.png`}
+          alt='Brand'
+          height={50}
+          width='auto'
+          className='object-contain'
+        />
+      </div>
+      <div
+        className={cn(
+          "flex items-center justify-center p-4 rounded-2xl",
+          className
+        )}
+      >
+        <img
+          src={`${registryUrl}/static/images/brands/white/10.png`}
+          alt='Brand'
+          height={50}
+          width='auto'
+          className='object-contain'
+        />
+      </div>
     </div>
   );
 };

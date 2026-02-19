@@ -1,10 +1,11 @@
-import Image from "@rasenganjs/image";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Star, User } from "lucide-react";
-import AppLogo from "@/components/common/atoms/app-logo";
-import { Link } from "rasengan";
 import { Badge } from "@/components/ui/badge";
-import { Brands2 } from "@/components/common/molecules/brands";
+import { ArrowRight, Star, User } from "lucide-react";
+import AppLogo from "@/registry/application-ui/granulars/logos/logo1";
+import { ComponentProps } from "react";
+import { cn } from "@/lib/utils";
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
 
 /**
  * Hero 10
@@ -22,22 +23,22 @@ export const Hero13 = () => {
 
 					<nav className='hidden lg:block px-4 py-2'>
 						<ul className='flex items-center gap-4 text-white/70 text-sm'>
-							<Link to='#'>
+							<a href='#'>
 								<li className='font-medium px-3 py-1 hover:text-white'>Home</li>
-							</Link>
-							<Link to='#'>
+							</a>
+							<a href='#'>
 								<li className='font-medium px-3 py-1 hover:text-white'>
 									About
 								</li>
-							</Link>
-							<Link to='#'>
+							</a>
+							<a href='#'>
 								<li className='font-medium px-3 py-1 hover:text-white'>
 									Contact
 								</li>
-							</Link>
-							<Link to='#'>
+							</a>
+							<a href='#'>
 								<li className='font-medium px-3 py-1 hover:text-white'>Blog</li>
-							</Link>
+							</a>
 						</ul>
 					</nav>
 
@@ -58,33 +59,33 @@ export const Hero13 = () => {
 
 				{/* Floating stars */}
 				<div className='absolute top-[80px] lg:top-[160px] left-[10px] lg:left-[90px] animate-pulse'>
-					<Image
-						src='/static/images/illustrations/2.png'
-						alt='Background Image'
+					<img
+						src={`${registryUrl}/static/images/illustrations/2.png`}
+						alt='Stars Image'
 						className='object-cover w-full h-full'
 					/>
 				</div>
 
 				<div className='absolute top-[180px] lg:top-[320px] left-[10px] lg:left-[250px] animate-pulse'>
-					<Image
-						src='/static/images/illustrations/2.png'
-						alt='Background Image'
+					<img
+						src={`${registryUrl}/static/images/illustrations/2.png`}
+						alt='Stars Image'
 						className='object-cover w-full h-full'
 					/>
 				</div>
 
 				<div className='absolute top-[80px] lg:top-[160px] right-[10px] lg:right-[90px] animate-pulse'>
-					<Image
-						src='/static/images/illustrations/2.png'
-						alt='Background Image'
+					<img
+						src={`${registryUrl}/static/images/illustrations/2.png`}
+						alt='Stars Image'
 						className='object-cover w-full h-full'
 					/>
 				</div>
 
 				<div className='absolute top-[180px] lg:top-[320px] right-[10px] lg:right-[250px] animate-pulse'>
-					<Image
-						src='/static/images/illustrations/2.png'
-						alt='Background Image'
+					<img
+						src={`${registryUrl}/static/images/illustrations/2.png`}
+						alt='Stars Image'
 						className='object-cover w-full h-full'
 					/>
 				</div>
@@ -130,8 +131,8 @@ export const Hero13 = () => {
 				</div>
 
 				<div className='absolute top-0 left-0 right-0 bottom-0 w-full'>
-					<Image
-						src='/static/images/illustrations/1.png'
+					<img
+						src={`${registryUrl}/static/images/illustrations/1.png`}
 						alt='Background Image'
 						className='object-contain w-full'
 						width={"100%"}
@@ -143,5 +144,89 @@ export const Hero13 = () => {
 				<div className='absolute top-[calc(100vh-260px)] left-1/2 -translate-x-1/2 size-[1850px] rounded-full bg-radial from-transparent to-[#080808] blur-[20px]'></div>
 			</section>
 		</section>
+	);
+};
+
+
+export const Brands2 = ({
+	className,
+}: {
+	className?: ComponentProps<"div">["className"];
+}) => {
+	return (
+		<div
+			className={"flex items-start justify-center flex-wrap gap-x-8 gap-y-4"}
+		>
+			<div
+				className={cn(
+					"flex items-center justify-center p-4 rounded-2xl",
+					className
+				)}
+			>
+				<img
+					src={`${registryUrl}/static/images/brands/white/6.png`}
+					alt='Brand'
+					height={50}
+					width='auto'
+					className='object-contain'
+				/>
+			</div>
+			<div
+				className={cn(
+					"flex items-center justify-center p-4 rounded-2xl",
+					className
+				)}
+			>
+				<img
+					src={`${registryUrl}/static/images/brands/white/7.png`}
+					alt='Brand'
+					height={50}
+					width='auto'
+					className='object-contain'
+				/>
+			</div>
+			<div
+				className={cn(
+					"flex items-center justify-center p-4 rounded-2xl",
+					className
+				)}
+			>
+				<img
+					src={`${registryUrl}/static/images/brands/white/8.png`}
+					alt='Brand'
+					height={50}
+					width='auto'
+					className='object-contain'
+				/>
+			</div>
+			<div
+				className={cn(
+					"flex items-center justify-center p-4 rounded-2xl",
+					className
+				)}
+			>
+				<img
+					src={`${registryUrl}/static/images/brands/white/9.png`}
+					alt='Brand'
+					height={50}
+					width='auto'
+					className='object-contain'
+				/>
+			</div>
+			<div
+				className={cn(
+					"flex items-center justify-center p-4 rounded-2xl",
+					className
+				)}
+			>
+				<img
+					src={`${registryUrl}/static/images/brands/white/10.png`}
+					alt='Brand'
+					height={50}
+					width='auto'
+					className='object-contain'
+				/>
+			</div>
+		</div>
 	);
 };

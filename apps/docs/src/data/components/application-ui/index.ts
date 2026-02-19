@@ -1,6 +1,6 @@
 import { componentCategories, ComponentGroup } from "../type";
 
-const { RASENGAN_PREVIEW_BASE_URL } = import.meta.env;
+const { RASENGAN_REGISTRY_URL } = import.meta.env;
 
 export const applicationUIComponents: ComponentGroup[] = [
 	// Cards components
@@ -19,7 +19,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 					{
 						label: "profile-01",
 						name: "Profile card 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/profile-01`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/profile-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -29,7 +29,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 					{
 						label: "profile-02",
 						name: "Profile card 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/profile-02`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/profile-02`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -38,7 +38,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 					{
 						label: "profile-03",
 						name: "Profile edit card 03",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/profile-03`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/profile-03`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -48,7 +48,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 					{
 						label: "profile-04",
 						name: "Profile card 04",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/profile-04`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/profile-04`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -57,7 +57,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 					{
 						label: "profile-05",
 						name: "Profile card 05",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/profile-05`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/profile-05`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -66,7 +66,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 					{
 						label: "profile-06",
 						name: "Profile card 06",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/profile-06`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/profile-06`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -75,7 +75,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 					{
 						label: "profile-07",
 						name: "Profile card 07",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/profile-07`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/profile-07`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -84,7 +84,7 @@ Ready to drop into any React app, this card is designed to be both functional an
 					{
 						label: "profile-08",
 						name: "Profile card 08",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/profile-08`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/profile-08`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -103,7 +103,7 @@ Chakra-infused, responsive, and ready to drop into any React app — perfect for
 					{
 						label: "join-01",
 						name: "Invite minimal card 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/join-01`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/join-01`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -113,7 +113,7 @@ Chakra-infused, responsive, and ready to drop into any React app — perfect for
 					{
 						label: "join-02",
 						name: "Invite minimal card 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/join-02`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/join-02`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -122,7 +122,7 @@ Chakra-infused, responsive, and ready to drop into any React app — perfect for
 					{
 						label: "join-03",
 						name: "Invite minimal card 03",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/join-03`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/join-03`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -131,7 +131,7 @@ Chakra-infused, responsive, and ready to drop into any React app — perfect for
 					{
 						label: "join-04",
 						name: "Invite minimal card 04",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/join-04`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/join-04`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -150,7 +150,7 @@ Fully responsive, themeable, and built to drop effortlessly into any React app �
 					{
 						label: "booking-01",
 						name: "Booking place card 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/booking-01`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/booking-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -159,7 +159,7 @@ Fully responsive, themeable, and built to drop effortlessly into any React app �
 					{
 						label: "booking-02",
 						name: "Job card 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/booking-02`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/booking-02`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -168,7 +168,7 @@ Fully responsive, themeable, and built to drop effortlessly into any React app �
 					{
 						label: "booking-03",
 						name: "Booking place card 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/booking-03`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/booking-03`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -177,7 +177,7 @@ Fully responsive, themeable, and built to drop effortlessly into any React app �
 					{
 						label: "booking-04",
 						name: "Booking place card 03",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/booking-04`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/booking-04`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -196,7 +196,7 @@ Responsive, themeable, and chakra-infused — ready to drop into any React app t
 					{
 						label: "invite-01",
 						name: "Invite large card 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/invite-01`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/invite-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -206,7 +206,7 @@ Responsive, themeable, and chakra-infused — ready to drop into any React app t
 					{
 						label: "invite-02",
 						name: "Invite large card 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/invite-02`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/invite-02`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -225,7 +225,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making file
 					{
 						label: "upload-01",
 						name: "Upload card 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/upload-01`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/upload-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -234,7 +234,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making file
 					{
 						label: "upload-02",
 						name: "Upload card 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/upload-02`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/upload-02`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -254,7 +254,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					{
 						label: "calendar-01",
 						name: "Event Calendar with range",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/calendar-01`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/cards/calendar-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -282,7 +282,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 					{
 						label: "input-01",
 						name: "Chatbot input 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/input-01`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/forms/input-01`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -291,7 +291,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 					{
 						label: "input-02",
 						name: "Chatbot input 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/input-02`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/forms/input-02`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -300,7 +300,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 					{
 						label: "input-03",
 						name: "Chabot tiny input 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/input-03`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/forms/input-03`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -310,7 +310,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 					{
 						label: "input-04",
 						name: "Chabot tiny input 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/input-04`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/forms/input-04`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -319,7 +319,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 					{
 						label: "input-05",
 						name: "Chatbot input 03",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/input-05`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/forms/input-05`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -329,7 +329,7 @@ From simple text boxes to complex form patterns — all chakra-infused and style
 					{
 						label: "input-06",
 						name: "Social Network text input 06",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/input-06`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/forms/input-06`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -349,7 +349,7 @@ These chakra-infused, ready-to-use filter components drop seamlessly into any Re
 					{
 						label: "filter-01",
 						name: "Dashboard filter",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/filter-01`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/forms/filter-01`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -370,7 +370,7 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 					{
 						label: "registration-01",
 						name: "Signin page 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/registration-01`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/forms/registration-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -379,7 +379,7 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 					{
 						label: "registration-02",
 						name: "Signin page 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/registration-02`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/forms/registration-02`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -388,7 +388,7 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 					{
 						label: "registration-03",
 						name: "Signin page 03",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/registration-03`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/forms/registration-03`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -397,7 +397,7 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 					{
 						label: "registration-04",
 						name: "Signin page 04",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/registration-04`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/forms/registration-04`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -407,7 +407,7 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 					{
 						label: "registration-05",
 						name: "Signin page 05",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/registration-05`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/forms/registration-05`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -416,7 +416,7 @@ Ready-to-use, themeable, and built to drop effortlessly into any React app — b
 					{
 						label: "registration-06",
 						name: "Signin page 06",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/forms/registration-06`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/forms/registration-06`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -443,7 +443,7 @@ Chakra-infused, responsive, and ready to drop into any React app.`,
 					{
 						label: "logo-01",
 						name: "App logo",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/granulars/logo-01`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/granulars/logo-01`,
 						code: "",
 						height: 300,
 						isDarkEnabled: false,
@@ -471,7 +471,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					{
 						label: "sidebar-01",
 						name: "Dashboard sidebar 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/layouts/sidebar-01`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/layouts/sidebar-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -481,7 +481,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					{
 						label: "sidebar-02",
 						name: "Dashboard sidebar 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/layouts/sidebar-02`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/layouts/sidebar-02`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -509,7 +509,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					{
 						label: "grid-01",
 						name: "Grid contacts cards 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/lists/grid-01`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/lists/grid-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -519,7 +519,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					{
 						label: "grid-02",
 						name: "Grid contacts cards 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/lists/grid-02`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/lists/grid-02`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -529,7 +529,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					{
 						label: "grid-03",
 						name: "Simple cards list",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/lists/grid-03`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/lists/grid-03`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -539,7 +539,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					{
 						label: "grid-04",
 						name: "Images list",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/lists/grid-04`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/lists/grid-04`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -549,7 +549,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					{
 						label: "grid-05",
 						name: "Cards with shared borders",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/lists/grid-05`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/lists/grid-05`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -569,7 +569,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					{
 						label: "animated-01",
 						name: "List of animated destination",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/lists/animated-01`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/lists/animated-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -589,7 +589,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					{
 						label: "table-01",
 						name: "Data Table for customers",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/lists/table-01`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/lists/table-01`,
 						code: "",
 						height: 800,
 						isDarkEnabled: false,
@@ -624,7 +624,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it n
 					{
 						label: "notification-01",
 						name: "Simple Notification 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/notification-01`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/overlays/notification-01`,
 						code: "",
 						height: 200,
 						isDarkEnabled: false,
@@ -634,7 +634,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it n
 					{
 						label: "notification-02",
 						name: "Condensed Notification 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/notification-02`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/overlays/notification-02`,
 						code: "",
 						height: 200,
 						isDarkEnabled: false,
@@ -644,7 +644,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it n
 					{
 						label: "notification-03",
 						name: "Notification with actions 03",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/notification-03`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/overlays/notification-03`,
 						code: "",
 						height: 300,
 						isDarkEnabled: false,
@@ -654,7 +654,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it n
 					{
 						label: "notification-04",
 						name: "Reply Notification 04",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/notification-04`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/overlays/notification-04`,
 						code: "",
 						height: 200,
 						isDarkEnabled: false,
@@ -674,7 +674,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					{
 						label: "toolbar-01",
 						name: "Video Call Toolbar 01",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/toolbar-01`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/overlays/toolbar-01`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -684,7 +684,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					{
 						label: "toolbar-02",
 						name: "Design app Toolbar 02",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/toolbar-02`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/overlays/toolbar-02`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -694,7 +694,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					{
 						label: "toolbar-03",
 						name: "Jira Toolbar 03",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/toolbar-03`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/overlays/toolbar-03`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,
@@ -704,7 +704,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					{
 						label: "toolbar-04",
 						name: "Design Toolbar 04",
-						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/toolbar-04`,
+						link: `${RASENGAN_REGISTRY_URL}/application-ui/overlays/toolbar-04`,
 						code: "",
 						height: 500,
 						isDarkEnabled: false,

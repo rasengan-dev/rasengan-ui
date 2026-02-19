@@ -1,7 +1,9 @@
-import Image from "@rasenganjs/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { FloatingNavbar2 } from "../../elements/headers";
+import { FloatingNavbar2 } from "@/registry/marketing/elements/headers/navbar5";
+
+
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
 
 /**
  * Hero 2
@@ -33,8 +35,8 @@ export const Hero2 = () => {
 			</div>
 
 			<div className='absolute top-0 left-0 right-0 bottom-0 w-full h-full'>
-				<Image
-					src='/static/images/bg/7.png'
+				<img
+					src={`${registryUrl}/static/images/bg/7.png`}
 					alt='Background Image'
 					className='object-cover w-full h-full'
 					width={"100%"}

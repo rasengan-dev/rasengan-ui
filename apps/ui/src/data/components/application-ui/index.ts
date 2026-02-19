@@ -219,7 +219,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making file
 				components: [
 					{
 						label: "upload-01",
-						name: "Upload card 01",
+						name: "Upload card 1",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/upload-01`,
 						code: "",
 						height: 800,
@@ -228,7 +228,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making file
 					},
 					{
 						label: "upload-02",
-						name: "Upload card 02",
+						name: "Upload card 2",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/cards/upload-02`,
 						code: "",
 						height: 800,
@@ -657,7 +657,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 				components: [
 					{
 						label: "toolbar-01",
-						name: "Video Call Toolbar 01",
+						name: "Video Call Toolbar",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/toolbar-01`,
 						code: "",
 						height: 500,
@@ -667,7 +667,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					},
 					{
 						label: "toolbar-02",
-						name: "Design app Toolbar 02",
+						name: "Design app Toolbar",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/toolbar-02`,
 						code: "",
 						height: 500,
@@ -677,7 +677,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					},
 					{
 						label: "toolbar-03",
-						name: "Jira Toolbar 03",
+						name: "Jira Toolbar",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/toolbar-03`,
 						code: "",
 						height: 500,
@@ -687,7 +687,7 @@ Chakra-infused, responsive, and ready to drop into any React app — making it e
 					},
 					{
 						label: "toolbar-04",
-						name: "Design Toolbar 04",
+						name: "Design Toolbar",
 						link: `${RASENGAN_PREVIEW_BASE_URL}/application-ui/overlays/toolbar-04`,
 						code: "",
 						height: 500,

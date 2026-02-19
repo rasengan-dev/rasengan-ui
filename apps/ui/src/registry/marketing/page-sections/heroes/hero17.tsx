@@ -1,71 +1,10 @@
 import { Button } from "@/components/ui/button";
-import AppLogo from "@/components/common/atoms/app-logo";
-import { Link } from "rasengan";
-import Image from "@rasenganjs/image";
 import { useTheme } from "@rasenganjs/theme";
 import { cn } from "@/lib/utils";
-import ThemeButton from "@/components/common/atoms/theme-button";
 import { FloatingNavbar2 } from "@/registry/marketing/elements/headers/navbar5";
 
 export const Hero17 = () => {
   const { isDark } = useTheme();
-
-  const Card = ({
-    name,
-    tvf,
-    earning,
-    value,
-    followers,
-    className,
-  }: {
-    name: string;
-    tvf: string;
-    followers: string;
-    earning: string;
-    value: string;
-    className?: string;
-  }) => (
-    <div
-      className={cn(
-        "bg-white/95 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-4 w-[320px] text-dark shadow-xl flex flex-col gap-3",
-        className,
-      )}
-    >
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <img
-            src="/static/images/avatars/5.jpeg"
-            alt="Avatar"
-            className="bg-dark w-[48px] h-[48px] rounded-full"
-          />
-          <div className="flex flex-col">
-            <span className="text-sm font-semibold text-dark">{name}</span>
-            <span className="text-[11px] text-muted-foreground truncate max-w-[140px]">
-              0x7fb1...e2d6
-            </span>
-          </div>
-        </div>
-        <span className="text-base sm:text-lg font-semibold text-dark">
-          {value}
-        </span>
-      </div>
-
-      <div className="flex items-center justify-between text-[11px] sm:text-xs text-muted-foreground pt-3 mt-1">
-        <div className="flex flex-col">
-          <span className="font-medium text-[11px] text-dark">TVF</span>
-          <span>{tvf}</span>
-        </div>
-        <div className="flex flex-col text-right">
-          <span className="font-medium text-[11px] text-dark">Followers</span>
-          <span>{followers}</span>
-        </div>
-        <div className="flex flex-col text-right">
-          <span className="font-medium text-[11px] text-dark">Earnings</span>
-          <span>{earning}</span>
-        </div>
-      </div>
-    </div>
-  );
 
   return (
     <div className={cn("bg-background", isDark ? "dark" : "light")}>
@@ -83,8 +22,6 @@ export const Hero17 = () => {
         <section className="w-full min-h-screen max-h-[1000px] flex flex-col justify-start relative overflow-hidden ">
           <div className="flex justify-center mx-autol items-center gap-5 mt-4  ">
             <FloatingNavbar2 enableTheme={false} />
-
-            {/* <ThemeButton /> */}
           </div>
           <div className="z-5 w-full flex flex-col items-center justify-end text-center mt-[50px] md:mt-[50px] px-4 md:px-10 pb-20 relative">
             {/* Nombres à gauche */}
@@ -156,10 +93,66 @@ export const Hero17 = () => {
               />
             </div>
           </div>
-
-
         </section>
       </section>
     </div>
   );
 };
+
+
+const Card = ({
+  name,
+  tvf,
+  earning,
+  value,
+  followers,
+  className,
+}: {
+  name: string;
+  tvf: string;
+  followers: string;
+  earning: string;
+  value: string;
+  className?: string;
+}) => (
+  <div
+    className={cn(
+      "bg-white/95 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-4 w-[320px] text-dark shadow-xl flex flex-col gap-3",
+      className,
+    )}
+  >
+    <div className="flex items-center justify-between gap-3">
+      <div className="flex items-center gap-3">
+        <img
+          src="/static/images/avatars/5.jpeg"
+          alt="Avatar"
+          className="bg-dark w-[48px] h-[48px] rounded-full"
+        />
+        <div className="flex flex-col">
+          <span className="text-sm font-semibold text-dark">{name}</span>
+          <span className="text-[11px] text-muted-foreground truncate max-w-[140px]">
+            0x7fb1...e2d6
+          </span>
+        </div>
+      </div>
+      <span className="text-base sm:text-lg font-semibold text-dark">
+        {value}
+      </span>
+    </div>
+
+    <div className="flex items-center justify-between text-[11px] sm:text-xs text-muted-foreground pt-3 mt-1">
+      <div className="flex flex-col">
+        <span className="font-medium text-[11px] text-dark">TVF</span>
+        <span>{tvf}</span>
+      </div>
+      <div className="flex flex-col text-right">
+        <span className="font-medium text-[11px] text-dark">Followers</span>
+        <span>{followers}</span>
+      </div>
+      <div className="flex flex-col text-right">
+        <span className="font-medium text-[11px] text-dark">Earnings</span>
+        <span>{earning}</span>
+      </div>
+    </div>
+  </div>
+);

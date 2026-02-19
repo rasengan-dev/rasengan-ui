@@ -18,78 +18,80 @@ type Testimonial = {
 	companyImage: string;
 };
 
+const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registry.rasengan.dev"
+
 const testimonials: Testimonial[] = [
 	{
 		name: "Dilane Kombou",
 		role: "Founder & CEO",
-		image: "/static/images/teams/dilane-kombou.png",
+		image: `${registryUrl}/static/images/teams/dilane-kombou.png`,
 		testimonial:
 			"Rasengan UI is the best UI framework I've ever used. It's so easy to use and it's so fast. Compatible with all major React frameworks. Themable and customizable with Shadcn UI.",
 		company: "Rasengan Labs",
-		companyImage: "/static/images/teams/dilane-kombou.png",
+		companyImage: `${registryUrl}/static/images/teams/dilane-kombou.png`,
 	},
 	{
 		name: "Jane Doe",
 		role: "CTO",
-		image: "/static/images/teams/2.jpeg",
+		image: `${registryUrl}/static/images/teams/2.jpeg`,
 		testimonial:
 			"Rasengan UI is the best UI framework I've ever used. It's so easy to use and it's so fast. Compatible with all major React frameworks. Themable and customizable with Shadcn UI.",
 		company: "Rasengan Labs",
-		companyImage: "/static/images/teams/2.jpeg",
+		companyImage: `${registryUrl}/static/images/teams/2.jpeg`,
 	},
 	{
 		name: "John Smith",
 		role: "Lead Developer",
-		image: "/static/images/teams/3.jpeg",
+		image: `${registryUrl}/static/images/teams/3.jpeg`,
 		testimonial:
 			"Rasengan UI is the best UI framework I've ever used. It's so easy to use and it's so fast. Compatible with all major React frameworks. Themable and customizable with Shadcn UI.",
 		company: "Rasengan Labs",
-		companyImage: "/static/images/teams/3.jpeg",
+		companyImage: `${registryUrl}/static/images/teams/3.jpeg`,
 	},
 	{
 		name: "Bob Brown",
 		role: "Marketing Specialist",
-		image: "/static/images/teams/5.jpeg",
+		image: `${registryUrl}/static/images/teams/5.jpeg`,
 		testimonial:
 			"Rasengan UI is the best UI framework I've ever used. It's so easy to use and it's so fast. Compatible with all major React frameworks. Themable and customizable with Shadcn UI.",
 		company: "Rasengan Labs",
-		companyImage: "/static/images/teams/5.jpeg",
+		companyImage: `${registryUrl}/static/images/teams/5.jpeg`,
 	},
 	{
 		name: "Charlie White",
 		role: "Data Scientist",
-		image: "/static/images/teams/6.jpeg",
+		image: `${registryUrl}/static/images/teams/6.jpeg`,
 		testimonial:
 			"Rasengan UI is the best UI framework I've ever used. It's so easy to use and it's so fast. Compatible with all major React frameworks. Themable and customizable with Shadcn UI.",
 		company: "Rasengan Labs",
-		companyImage: "/static/images/teams/6.jpeg",
+		companyImage: `${registryUrl}/static/images/teams/6.jpeg`,
 	},
 	{
 		name: "Ethan Blue",
 		role: "QA Engineer",
-		image: "/static/images/teams/4.jpeg",
+		image: `${registryUrl}/static/images/teams/4.jpeg`,
 		testimonial:
 			"Rasengan UI is the best UI framework I've ever used. It's so easy to use and it's so fast. Compatible with all major React frameworks. Themable and customizable with Shadcn UI.",
 		company: "Rasengan Labs",
-		companyImage: "/static/images/teams/4.jpeg",
+		companyImage: `${registryUrl}/static/images/teams/4.jpeg`,
 	},
 	{
 		name: "Diana Green",
 		role: "Project Manager",
-		image: "/static/images/teams/8.jpeg",
+		image: `${registryUrl}/static/images/teams/8.jpeg`,
 		testimonial:
 			"Rasengan UI is the best UI framework I've ever used. It's so easy to use and it's so fast. Compatible with all major React frameworks. Themable and customizable with Shadcn UI.",
 		company: "Rasengan Labs",
-		companyImage: "/static/images/teams/8.jpeg",
+		companyImage: `${registryUrl}/static/images/teams/8.jpeg`,
 	},
 	{
 		name: "Alice Johnson",
 		role: "UX Designer",
-		image: "/static/images/teams/7.jpeg",
+		image: `${registryUrl}/static/images/teams/7.jpeg`,
 		testimonial:
 			"Rasengan UI is the best UI framework I've ever used. It's so easy to use and it's so fast. Compatible with all major React frameworks. Themable and customizable with Shadcn UI.",
 		company: "Rasengan Labs",
-		companyImage: "/static/images/teams/7.jpeg",
+		companyImage: `${registryUrl}/static/images/teams/7.jpeg`,
 	},
 ];
 
