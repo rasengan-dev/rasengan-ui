@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hero-05",
+  "title": "Hero with left text",
+  "description": "Hero with left text",
+  "dependencies": [],
+  "registryDependencies": [
+    "button",
+    "@rasengan-ui/navbar-03"
+  ],
+  "files": [
+    {
+      "path": "src/registry/marketing/page-sections/heroes/hero5.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { Navbar3 } from \"@/registry/marketing/elements/headers/navbar3\";\n\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\n/**\n * Hero 5\n *\n * Hero with left text\n */\nexport const Hero5 = () => {\n\treturn (\n\t\t<section className='dark w-full h-screen min-h-[800px] max-h-[1000px] flex justify-center relative bg-[#0E002D] overflow-hidden'>\n\t\t\t<div className='absolute top-0 left-0 right-0 z-20 max-w-[1500px] mx-auto'>\n\t\t\t\t<Navbar3 className='bg-transparent border-0 px-4 lg:px-20' />\n\t\t\t</div>\n\n\t\t\t<div className='z-10 w-full flex flex-col items-center lg:items-start justify-start text-center px-4 lg:px-20 mt-[150px]'>\n\t\t\t\t<h1 className='text-[50px] lg:text-[70px] leading-[60px] lg:leading-[80px] max-w-[700px] font-bold text-center lg:text-start text-white'>\n\t\t\t\t\tLaunch Websites. No Code. No Limits.\n\t\t\t\t</h1>\n\t\t\t\t<p className='text-lg text-center lg:text-start text-white/70 max-w-[700px] mt-4'>\n\t\t\t\t\tDesign, build, and publish beautiful websites without writing a single\n\t\t\t\t\tline of code. Just drag, drop, and go live.\n\t\t\t\t</p>\n\n\t\t\t\t<div className='mt-10 w-full flex gap-4 justify-center lg:justify-start'>\n\t\t\t\t\t<Button className='rounded-fulld'>Start now</Button>\n\t\t\t\t\t<Button className='rounded-fulld bg-transparent border-2 border-white text-white hover:bg-white hover:text-black transition-colors duration-300'>\n\t\t\t\t\t\tContact Sales\n\t\t\t\t\t</Button>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div className='absolute top-0 left-0 right-0 bottom-0 w-full h-full'>\n\t\t\t\t<img\n\t\t\t\t\tsrc={`${registryUrl}/static/images/bg/6.png`}\n\t\t\t\t\talt='Background Image'\n\t\t\t\t\tclassName='object-cover w-full h-full'\n\t\t\t\t\twidth={\"100%\"}\n\t\t\t\t\theight={\"100%\"}\n\t\t\t\t/>\n\t\t\t</div>\n\t\t</section>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

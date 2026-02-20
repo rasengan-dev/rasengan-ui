@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "registration-03",
+  "title": "Signin page 3",
+  "description": "Signin page 3",
+  "dependencies": [
+    "@rasenganjs/theme"
+  ],
+  "registryDependencies": [
+    "button",
+    "input",
+    "@rasengan-ui/logo-01",
+    "@rasengan-ui/theme-button-01"
+  ],
+  "files": [
+    {
+      "path": "src/registry/application-ui/forms/registration/signin3.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { Input } from \"@/components/ui/input\";\nimport AppLogo from \"@/registry/application-ui/granulars/logos/logo1\";\nimport ThemeButton from \"@/registry/application-ui/granulars/buttons/theme-button1\";\nimport { useTheme } from \"@rasenganjs/theme\";\nimport { cn } from \"@/lib/utils\";\n\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\nexport const SigninPage3 = () => {\n\tconst { isDark } = useTheme();\n\n\treturn (\n\t\t<section\n\t\t\tclassName={cn(\n\t\t\t\t\"w-full min-h-screen h-auto flex flex-col p-4 bg-background\",\n\t\t\t\tisDark && \"dark\"\n\t\t\t)}\n\t\t>\n\t\t\t<header className='w-full h-auto flex justify-between items-center'>\n\t\t\t\t<AppLogo size='sm' minimal />\n\n\t\t\t\t<div className='w-auto h-auto flex items-center gap-2'>\n\t\t\t\t\t<ThemeButton />\n\t\t\t\t\t<Button variant='outline' className='text-foreground'>\n\t\t\t\t\t\tSign Up\n\t\t\t\t\t</Button>\n\t\t\t\t</div>\n\t\t\t</header>\n\n\t\t\t<div className='w-full max-w-[360px] mx-auto h-auto flex flex-col mt-20'>\n\t\t\t\t<div className='w-full h-auto flex flex-col items-center'>\n\t\t\t\t\t<div className='w-full h-auto flex flex-col'>\n\t\t\t\t\t\t<h1 className='text-4xl font-medium text-foreground'>\n\t\t\t\t\t\t\tWelcome back\n\t\t\t\t\t\t</h1>\n\t\t\t\t\t\t<p className='text-muted-foreground mt-4'>\n\t\t\t\t\t\t\tWe are proud to have you back!\n\t\t\t\t\t\t</p>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div className='w-full mt-4'>\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t<label\n\t\t\t\t\t\t\t\thtmlFor='email'\n\t\t\t\t\t\t\t\tclassName='text-sm font-medium text-foreground'\n\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\tEmail\n\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t<Input\n\t\t\t\t\t\t\t\tplaceholder='Enter your email'\n\t\t\t\t\t\t\t\tclassName='h-12 text-foreground'\n\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<div className='mt-4'>\n\t\t\t\t\t\t\t<label\n\t\t\t\t\t\t\t\thtmlFor='password'\n\t\t\t\t\t\t\t\tclassName='text-sm font-medium text-foreground'\n\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\tPassword\n\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t<Input\n\t\t\t\t\t\t\t\tplaceholder='Enter your password'\n\t\t\t\t\t\t\t\tclassName='h-12 text-foreground'\n\t\t\t\t\t\t\t\ttype='password'\n\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<div className='mt-4'>\n\t\t\t\t\t\t\t<Button variant='link' className='px-0 text-foreground'>\n\t\t\t\t\t\t\t\t<span>Forgot Password?</span>\n\t\t\t\t\t\t\t</Button>\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<Button className='w-full mt-4 h-12'>Login</Button>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t{/* Add or separator */}\n\t\t\t\t\t<div className='w-full mt-4 flex items-center gap-2'>\n\t\t\t\t\t\t<div className='w-full h-[1px] bg-muted'></div>\n\t\t\t\t\t\t<p className='text-muted-foreground text-center'>or</p>\n\t\t\t\t\t\t<div className='w-full h-[1px] bg-muted'></div>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div className='w-full'>\n\t\t\t\t\t\t<Button\n\t\t\t\t\t\t\tvariant='outline'\n\t\t\t\t\t\t\tclassName='w-full mt-4 h-12 text-foreground'\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<img\n\t\t\t\t\t\t\t\tsrc={`${registryUrl}/static/images/icons/google.png`}\n\t\t\t\t\t\t\t\talt='google'\n\t\t\t\t\t\t\t\twidth={24}\n\t\t\t\t\t\t\t\theight={24}\n\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t\t<span>Continue with Google</span>\n\t\t\t\t\t\t</Button>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div className='w-full mt-4 flex items-center justify-center'>\n\t\t\t\t\t\t<span className='text-muted-foreground'>\n\t\t\t\t\t\t\tDon't have an account?\n\t\t\t\t\t\t</span>\n\t\t\t\t\t\t<Button variant='link' className='text-foreground'>\n\t\t\t\t\t\t\tSign Up\n\t\t\t\t\t\t</Button>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</section>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

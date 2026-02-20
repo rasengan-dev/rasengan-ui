@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "profile-03",
+  "title": "Edit Profile card",
+  "description": "Edit Profile card",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "input"
+  ],
+  "files": [
+    {
+      "path": "src/registry/application-ui/cards/profile/profile3.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { Input } from \"@/components/ui/input\";\nimport { cn } from \"@/lib/utils\";\nimport { Plus, X } from \"lucide-react\";\nimport { ComponentProps, useRef, useState } from \"react\";\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\ntype Props = {\n\tclassName?: ComponentProps<\"article\">[\"className\"];\n};\n\nexport const ProfileCard3 = ({ className }: Props) => {\n\tconst inputRef = useRef<HTMLInputElement>(null);\n\n\tconst [file, setFile] = useState<File | null>(null);\n\tconst [readableFile, setReadableFile] = useState(\"\");\n\n\tconst handleOpenFileExplorer = () => {\n\t\tinputRef.current?.click();\n\t};\n\n\tconst handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {\n\t\tconst file = event.target.files?.[0];\n\t\tif (file) {\n\t\t\tconst readable = URL.createObjectURL(file);\n\n\t\t\tsetFile(file);\n\t\t\tsetReadableFile(readable);\n\t\t}\n\t};\n\n\treturn (\n\t\t<article\n\t\t\tclassName={cn(\n\t\t\t\t\"relative w-full max-w-[600px] rounded-2xl shadow-md bg-background border-[1px] border-border\",\n\t\t\t\tclassName\n\t\t\t)}\n\t\t>\n\t\t\t<div className='h-[60px] border-b border-border flex items-center justify-between px-4'>\n\t\t\t\t<span className='font-medium text-lg text-foreground/70'>\n\t\t\t\t\tUpdate Profile\n\t\t\t\t</span>\n\t\t\t\t<Button variant={\"outline\"} size={\"icon\"} className='size-8'>\n\t\t\t\t\t<X size={14} className='text-foreground' />\n\t\t\t\t</Button>\n\t\t\t</div>\n\n\t\t\t<div className='w-full flex flex-col sm:flex-row mt-6 mb-4'>\n\t\t\t\t<div className='w-full sm:w-1/3 min-h-[100px] sm:border-r sm:border-dashed sm:border-border p-4 flex flex-col items-center'>\n\t\t\t\t\t<div className='relative'>\n\t\t\t\t\t\t<img\n\t\t\t\t\t\t\tsrc={\n\t\t\t\t\t\t\t\treadableFile ? readableFile : registryUrl + \"/static/images/avatars/3.jpeg\"\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\talt='Avatar'\n\t\t\t\t\t\t\tclassName='rounded-full'\n\t\t\t\t\t\t\twidth={60}\n\t\t\t\t\t\t\theight={60}\n\t\t\t\t\t\t/>\n\n\t\t\t\t\t\t<span\n\t\t\t\t\t\t\tonClick={handleOpenFileExplorer}\n\t\t\t\t\t\t\tclassName='absolute -right-2 top-0 size-6 bg-primary rounded-full flex items-center justify-center border-2 border-background'\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<Plus size={16} className='text-primary-foreground' />\n\t\t\t\t\t\t</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div className='mt-6'>\n\t\t\t\t\t\t<h2 className='text-foreground font-medium'>Upload Image</h2>\n\t\t\t\t\t\t<p className='text-foreground/60 text-sm'>Max file sixe: 1MB</p>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<Button\n\t\t\t\t\t\tclassName='mt-4 dark:text-foreground'\n\t\t\t\t\t\tvariant={\"outline\"}\n\t\t\t\t\t\tonClick={handleOpenFileExplorer}\n\t\t\t\t\t>\n\t\t\t\t\t\tAdd Image\n\t\t\t\t\t</Button>\n\n\t\t\t\t\t<input\n\t\t\t\t\t\tref={inputRef}\n\t\t\t\t\t\thidden\n\t\t\t\t\t\ttype='file'\n\t\t\t\t\t\taccept='images/*'\n\t\t\t\t\t\tonChange={handleFileChange}\n\t\t\t\t\t/>\n\t\t\t\t</div>\n\n\t\t\t\t<div className='w-full sm:w-2/3 min-h-[100px] px-6'>\n\t\t\t\t\t<div className='text-foreground'>\n\t\t\t\t\t\t<label htmlFor='name' className='font-medium'>\n\t\t\t\t\t\t\tAuthor name\n\t\t\t\t\t\t</label>\n\t\t\t\t\t\t<Input placeholder='Your name' />\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div className='mt-4 text-foreground'>\n\t\t\t\t\t\t<label htmlFor='name' className='font-medium'>\n\t\t\t\t\t\t\tTitle\n\t\t\t\t\t\t</label>\n\t\t\t\t\t\t<Input placeholder='Your title' />\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div className='mt-6 flex gap-4'>\n\t\t\t\t\t\t<Button variant={\"outline\"} className='dark:text-foreground'>\n\t\t\t\t\t\t\tCancel\n\t\t\t\t\t\t</Button>\n\t\t\t\t\t\t<Button>Save Changes</Button>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</article>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

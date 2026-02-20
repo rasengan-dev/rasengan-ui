@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hero-11",
+  "title": "Hero with left bottom text and background image",
+  "description": "Hero with left bottom text and background image",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "@rasengan-ui/navbar-04"
+  ],
+  "files": [
+    {
+      "path": "src/registry/marketing/page-sections/heroes/hero11.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { ArrowUpRight, Play } from \"lucide-react\";\nimport { FloatingNavbar1 } from \"@/registry/marketing/elements/headers/navbar4\";\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\n/**\n * Hero 11\n *\n * Hero with left bottom text and background image\n */\nexport const Hero11 = () => {\n\treturn (\n\t\t<section className='w-full h-screen min-h-[600px] max-h-[1000px] flex flex-col justify-start relative overflow-x-hidden'>\n\t\t\t<div className='fixed top-8 left-0 right-0 z-20 px-4'>\n\t\t\t\t<FloatingNavbar1 className='border-0 max-w-[800px]' />\n\t\t\t</div>\n\n\t\t\t<div className='z-10 w-full flex flex-col items-center justify-end text-center mt-[140px] md:mt-[200px] px-4 md:px-10 pb-20'>\n\t\t\t\t<h1 className='relative z-20 text-[40px] lg:text-[60px] leading-[50px] lg:leading-[60px] max-w-[700px] font-medium text-center text-foreground'>\n\t\t\t\t\tIncrease productivity, Collaborate{\" \"}\n\t\t\t\t\t<span className='text-transparent bg-clip-text bg-gradient-to-r from-[#FF8787] via-[#CA94FF] to-[#FFBF84]'>\n\t\t\t\t\t\twith teams\n\t\t\t\t\t</span>\n\t\t\t\t</h1>\n\t\t\t\t<p className='relative z-20 text-sm text-center text-foreground/60 max-w-[500px] mt-4'>\n\t\t\t\t\tLet AI organize, prioritize, and streamline your workflow\n\t\t\t\t</p>\n\n\t\t\t\t<div className='relative z-20 mt-10 flex gap-4'>\n\t\t\t\t\t<Button className='dark rounded-md h-12'>\n\t\t\t\t\t\t<Play />\n\t\t\t\t\t\t<span>Book a demo</span>\n\t\t\t\t\t</Button>\n\n\t\t\t\t\t<Button className='rounded-md h-12'>\n\t\t\t\t\t\t<span>Get Started</span>\n\t\t\t\t\t\t<ArrowUpRight />\n\t\t\t\t\t</Button>\n\t\t\t\t</div>\n\n\t\t\t\t<div className='relative z-10 mt-6'>\n\t\t\t\t\t<div className='relative z-10'>\n\t\t\t\t\t\t<img\n\t\t\t\t\t\t\tsrc={`${registryUrl}/static/images/hero/5.png`}\n\t\t\t\t\t\t\talt='Background Image'\n\t\t\t\t\t\t\tclassName='object-cover max-w-[1200px] w-full h-auto rounded-3xl '\n\t\t\t\t\t\t\twidth={\"100%\"}\n\t\t\t\t\t\t\theight={\"auto\"}\n\t\t\t\t\t\t/>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div className='absolute inset-10 bg-[#FF8787] rounded-3xl blur-[100px]'></div>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div className='absolute top-0 left-0 right-0 bottom-0 w-full h-full'>\n\t\t\t\t<img\n\t\t\t\t\tsrc={`${registryUrl}/static/images/bg/11.png`}\n\t\t\t\t\talt='Background Image'\n\t\t\t\t\tclassName='object-cover w-full h-full'\n\t\t\t\t\twidth={\"100%\"}\n\t\t\t\t\theight={\"100%\"}\n\t\t\t\t/>\n\t\t\t</div>\n\n\t\t\t{/* <div className='absolute inset-0 bg-gradient-to-b from-transparent to-black/80'></div> */}\n\t\t</section>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

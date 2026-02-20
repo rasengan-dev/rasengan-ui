@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-01",
+  "title": "App logo",
+  "description": "App logo",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "src/registry/application-ui/granulars/logos/logo1.tsx",
+      "content": "import { useScreen } from \"@/hooks/use-screen\";\nimport { cn } from \"@/lib/utils\";\nimport { ComponentProps } from \"react\";\n\ntype Props = {\n    src?: string;\n    text?: string;\n    size?: \"sm\" | \"md\" | \"lg\";\n    minimal?: boolean;\n    className?: ComponentProps<\"div\">[\"className\"];\n};\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\nexport default function AppLogo({\n    src = registryUrl + \"/rasengan.svg\",\n    text = \"Rasengan UI\",\n    size = \"md\",\n    minimal = false,\n    className,\n}: Props) {\n    const screen = useScreen();\n\n    const sizes = {\n        sm: {\n            width: 40,\n            height: \"auto\",\n        },\n        md: {\n            width: 60,\n            height: \"auto\",\n        },\n        lg: {\n            width: 100,\n            height: \"auto\",\n        },\n    };\n\n    return (\n        <div\n            className={cn(\n                \"flex items-center gap-1 overflow-hidden text-foreground\",\n                className\n            )}\n        >\n            <div>\n                <img\n                    src={src}\n                    alt='Rasengan UI Logo'\n                    width={sizes[size].width}\n                    height={sizes[size].height}\n                />\n            </div>\n\n            {screen !== \"xs\" && screen !== \"sm\" && !minimal && (\n                <h2 className='font-bold text-lg break-keep text-nowrap'>\n                    {text}\n                </h2>\n            )}\n        </div>\n    );\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/hooks/use-screen.ts",
+      "content": "import { useEffect, useState } from \"react\";\n\nexport const useScreen = () => {\n\tconst [screen, setScreen] = useState<\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\">(\"lg\");\n\n\tuseEffect(() => {\n\t\tconst handleResize = () => {\n\t\t\tif (window.innerWidth < 640) {\n\t\t\t\tsetScreen(\"xs\");\n\t\t\t} else if (window.innerWidth < 768) {\n\t\t\t\tsetScreen(\"sm\");\n\t\t\t} else if (window.innerWidth < 1024) {\n\t\t\t\tsetScreen(\"md\");\n\t\t\t} else if (window.innerWidth < 1280) {\n\t\t\t\tsetScreen(\"lg\");\n\t\t\t} else {\n\t\t\t\tsetScreen(\"xl\");\n\t\t\t}\n\t\t};\n\n\t\thandleResize();\n\n\t\twindow.addEventListener(\"resize\", handleResize);\n\t\treturn () => {\n\t\t\twindow.removeEventListener(\"resize\", handleResize);\n\t\t};\n\t}, []);\n\n\treturn screen;\n};\n",
+      "type": "registry:hook"
+    }
+  ],
+  "type": "registry:block"
+}

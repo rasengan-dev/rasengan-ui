@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "profile-06",
+  "title": "Profile card 5",
+  "description": "Profile card 5",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "badge"
+  ],
+  "files": [
+    {
+      "path": "src/registry/application-ui/cards/profile/profile6.tsx",
+      "content": "import { Badge } from \"@/components/ui/badge\";\nimport { Button } from \"@/components/ui/button\";\nimport { cn } from \"@/lib/utils\";\nimport { Briefcase, Edit2, Ellipsis, UserPlus } from \"lucide-react\";\nimport { ComponentProps } from \"react\";\n\ntype Props = {\n\tclassName?: ComponentProps<\"article\">[\"className\"];\n};\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\nexport const ProfileCard6 = ({ className }: Props) => {\n\treturn (\n\t\t<article\n\t\t\tclassName={cn(\n\t\t\t\t\"relative w-full max-w-[800px] rounded-2xl shadow-md bg-background border-[1px] border-border overflow-hidden\",\n\t\t\t\tclassName\n\t\t\t)}\n\t\t>\n\t\t\t<div className='relative'>\n\t\t\t\t<div className='relative w-full h-46 border-b border-border flex items-center justify-between overflow-hidden'>\n\t\t\t\t\t<img\n\t\t\t\t\t\tsrc={`${registryUrl}/static/images/gradients/2.jpeg`}\n\t\t\t\t\t\talt='Gradient'\n\t\t\t\t\t\twidth={\"100%\"}\n\t\t\t\t\t\theight={\"100%\"}\n\t\t\t\t\t\tclassName='object-cover'\n\t\t\t\t\t/>\n\n\t\t\t\t\t<div className='absolute right-4 top-4'>\n\t\t\t\t\t\t<Button\n\t\t\t\t\t\t\tsize='icon'\n\t\t\t\t\t\t\tvariant={\"ghost\"}\n\t\t\t\t\t\t\tclassName='rounded-full bg-background text-foreground'\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<Edit2 />\n\t\t\t\t\t\t</Button>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\t\t\t\t<div className='absolute -bottom-[75px] left-4'>\n\t\t\t\t\t<img\n\t\t\t\t\t\tsrc={`${registryUrl}/static/images/avatars/4.jpeg`}\n\t\t\t\t\t\talt='Avatar'\n\t\t\t\t\t\twidth={\"130px\"}\n\t\t\t\t\t\theight={\"130px\"}\n\t\t\t\t\t\tclassName='object-cover rounded-full border-[10px] border-background'\n\t\t\t\t\t/>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div className='w-full flex flex-col gap-2 p-4'>\n\t\t\t\t<div className='flex justify-between'>\n\t\t\t\t\t<div className='mt-[60px]'>\n\t\t\t\t\t\t<h2 className='text-foreground text-2xl font-bold'>\n\t\t\t\t\t\t\tDilane Kombou\n\t\t\t\t\t\t</h2>\n\n\t\t\t\t\t\t<div className='flex flex-col mt-1'>\n\t\t\t\t\t\t\t<span className='text-foreground/70 font-medium text-sm'>\n\t\t\t\t\t\t\t\tFrontend Developer\n\t\t\t\t\t\t\t</span>\n\n\t\t\t\t\t\t\t<span className='text-foreground/70 font-medium text-sm'>\n\t\t\t\t\t\t\t\tYaoundé, Cameroon\n\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<div className='flex items-center gap-2 text-foreground/70 '>\n\t\t\t\t\t\t\t<span>\n\t\t\t\t\t\t\t\t<Briefcase size={16} />\n\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t\t<span className='font-medium text-sm'>Rasengan Labs</span>\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<Badge variant={\"outline\"} className='mt-2'>\n\t\t\t\t\t\t\tCEO, Founder\n\t\t\t\t\t\t</Badge>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\t\t\t\t<div className='flex items-center gap-4 mt-2'>\n\t\t\t\t\t<div className='flex items-center gap-1 text-foreground'>\n\t\t\t\t\t\t<span className='font-medium text-lg'>892</span>\n\t\t\t\t\t\t<span className='text-sm'>Followers</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div className='flex items-center gap-1 text-foreground'>\n\t\t\t\t\t\t<span className='font-medium text-lg'>576</span>\n\t\t\t\t\t\t<span className='text-sm'>Connections</span>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\t\t\t\t<div className='flex items-center gap-2 mt-2'>\n\t\t\t\t\t<Button className='rounded-lg'>\n\t\t\t\t\t\t<UserPlus />\n\t\t\t\t\t\t<span>Follow</span>\n\t\t\t\t\t</Button>\n\n\t\t\t\t\t<Button variant={\"outline\"} className='rounded-lg text-foreground/70'>\n\t\t\t\t\t\t<Ellipsis />\n\t\t\t\t\t\t<span>More</span>\n\t\t\t\t\t</Button>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</article>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}
