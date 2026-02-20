@@ -2,14 +2,14 @@
   "name": "@rasengan-ui/data-ui",
   "version": "0.1.0",
   "description": "Meta model definitions for Futon website builder",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs",
-      "default": "./dist/index.js"
+      "default": "./dist/index.cjs"
     }
   },
   "scripts": {
