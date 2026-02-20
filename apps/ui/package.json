@@ -5,7 +5,8 @@
 	"type": "module",
 	"scripts": {
 		"dev": "rasengan dev",
-		"build": "rasengan build",
+		"build": "pnpm packages:build && rasengan build",
+	    "packages:build": "pnpm --filter @rasengan-ui/data-ui build",
 		"registry:build": "pnpm dlx shadcn@latest build",
 		"serve": "rasengan-serve ./dist"
 	},

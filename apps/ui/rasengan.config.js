@@ -6,6 +6,8 @@ import { configure } from "@rasenganjs/vercel";
 
 export default defineConfig(async () => {
 	return {
+		ssr: false,
+		prerender: true,
 		vite: {
 			plugins: [rasengan({ adapter: configure() }), tailwindcss(), mdx()],
 
