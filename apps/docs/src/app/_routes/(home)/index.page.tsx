@@ -51,7 +51,7 @@ const Page: PageComponent = () => {
 			</section>
 
 			{/* Components Preview */}
-			<section className='relative mt-20 flex flex-col border-t-[1px] border-t-border'>
+			<section className='relative mt-20 flex flex-col border-y-[1px] border-y-border'>
 				<div className="w-full p-2">
 					<Tabs defaultValue="example">
 						<TabsList variant="line" className="h-[40px]">
