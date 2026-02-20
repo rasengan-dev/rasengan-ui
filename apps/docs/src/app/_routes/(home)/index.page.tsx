@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link, PageComponent } from "rasengan";
 import TestimonialsSection from "@/components/features/sections/testimonials";
-import FaqSection from "@/components/features/sections/faq";
 import { AnnouncementBadge } from "@/components/common/molecules/announcement-badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import HeroExample from "@/components/features/examples/landing/hero";
@@ -34,7 +33,7 @@ const Page: PageComponent = () => {
 					</span>
 				</p>
 				<div className='mt-6 w-full items-center justify-center flex flex-col sm:flex-row gap-2 px-4'>
-					<Link to='/ui-components' className='w-full sm:w-auto'>
+					<Link to='/docs/components' className='w-full sm:w-auto'>
 						<Button className='w-full sm:w-auto'>Browse components</Button>
 					</Link>
 					<Link
@@ -75,30 +74,10 @@ const Page: PageComponent = () => {
 						</TabsContent>
 					</Tabs>
 				</div>
-				{/* <div className='w-full'>
-					{popularComponents[0].components.map((component) => (
-						<ComponentItem
-							key={component.component.label}
-							component={component.component}
-							category={popularComponents[0].category}
-							categoryLabel={
-								popularComponents[0].categoryLabel as ComponentCategoryLabel
-							}
-							groupName={component.groupName}
-							typeLabel={component.typeLabel}
-						/>
-					))}
-				</div> */}
 			</section>
-
-			{/* Pricing */}
-			{/* <PricingSection /> */}
 
 			{/* Testimonials */}
 			<TestimonialsSection />
-
-			{/* FAQ */}
-			{/* <FaqSection /> */}
 		</section>
 	);
 };

@@ -5,7 +5,6 @@ import {
 	ComponentCategory,
 	ComponentCategoryLabel,
 } from "@/data/components/type";
-import { capitalize } from "@/lib/utils";
 import { createStore } from "@rasenganjs/kurama";
 
 type State = {

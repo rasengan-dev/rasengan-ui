@@ -1,4 +1,4 @@
-import { Link, PageComponent, useParams } from "rasengan";
+import { defineStaticPaths, Link, PageComponent, useParams } from "rasengan";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Laptop2, Lock, Tablet } from "lucide-react";
@@ -129,5 +129,9 @@ Page.loader = async ({ params }) => {
 		},
 	};
 };
+
+Page.generatePaths = async () => {
+	return defineStaticPaths(templateProductsList.map(template => ({ name: template.slug })));
+}
 
 export default Page;

@@ -1,6 +1,6 @@
 import TemplateItem from "@/components/features/templates/template-item";
 import { Button } from "@/components/ui/button";
-import { Lock } from "lucide-react";
+import { ArrowRight, Lock } from "lucide-react";
 import { Link, PageComponent } from "rasengan";
 import { useTemplateStore } from "@/store/templates";
 
@@ -28,13 +28,13 @@ const Page: PageComponent = () => {
 					<Link to='#browse'>
 						<Button>Browse templates</Button>
 					</Link>
-					<Link to='/pricing' className='w-full sm:w-auto'>
+					<Link to='/docs/components' className='w-full sm:w-auto'>
 						<Button
 							className='w-full sm:w-auto text-foreground/70'
 							variant='outline'
 						>
-							<Lock />
-							<span>Unlock Premium</span>
+							<span>Explore components</span>
+							<ArrowRight />
 						</Button>
 					</Link>
 				</div>
