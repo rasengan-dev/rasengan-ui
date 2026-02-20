@@ -44,8 +44,8 @@ importers:
         specifier: ^1.0.0
         version: 1.1.3(react@19.2.4)
       '@rasenganjs/kurama':
-        specifier: ^1.0.0
-        version: 1.0.0(react-dom@19.2.4)(react@19.2.4)
+        specifier: ^1.0.1
+        version: 1.0.1(react-dom@19.2.4)(react@19.2.4)
       '@rasenganjs/mdx':
         specifier: 1.2.0-beta.7
         version: 1.2.0-beta.7(@types/react@19.2.10)(react-dom@19.2.4)(react@19.2.4)(rollup@4.57.1)(shiki@3.22.0)
@@ -1900,8 +1900,8 @@ packages:
       react: 19.2.4
     dev: false
 
-  /@rasenganjs/kurama@1.0.0(react-dom@19.2.4)(react@19.2.4):
-    resolution: {integrity: sha512-+JuG6o8DwOv8SEFBUQWLZBIOhLsU3ojGqeZVLYjbkjTwbUWYOAlOy8Y1VYNW+EBpfcTVFb0CBYcXEFIfpczRgg==}
+  /@rasenganjs/kurama@1.0.1(react-dom@19.2.4)(react@19.2.4):
+    resolution: {integrity: sha512-L+MzVz3Z70PQ/UINPwRh9ZJxDTCBQYeMBO+Qw++sSyheXCDGf3/bu6YEPQOn4gCOUHuJk8wffTdPgQGgOFg+FQ==}
     peerDependencies:
       react: ^18.3.1 || ^19.0.0
       react-dom: ^18.3.1 || ^19.0.0
