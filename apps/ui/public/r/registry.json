@@ -596,6 +596,300 @@
       ]
     },
     {
+      "name": "hero-01",
+      "type": "registry:block",
+      "title": "Hero with centered text only",
+      "description": "Hero with centered text only",
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/navbar-01"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/heroes/hero1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-02",
+      "type": "registry:block",
+      "title": "Hero with centered text and floating navbar",
+      "description": "Hero with centered text and floating navbar",
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/navbar-05"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/heroes/hero2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-03",
+      "type": "registry:block",
+      "title": "Hero with left text",
+      "description": "Hero with left text",
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/navbar-02"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/heroes/hero3.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-04",
+      "type": "registry:block",
+      "title": "Hero with left text",
+      "description": "Hero with left text",
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/navbar-02"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/heroes/hero4.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-05",
+      "type": "registry:block",
+      "title": "Hero with left text",
+      "description": "Hero with left text",
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/navbar-03"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/heroes/hero5.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-06",
+      "type": "registry:block",
+      "title": "Hero with centered text and image",
+      "description": "Hero with centered text and image",
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/navbar-03"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/heroes/hero6.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-07",
+      "type": "registry:block",
+      "title": "Hero with centered text and image",
+      "description": "Hero with centered text and image",
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/logo-01"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/heroes/hero7.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-08",
+      "type": "registry:block",
+      "title": "Hero with centered text and image",
+      "description": "Hero with centered text and image",
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/logo-01"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/heroes/hero8.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-09",
+      "type": "registry:block",
+      "title": "Hero with centered bottom text and background image",
+      "description": "Hero with centered bottom text and background image",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "@rasengan-ui/logo-01"
+      ],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/heroes/hero9.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-10",
+      "type": "registry:block",
+      "title": "Hero with left bottom text and background image",
+      "description": "Hero with left bottom text and background image",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "@rasengan-ui/logo-01"
+      ],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/heroes/hero10.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-11",
+      "type": "registry:block",
+      "title": "Hero with left bottom text and background image",
+      "description": "Hero with left bottom text and background image",
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/navbar-04"
+      ],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/heroes/hero11.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-12",
+      "type": "registry:block",
+      "title": "Hero with left bottom text and background image",
+      "description": "Hero with left bottom text and background image",
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/logo-01"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/heroes/hero12.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-13",
+      "type": "registry:block",
+      "title": "Hero with left bottom text and background image",
+      "description": "Hero with left bottom text and background image",
+      "registryDependencies": [
+        "button",
+        "badge",
+        "@rasengan-ui/logo-01"
+      ],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/heroes/hero13.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-14",
+      "type": "registry:block",
+      "title": "Hero with left bottom text and background image",
+      "description": "Hero with left bottom text and background image",
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/navbar-05"
+      ],
+      "dependencies": ["lucide-react", "@rasenganjs/theme"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/heroes/hero14.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-15",
+      "type": "registry:block",
+      "title": "Hero with left bottom text and background image",
+      "description": "Hero with left bottom text and background image",
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/navbar-01"
+      ],
+      "dependencies": ["@rasenganjs/theme"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/heroes/hero15.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-16",
+      "type": "registry:block",
+      "title": "Hero with logos",
+      "description": "Hero with logos",
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/navbar-01"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/heroes/hero16.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-17",
+      "type": "registry:block",
+      "title": "Hero with floating cards",
+      "description": "Hero with floating cards",
+      "registryDependencies": [
+        "button",
+        "@rasengan-ui/navbar-05"
+      ],
+      "dependencies": ["@rasenganjs/theme"],
+      "files": [
+        {
+          "path": "src/registry/marketing/page-sections/heroes/hero17.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "input-01",
       "type": "registry:block",
       "title": "Chatbot text input 1",

@@ -6,6 +6,7 @@
     "dev": "pnpm --filter @rasengan-ui/* dev",
     "build": "pnpm --filter @rasengan-ui/* build",
     "registry:build": "pnpm --filter @rasengan-ui/kit registry:build",
+    "packages:build": "pnpm --filter @rasengan-ui/data-ui build",
     "start": "pnpm --filter @rasengan-ui/* start",
     "lint": "pnpm -r lint",
     "test": "",

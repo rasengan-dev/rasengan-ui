@@ -28,12 +28,12 @@ Before using Rasengan UI, you must have:
 
 Supported setups include:
 
+* Rasengan.js
 * Next.js
 * Remix
 * Vite
 * React Router
 * TanStack
-* Rasengan.js
 
 If you can run `shadcn add`, you’re good to go.
 
@@ -54,6 +54,17 @@ This will configure:
 
 Rasengan UI **does not reconfigure** any of this.
 
+## Configure the registry
+
+For a nice experience while using `Rasengan UI`, we recommend you to first configure the registry into your `components.json` file.
+
+```json title="components.json"
+{
+  "registries": {
+    "@rasengan-ui": "https://registry.rasengan.dev/r/{name}.json"
+  }
+}
+```
 
 ## Using Rasengan UI components
 
@@ -64,13 +75,19 @@ You install them the same way you install shadcn components.
 ### Using the CLI
 
 ```bash
-npx shadcn@latest add <component-url>
+npx shadcn@latest add <component-id>
 ```
 
 Example:
 
 ```bash
-npx shadcn@latest add https://registry.rasengan.dev/components/marketing/hero-01
+npx shadcn@latest add https://registry.rasengan.dev/r/hero-10.json
+```
+
+or with the registry shortcut
+
+```bash
+npx shadcn@latest add @rasengan-ui/hero-10
 ```
 
 This will:

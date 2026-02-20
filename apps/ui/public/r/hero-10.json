@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hero-10",
+  "title": "Hero with left bottom text and background image",
+  "description": "Hero with left bottom text and background image",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "badge",
+    "button",
+    "@rasengan-ui/logo-01"
+  ],
+  "files": [
+    {
+      "path": "src/registry/marketing/page-sections/heroes/hero10.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { Badge } from \"@/components/ui/badge\";\nimport { ArrowUpRight } from \"lucide-react\";\nimport AppLogo from \"@/registry/application-ui/granulars/logos/logo1\";\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\n/**\n * Hero 10\n *\n * Hero with left bottom text and background image\n */\nexport const Hero10 = () => {\n\treturn (\n\t\t<section className='w-full h-screen min-h-[600px] max-h-[1000px] flex items-end justify-start relative overflow-hidden'>\n\t\t\t<div className='absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-4 md:px-10 py-8 max-w-[1500px] mx-auto'>\n\t\t\t\t<AppLogo size='sm' className='text-white' />\n\n\t\t\t\t<nav className='hidden md:block rounded-full h-12 px-4 py-2 backdrop-blur-sm border-white/30 bg-white/10 border-[1px]'>\n\t\t\t\t\t<ul className='flex items-center gap-8 text-white/70 text-sm'>\n\t\t\t\t\t\t<a href='#'>\n\t\t\t\t\t\t\t<li className='font-medium px-3 py-1 rounded-full hover:text-white'>\n\t\t\t\t\t\t\t\tHome\n\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<a href='#'>\n\t\t\t\t\t\t\t<li className='font-medium px-3 py-1 rounded-full hover:text-white'>\n\t\t\t\t\t\t\t\tAbout\n\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<a href='#'>\n\t\t\t\t\t\t\t<li className='font-medium px-3 py-1 rounded-full hover:text-white'>\n\t\t\t\t\t\t\t\tContact\n\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<a href='#'>\n\t\t\t\t\t\t\t<li className='font-medium px-3 py-1 rounded-full hover:text-white'>\n\t\t\t\t\t\t\t\tBlog\n\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</ul>\n\t\t\t\t</nav>\n\n\t\t\t\t<div className='flex gap-4'>\n\t\t\t\t\t<Button\n\t\t\t\t\t\tvariant={\"outline\"}\n\t\t\t\t\t\tclassName='rounded-full backdrop-blur-sm border-white/30 bg-white/10 text-white/70 h-12'\n\t\t\t\t\t>\n\t\t\t\t\t\t<span>Get in touch</span>\n\t\t\t\t\t\t<ArrowUpRight />\n\t\t\t\t\t</Button>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div className='z-10 w-full flex flex-col items-center md:items-start justify-end text-center px-4 md:px-10 pb-20'>\n\t\t\t\t<Badge className='mb-4 px-4 py-2 rounded-full backdrop-blur-sm hover:bg-white/20 bg-white/10 text-white/70 cursor-default'>\n\t\t\t\t\tTrust by thousands of happy guests\n\t\t\t\t</Badge>\n\t\t\t\t<h1 className='text-[40px] lg:text-[60px] leading-[50px] lg:leading-[60px] max-w-[700px] font-bold text-center md:text-start text-white'>\n\t\t\t\t\tWhere every stay becomes a memory\n\t\t\t\t</h1>\n\t\t\t\t<p className='text-sm text-center md:text-start text-gray-300 max-w-[500px] mt-4'>\n\t\t\t\t\tExceptional villas in breath-taking destinations. We curate stays that\n\t\t\t\t\tfeel personal luxurious and unforgettable.\n\t\t\t\t</p>\n\n\t\t\t\t<div className='mt-10 flex gap-4'>\n\t\t\t\t\t<Button className='dark rounded-full h-12'>\n\t\t\t\t\t\t<span>Book your stay</span>\n\t\t\t\t\t\t<ArrowUpRight />\n\t\t\t\t\t</Button>\n\n\t\t\t\t\t<Button\n\t\t\t\t\t\tvariant={\"outline\"}\n\t\t\t\t\t\tclassName='rounded-full border-white/30 bg-white/10 text-white/70 h-12'\n\t\t\t\t\t>\n\t\t\t\t\t\t<span>Explore villas</span>\n\t\t\t\t\t</Button>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div className='absolute top-0 left-0 right-0 bottom-0 w-full h-full'>\n\t\t\t\t<img\n\t\t\t\t\tsrc={`${registryUrl}/static/images/bg/9.jpeg`}\n\t\t\t\t\talt='Background Image'\n\t\t\t\t\tclassName='object-cover w-full h-full'\n\t\t\t\t\twidth={\"100%\"}\n\t\t\t\t\theight={\"100%\"}\n\t\t\t\t/>\n\t\t\t</div>\n\n\t\t\t<div className='absolute inset-0 bg-gradient-to-b from-transparent to-black/80'></div>\n\t\t</section>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

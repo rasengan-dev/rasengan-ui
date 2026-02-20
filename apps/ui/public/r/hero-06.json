@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hero-06",
+  "title": "Hero with centered text and image",
+  "description": "Hero with centered text and image",
+  "dependencies": [],
+  "registryDependencies": [
+    "button",
+    "@rasengan-ui/navbar-03"
+  ],
+  "files": [
+    {
+      "path": "src/registry/marketing/page-sections/heroes/hero6.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { Navbar1 } from \"@/registry/marketing/elements/headers/navbar1\";\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\n/**\n * Hero 6\n *\n * Hero with centered text and image\n */\nexport const Hero6 = () => {\n\treturn (\n\t\t<section className='w-full min-h-[800px] flex flex-col items-center relative overflow-hidden pb-20'>\n\t\t\t<div className='absolute top-0 left-0 right-0 z-20 max-w-[1500px] mx-auto'>\n\t\t\t\t<Navbar1 className='bg-transparent border-0' />\n\t\t\t</div>\n\n\t\t\t<div className='z-20 w-full flex flex-col items-center justify-center text-center px-4 mt-28'>\n\t\t\t\t<h1 className='text-[40px] lg:text-[60px] leading-[50px] lg:leading-[60px] max-w-[600px] lg:max-w-[1000px] font-bold text-center text-foreground'>\n\t\t\t\t\tManage Your Development Tasks with Ease\n\t\t\t\t</h1>\n\t\t\t\t<p className='text-lg text-center text-foreground max-w-[700px] mt-4'>\n\t\t\t\t\tUnlock the full potential of your startup with our tailored services\n\t\t\t\t\tdesigned to guide you through every stage of growth.\n\t\t\t\t</p>\n\n\t\t\t\t<div className='mt-10 flex gap-4'>\n\t\t\t\t\t<Button className='rounded-full'>Start Free Trial</Button>\n\t\t\t\t\t<Button\n\t\t\t\t\t\tvariant={\"outline\"}\n\t\t\t\t\t\tclassName='rounded-full border-foreground'\n\t\t\t\t\t>\n\t\t\t\t\t\tContact Sales\n\t\t\t\t\t</Button>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div className='relative z-10 mt-6'>\n\t\t\t\t<div className='relative z-10 px-4'>\n\t\t\t\t\t<img\n\t\t\t\t\t\tsrc={`${registryUrl}/static/images/hero/2.png`}\n\t\t\t\t\t\talt='Background Image'\n\t\t\t\t\t\tclassName='object-cover max-w-[1200px] w-full h-auto rounded-3xl '\n\t\t\t\t\t\twidth={\"100%\"}\n\t\t\t\t\t\theight={\"auto\"}\n\t\t\t\t\t/>\n\t\t\t\t</div>\n\n\t\t\t\t<div className='absolute inset-0 bg-[#699cf4] rounded-3xl blur-[100px]'></div>\n\t\t\t</div>\n\n\t\t\t<div className='absolute top-0 left-0 right-0 bottom-0 w-full h-full'>\n\t\t\t\t<img\n\t\t\t\t\tsrc={`${registryUrl}/static/images/bg/3.png`}\n\t\t\t\t\talt='Background Image'\n\t\t\t\t\tclassName='object-cover w-full h-full'\n\t\t\t\t\twidth={\"100%\"}\n\t\t\t\t\theight={\"100%\"}\n\t\t\t\t/>\n\t\t\t</div>\n\t\t</section>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

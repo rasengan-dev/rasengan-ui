@@ -18,6 +18,7 @@
 		"@radix-ui/react-slot": "^1.2.3",
 		"@radix-ui/react-tabs": "^1.1.12",
 		"@radix-ui/react-tooltip": "^1.2.6",
+		"@rasengan-ui/data-ui": "workspace:^",
 		"@rasenganjs/image": "^1.0.0",
 		"@rasenganjs/mdx": "^1.1.7",
 		"@rasenganjs/serve": "^1.1.0",
