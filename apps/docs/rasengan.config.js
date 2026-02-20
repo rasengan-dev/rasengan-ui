@@ -15,6 +15,9 @@ export default defineConfig(async () => {
 		// 	rsc: true
 		// },
 
+		prerender: true,
+		ssr: false,
+
 		// Vite configuration
 		vite: {
 			plugins: [rasengan({ adapter: configure() }), tailwindcss(), mdx()],

@@ -5,7 +5,8 @@
 	"type": "module",
 	"scripts": {
 		"dev": "rasengan dev -p 3000",
-		"build": "rasengan build",
+		"build": "pnpm packages:build && rasengan build",
+	    "packages:build": "pnpm --filter @rasengan-ui/data-ui build",
 		"serve": "rasengan-serve ./dist"
 	},
 	"dependencies": {
