@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "rasengan dev -p 3000",
 		"build": "pnpm packages:build && rasengan build",
-	    "packages:build": "pnpm --filter @rasengan-ui/data-ui build",
+		"packages:build": "pnpm --filter @rasengan-ui/data-ui build",
 		"serve": "rasengan-serve ./dist"
 	},
 	"dependencies": {
@@ -21,7 +21,7 @@
 		"@rasenganjs/mdx": "1.2.0-beta.7",
 		"@rasenganjs/serve": "^1.1.0",
 		"@rasenganjs/theme": "^1.0.1",
-		"@rasenganjs/vercel": "^1.0.0",
+		"@rasenganjs/vercel": "^1.1.3",
 		"@tailwindcss/vite": "^4.*",
 		"@vercel/analytics": "^1.5.0",
 		"algoliasearch": "^5.47.0",
