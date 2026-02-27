@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { productsList, templateProductsList } from "@/data/products";
 import { cn } from "@/lib/utils";
 import { Check, Eye } from "lucide-react";
-import { Link, PageComponent, useParams } from "rasengan";
+import { defineStaticPaths, Link, PageComponent, useParams } from "rasengan";
 import { useTemplateStore } from "@/store/templates";
 
 const Page: PageComponent = () => {
@@ -20,8 +20,8 @@ const Page: PageComponent = () => {
 				id='browse'
 				className='w-full flex flex-col lg:flex-row items-start justify-between mt-20 relative border-y border-y-border'
 			>
-				<div className='w-full min-h-[180px] flex flex-col border-b lg:border-b-0 lg:border-r lg:border-r-border'>
-					<div className='p-4 text-foreground flex flex-col justify-center h-full'>
+				<div className='w-full min-h-[180px] flex flex-col justify-between border-b lg:border-b-0 lg:border-r lg:border-r-border'>
+					<div className='p-4 h-[130px] text-foreground flex flex-col justify-center h-full'>
 						<p className='text-foreground/70 text-sm uppercase'>
 							{template?.heading}
 						</p>
@@ -29,13 +29,13 @@ const Page: PageComponent = () => {
 							{template?.name}
 						</h2>
 					</div>
-					<div className='w-full h-[50px] border-t border-t-border p-2 text-foreground flex items-center'>
+					<div className='w-full h-[50px] shrink-0 border-t border-t-border p-2 text-foreground flex items-center'>
 						<TemplateTechnologies />
 					</div>
 				</div>
 				<div className='w-20 h-[50px] lg:h-[180px]'></div>
 				<div className='w-full min-h-[180px] h-full flex flex-col justify-between border-t lg:border-t-0 lg:border-l lg:border-l-border'>
-					<div className='relative p-4 text-foreground flex flex-col justify-center gap-4 h-full'>
+					<div className='relative h-[130px] p-4 text-foreground flex flex-col justify-center gap-4 h-full'>
 						<p className='text-foreground/70 text-lg'>
 							{template?.description}
 						</p>
@@ -52,7 +52,7 @@ const Page: PageComponent = () => {
 							</p>
 						)}
 					</div>
-					<div className='w-full h-[50px] border-t border-t-border p-2 text-foreground flex items-center'>
+					<div className='w-full h-[50px] shrink-0 border-t border-t-border p-2 text-foreground flex items-center'>
 						<div className='flex gap-2'>
 							<Link to={`/preview/template/${templateName}`} target='_blank'>
 								<Button variant='outline' className='text-foreground'>
@@ -199,5 +199,9 @@ Page.loader = async ({ params }) => {
 		},
 	};
 };
+
+Page.generatePaths = async () => {
+	return defineStaticPaths(templateProductsList.map(template => ({ name: template.slug })));
+}
 
 export default Page;

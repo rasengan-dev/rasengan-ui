@@ -16,6 +16,7 @@ releases
 # Cache
 .vite
 .rasengan
+static
 
 # Editor directories and files
 .vscode/*

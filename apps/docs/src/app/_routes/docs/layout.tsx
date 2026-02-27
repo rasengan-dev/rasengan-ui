@@ -16,10 +16,6 @@ const Layout: LayoutComponent = () => {
 		<section className="w-full h-screen bg-background overflow-hidden docs">
 			<ScrollRestoration target={ref} alwaysToTop />
 
-			<div className='fixed top-0 left-0 right-0 z-30'>
-				<Navbar />
-			</div>
-
 			<section className='relative flex h-(--main-height) mt-[50px]'>
 				<div className='relative w-64 h-full overflow-x-hidden overflow-y-auto hidden lg:block'>
 					{/* Top blur mask */}
@@ -34,9 +30,9 @@ const Layout: LayoutComponent = () => {
 					<div className='absolute top-0 bottom-0 right-0 w-px bg-linear-to-b from-transparent via-border to-transparent'></div>
 				</div>
 
-				<div className={cn('fixed top-[50px] z-50 left-0 z-30 w-64 h-full lg:hidden transition-all duration-300 ease-in-out', open ? "" : "translate-x-[calc(-100%-20px)]")}>
+				<div className={cn('fixed top-[60px] z-30 left-0 w-64 h-full lg:hidden transition-all duration-300 ease-in-out', open ? "" : "translate-x-[calc(-100%-20px)]")}>
 					<div className='relative w-full h-full'>
-						<div className='absolute top-0 -right-20 z-30'>
+						<div className='absolute top-0 -right-20 z-30d'>
 							<Button size="icon" variant="default" onClick={() => setOpen(!open)} className='rounded-full'>
 								{!open ? <PanelLeftOpen /> : <PanelLeftClose />}
 							</Button>
