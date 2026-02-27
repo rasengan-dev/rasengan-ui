@@ -24,7 +24,7 @@ export const productsList = [
 				"Free updates",
 			],
 		},
-		link: "https://rasengan-ui.mychariow.shop/templates-pack",
+		link: "https://rasengan-ui.mychariow.shop/prd_8gsxvl",
 		isActive: true,
 		discount: {
 			percentage: 40,
