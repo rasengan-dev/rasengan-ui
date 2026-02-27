@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Rasengan UI Documentation
+    url: https://ui.rasengan.dev/docs
+    about: Check our documentation for guides and API references
+  - name: Rasengan UI Discord
+    url: https://discord.gg/rasengan
+    about: Join our community Discord for discussions and support
+  - name: Feature Requests
+    url: https://github.com/rasengan-dev/rasengan-ui/discussions/categories/ideas
+    about: Share and discuss feature ideas with the community

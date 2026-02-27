@@ -35,7 +35,7 @@ export default defineMDXConfig({
           <h2 className="text-xs font-semibold mt-0 mb-2 text-foreground/50">
             On This Page
           </h2>
-          <ul className="list-inside text-xs font-semibold text-foreground/10">
+          <ul className="list-inside text-xs font-semibold text-foreground/10 border-b pb-4">
             {toc.map((item, index) => (
               <>
                 <li key={index} className="py-1">

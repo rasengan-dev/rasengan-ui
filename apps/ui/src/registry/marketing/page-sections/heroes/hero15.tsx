@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { useTheme } from "@rasenganjs/theme";
 import { cn } from "@/lib/utils";
 import { Navbar1 } from "@/registry/marketing/elements/headers/navbar1";
 import { ComponentProps } from "react";
@@ -12,9 +11,8 @@ const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registr
  * Hero with left bottom text and background image
  */
 export const Hero15 = () => {
-  const { isDark } = useTheme();
   return (
-    <div className={cn("bg-background", isDark ? "dark" : "light")}>
+    <div className={cn("bg-background dark")}>
       <section className="w-full h-screen overflow-x-hiddenl ">
         <div
           className="fixed -top-20 sm:top-0 right-0

@@ -7,26 +7,23 @@ export const AdsCard = () => {
 	const { isDark } = useTheme();
 
 	return (
-		<div className='mt-4 border rounded-lg text-foreground bg-input/10 dark:bg-input/60 overflow-hidden'>
-			<img
-				src={isDark ? "/static/images/templates/plus-ultra/2.png" : "/static/images/templates/plus-ultra/1.png"}
-				className="w-full h-auto"
-			/>
+		<Link to='/templates/plus-ultra' target='_blank'>
+			<div className='mt-4 border rounded-lg text-foreground bg-input/10 dark:bg-input/60 overflow-hidden'>
+				<div className="p-2">
+					<img
+					src={isDark ? "/static/images/templates/plus-ultra/2.png" : "/static/images/templates/plus-ultra/1.png"}
+					className="w-full h-auto rounded-md border"
+				/>
+				</div>
 
-			<div className="p-4">
-				<h2 className='font-bold text-lg'>Discover Plus Ultra ✨</h2>
+				<div className="p-4">
+					<h2 className='font-bold text-lg'>Discover Plus Ultra ✨</h2>
 
-				<p className='text-foreground/70 my-4 text-sm text-pretty'>
-					A stunning and well crafted <span className="text-foreground font-bold">Portfolio website</span> to showcase your work in a nice way.
-				</p>
-
-				<Link to='/templates/plus-ultra' target='_blank'>
-					<Button className='h-10  w-full'>
-						<Rocket />
-						<span>Get Started</span>
-					</Button>
-				</Link>
+					<p className='text-foreground/70 mt-4 text-sm text-pretty'>
+						A stunning and well crafted <span className="text-foreground font-bold">Portfolio website</span> to showcase your work in a nice way.
+					</p>
+				</div>
 			</div>
-		</div>
+		</Link>
 	)
 }

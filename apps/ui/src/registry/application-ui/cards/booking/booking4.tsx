@@ -5,10 +5,10 @@ import {
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import { ComponentProps } from "react";
-import { twMerge } from "tailwind-merge";
 import { ArrowUpRight, Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Autoplay from "embla-carousel-autoplay";
+import { cn } from "@/lib/utils";
 
 type Props = {
 	className?: ComponentProps<"article">["className"];
@@ -19,7 +19,7 @@ const registryUrl = import.meta.env["RASENGAN_REGISTRY_URL"] || "https://registr
 export const BookingCard4 = ({ className }: Props) => {
 	return (
 		<article
-			className={twMerge(
+			className={cn(
 				"w-full max-w-[400px] rounded-2xl shadow-md bg-background dark:bg-input/40 overflow-hidden",
 				className
 			)}

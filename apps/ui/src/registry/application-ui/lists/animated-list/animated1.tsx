@@ -53,7 +53,7 @@ export default function AnimatedList1() {
 				</p>
 			</div>
 
-			<section className='w-full h-[500px] flex justify-between gap-2 px-4 md:px-20 pb-4'>
+			<section className='w-full max-w-[1400px] mx-auto h-[500px] flex justify-between gap-2 px-4 md:px-20 pb-4'>
 				{imageList.map((image) => (
 					<div
 						key={image.id}

@@ -1,13 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { useTheme } from "@rasenganjs/theme";
 import { cn } from "@/lib/utils";
 import { FloatingNavbar2 } from "@/registry/marketing/elements/headers/navbar5";
 
 export const Hero17 = () => {
-  const { isDark } = useTheme();
-
   return (
-    <div className={cn("bg-background", isDark ? "dark" : "light")}>
+    <div className={cn("bg-background dark")}>
       <section className="w-full h-screen overflow-x-hidden ">
         <div
           className="fixed -top-20 sm:top-0 right-0 left-0
