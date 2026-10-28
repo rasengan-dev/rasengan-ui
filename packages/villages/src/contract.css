@@ -1,21 +1,23 @@
 /*
  * Rasengan UI token contract (RFC-0002, "Villages").
  *
- * Import after Tailwind and the engine variants, then the natures and the
- * villages the project uses:
+ * Import after Tailwind and the engine variants, then the villages the
+ * project uses, then the natures (last, so Onmyōton can override what a
+ * village derives):
  *
  *   @import "tailwindcss";
  *   @import "tw-animate-css";
  *   @import "./rasengan/variants.css";
  *   @import "./rasengan/contract.css";
- *   @import "./rasengan/natures.css";
  *   @import "./rasengan/villages/konoha.css";
+ *   @import "./rasengan/natures.css";
  *
- *   <html data-village="konoha" data-nature="katon">
+ *   <html data-village="konoha" data-nature="katon" data-tint="village">
  *
  * Components only use the Tailwind names below. A village sets the raw
- * values (--background, --radius, --control-md…); this file never does,
- * except for the colours it derives from the nature.
+ * values (--background, --radius, --control-md…); this file only gives
+ * defaults that a village may leave out, and the colours derived from the
+ * nature.
  */
 
 @theme inline {
@@ -38,8 +40,11 @@
 	--color-destructive-foreground: var(--destructive-foreground);
 	--color-border: var(--border);
 	--color-input: var(--input);
+	--color-input-bg: var(--input-bg);
 	--color-ring: var(--ring);
 	--color-overlay: var(--overlay);
+	--color-tooltip: var(--tooltip);
+	--color-tooltip-foreground: var(--tooltip-foreground);
 	--color-chart-1: var(--chart-1);
 	--color-chart-2: var(--chart-2);
 	--color-chart-3: var(--chart-3);
@@ -51,6 +56,9 @@
 	--radius-md: calc(var(--radius) * 0.8);
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) * 1.4);
+	--radius-control: var(--control-radius);
+	--radius-pill: var(--pill-radius);
+	--radius-check: var(--check-radius);
 
 	/* Type. */
 	--font-sans: var(--font-body);
@@ -58,16 +66,23 @@
 	--font-mono: var(--font-code);
 	--tracking-display: var(--display-tracking);
 
-	/* Density: h-control, h-control-sm, h-control-lg, px-control-x. */
+	/* Controls: h-control(-sm/-lg), px-control-x, px-input-x, font-control, text-control,
+	 * font-control-weight, tracking-control (and case-control below). */
 	--spacing-control-sm: var(--control-sm);
 	--spacing-control: var(--control-md);
 	--spacing-control-lg: var(--control-lg);
 	--spacing-control-x: var(--control-px);
+	--spacing-input-x: var(--input-px);
+	--font-control: var(--control-font);
+	--text-control: var(--control-text);
+	--font-weight-control-weight: var(--control-weight);
+	--tracking-control: var(--control-tracking);
 
 	/* Depth. */
 	--shadow-sm: var(--elevation-sm);
 	--shadow-md: var(--elevation-md);
 	--shadow-lg: var(--elevation-lg);
+	--shadow-input: var(--input-shadow);
 	--blur-surface: var(--surface-blur);
 
 	/* Motion: the ease-out and ease-in-out utilities follow the village. */
@@ -79,6 +94,26 @@
 @utility border-village {
 	border-style: solid;
 	border-width: var(--border-width);
+}
+
+/* Iwa writes its control labels in capitals; the others leave them as written. */
+@utility case-control {
+	text-transform: var(--control-case);
+}
+
+/* Focus as the village draws it: a halo (Konoha, Kiri) or a ring with a gap (Iwa). Use with focus-visible:. */
+@utility focus-ring {
+	outline: var(--focus-width) solid var(--ring);
+	outline-offset: var(--focus-offset);
+}
+
+/* Press as the village feels it: Konoha and Kiri scale down, Iwa sinks into its shadow. */
+@utility pressable {
+	&:active:not(:disabled, [data-disabled]) {
+		scale: var(--press-scale);
+		translate: var(--press-offset) var(--press-offset);
+		box-shadow: var(--press-shadow);
+	}
 }
 
 /* Durations from the village, for transitions and tw-animate-css alike. */
@@ -95,14 +130,54 @@
 	transition-duration: var(--motion-slow);
 }
 
+/* Defaults a village may leave out. Zero specificity: any village rule wins. */
+:where([data-village]) {
+	--card-foreground: var(--foreground);
+	--popover: var(--card);
+	--popover-foreground: var(--foreground);
+	--accent-foreground: var(--foreground);
+	--tooltip: var(--foreground);
+	--tooltip-foreground: var(--background);
+	--input-bg: var(--background);
+	--input-shadow: none;
+	--input-px: calc(var(--control-px) * 0.75);
+	--control-font: var(--font-body);
+	--control-text: 0.875rem;
+	--control-weight: 500;
+	--control-tracking: 0em;
+	--control-case: none;
+	--pill-radius: 9999px;
+	--check-radius: calc(var(--control-radius) * 0.45);
+	--focus-width: 3px;
+	--focus-offset: 0px;
+	--ring-alpha: 50%;
+	--press-scale: 0.98;
+	--press-offset: 0px;
+	--press-shadow: var(--elevation-sm);
+	--surface-blur: 0px;
+	--texture: none;
+}
+
+/*
+ * The tint: every grey a village declares multiplies its chroma by --tint,
+ * so data-tint="neutral" turns them into pure greys (destructive excepted).
+ */
+[data-tint="village"] {
+	--tint: 1;
+}
+[data-tint="neutral"] {
+	--tint: 0;
+}
+
 /*
  * The nature gives the hue; the village gives how strong it is (lightness
- * and chroma, per mode). Declared on every element that sets either, so a
- * nested village or nature recomputes them.
+ * and chroma, per mode) and the text that sits on it. Declared on every
+ * element that sets either, so a nested village or nature recomputes them.
  */
 :where([data-village], [data-nature]) {
 	--primary: oklch(var(--primary-l) var(--primary-c) var(--nature-hue));
-	--ring: oklch(var(--primary-l) var(--primary-c) var(--nature-hue) / 55%);
+	--primary-foreground: var(--on-primary);
+	--ring: oklch(var(--primary-l) var(--primary-c) var(--nature-hue) / var(--ring-alpha));
 	--chart-1: oklch(var(--chart-l) var(--chart-c) var(--nature-hue));
 	--chart-2: oklch(var(--chart-l) var(--chart-c) calc(var(--nature-hue) + 72));
 	--chart-3: oklch(var(--chart-l) var(--chart-c) calc(var(--nature-hue) + 144));
@@ -113,6 +188,7 @@
 /* A village scope repaints itself: one section can wear another village. */
 [data-village] {
 	background-color: var(--background);
+	background-image: var(--texture);
 	color: var(--foreground);
 	font-family: var(--font-body);
 	-webkit-font-smoothing: antialiased;
@@ -132,5 +208,7 @@
 		--motion-fast: 0ms;
 		--motion-base: 0ms;
 		--motion-slow: 0ms;
+		--press-scale: 1;
+		--press-offset: 0px;
 	}
 }

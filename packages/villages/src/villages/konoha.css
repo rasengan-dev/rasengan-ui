@@ -1,6 +1,6 @@
 /*
  * Konoha, the Leaf (RFC-0002): warm neutrals, rounded, balanced. The default village.
- * Default nature: katon.
+ * Default nature: katon. Greys multiply their chroma by --tint (data-tint="neutral" → 0).
  */
 
 /* Default nature, only for a top-level village: a nested one keeps the nature it inherits. */
@@ -11,22 +11,27 @@
 [data-village="konoha"] {
 	/* Shape */
 	--radius: 0.625rem;
+	--control-radius: 0.5rem;
 	--border-width: 1px;
 
 	/* Type */
-	--font-body: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+	--font-body: "Figtree", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 	--font-heading: var(--font-body);
-	--font-code: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+	--font-code: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 	--display-tracking: -0.02em;
 
-	/* Density */
+	/* Controls */
 	--control-sm: 2rem;
 	--control-md: 2.25rem;
 	--control-lg: 2.75rem;
 	--control-px: 1rem;
+	--control-text: 0.875rem;
+	--control-weight: 500;
 
-	/* Depth */
-	--surface-blur: 0px;
+	/* Focus and press */
+	--focus-width: 3px;
+	--ring-alpha: 42%;
+	--press-scale: 0.98;
 
 	/* Motion */
 	--motion-fast: 120ms;
@@ -36,58 +41,62 @@
 	--motion-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 
 	/* Colour (light) */
-	--background: oklch(0.985 0.004 75);
-	--foreground: oklch(0.22 0.012 60);
+	--background: oklch(0.985 calc(0.004 * var(--tint, 1)) 75);
+	--foreground: oklch(0.22 calc(0.012 * var(--tint, 1)) 60);
 	--card: oklch(1 0 0);
-	--card-foreground: var(--foreground);
 	--popover: oklch(1 0 0);
-	--popover-foreground: var(--foreground);
-	--secondary: oklch(0.955 0.008 75);
-	--secondary-foreground: oklch(0.27 0.012 60);
-	--muted: oklch(0.955 0.008 75);
-	--muted-foreground: oklch(0.52 0.014 60);
-	--accent: oklch(0.94 0.012 75);
-	--accent-foreground: var(--foreground);
-	--destructive: oklch(0.58 0.22 27);
-	--destructive-foreground: oklch(0.99 0.005 75);
-	--border: oklch(0.905 0.01 75);
-	--input: oklch(0.88 0.012 75);
-	--overlay: oklch(0.2 0.02 60 / 40%);
+	--secondary: oklch(0.95 calc(0.008 * var(--tint, 1)) 75);
+	--secondary-foreground: oklch(0.27 calc(0.012 * var(--tint, 1)) 60);
+	--muted: oklch(0.95 calc(0.008 * var(--tint, 1)) 75);
+	--muted-foreground: oklch(0.5 calc(0.014 * var(--tint, 1)) 60);
+	--accent: oklch(0.94 calc(0.012 * var(--tint, 1)) 75);
+	--destructive: oklch(0.55 0.21 27);
+	--destructive-foreground: oklch(0.99 calc(0.005 * var(--tint, 1)) 75);
+	--border: oklch(0.9 calc(0.01 * var(--tint, 1)) 75);
+	--input: oklch(0.87 calc(0.012 * var(--tint, 1)) 75);
+	--input-bg: oklch(1 0 0);
+	--overlay: oklch(0.2 calc(0.02 * var(--tint, 1)) 60 / 40%);
 
-	--primary-l: 0.62;
-	--primary-c: 0.19;
-	--primary-foreground: oklch(0.99 0.005 75);
+	/* The nature's hue at this strength. 0.52 is the highest lightness at which white text
+	 * stays above 4.5:1 for every nature: green (futon) and blue (suiton) fail at 0.55. */
+	--primary-l: 0.52;
+	--primary-c: 0.18;
+	--on-primary: oklch(0.99 calc(0.005 * var(--tint, 1)) 75);
 	--chart-l: 0.66;
 	--chart-c: 0.16;
 
-	--elevation-sm: 0 1px 2px oklch(0.2 0.02 60 / 6%);
-	--elevation-md: 0 1px 2px oklch(0.2 0.02 60 / 6%), 0 6px 16px -4px oklch(0.2 0.02 60 / 12%);
-	--elevation-lg: 0 2px 4px oklch(0.2 0.02 60 / 6%), 0 24px 48px -16px oklch(0.2 0.02 60 / 28%);
+	/* Depth */
+	--elevation-sm: 0 1px 2px oklch(0.2 calc(0.02 * var(--tint, 1)) 60 / 8%);
+	--elevation-md: 0 1px 2px oklch(0.2 calc(0.02 * var(--tint, 1)) 60 / 6%), 0 6px 16px -4px oklch(0.2 calc(0.02 * var(--tint, 1)) 60 / 12%);
+	--elevation-lg: 0 2px 4px oklch(0.2 calc(0.02 * var(--tint, 1)) 60 / 6%), 0 24px 48px -16px oklch(0.2 calc(0.02 * var(--tint, 1)) 60 / 28%);
+	--input-shadow: 0 1px 2px oklch(0.2 calc(0.02 * var(--tint, 1)) 60 / 5%);
 }
 
 :is(.dark [data-village="konoha"], [data-village="konoha"].dark) {
-	--background: oklch(0.17 0.008 60);
-	--foreground: oklch(0.96 0.006 75);
-	--card: oklch(0.205 0.009 60);
-	--popover: oklch(0.22 0.01 60);
-	--secondary: oklch(0.26 0.01 60);
+	--background: oklch(0.17 calc(0.008 * var(--tint, 1)) 60);
+	--foreground: oklch(0.96 calc(0.006 * var(--tint, 1)) 75);
+	--card: oklch(0.205 calc(0.009 * var(--tint, 1)) 60);
+	--popover: oklch(0.22 calc(0.01 * var(--tint, 1)) 60);
+	--secondary: oklch(0.26 calc(0.01 * var(--tint, 1)) 60);
 	--secondary-foreground: var(--foreground);
-	--muted: oklch(0.26 0.01 60);
-	--muted-foreground: oklch(0.7 0.012 70);
-	--accent: oklch(0.28 0.012 60);
+	--muted: oklch(0.26 calc(0.01 * var(--tint, 1)) 60);
+	--muted-foreground: oklch(0.72 calc(0.012 * var(--tint, 1)) 70);
+	--accent: oklch(0.28 calc(0.012 * var(--tint, 1)) 60);
 	--destructive: oklch(0.68 0.19 25);
-	--destructive-foreground: oklch(0.17 0.008 60);
+	--destructive-foreground: oklch(0.17 calc(0.008 * var(--tint, 1)) 60);
 	--border: oklch(1 0 0 / 10%);
-	--input: oklch(1 0 0 / 15%);
+	--input: oklch(1 0 0 / 16%);
+	--input-bg: oklch(1 0 0 / 4%);
 	--overlay: oklch(0 0 0 / 60%);
 
-	--primary-l: 0.72;
-	--primary-c: 0.17;
-	--primary-foreground: oklch(0.18 0.01 60);
+	--primary-l: 0.74;
+	--primary-c: 0.16;
+	--on-primary: oklch(0.18 calc(0.01 * var(--tint, 1)) 60);
 	--chart-l: 0.72;
 	--chart-c: 0.15;
 
 	--elevation-sm: 0 1px 2px oklch(0 0 0 / 30%);
 	--elevation-md: 0 1px 2px oklch(0 0 0 / 30%), 0 8px 20px -6px oklch(0 0 0 / 45%);
-	--elevation-lg: 0 2px 4px oklch(0 0 0 / 30%), 0 28px 56px -16px oklch(0 0 0 / 60%);
+	--elevation-lg: 0 24px 56px -16px oklch(0 0 0 / 65%);
+	--input-shadow: none;
 }

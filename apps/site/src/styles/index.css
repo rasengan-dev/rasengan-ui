@@ -1,11 +1,13 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-/* What a project gets from `rasengan-ui init`, read from the sources. */
+/* What a project gets from `rasengan-ui init`, read from the sources: contract, villages, then natures. */
 @import '../../../../packages/core/src/variants.css';
 @import '../../../../packages/villages/src/contract.css';
-@import '../../../../packages/villages/src/natures.css';
 @import '../../../../packages/villages/src/villages/konoha.css';
+@import '../../../../packages/villages/src/villages/kiri.css';
+@import '../../../../packages/villages/src/villages/iwa.css';
+@import '../../../../packages/villages/src/natures.css';
 
 /* Components live outside the app; let Tailwind see their classes. */
 @source '../../../../registry/components';

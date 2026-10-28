@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { Moon, Sun } from 'lucide-react';
-import { natures, villages, defaultVillage, type Nature, type Village } from '@rasengan-ui/villages';
+import { natures, tints, villages, defaultTint, defaultVillage, type Nature, type Tint, type Village } from '@rasengan-ui/villages';
 import { Button } from '@/components/ui/button';
 
 /**
- * Village, nature and light/dark for the whole page. They are set on <html>,
+ * Village, nature, tint and light/dark for the whole page. They are set on <html>,
  * not on a wrapper, because popups (dialog, menus) render in a portal on <body>.
  */
 export function VillageToolbar() {
   const [village, setVillage] = useState<Village>(defaultVillage);
   const [nature, setNature] = useState<Nature>(villages[defaultVillage].defaultNature);
+  const [tint, setTint] = useState<Tint>(defaultTint);
   const [dark, setDark] = useState(false);
 
   useEffect(() => setDark(window.matchMedia('(prefers-color-scheme: dark)').matches), []);
@@ -18,8 +19,9 @@ export function VillageToolbar() {
     const html = document.documentElement;
     html.dataset.village = village;
     html.dataset.nature = nature;
+    html.dataset.tint = tint;
     html.classList.toggle('dark', dark);
-  }, [village, nature, dark]);
+  }, [village, nature, tint, dark]);
 
   return (
     <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
@@ -42,6 +44,13 @@ export function VillageToolbar() {
           >
             <span data-nature={name} className="size-2.5 rounded-full bg-primary" aria-hidden />
             {natures[name].title}
+          </Button>
+        ))}
+      </Group>
+      <Group label="Greys">
+        {(Object.keys(tints) as Tint[]).map((name) => (
+          <Button key={name} size="sm" variant={name === tint ? 'secondary' : 'ghost'} aria-pressed={name === tint} onClick={() => setTint(name)}>
+            {tints[name].title}
           </Button>
         ))}
       </Group>

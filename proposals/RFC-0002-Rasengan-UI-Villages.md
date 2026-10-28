@@ -1,6 +1,6 @@
 # RFC-0002: Rasengan UI — components on Base UI, themed by villages
 
-- Status: Draft (rollout step 1, Foundations, implemented on `feat/ui-next`)
+- Status: Draft (foundations implemented on `feat/ui-next`; implementation plan step 1, the token contract, in progress)
 - Author: Dilane Kombou
 - Created: 2026-10-28
 - Supersedes: RFC-0001 for everything except the block content contract (`schema.ts`, `example.ts`, `meta.ts`), which is kept
@@ -16,9 +16,12 @@ afterwards. Three things set it apart:
    depth, texture, motion and palette), not a colour swap. Villages are
    named after the hidden villages of the Naruto universe: Konoha, Kiri,
    Iwa, Kumo, Suna, Uzushio…
-2. **Two axes.** A village is combined with a *nature* (the chakra natures:
-   Katon, Suiton, Raiton, Futon, Doton), which gives the accent hue. Any
-   village works with any nature: `konoha × katon`, `iwa × suiton`.
+2. **Two axes and a tint.** A village is combined with a *nature* (the
+   chakra natures: Katon, Suiton, Raiton, Futon, Doton, and Onmyōton, the
+   black-and-white one), which gives the accent. Any village works with any
+   nature: `konoha × katon`, `iwa × suiton`. A *tint* switch keeps the
+   village's own greys or makes them neutral; `onmyoton` with neutral greys
+   is the shadcn black-and-white look.
 3. **Switchable at runtime.** Components never hard-code a choice that
    belongs to a village. Switching village, or giving one section its own
    village, is an HTML attribute, not a reinstall.
@@ -72,7 +75,7 @@ villages.
 | Topic | Decision |
 |---|---|
 | Positioning | Villages are the main bet: whole design languages, switchable at runtime |
-| Theme axes | Two: village (design language) × nature (accent hue) |
+| Theme axes | Two: village (design language) × nature (accent hue), plus a tint switch (village greys or neutral greys) |
 | Engine | Base UI now, Radix later, as source variants of each component |
 | CLI | Own CLI `rasengan-ui`; the registry stays shadcn-compatible |
 | First scope | About 25 components and 3 villages done properly |
@@ -170,16 +173,26 @@ A village sets every token in the contract. Components use only contract
 tokens through Tailwind utilities (`bg-primary`, `rounded-lg`,
 `h-control`, `border-(length:--border-width)`…).
 
-**The contract** (`packages/villages/src/contract.css`, about 50 tokens):
+**The contract** (`packages/villages/src/contract.css`, about 70 tokens). The
+design canvas (27 components × 3 villages) showed which choices a village
+must be able to make; each became a token:
 
-| Group | Tokens | Notes |
-|---|---|---|
-| Colour | `background` `foreground` `card` `popover` `primary` `secondary` `muted` `accent` `destructive` (+ `-foreground`), `border` `input` `ring` `chart-1…5` | shadcn names, so shadcn components follow the village |
-| Shape | `--radius` → `radius-sm…xl`, `--border-width` | Iwa: 0 radius, 2px borders |
-| Type | `--font-sans` `--font-display` `--font-mono`, `--tracking-display` | |
-| Density | `--control-sm` `--control-md` `--control-lg` (control heights), `--control-px` | Iwa is dense, Kiri is airy |
-| Depth | `--shadow-sm` `--shadow-md` `--shadow-lg`, `--surface-blur` | Kiri: translucent popovers with blur |
-| Motion | `--duration-fast` `--duration-base` `--duration-slow`, `--ease-out` `--ease-in-out` | Read by `packages/motion` too |
+| Group | Village sets | Components use | Notes |
+|---|---|---|---|
+| Colour | `--background` `--foreground` `--card` `--popover` `--secondary` `--muted` `--accent` `--destructive` (+ `-foreground`), `--border` `--input` `--overlay`, `--tooltip` (+ `-foreground`) | `bg-background`, `text-muted-foreground`, `bg-overlay`… | shadcn names, so shadcn components follow the village |
+| Accent | `--primary-l` `--primary-c` (light and dark), `--on-primary` | `bg-primary`, `ring-ring` | The nature gives the hue (see below) |
+| Shape | `--radius`, `--control-radius`, `--pill-radius`, `--check-radius`, `--border-width` | `rounded-lg`, `rounded-control`, `rounded-pill`, `rounded-check`, `border-village` | Iwa: everything 0 and 2px borders; Kiri: 16 / 14 |
+| Type | `--font-body` `--font-heading` `--font-code`, `--display-tracking` | `font-sans` `font-display` `font-mono`, `tracking-display` | |
+| Controls | `--control-sm/md/lg`, `--control-px`, `--input-px`, `--control-font`, `--control-text`, `--control-weight`, `--control-tracking`, `--control-case` | `h-control`, `px-control-x`, `px-input-x`, `font-control`, `text-control`, `font-control-weight`, `tracking-control`, `case-control` | Iwa: mono uppercase labels |
+| Fields | `--input-bg`, `--input-shadow` | `bg-input-bg`, `shadow-input` | Kiri: glassy fields |
+| Depth | `--elevation-sm/md/lg`, `--surface-blur`, `--texture` | `shadow-sm…lg`, `backdrop-blur-surface` | Iwa: hard offset shadows; Kiri: blur and mist |
+| Focus | `--focus-width`, `--focus-offset` | `focus-ring` | Konoha 3px halo, Kiri 4px, Iwa 2px with a 2px gap |
+| Press | `--press-scale`, `--press-offset`, `--press-shadow` | `pressable` | Iwa sinks 3px into its shadow, others scale |
+| Motion | `--motion-fast/base/slow`, `--motion-ease-out/in-out` | `duration-base`, `ease-out` | Read by `packages/motion` too |
+
+Hover colours are not tokens: components mix the colour with
+`color-mix()` (`hover:bg-primary/90`), which works for every nature,
+including Onmyōton.
 
 **The nature axis.** A village does not choose the accent colour; it
 chooses how *strong* the accent is (lightness and chroma, per mode). The
@@ -189,6 +202,7 @@ nature chooses the hue:
 /* contract.css: recomputed on every element that sets a village or a nature */
 :where([data-village], [data-nature]) {
   --primary: oklch(var(--primary-l) var(--primary-c) var(--nature-hue));
+  --primary-foreground: var(--on-primary);
   --ring: oklch(var(--primary-l) var(--primary-c) var(--nature-hue) / 0.5);
 }
 /* natures.css */
@@ -199,11 +213,29 @@ nature chooses the hue:
 That is what makes the two axes independent: Kiri keeps any nature soft,
 Kumo keeps any nature electric.
 
+**Onmyōton** (yin–yang release) is the nature without a hue. The primary is
+the village's own ink, black on light and white on dark, with a grey focus
+ring; links keep their underline since colour no longer marks them. It is
+declared on every village element, so nested dark sections get white, not
+the page's black. Natures are imported after villages so that it wins.
+
+**The tint.** Every grey a village declares carries its chroma through a
+multiplier, and `data-tint="neutral"` sets it to 0:
+
+```css
+[data-village="konoha"] { --background: oklch(0.985 calc(0.004 * var(--tint, 1)) 75); }
+[data-tint="neutral"] { --tint: 0; }
+```
+
+Lightness, shape and type stay; the warmth (Konoha) or coolness (Kiri) of
+the greys goes. Destructive red is not multiplied. One source of truth, no
+generated file.
+
 **Scoping.** Villages and natures are set with attributes, on `<html>` or
 any element below it. Dark mode uses the shadcn `.dark` class:
 
 ```html
-<html data-village="konoha" data-nature="katon" class="dark">
+<html data-village="konoha" data-nature="katon" data-tint="village" class="dark">
   …
   <section data-village="iwa">…</section>
 </html>
@@ -224,8 +256,18 @@ soft shadows), Uzushio (Uzumaki red spirals, expressive motion), Ame/Oto
 (dark-first, editorial).
 
 Natures: Katon (fire, 48), Doton (earth, 75), Futon (wind, 160), Suiton
-(water, 240), Raiton (lightning, 290). Default nature per village: Konoha →
-Katon, Kiri → Suiton, Iwa → Doton, Kumo → Raiton, Suna → Futon.
+(water, 240), Raiton (lightning, 290), Onmyōton (yin–yang, no hue). Default
+nature per village: Konoha → Katon, Kiri → Suiton, Iwa → Doton, Kumo →
+Raiton, Suna → Futon.
+
+**Contrast is checked, not hoped for.** `pnpm contrast` computes every
+village × nature × scheme × tint combination from the CSS files and fails
+under 4.5:1 for text pairs (foreground on background, muted text, text on
+primary, secondary and destructive, links). Konoha's first primary (0.62)
+failed it with white text, and so did 0.55 for green and blue (futon 4.07,
+suiton 4.40): oklch lightness is perceptual, WCAG luminance is not. Konoha
+now uses 0.52. Focus rings are reported against 3:1 without failing: the
+42% halos of Konoha and Kiri are under it (open question 5).
 
 ### Components
 
@@ -283,6 +325,7 @@ village tokens, so a landing page restyles completely with the village. The
   "engine": "base",
   "village": "konoha",
   "nature": "katon",
+  "tint": "village",
   "css": "src/styles/index.css",
   "aliases": { "components": "@/components", "ui": "@/components/ui", "lib": "@/lib" },
   "registry": "https://registry.rasengan.dev/r"
@@ -294,7 +337,7 @@ village tokens, so a landing page restyles completely with the village. The
 | `init` | Detects the framework, checks Tailwind v4 and React 19, asks for engine, village and nature, writes the config, installs core and the village, adds the CSS imports and the `data-village`/`data-nature` attributes |
 | `add <name…>` | Installs components or blocks for the project's engine, with their dependencies |
 | `village list` / `village set <name>` / `village add <name>` | Lists, switches or installs villages (several can be installed for scoping) |
-| `nature set <name>` | Switches the nature |
+| `nature set <name>` / `tint set <village\|neutral>` | Switches the nature or the tint |
 | `diff [name]` | Shows what changed locally and upstream since install |
 | `update [name]` | 3-way merge between the installed version, the local file and the new version |
 | `doctor` | Checks config, CSS imports, versions, missing dependencies |
@@ -313,19 +356,39 @@ follow the MDX conventions of the Hiraiship docs.
 
 ## Rollout
 
-1. **Foundations** (this branch): layout, `packages/core`, contract,
-   Konoha, natures, `scripts/registry.mjs`, first components (button,
-   dialog), minimal site.
-2. **Villages**: Kiri and Iwa, village switcher on the site; adjust the
-   contract with what they reveal.
-3. **Components**: the first release list, in order of what blocks need.
-4. **CLI**: `init`, `add`, `village`, `nature`; then `diff`/`update` with the
-   lockfile.
-5. **Blocks**: rebuild the RFC-0001 blocks, then the rest of the P1 list.
-6. **Switch-over**: `apps/site` serves the v1 JSON files (copied as static
-   files at the same `/r/<name>.json` paths) and takes over
-   `registry.rasengan.dev`; `apps/ui` and `apps/docs` are then archived.
-7. **Radix engine**: `.radix.tsx` per component, `/r/radix/…`, `migrate`.
+**Done: foundations** (`feat/ui-next`, 519cc25): layout, `packages/core`,
+contract, Konoha, natures, `scripts/registry.mjs`, button and dialog,
+minimal site.
+
+The design was then explored on a canvas (27 components × Konoha, Kiri, Iwa
+× six natures × light/dark × tint) and in Figma (free plan, one variable
+mode: Theme and Primitives collections named for a later move to modes).
+The plan below implements it.
+
+1. **Token contract** (`packages/villages`): the contract above, Konoha
+   rewritten with the tint multiplier and a 0.55 primary, Kiri and Iwa as
+   real villages, Onmyōton, natures imported after villages, `pnpm contrast`.
+2. **Core** (`packages/core`): `VillageScope`, which sets the attributes and
+   gives Base UI portals a container inside the scope; more `ui-*` variants
+   as components need them.
+3. **Components** (`registry/components`), in dependency order, five
+   batches, each component meeting the quality gate:
+   1. Forms: input, label, field, textarea, checkbox, radio group, switch
+      (button and dialog aligned to the contract here)
+   2. Controls: toggle, toggle group, slider, select, separator
+   3. Display: badge, avatar, card, alert, skeleton, progress
+   4. Overlays: tooltip, popover, dropdown menu, alert dialog
+   5. Navigation: tabs, accordion, collapsible, scroll area, toast
+4. **Site** (`apps/site`): village, nature, tint and light/dark switcher, one
+   page per component, screenshots of every combination for visual review,
+   an axe pass.
+5. **CLI**: `init`, `add`, `village`, `nature`, `tint`; then the lockfile
+   with `diff` and `update`.
+6. **Then**: rebuild the RFC-0001 blocks; Kumo, Suna, Uzushio; Figma modes
+   once the team is on a paid plan; switch-over (`apps/site` serves the v1
+   JSON at the same `/r/<name>.json` paths and takes over
+   `registry.rasengan.dev`, `apps/ui` and `apps/docs` are archived); the
+   Radix engine (`.radix.tsx`, `/r/radix/…`, `migrate`).
 
 ## Alternatives considered
 
@@ -351,3 +414,6 @@ follow the MDX conventions of the Hiraiship docs.
    template with a village), or only set up existing ones?
 4. `packages/data` (the Futon meta model) has no place in this layout yet.
    Keep it here, or move it to the Futon project?
+5. Focus rings: the soft 42% halos of Konoha and Kiri are under the 3:1
+   WCAG asks of focus indicators (1.7–2.7:1). Keep the halo and add a thin
+   solid inner ring, raise the opacity, or accept it as a village trait?

@@ -1,0 +1,106 @@
+/*
+ * Kiri, the Mist (RFC-0002): soft contrast, translucent surfaces, airy controls, slow easing.
+ * Default nature: suiton. Greys multiply their chroma by --tint (data-tint="neutral" → 0).
+ */
+
+:where([data-village="kiri"]:not([data-village] *)) {
+	--nature-hue: 240;
+}
+
+[data-village="kiri"] {
+	/* Shape */
+	--radius: 1rem;
+	--control-radius: 0.875rem;
+	--border-width: 1px;
+
+	/* Type */
+	--font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+	--font-heading: var(--font-body);
+	--font-code: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+	--display-tracking: -0.02em;
+
+	/* Controls */
+	--control-sm: 2.25rem;
+	--control-md: 2.625rem;
+	--control-lg: 3.125rem;
+	--control-px: 1.25rem;
+	--input-px: 0.9375rem;
+	--control-text: 0.90625rem;
+	--control-weight: 600;
+
+	/* Focus and press */
+	--focus-width: 4px;
+	--ring-alpha: 42%;
+	--press-scale: 0.985;
+
+	/* Motion: slower, softer */
+	--motion-fast: 160ms;
+	--motion-base: 280ms;
+	--motion-slow: 480ms;
+	--motion-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+	--motion-ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+
+	/* Colour (light) */
+	--background: oklch(0.965 calc(0.008 * var(--tint, 1)) 235);
+	--foreground: oklch(0.3 calc(0.025 * var(--tint, 1)) 245);
+	--card: oklch(1 0 0 / 55%);
+	--popover: oklch(0.99 calc(0.004 * var(--tint, 1)) 235 / 82%);
+	--secondary: oklch(0.93 calc(0.014 * var(--tint, 1)) 235 / 80%);
+	--secondary-foreground: var(--foreground);
+	--muted: oklch(0.93 calc(0.012 * var(--tint, 1)) 235);
+	--muted-foreground: oklch(0.49 calc(0.022 * var(--tint, 1)) 245);
+	--accent: oklch(0.91 calc(0.016 * var(--tint, 1)) 235 / 80%);
+	--destructive: oklch(0.54 0.15 20);
+	--destructive-foreground: oklch(0.99 0 0);
+	--border: oklch(0.3 calc(0.025 * var(--tint, 1)) 245 / 10%);
+	--input: oklch(0.3 calc(0.025 * var(--tint, 1)) 245 / 14%);
+	--input-bg: oklch(1 0 0 / 60%);
+	--overlay: oklch(0.3 calc(0.03 * var(--tint, 1)) 245 / 22%);
+
+	--primary-l: 0.53;
+	--primary-c: 0.1;
+	--on-primary: oklch(0.99 0 0);
+	--chart-l: 0.6;
+	--chart-c: 0.09;
+
+	/* Depth: glass and mist */
+	--surface-blur: 18px;
+	--elevation-sm: 0 1px 2px oklch(0.3 calc(0.03 * var(--tint, 1)) 245 / 5%), 0 10px 24px -14px oklch(0.3 calc(0.04 * var(--tint, 1)) 245 / 30%);
+	--elevation-md: 0 2px 4px oklch(0.3 calc(0.03 * var(--tint, 1)) 245 / 6%), 0 16px 36px -18px oklch(0.3 calc(0.04 * var(--tint, 1)) 245 / 32%);
+	--elevation-lg: 0 24px 60px -20px oklch(0.3 calc(0.05 * var(--tint, 1)) 245 / 35%);
+	--input-shadow: inset 0 1px 0 oklch(1 0 0 / 70%);
+	--texture:
+		radial-gradient(60% 50% at 15% 10%, oklch(0.9 calc(0.03 * var(--tint, 1)) 220 / 70%), transparent 70%),
+		radial-gradient(50% 45% at 90% 85%, oklch(0.9 calc(0.03 * var(--tint, 1)) 260 / 60%), transparent 70%);
+}
+
+:is(.dark [data-village="kiri"], [data-village="kiri"].dark) {
+	--background: oklch(0.2 calc(0.015 * var(--tint, 1)) 245);
+	--foreground: oklch(0.93 calc(0.01 * var(--tint, 1)) 235);
+	--card: oklch(1 0 0 / 6%);
+	--popover: oklch(0.27 calc(0.018 * var(--tint, 1)) 245 / 82%);
+	--secondary: oklch(1 0 0 / 9%);
+	--muted: oklch(1 0 0 / 6%);
+	--muted-foreground: oklch(0.74 calc(0.015 * var(--tint, 1)) 240);
+	--accent: oklch(1 0 0 / 10%);
+	--destructive: oklch(0.72 0.12 20);
+	--destructive-foreground: oklch(0.2 calc(0.015 * var(--tint, 1)) 245);
+	--border: oklch(1 0 0 / 9%);
+	--input: oklch(1 0 0 / 14%);
+	--input-bg: oklch(1 0 0 / 5%);
+	--overlay: oklch(0.1 calc(0.02 * var(--tint, 1)) 245 / 55%);
+
+	--primary-l: 0.78;
+	--primary-c: 0.09;
+	--on-primary: oklch(0.2 calc(0.02 * var(--tint, 1)) 245);
+	--chart-l: 0.76;
+	--chart-c: 0.08;
+
+	--elevation-sm: 0 10px 24px -14px oklch(0 0 0 / 60%);
+	--elevation-md: 0 16px 36px -18px oklch(0 0 0 / 65%);
+	--elevation-lg: 0 24px 60px -20px oklch(0 0 0 / 70%);
+	--input-shadow: inset 0 1px 0 oklch(1 0 0 / 5%);
+	--texture:
+		radial-gradient(60% 50% at 15% 10%, oklch(0.32 calc(0.04 * var(--tint, 1)) 230 / 70%), transparent 70%),
+		radial-gradient(50% 45% at 90% 85%, oklch(0.3 calc(0.04 * var(--tint, 1)) 270 / 60%), transparent 70%);
+}

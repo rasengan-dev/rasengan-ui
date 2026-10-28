@@ -22,7 +22,7 @@ export default function DialogDemo() {
 				<input
 					type="email"
 					placeholder="sakura@konoha.dev"
-					className="h-control rounded-md border-village border-input bg-background px-3 text-sm outline-none focus-visible:ring-[3px] focus-visible:ring-ring"
+					className="h-control rounded-control border-village border-input bg-input-bg px-input-x text-sm shadow-input outline-none focus-visible:border-primary focus-visible:focus-ring"
 				/>
 				<DialogFooter>
 					<DialogClose render={<Button variant="ghost" />}>Cancel</DialogClose>

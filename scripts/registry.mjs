@@ -102,7 +102,7 @@ function sharedItems(url) {
 			name: "rasengan-theme",
 			type: "registry:file",
 			title: "Rasengan UI token contract",
-			description: "The tokens every village sets and every component reads, and the natures (accent hues).",
+			description: "The tokens every village sets and every component reads, the tint switch, and the natures (accent hues, and Onmyōton in black and white).",
 			dependencies: ["tw-animate-css"],
 			files: [
 				{ path: "packages/villages/src/contract.css", type: "registry:file", target: "styles/rasengan/contract.css" },

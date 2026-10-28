@@ -16,7 +16,8 @@
     "next:dev": "pnpm --filter @rasengan-ui/site dev",
     "next:build": "pnpm registry && pnpm --filter @rasengan-ui/site build",
     "registry": "node scripts/registry.mjs",
-    "typecheck": "pnpm --filter @rasengan-ui/core --filter @rasengan-ui/villages --filter @rasengan-ui/registry --filter @rasengan-ui/site --filter rasengan-ui typecheck"
+    "typecheck": "pnpm --filter @rasengan-ui/core --filter @rasengan-ui/villages --filter @rasengan-ui/registry --filter @rasengan-ui/site --filter rasengan-ui typecheck",
+    "contrast": "node scripts/contrast.mjs"
   },
   "engines": {
     "node": ">=20.18.0"
