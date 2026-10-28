@@ -1,0 +1,35 @@
+{
+	"compilerOptions": {
+		"target": "ES2022",
+		"lib": [
+			"ES2023",
+			"DOM",
+			"DOM.Iterable"
+		],
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"jsx": "react-jsx",
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"skipLibCheck": true,
+		"noEmit": true,
+		"isolatedModules": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/components/ui/button": [
+				"./components/button/button.base.tsx"
+			],
+			"@/components/ui/dialog": [
+				"./components/dialog/dialog.base.tsx"
+			],
+			"@/lib/utils": [
+				"../packages/core/src/utils.ts"
+			]
+		}
+	},
+	"include": [
+		"components",
+		"blocks"
+	]
+}

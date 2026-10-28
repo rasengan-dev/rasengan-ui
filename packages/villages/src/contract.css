@@ -1,0 +1,136 @@
+/*
+ * Rasengan UI token contract (RFC-0002, "Villages").
+ *
+ * Import after Tailwind and the engine variants, then the natures and the
+ * villages the project uses:
+ *
+ *   @import "tailwindcss";
+ *   @import "tw-animate-css";
+ *   @import "./rasengan/variants.css";
+ *   @import "./rasengan/contract.css";
+ *   @import "./rasengan/natures.css";
+ *   @import "./rasengan/villages/konoha.css";
+ *
+ *   <html data-village="konoha" data-nature="katon">
+ *
+ * Components only use the Tailwind names below. A village sets the raw
+ * values (--background, --radius, --control-md…); this file never does,
+ * except for the colours it derives from the nature.
+ */
+
+@theme inline {
+	/* shadcn names, so shadcn components follow the village too. */
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-destructive-foreground: var(--destructive-foreground);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+	--color-overlay: var(--overlay);
+	--color-chart-1: var(--chart-1);
+	--color-chart-2: var(--chart-2);
+	--color-chart-3: var(--chart-3);
+	--color-chart-4: var(--chart-4);
+	--color-chart-5: var(--chart-5);
+
+	/* Shape. Multiplied rather than subtracted, so a village with no radius stays at 0. */
+	--radius-sm: calc(var(--radius) * 0.6);
+	--radius-md: calc(var(--radius) * 0.8);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) * 1.4);
+
+	/* Type. */
+	--font-sans: var(--font-body);
+	--font-display: var(--font-heading);
+	--font-mono: var(--font-code);
+	--tracking-display: var(--display-tracking);
+
+	/* Density: h-control, h-control-sm, h-control-lg, px-control-x. */
+	--spacing-control-sm: var(--control-sm);
+	--spacing-control: var(--control-md);
+	--spacing-control-lg: var(--control-lg);
+	--spacing-control-x: var(--control-px);
+
+	/* Depth. */
+	--shadow-sm: var(--elevation-sm);
+	--shadow-md: var(--elevation-md);
+	--shadow-lg: var(--elevation-lg);
+	--blur-surface: var(--surface-blur);
+
+	/* Motion: the ease-out and ease-in-out utilities follow the village. */
+	--ease-out: var(--motion-ease-out);
+	--ease-in-out: var(--motion-ease-in-out);
+}
+
+/* The village's border width on every bordered element, like Tailwind's own 1px default. */
+@utility border-village {
+	border-style: solid;
+	border-width: var(--border-width);
+}
+
+/* Durations from the village, for transitions and tw-animate-css alike. */
+@utility duration-fast {
+	--tw-duration: var(--motion-fast);
+	transition-duration: var(--motion-fast);
+}
+@utility duration-base {
+	--tw-duration: var(--motion-base);
+	transition-duration: var(--motion-base);
+}
+@utility duration-slow {
+	--tw-duration: var(--motion-slow);
+	transition-duration: var(--motion-slow);
+}
+
+/*
+ * The nature gives the hue; the village gives how strong it is (lightness
+ * and chroma, per mode). Declared on every element that sets either, so a
+ * nested village or nature recomputes them.
+ */
+:where([data-village], [data-nature]) {
+	--primary: oklch(var(--primary-l) var(--primary-c) var(--nature-hue));
+	--ring: oklch(var(--primary-l) var(--primary-c) var(--nature-hue) / 55%);
+	--chart-1: oklch(var(--chart-l) var(--chart-c) var(--nature-hue));
+	--chart-2: oklch(var(--chart-l) var(--chart-c) calc(var(--nature-hue) + 72));
+	--chart-3: oklch(var(--chart-l) var(--chart-c) calc(var(--nature-hue) + 144));
+	--chart-4: oklch(var(--chart-l) var(--chart-c) calc(var(--nature-hue) + 216));
+	--chart-5: oklch(var(--chart-l) var(--chart-c) calc(var(--nature-hue) + 288));
+}
+
+/* A village scope repaints itself: one section can wear another village. */
+[data-village] {
+	background-color: var(--background);
+	color: var(--foreground);
+	font-family: var(--font-body);
+	-webkit-font-smoothing: antialiased;
+}
+
+@layer base {
+	[data-village] *,
+	[data-village] ::before,
+	[data-village] ::after {
+		border-color: var(--border);
+	}
+}
+
+/* Doubled attribute: wins over the village files, which set these at a lower specificity. */
+@media (prefers-reduced-motion: reduce) {
+	[data-village][data-village] {
+		--motion-fast: 0ms;
+		--motion-base: 0ms;
+		--motion-slow: 0ms;
+	}
+}

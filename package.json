@@ -3,16 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "pnpm --filter @rasengan-ui/* dev",
-    "build": "pnpm packages:build && pnpm --filter @rasengan-ui/* build",
+    "dev": "pnpm --filter '@rasengan-ui/*' --filter '!@rasengan-ui/site' dev",
+    "build": "pnpm packages:build && pnpm --filter '@rasengan-ui/*' --filter '!@rasengan-ui/site' build",
     "registry:build": "pnpm --filter @rasengan-ui/kit registry:build",
     "packages:build": "pnpm --filter @rasengan-ui/data-ui build",
-    "start": "pnpm --filter @rasengan-ui/* start",
+    "start": "pnpm --filter '@rasengan-ui/*' --filter '!@rasengan-ui/site' start",
     "lint": "pnpm -r lint",
     "test": "",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx,css,html}\" --write \"**/*.json\" --write \"**/*.{yml,yaml}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,css,html}\" --check \"**/*.json\" --check \"**/*.{yml,yaml}\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "next:dev": "pnpm --filter @rasengan-ui/site dev",
+    "next:build": "pnpm registry && pnpm --filter @rasengan-ui/site build",
+    "registry": "node scripts/registry.mjs",
+    "typecheck": "pnpm --filter @rasengan-ui/core --filter @rasengan-ui/villages --filter @rasengan-ui/registry --filter @rasengan-ui/site --filter rasengan-ui typecheck"
   },
   "engines": {
     "node": ">=20.18.0"

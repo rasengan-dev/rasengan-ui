@@ -1,0 +1,34 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"target": "ES2022",
+		"moduleResolution": "bundler",
+		"module": "ESNext",
+		"jsx": "react-jsx",
+		"paths": {
+			"@/components/ui/button": [
+				"../../registry/components/button/button.base.tsx"
+			],
+			"@/components/ui/dialog": [
+				"../../registry/components/dialog/dialog.base.tsx"
+			],
+			"@/lib/utils": [
+				"../../packages/core/src/utils.ts"
+			],
+			"@/registry/*": [
+				"../../registry/*"
+			],
+			"@/*": [
+				"src/*"
+			]
+		}
+	},
+	"include": [
+		"src",
+		"rasengan-env.d.ts",
+		"../../registry/components",
+		"../../packages/core/src",
+		"../../packages/villages/src"
+	],
+	"extends": "./node_modules/rasengan/tsconfig.base.json"
+}

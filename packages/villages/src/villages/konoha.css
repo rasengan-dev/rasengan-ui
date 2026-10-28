@@ -1,0 +1,93 @@
+/*
+ * Konoha, the Leaf (RFC-0002): warm neutrals, rounded, balanced. The default village.
+ * Default nature: katon.
+ */
+
+/* Default nature, only for a top-level village: a nested one keeps the nature it inherits. */
+:where([data-village="konoha"]:not([data-village] *)) {
+	--nature-hue: 48;
+}
+
+[data-village="konoha"] {
+	/* Shape */
+	--radius: 0.625rem;
+	--border-width: 1px;
+
+	/* Type */
+	--font-body: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+	--font-heading: var(--font-body);
+	--font-code: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+	--display-tracking: -0.02em;
+
+	/* Density */
+	--control-sm: 2rem;
+	--control-md: 2.25rem;
+	--control-lg: 2.75rem;
+	--control-px: 1rem;
+
+	/* Depth */
+	--surface-blur: 0px;
+
+	/* Motion */
+	--motion-fast: 120ms;
+	--motion-base: 200ms;
+	--motion-slow: 360ms;
+	--motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+	--motion-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+	/* Colour (light) */
+	--background: oklch(0.985 0.004 75);
+	--foreground: oklch(0.22 0.012 60);
+	--card: oklch(1 0 0);
+	--card-foreground: var(--foreground);
+	--popover: oklch(1 0 0);
+	--popover-foreground: var(--foreground);
+	--secondary: oklch(0.955 0.008 75);
+	--secondary-foreground: oklch(0.27 0.012 60);
+	--muted: oklch(0.955 0.008 75);
+	--muted-foreground: oklch(0.52 0.014 60);
+	--accent: oklch(0.94 0.012 75);
+	--accent-foreground: var(--foreground);
+	--destructive: oklch(0.58 0.22 27);
+	--destructive-foreground: oklch(0.99 0.005 75);
+	--border: oklch(0.905 0.01 75);
+	--input: oklch(0.88 0.012 75);
+	--overlay: oklch(0.2 0.02 60 / 40%);
+
+	--primary-l: 0.62;
+	--primary-c: 0.19;
+	--primary-foreground: oklch(0.99 0.005 75);
+	--chart-l: 0.66;
+	--chart-c: 0.16;
+
+	--elevation-sm: 0 1px 2px oklch(0.2 0.02 60 / 6%);
+	--elevation-md: 0 1px 2px oklch(0.2 0.02 60 / 6%), 0 6px 16px -4px oklch(0.2 0.02 60 / 12%);
+	--elevation-lg: 0 2px 4px oklch(0.2 0.02 60 / 6%), 0 24px 48px -16px oklch(0.2 0.02 60 / 28%);
+}
+
+:is(.dark [data-village="konoha"], [data-village="konoha"].dark) {
+	--background: oklch(0.17 0.008 60);
+	--foreground: oklch(0.96 0.006 75);
+	--card: oklch(0.205 0.009 60);
+	--popover: oklch(0.22 0.01 60);
+	--secondary: oklch(0.26 0.01 60);
+	--secondary-foreground: var(--foreground);
+	--muted: oklch(0.26 0.01 60);
+	--muted-foreground: oklch(0.7 0.012 70);
+	--accent: oklch(0.28 0.012 60);
+	--destructive: oklch(0.68 0.19 25);
+	--destructive-foreground: oklch(0.17 0.008 60);
+	--border: oklch(1 0 0 / 10%);
+	--input: oklch(1 0 0 / 15%);
+	--overlay: oklch(0 0 0 / 60%);
+
+	--primary-l: 0.72;
+	--primary-c: 0.17;
+	--primary-foreground: oklch(0.18 0.01 60);
+	--chart-l: 0.72;
+	--chart-c: 0.15;
+
+	--elevation-sm: 0 1px 2px oklch(0 0 0 / 30%);
+	--elevation-md: 0 1px 2px oklch(0 0 0 / 30%), 0 8px 20px -6px oklch(0 0 0 / 45%);
+	--elevation-lg: 0 2px 4px oklch(0 0 0 / 30%), 0 28px 56px -16px oklch(0 0 0 / 60%);
+}

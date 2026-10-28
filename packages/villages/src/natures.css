@@ -1,0 +1,24 @@
+/*
+ * Natures (RFC-0002, "Villages"): the accent hue, in oklch degrees.
+ * Import after contract.css and before the villages.
+ *
+ * A village gives the top-level scope its default nature (see the village
+ * files); a nested village keeps the nature it inherits, so the brand
+ * colour stays the same across sections.
+ */
+
+[data-nature="katon"] {
+	--nature-hue: 48;
+}
+[data-nature="doton"] {
+	--nature-hue: 75;
+}
+[data-nature="futon"] {
+	--nature-hue: 160;
+}
+[data-nature="suiton"] {
+	--nature-hue: 240;
+}
+[data-nature="raiton"] {
+	--nature-hue: 290;
+}

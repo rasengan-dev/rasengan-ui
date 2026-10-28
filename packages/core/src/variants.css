@@ -1,0 +1,22 @@
+/*
+ * Engine variants (RFC-0002, "Engines").
+ *
+ * Base UI and Radix mark state with different attributes (data-open vs
+ * data-state="open"). Components only use these variants, so one class
+ * string works on either engine:  ui-open:animate-in  ui-checked:bg-primary
+ *
+ * Import after Tailwind:  @import "tailwindcss";
+ *                          @import "./rasengan/variants.css";
+ */
+
+@custom-variant ui-open (&:where([data-open], [data-popup-open], [data-state="open"]));
+@custom-variant ui-closed (&:where([data-closed], [data-state="closed"]));
+@custom-variant ui-checked (&:where([data-checked], [data-state="checked"]));
+@custom-variant ui-unchecked (&:where([data-unchecked], [data-state="unchecked"]));
+@custom-variant ui-active (&:where([data-active], [data-state="active"]));
+@custom-variant ui-disabled (&:where([data-disabled], :disabled));
+@custom-variant ui-highlighted (&:where([data-highlighted]));
+@custom-variant ui-pressed (&:where([data-pressed], [data-state="on"]));
+
+/* shadcn's dark variant: `.dark` on <html> or on any ancestor. */
+@custom-variant dark (&:is(.dark *));

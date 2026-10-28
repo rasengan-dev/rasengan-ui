@@ -1,0 +1,23 @@
+{
+	"name": "@rasengan-ui/registry",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"description": "Rasengan UI components and blocks, as the CLI copies them into projects (RFC-0002). One source file per engine.",
+	"scripts": {
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@base-ui/react": "^1.9.0",
+		"@rasengan-ui/core": "workspace:*",
+		"class-variance-authority": "^0.7.1",
+		"lucide-react": "^1.63.0",
+		"react": "^19.2.0",
+		"react-dom": "^19.2.0"
+	},
+	"devDependencies": {
+		"@types/react": "^19.2.0",
+		"@types/react-dom": "^19.2.0",
+		"typescript": "^5.9.3"
+	}
+}
