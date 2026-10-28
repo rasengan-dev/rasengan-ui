@@ -62,9 +62,11 @@
 	--border: var(--foreground);
 	--input: var(--foreground);
 	--input-bg: var(--card);
+	--highlight: var(--foreground);
+	--highlight-foreground: var(--background);
 	--switch-track: var(--muted);
 	--switch-thumb: var(--foreground);
-	--switch-border: var(--foreground);
+	--track-border: var(--foreground);
 	--overlay: oklch(0.16 calc(0.005 * var(--tint, 1)) 85 / 45%);
 
 	--primary-l: 0.5;

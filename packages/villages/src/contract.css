@@ -45,9 +45,11 @@
 	--color-overlay: var(--overlay);
 	--color-tooltip: var(--tooltip);
 	--color-tooltip-foreground: var(--tooltip-foreground);
+	--color-highlight: var(--highlight);
+	--color-highlight-foreground: var(--highlight-foreground);
 	--color-switch-track: var(--switch-track);
 	--color-switch-thumb: var(--switch-thumb);
-	--color-switch-border: var(--switch-border);
+	--color-track-border: var(--track-border);
 	--color-chart-1: var(--chart-1);
 	--color-chart-2: var(--chart-2);
 	--color-chart-3: var(--chart-3);
@@ -141,9 +143,11 @@
 	--accent-foreground: var(--foreground);
 	--tooltip: var(--foreground);
 	--tooltip-foreground: var(--background);
+	--highlight: var(--accent);
+	--highlight-foreground: var(--accent-foreground);
 	--switch-track: var(--input);
 	--switch-thumb: var(--background);
-	--switch-border: transparent;
+	--track-border: transparent;
 	--input-bg: var(--background);
 	--input-shadow: none;
 	--input-px: calc(var(--control-px) * 0.75);

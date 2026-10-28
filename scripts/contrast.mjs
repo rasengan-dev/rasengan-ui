@@ -120,6 +120,7 @@ const TEXT = [
 	["--primary", "--background"],
 	["--destructive", "--background"],
 	["--tooltip-foreground", "--tooltip"],
+	["--highlight-foreground", "--highlight"],
 ];
 
 const failures = [];

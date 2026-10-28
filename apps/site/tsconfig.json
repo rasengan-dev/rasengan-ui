@@ -27,11 +27,26 @@
 			"@/components/ui/radio-group": [
 				"../../registry/components/radio-group/radio-group.base.tsx"
 			],
+			"@/components/ui/select": [
+				"../../registry/components/select/select.base.tsx"
+			],
+			"@/components/ui/separator": [
+				"../../registry/components/separator/separator.base.tsx"
+			],
+			"@/components/ui/slider": [
+				"../../registry/components/slider/slider.base.tsx"
+			],
 			"@/components/ui/switch": [
 				"../../registry/components/switch/switch.base.tsx"
 			],
 			"@/components/ui/textarea": [
 				"../../registry/components/textarea/textarea.base.tsx"
+			],
+			"@/components/ui/toggle": [
+				"../../registry/components/toggle/toggle.base.tsx"
+			],
+			"@/components/ui/toggle-group": [
+				"../../registry/components/toggle-group/toggle-group.base.tsx"
 			],
 			"@/lib/utils": [
 				"../../packages/core/src/utils.ts"
