@@ -32,6 +32,7 @@
 	--control-weight: 600;
 	--control-tracking: 0.06em;
 	--control-case: uppercase;
+	--heading-case: uppercase;
 
 	/* Focus and press: a ring with a gap; buttons sink into their shadow */
 	--focus-width: 2px;
@@ -67,6 +68,8 @@
 	--switch-track: var(--muted);
 	--switch-thumb: var(--foreground);
 	--track-border: var(--foreground);
+	--skeleton-fill: repeating-linear-gradient(-45deg, var(--muted) 0 6px, var(--secondary) 6px 12px);
+	--skeleton-motion: none;
 	--overlay: oklch(0.16 calc(0.005 * var(--tint, 1)) 85 / 45%);
 
 	--primary-l: 0.5;

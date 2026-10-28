@@ -27,6 +27,7 @@
 	--input-px: 0.9375rem;
 	--control-text: 0.90625rem;
 	--control-weight: 600;
+	--badge-radius: var(--pill-radius);
 
 	/* Focus and press */
 	--focus-width: 4px;

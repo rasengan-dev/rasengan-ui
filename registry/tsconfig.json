@@ -17,8 +17,20 @@
 		"isolatedModules": true,
 		"baseUrl": ".",
 		"paths": {
+			"@/components/ui/alert": [
+				"./components/alert/alert.base.tsx"
+			],
+			"@/components/ui/avatar": [
+				"./components/avatar/avatar.base.tsx"
+			],
+			"@/components/ui/badge": [
+				"./components/badge/badge.base.tsx"
+			],
 			"@/components/ui/button": [
 				"./components/button/button.base.tsx"
+			],
+			"@/components/ui/card": [
+				"./components/card/card.base.tsx"
 			],
 			"@/components/ui/checkbox": [
 				"./components/checkbox/checkbox.base.tsx"
@@ -35,6 +47,9 @@
 			"@/components/ui/label": [
 				"./components/label/label.base.tsx"
 			],
+			"@/components/ui/progress": [
+				"./components/progress/progress.base.tsx"
+			],
 			"@/components/ui/radio-group": [
 				"./components/radio-group/radio-group.base.tsx"
 			],
@@ -43,6 +58,9 @@
 			],
 			"@/components/ui/separator": [
 				"./components/separator/separator.base.tsx"
+			],
+			"@/components/ui/skeleton": [
+				"./components/skeleton/skeleton.base.tsx"
 			],
 			"@/components/ui/slider": [
 				"./components/slider/slider.base.tsx"

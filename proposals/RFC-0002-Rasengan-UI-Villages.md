@@ -1,6 +1,6 @@
 # RFC-0002: Rasengan UI — components on Base UI, themed by villages
 
-- Status: Draft (foundations, implementation plan steps 1 and 2, and batches 1 and 2 of step 3 on `feat/ui-next`)
+- Status: Draft (foundations, implementation plan steps 1 and 2, and batches 1 to 3 of step 3 on `feat/ui-next`)
 - Author: Dilane Kombou
 - Created: 2026-10-28
 - Supersedes: RFC-0001 for everything except the block content contract (`schema.ts`, `example.ts`, `meta.ts`), which is kept
@@ -183,8 +183,9 @@ must be able to make; each became a token:
 |---|---|---|---|
 | Colour | `--background` `--foreground` `--card` `--popover` `--secondary` `--muted` `--accent` `--destructive` (+ `-foreground`), `--border` `--input` `--overlay`, `--tooltip` (+ `-foreground`) | `bg-background`, `text-muted-foreground`, `bg-overlay`… | shadcn names, so shadcn components follow the village |
 | Accent | `--primary-l` `--primary-c` (light and dark), `--on-primary` | `bg-primary`, `ring-ring` | The nature gives the hue (see below) |
-| Shape | `--radius`, `--control-radius`, `--pill-radius`, `--check-radius`, `--border-width` | `rounded-lg`, `rounded-control`, `rounded-pill`, `rounded-check`, `border-village` | Iwa: everything 0 and 2px borders; Kiri: 16 / 14 |
-| Type | `--font-body` `--font-heading` `--font-code`, `--display-tracking` | `font-sans` `font-display` `font-mono`, `tracking-display` | |
+| Shape | `--radius`, `--control-radius`, `--pill-radius`, `--check-radius`, `--badge-radius`, `--border-width` | `rounded-lg`, `rounded-control`, `rounded-pill`, `rounded-check`, `rounded-badge`, `border-village` | Iwa: everything 0 and 2px borders; Kiri: 16 / 14, pill badges |
+| Type | `--font-body` `--font-heading` `--font-code`, `--display-tracking`, `--heading-case` | `font-sans` `font-display` `font-mono`, `tracking-display`, `case-heading` | Iwa: capital headings |
+| Loading | `--skeleton-fill`, `--skeleton-motion` | `animate-skeleton` | Iwa hatches without motion; none moves under reduced motion |
 | Controls | `--control-sm/md/lg`, `--control-px`, `--input-px`, `--control-font`, `--control-text`, `--control-weight`, `--control-tracking`, `--control-case` | `h-control`, `px-control-x`, `px-input-x`, `font-control`, `text-control`, `font-control-weight`, `tracking-control`, `case-control` | Iwa: mono uppercase labels |
 | Fields | `--input-bg`, `--input-shadow` | `bg-input-bg`, `shadow-input` | Kiri: glassy fields |
 | Lists | `--highlight` (+ `-foreground`) | `bg-highlight`, `text-highlight-foreground` | The item under the pointer or the keyboard in select and menus; Iwa inverts it |
@@ -392,7 +393,7 @@ The plan below implements it.
    1. Forms (done): input, label, field, textarea, checkbox, radio group,
       switch; button and dialog aligned to the contract
    2. Controls (done): toggle, toggle group, slider, select, separator
-   3. Display: badge, avatar, card, alert, skeleton, progress
+   3. Display (done): badge, avatar, card, alert, skeleton, progress
    4. Overlays: tooltip, popover, dropdown menu, alert dialog
    5. Navigation: tabs, accordion, collapsible, scroll area, toast
 4. **Site** (`apps/site`): village, nature, tint and light/dark switcher, one

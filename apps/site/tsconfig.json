@@ -6,8 +6,20 @@
 		"module": "ESNext",
 		"jsx": "react-jsx",
 		"paths": {
+			"@/components/ui/alert": [
+				"../../registry/components/alert/alert.base.tsx"
+			],
+			"@/components/ui/avatar": [
+				"../../registry/components/avatar/avatar.base.tsx"
+			],
+			"@/components/ui/badge": [
+				"../../registry/components/badge/badge.base.tsx"
+			],
 			"@/components/ui/button": [
 				"../../registry/components/button/button.base.tsx"
+			],
+			"@/components/ui/card": [
+				"../../registry/components/card/card.base.tsx"
 			],
 			"@/components/ui/checkbox": [
 				"../../registry/components/checkbox/checkbox.base.tsx"
@@ -24,6 +36,9 @@
 			"@/components/ui/label": [
 				"../../registry/components/label/label.base.tsx"
 			],
+			"@/components/ui/progress": [
+				"../../registry/components/progress/progress.base.tsx"
+			],
 			"@/components/ui/radio-group": [
 				"../../registry/components/radio-group/radio-group.base.tsx"
 			],
@@ -32,6 +47,9 @@
 			],
 			"@/components/ui/separator": [
 				"../../registry/components/separator/separator.base.tsx"
+			],
+			"@/components/ui/skeleton": [
+				"../../registry/components/skeleton/skeleton.base.tsx"
 			],
 			"@/components/ui/slider": [
 				"../../registry/components/slider/slider.base.tsx"

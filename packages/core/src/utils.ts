@@ -14,7 +14,7 @@ const twMerge = extendTailwindMerge({
 			"font-weight": [{ font: ["control-weight"] }],
 			tracking: [{ tracking: ["control", "display"] }],
 			"border-w": ["border-village"],
-			rounded: [{ rounded: ["control", "pill", "check"] }],
+			rounded: [{ rounded: ["control", "pill", "check", "badge"] }],
 			shadow: [{ shadow: ["input"] }],
 		},
 	},

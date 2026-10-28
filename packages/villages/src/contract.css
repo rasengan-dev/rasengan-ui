@@ -64,6 +64,7 @@
 	--radius-control: var(--control-radius);
 	--radius-pill: var(--pill-radius);
 	--radius-check: var(--check-radius);
+	--radius-badge: var(--badge-radius);
 
 	/* Type. */
 	--font-sans: var(--font-body);
@@ -89,6 +90,7 @@
 	--shadow-lg: var(--elevation-lg);
 	--shadow-input: var(--input-shadow);
 	--blur-surface: var(--surface-blur);
+	--animate-skeleton: var(--skeleton-motion);
 
 	/* Motion: the ease-out and ease-in-out utilities follow the village. */
 	--ease-out: var(--motion-ease-out);
@@ -106,6 +108,11 @@
 	text-transform: var(--control-case);
 }
 
+/* Iwa sets its headings (card titles, dialog titles) in capitals too. */
+@utility case-heading {
+	text-transform: var(--heading-case);
+}
+
 /* Focus as the village draws it: a halo (Konoha, Kiri) or a ring with a gap (Iwa). Use with focus-visible:. */
 @utility focus-ring {
 	outline: var(--focus-width) solid var(--ring);
@@ -118,6 +125,13 @@
 		scale: var(--press-scale);
 		translate: var(--press-offset) var(--press-offset);
 		box-shadow: var(--press-shadow);
+	}
+}
+
+/* The default skeleton motion; a village may replace it (Iwa: none) with --skeleton-motion. */
+@keyframes rui-pulse {
+	50% {
+		opacity: 0.55;
 	}
 }
 
@@ -158,6 +172,10 @@
 	--control-case: none;
 	--pill-radius: 9999px;
 	--check-radius: calc(var(--control-radius) * 0.45);
+	--badge-radius: calc(var(--control-radius) * 0.75);
+	--heading-case: none;
+	--skeleton-fill: var(--muted);
+	--skeleton-motion: rui-pulse 2s ease-in-out infinite;
 	--focus-width: 3px;
 	--focus-offset: 0px;
 	--ring-alpha: 50%;
@@ -220,5 +238,6 @@
 		--motion-slow: 0ms;
 		--press-scale: 1;
 		--press-offset: 0px;
+		--skeleton-motion: none;
 	}
 }
