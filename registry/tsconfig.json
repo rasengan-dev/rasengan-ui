@@ -20,6 +20,9 @@
 			"@/components/ui/alert": [
 				"./components/alert/alert.base.tsx"
 			],
+			"@/components/ui/alert-dialog": [
+				"./components/alert-dialog/alert-dialog.base.tsx"
+			],
 			"@/components/ui/avatar": [
 				"./components/avatar/avatar.base.tsx"
 			],
@@ -38,6 +41,9 @@
 			"@/components/ui/dialog": [
 				"./components/dialog/dialog.base.tsx"
 			],
+			"@/components/ui/dropdown-menu": [
+				"./components/dropdown-menu/dropdown-menu.base.tsx"
+			],
 			"@/components/ui/field": [
 				"./components/field/field.base.tsx"
 			],
@@ -46,6 +52,9 @@
 			],
 			"@/components/ui/label": [
 				"./components/label/label.base.tsx"
+			],
+			"@/components/ui/popover": [
+				"./components/popover/popover.base.tsx"
 			],
 			"@/components/ui/progress": [
 				"./components/progress/progress.base.tsx"
@@ -76,6 +85,9 @@
 			],
 			"@/components/ui/toggle-group": [
 				"./components/toggle-group/toggle-group.base.tsx"
+			],
+			"@/components/ui/tooltip": [
+				"./components/tooltip/tooltip.base.tsx"
 			],
 			"@/lib/utils": [
 				"../packages/core/src/utils.ts"

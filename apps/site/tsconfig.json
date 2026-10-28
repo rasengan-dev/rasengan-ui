@@ -9,6 +9,9 @@
 			"@/components/ui/alert": [
 				"../../registry/components/alert/alert.base.tsx"
 			],
+			"@/components/ui/alert-dialog": [
+				"../../registry/components/alert-dialog/alert-dialog.base.tsx"
+			],
 			"@/components/ui/avatar": [
 				"../../registry/components/avatar/avatar.base.tsx"
 			],
@@ -27,6 +30,9 @@
 			"@/components/ui/dialog": [
 				"../../registry/components/dialog/dialog.base.tsx"
 			],
+			"@/components/ui/dropdown-menu": [
+				"../../registry/components/dropdown-menu/dropdown-menu.base.tsx"
+			],
 			"@/components/ui/field": [
 				"../../registry/components/field/field.base.tsx"
 			],
@@ -35,6 +41,9 @@
 			],
 			"@/components/ui/label": [
 				"../../registry/components/label/label.base.tsx"
+			],
+			"@/components/ui/popover": [
+				"../../registry/components/popover/popover.base.tsx"
 			],
 			"@/components/ui/progress": [
 				"../../registry/components/progress/progress.base.tsx"
@@ -65,6 +74,9 @@
 			],
 			"@/components/ui/toggle-group": [
 				"../../registry/components/toggle-group/toggle-group.base.tsx"
+			],
+			"@/components/ui/tooltip": [
+				"../../registry/components/tooltip/tooltip.base.tsx"
 			],
 			"@/lib/utils": [
 				"../../packages/core/src/utils.ts"

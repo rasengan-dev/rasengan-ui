@@ -1,6 +1,6 @@
 # RFC-0002: Rasengan UI — components on Base UI, themed by villages
 
-- Status: Draft (foundations, implementation plan steps 1 and 2, and batches 1 to 3 of step 3 on `feat/ui-next`)
+- Status: Draft (foundations, implementation plan steps 1 and 2, and batches 1 to 4 of step 3 on `feat/ui-next`)
 - Author: Dilane Kombou
 - Created: 2026-10-28
 - Supersedes: RFC-0001 for everything except the block content contract (`schema.ts`, `example.ts`, `meta.ts`), which is kept
@@ -394,7 +394,7 @@ The plan below implements it.
       switch; button and dialog aligned to the contract
    2. Controls (done): toggle, toggle group, slider, select, separator
    3. Display (done): badge, avatar, card, alert, skeleton, progress
-   4. Overlays: tooltip, popover, dropdown menu, alert dialog
+   4. Overlays (done): tooltip, popover, dropdown menu, alert dialog
    5. Navigation: tabs, accordion, collapsible, scroll area, toast
 4. **Site** (`apps/site`): village, nature, tint and light/dark switcher, one
    page per component, screenshots of every combination for visual review,

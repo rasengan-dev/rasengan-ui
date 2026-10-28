@@ -4,6 +4,8 @@ import { VillageToolbar } from '@/components/village-toolbar';
 import { VillageScope } from '@/lib/village-scope';
 import { Button } from '@/components/ui/button';
 import DialogDemo from '@/registry/components/dialog/dialog.demo';
+import DropdownMenuDemo from '@/registry/components/dropdown-menu/dropdown-menu.demo';
+import TooltipDemo from '@/registry/components/tooltip/tooltip.demo';
 
 const Home: PageComponent = () => {
   return (
@@ -42,8 +44,8 @@ const Home: PageComponent = () => {
             Scoping
           </h2>
           <p className="max-w-2xl text-muted-foreground">
-            A <code className="font-mono text-sm">VillageScope</code> gives one part of the page its own village. The dialog opens in
-            Iwa, Raiton and dark too, even though it renders in a portal on the body.
+            A <code className="font-mono text-sm">VillageScope</code> gives one part of the page its own village. The dialog, the menu and the
+            tooltips open in Iwa, Raiton and dark too, even though they render in a portal on the body.
           </p>
         </div>
         <VillageScope
@@ -56,6 +58,8 @@ const Home: PageComponent = () => {
           <Button>Deploy</Button>
           <Button variant="outline">Preview</Button>
           <DialogDemo />
+          <DropdownMenuDemo />
+          <TooltipDemo />
         </VillageScope>
       </section>
     </main>
