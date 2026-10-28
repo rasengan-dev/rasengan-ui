@@ -91,10 +91,11 @@ function sharedItems(url) {
 			name: "rasengan-core",
 			type: "registry:lib",
 			title: "Rasengan UI core",
-			description: "cn() and the engine variants (ui-open, ui-checked…) every component uses.",
+			description: "cn(), VillageScope (a village for part of a page, popups included) and the engine variants (ui-open, ui-checked…) every component uses.",
 			dependencies: ["clsx", "tailwind-merge"],
 			files: [
 				{ path: "packages/core/src/utils.ts", type: "registry:lib", target: "lib/utils.ts" },
+				{ path: "packages/core/src/village-scope.tsx", type: "registry:lib", target: "lib/village-scope.tsx" },
 				{ path: "packages/core/src/variants.css", type: "registry:file", target: "styles/rasengan/variants.css" },
 			],
 		},

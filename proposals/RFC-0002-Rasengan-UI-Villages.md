@@ -1,6 +1,6 @@
 # RFC-0002: Rasengan UI — components on Base UI, themed by villages
 
-- Status: Draft (foundations implemented on `feat/ui-next`; implementation plan step 1, the token contract, in progress)
+- Status: Draft (foundations and implementation plan steps 1 and 2 on `feat/ui-next`)
 - Author: Dilane Kombou
 - Created: 2026-10-28
 - Supersedes: RFC-0001 for everything except the block content contract (`schema.ts`, `example.ts`, `meta.ts`), which is kept
@@ -242,10 +242,22 @@ any element below it. Dark mode uses the shadcn `.dark` class:
 ```
 
 Popups (dialog, menus, tooltips) render in a portal on `<body>`, outside a
-scoped section, so they take the page's village, not the section's. A
-`<VillageScope>` component that sets the attributes and gives Base UI's
-`Portal` a container inside the scope solves it; it lands with the second
-village.
+scoped section, so they would take the page's village, not the section's.
+`VillageScope` (`packages/core`, installed as `@/lib/village-scope`) solves
+it:
+
+```tsx
+<VillageScope village="iwa" nature="raiton" scheme="dark" as="section">
+  <Dialog>…</Dialog>
+</VillageScope>
+```
+
+It sets the attributes on its element and keeps a twin in `<body>`, a
+`display: contents` element with the same attributes. Components portal
+into it (`usePortalContainer()`), so popups inherit the scope's tokens
+without being clipped by its `overflow` or repositioned by its transforms.
+A nested scope inherits what it does not set. `scheme="light"` inside a dark
+page works too: the village dark rules give way to a nearer `.light`.
 
 **Village and nature list.** First release: **Konoha** (balanced, warm,
 rounded; the default), **Kiri** (misty: low contrast, translucent surfaces,
@@ -368,8 +380,8 @@ The plan below implements it.
 1. **Token contract** (`packages/villages`): the contract above, Konoha
    rewritten with the tint multiplier and a 0.55 primary, Kiri and Iwa as
    real villages, Onmyōton, natures imported after villages, `pnpm contrast`.
-2. **Core** (`packages/core`): `VillageScope`, which sets the attributes and
-   gives Base UI portals a container inside the scope; more `ui-*` variants
+2. **Core** (`packages/core`): `VillageScope` and `usePortalContainer()`
+   (done; Dialog uses it, every popup component will); more `ui-*` variants
    as components need them.
 3. **Components** (`registry/components`), in dependency order, five
    batches, each component meeting the quality gate:

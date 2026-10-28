@@ -16,6 +16,7 @@ export default defineConfig(async () => {
           // Components import the paths they have once installed; these point them at the Base UI sources.
           { find: /^@\/components\/ui\/(.+)$/, replacement: '../../registry/components/$1/$1.base.tsx' },
           { find: '@/lib/utils', replacement: '../../packages/core/src/utils.ts' },
+          { find: '@/lib/village-scope', replacement: '../../packages/core/src/village-scope.tsx' },
           { find: '@/registry', replacement: '../../registry' },
           { find: '@', replacement: './src' },
         ],

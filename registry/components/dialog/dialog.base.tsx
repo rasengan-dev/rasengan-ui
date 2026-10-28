@@ -3,6 +3,7 @@ import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { XIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { usePortalContainer } from "@/lib/village-scope";
 import { dialogStyles } from "./dialog.styles";
 
 /** Rasengan UI parts take a plain string className on every engine. */
@@ -16,8 +17,10 @@ export function DialogTrigger(props: Props<DialogPrimitive.Trigger.Props>) {
 	return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />;
 }
 
-export function DialogPortal(props: DialogPrimitive.Portal.Props) {
-	return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />;
+/** Renders in the nearest VillageScope's portal container, so the dialog wears that scope's village. */
+export function DialogPortal({ container, ...props }: DialogPrimitive.Portal.Props) {
+	const scoped = usePortalContainer();
+	return <DialogPrimitive.Portal data-slot="dialog-portal" container={container ?? scoped} {...props} />;
 }
 
 export function DialogClose(props: Props<DialogPrimitive.Close.Props>) {

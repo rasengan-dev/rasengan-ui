@@ -32,7 +32,7 @@ for (const file of readdirSync(join(src, "villages")).filter((f) => f.endsWith("
 	const css = read(join(src, "villages", file));
 	const name = file.replace(/\.css$/, "");
 	const light = css.match(new RegExp(`\\n\\[data-village="${name}"\\]\\s*\\{([^}]*)\\}`));
-	const dark = css.match(/:is\(\.dark \[data-village="\w+"\][^)]*\)\s*\{([^}]*)\}/);
+	const dark = css.match(/\n:is\(\.dark [^{]*\{([^}]*)\}/);
 	villages[name] = { light: declarations(light[1]), dark: dark ? declarations(dark[1]) : {} };
 }
 

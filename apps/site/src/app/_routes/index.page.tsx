@@ -1,6 +1,9 @@
 import { PageComponent } from 'rasengan';
 import { components } from '@/catalogue';
 import { VillageToolbar } from '@/components/village-toolbar';
+import { VillageScope } from '@/lib/village-scope';
+import { Button } from '@/components/ui/button';
+import DialogDemo from '@/registry/components/dialog/dialog.demo';
 
 const Home: PageComponent = () => {
   return (
@@ -32,6 +35,29 @@ const Home: PageComponent = () => {
           </li>
         ))}
       </ul>
+
+      <section className="flex flex-col gap-4" aria-labelledby="scope-title">
+        <div className="flex flex-col gap-1">
+          <h2 id="scope-title" className="font-display text-2xl font-semibold tracking-display">
+            Scoping
+          </h2>
+          <p className="max-w-2xl text-muted-foreground">
+            A <code className="font-mono text-sm">VillageScope</code> gives one part of the page its own village. The dialog opens in
+            Iwa, Raiton and dark too, even though it renders in a portal on the body.
+          </p>
+        </div>
+        <VillageScope
+          village="iwa"
+          nature="raiton"
+          scheme="dark"
+          as="div"
+          className="flex flex-wrap items-center justify-center gap-4 rounded-lg border-village p-10"
+        >
+          <Button>Deploy</Button>
+          <Button variant="outline">Preview</Button>
+          <DialogDemo />
+        </VillageScope>
+      </section>
     </main>
   );
 };

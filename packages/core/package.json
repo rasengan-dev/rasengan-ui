@@ -2,10 +2,11 @@
 	"name": "@rasengan-ui/core",
 	"version": "0.0.0",
 	"private": true,
-	"description": "What every Rasengan UI component shares: cn() and the engine variants (RFC-0002). Distributed through the registry; this package is the source.",
+	"description": "What every Rasengan UI component shares: cn(), VillageScope and the engine variants (RFC-0002). Distributed through the registry; this package is the source.",
 	"type": "module",
 	"exports": {
 		".": "./src/utils.ts",
+		"./village-scope": "./src/village-scope.tsx",
 		"./variants.css": "./src/variants.css"
 	},
 	"scripts": {
@@ -16,6 +17,11 @@
 		"tailwind-merge": "^3.7.0"
 	},
 	"devDependencies": {
+		"@types/react": "^19.2.0",
+		"react": "^19.2.0",
 		"typescript": "^5.9.3"
+	},
+	"peerDependencies": {
+		"react": "^19.0.0"
 	}
 }

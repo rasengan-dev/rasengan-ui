@@ -74,7 +74,8 @@
 		radial-gradient(50% 45% at 90% 85%, oklch(0.9 calc(0.03 * var(--tint, 1)) 260 / 60%), transparent 70%);
 }
 
-:is(.dark [data-village="kiri"], [data-village="kiri"].dark) {
+/* Dark: under a .dark ancestor unless a nearer .light scope says otherwise (VillageScope scheme="light"). */
+:is(.dark [data-village="kiri"]:not(.light, .light *), .light .dark [data-village="kiri"], [data-village="kiri"].dark) {
 	--background: oklch(0.2 calc(0.015 * var(--tint, 1)) 245);
 	--foreground: oklch(0.93 calc(0.01 * var(--tint, 1)) 235);
 	--card: oklch(1 0 0 / 6%);

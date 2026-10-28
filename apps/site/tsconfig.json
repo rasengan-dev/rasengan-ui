@@ -15,6 +15,9 @@
 			"@/lib/utils": [
 				"../../packages/core/src/utils.ts"
 			],
+			"@/lib/village-scope": [
+				"../../packages/core/src/village-scope.tsx"
+			],
 			"@/registry/*": [
 				"../../registry/*"
 			],

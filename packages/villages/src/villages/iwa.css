@@ -76,7 +76,8 @@
 	--elevation-lg: 6px 6px 0 0 var(--foreground);
 }
 
-:is(.dark [data-village="iwa"], [data-village="iwa"].dark) {
+/* Dark: under a .dark ancestor unless a nearer .light scope says otherwise (VillageScope scheme="light"). */
+:is(.dark [data-village="iwa"]:not(.light, .light *), .light .dark [data-village="iwa"], [data-village="iwa"].dark) {
 	--background: oklch(0.17 calc(0.004 * var(--tint, 1)) 85);
 	--foreground: oklch(0.93 calc(0.006 * var(--tint, 1)) 85);
 	--card: oklch(0.21 calc(0.005 * var(--tint, 1)) 85);
