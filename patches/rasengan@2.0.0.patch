@@ -1,0 +1,128 @@
+diff --git a/dist/entries/server/entry.server.js b/dist/entries/server/entry.server.js
+index e3b8fb22add6ed5da48e28664dd6e4d617c60503..706fd8660e53fd9c943e0410b61bd764a6fa16df 100644
+--- a/dist/entries/server/entry.server.js
++++ b/dist/entries/server/entry.server.js
+@@ -1,7 +1,9 @@
+ import { jsx } from "react/jsx-runtime";
+ import { html as htmlResponse } from "@rasenganjs/futon";
+ import { loadModuleSSR } from "../../core/config/utils/load-modules.js";
+-import { TemplateLayout } from "./index.js";
++import { TemplateLayout, createAppElement } from "./index.js";
++import ReactDOMServer from "react-dom/server";
++import { renderToReadableStream } from "react-dom/server.edge";
+ import { join, posix } from "path/posix";
+ import { renderToStream, renderToString } from "../../server/node/rendering.js";
+ const render = async (StaticRouterComponent, options, stream = true) => {
+@@ -31,6 +33,21 @@ const render = async (StaticRouterComponent, options, stream = true) => {
+     App = (await loadModuleSSR(`${rootPath}/src/main`)).default;
+     Template = (await loadModuleSSR(`${rootPath}/src/template`)).default;
+   }
++  // patched (useId): the server used to render the app inside the document tree, so every
++  // useId differed from the client, which hydrates #root alone. Render the app in its own
++  // root first (waiting for Suspense), then the document with that HTML in #root.
++  const appElement = createAppElement({ App, StaticRouterComponent });
++  let appHtml;
++  if (stream) {
++    const controller = new AbortController();
++    const timeout = setTimeout(() => controller.abort(), 1e4);
++    const appStream = await renderToReadableStream(appElement, { signal: controller.signal });
++    await appStream.allReady;
++    appHtml = await new Response(appStream).text();
++    clearTimeout(timeout);
++  } else {
++    appHtml = ReactDOMServer.renderToString(appElement);
++  }
+   if (stream) {
+     return await renderToStream(
+       /* @__PURE__ */ jsx(
+@@ -40,7 +57,8 @@ const render = async (StaticRouterComponent, options, stream = true) => {
+           metadata,
+           assets,
+           App,
+-          Template
++          Template,
++          appHtml
+         }
+       ),
+       {
+@@ -57,7 +75,8 @@ const render = async (StaticRouterComponent, options, stream = true) => {
+           metadata,
+           assets,
+           App,
+-          Template
++          Template,
++          appHtml
+         }
+       )
+     );
+diff --git a/dist/entries/server/index.js b/dist/entries/server/index.js
+index b008e756a1b52b777eff83c833b6ca5ec2ba36ae..51b1c4a7fd1ce98aec2f35d7615dc7031b17e357 100644
+--- a/dist/entries/server/index.js
++++ b/dist/entries/server/index.js
+@@ -8,13 +8,21 @@ import {
+ } from "../../routing/components/template.js";
+ import { isServerMode, ServerMode } from "../../server/runtime/mode.js";
+ import { ErrorBoundaryFallback } from "../../routing/error-overlay/ErrorBoundaryFallback.js";
++// patched: the app as the client hydrates it, without the document around it. The client's
++// ErrorOverlayProvider renders [ErrorBoundaryFallback, devMode && ErrorOverlay]: two slots, so
++// the server renders the same two (the second empty, as the overlay is without errors).
++const createAppElement = ({ App, StaticRouterComponent }) => /* @__PURE__ */ jsxs(React.Fragment, { children: [
++  /* @__PURE__ */ jsx(ErrorBoundaryFallback, { children: /* @__PURE__ */ jsx(App, { Component: (props) => /* @__PURE__ */ jsx(RootComponent, { ...props }), children: StaticRouterComponent }) }),
++  null
++] });
+ const TemplateLayout = ({
+   StaticRouterComponent,
+   metadata,
+   assets,
+   App,
+   Template,
+-  isSpaMode = false
++  isSpaMode = false,
++  appHtml = void 0
+ }) => {
+   let viteScripts = /* @__PURE__ */ jsx(React.Fragment, {});
+   let otherScripts = /* @__PURE__ */ jsx(React.Fragment, {});
+@@ -72,8 +80,9 @@ const TemplateLayout = ({
+       Body: ({ children }) => /* @__PURE__ */ jsx(
+         BodyComponent,
+         {
+-          asChild: App ? true : false,
+-          AppContent: App && /* @__PURE__ */ jsx(ErrorBoundaryFallback, { children: /* @__PURE__ */ jsx(App, { Component: (props) => /* @__PURE__ */ jsx(RootComponent, { ...props }), children: StaticRouterComponent }) }),
++          asChild: App && appHtml === void 0 ? true : false,
++          AppContent: App && appHtml === void 0 && createAppElement({ App, StaticRouterComponent }),
++          appHtml,
+           children
+         }
+       ),
+@@ -82,5 +91,6 @@ const TemplateLayout = ({
+   );
+ };
+ export {
+-  TemplateLayout
++  TemplateLayout,
++  createAppElement
+ };
+diff --git a/dist/routing/components/template.js b/dist/routing/components/template.js
+index 9ca47e38116ae92fce6b3e5f77d21f139a1c1fc1..86c1a2b35d5e180aa15f3acaa32ac1a4c528b676 100644
+--- a/dist/routing/components/template.js
++++ b/dist/routing/components/template.js
+@@ -43,7 +43,8 @@ const HeadComponent = ({
+ const BodyComponent = ({
+   children = void 0,
+   asChild = false,
+-  AppContent = void 0
++  AppContent = void 0,
++  appHtml = void 0
+ }) => {
+   return /* @__PURE__ */ jsxs("body", { children: [
+     /* @__PURE__ */ jsx(
+@@ -54,7 +55,8 @@ const BodyComponent = ({
+         }
+       }
+     ),
+-    /* @__PURE__ */ jsx("div", { id: "root", children: asChild && AppContent }),
++    // patched: the app may arrive as HTML rendered in its own React root, so its useId tree matches hydrateRoot(#root).
++    appHtml !== void 0 ? /* @__PURE__ */ jsx("div", { id: "root", dangerouslySetInnerHTML: { __html: appHtml } }) : /* @__PURE__ */ jsx("div", { id: "root", children: asChild && AppContent }),
+     children
+   ] });
+ };

@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
+  rasengan@2.0.0:
+    hash: ijhhahz6vaxj7xhxecgo3p3wc4
+    path: patches/rasengan@2.0.0.patch
   react-syntax-highlighter@16.1.0:
     hash: 4uzuvv44mknyd5em5ttxn7tgfa
     path: patches/react-syntax-highlighter@16.1.0.patch
@@ -172,7 +175,7 @@ importers:
         version: 1.63.0(@types/react@19.2.10)(react@19.2.4)
       rasengan:
         specifier: ^2.0.0
-        version: 2.0.0(@types/node@22.20.5)(react-dom@19.2.4)(react-router@8.5.1)(react@19.2.4)(vite@8.3.5)
+        version: 2.0.0(patch_hash=ijhhahz6vaxj7xhxecgo3p3wc4)(@types/node@22.20.5)(react-dom@19.2.4)(react-router@8.5.1)(react@19.2.4)(vite@8.3.5)
       react:
         specifier: ^19.2.0
         version: 19.2.4
@@ -2506,7 +2509,7 @@ packages:
       '@rasenganjs/futon': 1.0.0
       '@rasenganjs/runtime': 1.0.1(@rasenganjs/futon@1.0.0)
       get-port: 7.1.0
-      rasengan: 2.0.0(@types/node@22.20.5)(react-dom@19.2.4)(react-router@8.5.1)(react@19.2.4)(vite@8.3.5)
+      rasengan: 2.0.0(patch_hash=ijhhahz6vaxj7xhxecgo3p3wc4)(@types/node@22.20.5)(react-dom@19.2.4)(react-router@8.5.1)(react@19.2.4)(vite@8.3.5)
       source-map-support: 0.5.21
     transitivePeerDependencies:
       - bufferutil
@@ -6902,7 +6905,7 @@ packages:
       - supports-color
     dev: false
 
-  /rasengan@2.0.0(@types/node@22.20.5)(react-dom@19.2.4)(react-router@8.5.1)(react@19.2.4)(vite@8.3.5):
+  /rasengan@2.0.0(patch_hash=ijhhahz6vaxj7xhxecgo3p3wc4)(@types/node@22.20.5)(react-dom@19.2.4)(react-router@8.5.1)(react@19.2.4)(vite@8.3.5):
     resolution: {integrity: sha512-+iQURu7mqn6xpt4NSNc/J31gLMHcY82eLu3fo8koadmHkhylIY7UM7LAhHwg7IhLIigQttsnEXicUL/jLvkTlQ==}
     engines: {node: '>=22.12.0'}
     hasBin: true
@@ -6949,6 +6952,7 @@ packages:
       - oxc-transform-react
       - utf-8-validate
     dev: false
+    patched: true
 
   /raw-body@2.5.3:
     resolution: {integrity: sha512-s4VSOf6yN0rvbRZGxs8Om5CWj6seneMwK3oDb4lWDH0UPhWcxwOWw5+qk24bxq87szX1ydrwylIOp2uG1ojUpA==}
