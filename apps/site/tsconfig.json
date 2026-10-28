@@ -9,8 +9,29 @@
 			"@/components/ui/button": [
 				"../../registry/components/button/button.base.tsx"
 			],
+			"@/components/ui/checkbox": [
+				"../../registry/components/checkbox/checkbox.base.tsx"
+			],
 			"@/components/ui/dialog": [
 				"../../registry/components/dialog/dialog.base.tsx"
+			],
+			"@/components/ui/field": [
+				"../../registry/components/field/field.base.tsx"
+			],
+			"@/components/ui/input": [
+				"../../registry/components/input/input.base.tsx"
+			],
+			"@/components/ui/label": [
+				"../../registry/components/label/label.base.tsx"
+			],
+			"@/components/ui/radio-group": [
+				"../../registry/components/radio-group/radio-group.base.tsx"
+			],
+			"@/components/ui/switch": [
+				"../../registry/components/switch/switch.base.tsx"
+			],
+			"@/components/ui/textarea": [
+				"../../registry/components/textarea/textarea.base.tsx"
 			],
 			"@/lib/utils": [
 				"../../packages/core/src/utils.ts"

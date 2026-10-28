@@ -13,6 +13,8 @@
 @custom-variant ui-closed (&:where([data-closed], [data-state="closed"]));
 @custom-variant ui-checked (&:where([data-checked], [data-state="checked"]));
 @custom-variant ui-unchecked (&:where([data-unchecked], [data-state="unchecked"]));
+@custom-variant ui-indeterminate (&:where([data-indeterminate], [data-state="indeterminate"]));
+@custom-variant ui-invalid (&:where([data-invalid], [aria-invalid="true"]));
 @custom-variant ui-active (&:where([data-active], [data-state="active"]));
 @custom-variant ui-disabled (&:where([data-disabled], :disabled));
 @custom-variant ui-highlighted (&:where([data-highlighted]));

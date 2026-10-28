@@ -9,6 +9,8 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
+import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
 
 export default function DialogDemo() {
 	return (
@@ -19,11 +21,11 @@ export default function DialogDemo() {
 					<DialogTitle>Invite a teammate</DialogTitle>
 					<DialogDescription>They get access to every project in this workspace.</DialogDescription>
 				</DialogHeader>
-				<input
-					type="email"
-					placeholder="sakura@konoha.dev"
-					className="h-control rounded-control border-village border-input bg-input-bg px-input-x text-sm shadow-input outline-none focus-visible:border-primary focus-visible:focus-ring"
-				/>
+				<Field>
+					<FieldLabel>Email</FieldLabel>
+					<Input type="email" placeholder="sakura@konoha.dev" />
+					<FieldDescription>They get an email with a link to join.</FieldDescription>
+				</Field>
 				<DialogFooter>
 					<DialogClose render={<Button variant="ghost" />}>Cancel</DialogClose>
 					<Button>Send invite</Button>

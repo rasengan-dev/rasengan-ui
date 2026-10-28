@@ -20,8 +20,29 @@
 			"@/components/ui/button": [
 				"./components/button/button.base.tsx"
 			],
+			"@/components/ui/checkbox": [
+				"./components/checkbox/checkbox.base.tsx"
+			],
 			"@/components/ui/dialog": [
 				"./components/dialog/dialog.base.tsx"
+			],
+			"@/components/ui/field": [
+				"./components/field/field.base.tsx"
+			],
+			"@/components/ui/input": [
+				"./components/input/input.base.tsx"
+			],
+			"@/components/ui/label": [
+				"./components/label/label.base.tsx"
+			],
+			"@/components/ui/radio-group": [
+				"./components/radio-group/radio-group.base.tsx"
+			],
+			"@/components/ui/switch": [
+				"./components/switch/switch.base.tsx"
+			],
+			"@/components/ui/textarea": [
+				"./components/textarea/textarea.base.tsx"
 			],
 			"@/lib/utils": [
 				"../packages/core/src/utils.ts"

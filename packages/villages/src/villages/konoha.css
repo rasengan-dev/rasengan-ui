@@ -89,6 +89,7 @@
 	--input: oklch(1 0 0 / 16%);
 	--input-bg: oklch(1 0 0 / 4%);
 	--overlay: oklch(0 0 0 / 60%);
+	--switch-thumb: var(--foreground);
 
 	--primary-l: 0.74;
 	--primary-c: 0.16;

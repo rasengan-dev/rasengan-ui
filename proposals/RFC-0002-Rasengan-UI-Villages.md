@@ -1,6 +1,6 @@
 # RFC-0002: Rasengan UI — components on Base UI, themed by villages
 
-- Status: Draft (foundations and implementation plan steps 1 and 2 on `feat/ui-next`)
+- Status: Draft (foundations, implementation plan steps 1 and 2, and the forms batch of step 3 on `feat/ui-next`)
 - Author: Dilane Kombou
 - Created: 2026-10-28
 - Supersedes: RFC-0001 for everything except the block content contract (`schema.ts`, `example.ts`, `meta.ts`), which is kept
@@ -142,6 +142,8 @@ custom variants match both, so one class string works on either engine:
 @custom-variant ui-open (&:where([data-open], [data-popup-open], [data-state="open"]));
 @custom-variant ui-closed (&:where([data-closed], [data-state="closed"]));
 @custom-variant ui-checked (&:where([data-checked], [data-state="checked"]));
+@custom-variant ui-indeterminate (&:where([data-indeterminate], [data-state="indeterminate"]));
+@custom-variant ui-invalid (&:where([data-invalid], [aria-invalid="true"]));
 @custom-variant ui-active (&:where([data-active], [data-state="active"]));
 @custom-variant ui-pressed (&:where([data-pressed], [data-state="on"]));
 @custom-variant ui-disabled (&:where([data-disabled], :disabled));
@@ -185,6 +187,7 @@ must be able to make; each became a token:
 | Type | `--font-body` `--font-heading` `--font-code`, `--display-tracking` | `font-sans` `font-display` `font-mono`, `tracking-display` | |
 | Controls | `--control-sm/md/lg`, `--control-px`, `--input-px`, `--control-font`, `--control-text`, `--control-weight`, `--control-tracking`, `--control-case` | `h-control`, `px-control-x`, `px-input-x`, `font-control`, `text-control`, `font-control-weight`, `tracking-control`, `case-control` | Iwa: mono uppercase labels |
 | Fields | `--input-bg`, `--input-shadow` | `bg-input-bg`, `shadow-input` | Kiri: glassy fields |
+| Switch | `--switch-track`, `--switch-thumb`, `--switch-border` | `bg-switch-track`, `bg-switch-thumb`, `border-switch-border` | The thumb turns light in dark mode; Iwa: bordered track, ink thumb |
 | Depth | `--elevation-sm/md/lg`, `--surface-blur`, `--texture` | `shadow-sm…lg`, `backdrop-blur-surface` | Iwa: hard offset shadows; Kiri: blur and mist |
 | Focus | `--focus-width`, `--focus-offset` | `focus-ring` | Konoha 3px halo, Kiri 4px, Iwa 2px with a 2px gap |
 | Press | `--press-scale`, `--press-offset`, `--press-shadow` | `pressable` | Iwa sinks 3px into its shadow, others scale |
@@ -385,8 +388,8 @@ The plan below implements it.
    as components need them.
 3. **Components** (`registry/components`), in dependency order, five
    batches, each component meeting the quality gate:
-   1. Forms: input, label, field, textarea, checkbox, radio group, switch
-      (button and dialog aligned to the contract here)
+   1. Forms (done): input, label, field, textarea, checkbox, radio group,
+      switch; button and dialog aligned to the contract
    2. Controls: toggle, toggle group, slider, select, separator
    3. Display: badge, avatar, card, alert, skeleton, progress
    4. Overlays: tooltip, popover, dropdown menu, alert dialog
