@@ -1,0 +1,60 @@
+---
+metadata:
+  title: Textarea · Rasengan UI
+  description: "A multi-line text field, styled like Input and wired into a Field the same way."
+toc: true
+---
+
+# Textarea
+
+A multi-line text field, styled like [Input](/components/input) and wired into a [Field](/components/field) the same way. It grows with its content (`field-sizing: content`) and can be resized vertically.
+
+<ComponentPreview name="textarea" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add textarea
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/textarea.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/textarea.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/feedback.tsx"
+import { Field, FieldLabel } from "@/components/ui/field";
+import { Textarea } from "@/components/ui/textarea";
+
+export function Feedback() {
+  return (
+    <Field>
+      <FieldLabel>What changed?</FieldLabel>
+      <Textarea placeholder="Tell the team what changed…" />
+    </Field>
+  );
+}
+```
+
+## Villages
+
+Radius, border, padding and background are the input's: a form mixing both looks of a piece.
+
+<VillageGrid name="textarea" />
+
+## Accessibility
+
+- A `<textarea>`, rendered by Base UI's Field control: a Field labels and describes it.
+- Invalid and disabled states work as on Input.
+
+## API reference
+
+The props of `<textarea>`, plus `className`. `textareaStyles` holds its classes.

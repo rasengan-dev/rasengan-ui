@@ -1,0 +1,71 @@
+---
+metadata:
+  title: Scroll area · Rasengan UI
+  description: "A scrollable region with a thin scrollbar in the village's colours, keyboard-focusable like native scrolling."
+toc: true
+---
+
+# Scroll area
+
+A scrollable region with a thin scrollbar in the village's colours, keyboard-focusable like native scrolling.
+
+<ComponentPreview name="scroll-area" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add scroll-area
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/scroll-area.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/scroll-area.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/tags.tsx"
+import { ScrollArea } from "@/components/ui/scroll-area";
+
+export function Tags({ tags }: { tags: string[] }) {
+  return (
+    <ScrollArea className="h-56 w-56 rounded-lg border-village">
+      <ul className="p-4">
+        {tags.map((tag) => (
+          <li key={tag}>{tag}</li>
+        ))}
+      </ul>
+    </ScrollArea>
+  );
+}
+```
+
+### Horizontal
+
+The area has a vertical scrollbar. Add `<ScrollBar orientation="horizontal" />` inside it for wide content.
+
+## Villages
+
+The thumb is `--border` coloured and follows the village's radius.
+
+<VillageGrid name="scroll-area" />
+
+## Accessibility
+
+- The viewport is focusable, so the keyboard scrolls it with the arrows and <kbd>Page Up</kbd> / <kbd>Page Down</kbd>.
+- Give the area an `aria-label` when its content doesn't name itself.
+
+## API reference
+
+The parts of Base UI's [Scroll Area](https://base-ui.com/react/components/scroll-area):
+
+| Part | Notes |
+| --- | --- |
+| `ScrollArea` | root, viewport, a vertical scrollbar and the corner |
+| `ScrollBar` | `orientation`: `"vertical"` (default) or `"horizontal"` |

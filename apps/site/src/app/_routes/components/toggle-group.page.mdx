@@ -1,0 +1,76 @@
+---
+metadata:
+  title: Toggle group · Rasengan UI
+  description: "A row of toggles: one choice (day, week, month) or several (bold, italic). Arrow keys move between them."
+toc: true
+---
+
+# Toggle group
+
+A row of toggles: one choice (day, week, month) or several (bold, italic). Arrow keys move between them.
+
+<ComponentPreview name="toggle-group" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add toggle-group
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/toggle-group.json
+```
+
+It installs [Toggle](/components/toggle) too.
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/toggle-group.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/range.tsx"
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+
+export function Range() {
+  return (
+    <ToggleGroup defaultValue={["week"]} variant="outline" aria-label="Range">
+      <ToggleGroupItem value="day">Day</ToggleGroupItem>
+      <ToggleGroupItem value="week">Week</ToggleGroupItem>
+      <ToggleGroupItem value="month">Month</ToggleGroupItem>
+    </ToggleGroup>
+  );
+}
+```
+
+### Several at once
+
+By default one item is pressed at a time. Pass `multiple` to let several be pressed, as for text styles. The value is
+always an array.
+
+```tsx
+<ToggleGroup multiple defaultValue={["bold"]} aria-label="Text style">…</ToggleGroup>
+```
+
+## Villages
+
+The outline variant draws one bordered control with dividers between its items, in the village's radius and border width.
+
+<VillageGrid name="toggle-group" />
+
+## Accessibility
+
+- A group of `aria-pressed` buttons: name it with `aria-label`.
+- <kbd>Tab</kbd> enters the group once; arrow keys move between items, <kbd>Space</kbd> presses one.
+
+## API reference
+
+The parts of Base UI's [Toggle Group](https://base-ui.com/react/components/toggle-group):
+
+| Part | Notes |
+| --- | --- |
+| `ToggleGroup` | `value`, `defaultValue`, `onValueChange`, `multiple`, `orientation`, `disabled`; `variant` and `size` for every item |
+| `ToggleGroupItem` | `value`, `disabled`; `variant` and `size` override the group's |

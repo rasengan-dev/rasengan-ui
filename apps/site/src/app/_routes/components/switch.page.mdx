@@ -1,0 +1,60 @@
+---
+metadata:
+  title: Switch · Rasengan UI
+  description: "Turns a setting on or off, with an immediate effect. Its track and thumb are village tokens."
+toc: true
+---
+
+# Switch
+
+Turns a setting on or off, with an immediate effect. When the change waits for a Save button, use a [Checkbox](/components/checkbox).
+
+<ComponentPreview name="switch" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add switch
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/switch.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/switch.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/notifications.tsx"
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+
+export function Notifications() {
+  return (
+    <div className="flex items-center gap-2">
+      <Switch id="notifications" defaultChecked />
+      <Label htmlFor="notifications">Notifications</Label>
+    </div>
+  );
+}
+```
+
+## Villages
+
+The track and thumb are village tokens (`--switch-track`, `--switch-thumb`, `--track-border`): Iwa borders its track and draws its thumb in ink, without a shadow.
+
+<VillageGrid name="switch" />
+
+## Accessibility
+
+- A `role="switch"` button with `aria-checked`, backed by a hidden input for forms.
+- <kbd>Space</kbd> and <kbd>Enter</kbd> toggle it; a linked label toggles it on click.
+
+## API reference
+
+The props of Base UI's [Switch](https://base-ui.com/react/components/switch) root (`checked`, `defaultChecked`, `onCheckedChange`, `name`, `required`, `disabled`…), plus `className`.

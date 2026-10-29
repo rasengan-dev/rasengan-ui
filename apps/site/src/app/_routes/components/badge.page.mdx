@@ -1,0 +1,69 @@
+---
+metadata:
+  title: Badge · Rasengan UI
+  description: "A short label for a status or a count. Renders a link or any element through `render`."
+toc: true
+---
+
+# Badge
+
+A short label for a status or a count. Renders a link or any element through `render`.
+
+<ComponentPreview name="badge" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add badge
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/badge.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/badge.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/status.tsx"
+import { Badge } from "@/components/ui/badge";
+
+export function Status() {
+  return <Badge variant="secondary">Beta</Badge>;
+}
+```
+
+### Variants
+
+`default` in the nature's primary, `secondary`, `outline`, and `destructive` for errors.
+
+### As a link
+
+```tsx
+<Badge render={<a href="/changelog" />}>New</Badge>
+```
+
+## Villages
+
+Its radius is `--badge-radius`: soft in Konoha, a pill in Kiri, square in Iwa, where it is also set in mono capitals.
+
+<VillageGrid name="badge" />
+
+## Accessibility
+
+- A `<span>`: its text is read in place. A badge that only shows a count needs the thing counted in the text around it, or an `aria-label`.
+
+## API reference
+
+The props of `<span>`, plus `render` (any element, through Base UI's `useRender`) and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `variant` | `"default" \| "secondary" \| "outline" \| "destructive"` | `"default"` |
+
+`badgeVariants({ variant })` returns the same classes.

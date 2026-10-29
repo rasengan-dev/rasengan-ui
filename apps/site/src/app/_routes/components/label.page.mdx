@@ -1,0 +1,60 @@
+---
+metadata:
+  title: Label · Rasengan UI
+  description: "Names a control. Written in the village's control type: Iwa capitalises it."
+toc: true
+---
+
+# Label
+
+Names a control. Written in the village's control type: Iwa capitalises it. Inside a [Field](/components/field), use `FieldLabel`, which is linked for you.
+
+<ComponentPreview name="label" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add label
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/label.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/label.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/terms.tsx"
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+
+export function Terms() {
+  return (
+    <div className="flex items-center gap-2">
+      <Checkbox id="terms" />
+      <Label htmlFor="terms">Accept the terms</Label>
+    </div>
+  );
+}
+```
+
+## Villages
+
+The label takes the village's control font, weight, tracking and case: mono capitals in Iwa.
+
+<VillageGrid name="label" />
+
+## Accessibility
+
+- A `<label>`: `htmlFor` names the control with the same `id`, and a click on the label focuses or toggles it.
+- A label next to a disabled control (`peer-disabled`) or inside a disabled group dims with it.
+
+## API reference
+
+The props of `<label>`, plus `className`. `labelStyles` holds its classes, which `FieldLabel` shares.

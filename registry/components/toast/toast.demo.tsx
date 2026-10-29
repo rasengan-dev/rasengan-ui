@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { toast, Toaster } from "@/components/ui/toast";
+import { toast } from "@/components/ui/toast";
 
 const save = () => new Promise<void>((resolve) => setTimeout(resolve, 1500));
 
+/** Needs one <Toaster /> near the root of the app, as the site's layout has. */
 export default function ToastDemo() {
 	return (
 		<div className="flex flex-wrap items-center justify-center gap-3">
@@ -23,7 +24,6 @@ export default function ToastDemo() {
 			<Button variant="outline" onClick={() => toast.error("Couldn't save changes", { description: "You are offline. We will keep your draft." })}>
 				Fail a save
 			</Button>
-			<Toaster />
 		</div>
 	);
 }

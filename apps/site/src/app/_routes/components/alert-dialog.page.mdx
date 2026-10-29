@@ -1,0 +1,91 @@
+---
+metadata:
+  title: Alert dialog · Rasengan UI
+  description: "Asks to confirm something that cannot be undone. It does not close on an outside click; focus starts on Cancel."
+toc: true
+---
+
+# Alert dialog
+
+Asks to confirm something that cannot be undone. It does not close on an outside click; focus starts on Cancel. For anything else, use [Dialog](/components/dialog).
+
+<ComponentPreview name="alert-dialog" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add alert-dialog
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/alert-dialog.json
+```
+
+It installs [Button](/components/button) too.
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/alert-dialog.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/delete-project.tsx"
+import { Button } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
+export function DeleteProject() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger render={<Button variant="destructive" />}>Delete project</AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Delete Hidden Leaf?</AlertDialogTitle>
+          <AlertDialogDescription>Its deployments and domains go with it. This can't be undone.</AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction variant="destructive" onClick={remove}>Delete</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
+```
+
+## Villages
+
+The dialog's surface and backdrop; Action and Cancel are buttons in the village's look.
+
+<VillageGrid name="alert-dialog" />
+
+## Accessibility
+
+- The popup is an `alertdialog`, named by its title and described by its description.
+- Focus starts on Cancel, the safe choice; <kbd>Esc</kbd> cancels; a click on the backdrop does nothing.
+
+## API reference
+
+The parts of Base UI's [Alert Dialog](https://base-ui.com/react/components/alert-dialog), styled:
+
+| Part | Notes |
+| --- | --- |
+| `AlertDialog` | `open`, `defaultOpen`, `onOpenChange` |
+| `AlertDialogTrigger` | `render` to use a `Button` |
+| `AlertDialogContent` | portal, backdrop and popup |
+| `AlertDialogHeader`, `AlertDialogFooter` | layout |
+| `AlertDialogTitle`, `AlertDialogDescription` | name and describe it |
+| `AlertDialogAction` | closes it; `variant` and `size` of a Button |
+| `AlertDialogCancel` | closes it; `variant` (default `"outline"`), focused first |

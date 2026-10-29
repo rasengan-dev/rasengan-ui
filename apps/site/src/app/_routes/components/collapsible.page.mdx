@@ -1,0 +1,65 @@
+---
+metadata:
+  title: Collapsible · Rasengan UI
+  description: "Shows or hides one section under its trigger, with the same height animation as Accordion."
+toc: true
+---
+
+# Collapsible
+
+Shows or hides one section under its trigger, with the same height animation as [Accordion](/components/accordion).
+
+<ComponentPreview name="collapsible" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add collapsible
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/collapsible.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/collapsible.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/details.tsx"
+import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+
+export function Details() {
+  return (
+    <Collapsible>
+      <CollapsibleTrigger render={<Button variant="ghost" size="sm" />}>Show details</CollapsibleTrigger>
+      <CollapsibleContent>Built 2 minutes ago from main.</CollapsibleContent>
+    </Collapsible>
+  );
+}
+```
+
+## Villages
+
+Only the trigger and the content are styled by you; the panel's height follows the village's motion.
+
+<VillageGrid name="collapsible" />
+
+## Accessibility
+
+- The trigger is a button with `aria-expanded` and `aria-controls`; <kbd>Enter</kbd> or <kbd>Space</kbd> toggles it.
+
+## API reference
+
+The parts of Base UI's [Collapsible](https://base-ui.com/react/components/collapsible):
+
+| Part | Notes |
+| --- | --- |
+| `Collapsible` | `open`, `defaultOpen`, `onOpenChange`, `disabled` |
+| `CollapsibleTrigger` | `render` to use a `Button` |
+| `CollapsibleContent` | the panel; `keepMounted`, `hiddenUntilFound` |

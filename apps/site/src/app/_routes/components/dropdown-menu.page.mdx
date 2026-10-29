@@ -1,0 +1,103 @@
+---
+metadata:
+  title: Dropdown menu · Rasengan UI
+  description: "Actions behind a button: items with shortcuts, checkbox and radio items, groups, submenus and a destructive item."
+toc: true
+---
+
+# Dropdown menu
+
+Actions behind a button: items with shortcuts, checkbox and radio items, groups, submenus and a destructive item.
+
+<ComponentPreview name="dropdown-menu" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add dropdown-menu
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/dropdown-menu.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/dropdown-menu.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/project-menu.tsx"
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+export function ProjectMenu() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger render={<Button variant="outline" />}>Project</DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem>
+          Rename <DropdownMenuShortcut>⌘R</DropdownMenuShortcut>
+        </DropdownMenuItem>
+        <DropdownMenuItem>Duplicate</DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+```
+
+### Checkbox and radio items
+
+`DropdownMenuCheckboxItem` (`checked`, `onCheckedChange`) and `DropdownMenuRadioGroup` with `DropdownMenuRadioItem`
+(`value`, `onValueChange`) keep the menu open and show a check.
+
+### Submenus
+
+`DropdownMenuSub` around a `DropdownMenuSubTrigger` and a `DropdownMenuSubContent`.
+
+```tsx
+<DropdownMenuSub>
+  <DropdownMenuSubTrigger>Move to</DropdownMenuSubTrigger>
+  <DropdownMenuSubContent>
+    <DropdownMenuItem>Hidden Leaf</DropdownMenuItem>
+  </DropdownMenuSubContent>
+</DropdownMenuSub>
+```
+
+## Villages
+
+A popover surface with the village's highlight: Iwa inverts the highlighted item.
+
+<VillageGrid name="dropdown-menu" />
+
+## Accessibility
+
+- A `menu` of `menuitem`s (`menuitemcheckbox`, `menuitemradio`), opened by a button with `aria-haspopup`.
+- Arrow keys move the highlight, typing jumps to an item, <kbd>Enter</kbd> activates, <kbd>→</kbd> opens a submenu, <kbd>Esc</kbd> closes.
+- Shortcuts are only shown: wire the key yourself, and keep it in the item's text so it is read.
+
+## API reference
+
+The parts of Base UI's [Menu](https://base-ui.com/react/components/menu), styled:
+
+| Part | Notes |
+| --- | --- |
+| `DropdownMenu` | `open`, `defaultOpen`, `onOpenChange`, `modal` |
+| `DropdownMenuTrigger` | `render` to use a `Button`; `openOnHover` |
+| `DropdownMenuContent` | portal and popup; `side`, `sideOffset` (6), `align` (`"start"`) |
+| `DropdownMenuItem` | `variant`: `"default" \| "destructive"`, `inset`, `onClick`, `closeOnClick` |
+| `DropdownMenuCheckboxItem`, `DropdownMenuRadioGroup`, `DropdownMenuRadioItem` | checked items |
+| `DropdownMenuGroup`, `DropdownMenuLabel`, `DropdownMenuSeparator`, `DropdownMenuShortcut` | grouping and hints |
+| `DropdownMenuSub`, `DropdownMenuSubTrigger`, `DropdownMenuSubContent` | submenus |

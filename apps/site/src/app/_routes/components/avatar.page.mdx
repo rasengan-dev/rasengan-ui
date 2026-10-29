@@ -1,0 +1,79 @@
+---
+metadata:
+  title: Avatar · Rasengan UI
+  description: "A person's picture, with initials while it loads or when it fails. Round, or square in Iwa; stacks into a group."
+toc: true
+---
+
+# Avatar
+
+A person's picture, with initials while it loads or when it fails. Round, or square in Iwa; stacks into a group.
+
+<ComponentPreview name="avatar" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add avatar
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/avatar.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/avatar.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/author.tsx"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+export function Author() {
+  return (
+    <Avatar>
+      <AvatarImage src="/avatars/sakura.png" alt="Sakura Haruno" />
+      <AvatarFallback>SH</AvatarFallback>
+    </Avatar>
+  );
+}
+```
+
+### Sizes and groups
+
+`size` is `sm`, `default` or `lg`. `AvatarGroup` overlaps its avatars, and `AvatarGroupCount` ends the stack with the
+number left out.
+
+```tsx
+<AvatarGroup>
+  <Avatar><AvatarFallback>NU</AvatarFallback></Avatar>
+  <Avatar><AvatarFallback>SU</AvatarFallback></Avatar>
+  <AvatarGroupCount>+3</AvatarGroupCount>
+</AvatarGroup>
+```
+
+## Villages
+
+Round with the pill radius, so square in Iwa; the fallback sits on the muted surface, opaque so a stack never shows through in Kiri.
+
+<VillageGrid name="avatar" />
+
+## Accessibility
+
+- The image needs an `alt` naming the person; the fallback shows only when the image is missing or still loading.
+- In a group, name the people in the text around it, or give the group an `aria-label`.
+
+## API reference
+
+The parts of Base UI's [Avatar](https://base-ui.com/react/components/avatar):
+
+| Part | Notes |
+| --- | --- |
+| `Avatar` | `size`: `"sm" \| "default" \| "lg"` |
+| `AvatarImage` | `src`, `alt`, `onLoadingStatusChange` |
+| `AvatarFallback` | `delay` before it shows |
+| `AvatarGroup`, `AvatarGroupCount` | `<div>` and `<span>` |

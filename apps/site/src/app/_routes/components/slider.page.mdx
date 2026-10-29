@@ -1,0 +1,62 @@
+---
+metadata:
+  title: Slider · Rasengan UI
+  description: "Picks a value, or a range with two thumbs, along a track. Keyboard steps with the arrows, large steps with Page Up and Down."
+toc: true
+---
+
+# Slider
+
+Picks a value, or a range with two thumbs, along a track. Keyboard steps with the arrows, large steps with Page Up and Down.
+
+<ComponentPreview name="slider" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add slider
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/slider.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/slider.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/volume.tsx"
+import { Slider } from "@/components/ui/slider";
+
+export function Volume() {
+  return <Slider defaultValue={40} aria-label="Volume" className="w-64" />;
+}
+```
+
+### Range
+
+Pass an array to get one thumb per value. `minStepsBetweenValues` keeps the thumbs apart.
+
+```tsx
+<Slider defaultValue={[20, 80]} step={5} aria-label="Price range" />
+```
+
+## Villages
+
+The track and range follow `--track-border` and the nature's primary; the thumb has no shadow in Iwa.
+
+<VillageGrid name="slider" />
+
+## Accessibility
+
+- Each thumb is a `slider` with `aria-valuenow`; `aria-label` on the Slider names every thumb.
+- Arrow keys move by `step`, <kbd>Page Up</kbd> and <kbd>Page Down</kbd> by `largeStep`, <kbd>Home</kbd> and <kbd>End</kbd> to the ends.
+
+## API reference
+
+The props of Base UI's [Slider](https://base-ui.com/react/components/slider) root (`value`, `defaultValue`, `onValueChange`, `onValueCommitted`, `min`, `max`, `step`, `largeStep`, `minStepsBetweenValues`, `orientation`, `disabled`…), plus `className`. Its track, range and thumbs are drawn for you.

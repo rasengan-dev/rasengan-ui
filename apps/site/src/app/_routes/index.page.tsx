@@ -1,4 +1,4 @@
-import { PageComponent } from 'rasengan';
+import { Link, PageComponent } from 'rasengan';
 import { components } from '@/catalogue';
 import { VillageScope } from '@/lib/village-scope';
 import { Button } from '@/components/ui/button';
@@ -19,10 +19,14 @@ const Home: PageComponent = () => {
       </header>
 
       <ul className="grid gap-6">
-        {components.map(({ name, title, description, status, Demo }) => (
+        {components.map(({ name, title, description, status, href, Demo }) => (
           <li key={name} className="overflow-hidden rounded-xl border-village bg-card text-card-foreground shadow-sm">
             <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-village px-5 py-3">
-              <h2 className="font-medium">{title}</h2>
+              <h2 className="font-medium">
+                <Link to={href} className="rounded-control underline-offset-4 outline-none hover:underline focus-visible:focus-ring">
+                  {title}
+                </Link>
+              </h2>
               <span className="text-xs text-muted-foreground">
                 {name} · {status}
               </span>

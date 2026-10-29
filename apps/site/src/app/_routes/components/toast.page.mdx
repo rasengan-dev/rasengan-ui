@@ -1,0 +1,93 @@
+---
+metadata:
+  title: Toast · Rasengan UI
+  description: "A short message in a corner of the screen, on Sonner. Call toast() from anywhere; render <Toaster /> once."
+toc: true
+---
+
+# Toast
+
+A short message in a corner of the screen, on [Sonner](https://sonner.emilkowal.ski). Call `toast()` from anywhere; render `<Toaster />` once.
+
+<ComponentPreview name="toast" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add toast
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/toast.json
+```
+
+It installs [Button](/components/button) too.
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/toast.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/invite.tsx"
+import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/toast";
+
+export function Invite() {
+  return (
+    <Button
+      onClick={() =>
+        toast("Invite sent", {
+          description: "sakura@konoha.dev will get an email in a minute.",
+          action: { label: "Undo", onClick: undo },
+        })
+      }
+    >
+      Send invite
+    </Button>
+  );
+}
+```
+
+### The Toaster
+
+Render `<Toaster />` once, near the root of the app, as this site does in its layout. It renders where it is placed (not
+in a portal), so inside a `VillageScope` it wears that scope's village.
+
+```tsx title="app/layout.tsx"
+import { Toaster } from "@/components/ui/toast";
+
+export default function Layout({ children }) {
+  return (
+    <>
+      {children}
+      <Toaster />
+    </>
+  );
+}
+```
+
+### Kinds
+
+Sonner's API is unchanged: `toast.success`, `toast.error`, `toast.info`, `toast.warning`, `toast.loading`, and
+`toast.promise(promise, { loading, success, error })`, which follows a promise from its spinner to its result.
+`toast.dismiss(id)` closes one.
+
+## Villages
+
+Sonner keeps its stacking, motion and swipe; the toast itself is a popover surface in the village (try the buttons above in each village). One Toaster for the page means the grid of villages is left out here.
+
+## Accessibility
+
+- Toasts are announced through Sonner's `aria-live="polite"` region; <kbd>Alt</kbd> <kbd>T</kbd> moves focus to them.
+- Each has a close button; one with an action stays long enough to use it, or pass `duration: Infinity`.
+- Never put the only way to do something in a toast: it goes away.
+
+## API reference
+
+`toast` is [Sonner's](https://sonner.emilkowal.ski/toast). `Toaster` takes Sonner's props (`position`, `duration`,
+`visibleToasts`, `expand`, `offset`…), with `closeButton` on by default; `richColors`, `invert` and `theme` have nothing
+to do, since the village draws the toast.
