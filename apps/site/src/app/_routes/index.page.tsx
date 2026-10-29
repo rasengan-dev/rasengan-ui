@@ -1,6 +1,5 @@
 import { PageComponent } from 'rasengan';
 import { components } from '@/catalogue';
-import { VillageToolbar } from '@/components/village-toolbar';
 import { VillageScope } from '@/lib/village-scope';
 import { Button } from '@/components/ui/button';
 import DialogDemo from '@/registry/components/dialog/dialog.demo';
@@ -9,7 +8,7 @@ import TooltipDemo from '@/registry/components/tooltip/tooltip.demo';
 
 const Home: PageComponent = () => {
   return (
-    <main className="mx-auto flex min-h-screen max-w-5xl flex-col gap-10 px-4 py-12 sm:px-8">
+    <main id="main" className="mx-auto flex max-w-5xl flex-col gap-10 px-4 py-12 sm:px-8">
       <header className="flex flex-col gap-3">
         <p className="text-sm font-medium text-primary">Rasengan UI · next</p>
         <h1 className="font-display text-4xl font-semibold tracking-display">Components on Base UI, themed by villages</h1>
@@ -18,10 +17,6 @@ const Home: PageComponent = () => {
           everything follows.
         </p>
       </header>
-
-      <div className="sticky top-0 z-10 -mx-4 border-b border-village bg-background/85 px-4 py-3 backdrop-blur sm:-mx-8 sm:px-8">
-        <VillageToolbar />
-      </div>
 
       <ul className="grid gap-6">
         {components.map(({ name, title, description, status, Demo }) => (

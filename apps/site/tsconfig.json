@@ -110,6 +110,7 @@
 	"include": [
 		"src",
 		"rasengan-env.d.ts",
+		"mdx-components.tsx",
 		"../../registry/components",
 		"../../packages/core/src",
 		"../../packages/villages/src"

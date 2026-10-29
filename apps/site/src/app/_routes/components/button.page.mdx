@@ -1,0 +1,98 @@
+---
+metadata:
+  title: Button · Rasengan UI
+  description: Triggers an action. Six variants and four sizes, all from the village tokens.
+toc: true
+---
+
+# Button
+
+Triggers an action. Six variants and four sizes; the shape, type, depth and press come from the village.
+
+<ComponentPreview name="button" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add button
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/button.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/button.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/save.tsx"
+import { Button } from "@/components/ui/button";
+
+export function Save() {
+  return <Button onClick={save}>Save changes</Button>;
+}
+```
+
+### Variants
+
+`default` for the main action of a view, `secondary` and `outline` for the others, `ghost` inside toolbars and lists,
+`destructive` for an action that deletes, and `link` for an action that reads as text. In Onmyōton, where the primary
+colour is the foreground, `link` is underlined: it cannot rely on colour alone.
+
+```tsx
+<Button variant="outline">Preview</Button>
+<Button variant="destructive">Delete project</Button>
+```
+
+### Sizes
+
+`sm`, `default` and `lg` follow the village's control heights (`--control-sm`, `--control-md`, `--control-lg`): Iwa is
+denser than Kiri. `icon` is a square of the default height and needs an `aria-label`.
+
+```tsx
+<Button size="icon" aria-label="Add a teammate">
+  <PlusIcon />
+</Button>
+```
+
+### As a link or another element
+
+The button renders a `<button>`. To render another element with the button's look, pass it to `render`, or put
+`buttonVariants()` on it.
+
+```tsx
+<Button render={<a href="/pricing" />} nativeButton={false}>See pricing</Button>
+
+<Link to="/docs" className={buttonVariants({ variant: "outline" })}>Read the docs</Link>
+```
+
+## Villages
+
+The same demo in each village, light and dark, in the nature and greys picked above.
+
+<VillageGrid name="button" />
+
+## Accessibility
+
+- A `<button type="button">`: it is focusable and fires on <kbd>Enter</kbd> and <kbd>Space</kbd>.
+- The focus ring is the village's (a halo in Konoha and Kiri, a ring with a gap in Iwa) and only shows for the keyboard.
+- `disabled` keeps the button out of the tab order. To keep it focusable while it can't be pressed (a loading state,
+  for example), pass `focusableWhenDisabled`.
+- An icon-only button needs an `aria-label`.
+
+## API reference
+
+The props of Base UI's [Button](https://base-ui.com/react/components/button), plus:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `variant` | `"default" \| "secondary" \| "outline" \| "ghost" \| "destructive" \| "link"` | `"default"` |
+| `size` | `"sm" \| "default" \| "lg" \| "icon"` | `"default"` |
+| `className` | `string` | |
+
+`buttonVariants({ variant, size })` returns the same classes, for elements that should look like a button.
