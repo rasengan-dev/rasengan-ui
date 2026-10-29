@@ -17,6 +17,9 @@
 		"isolatedModules": true,
 		"baseUrl": ".",
 		"paths": {
+			"@/components/ui/accordion": [
+				"./components/accordion/accordion.base.tsx"
+			],
 			"@/components/ui/alert": [
 				"./components/alert/alert.base.tsx"
 			],
@@ -37,6 +40,9 @@
 			],
 			"@/components/ui/checkbox": [
 				"./components/checkbox/checkbox.base.tsx"
+			],
+			"@/components/ui/collapsible": [
+				"./components/collapsible/collapsible.base.tsx"
 			],
 			"@/components/ui/dialog": [
 				"./components/dialog/dialog.base.tsx"
@@ -62,6 +68,9 @@
 			"@/components/ui/radio-group": [
 				"./components/radio-group/radio-group.base.tsx"
 			],
+			"@/components/ui/scroll-area": [
+				"./components/scroll-area/scroll-area.base.tsx"
+			],
 			"@/components/ui/select": [
 				"./components/select/select.base.tsx"
 			],
@@ -77,8 +86,14 @@
 			"@/components/ui/switch": [
 				"./components/switch/switch.base.tsx"
 			],
+			"@/components/ui/tabs": [
+				"./components/tabs/tabs.base.tsx"
+			],
 			"@/components/ui/textarea": [
 				"./components/textarea/textarea.base.tsx"
+			],
+			"@/components/ui/toast": [
+				"./components/toast/toast.base.tsx"
 			],
 			"@/components/ui/toggle": [
 				"./components/toggle/toggle.base.tsx"

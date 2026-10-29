@@ -185,6 +185,9 @@ importers:
       react-router:
         specifier: ^8.5.0
         version: 8.5.1(@types/react-dom@19.2.3)(@types/react@19.2.10)(react-dom@19.2.4)(react@19.2.4)
+      sonner:
+        specifier: ^2.0.7
+        version: 2.0.7(react-dom@19.2.4)(react@19.2.4)
       tailwind-merge:
         specifier: ^3.7.0
         version: 3.7.0
@@ -428,6 +431,9 @@ importers:
       react-dom:
         specifier: ^19.2.0
         version: 19.2.4(react@19.2.4)
+      sonner:
+        specifier: ^2.0.7
+        version: 2.0.7(react-dom@19.2.4)(react@19.2.4)
     devDependencies:
       '@types/react':
         specifier: ^19.2.0

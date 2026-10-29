@@ -63,6 +63,7 @@ const number = (s) => (s.startsWith("calc(") ? arithmetic(s.slice(5, -1)) : s.en
 /** oklch(...) or color-mix(in oklab, <oklch> <p>%, transparent) → { rgb: [0..1]*3, alpha } */
 function color(value, tokens) {
 	const v = substitute(value, tokens).trim();
+	if (v === "transparent") return { rgb: [0, 0, 0], alpha: 0 };
 	const mix = v.match(/^color-mix\(in oklab,\s*(oklch\(.*\))\s+([\d.]+)%,\s*transparent\)$/);
 	if (mix) {
 		const c = color(mix[1], tokens);
@@ -121,6 +122,8 @@ const TEXT = [
 	["--destructive", "--background"],
 	["--tooltip-foreground", "--tooltip"],
 	["--highlight-foreground", "--highlight"],
+	["--tab-active-foreground", "--tab-active"],
+	["--muted-foreground", "--tabs-list"],
 ];
 
 const failures = [];

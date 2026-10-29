@@ -45,6 +45,9 @@
 	--color-overlay: var(--overlay);
 	--color-tooltip: var(--tooltip);
 	--color-tooltip-foreground: var(--tooltip-foreground);
+	--color-tabs-list: var(--tabs-list);
+	--color-tab-active: var(--tab-active);
+	--color-tab-active-foreground: var(--tab-active-foreground);
 	--color-highlight: var(--highlight);
 	--color-highlight-foreground: var(--highlight-foreground);
 	--color-switch-track: var(--switch-track);
@@ -89,6 +92,8 @@
 	--shadow-md: var(--elevation-md);
 	--shadow-lg: var(--elevation-lg);
 	--shadow-input: var(--input-shadow);
+	--shadow-tab: var(--tab-active-shadow);
+	--shadow-thumb: var(--thumb-shadow);
 	--blur-surface: var(--surface-blur);
 	--animate-skeleton: var(--skeleton-motion);
 
@@ -157,6 +162,12 @@
 	--accent-foreground: var(--foreground);
 	--tooltip: var(--foreground);
 	--tooltip-foreground: var(--background);
+	--tabs-list: var(--muted);
+	--tabs-list-padding: 3px;
+	--tab-active: var(--background);
+	--tab-active-foreground: var(--foreground);
+	--tab-active-shadow: var(--elevation-sm);
+	--thumb-shadow: var(--elevation-sm);
 	--highlight: var(--accent);
 	--highlight-foreground: var(--accent-foreground);
 	--switch-track: var(--input);

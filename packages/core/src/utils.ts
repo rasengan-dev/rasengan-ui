@@ -15,7 +15,7 @@ const twMerge = extendTailwindMerge({
 			tracking: [{ tracking: ["control", "display"] }],
 			"border-w": ["border-village"],
 			rounded: [{ rounded: ["control", "pill", "check", "badge"] }],
-			shadow: [{ shadow: ["input"] }],
+			shadow: [{ shadow: ["input", "tab", "thumb"] }],
 		},
 	},
 });

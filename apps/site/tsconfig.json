@@ -6,6 +6,9 @@
 		"module": "ESNext",
 		"jsx": "react-jsx",
 		"paths": {
+			"@/components/ui/accordion": [
+				"../../registry/components/accordion/accordion.base.tsx"
+			],
 			"@/components/ui/alert": [
 				"../../registry/components/alert/alert.base.tsx"
 			],
@@ -26,6 +29,9 @@
 			],
 			"@/components/ui/checkbox": [
 				"../../registry/components/checkbox/checkbox.base.tsx"
+			],
+			"@/components/ui/collapsible": [
+				"../../registry/components/collapsible/collapsible.base.tsx"
 			],
 			"@/components/ui/dialog": [
 				"../../registry/components/dialog/dialog.base.tsx"
@@ -51,6 +57,9 @@
 			"@/components/ui/radio-group": [
 				"../../registry/components/radio-group/radio-group.base.tsx"
 			],
+			"@/components/ui/scroll-area": [
+				"../../registry/components/scroll-area/scroll-area.base.tsx"
+			],
 			"@/components/ui/select": [
 				"../../registry/components/select/select.base.tsx"
 			],
@@ -66,8 +75,14 @@
 			"@/components/ui/switch": [
 				"../../registry/components/switch/switch.base.tsx"
 			],
+			"@/components/ui/tabs": [
+				"../../registry/components/tabs/tabs.base.tsx"
+			],
 			"@/components/ui/textarea": [
 				"../../registry/components/textarea/textarea.base.tsx"
+			],
+			"@/components/ui/toast": [
+				"../../registry/components/toast/toast.base.tsx"
 			],
 			"@/components/ui/toggle": [
 				"../../registry/components/toggle/toggle.base.tsx"

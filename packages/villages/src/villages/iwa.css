@@ -63,6 +63,12 @@
 	--border: var(--foreground);
 	--input: var(--foreground);
 	--input-bg: var(--card);
+	--tabs-list: transparent;
+	--tabs-list-padding: 0px;
+	--tab-active: var(--foreground);
+	--tab-active-foreground: var(--background);
+	--tab-active-shadow: none;
+	--thumb-shadow: none;
 	--highlight: var(--foreground);
 	--highlight-foreground: var(--background);
 	--switch-track: var(--muted);

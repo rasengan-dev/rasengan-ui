@@ -1,6 +1,6 @@
 # RFC-0002: Rasengan UI — components on Base UI, themed by villages
 
-- Status: Draft (foundations, implementation plan steps 1 and 2, and batches 1 to 4 of step 3 on `feat/ui-next`)
+- Status: Draft (foundations, implementation plan steps 1 and 2, and all five batches of step 3 on `feat/ui-next`)
 - Author: Dilane Kombou
 - Created: 2026-10-28
 - Supersedes: RFC-0001 for everything except the block content contract (`schema.ts`, `example.ts`, `meta.ts`), which is kept
@@ -188,9 +188,10 @@ must be able to make; each became a token:
 | Loading | `--skeleton-fill`, `--skeleton-motion` | `animate-skeleton` | Iwa hatches without motion; none moves under reduced motion |
 | Controls | `--control-sm/md/lg`, `--control-px`, `--input-px`, `--control-font`, `--control-text`, `--control-weight`, `--control-tracking`, `--control-case` | `h-control`, `px-control-x`, `px-input-x`, `font-control`, `text-control`, `font-control-weight`, `tracking-control`, `case-control` | Iwa: mono uppercase labels |
 | Fields | `--input-bg`, `--input-shadow` | `bg-input-bg`, `shadow-input` | Kiri: glassy fields |
+| Tabs | `--tabs-list`, `--tabs-list-padding`, `--tab-active` (+ `-foreground`), `--tab-active-shadow` | `bg-tabs-list`, `bg-tab-active`, `shadow-tab` | Segmented (Konoha, Kiri) or an underlined bar with an inverted active tab (Iwa) |
 | Lists | `--highlight` (+ `-foreground`) | `bg-highlight`, `text-highlight-foreground` | The item under the pointer or the keyboard in select and menus; Iwa inverts it |
 | Tracks | `--switch-track`, `--switch-thumb`, `--track-border` | `bg-switch-track`, `bg-switch-thumb`, `border-track-border` | Switch, slider and progress tracks; the switch thumb turns light in dark mode; Iwa: bordered tracks, ink thumb |
-| Depth | `--elevation-sm/md/lg`, `--surface-blur`, `--texture` | `shadow-sm…lg`, `backdrop-blur-surface` | Iwa: hard offset shadows; Kiri: blur and mist |
+| Depth | `--elevation-sm/md/lg`, `--thumb-shadow`, `--surface-blur`, `--texture` | `shadow-sm…lg`, `shadow-thumb`, `backdrop-blur-surface` | Iwa: hard offset shadows on what stands off the page (buttons, cards, popups), none on the thumbs inside a control; Kiri: blur and mist |
 | Focus | `--focus-width`, `--focus-offset` | `focus-ring` | Konoha 3px halo, Kiri 4px, Iwa 2px with a 2px gap |
 | Press | `--press-scale`, `--press-offset`, `--press-shadow` | `pressable` | Iwa sinks 3px into its shadow, others scale |
 | Motion | `--motion-fast/base/slow`, `--motion-ease-out/in-out` | `duration-base`, `ease-out` | Read by `packages/motion` too |
@@ -308,6 +309,11 @@ label, popover, progress, radio-group, scroll-area, select, separator,
 skeleton, slider, switch, tabs, textarea, toast, toggle, tooltip. Names
 match shadcn so a project can move between the two.
 
+Toast is the one exception to the engine rule: it wraps Sonner, like shadcn,
+rather than Base UI's toast. Sonner runs unstyled, so it keeps its stacking,
+motion, swipe and `toast()` API, and the village draws the toast. The same
+file serves both engines.
+
 **Quality gate.** A component is done when it renders correctly in the three
 villages × light/dark × two natures, passes keyboard and screen reader
 checks, uses only contract tokens and `ui-*` variants, and its demo builds.
@@ -395,7 +401,7 @@ The plan below implements it.
    2. Controls (done): toggle, toggle group, slider, select, separator
    3. Display (done): badge, avatar, card, alert, skeleton, progress
    4. Overlays (done): tooltip, popover, dropdown menu, alert dialog
-   5. Navigation: tabs, accordion, collapsible, scroll area, toast
+   5. Navigation (done): tabs, accordion, collapsible, scroll area, toast
 4. **Site** (`apps/site`): village, nature, tint and light/dark switcher, one
    page per component, screenshots of every combination for visual review,
    an axe pass.
