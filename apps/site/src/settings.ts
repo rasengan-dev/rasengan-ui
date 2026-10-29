@@ -41,9 +41,22 @@ export function setSettings(patch: Partial<Settings>) {
   for (const listener of listeners) listener();
 }
 
+/* Whoever changes <html> (a script, the screenshots, devtools), the selectors follow. */
+let observer: MutationObserver | undefined;
+
 const subscribe = (listener: () => void) => {
   listeners.add(listener);
-  return () => listeners.delete(listener);
+  observer ??= new MutationObserver(() => {
+    const next = read();
+    if (current && JSON.stringify(next) === JSON.stringify(current)) return;
+    current = next;
+    for (const l of listeners) l();
+  });
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-village', 'data-nature', 'data-tint', 'class'] });
+  return () => {
+    listeners.delete(listener);
+    if (listeners.size === 0) observer?.disconnect();
+  };
 };
 
 /** The server renders the defaults; on the client, what <html> already wears. */

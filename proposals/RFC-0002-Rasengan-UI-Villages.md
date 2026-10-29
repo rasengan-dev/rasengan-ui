@@ -317,6 +317,9 @@ file serves both engines.
 **Quality gate.** A component is done when it renders correctly in the three
 villages × light/dark × two natures, passes keyboard and screen reader
 checks, uses only contract tokens and `ui-*` variants, and its demo builds.
+`pnpm screenshots` captures that matrix (and every overlay open) from the
+site and compares it with a local baseline, so a token change shows which
+components it moved; `--accept` keeps a run as the new baseline.
 
 ### Blocks
 
@@ -403,8 +406,8 @@ The plan below implements it.
    4. Overlays (done): tooltip, popover, dropdown menu, alert dialog
    5. Navigation (done): tabs, accordion, collapsible, scroll area, toast
 4. **Site** (`apps/site`): village, nature, tint and light/dark switcher, one
-   page per component, screenshots of every combination for visual review,
-   an axe pass.
+   page per component (done), screenshots of every combination for visual
+   review (done), an axe pass.
 5. **CLI**: `init`, `add`, `village`, `nature`, `tint`; then the lockfile
    with `diff` and `update`.
 6. **Then**: rebuild the RFC-0001 blocks; Kumo, Suna, Uzushio; Figma modes
