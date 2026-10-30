@@ -40,7 +40,21 @@ export function Status() {
 
 ### Variants
 
-`default` in the nature's primary, `secondary`, `outline`, and `destructive` for errors.
+`default` filled, `soft` as a wash, `outline` as a border, `secondary` in grey, and `destructive` for errors (shorthand
+for `tone="destructive"`). `tone` is the colour: `primary` by default, or `neutral`, `success`, `warning`, `info`,
+`destructive`; `outline` stays neutral in `primary`.
+
+<ComponentPreview name="badge" demo="badge-tones" />
+
+```tsx
+<Badge variant="soft" tone="success">Live</Badge>
+```
+
+### Sizes
+
+`sm`, `default` and `lg` set the padding, the text and the icon.
+
+<ComponentPreview name="badge" demo="badge-sizes" />
 
 ### As a link
 
@@ -64,6 +78,8 @@ The props of `<span>`, plus `render` (any element, through Base UI's `useRender`
 
 | Prop | Type | Default |
 | --- | --- | --- |
-| `variant` | `"default" \| "secondary" \| "outline" \| "destructive"` | `"default"` |
+| `variant` | `"default" \| "secondary" \| "outline" \| "soft" \| "destructive"` | `"default"` |
+| `tone` | `"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"` | `"primary"` |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` |
 
-`badgeVariants({ variant })` returns the same classes.
+`badgeVariants({ variant, tone, size })` returns the same classes.

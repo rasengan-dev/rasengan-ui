@@ -48,6 +48,21 @@ export function Workspace() {
 }
 ```
 
+### Size and variant
+
+`size` and `variant` on the Field go to the control inside it (Input, Textarea or a Select's trigger), so a form sets its
+look once per field rather than on every control. `size` also scales the label, description, error and the gaps between
+them. A control's own `size` or `variant` wins over the Field's.
+
+<ComponentPreview name="field" demo="field-look" />
+
+```tsx
+<Field size="sm" variant="filled">
+  <FieldLabel>Name</FieldLabel>
+  <Input />
+</Field>
+```
+
 ### Validation
 
 Base UI validates the control when it loses focus, from its native constraints (`required`, `type`, `pattern`, `min`…) or
@@ -80,7 +95,7 @@ The parts of Base UI's [Field](https://base-ui.com/react/components/field), styl
 
 | Part | Renders | Notes |
 | --- | --- | --- |
-| `Field` | `<div>` | `name`, `disabled`, `invalid`, `validate`, `validationMode` |
+| `Field` | `<div>` | `name`, `disabled`, `invalid`, `validate`, `validationMode`; `size` (`"sm" \| "default" \| "lg"`) and `variant` (`"default" \| "filled" \| "underline"`) for its control |
 | `FieldLabel` | `<label>` | linked to the control |
 | `FieldDescription` | `<p>` | linked with `aria-describedby` |
 | `FieldError` | `<div>` | `match` for one constraint; hidden while the field is valid |

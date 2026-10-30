@@ -7,6 +7,7 @@
 	"exports": {
 		".": "./src/utils.ts",
 		"./village-scope": "./src/village-scope.tsx",
+		"./field-context": "./src/field-context.tsx",
 		"./variants.css": "./src/variants.css"
 	},
 	"scripts": {

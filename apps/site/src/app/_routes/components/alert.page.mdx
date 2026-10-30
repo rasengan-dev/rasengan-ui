@@ -45,9 +45,22 @@ export function Heads() {
 }
 ```
 
+### Variants and tones
+
+`default` is a card; `soft` washes it in the tone; `outline` drops the fill for a border in the tone. `tone` is
+`neutral` by default (the village's ink), or `primary`, `success`, `warning`, `info`, `destructive`: on `default` it
+colours the icon and the title, on `soft` and `outline` the surface too. The description stays in the page's text
+colour, so it reads at full contrast.
+
+<ComponentPreview name="alert" demo="alert-variants" />
+
+```tsx
+<Alert variant="soft" tone="success" role="status">…</Alert>
+```
+
 ### Destructive
 
-`variant="destructive"` colours the title, the icon and the border.
+`variant="destructive"`, as in shadcn, colours the title, the icon, the description and the border.
 
 ## Villages
 
@@ -65,4 +78,5 @@ Card surface, village radius and border; the icon column lines up with the title
 
 | Prop | Type | Default |
 | --- | --- | --- |
-| `variant` | `"default" \| "destructive"` | `"default"` |
+| `variant` | `"default" \| "soft" \| "outline" \| "destructive"` | `"default"` |
+| `tone` | `"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"` | `"neutral"` |

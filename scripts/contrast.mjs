@@ -7,7 +7,8 @@
  * Reads the CSS sources (contract defaults, villages, natures), resolves the
  * tokens the way the browser does for one scope, and fails when a text pair
  * is under 4.5:1 (WCAG AA), or a control's border or track under 3:1 (WCAG
- * 1.4.11). Translucent colours are composited over the
+ * 1.4.11). Text pairs include every tone: on its solid colour, and its words
+ * on the page, a card and its soft wash (CONTRAST_TONES=1 lists them). Translucent colours are composited over the
  * background. Focus rings are reported against 3:1 but do not fail the run.
  */
 import { readdirSync, readFileSync } from "node:fs";
@@ -140,10 +141,29 @@ const CONTROLS = [
 ];
 /* Switch and slider tracks carry --track-border: where it is drawn, it is the edge that counts. */
 const TRACKS = new Set(["--switch-track", "--control-track"]);
+/* A control filled with a tone (a checked box, a slider's thumb) is told apart from the page by its edge. */
+const TONE_EDGES = ["neutral", "primary", "success", "warning", "info", "destructive"].flatMap((t) => [
+	[`--${t}-border`, "--background"],
+	[`--${t}-border`, "--card"],
+]);
+
+/*
+ * Tones (variant × tone): the text on the solid colour, and the tone's text colour on the page, on a card and on
+ * its soft wash (itself over the page or a card). Layers are listed from the bottom; the page is always under them.
+ */
+const TONES = ["neutral", "primary", "success", "warning", "info", "destructive"];
+const TONE_PAIRS = TONES.flatMap((t) => [
+	[`--${t}-foreground`, [`--${t}`]],
+	[`--${t}-text`, []],
+	[`--${t}-text`, ["--card"]],
+	[`--${t}-text`, [`--${t}-soft`]],
+	[`--${t}-text`, ["--card", `--${t}-soft`]],
+]);
 
 const failures = [];
 const warnings = [];
 const controls = [];
+const tones = [];
 let checked = 0;
 for (const village of Object.keys(villages)) {
 	for (const scheme of ["light", "dark"]) {
@@ -159,6 +179,12 @@ for (const village of Object.keys(villages)) {
 					checked++;
 					if (value < 4.5) failures.push(`${label}: ${fg} on ${bg} = ${value.toFixed(2)}`);
 				}
+				for (const [fg, bg] of TONE_EDGES) {
+					const under = surface(bg);
+					const value = ratio(over(color(tokens[fg], tokens), under), under);
+					checked++;
+					if (value < 3) failures.push(`${label}: ${fg} on ${bg} = ${value.toFixed(2)} (tone edge, 3:1)`);
+				}
 				for (const [fg, bg] of CONTROLS) {
 					const under = surface(bg);
 					const edge = TRACKS.has(fg) && substitute(tokens["--track-border"], tokens) !== "transparent" ? "--track-border" : fg;
@@ -166,6 +192,13 @@ for (const village of Object.keys(villages)) {
 					checked++;
 					if (value < 3) failures.push(`${label}: ${edge} on ${bg} = ${value.toFixed(2)} (control, 3:1)`);
 					controls.push({ label, pair: `${edge} on ${bg}`, value });
+				}
+				for (const [fg, layers] of TONE_PAIRS) {
+					const under = layers.reduce((acc, name) => over(color(tokens[name], tokens), acc), page);
+					const value = ratio(over(color(tokens[fg], tokens), under), under);
+					checked++;
+					if (value < 4.5) failures.push(`${label}: ${fg} on ${["--background", ...layers].join(" + ")} = ${value.toFixed(2)}`);
+					tones.push({ label, pair: `${fg} on ${["--background", ...layers].join(" + ")}`, value });
 				}
 				const ring = ratio(surface("--ring"), page);
 				if (ring < 3) warnings.push(`${label}: --ring on --background = ${ring.toFixed(2)}`);
@@ -181,6 +214,14 @@ if (process.env.CONTRAST_CONTROLS) {
 		worst[key] = Math.min(worst[key] ?? Infinity, value);
 	}
 	for (const [key, value] of Object.entries(worst)) console.log(`${value < 3 ? "✗" : "✓"} ${value.toFixed(2)}  ${key}`);
+}
+if (process.env.CONTRAST_TONES) {
+	const worst = {};
+	for (const { label, pair, value } of tones) {
+		const key = `${label.split(" ").slice(0, 2).join(" ")} · ${pair}`;
+		worst[key] = Math.min(worst[key] ?? Infinity, value);
+	}
+	for (const [key, value] of Object.entries(worst)) console.log(`${value < 4.5 ? "✗" : "✓"} ${value.toFixed(2)}  ${key}`);
 }
 console.log(`${checked} pairs across ${Object.keys(villages).length} villages × ${Object.keys(natures).length} natures × 2 schemes × 2 tints`);
 if (warnings.length) console.log(`\nFocus ring under 3:1 (not failing yet, ${warnings.length}):\n  ${warnings.join("\n  ")}`);

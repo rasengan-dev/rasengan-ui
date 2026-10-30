@@ -44,6 +44,12 @@ export function Links() {
 }
 ```
 
+### Variants
+
+`default` is a solid line; `dashed` a dashed one of the same width, for a softer break.
+
+<ComponentPreview name="separator" demo="separator-variants" />
+
 ## Villages
 
 It is `--border-width` thick and `--border` coloured: a hairline in Konoha and Kiri, a 2px ink rule in Iwa.
@@ -56,4 +62,5 @@ It is `--border-width` thick and `--border` coloured: a hairline in Konoha and K
 
 ## API reference
 
-The props of Base UI's [Separator](https://base-ui.com/react/components/separator) (`orientation`, default `"horizontal"`), plus `className`.
+The props of Base UI's [Separator](https://base-ui.com/react/components/separator) (`orientation`, default `"horizontal"`), plus `variant` (`"default" \| "dashed"`) and `className`.
+`separatorVariants({ variant })` returns its classes.

@@ -65,6 +65,15 @@ export function DeleteProject() {
 }
 ```
 
+### Sizes
+
+`size` on `AlertDialogContent`: `sm`, `default` or `lg`, the width from the sm breakpoint. There is no `full`: a question
+that needs an answer before anything else stays small. The action takes a Button's `variant`, `tone` and `size`.
+
+```tsx
+<AlertDialogContent size="sm">…</AlertDialogContent>
+```
+
 ## Villages
 
 The dialog's surface and backdrop; Action and Cancel are buttons in the village's look.
@@ -84,8 +93,8 @@ The parts of Base UI's [Alert Dialog](https://base-ui.com/react/components/alert
 | --- | --- |
 | `AlertDialog` | `open`, `defaultOpen`, `onOpenChange` |
 | `AlertDialogTrigger` | `render` to use a `Button` |
-| `AlertDialogContent` | portal, backdrop and popup |
+| `AlertDialogContent` | portal, backdrop and popup; `size` (`"sm" \| "default" \| "lg"`) |
 | `AlertDialogHeader`, `AlertDialogFooter` | layout |
 | `AlertDialogTitle`, `AlertDialogDescription` | name and describe it |
-| `AlertDialogAction` | closes it; `variant` and `size` of a Button |
+| `AlertDialogAction` | closes it; `variant`, `tone` and `size` of a Button |
 | `AlertDialogCancel` | closes it; `variant` (default `"outline"`), focused first |

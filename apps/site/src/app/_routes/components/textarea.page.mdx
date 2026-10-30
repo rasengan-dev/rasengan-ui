@@ -44,6 +44,19 @@ export function Feedback() {
 }
 ```
 
+### Variants
+
+The input's three variants: `default`, `filled` and `underline`.
+
+<ComponentPreview name="textarea" demo="textarea-variants" />
+
+### Sizes
+
+`sm`, `default` and `lg` set the padding, the text and the starting height (4, 6 and 8 lines' worth); the textarea then
+grows with its content. Inside a [Field](/components/field), it takes the Field's `size` and `variant`.
+
+<ComponentPreview name="textarea" demo="textarea-sizes" />
+
 ## Villages
 
 Radius, border, padding and background are the input's: a form mixing both looks of a piece.
@@ -57,4 +70,12 @@ Radius, border, padding and background are the input's: a form mixing both looks
 
 ## API reference
 
-The props of `<textarea>`, plus `className`. `textareaStyles` holds its classes.
+The props of `<textarea>`, plus:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `variant` | `"default" \| "filled" \| "underline"` | the Field's, else `"default"` |
+| `size` | `"sm" \| "default" \| "lg"` | the Field's, else `"default"` |
+| `className` | `string` | |
+
+`textareaVariants({ variant, size })` returns its classes.

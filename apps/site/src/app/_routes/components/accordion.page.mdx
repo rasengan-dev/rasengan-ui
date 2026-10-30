@@ -53,6 +53,17 @@ export function Faq() {
 
 One item is open at a time. Pass `multiple` to let several stay open; the value is an array either way.
 
+### Variants
+
+`default` splits the items with a rule. `outline` puts them inside one bordered block; `separated` makes each item its
+own card, for a FAQ on a page.
+
+<ComponentPreview name="accordion" demo="accordion-variants" />
+
+```tsx
+<Accordion variant="separated">…</Accordion>
+```
+
 ## Villages
 
 Rules between items in the village's border, headings in its type; Iwa sets the questions in capitals.
@@ -70,7 +81,7 @@ The parts of Base UI's [Accordion](https://base-ui.com/react/components/accordio
 
 | Part | Notes |
 | --- | --- |
-| `Accordion` | `value`, `defaultValue`, `onValueChange`, `multiple`, `disabled` |
+| `Accordion` | `value`, `defaultValue`, `onValueChange`, `multiple`, `disabled`; `variant` (`"default" \| "outline" \| "separated"`) for its items |
 | `AccordionItem` | `value`, `disabled` |
 | `AccordionTrigger` | the heading's button, with its chevron |
 | `AccordionContent` | the panel; `keepMounted`, `hiddenUntilFound` |

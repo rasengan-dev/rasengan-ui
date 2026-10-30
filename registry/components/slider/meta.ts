@@ -4,6 +4,6 @@ export const meta = {
 	description: "Picks a value, or a range with two thumbs, along a track. Keyboard steps with the arrows, large steps with Page Up and Down.",
 	status: "beta",
 	engines: ["base"],
-	dependencies: { base: ["@base-ui/react"] },
+	dependencies: { base: ["@base-ui/react", "class-variance-authority"] },
 	registryDependencies: [],
 } as const;

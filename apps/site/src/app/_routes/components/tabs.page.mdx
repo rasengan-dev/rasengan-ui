@@ -51,6 +51,21 @@ export function Settings() {
 
 `orientation="vertical"` on the Tabs puts the list beside the panels; the arrow keys become up and down.
 
+### Variants and sizes
+
+`variant` and `size` go on `Tabs`, and its list and tabs follow. `default` is segmented: the active tab raised on the
+list's well (in Iwa, an ink fill over an underlined bar). `underline` marks the active tab with a primary line on a
+bottom border, for a page's sections. `pills` drops the well and fills the active tab with the primary. `sm`, `default`
+and `lg` follow the village's control heights.
+
+<ComponentPreview name="tabs" demo="tabs-variants" />
+
+<ComponentPreview name="tabs" demo="tabs-sizes" />
+
+```tsx
+<Tabs variant="underline" size="sm" defaultValue="overview">…</Tabs>
+```
+
 ## Villages
 
 Its look is five tokens (`--tabs-list`, `--tabs-list-padding`, `--tab-active`, `--tab-active-foreground`, `--tab-active-shadow`): a raised segment in Konoha and Kiri, an inverted tab over a rule in Iwa.
@@ -68,7 +83,9 @@ The parts of Base UI's [Tabs](https://base-ui.com/react/components/tabs), styled
 
 | Part | Notes |
 | --- | --- |
-| `Tabs` | `value`, `defaultValue`, `onValueChange`, `orientation` |
+| `Tabs` | `value`, `defaultValue`, `onValueChange`, `orientation`; `variant` (`"default" \| "underline" \| "pills"`) and `size` (`"sm" \| "default" \| "lg"`) for its list and tabs |
 | `TabsList` | `activateOnFocus`, `loopFocus` |
 | `TabsTrigger` | `value`, `disabled` |
 | `TabsContent` | `value`, `keepMounted` |
+
+`tabsListVariants({ variant })` and `tabsTriggerVariants({ variant, size })` return the classes.

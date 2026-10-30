@@ -4,6 +4,6 @@ export const meta = {
 	description: "A person's picture, with initials while it loads or when it fails. Round, or square in Iwa; stacks into a group.",
 	status: "beta",
 	engines: ["base"],
-	dependencies: { base: ["@base-ui/react"] },
+	dependencies: { base: ["@base-ui/react", "class-variance-authority"] },
 	registryDependencies: [],
 } as const;

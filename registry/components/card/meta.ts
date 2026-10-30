@@ -4,6 +4,6 @@ export const meta = {
 	description: "A surface that groups a header, content and actions. Glass in Kiri, hard-shadowed in Iwa.",
 	status: "beta",
 	engines: ["base"],
-	dependencies: { base: [] },
+	dependencies: { base: ["class-variance-authority"] },
 	registryDependencies: [],
 } as const;

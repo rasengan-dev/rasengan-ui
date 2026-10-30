@@ -45,6 +45,27 @@ export function Email() {
 }
 ```
 
+### Variants
+
+`default` is a bordered field. `filled` is a grey well that becomes a bordered field on focus, for dense forms and
+settings panels. `underline` keeps only the bottom border, for inline edits; its focus thickens the line rather than
+drawing a ring. Each village draws them its own way: Iwa's filled well keeps its heavy border.
+
+<ComponentPreview name="input" demo="input-variants" />
+
+```tsx
+<Input variant="filled" placeholder="naruto@konoha.dev" />
+```
+
+### Sizes
+
+`sm`, `default` and `lg` follow the village's control heights, so an input lines up with a button of the same size. On
+phones the text stays at 16px whatever the size, so the browser doesn't zoom into the field.
+
+<ComponentPreview name="input" demo="input-sizes" />
+
+Inside a [Field](/components/field), the input takes the Field's `size` and `variant`; its own props win.
+
 ### Invalid
 
 Inside a Field, the input turns destructive when the field is invalid: from its own validation (`required`, `type="email"`),
@@ -76,5 +97,13 @@ Height, padding, radius and border come from the village: the input lines up wit
 
 ## API reference
 
-The props of Base UI's [Input](https://base-ui.com/react/components/input), which are those of `<input>`, plus `className`.
-`inputStyles` holds its classes, for an element that should look like an input.
+The props of Base UI's [Input](https://base-ui.com/react/components/input), which are those of `<input>`, plus:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `variant` | `"default" \| "filled" \| "underline"` | the Field's, else `"default"` |
+| `size` | `"sm" \| "default" \| "lg"` | the Field's, else `"default"` |
+| `className` | `string` | |
+
+`size` replaces the `<input>` attribute of the same name; set a width with `className`. `inputVariants({ variant, size })`
+returns the classes, for an element that should look like an input.

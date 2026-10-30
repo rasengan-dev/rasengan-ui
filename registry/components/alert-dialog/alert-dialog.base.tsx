@@ -6,7 +6,9 @@ import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog
 import { buttonVariants, type ButtonVariantProps } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { usePortalContainer } from "@/lib/village-scope";
-import { alertDialogStyles } from "./alert-dialog.styles";
+import { alertDialogContentVariants, alertDialogStyles, type AlertDialogContentVariantProps } from "./alert-dialog.styles";
+
+export { alertDialogContentVariants } from "./alert-dialog.styles";
 
 /** Rasengan UI parts take a plain string className on every engine. */
 type Props<P> = Omit<P, "className"> & { className?: string };
@@ -18,12 +20,17 @@ export function AlertDialogTrigger(props: Props<AlertDialogPrimitive.Trigger.Pro
 }
 
 /** In the nearest VillageScope's portal, over a backdrop that does not close it. */
-export function AlertDialogContent({ className, ...props }: Props<AlertDialogPrimitive.Popup.Props>) {
+export function AlertDialogContent({ className, size, ...props }: Props<AlertDialogPrimitive.Popup.Props> & AlertDialogContentVariantProps) {
 	const container = usePortalContainer();
 	return (
 		<AlertDialogPrimitive.Portal container={container}>
 			<AlertDialogPrimitive.Backdrop data-slot="alert-dialog-overlay" className={alertDialogStyles.backdrop} />
-			<AlertDialogPrimitive.Popup data-slot="alert-dialog-content" className={cn(alertDialogStyles.popup, className)} {...props} />
+			<AlertDialogPrimitive.Popup
+				data-slot="alert-dialog-content"
+				data-size={size ?? "default"}
+				className={cn(alertDialogContentVariants({ size }), className)}
+				{...props}
+			/>
 		</AlertDialogPrimitive.Portal>
 	);
 }
@@ -45,13 +52,13 @@ export function AlertDialogDescription({ className, ...props }: Props<AlertDialo
 }
 
 /** Confirms and closes. Use variant="destructive" when the action deletes something. */
-export function AlertDialogAction({ className, variant, size, ...props }: Props<AlertDialogPrimitive.Close.Props> & ButtonVariantProps) {
-	return <AlertDialogPrimitive.Close data-slot="alert-dialog-action" className={cn(buttonVariants({ variant, size }), className)} {...props} />;
+export function AlertDialogAction({ className, variant, tone, size, ...props }: Props<AlertDialogPrimitive.Close.Props> & ButtonVariantProps) {
+	return <AlertDialogPrimitive.Close data-slot="alert-dialog-action" className={cn(buttonVariants({ variant, tone, size }), className)} {...props} />;
 }
 
 /** Closes without acting; the dialog focuses it first. */
-export function AlertDialogCancel({ className, variant = "outline", size, autoFocus = true, ...props }: Props<AlertDialogPrimitive.Close.Props> & ButtonVariantProps) {
+export function AlertDialogCancel({ className, variant = "outline", tone, size, autoFocus = true, ...props }: Props<AlertDialogPrimitive.Close.Props> & ButtonVariantProps) {
 	return (
-		<AlertDialogPrimitive.Close data-slot="alert-dialog-cancel" autoFocus={autoFocus} className={cn(buttonVariants({ variant, size }), className)} {...props} />
+		<AlertDialogPrimitive.Close data-slot="alert-dialog-cancel" autoFocus={autoFocus} className={cn(buttonVariants({ variant, tone, size }), className)} {...props} />
 	);
 }

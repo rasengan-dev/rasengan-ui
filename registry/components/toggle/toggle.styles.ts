@@ -7,6 +7,8 @@ export const toggleVariants = cva(
 			variant: {
 				default: "bg-transparent",
 				outline: "border-input bg-input-bg shadow-sm hover:bg-accent hover:text-accent-foreground",
+				// Pressed, a wash of the primary rather than the accent grey: the on state reads as the brand colour.
+				soft: "tone-primary bg-transparent ui-pressed:border-tone-edge ui-pressed:bg-tone-soft ui-pressed:text-tone-text",
 			},
 			size: {
 				sm: "h-control-sm min-w-control-sm px-2",

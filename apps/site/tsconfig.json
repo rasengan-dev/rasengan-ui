@@ -99,6 +99,9 @@
 			"@/lib/village-scope": [
 				"../../packages/core/src/village-scope.tsx"
 			],
+			"@/lib/field-context": [
+				"../../packages/core/src/field-context.tsx"
+			],
 			"@/registry/*": [
 				"../../registry/*"
 			],

@@ -1,7 +1,7 @@
 export const meta = {
 	name: "toggle",
 	title: "Toggle",
-	description: "A button that stays pressed: bold on, watching on. Two variants and three sizes.",
+	description: "A button that stays pressed: bold on, watching on. Three variants and three sizes.",
 	status: "beta",
 	engines: ["base"],
 	dependencies: { base: ["@base-ui/react", "class-variance-authority"] },

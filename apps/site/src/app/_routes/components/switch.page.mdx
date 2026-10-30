@@ -44,6 +44,18 @@ export function Notifications() {
 }
 ```
 
+### Tones
+
+`tone` colours the checked track, and the thumb takes the text colour that sits on it: `primary` by default, or `neutral`, `success`, `warning`, `info`, `destructive`. The thumb, at 4.5:1 on the track, is what shows the state.
+
+<ComponentPreview name="switch" demo="switch-tones" />
+
+### Sizes
+
+`sm`, `default` and `lg`; the thumb's travel follows the size and the village's border.
+
+<ComponentPreview name="switch" demo="switch-sizes" />
+
 ## Villages
 
 The track and thumb are village tokens (`--switch-track`, `--switch-thumb`, `--track-border`): Iwa borders its track and draws its thumb in ink, without a shadow.
@@ -57,4 +69,12 @@ The track and thumb are village tokens (`--switch-track`, `--switch-thumb`, `--t
 
 ## API reference
 
-The props of Base UI's [Switch](https://base-ui.com/react/components/switch) root (`checked`, `defaultChecked`, `onCheckedChange`, `name`, `required`, `disabled`…), plus `className`.
+The props of Base UI's [Switch](https://base-ui.com/react/components/switch) root (`checked`, `defaultChecked`, `onCheckedChange`, `name`, `required`, `disabled`…), plus:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `tone` | `"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"` | `"primary"` |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` |
+| `className` | `string` | |
+
+`switchVariants({ tone, size })` returns the track's classes.

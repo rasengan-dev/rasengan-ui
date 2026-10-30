@@ -77,6 +77,17 @@ const [open, setOpen] = useState(false);
 </Dialog>
 ```
 
+### Sizes
+
+`size` on `DialogContent` sets its width from the sm breakpoint: `sm`, `default`, `lg`, or `full`, which fills the window
+less a margin and scrolls its body. Below sm, every size takes the window's width less a margin.
+
+<ComponentPreview name="dialog" demo="dialog-sizes" />
+
+```tsx
+<DialogContent size="lg">…</DialogContent>
+```
+
 ### Without the close button
 
 `DialogContent` draws a close button in its corner. Pass `showCloseButton={false}` when the footer already has one.
@@ -103,7 +114,7 @@ The parts of Base UI's [Dialog](https://base-ui.com/react/components/dialog), st
 | --- | --- | --- |
 | `Dialog` | nothing | `open`, `defaultOpen`, `onOpenChange`, `modal` |
 | `DialogTrigger` | `<button>` | `render` to use a `Button` |
-| `DialogContent` | portal, backdrop and popup | `showCloseButton` (default `true`) |
+| `DialogContent` | portal, backdrop and popup | `showCloseButton` (default `true`), `size` (`"sm" \| "default" \| "lg" \| "full"`); `dialogContentVariants({ size })` returns its classes |
 | `DialogHeader`, `DialogFooter` | `<div>` | layout only |
 | `DialogTitle` | `<h2>` | names the dialog |
 | `DialogDescription` | `<p>` | describes the dialog |

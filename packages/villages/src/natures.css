@@ -37,5 +37,6 @@
 [data-village] [data-nature="onmyoton"] {
 	--primary: var(--foreground);
 	--primary-foreground: var(--background);
+	--primary-text: var(--foreground);
 	--ring: color-mix(in oklab, var(--foreground) var(--ring-alpha), transparent);
 }

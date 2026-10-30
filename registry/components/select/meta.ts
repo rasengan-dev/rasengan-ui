@@ -4,6 +4,6 @@ export const meta = {
 	description: "Picks one option from a list that opens over the page. Its list follows the nearest VillageScope.",
 	status: "beta",
 	engines: ["base"],
-	dependencies: { base: ["@base-ui/react", "lucide-react"] },
+	dependencies: { base: ["@base-ui/react", "class-variance-authority", "lucide-react"] },
 	registryDependencies: [],
 } as const;

@@ -6,7 +6,9 @@ import { XIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { usePortalContainer } from "@/lib/village-scope";
-import { dialogStyles } from "./dialog.styles";
+import { dialogContentVariants, dialogStyles, type DialogContentVariantProps } from "./dialog.styles";
+
+export { dialogContentVariants } from "./dialog.styles";
 
 /** Rasengan UI parts take a plain string className on every engine. */
 type Props<P> = Omit<P, "className"> & { className?: string };
@@ -37,12 +39,18 @@ export function DialogContent({
 	className,
 	children,
 	showCloseButton = true,
+	size,
 	...props
-}: Props<DialogPrimitive.Popup.Props> & { showCloseButton?: boolean }) {
+}: Props<DialogPrimitive.Popup.Props> & DialogContentVariantProps & { showCloseButton?: boolean }) {
 	return (
 		<DialogPortal>
 			<DialogOverlay />
-			<DialogPrimitive.Popup data-slot="dialog-content" className={cn(dialogStyles.popup, className)} {...props}>
+			<DialogPrimitive.Popup
+				data-slot="dialog-content"
+				data-size={size ?? "default"}
+				className={cn(dialogContentVariants({ size }), className)}
+				{...props}
+			>
 				{children}
 				{showCloseButton && (
 					<DialogPrimitive.Close data-slot="dialog-close" className={dialogStyles.close}>

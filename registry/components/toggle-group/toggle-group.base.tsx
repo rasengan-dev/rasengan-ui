@@ -19,6 +19,7 @@ export function ToggleGroup({ className, variant, size, children, ...props }: Pr
 		<ToggleGroupPrimitive
 			data-slot="toggle-group"
 			data-variant={variant ?? "default"}
+			data-size={size ?? "default"}
 			className={cn(toggleGroupStyles.root, className)}
 			{...props}
 		>

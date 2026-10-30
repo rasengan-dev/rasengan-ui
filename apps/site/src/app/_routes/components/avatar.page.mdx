@@ -45,7 +45,11 @@ export function Author() {
 
 ### Sizes and groups
 
-`size` is `sm`, `default` or `lg`. `AvatarGroup` overlaps its avatars, and `AvatarGroupCount` ends the stack with the
+`size` is `sm`, `default`, `lg` or `xl`; the initials follow it.
+
+<ComponentPreview name="avatar" demo="avatar-sizes" />
+
+`AvatarGroup` overlaps its avatars, and `AvatarGroupCount` ends the stack with the
 number left out.
 
 ```tsx
@@ -73,7 +77,7 @@ The parts of Base UI's [Avatar](https://base-ui.com/react/components/avatar):
 
 | Part | Notes |
 | --- | --- |
-| `Avatar` | `size`: `"sm" \| "default" \| "lg"` |
+| `Avatar` | `size`: `"sm" \| "default" \| "lg" \| "xl"`; `avatarVariants({ size })` returns its classes |
 | `AvatarImage` | `src`, `alt`, `onLoadingStatusChange` |
 | `AvatarFallback` | `delay` before it shows |
 | `AvatarGroup`, `AvatarGroupCount` | `<div>` and `<span>` |

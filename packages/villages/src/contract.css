@@ -39,8 +39,25 @@
 	--color-destructive: var(--destructive);
 	--color-destructive-foreground: var(--destructive-foreground);
 	--color-border: var(--border);
+	/* Status colours, each with the text on it, a soft wash and the text in that colour. */
+	--color-success: var(--success);
+	--color-success-foreground: var(--success-foreground);
+	--color-warning: var(--warning);
+	--color-warning-foreground: var(--warning-foreground);
+	--color-info: var(--info);
+	--color-info-foreground: var(--info-foreground);
+	/* The current tone (see the tone-* utilities): bg-tone, text-tone-foreground, bg-tone-soft, text-tone-text, border-tone-edge. */
+	--color-tone: var(--tone);
+	--color-tone-foreground: var(--tone-foreground);
+	--color-tone-soft: var(--tone-soft);
+	--color-tone-text: var(--tone-text);
+	--color-tone-edge: var(--tone-edge);
+	--color-tone-border: var(--tone-border);
 	--color-input: var(--input);
 	--color-input-bg: var(--input-bg);
+	--color-field-filled: var(--field-filled);
+	--color-field-filled-hover: var(--field-filled-hover);
+	--color-field-filled-edge: var(--field-filled-edge);
 	--color-ring: var(--ring);
 	--color-overlay: var(--overlay);
 	--color-tooltip: var(--tooltip);
@@ -85,9 +102,16 @@
 	--spacing-control-x: var(--control-px);
 	--spacing-input-x: var(--input-px);
 	--font-control: var(--control-font);
+	--text-control-sm: var(--control-text-sm);
 	--text-control: var(--control-text);
+	--text-control-lg: var(--control-text-lg);
 	--font-weight-control-weight: var(--control-weight);
 	--tracking-control: var(--control-tracking);
+
+	/* Indicators (checkbox, radio, switch thumb, slider thumb): size-indicator(-sm/-lg). */
+	--spacing-indicator-sm: var(--indicator-sm);
+	--spacing-indicator: var(--indicator-md);
+	--spacing-indicator-lg: var(--indicator-lg);
 
 	/* Depth. */
 	--shadow-sm: var(--elevation-sm);
@@ -135,6 +159,62 @@
 	}
 }
 
+/*
+ * Tones: a component's colour, apart from its style. Each utility only points the --tone* properties at one
+ * colour, so a variant is written once (bg-tone, bg-tone-soft text-tone-text…) and works in every tone.
+ * --tone-edge is the soft variant's border: transparent, unless the village draws one (--soft-edge-alpha).
+ * --tone-border is the edge of something filled with the tone (a checked box, a slider's thumb): 3:1 on the page.
+ */
+@utility tone-neutral {
+	--tone: var(--neutral);
+	--tone-foreground: var(--neutral-foreground);
+	--tone-soft: var(--neutral-soft);
+	--tone-text: var(--neutral-text);
+	--tone-edge: color-mix(in oklab, var(--neutral-text) var(--soft-edge-alpha), transparent);
+	--tone-border: var(--neutral-border);
+}
+@utility tone-primary {
+	--tone: var(--primary);
+	--tone-foreground: var(--primary-foreground);
+	--tone-soft: var(--primary-soft);
+	--tone-text: var(--primary-text);
+	--tone-edge: color-mix(in oklab, var(--primary-text) var(--soft-edge-alpha), transparent);
+	--tone-border: var(--primary-border);
+	--tone-border: var(--primary-border);
+}
+@utility tone-success {
+	--tone: var(--success);
+	--tone-foreground: var(--success-foreground);
+	--tone-soft: var(--success-soft);
+	--tone-text: var(--success-text);
+	--tone-edge: color-mix(in oklab, var(--success-text) var(--soft-edge-alpha), transparent);
+	--tone-border: var(--success-border);
+}
+@utility tone-warning {
+	--tone: var(--warning);
+	--tone-foreground: var(--warning-foreground);
+	--tone-soft: var(--warning-soft);
+	--tone-text: var(--warning-text);
+	--tone-edge: color-mix(in oklab, var(--warning-text) var(--soft-edge-alpha), transparent);
+	--tone-border: var(--warning-border);
+}
+@utility tone-info {
+	--tone: var(--info);
+	--tone-foreground: var(--info-foreground);
+	--tone-soft: var(--info-soft);
+	--tone-text: var(--info-text);
+	--tone-edge: color-mix(in oklab, var(--info-text) var(--soft-edge-alpha), transparent);
+	--tone-border: var(--info-border);
+}
+@utility tone-destructive {
+	--tone: var(--destructive);
+	--tone-foreground: var(--destructive-foreground);
+	--tone-soft: var(--destructive-soft);
+	--tone-text: var(--destructive-text);
+	--tone-edge: color-mix(in oklab, var(--destructive-text) var(--soft-edge-alpha), transparent);
+	--tone-border: var(--destructive-border);
+}
+
 /* The default skeleton motion; a village may replace it (Iwa: none) with --skeleton-motion. */
 @keyframes rui-pulse {
 	50% {
@@ -180,9 +260,18 @@
 	--track-border: transparent;
 	--input-bg: var(--background);
 	--input-shadow: none;
+	/* The filled field variant: a grey well, no border unless the village draws one (Iwa). */
+	--field-filled: var(--muted);
+	--field-filled-hover: color-mix(in oklab, var(--field-filled), var(--foreground) 5%);
+	--field-filled-edge: transparent;
 	--input-px: calc(var(--control-px) * 0.75);
 	--control-font: var(--font-body);
 	--control-text: 0.875rem;
+	--control-text-sm: calc(var(--control-text) * 0.93);
+	--control-text-lg: calc(var(--control-text) * 1.07);
+	--indicator-sm: 0.875rem;
+	--indicator-md: 1.125rem;
+	--indicator-lg: 1.375rem;
 	--control-weight: 500;
 	--control-tracking: 0em;
 	--control-case: none;
@@ -200,6 +289,54 @@
 	--press-shadow: var(--elevation-sm);
 	--surface-blur: 0px;
 	--texture: none;
+
+	/*
+	 * Status colours. Hues are fixed (green, amber, blue); the village gives the strength per mode, like the
+	 * primary's: by default the primary's own, with the text that sits on the primary. Warning is light with dark
+	 * text, so it has its own knobs. --tone-text-l is the lightness of a tone's words (outline, ghost, soft), on
+	 * the page and on its soft wash: a little darker than the solid colour in light mode.
+	 * Not multiplied by --tint: a neutral village keeps its status colours, like destructive.
+	 */
+	--success-hue: 150;
+	--warning-hue: 75;
+	--info-hue: 255;
+	--status-l: var(--primary-l);
+	--status-c: var(--primary-c);
+	--on-status: var(--on-primary);
+	--warning-l: 0.8;
+	--warning-c: 0.16;
+	--on-warning: oklch(0.25 0.05 60);
+	--tone-text-l: var(--primary-l);
+	--warning-text-l: var(--tone-text-l);
+	--warning-text-c: 0.09;
+	--success: oklch(var(--status-l) var(--status-c) var(--success-hue));
+	--success-foreground: var(--on-status);
+	--success-text: oklch(var(--tone-text-l) var(--status-c) var(--success-hue));
+	--warning: oklch(var(--warning-l) var(--warning-c) var(--warning-hue));
+	--warning-foreground: var(--on-warning);
+	--warning-text: oklch(var(--warning-text-l) var(--warning-text-c) var(--warning-hue));
+	--info: oklch(var(--status-l) var(--status-c) var(--info-hue));
+	--info-foreground: var(--on-status);
+	--info-text: oklch(var(--tone-text-l) var(--status-c) var(--info-hue));
+	--destructive-text: var(--destructive);
+	--neutral: var(--foreground);
+	--neutral-foreground: var(--background);
+	--neutral-text: var(--foreground);
+	/* The edge of a control filled with the colour: the colour itself, but amber is too light for 3:1 on a light page. */
+	--neutral-border: var(--neutral);
+	--success-border: var(--success);
+	--warning-border: var(--warning-text);
+	--info-border: var(--info);
+	--destructive-border: var(--destructive);
+
+	/* Soft: the colour as a translucent wash, so it works on the page, a card or a popup alike. */
+	--soft-alpha: 12%;
+	--soft-edge-alpha: 0%;
+	--success-soft: color-mix(in oklab, var(--success) var(--soft-alpha), transparent);
+	--warning-soft: color-mix(in oklab, var(--warning) var(--soft-alpha), transparent);
+	--info-soft: color-mix(in oklab, var(--info) var(--soft-alpha), transparent);
+	--destructive-soft: color-mix(in oklab, var(--destructive) var(--soft-alpha), transparent);
+	--neutral-soft: color-mix(in oklab, var(--foreground) var(--soft-alpha), transparent);
 }
 
 /*
@@ -221,7 +358,16 @@
 :where([data-village], [data-nature]) {
 	--primary: oklch(var(--primary-l) var(--primary-c) var(--nature-hue));
 	--primary-foreground: var(--on-primary);
+	--primary-text: oklch(var(--tone-text-l) var(--primary-c) var(--nature-hue));
+	--primary-soft: color-mix(in oklab, var(--primary) var(--soft-alpha), transparent);
+	--primary-border: var(--primary);
 	--ring: oklch(var(--primary-l) var(--primary-c) var(--nature-hue) / var(--ring-alpha));
+	/* The default tone, so bg-tone and friends work without a tone-* utility. */
+	--tone: var(--primary);
+	--tone-foreground: var(--primary-foreground);
+	--tone-soft: var(--primary-soft);
+	--tone-text: var(--primary-text);
+	--tone-edge: color-mix(in oklab, var(--primary-text) var(--soft-edge-alpha), transparent);
 	--chart-1: oklch(var(--chart-l) var(--chart-c) var(--nature-hue));
 	--chart-2: oklch(var(--chart-l) var(--chart-c) calc(var(--nature-hue) + 72));
 	--chart-3: oklch(var(--chart-l) var(--chart-c) calc(var(--nature-hue) + 144));

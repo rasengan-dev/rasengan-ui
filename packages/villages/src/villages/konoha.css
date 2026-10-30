@@ -63,6 +63,10 @@
 	--primary-l: 0.52;
 	--primary-c: 0.18;
 	--on-primary: oklch(0.99 calc(0.005 * var(--tint, 1)) 75);
+	/* Tones: words in a tone sit a little darker than the solid colour, to hold 4.5:1 on its soft wash too. */
+	--tone-text-l: 0.46;
+	--status-c: 0.12;
+	--destructive-text: oklch(0.5 0.2 27);
 	--chart-l: 0.66;
 	--chart-c: 0.16;
 
@@ -96,6 +100,11 @@
 	--primary-l: 0.74;
 	--primary-c: 0.16;
 	--on-primary: oklch(0.18 calc(0.01 * var(--tint, 1)) 60);
+	--tone-text-l: var(--primary-l);
+	--status-c: 0.13;
+	--warning-l: 0.8;
+	--soft-alpha: 16%;
+	--destructive-text: var(--destructive);
 	--chart-l: 0.72;
 	--chart-c: 0.15;
 

@@ -7,7 +7,8 @@
  *   pnpm screenshots --accept        # the same, then keep this run as the baseline
  *
  * For each component page, the preview in the three villages × light/dark × two natures (the
- * village's default and Onmyōton), plus the whole window with the popup open for the overlays.
+ * village's default and Onmyōton), plus the whole window with the popup open for the overlays, and
+ * each of its other demos (variants, sizes…) as `<demo>--<combo>.png`.
  * Each run is compared with the baseline: .screenshots/index.html lists what changed first, with
  * the before, after and a diff, then every capture. It drives the Chrome installed on the machine
  * (CHROME_PATH to pick another) and reports console errors.
@@ -16,7 +17,7 @@ import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, write
 import { join } from "node:path";
 import pixelmatch from "pixelmatch";
 import { PNG } from "pngjs";
-import { base, closeOverlay, overlayStillOpen, combos as allCombos, components as all, dress, isOverlay, launch, open, openOverlay, parseArgs, pool, preview, root, siteIsUp } from "./site-pages.mjs";
+import { base, closeOverlay, overlayStillOpen, combos as allCombos, components as all, dress, extraDemos, isOverlay, launch, open, openOverlay, parseArgs, pool, preview, root, siteIsUp } from "./site-pages.mjs";
 
 const out = join(root, ".screenshots");
 const dirs = { latest: join(out, "latest"), baseline: join(out, "baseline"), diff: join(out, "diff") };
@@ -28,7 +29,11 @@ const accept = flags.has("--accept");
 const combos = allCombos();
 const file = ({ village, scheme, nature }, suffix = "") => `${village}-${scheme}-${nature}${suffix}.png`;
 /* Overlays are only a trigger at rest: they also get the whole window with the popup open. */
-const shots = (name) => combos.flatMap((combo) => (isOverlay(name) ? [file(combo), file(combo, "-open")] : [file(combo)]));
+const shots = (name) =>
+	combos.flatMap((combo) => [
+		...(isOverlay(name) ? [file(combo), file(combo, "-open")] : [file(combo)]),
+		...extraDemos(name).map((demo) => `${demo}--${file(combo)}`),
+	]);
 
 // ---- Capture ----------------------------------------------------------------------
 
@@ -52,6 +57,7 @@ async function capture(name) {
 		for (const combo of combos) {
 			await dress(page, combo);
 			await preview(page).screenshot({ path: join(dir, file(combo)) });
+			for (const demo of extraDemos(name)) await preview(page, demo).screenshot({ path: join(dir, `${demo}--${file(combo)}`) });
 			if (isOverlay(name)) {
 				for (let attempt = 0; attempt < 3; attempt++) {
 					await openOverlay(page, name);

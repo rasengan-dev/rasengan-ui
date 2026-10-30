@@ -8,8 +8,10 @@ import { extendTailwindMerge } from "tailwind-merge";
  */
 const twMerge = extendTailwindMerge({
 	extend: {
+		// Spacing names (h-control-sm, px-input-x, size-indicator…), so a later h-, px- or size- replaces them.
+		theme: { spacing: ["control", "control-sm", "control-lg", "control-x", "input-x", "indicator", "indicator-sm", "indicator-lg"] },
 		classGroups: {
-			"font-size": [{ text: ["control"] }],
+			"font-size": [{ text: ["control", "control-sm", "control-lg"] }],
 			"font-family": [{ font: ["control"] }],
 			"font-weight": [{ font: ["control-weight"] }],
 			tracking: [{ tracking: ["control", "display"] }],

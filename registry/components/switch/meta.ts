@@ -4,6 +4,6 @@ export const meta = {
 	description: "Turns a setting on or off, with an immediate effect. Its track and thumb are village tokens.",
 	status: "beta",
 	engines: ["base"],
-	dependencies: { base: ["@base-ui/react"] },
+	dependencies: { base: ["@base-ui/react", "class-variance-authority"] },
 	registryDependencies: [],
 } as const;

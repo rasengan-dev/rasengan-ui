@@ -1,13 +1,13 @@
 ---
 metadata:
   title: Button · Rasengan UI
-  description: Triggers an action. Six variants and four sizes, all from the village tokens.
+  description: Triggers an action. Seven variants, six tones and six sizes, all from the village tokens.
 toc: true
 ---
 
 # Button
 
-Triggers an action. Six variants and four sizes; the shape, type, depth and press come from the village.
+Triggers an action. Seven variants, six tones and six sizes; the shape, type, depth and press come from the village.
 
 <ComponentPreview name="button" />
 
@@ -40,19 +40,35 @@ export function Save() {
 
 ### Variants
 
-`default` for the main action of a view, `secondary` and `outline` for the others, `ghost` inside toolbars and lists,
-`destructive` for an action that deletes, and `link` for an action that reads as text. In Onmyōton, where the primary
-colour is the foreground, `link` is underlined: it cannot rely on colour alone.
+`default` for the main action of a view, `secondary` and `outline` for the others, `soft` for a quieter one in colour,
+`ghost` inside toolbars and lists, `destructive` for an action that deletes, and `link` for an action that reads as
+text. In Onmyōton, where the primary colour is the foreground, `link` is underlined: it cannot rely on colour alone.
 
 ```tsx
 <Button variant="outline">Preview</Button>
 <Button variant="destructive">Delete project</Button>
 ```
 
+### Tones
+
+`tone` is the colour, apart from the style: `primary` by default, `neutral` for the village's ink, and `success`,
+`warning`, `info` or `destructive` for an action that carries that meaning. It colours `default`, `soft` and `link`.
+`outline` and `ghost` keep their neutral look in `primary`, as in shadcn, and take the tone's colour in the others;
+`secondary` stays grey. `variant="destructive"` is shorthand for `variant="default" tone="destructive"`.
+
+<ComponentPreview name="button" demo="button-tones" />
+
+```tsx
+<Button variant="soft" tone="success">Approve</Button>
+<Button variant="outline" tone="destructive">Leave team</Button>
+```
+
 ### Sizes
 
 `sm`, `default` and `lg` follow the village's control heights (`--control-sm`, `--control-md`, `--control-lg`): Iwa is
-denser than Kiri. `icon` is a square of the default height and needs an `aria-label`.
+denser than Kiri. `icon-sm`, `icon` and `icon-lg` are squares of those heights and need an `aria-label`.
+
+<ComponentPreview name="button" demo="button-sizes" />
 
 ```tsx
 <Button size="icon" aria-label="Add a teammate">
@@ -91,8 +107,9 @@ The props of Base UI's [Button](https://base-ui.com/react/components/button), pl
 
 | Prop | Type | Default |
 | --- | --- | --- |
-| `variant` | `"default" \| "secondary" \| "outline" \| "ghost" \| "destructive" \| "link"` | `"default"` |
-| `size` | `"sm" \| "default" \| "lg" \| "icon"` | `"default"` |
+| `variant` | `"default" \| "secondary" \| "outline" \| "ghost" \| "soft" \| "destructive" \| "link"` | `"default"` |
+| `tone` | `"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"` | `"primary"` |
+| `size` | `"sm" \| "default" \| "lg" \| "icon-sm" \| "icon" \| "icon-lg"` | `"default"` |
 | `className` | `string` | |
 
-`buttonVariants({ variant, size })` returns the same classes, for elements that should look like a button.
+`buttonVariants({ variant, tone, size })` returns the same classes, for elements that should look like a button.

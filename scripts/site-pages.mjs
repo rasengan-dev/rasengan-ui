@@ -92,7 +92,16 @@ const closers = {
 };
 
 export const isOverlay = (name) => name in openers;
-export const preview = (page) => page.locator('[data-slot="component-preview"]');
+/** A page's main preview (its first); `demo` picks another one, as `<ComponentPreview demo>` names it. */
+export const preview = (page, demo) =>
+	demo ? page.locator(`[data-slot="component-preview"][data-demo="${demo}"]`) : page.locator('[data-slot="component-preview"]').first();
+
+/** A component's other demos (`button-sizes.demo.tsx` → "button-sizes"), each shown in its own preview on the page. */
+export const extraDemos = (name) =>
+	readdirSync(join(root, "registry/components", name))
+		.filter((file) => file.endsWith(".demo.tsx") && file !== `${name}.demo.tsx`)
+		.map((file) => file.slice(0, -".demo.tsx".length))
+		.sort();
 
 export async function openOverlay(page, name) {
 	await openers[name](preview(page), page);

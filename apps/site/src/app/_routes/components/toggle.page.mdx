@@ -45,8 +45,11 @@ export function Bold() {
 
 ### Variants and sizes
 
-`default` is flat until pressed; `outline` has the input's border. Sizes are `sm`, `default` and `lg`, the village's
-control heights.
+`default` is flat until pressed, then takes the accent grey; `outline` has the input's border; `soft` takes a wash of the
+primary when pressed, so the on state reads as the brand colour (with a border in Iwa). Sizes are `sm`, `default` and
+`lg`, the village's control heights.
+
+<ComponentPreview name="toggle" demo="toggle-variants" />
 
 ```tsx
 <Toggle variant="outline" size="sm">Watching</Toggle>
@@ -69,7 +72,7 @@ The props of Base UI's [Toggle](https://base-ui.com/react/components/toggle) (`p
 
 | Prop | Type | Default |
 | --- | --- | --- |
-| `variant` | `"default" \| "outline"` | `"default"` |
+| `variant` | `"default" \| "outline" \| "soft"` | `"default"` |
 | `size` | `"sm" \| "default" \| "lg"` | `"default"` |
 
 `toggleVariants({ variant, size })` returns the same classes.

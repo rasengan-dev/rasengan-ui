@@ -4,13 +4,15 @@ import type * as React from "react";
 import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar";
 
 import { cn } from "@/lib/utils";
-import { avatarStyles } from "./avatar.styles";
+import { avatarStyles, avatarVariants, type AvatarVariantProps } from "./avatar.styles";
+
+export { avatarVariants } from "./avatar.styles";
 
 /** Rasengan UI parts take a plain string className on every engine. */
 type Props<P> = Omit<P, "className"> & { className?: string };
 
-export function Avatar({ className, size = "default", ...props }: Props<AvatarPrimitive.Root.Props> & { size?: "sm" | "default" | "lg" }) {
-	return <AvatarPrimitive.Root data-slot="avatar" data-size={size} className={cn("group/avatar", avatarStyles.root, className)} {...props} />;
+export function Avatar({ className, size, ...props }: Props<AvatarPrimitive.Root.Props> & AvatarVariantProps) {
+	return <AvatarPrimitive.Root data-slot="avatar" data-size={size ?? "default"} className={cn(avatarVariants({ size }), className)} {...props} />;
 }
 
 export function AvatarImage({ className, ...props }: Props<AvatarPrimitive.Image.Props>) {

@@ -74,7 +74,16 @@ export default function Layout({ children }) {
 
 Sonner's API is unchanged: `toast.success`, `toast.error`, `toast.info`, `toast.warning`, `toast.loading`, and
 `toast.promise(promise, { loading, success, error })`, which follows a promise from its spinner to its result.
-`toast.dismiss(id)` closes one.
+`toast.dismiss(id)` closes one. Each kind wears its tone: `success`, `info` and `warning` theirs, `error` the destructive
+one; the icon takes it.
+
+### Soft
+
+`<Toaster variant="soft" />` also washes each typed toast in its tone, with its title in that colour. To try it here
+without touching the page's Toaster, this demo mounts a second one: `<Toaster id="soft" />`, which only shows the toasts
+sent with `toasterId: "soft"`.
+
+<ComponentPreview name="toast" demo="toast-soft" />
 
 ## Villages
 
@@ -89,5 +98,5 @@ Sonner keeps its stacking, motion and swipe; the toast itself is a popover surfa
 ## API reference
 
 `toast` is [Sonner's](https://sonner.emilkowal.ski/toast). `Toaster` takes Sonner's props (`position`, `duration`,
-`visibleToasts`, `expand`, `offset`…), with `closeButton` on by default; `richColors`, `invert` and `theme` have nothing
+`visibleToasts`, `expand`, `offset`, `id`…), with `closeButton` on by default, plus `variant` (`"default" \| "soft"`); `richColors`, `invert` and `theme` have nothing
 to do, since the village draws the toast.

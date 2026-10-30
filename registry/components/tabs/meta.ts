@@ -4,6 +4,6 @@ export const meta = {
 	description: "Switches between panels in one place. A segmented control in Konoha and Kiri, an underlined bar in Iwa.",
 	status: "beta",
 	engines: ["base"],
-	dependencies: { base: ["@base-ui/react"] },
+	dependencies: { base: ["@base-ui/react", "class-variance-authority"] },
 	registryDependencies: [],
 } as const;

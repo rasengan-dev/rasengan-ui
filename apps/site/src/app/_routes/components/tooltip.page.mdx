@@ -54,6 +54,17 @@ export function Copy() {
 Put one `TooltipProvider` near the root of the app: once a tooltip is open, the next one opens without the delay
 (`delay`, 300ms here).
 
+### Variants
+
+`default` is inverted, in the village's ink. `outline` is a popover surface with a border, for a tooltip over dark
+content or one that should stay quiet.
+
+<ComponentPreview name="tooltip" demo="tooltip-variants" />
+
+```tsx
+<TooltipContent variant="outline">Copy the link</TooltipContent>
+```
+
 ## Villages
 
 It is drawn in `--tooltip` and `--tooltip-foreground`, the inverse of the page, with an arrow; it opens in the nearest VillageScope.
@@ -74,4 +85,4 @@ The parts of Base UI's [Tooltip](https://base-ui.com/react/components/tooltip), 
 | `TooltipProvider` | `delay` (default `300`), `closeDelay` |
 | `Tooltip` | `open`, `defaultOpen`, `onOpenChange`, `disabled` |
 | `TooltipTrigger` | `render` to use a `Button` |
-| `TooltipContent` | portal, popup and arrow; `side` (default `"top"`), `sideOffset`, `align` |
+| `TooltipContent` | portal, popup and arrow; `side` (default `"top"`), `sideOffset`, `align`, `variant` (`"default" \| "outline"`); `tooltipVariants({ variant })` returns its classes |

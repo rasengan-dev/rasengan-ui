@@ -51,6 +51,26 @@ export function VillagePicker() {
 }
 ```
 
+### Variants
+
+The trigger takes the input's variants, `default`, `filled` and `underline`, so a form mixing both looks of a piece.
+`ghost` has no border or fill until it is hovered or open, for a select in a toolbar or a table header.
+
+<ComponentPreview name="select" demo="select-variants" />
+
+```tsx
+<SelectTrigger variant="ghost" aria-label="Sort by">
+  <SelectValue />
+</SelectTrigger>
+```
+
+### Sizes
+
+`sm`, `default` and `lg` on the trigger, at the village's control heights. Inside a [Field](/components/field), the
+trigger takes the Field's `size` and `variant`.
+
+<ComponentPreview name="select" demo="select-sizes" />
+
 ### Labels in the trigger
 
 Pass `items` (value → label) to the Select, so the trigger shows the selected option's label before the list has ever
@@ -80,8 +100,10 @@ The parts of Base UI's [Select](https://base-ui.com/react/components/select), st
 | Part | Notes |
 | --- | --- |
 | `Select` | `items`, `value`, `defaultValue`, `onValueChange`, `multiple`, `name`, `disabled`, `required` |
-| `SelectTrigger` | the button, with its chevron |
+| `SelectTrigger` | the button, with its chevron; `variant` (`"default" \| "filled" \| "underline" \| "ghost"`) and `size` (`"sm" \| "default" \| "lg"`), else the Field's |
 | `SelectValue` | the selected label; `placeholder`, or a function of the value as children |
 | `SelectContent` | portal and popup; `side`, `align`, `sideOffset`, `alignItemWithTrigger` (default `true`) |
 | `SelectItem` | `value`, `disabled` |
 | `SelectGroup`, `SelectLabel`, `SelectSeparator` | grouping |
+
+`selectTriggerVariants({ variant, size })` returns the trigger's classes.

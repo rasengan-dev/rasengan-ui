@@ -1,7 +1,32 @@
+import { cva, type VariantProps } from "class-variance-authority";
+
+/* The trigger takes Input's variants, plus ghost: no border or fill until hovered, for toolbars. */
+export const selectTriggerVariants = cva(
+	"flex w-full min-w-0 cursor-pointer items-center justify-between gap-2 rounded-control border-village font-sans text-foreground outline-none transition-[background-color,border-color,outline-color,box-shadow] duration-fast ease-out select-none focus-visible:border-primary ui-open:border-primary ui-invalid:border-destructive ui-disabled:cursor-not-allowed ui-disabled:opacity-60 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+	{
+		variants: {
+			variant: {
+				default: "border-input bg-input-bg shadow-input focus-visible:focus-ring",
+				filled: "border-field-filled-edge bg-field-filled hover:bg-field-filled-hover focus-visible:focus-ring ui-open:bg-input-bg",
+				underline:
+					"rounded-none border-x-0 border-t-0 border-input bg-transparent focus-visible:shadow-[0_var(--border-width)_0_0_var(--primary)] ui-open:shadow-[0_var(--border-width)_0_0_var(--primary)]",
+				ghost: "border-transparent bg-transparent hover:bg-accent focus-visible:border-transparent focus-visible:focus-ring ui-open:border-transparent ui-open:bg-accent",
+			},
+			size: {
+				sm: "h-control-sm px-[calc(var(--input-px)*0.8)] text-base sm:text-[0.8125rem]",
+				default: "h-control px-input-x text-base sm:text-sm",
+				lg: "h-control-lg px-control-x text-base",
+			},
+		},
+		compoundVariants: [{ variant: "underline", class: "px-0" }],
+		defaultVariants: { variant: "default", size: "default" },
+	},
+);
+
+export type SelectTriggerVariantProps = VariantProps<typeof selectTriggerVariants>;
+
 /* Keyframes on ui-open / ui-closed: Base UI and Radix both wait for CSS animations (RFC-0002, "Engines"). */
 export const selectStyles = {
-	trigger:
-		"flex h-control w-full min-w-0 cursor-pointer items-center justify-between gap-2 rounded-control border-village border-input bg-input-bg px-input-x font-sans text-base text-foreground shadow-input outline-none transition-[border-color,outline-color] duration-fast ease-out select-none focus-visible:border-primary focus-visible:focus-ring ui-open:border-primary ui-invalid:border-destructive ui-disabled:cursor-not-allowed ui-disabled:opacity-60 sm:text-sm [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
 	value: "flex-1 truncate text-start data-[placeholder]:text-muted-foreground",
 	icon: "flex text-muted-foreground",
 	positioner: "z-50 outline-none",

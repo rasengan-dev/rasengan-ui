@@ -3,9 +3,12 @@
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
 
+import { useFieldLook } from "@/lib/field-context";
 import { cn } from "@/lib/utils";
 import { usePortalContainer } from "@/lib/village-scope";
-import { selectStyles } from "./select.styles";
+import { selectStyles, selectTriggerVariants, type SelectTriggerVariantProps } from "./select.styles";
+
+export { selectTriggerVariants } from "./select.styles";
 
 /** Rasengan UI parts take a plain string className on every engine. */
 type Props<P> = Omit<P, "className"> & { className?: string };
@@ -13,9 +16,17 @@ type Props<P> = Omit<P, "className"> & { className?: string };
 /** Pass `items` (value → label) so the trigger shows the label of the selected value. */
 export const Select = SelectPrimitive.Root;
 
-export function SelectTrigger({ className, children, ...props }: Props<SelectPrimitive.Trigger.Props>) {
+/** Takes the size and variant of the Field around it, unless it sets its own. */
+export function SelectTrigger({ className, children, variant, size, ...props }: Props<SelectPrimitive.Trigger.Props> & SelectTriggerVariantProps) {
+	const look = useFieldLook({ variant, size });
 	return (
-		<SelectPrimitive.Trigger data-slot="select-trigger" className={cn(selectStyles.trigger, className)} {...props}>
+		<SelectPrimitive.Trigger
+			data-slot="select-trigger"
+			data-variant={look.variant ?? "default"}
+			data-size={look.size ?? "default"}
+			className={cn(selectTriggerVariants(look), className)}
+			{...props}
+		>
 			{children}
 			<SelectPrimitive.Icon data-slot="select-icon" className={selectStyles.icon}>
 				<ChevronsUpDownIcon />

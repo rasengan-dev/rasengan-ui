@@ -4,15 +4,17 @@ import * as React from "react";
 import { Slider as SliderPrimitive } from "@base-ui/react/slider";
 
 import { cn } from "@/lib/utils";
-import { sliderStyles } from "./slider.styles";
+import { sliderStyles, sliderVariants, type SliderVariantProps } from "./slider.styles";
 
-export type SliderProps = Omit<SliderPrimitive.Root.Props, "className"> & { className?: string };
+export { sliderVariants } from "./slider.styles";
+
+export type SliderProps = Omit<SliderPrimitive.Root.Props, "className"> & SliderVariantProps & { className?: string };
 
 /**
  * One thumb per value: a number gives one, an array (a range) gives as many. The thumbs are
  * the inputs, so an aria-label on the slider names them ("… start" and "… end" for a range).
  */
-export function Slider({ className, defaultValue, value, min = 0, max = 100, "aria-label": label, ...props }: SliderProps) {
+export function Slider({ className, tone, size, defaultValue, value, min = 0, max = 100, "aria-label": label, ...props }: SliderProps) {
 	const values = React.useMemo(() => {
 		const current = value ?? defaultValue;
 		return Array.isArray(current) ? current : [current ?? min];
@@ -22,7 +24,9 @@ export function Slider({ className, defaultValue, value, min = 0, max = 100, "ar
 	return (
 		<SliderPrimitive.Root
 			data-slot="slider"
-			className={cn(sliderStyles.root, className)}
+			data-tone={tone ?? "primary"}
+			data-size={size ?? "default"}
+			className={cn(sliderVariants({ tone, size }), className)}
 			defaultValue={defaultValue}
 			value={value}
 			min={min}

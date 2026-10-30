@@ -45,6 +45,7 @@ export default defineConfig(async () => {
           { find: /^@\/components\/ui\/(.+)$/, replacement: '../../registry/components/$1/$1.base.tsx' },
           { find: '@/lib/utils', replacement: '../../packages/core/src/utils.ts' },
           { find: '@/lib/village-scope', replacement: '../../packages/core/src/village-scope.tsx' },
+          { find: '@/lib/field-context', replacement: '../../packages/core/src/field-context.tsx' },
           { find: '@/registry', replacement: '../../registry' },
           { find: '@', replacement: './src' },
         ],

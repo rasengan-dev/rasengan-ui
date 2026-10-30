@@ -4,6 +4,6 @@ export const meta = {
 	description: "A line between groups of content, horizontal or vertical, as thick as the village's borders.",
 	status: "beta",
 	engines: ["base"],
-	dependencies: { base: ["@base-ui/react"] },
+	dependencies: { base: ["@base-ui/react", "class-variance-authority"] },
 	registryDependencies: [],
 } as const;

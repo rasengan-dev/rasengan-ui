@@ -12,12 +12,18 @@ export { badgeVariants, type BadgeVariantProps } from "./badge.styles";
 export type BadgeProps = useRender.ComponentProps<"span"> & BadgeVariantProps;
 
 /** A <span>, or the element given in `render` (a link: `render={<a href="…" />}`). */
-export function Badge({ className, variant, render, ...props }: BadgeProps) {
+export function Badge({ className, variant, tone, size, render, ...props }: BadgeProps) {
 	return useRender({
 		defaultTagName: "span",
 		render,
 		props: mergeProps<"span">(
-			{ className: cn(badgeVariants({ variant }), className), "data-slot": "badge", "data-variant": variant ?? "default" } as React.ComponentProps<"span">,
+			{
+				className: cn(badgeVariants({ variant, tone, size }), className),
+				"data-slot": "badge",
+				"data-variant": variant ?? "default",
+				"data-tone": variant === "destructive" ? "destructive" : (tone ?? "primary"),
+				"data-size": size ?? "default",
+			} as React.ComponentProps<"span">,
 			props,
 		),
 	});

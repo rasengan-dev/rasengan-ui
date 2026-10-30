@@ -4,7 +4,9 @@ import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
 
 import { cn } from "@/lib/utils";
 import { usePortalContainer } from "@/lib/village-scope";
-import { tooltipStyles } from "./tooltip.styles";
+import { tooltipStyles, tooltipVariants, type TooltipVariantProps } from "./tooltip.styles";
+
+export { tooltipVariants } from "./tooltip.styles";
 
 /** Rasengan UI parts take a plain string className on every engine. */
 type Props<P> = Omit<P, "className"> & { className?: string };
@@ -27,13 +29,19 @@ export function TooltipContent({
 	side = "top",
 	sideOffset = 8,
 	align = "center",
+	variant,
 	...props
-}: Props<TooltipPrimitive.Popup.Props> & Pick<TooltipPrimitive.Positioner.Props, "side" | "sideOffset" | "align">) {
+}: Props<TooltipPrimitive.Popup.Props> & Pick<TooltipPrimitive.Positioner.Props, "side" | "sideOffset" | "align"> & TooltipVariantProps) {
 	const container = usePortalContainer();
 	return (
 		<TooltipPrimitive.Portal container={container}>
 			<TooltipPrimitive.Positioner className={tooltipStyles.positioner} side={side} sideOffset={sideOffset} align={align}>
-				<TooltipPrimitive.Popup data-slot="tooltip-content" className={cn(tooltipStyles.popup, className)} {...props}>
+				<TooltipPrimitive.Popup
+					data-slot="tooltip-content"
+					data-variant={variant ?? "default"}
+					className={cn(tooltipVariants({ variant }), className)}
+					{...props}
+				>
 					{children}
 					<TooltipPrimitive.Arrow data-slot="tooltip-arrow" className={tooltipStyles.arrow} />
 				</TooltipPrimitive.Popup>

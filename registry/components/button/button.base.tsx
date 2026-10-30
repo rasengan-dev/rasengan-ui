@@ -9,12 +9,13 @@ export { buttonVariants, type ButtonVariantProps } from "./button.styles";
 
 export type ButtonProps = Omit<ButtonPrimitive.Props, "className"> & ButtonVariantProps & { className?: string };
 
-export function Button({ className, variant, size, ...props }: ButtonProps) {
+export function Button({ className, variant, tone, size, ...props }: ButtonProps) {
 	return (
 		<ButtonPrimitive
 			data-slot="button"
 			data-variant={variant ?? "default"}
-			className={cn(buttonVariants({ variant, size }), className)}
+			data-tone={variant === "destructive" ? "destructive" : (tone ?? "primary")}
+			className={cn(buttonVariants({ variant, tone, size }), className)}
 			{...props}
 		/>
 	);

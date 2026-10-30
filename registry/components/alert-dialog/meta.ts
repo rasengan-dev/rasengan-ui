@@ -4,6 +4,6 @@ export const meta = {
 	description: "Asks to confirm something that cannot be undone. It does not close on an outside click; focus starts on Cancel.",
 	status: "beta",
 	engines: ["base"],
-	dependencies: { base: ["@base-ui/react"] },
+	dependencies: { base: ["@base-ui/react", "class-variance-authority"] },
 	registryDependencies: ["button"],
 } as const;
