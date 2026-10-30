@@ -5,6 +5,7 @@
  */
 import { styleText } from "node:util";
 import { add } from "./commands/add.ts";
+import { init } from "./commands/init.ts";
 
 interface Command {
 	usage: string;
@@ -13,7 +14,7 @@ interface Command {
 }
 
 const commands: Record<string, Command> = {
-	init: { usage: "init", summary: "Set up a project: engine, village, nature, CSS imports, rasengan-ui.json" },
+	init: { usage: "init", summary: "Set up a project: engine, village, nature, CSS imports, rasengan-ui.json", run: init },
 	add: { usage: "add <name...>", summary: "Install components or blocks for the project's engine", run: add },
 	village: { usage: "village <list|set|add> [name]", summary: "List, switch or install villages" },
 	nature: { usage: "nature set <name>", summary: "Switch the nature (accent hue)" },

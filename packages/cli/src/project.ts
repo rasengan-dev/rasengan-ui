@@ -69,6 +69,11 @@ function tsPaths(root: string): Record<string, string> {
 	return paths;
 }
 
+/** Whether the project's TypeScript paths cover an alias, so the bundler and the editor resolve it. */
+export function hasAlias(root: string, alias: string): boolean {
+	return Object.keys(tsPaths(root)).some((pattern) => pattern === alias || (pattern.endsWith("/*") && alias.startsWith(pattern.slice(0, -1))));
+}
+
 /**
  * Where an import alias such as `@/components/ui` points, as a path from the project root.
  * Falls back to `src/` (or the root) for `@/` when the project declares no paths.

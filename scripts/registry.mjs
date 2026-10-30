@@ -82,7 +82,7 @@ for (const entry of readdirSync(join(root, "registry/components"), { withFileTyp
 }
 components.sort((a, b) => a.name.localeCompare(b.name));
 
-const { villages } = await import(pathToFileURL(join(root, "packages/villages/src/index.ts")).href);
+const { natures, tints, villages } = await import(pathToFileURL(join(root, "packages/villages/src/index.ts")).href);
 
 /** Items every engine shares: core, theme contract, villages. */
 function sharedItems(url) {
@@ -105,6 +105,8 @@ function sharedItems(url) {
 			title: "Rasengan UI token contract",
 			description: "The tokens every village sets and every component reads, the tint switch, and the natures (accent hues, and Onmyōton in black and white).",
 			dependencies: ["tw-animate-css"],
+			// What the CLI offers in `init`, `nature set` and `tint set`.
+			meta: { natures, tints },
 			files: [
 				{ path: "packages/villages/src/contract.css", type: "registry:file", target: "styles/rasengan/contract.css" },
 				{ path: "packages/villages/src/natures.css", type: "registry:file", target: "styles/rasengan/natures.css" },

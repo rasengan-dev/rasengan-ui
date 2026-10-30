@@ -36,6 +36,41 @@ export async function loadItem(config: Config, root: string, nameOrUrl: string):
 	return JSON.parse(readFileSync(location, "utf8")) as RegistryItem;
 }
 
+/** The registry's index (registry.json): every item, without file contents. */
+export async function loadIndex(config: Config, root: string): Promise<{ items: Omit<RegistryItem, "files">[] }> {
+	const location = isUrl(config.registry) ? `${config.registry.replace(/\/$/, "")}/${config.engine}/registry.json` : join(resolve(root, config.registry), config.engine, "registry.json");
+	if (isUrl(location)) {
+		const response = await fetch(location).catch((error: Error) => {
+			throw new Error(`Can't reach the registry at ${location}: ${error.message}`);
+		});
+		if (!response.ok) throw new Error(`The registry answered ${response.status} for ${location}.`);
+		return (await response.json()) as { items: Omit<RegistryItem, "files">[] };
+	}
+	if (!existsSync(location)) throw new Error(`No registry at ${location}.`);
+	return JSON.parse(readFileSync(location, "utf8"));
+}
+
+export interface Choice {
+	title: string;
+	description?: string;
+	element?: string;
+	defaultNature?: string;
+}
+
+/** The villages the registry offers, and the natures and tints its theme item lists. */
+export async function choices(config: Config, root: string) {
+	const index = await loadIndex(config, root);
+	const villages: Record<string, Choice> = Object.fromEntries(
+		index.items
+			.filter((item) => item.name.startsWith("village-"))
+			.map((item) => [item.name.slice("village-".length), { title: item.title?.replace(/ village$/, "") ?? item.name, description: item.description, defaultNature: item.meta?.defaultNature as string }]),
+	);
+	const theme = index.items.find((item) => item.name === "rasengan-theme");
+	const natures = (theme?.meta?.natures ?? {}) as Record<string, Choice>;
+	const tints = (theme?.meta?.tints ?? {}) as Record<string, Choice>;
+	return { villages, natures, tints };
+}
+
 /** The items and everything they depend on, each once, dependencies first. */
 export async function resolveItems(config: Config, root: string, names: string[]): Promise<RegistryItem[]> {
 	const ordered: RegistryItem[] = [];
