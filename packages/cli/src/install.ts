@@ -32,6 +32,13 @@ export function rewriteImports(content: string, config: Config): string {
 	});
 }
 
+/** A registry file as the project gets it: its path from the root, and its content with the project's aliases. */
+export function renderFile(root: string, config: Config, item: RegistryItem, file: RegistryItem["files"][number]) {
+	const path = targetPath(root, config, item, file).split("\\").join("/");
+	const content = file.type === "registry:ui" || file.type === "registry:lib" ? rewriteImports(file.content, config) : file.content;
+	return { path, content };
+}
+
 // ---- The lockfile --------------------------------------------------------------------
 
 export const lockFile = "rasengan-ui.lock";
@@ -54,6 +61,19 @@ export function readLock(root: string): Lock {
 export function writeLock(root: string, lock: Lock) {
 	const items = Object.fromEntries(Object.entries(lock.items).sort(([a], [b]) => a.localeCompare(b)));
 	writeFileSync(join(root, lockFile), `${JSON.stringify({ ...lock, items }, null, 2)}\n`);
+}
+
+/** A file as it was installed (the base of a 3-way merge), if the copy is there. */
+export function readBase(root: string, path: string): string | undefined {
+	const file = join(root, baseDir, path);
+	return existsSync(file) ? readFileSync(file, "utf8") : undefined;
+}
+
+/** Writes a file into the project, or its base copy. */
+export function writeFile(root: string, path: string, content: string, { base = false } = {}) {
+	const target = join(root, ...(base ? [baseDir] : []), path);
+	mkdirSync(dirname(target), { recursive: true });
+	writeFileSync(target, content);
 }
 
 /** Which item installed `path`, and the hash it had then. */
@@ -82,8 +102,7 @@ export function writeItems(root: string, config: Config, items: RegistryItem[], 
 	for (const item of items) {
 		const files: Record<string, string> = { ...lock.items[item.name]?.files };
 		for (const file of item.files) {
-			const path = targetPath(root, config, item, file).split("\\").join("/");
-			const content = file.type === "registry:ui" || file.type === "registry:lib" ? rewriteImports(file.content, config) : file.content;
+			const { path, content } = renderFile(root, config, item, file);
 			const absolute = join(root, path);
 			const current = existsSync(absolute) ? readFileSync(absolute, "utf8") : undefined;
 			const outcome: Outcome =
@@ -92,13 +111,8 @@ export function writeItems(root: string, config: Config, items: RegistryItem[], 
 			if (outcome === "kept") continue;
 			files[path] = hash(content);
 			if (dryRun) continue;
-			for (const [target, text] of [
-				[absolute, content],
-				[join(root, baseDir, path), content],
-			]) {
-				mkdirSync(dirname(target), { recursive: true });
-				writeFileSync(target, text);
-			}
+			writeFile(root, path, content);
+			writeFile(root, path, content, { base: true });
 		}
 		lock.items[item.name] = { files };
 	}

@@ -24,6 +24,8 @@
 	},
 	"license": "MIT",
 	"dependencies": {
-		"@clack/prompts": "^1.8.1"
+		"@clack/prompts": "^1.8.1",
+		"diff": "^9.0.0",
+		"node-diff3": "^3.2.1"
 	}
 }
