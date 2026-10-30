@@ -1,19 +1,23 @@
 #!/usr/bin/env node
 /**
- * rasengan-ui (RFC-0002, "CLI"). Only the command table exists so far; each
- * command lands with its milestone (Rollout, step 4).
+ * rasengan-ui (RFC-0002, "CLI"): sets up a project, adds components, switches villages and natures,
+ * and updates installed files without losing local edits. Commands land with their milestone.
  */
+import { styleText } from "node:util";
+import { add } from "./commands/add.ts";
 
 interface Command {
 	usage: string;
 	summary: string;
+	run?: (argv: string[]) => Promise<void>;
 }
 
 const commands: Record<string, Command> = {
 	init: { usage: "init", summary: "Set up a project: engine, village, nature, CSS imports, rasengan-ui.json" },
-	add: { usage: "add <name...>", summary: "Install components or blocks for the project's engine" },
+	add: { usage: "add <name...>", summary: "Install components or blocks for the project's engine", run: add },
 	village: { usage: "village <list|set|add> [name]", summary: "List, switch or install villages" },
 	nature: { usage: "nature set <name>", summary: "Switch the nature (accent hue)" },
+	tint: { usage: "tint set <village|neutral>", summary: "Switch between the village's greys and neutral greys" },
 	diff: { usage: "diff [name]", summary: "Show local and upstream changes since install" },
 	update: { usage: "update [name]", summary: "Update installed files, keeping local edits (3-way merge)" },
 	doctor: { usage: "doctor", summary: "Check config, CSS imports, versions and dependencies" },
@@ -23,17 +27,26 @@ function help() {
 	const width = Math.max(...Object.values(commands).map(({ usage }) => usage.length));
 	console.log("Usage: rasengan-ui <command>\n\nCommands:");
 	for (const { usage, summary } of Object.values(commands)) console.log(`  ${usage.padEnd(width)}  ${summary}`);
+	console.log("\n`rasengan-ui <command> --help` for a command's options.");
 }
 
-const [name] = process.argv.slice(2);
+const [name, ...argv] = process.argv.slice(2);
+const command = name ? commands[name] : undefined;
 
 if (!name || name === "help" || name === "--help" || name === "-h") {
 	help();
-} else if (name in commands) {
-	console.error(`rasengan-ui ${name}: not implemented yet.`);
-	process.exitCode = 1;
-} else {
+} else if (!command) {
 	console.error(`Unknown command: ${name}\n`);
 	help();
 	process.exitCode = 1;
+} else if (!command.run) {
+	console.error(`rasengan-ui ${name}: not implemented yet.`);
+	process.exitCode = 1;
+} else {
+	try {
+		await command.run(argv);
+	} catch (error) {
+		console.error(styleText("red", error instanceof Error ? error.message : String(error)));
+		process.exitCode = 1;
+	}
 }
