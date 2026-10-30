@@ -1,0 +1,113 @@
+#!/usr/bin/env node
+/**
+ * An axe pass over the site (RFC-0002, "Quality gate"):
+ *
+ *   pnpm next:dev     # the site, on http://localhost:3200
+ *   pnpm axe          # every page, or: pnpm axe button dialog
+ *
+ * Runs axe-core's WCAG 2.2 A and AA rules on the home page, /components and each component page,
+ * in every village, light and dark, and again with each overlay open. Violations are grouped by
+ * rule, with where they happen, in the console and in .axe/report.md; the run fails on any.
+ */
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { createRequire } from "node:module";
+import { join } from "node:path";
+import { closeOverlay, combos as allCombos, dress, isOverlay, launch, open, openOverlay, parseArgs, pool, root, siteIsUp } from "./site-pages.mjs";
+
+const axeSource = readFileSync(createRequire(import.meta.url).resolve("axe-core/axe.min.js"), "utf8");
+const tags = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
+
+const { names } = parseArgs();
+/* Named components: only their pages. Otherwise the home page and the index too. */
+const named = process.argv.slice(2).some((arg) => !arg.startsWith("--"));
+const pages = [...(named ? [] : ["/", "/components"]), ...names.map((name) => `/components/${name}`)];
+const combos = allCombos({ onmyoton: false });
+
+await siteIsUp();
+const browser = await launch();
+const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+
+/** rule id → { impact, help, url, hits: Map(target → Set(where)) } */
+const rules = new Map();
+
+function record(results, where) {
+	for (const violation of results.violations) {
+		const rule = rules.get(violation.id) ?? { impact: violation.impact, help: violation.help, url: violation.helpUrl, hits: new Map(), summary: new Map() };
+		for (const node of violation.nodes) {
+			const target = node.target.join(" ");
+			if (!rule.hits.has(target)) rule.hits.set(target, new Set());
+			rule.hits.get(target).add(where);
+			rule.summary.set(target, node.failureSummary?.split("\n").slice(0, 2).join(" ").trim());
+		}
+		rules.set(violation.id, rule);
+	}
+}
+
+/*
+ * Left out: the focus guards Base UI puts around a popup, aria-hidden but focusable on purpose,
+ * since they only catch Tab to send focus back into the popup or out to its trigger.
+ */
+const exclude = [["[data-base-ui-focus-guard]"]];
+
+const run = (page) =>
+	page.evaluate(
+		({ runOnly, exclude }) => window.axe.run({ exclude }, { runOnly: { type: "tag", values: runOnly }, resultTypes: ["violations"] }),
+		{ runOnly: tags, exclude },
+	);
+
+async function audit(path) {
+	const page = await context.newPage();
+	try {
+		await open(page, path);
+		await page.addScriptTag({ content: axeSource });
+		const name = path.startsWith("/components/") ? path.slice("/components/".length) : undefined;
+		for (const combo of combos) {
+			await dress(page, combo);
+			const where = `${path} · ${combo.village} ${combo.scheme}`;
+			record(await run(page), where);
+			if (name && isOverlay(name)) {
+				await openOverlay(page, name);
+				record(await run(page), `${where} · open`);
+				await closeOverlay(page, name);
+			}
+		}
+	} finally {
+		await page.close();
+	}
+	process.stdout.write(".");
+}
+
+await pool(pages, audit);
+await browser.close();
+process.stdout.write("\n");
+
+// ---- Report -----------------------------------------------------------------------------
+
+const order = { critical: 0, serious: 1, moderate: 2, minor: 3 };
+const sorted = [...rules.entries()].sort(([, a], [, b]) => order[a.impact] - order[b.impact]);
+const runs = pages.length * combos.length + names.filter(isOverlay).length * combos.length;
+
+/* Where a target fails everywhere it is checked, say so rather than list every village. */
+const places = (wheres) => {
+	const list = [...wheres];
+	const paths = [...new Set(list.map((w) => w.split(" · ")[0]))];
+	return list.length >= combos.length * paths.length ? `${paths.join(", ")} (every village)` : list.join("; ");
+};
+
+const lines = [`# axe · ${pages.length} pages × ${combos.length} villages and schemes (${runs} runs)`, ""];
+if (sorted.length === 0) lines.push("No violation.");
+for (const [id, rule] of sorted) {
+	lines.push(`## ${id} (${rule.impact}): ${rule.help}`, "", rule.url, "");
+	for (const [target, wheres] of rule.hits) lines.push(`- \`${target}\`: ${places(wheres)}`, `  ${rule.summary.get(target)}`);
+	lines.push("");
+}
+mkdirSync(join(root, ".axe"), { recursive: true });
+writeFileSync(join(root, ".axe/report.md"), lines.join("\n"));
+
+console.log(`${runs} axe runs on ${pages.length} pages.`);
+if (sorted.length === 0) console.log("No violation.");
+else {
+	for (const [id, rule] of sorted) console.log(`${rule.impact.padEnd(9)} ${id}: ${rule.hits.size} element${rule.hits.size > 1 ? "s" : ""}`);
+	console.log("Details in .axe/report.md.");
+	process.exitCode = 1;
+}

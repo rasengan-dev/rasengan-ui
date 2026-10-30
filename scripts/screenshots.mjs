@@ -15,86 +15,28 @@
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import pixelmatch from "pixelmatch";
-import { chromium } from "playwright-core";
 import { PNG } from "pngjs";
+import { base, closeOverlay, overlayStillOpen, combos as allCombos, components as all, dress, isOverlay, launch, open, openOverlay, parseArgs, pool, preview, root, siteIsUp } from "./site-pages.mjs";
 
-const root = join(import.meta.dirname, "..");
-const base = process.env.RASENGAN_UI_URL ?? "http://localhost:3200";
 const out = join(root, ".screenshots");
 const dirs = { latest: join(out, "latest"), baseline: join(out, "baseline"), diff: join(out, "diff") };
 
 // ---- What to capture ------------------------------------------------------------
 
-const args = process.argv.slice(2);
-const accept = args.includes("--accept");
-const all = readdirSync(join(root, "registry/components")).sort();
-const asked = args.filter((arg) => !arg.startsWith("--"));
-const names = asked.length ? asked : all;
-const unknown = names.filter((name) => !all.includes(name));
-if (unknown.length) throw new Error(`No component named ${unknown.join(", ")}`);
-
-/* The villages and their default nature, from packages/villages (a .ts file, so read rather than imported). */
-const index = readFileSync(join(root, "packages/villages/src/index.ts"), "utf8");
-const villagesBlock = index.slice(index.indexOf("export const villages"));
-const villages = [...villagesBlock.matchAll(/\n\t(\w+): \{[^}]*?defaultNature: "(\w+)"/g)].map((m) => ({ village: m[1], nature: m[2] }));
-
-const combos = villages.flatMap(({ village, nature }) =>
-	["light", "dark"].flatMap((scheme) => [nature, "onmyoton"].map((n) => ({ village, scheme, nature: n }))),
-);
+const { names, flags } = parseArgs();
+const accept = flags.has("--accept");
+const combos = allCombos();
 const file = ({ village, scheme, nature }, suffix = "") => `${village}-${scheme}-${nature}${suffix}.png`;
-
-/*
- * Overlays are only a trigger at rest: open them, capture the window, close them again.
- * Each opener gets the preview's locator and the page.
- */
-const firstButton = (preview) => preview.locator("button").first();
-const openers = {
-	dialog: (preview) => firstButton(preview).click(),
-	"alert-dialog": (preview) => firstButton(preview).click(),
-	popover: (preview) => firstButton(preview).click(),
-	"dropdown-menu": (preview) => firstButton(preview).click(),
-	select: (preview) => preview.locator('[data-slot="select-trigger"]').first().click(),
-	tooltip: (preview) => firstButton(preview).hover(),
-	toast: async (preview) => {
-		await preview.getByRole("button", { name: "Send invite" }).click();
-		await preview.getByRole("button", { name: "Fail a save" }).click();
-	},
-};
-const closers = {
-	tooltip: (page) => page.mouse.move(0, 0),
-	toast: (page) => page.evaluate(() => document.querySelectorAll("[data-sonner-toast] [data-close-button]").forEach((button) => button.click())),
-};
-const shots = (name) => combos.flatMap((combo) => (openers[name] ? [file(combo), file(combo, "-open")] : [file(combo)]));
+/* Overlays are only a trigger at rest: they also get the whole window with the popup open. */
+const shots = (name) => combos.flatMap((combo) => (isOverlay(name) ? [file(combo), file(combo, "-open")] : [file(combo)]));
 
 // ---- Capture ----------------------------------------------------------------------
 
-try {
-	const response = await fetch(base, { headers: { Accept: "text/html" } });
-	if (!response.ok) throw new Error(String(response.status));
-} catch (error) {
-	console.error(`The site isn't answering at ${base} (${error.message}). Start it with \`pnpm next:dev\`.`);
-	process.exit(1);
-}
-
-const browser = await chromium.launch(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : { channel: "chrome" });
+await siteIsUp();
+const browser = await launch();
 const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, deviceScaleFactor: 2 });
 
 const errors = {};
-
-/*
- * A popup is only at rest once Base UI has dropped data-starting-style (Sonner: data-mounted),
- * whatever the time that took; the tooltip first waits out its delay.
- */
-async function settle(page, name) {
-	if (name === "tooltip") await page.waitForSelector('[data-slot="tooltip-content"]');
-	if (name === "toast")
-		await page.waitForFunction(() => {
-			const shown = [...document.querySelectorAll('[data-sonner-toast][data-mounted="true"]:not([data-removed="true"])')];
-			return shown.length === 2 && shown.every((toast) => getComputedStyle(toast).opacity === "1");
-		});
-	await page.waitForFunction(() => !document.querySelector("[data-starting-style], [data-ending-style]"));
-	await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-}
 
 async function capture(name) {
 	const page = await context.newPage();
@@ -103,31 +45,21 @@ async function capture(name) {
 	page.on("pageerror", (error) => errors[name].push(error.message));
 
 	try {
-		await page.goto(`${base}/components/${name}`, { waitUntil: "networkidle" });
-		await page.evaluate(() => document.fonts.ready);
-		// Still frames: no transitions or animations, no caret.
-		await page.addStyleTag({ content: "*, *::before, *::after { transition: none !important; animation: none !important; caret-color: transparent !important; }" });
-
-		const preview = page.locator('[data-slot="component-preview"]');
+		await open(page, `/components/${name}`);
 		const dir = join(dirs.latest, name);
 		rmSync(dir, { recursive: true, force: true });
 		mkdirSync(dir, { recursive: true });
 		for (const combo of combos) {
-			await page.evaluate(({ village, scheme, nature }) => {
-				const html = document.documentElement;
-				html.dataset.village = village;
-				html.dataset.nature = nature;
-				html.dataset.tint = "village";
-				html.classList.toggle("dark", scheme === "dark");
-				return new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-			}, combo);
-			await preview.screenshot({ path: join(dir, file(combo)) });
-			if (openers[name]) {
-				await openers[name](preview, page);
-				await settle(page, name);
-				await page.screenshot({ path: join(dir, file(combo, "-open")) });
-				await (closers[name] ?? ((p) => p.keyboard.press("Escape")))(page);
-				await page.waitForFunction(() => !document.querySelector('[data-open][role="dialog"], [data-open][role="alertdialog"], [data-open][role="menu"], [data-open][role="listbox"], [data-sonner-toast]'));
+			await dress(page, combo);
+			await preview(page).screenshot({ path: join(dir, file(combo)) });
+			if (isOverlay(name)) {
+				for (let attempt = 0; attempt < 3; attempt++) {
+					await openOverlay(page, name);
+					await page.screenshot({ path: join(dir, file(combo, "-open")) });
+					const kept = await overlayStillOpen(page, name);
+					await closeOverlay(page, name);
+					if (kept) break;
+				}
 			}
 		}
 	} finally {
@@ -136,22 +68,7 @@ async function capture(name) {
 	process.stdout.write(".");
 }
 
-/* Right after the dev server starts, Vite may re-optimise its dependencies and reload a page mid-run: try once more. */
-async function captureWithRetry(name) {
-	try {
-		await capture(name);
-	} catch {
-		await capture(name);
-	}
-}
-
-// A few pages at a time.
-const queue = [...names];
-await Promise.all(
-	Array.from({ length: 4 }, async () => {
-		while (queue.length) await captureWithRetry(queue.shift());
-	}),
-);
+await pool(names, capture);
 await browser.close();
 process.stdout.write("\n");
 

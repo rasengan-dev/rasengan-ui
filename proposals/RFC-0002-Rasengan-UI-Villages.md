@@ -190,7 +190,8 @@ must be able to make; each became a token:
 | Fields | `--input-bg`, `--input-shadow` | `bg-input-bg`, `shadow-input` | Kiri: glassy fields |
 | Tabs | `--tabs-list`, `--tabs-list-padding`, `--tab-active` (+ `-foreground`), `--tab-active-shadow` | `bg-tabs-list`, `bg-tab-active`, `shadow-tab` | Segmented (Konoha, Kiri) or an underlined bar with an inverted active tab (Iwa) |
 | Lists | `--highlight` (+ `-foreground`) | `bg-highlight`, `text-highlight-foreground` | The item under the pointer or the keyboard in select and menus; Iwa inverts it |
-| Tracks | `--switch-track`, `--switch-thumb`, `--track-border` | `bg-switch-track`, `bg-switch-thumb`, `border-track-border` | Switch, slider and progress tracks; the switch thumb turns light in dark mode; Iwa: bordered tracks, ink thumb |
+| States | `--control-border`, `--control-track` | `border-control-border`, `bg-control-track` | What identifies a checkbox, a radio or a slider, 3:1 on the page (WCAG 1.4.11); text fields keep the softer `--input` |
+| Tracks | `--switch-track`, `--switch-thumb`, `--track-border` | `bg-switch-track`, `bg-switch-thumb`, `border-track-border` | Switch, slider and progress tracks; the switch track defaults to `--control-border`; its thumb turns light in dark mode; Iwa: bordered tracks, ink thumb |
 | Depth | `--elevation-sm/md/lg`, `--thumb-shadow`, `--surface-blur`, `--texture` | `shadow-sm…lg`, `shadow-thumb`, `backdrop-blur-surface` | Iwa: hard offset shadows on what stands off the page (buttons, cards, popups), none on the thumbs inside a control; Kiri: blur and mist |
 | Focus | `--focus-width`, `--focus-offset` | `focus-ring` | Konoha 3px halo, Kiri 4px, Iwa 2px with a 2px gap |
 | Press | `--press-scale`, `--press-offset`, `--press-shadow` | `pressable` | Iwa sinks 3px into its shadow, others scale |
@@ -407,7 +408,8 @@ The plan below implements it.
    5. Navigation (done): tabs, accordion, collapsible, scroll area, toast
 4. **Site** (`apps/site`): village, nature, tint and light/dark switcher, one
    page per component (done), screenshots of every combination for visual
-   review (done), an axe pass.
+   review (done), an axe pass (done: `pnpm axe`, WCAG 2.2 AA on every page,
+   village and scheme, overlays open).
 5. **CLI**: `init`, `add`, `village`, `nature`, `tint`; then the lockfile
    with `diff` and `update`.
 6. **Then**: rebuild the RFC-0001 blocks; Kumo, Suna, Uzushio; Figma modes
@@ -443,3 +445,9 @@ The plan below implements it.
 5. Focus rings: the soft 42% halos of Konoha and Kiri are under the 3:1
    WCAG asks of focus indicators (1.7–2.7:1). Keep the halo and add a thin
    solid inner ring, raise the opacity, or accept it as a village trait?
+6. Text field borders: state controls meet 3:1 through `--control-border`,
+   but text fields, selects and outline buttons keep the soft `--input`
+   (about 1.3–1.6:1 in Konoha and Kiri), as shadcn does: their label,
+   placeholder and background identify them more than their border. Raise
+   `--input` too, or keep the softness as a village trait? `pnpm contrast`
+   does not check it yet.

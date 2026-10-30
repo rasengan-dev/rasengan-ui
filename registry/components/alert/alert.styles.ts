@@ -6,7 +6,7 @@ export const alertVariants = cva(
 		variants: {
 			variant: {
 				default: "text-card-foreground",
-				destructive: "border-destructive/50 text-destructive *:data-[slot=alert-description]:text-destructive/90",
+				destructive: "border-destructive/50 text-destructive *:data-[slot=alert-description]:text-destructive",
 			},
 		},
 		defaultVariants: { variant: "default" },

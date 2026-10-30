@@ -1,7 +1,8 @@
 /*
  * Sonner runs unstyled: it keeps the stacking, the motion and the swipe, the village draws the rest.
  * Sonner's own focus shadow is unlayered, hence the one important utility; its loading spinner is centred
- * on the nearest positioned box, hence the relative icon.
+ * on the nearest positioned box, hence the relative icon. While the stack is collapsed, the toasts
+ * behind the front one are covered: their close buttons hide until it expands (hover, focus).
  */
 export const toastStyles = {
 	toast:
@@ -16,6 +17,6 @@ export const toastStyles = {
 	error: "[&_[data-icon]]:text-destructive [&_[data-title]]:text-destructive",
 	action: "shrink-0 self-center",
 	close:
-		"absolute end-2.5 top-2.5 inline-flex size-7 cursor-pointer items-center justify-center rounded-control text-muted-foreground outline-none hover:bg-accent hover:text-accent-foreground focus-visible:focus-ring [&_svg]:size-4",
+		"absolute end-2.5 top-2.5 inline-flex size-7 cursor-pointer items-center justify-center rounded-control text-muted-foreground outline-none hover:bg-accent hover:text-accent-foreground focus-visible:focus-ring [&_svg]:size-4 group-data-[expanded=false]/toast:group-data-[front=false]/toast:invisible",
 	spinner: "animate-spin",
 };

@@ -72,6 +72,7 @@
 	--highlight: var(--foreground);
 	--highlight-foreground: var(--background);
 	--switch-track: var(--muted);
+	--control-track: var(--muted);
 	--switch-thumb: var(--foreground);
 	--track-border: var(--foreground);
 	--skeleton-fill: repeating-linear-gradient(-45deg, var(--muted) 0 6px, var(--secondary) 6px 12px);

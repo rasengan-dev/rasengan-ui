@@ -50,6 +50,8 @@
 	--color-tab-active-foreground: var(--tab-active-foreground);
 	--color-highlight: var(--highlight);
 	--color-highlight-foreground: var(--highlight-foreground);
+	--color-control-border: var(--control-border);
+	--color-control-track: var(--control-track);
 	--color-switch-track: var(--switch-track);
 	--color-switch-thumb: var(--switch-thumb);
 	--color-track-border: var(--track-border);
@@ -170,7 +172,10 @@
 	--thumb-shadow: var(--elevation-sm);
 	--highlight: var(--accent);
 	--highlight-foreground: var(--accent-foreground);
-	--switch-track: var(--input);
+	/* What identifies a state control, 3:1 on the page (WCAG 1.4.11); text fields keep the softer --input. */
+	--control-border: var(--input);
+	--control-track: var(--control-border);
+	--switch-track: var(--control-border);
 	--switch-thumb: var(--background);
 	--track-border: transparent;
 	--input-bg: var(--background);

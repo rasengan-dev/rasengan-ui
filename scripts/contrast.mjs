@@ -6,7 +6,8 @@
  *
  * Reads the CSS sources (contract defaults, villages, natures), resolves the
  * tokens the way the browser does for one scope, and fails when a text pair
- * is under 4.5:1 (WCAG AA). Translucent colours are composited over the
+ * is under 4.5:1 (WCAG AA), or a control's border or track under 3:1 (WCAG
+ * 1.4.11). Translucent colours are composited over the
  * background. Focus rings are reported against 3:1 but do not fail the run.
  */
 import { readdirSync, readFileSync } from "node:fs";
@@ -120,14 +121,29 @@ const TEXT = [
 	["--destructive-foreground", "--destructive"],
 	["--primary", "--background"],
 	["--destructive", "--background"],
+	["--destructive", "--card"],
 	["--tooltip-foreground", "--tooltip"],
 	["--highlight-foreground", "--highlight"],
 	["--tab-active-foreground", "--tab-active"],
 	["--muted-foreground", "--tabs-list"],
 ];
 
+/*
+ * What identifies a state control (WCAG 1.4.11, 3:1 against what is next to it): a checkbox's or
+ * radio's border, a switch's track, a slider's track. Text fields keep the softer --input, a gap the RFC records.
+ */
+const CONTROLS = [
+	["--control-border", "--background"],
+	["--control-border", "--card"],
+	["--switch-track", "--background"],
+	["--control-track", "--background"],
+];
+/* Switch and slider tracks carry --track-border: where it is drawn, it is the edge that counts. */
+const TRACKS = new Set(["--switch-track", "--control-track"]);
+
 const failures = [];
 const warnings = [];
+const controls = [];
 let checked = 0;
 for (const village of Object.keys(villages)) {
 	for (const scheme of ["light", "dark"]) {
@@ -143,6 +159,14 @@ for (const village of Object.keys(villages)) {
 					checked++;
 					if (value < 4.5) failures.push(`${label}: ${fg} on ${bg} = ${value.toFixed(2)}`);
 				}
+				for (const [fg, bg] of CONTROLS) {
+					const under = surface(bg);
+					const edge = TRACKS.has(fg) && substitute(tokens["--track-border"], tokens) !== "transparent" ? "--track-border" : fg;
+					const value = ratio(over(color(tokens[edge], tokens), under), under);
+					checked++;
+					if (value < 3) failures.push(`${label}: ${edge} on ${bg} = ${value.toFixed(2)} (control, 3:1)`);
+					controls.push({ label, pair: `${edge} on ${bg}`, value });
+				}
 				const ring = ratio(surface("--ring"), page);
 				if (ring < 3) warnings.push(`${label}: --ring on --background = ${ring.toFixed(2)}`);
 			}
@@ -150,9 +174,17 @@ for (const village of Object.keys(villages)) {
 	}
 }
 
-console.log(`${checked} text pairs across ${Object.keys(villages).length} villages × ${Object.keys(natures).length} natures × 2 schemes × 2 tints`);
+if (process.env.CONTRAST_CONTROLS) {
+	const worst = {};
+	for (const { label, pair, value } of controls) {
+		const key = `${label.split(" ").slice(0, 2).join(" ")} · ${pair}`;
+		worst[key] = Math.min(worst[key] ?? Infinity, value);
+	}
+	for (const [key, value] of Object.entries(worst)) console.log(`${value < 3 ? "✗" : "✓"} ${value.toFixed(2)}  ${key}`);
+}
+console.log(`${checked} pairs across ${Object.keys(villages).length} villages × ${Object.keys(natures).length} natures × 2 schemes × 2 tints`);
 if (warnings.length) console.log(`\nFocus ring under 3:1 (not failing yet, ${warnings.length}):\n  ${warnings.join("\n  ")}`);
 if (failures.length) {
 	console.error(`\nText under 4.5:1 (${failures.length}):\n  ${failures.join("\n  ")}`);
 	process.exitCode = 1;
-} else console.log("\nEvery text pair is at least 4.5:1.");
+} else console.log("\nEvery text pair is at least 4.5:1, every control edge at least 3:1.");

@@ -5,8 +5,11 @@ import mdx from '@rasenganjs/mdx/plugin';
 import tailwindcss from '@tailwindcss/vite';
 import { codeToHtml } from 'shiki';
 
-/* The same pair as the MDX code blocks; styles/index.css shows the one matching `.dark`. */
-const themes = { light: 'light-plus', dark: 'vesper' };
+/*
+ * The same pair as the MDX code blocks; styles/index.css shows the one matching `.dark`. GitHub's light
+ * theme rather than Hiraiship's light-plus, whose tokens fall under 4.5:1 on Iwa's warmer card.
+ */
+const themes = { light: 'github-light-default', dark: 'vesper' };
 
 /**
  * `import demo from './button.demo.tsx?source'` gives `{ code, html }`: the file as written and

@@ -55,6 +55,7 @@
 	--destructive-foreground: oklch(0.99 0 0);
 	--border: oklch(0.3 calc(0.025 * var(--tint, 1)) 245 / 10%);
 	--input: oklch(0.3 calc(0.025 * var(--tint, 1)) 245 / 14%);
+	--control-border: oklch(0.62 calc(0.03 * var(--tint, 1)) 240);
 	--input-bg: oklch(1 0 0 / 60%);
 	--overlay: oklch(0.3 calc(0.03 * var(--tint, 1)) 245 / 22%);
 
@@ -89,6 +90,7 @@
 	--destructive-foreground: oklch(0.2 calc(0.015 * var(--tint, 1)) 245);
 	--border: oklch(1 0 0 / 9%);
 	--input: oklch(1 0 0 / 14%);
+	--control-border: oklch(0.56 calc(0.025 * var(--tint, 1)) 240);
 	--input-bg: oklch(1 0 0 / 5%);
 	--overlay: oklch(0.1 calc(0.02 * var(--tint, 1)) 245 / 55%);
 	--switch-thumb: var(--foreground);
