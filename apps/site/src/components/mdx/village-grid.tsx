@@ -12,7 +12,7 @@ export function VillageGrid({ name }: { name: string }) {
   const { Demo } = getComponent(name);
   if (!Demo) return null;
   return (
-    <div className="my-6 grid gap-3 sm:grid-cols-2">
+    <div className="my-6 grid gap-3">
       {(Object.keys(villages) as Village[]).flatMap((village) =>
         schemes.map((scheme) => (
           <VillageScope
