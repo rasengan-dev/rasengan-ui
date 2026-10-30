@@ -79,9 +79,9 @@ export async function init(argv: string[]) {
 	if (!hasAlias(root, "@/components"))
 		throw new Error(
 			[
-				"The components import `@/components/…` and `@/lib/…`, and this project has no `@/` alias yet. Add it to tsconfig.json:",
-				'  "compilerOptions": { "baseUrl": ".", "paths": { "@/*": ["./src/*"] } }',
-				...(framework === "vite" ? ["and to vite.config (resolve.alias):", '  resolve: { alias: { "@": path.resolve(__dirname, "./src") } }'] : []),
+				`The components import \`@/components/…\` and \`@/lib/…\`, and this project has no \`@/\` alias yet. Add it to ${framework === "vite" ? "tsconfig.app.json and tsconfig.json" : "tsconfig.json"}:`,
+				'  "compilerOptions": { "paths": { "@/*": ["./src/*"] } }',
+				...(framework === "vite" ? ["and to vite.config, with `import path from \"node:path\"`:", '  resolve: { alias: { "@": path.resolve(import.meta.dirname, "./src") } }'] : []),
 				"then run `rasengan-ui init` again.",
 			].join("\n"),
 		);

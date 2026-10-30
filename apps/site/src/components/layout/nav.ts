@@ -1,6 +1,6 @@
 /** The header's sections, in order. `match` says which paths light a section up. */
 export const sections = [
-  { label: 'Docs', to: '/', match: (path: string) => path === '/' },
+  { label: 'Docs', to: '/docs/installation', match: (path: string) => path === '/' || path.startsWith('/docs') },
   { label: 'Components', to: '/components', match: (path: string) => path.startsWith('/components') },
 ];
 

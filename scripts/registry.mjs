@@ -66,9 +66,11 @@ function mergeImports(statements) {
 /** One self-contained file: the engine source with its styles file inlined. */
 function inlineStyles(source, styles, stylesModule) {
 	const fromStyles = new RegExp(`^(?:import|export)\\s[^;]*?from\\s+["']\\./${stylesModule.replace(".", "\\.")}["'];?[ \\t]*\\n?`, "gm");
-	const component = splitImports(source.replace(fromStyles, ""));
+	// A directive ("use client") has to stay the file's first statement, above the merged imports.
+	const directive = source.match(/^\s*(["']use client["'];?)\s*\n/);
+	const component = splitImports(source.slice(directive?.[0].length ?? 0).replace(fromStyles, ""));
 	const inlined = splitImports(styles);
-	return `${mergeImports([...component.imports, ...inlined.imports]).join("\n")}\n\n${inlined.body}\n\n${component.body}\n`;
+	return `${directive ? `${directive[1]}\n\n` : ""}${mergeImports([...component.imports, ...inlined.imports]).join("\n")}\n\n${inlined.body}\n\n${component.body}\n`;
 }
 
 // ---- Items -----------------------------------------------------------------

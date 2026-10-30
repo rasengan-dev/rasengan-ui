@@ -1,6 +1,6 @@
 # RFC-0002: Rasengan UI — components on Base UI, themed by villages
 
-- Status: Draft (foundations, implementation plan steps 1 and 2, and all five batches of step 3 on `feat/ui-next`)
+- Status: Draft (implementation plan steps 1 to 5 on `feat/ui-next`)
 - Author: Dilane Kombou
 - Created: 2026-10-28
 - Supersedes: RFC-0001 for everything except the block content contract (`schema.ts`, `example.ts`, `meta.ts`), which is kept
@@ -370,9 +370,12 @@ village tokens, so a landing page restyles completely with the village. The
 | `doctor` | Checks config, CSS imports, versions, missing dependencies |
 | `migrate --engine radix` | Later: switches engine, replacing only files without local edits |
 
-`rasengan-ui.lock` records, for each installed file, the item, version and
-content hash at install time. That is what `diff`, `update` and `migrate`
-need. The CLI reads the same registry JSON as the shadcn CLI; it adds no
+`rasengan-ui.lock` records, for each installed file, the item and its
+content hash at install time, and `.rasengan-ui/base/` keeps the file as
+installed: `diff` and `update` compare against it and run a 3-way merge
+(local, installed, registry), with git-style conflict markers. Components
+that need the browser start with `"use client"`, so they work from Next.js
+Server Components. The CLI reads the same registry JSON as the shadcn CLI; it adds no
 private format.
 
 ### Site (`apps/site`)
@@ -410,8 +413,10 @@ The plan below implements it.
    page per component (done), screenshots of every combination for visual
    review (done), an axe pass (done: `pnpm axe`, WCAG 2.2 AA on every page,
    village and scheme, overlays open).
-5. **CLI**: `init`, `add`, `village`, `nature`, `tint`; then the lockfile
-   with `diff` and `update`.
+5. **CLI** (done): `init`, `add`, `village`, `nature`, `tint`, the lockfile
+   with `diff` and `update`, and `doctor`; verified on Rasengan.js, Vite and
+   Next.js projects. `apps/playground` runs it from source against the local
+   registry.
 6. **Then**: rebuild the RFC-0001 blocks; Kumo, Suna, Uzushio; Figma modes
    once the team is on a paid plan; switch-over (`apps/site` serves the v1
    JSON at the same `/r/<name>.json` paths and takes over

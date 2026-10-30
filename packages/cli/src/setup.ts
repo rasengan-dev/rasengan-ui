@@ -99,8 +99,9 @@ export interface Conflict {
 
 /**
  * Finds, outside the Rasengan UI imports, the declarations that would override the village: its
- * tokens on `:root`, `.dark` or any rule (shadcn and starter themes), and the contract's own @theme
- * entries. With `comment`, they are commented out in place, with a note.
+ * tokens on `:root`, `.dark` or any rule (shadcn and starter themes), the contract's own @theme
+ * entries, and a fixed font-family on the page (Next's body). With `comment`, they are commented
+ * out in place, with a note.
  */
 export function villageConflicts(root: string, css: string, { comment = false } = {}): Conflict[] {
 	const file = join(root, css);
@@ -112,12 +113,15 @@ export function villageConflicts(root: string, css: string, { comment = false } 
 		const theme = selector.startsWith("@theme");
 		const bodyStart = offset + header.length + 1;
 		// Comments are matched first and left alone: declarations commented out by an earlier run stay as they are.
-		const newBody = body.replace(/\/\*[\s\S]*?\*\/|(--([\w-]+))\s*:([^;{}]*);/g, (declaration: string, property: string | undefined, name: string, value: string, at: number) => {
+		const page = /^(?:html|body|:root)(?:\s*,\s*(?:html|body|:root))*$/.test(selector);
+		const newBody = body.replace(/\/\*[\s\S]*?\*\/|(--([\w-]+)|font-family)\s*:([^;{}]*);/g, (declaration: string, property: string | undefined, custom: string | undefined, value: string, at: number) => {
 			if (!property) return declaration;
-			const harmless = theme && name.startsWith("color-") && value.trim() === `var(--${name.slice("color-".length)})`;
-			const owned = theme ? contractTheme.has(name) || (name.startsWith("color-") && villageTokens.has(name.slice("color-".length)) && !harmless) : villageTokens.has(name);
+			let owned: boolean;
+			if (!custom) owned = page && !value.includes("var(--font"); // the page's type: the village sets it on <html>
+			else if (theme) owned = contractTheme.has(custom) || (custom.startsWith("color-") && villageTokens.has(custom.slice("color-".length)) && value.trim() !== `var(--${custom.slice("color-".length)})`);
+			else owned = villageTokens.has(custom);
 			if (!owned) return declaration;
-			conflicts.push({ name: `--${name}`, line: lineAt(bodyStart + at) });
+			conflicts.push({ name: custom ? `--${custom}` : `font-family on ${selector}`, line: lineAt(bodyStart + at) });
 			return `/* ${declaration.replace(/\s*\n\s*/g, " ")} (rasengan-ui: the village sets it) */`;
 		});
 		return `${header}{${newBody}}`;

@@ -2,7 +2,7 @@ import { Link, useLocation } from 'rasengan';
 import { components } from '@/catalogue';
 import { cn } from '@/lib/utils';
 
-/** Every component page, in the catalogue's order (the pager walks the same list). */
+/** The docs pages, then every component page in the catalogue's order (the pager walks the same list). */
 export function Sidebar() {
   const { pathname } = useLocation();
   const current = pathname.replace(/\/$/, '');
@@ -12,6 +12,12 @@ export function Sidebar() {
         <h2 className="mb-1 px-3 text-xs font-medium tracking-wide text-muted-foreground uppercase">Get started</h2>
         <Item to="/" active={current === ''}>
           Overview
+        </Item>
+        <Item to="/docs/installation" active={current === '/docs/installation'}>
+          Installation
+        </Item>
+        <Item to="/docs/cli" active={current === '/docs/cli'}>
+          CLI
         </Item>
         <Item to="/components" active={current === '/components'}>
           All components

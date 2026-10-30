@@ -1,18 +1,19 @@
 #!/usr/bin/env node
 /**
  * rasengan-ui (RFC-0002, "CLI"): sets up a project, adds components, switches villages and natures,
- * and updates installed files without losing local edits. Commands land with their milestone.
+ * and updates installed files without losing local edits.
  */
 import { styleText } from "node:util";
 import { add } from "./commands/add.ts";
 import { init } from "./commands/init.ts";
 import { nature, tint, village } from "./commands/look.ts";
+import { doctor } from "./commands/doctor.ts";
 import { diff, update } from "./commands/sync.ts";
 
 interface Command {
 	usage: string;
 	summary: string;
-	run?: (argv: string[]) => Promise<void>;
+	run: (argv: string[]) => Promise<void>;
 }
 
 const commands: Record<string, Command> = {
@@ -23,7 +24,7 @@ const commands: Record<string, Command> = {
 	tint: { usage: "tint <list|set> [name]", summary: "Switch between the village's greys and neutral greys", run: tint },
 	diff: { usage: "diff [name...]", summary: "Show local and registry changes since install", run: diff },
 	update: { usage: "update [name...]", summary: "Update installed files, keeping local edits (3-way merge)", run: update },
-	doctor: { usage: "doctor", summary: "Check config, CSS imports, versions and dependencies" },
+	doctor: { usage: "doctor", summary: "Check config, CSS imports, versions and dependencies", run: doctor },
 };
 
 function help() {
@@ -41,9 +42,6 @@ if (!name || name === "help" || name === "--help" || name === "-h") {
 } else if (!command) {
 	console.error(`Unknown command: ${name}\n`);
 	help();
-	process.exitCode = 1;
-} else if (!command.run) {
-	console.error(`rasengan-ui ${name}: not implemented yet.`);
 	process.exitCode = 1;
 } else {
 	try {

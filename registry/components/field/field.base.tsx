@@ -1,3 +1,5 @@
+"use client";
+
 import { Field as FieldPrimitive } from "@base-ui/react/field";
 
 import { labelStyles } from "@/components/ui/label";

@@ -1,3 +1,5 @@
+"use client";
+
 import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
 
 import { cn } from "@/lib/utils";
