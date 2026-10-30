@@ -14,6 +14,7 @@
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,css,html}\" --check \"**/*.json\" --check \"**/*.{yml,yaml}\"",
     "prepare": "husky",
     "next:dev": "pnpm --filter @rasengan-ui/site dev",
+    "playground": "pnpm --filter @rasengan-ui/playground",
     "next:build": "pnpm registry && pnpm --filter @rasengan-ui/site build",
     "registry": "node scripts/registry.mjs",
     "typecheck": "pnpm --filter @rasengan-ui/core --filter @rasengan-ui/villages --filter @rasengan-ui/registry --filter @rasengan-ui/site --filter rasengan-ui typecheck",
