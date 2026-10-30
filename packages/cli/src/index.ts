@@ -6,6 +6,7 @@
 import { styleText } from "node:util";
 import { add } from "./commands/add.ts";
 import { init } from "./commands/init.ts";
+import { nature, tint, village } from "./commands/look.ts";
 
 interface Command {
 	usage: string;
@@ -16,9 +17,9 @@ interface Command {
 const commands: Record<string, Command> = {
 	init: { usage: "init", summary: "Set up a project: engine, village, nature, CSS imports, rasengan-ui.json", run: init },
 	add: { usage: "add <name...>", summary: "Install components or blocks for the project's engine", run: add },
-	village: { usage: "village <list|set|add> [name]", summary: "List, switch or install villages" },
-	nature: { usage: "nature set <name>", summary: "Switch the nature (accent hue)" },
-	tint: { usage: "tint set <village|neutral>", summary: "Switch between the village's greys and neutral greys" },
+	village: { usage: "village <list|set|add> [name]", summary: "List, switch or install villages", run: village },
+	nature: { usage: "nature <list|set> [name]", summary: "List or switch the nature (accent hue)", run: nature },
+	tint: { usage: "tint <list|set> [name]", summary: "Switch between the village's greys and neutral greys", run: tint },
 	diff: { usage: "diff [name]", summary: "Show local and upstream changes since install" },
 	update: { usage: "update [name]", summary: "Update installed files, keeping local edits (3-way merge)" },
 	doctor: { usage: "doctor", summary: "Check config, CSS imports, versions and dependencies" },
