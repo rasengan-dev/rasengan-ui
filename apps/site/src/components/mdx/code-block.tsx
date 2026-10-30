@@ -74,7 +74,8 @@ export function CodePre({ className, children, ...props }: ComponentProps<'pre'>
 /** Inline `code` gets a chip; a block's `code` (it has `data-language`) is left to the theme. */
 export function InlineCode({ className, ...props }: ComponentProps<'code'>) {
   if ('data-language' in props) return <code className={className} {...props} />;
-  return <code className={cn('rounded-sm bg-muted px-1.5 py-0.5 font-mono text-[0.85em] text-foreground', className)} {...props} />;
+  // A URL longer than the line breaks rather than widening the page; words that fit stay whole (tables keep their columns).
+  return <code className={cn('rounded-sm bg-muted px-1.5 py-0.5 font-mono text-[0.85em] text-foreground break-words', className)} {...props} />;
 }
 
 /** Code highlighted at build time by the `?source` import (rasengan.config.js), with a copy button. */

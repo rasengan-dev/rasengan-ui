@@ -14,7 +14,8 @@ export function Callout({ title, variant = 'note', children }: Props) {
     <Alert role="note" variant={variant === 'warning' ? 'destructive' : 'default'} className="my-6">
       {variant === 'warning' ? <TriangleAlert /> : <Info />}
       {title && <AlertTitle>{title}</AlertTitle>}
-      <AlertDescription className="[&_p]:m-0 [&_p+p]:mt-2">{children}</AlertDescription>
+      {/* A note's code may break anywhere: its paragraphs are grid items sized to their longest word, and a registry URL would widen the page on a phone. */}
+      <AlertDescription className="[&_code]:[overflow-wrap:anywhere] [&_p]:m-0 [&_p+p]:mt-2">{children}</AlertDescription>
     </Alert>
   );
 }

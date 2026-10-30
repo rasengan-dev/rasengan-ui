@@ -1,15 +1,16 @@
 import { Link, useLocation } from 'rasengan';
 import { buttonVariants } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { SchemeToggle, VillageSelectors, VillageSettingsPopover } from '@/components/village-settings';
+import { SchemeToggle, ThemePopover } from '@/components/village-settings';
 import { cn } from '@/lib/utils';
 import { GitHubIcon } from '@/components/icons';
 import { MobileMenu } from './mobile-menu';
+import { Search } from './search';
 import { repository, sections } from './nav';
 
 /**
- * After shadcn's docs header: brand and sections on the left; on the right, the village selectors
- * (behind one button below `md`), GitHub and light/dark. Below `lg`, a menu replaces the sections.
+ * After shadcn's docs header: brand and sections on the left; on the right, the search, the theme (village, nature and
+ * greys in one popover), GitHub and light/dark. Below `lg`, a menu replaces the sections.
  */
 export function Header() {
   const { pathname } = useLocation();
@@ -37,8 +38,8 @@ export function Header() {
           })}
         </nav>
         <div className="ms-auto flex items-center gap-1.5">
-          <VillageSelectors className="hidden md:flex" />
-          <VillageSettingsPopover className="md:hidden" />
+          <Search className="sm:w-48 md:w-56 lg:w-64" />
+          <ThemePopover />
           <Separator orientation="vertical" className="mx-1 h-4 data-[orientation=vertical]:self-center" />
           <a href={repository} target="_blank" rel="noreferrer" aria-label="GitHub" className={buttonVariants({ variant: 'ghost', size: 'icon' })}>
             <GitHubIcon />

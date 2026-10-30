@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { CopyButton } from '@/components/mdx/code-block';
+import { SiteFooter } from '@/components/layout/footer';
 import { AuthenticationExample } from '@/components/home/authentication';
 import { CardsExample } from '@/components/home/cards';
 import { DashboardExample } from '@/components/home/dashboard';
@@ -150,34 +151,7 @@ const Home: PageComponent = () => {
       <Hero />
       <Examples />
       <Villages />
-      <footer className="border-t-(length:--border-width) px-4 py-8 text-center text-sm leading-relaxed text-muted-foreground">
-        Built on{' '}
-        <a
-          href="https://base-ui.com"
-          className="underline underline-offset-4 hover:text-foreground"
-        >
-          Base UI
-        </a>{' '}
-        and Tailwind CSS, for{' '}
-        <a
-          href="https://rasengan.dev"
-          className="underline underline-offset-4 hover:text-foreground"
-        >
-          Rasengan.js
-        </a>{' '}
-        and every React app.
-        <br />
-        Designed and built by{' '}
-        <a
-          href="https://dilane3.dev"
-          target="_blank"
-          rel="noreferrer"
-          className="font-medium text-foreground underline underline-offset-4"
-        >
-          Dilane Kombou
-        </a>
-        .
-      </footer>
+      <SiteFooter />
     </main>
   );
 };
