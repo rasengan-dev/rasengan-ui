@@ -1,0 +1,95 @@
+---
+metadata:
+  title: Pagination · Rasengan UI
+  description: "Links between the pages of a list: previous, next, the page numbers, and gaps for the pages in between."
+toc: true
+---
+
+# Pagination
+
+Links between the pages of a list: previous, next, the page numbers, and gaps for the pages in between.
+
+<ComponentPreview name="pagination" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add pagination
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/pagination.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/pagination.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+
+export function Usage() {
+  return (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href="?page=1" />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="?page=2" isActive>
+            2
+          </PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href="?page=3" />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
+}
+```
+
+### Sizes and the first page
+
+`size` on `Pagination` sets every link at once: square buttons for the numbers, matching heights for Previous and
+Next. On the first or last page, give the link `aria-disabled="true"` and no `href`: it dims and stops clicks.
+
+<ComponentPreview name="pagination" demo="pagination-sizes" />
+
+Links are `<a>`s; give your router's link in `render` (`render={<Link to="?page=2" />}`), as with
+[Breadcrumb](/components/breadcrumb).
+
+## Villages
+
+The links are buttons, ghost with the current page outlined, so they take the village's radius, border and press.
+
+<VillageGrid name="pagination" />
+
+## Accessibility
+
+- A `<nav>` landmark named "Pagination" (change it with `aria-label` when a page has several).
+- The current page carries `aria-current="page"`. Previous and Next are named "Go to the previous page" and "Go to the
+  next page"; on phones their words are hidden and the chevrons stay.
+- The ellipsis is read as "More pages".
+
+## API reference
+
+| Component | Props |
+| --- | --- |
+| `Pagination` | The props of `<nav>`, plus `size`: `"sm" \| "default" \| "lg"` (default `"default"`) |
+| `PaginationContent`, `PaginationItem` | The props of `<ul>` and `<li>` |
+| `PaginationLink` | The props of `<a>`, plus `isActive`, `size` (a Button size, overriding Pagination's) and `render` |
+| `PaginationPrevious`, `PaginationNext` | As `PaginationLink`; children replace the words |
+| `PaginationEllipsis` | The props of `<span>` |

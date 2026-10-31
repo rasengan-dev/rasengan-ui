@@ -1,0 +1,80 @@
+---
+metadata:
+  title: Button Group · Rasengan UI
+  description: "Joins buttons, inputs and selects into one control: toolbars, split buttons, a field with its action."
+toc: true
+---
+
+# Button Group
+
+Joins buttons, inputs and selects into one control: toolbars, split buttons, a field with its action.
+
+<ComponentPreview name="button-group" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add button-group
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/button-group.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/button-group.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
+
+export function Usage() {
+  return (
+    <ButtonGroup aria-label="Text alignment">
+      <Button variant="outline">Left</Button>
+      <Button variant="outline">Center</Button>
+      <Button variant="outline">Right</Button>
+    </ButtonGroup>
+  );
+}
+```
+
+### Inputs, text, separators and orientation
+
+An input or a select joins the group like a button. `ButtonGroupText` holds a label or a value (render it as a
+`<label>` for the input beside it). `ButtonGroupSeparator` draws a line between buttons that share a fill, where no
+border separates them. `orientation="vertical"` stacks the children.
+
+<ComponentPreview name="button-group" demo="button-group-variants" />
+
+Groups inside a group keep a gap between them, as in the demo at the top: that is how a toolbar splits into sets.
+
+## Villages
+
+Inner corners lose the village's radius and the borders between children collapse into one, so Iwa's heavy borders do
+not double.
+
+<VillageGrid name="button-group" />
+
+## Accessibility
+
+- `role="group"`. Give it an `aria-label` when its buttons don't say together what they act on.
+- A focused child rises above its neighbours, so its focus ring is never hidden under the next button.
+- For a set of buttons where one stays pressed, use [Toggle Group](/components/toggle-group) instead: it adds the
+  pressed state and the arrow keys.
+
+## API reference
+
+| Component | Props |
+| --- | --- |
+| `ButtonGroup` | The props of `<div>`, plus `orientation`: `"horizontal" \| "vertical"` (default `"horizontal"`) |
+| `ButtonGroupText` | The props of `<div>`, plus `render` (a `<label>`, through Base UI's `useRender`) |
+| `ButtonGroupSeparator` | The props of [Separator](/components/separator); `orientation` defaults to `"vertical"` |
+
+`buttonGroupVariants({ orientation })` returns the group's classes.

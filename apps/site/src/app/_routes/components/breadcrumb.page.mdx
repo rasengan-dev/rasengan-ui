@@ -1,0 +1,99 @@
+---
+metadata:
+  title: Breadcrumb · Rasengan UI
+  description: "Where the page sits in the site: the path of links above it, with the current page last."
+toc: true
+---
+
+# Breadcrumb
+
+Where the page sits in the site: the path of links above it, with the current page last.
+
+<ComponentPreview name="breadcrumb" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add breadcrumb
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/breadcrumb.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/breadcrumb.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
+export function Usage() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Settings</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  );
+}
+```
+
+### A router link
+
+`BreadcrumbLink` is an `<a>`; give your router's link in `render` and it keeps the styles:
+
+```tsx
+import { Link } from "rasengan";
+
+<BreadcrumbLink render={<Link to="/docs" />}>Docs</BreadcrumbLink>
+```
+
+### Separators and collapsed levels
+
+`BreadcrumbSeparator` shows a chevron, or its children. `BreadcrumbEllipsis` stands for levels left out of a long
+path; put it in a `DropdownMenuTrigger` to list them, as in the demo at the top.
+
+<ComponentPreview name="breadcrumb" demo="breadcrumb-separators" />
+
+## Villages
+
+The path is in the muted ink and the current page in the foreground, in every village.
+
+<VillageGrid name="breadcrumb" />
+
+## Accessibility
+
+- A `<nav>` landmark named "Breadcrumb" (change it with `aria-label`), holding an ordered list.
+- The current page is not a link and carries `aria-current="page"`.
+- Separators are hidden from screen readers; the ellipsis is read as "More pages".
+
+## API reference
+
+| Component | Element | Notes |
+| --- | --- | --- |
+| `Breadcrumb` | `<nav>` | `aria-label` defaults to `"Breadcrumb"` |
+| `BreadcrumbList` | `<ol>` | |
+| `BreadcrumbItem` | `<li>` | |
+| `BreadcrumbLink` | `<a>` | `render` for another element (through Base UI's `useRender`) |
+| `BreadcrumbPage` | `<span>` | `aria-current="page"` |
+| `BreadcrumbSeparator` | `<li>` | Children replace the chevron |
+| `BreadcrumbEllipsis` | `<span>` | |

@@ -4,6 +4,7 @@ import { Autocomplete } from '@base-ui/react/autocomplete';
 import { Search as SearchIcon } from 'lucide-react';
 import { components } from '@/catalogue';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Kbd } from '@/components/ui/kbd';
 import { cn } from '@/lib/utils';
 
 interface Entry {
@@ -98,9 +99,9 @@ export function Search({ className }: { className?: string }) {
       >
         <SearchIcon aria-hidden className="size-4 shrink-0" />
         <span className="sr-only sm:not-sr-only sm:flex-1 sm:truncate sm:text-start">Search the docs…</span>
-        <kbd aria-hidden className="hidden rounded-sm border-village bg-muted px-1.5 font-mono text-[0.6875rem] leading-5 sm:block">
+        <Kbd aria-hidden className="hidden sm:inline-flex">
           {mac ? '⌘K' : 'Ctrl K'}
-        </kbd>
+        </Kbd>
       </DialogTrigger>
       <DialogContent showCloseButton={false} className="top-[12vh] translate-y-0 gap-0 overflow-hidden p-0">
         <DialogTitle className="sr-only">Search the docs</DialogTitle>

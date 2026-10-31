@@ -21,8 +21,14 @@
 			"@/components/ui/badge": [
 				"../../registry/components/badge/badge.base.tsx"
 			],
+			"@/components/ui/breadcrumb": [
+				"../../registry/components/breadcrumb/breadcrumb.base.tsx"
+			],
 			"@/components/ui/button": [
 				"../../registry/components/button/button.base.tsx"
+			],
+			"@/components/ui/button-group": [
+				"../../registry/components/button-group/button-group.base.tsx"
 			],
 			"@/components/ui/card": [
 				"../../registry/components/card/card.base.tsx"
@@ -39,14 +45,23 @@
 			"@/components/ui/dropdown-menu": [
 				"../../registry/components/dropdown-menu/dropdown-menu.base.tsx"
 			],
+			"@/components/ui/empty": [
+				"../../registry/components/empty/empty.base.tsx"
+			],
 			"@/components/ui/field": [
 				"../../registry/components/field/field.base.tsx"
 			],
 			"@/components/ui/input": [
 				"../../registry/components/input/input.base.tsx"
 			],
+			"@/components/ui/kbd": [
+				"../../registry/components/kbd/kbd.base.tsx"
+			],
 			"@/components/ui/label": [
 				"../../registry/components/label/label.base.tsx"
+			],
+			"@/components/ui/pagination": [
+				"../../registry/components/pagination/pagination.base.tsx"
 			],
 			"@/components/ui/popover": [
 				"../../registry/components/popover/popover.base.tsx"
@@ -72,8 +87,14 @@
 			"@/components/ui/slider": [
 				"../../registry/components/slider/slider.base.tsx"
 			],
+			"@/components/ui/spinner": [
+				"../../registry/components/spinner/spinner.base.tsx"
+			],
 			"@/components/ui/switch": [
 				"../../registry/components/switch/switch.base.tsx"
+			],
+			"@/components/ui/table": [
+				"../../registry/components/table/table.base.tsx"
 			],
 			"@/components/ui/tabs": [
 				"../../registry/components/tabs/tabs.base.tsx"

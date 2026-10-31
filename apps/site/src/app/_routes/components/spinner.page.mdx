@@ -1,0 +1,78 @@
+---
+metadata:
+  title: Spinner · Rasengan UI
+  description: "Shows that something is loading. Takes the colour of the text it sits in, or a tone."
+toc: true
+---
+
+# Spinner
+
+Shows that something is loading. Takes the colour of the text it sits in, or a tone.
+
+<ComponentPreview name="spinner" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add spinner
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/spinner.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/spinner.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
+
+export function Usage() {
+  return (
+    <Button disabled>
+      <Spinner /> Saving
+    </Button>
+  );
+}
+```
+
+### Sizes and tones
+
+Three sizes; without a tone it takes `currentColor`, so it matches the button, badge or text around it.
+
+<ComponentPreview name="spinner" demo="spinner-sizes" />
+
+```tsx
+<Spinner size="lg" tone="success" />
+```
+
+## Villages
+
+The spinner has no surface of its own: it follows the text colour, and the tones follow the nature and the status
+colours of each village.
+
+<VillageGrid name="spinner" />
+
+## Accessibility
+
+- `role="status"` with the name "Loading". Say what loads with `aria-label` ("Loading invoices") when several things
+  can load at once.
+- With reduced motion it turns slowly rather than stopping, so it still reads as busy.
+
+## API reference
+
+The props of `<svg>` (Lucide's `Loader2Icon`), plus:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` |
+| `tone` | `"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"` | none: `currentColor` |
+
+`spinnerVariants({ size, tone })` returns the same classes.

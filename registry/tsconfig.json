@@ -32,8 +32,14 @@
 			"@/components/ui/badge": [
 				"./components/badge/badge.base.tsx"
 			],
+			"@/components/ui/breadcrumb": [
+				"./components/breadcrumb/breadcrumb.base.tsx"
+			],
 			"@/components/ui/button": [
 				"./components/button/button.base.tsx"
+			],
+			"@/components/ui/button-group": [
+				"./components/button-group/button-group.base.tsx"
 			],
 			"@/components/ui/card": [
 				"./components/card/card.base.tsx"
@@ -50,14 +56,23 @@
 			"@/components/ui/dropdown-menu": [
 				"./components/dropdown-menu/dropdown-menu.base.tsx"
 			],
+			"@/components/ui/empty": [
+				"./components/empty/empty.base.tsx"
+			],
 			"@/components/ui/field": [
 				"./components/field/field.base.tsx"
 			],
 			"@/components/ui/input": [
 				"./components/input/input.base.tsx"
 			],
+			"@/components/ui/kbd": [
+				"./components/kbd/kbd.base.tsx"
+			],
 			"@/components/ui/label": [
 				"./components/label/label.base.tsx"
+			],
+			"@/components/ui/pagination": [
+				"./components/pagination/pagination.base.tsx"
 			],
 			"@/components/ui/popover": [
 				"./components/popover/popover.base.tsx"
@@ -83,8 +98,14 @@
 			"@/components/ui/slider": [
 				"./components/slider/slider.base.tsx"
 			],
+			"@/components/ui/spinner": [
+				"./components/spinner/spinner.base.tsx"
+			],
 			"@/components/ui/switch": [
 				"./components/switch/switch.base.tsx"
+			],
+			"@/components/ui/table": [
+				"./components/table/table.base.tsx"
 			],
 			"@/components/ui/tabs": [
 				"./components/tabs/tabs.base.tsx"
