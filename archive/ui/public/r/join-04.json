@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "join-04",
+  "title": "Invite minimal card 4",
+  "description": "Invite minimal card 4",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "src/registry/application-ui/cards/join/join4.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { cn } from \"@/lib/utils\";\nimport { ArrowRightCircle } from \"lucide-react\";\nimport { ComponentProps } from \"react\";\n\ntype Props = {\n\tclassName?: ComponentProps<\"div\">[\"className\"];\n};\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\nexport const JoinCard4 = ({ className }: Props) => {\n\treturn (\n\t\t<div\n\t\t\tclassName={cn(\n\t\t\t\t\"max-w-[300px] border border-border bg-background rounded-3xl p-4 flex items-center justify-between gap-8\",\n\t\t\t\tclassName\n\t\t\t)}\n\t\t>\n\t\t\t<div className='flex items-center gap-2'>\n\t\t\t\t<img\n\t\t\t\t\tsrc={`${registryUrl}/static/images/avatars/1.jpeg`}\n\t\t\t\t\talt='Avatar'\n\t\t\t\t\tclassName='rounded-full bg-primary/20 flex items-center justify-center'\n\t\t\t\t\twidth={40}\n\t\t\t\t\theight={40}\n\t\t\t\t/>\n\t\t\t\t<div className='flex flex-col'>\n\t\t\t\t\t<p className='text-foreground font-bold text-sm'>UX Support Group</p>\n\t\t\t\t\t<p className='text-foreground/50 text-sm'>3529 members</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div>\n\t\t\t\t<Button size={\"icon\"} variant={\"outline\"} className='rounded-xl'>\n\t\t\t\t\t<ArrowRightCircle className='h-4 w-4 opacity-70 text-foreground' />\n\t\t\t\t</Button>\n\t\t\t</div>\n\t\t</div>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

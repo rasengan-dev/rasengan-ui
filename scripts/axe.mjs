@@ -2,7 +2,7 @@
 /**
  * An axe pass over the site (RFC-0002, "Quality gate"):
  *
- *   pnpm next:dev     # the site, on http://localhost:3200
+ *   pnpm dev          # the site, on http://localhost:3200
  *   pnpm axe          # every page, or: pnpm axe button dialog
  *
  * Runs axe-core's WCAG 2.2 A and AA rules on the home page, /components and each component page,

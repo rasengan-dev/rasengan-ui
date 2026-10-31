@@ -2,7 +2,7 @@
 /**
  * Screenshots of every component for visual review (RFC-0002, "Quality gate"):
  *
- *   pnpm next:dev                    # the site, on http://localhost:3200
+ *   pnpm dev                         # the site, on http://localhost:3200
  *   pnpm screenshots                 # every component, or: pnpm screenshots button dialog
  *   pnpm screenshots --accept        # the same, then keep this run as the baseline
  *

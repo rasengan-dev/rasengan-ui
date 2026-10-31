@@ -8,7 +8,10 @@ toc: true
 # CLI
 
 `rasengan-ui` sets up a project, adds components, switches villages, natures and greys, and brings installed files up
-to date without losing your edits. It reads the same registry format as the shadcn CLI.
+to date without losing your edits. It reads the registry at `https://ui.rasengan.dev/r`, described by Rasengan UI's
+schemas ([registry](https://ui.rasengan.dev/schema/registry.json),
+[item](https://ui.rasengan.dev/schema/registry-item.json)). They hold the same fields as shadcn's, so the shadcn CLI
+reads the registry too.
 
 ```bash title="Terminal"
 npx rasengan-ui <command> --help

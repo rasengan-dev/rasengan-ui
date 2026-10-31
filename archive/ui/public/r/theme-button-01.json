@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-button-01",
+  "title": "Theme Button",
+  "description": "Theme Button",
+  "dependencies": [
+    "lucide-react",
+    "@rasenganjs/theme"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "src/registry/application-ui/granulars/buttons/theme-button1.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { cn } from \"@/lib/utils\";\nimport { useTheme } from \"@rasenganjs/theme\";\nimport { Moon, Sun } from \"lucide-react\";\n\ntype Props = {\n    size?: \"normal\" | \"small\";\n};\n\nexport default function ThemeButton({ size = \"normal\" }: Props) {\n    const { setTheme, isDark } = useTheme();\n\n    const handleThemeChange = () => {\n        setTheme(isDark ? \"light\" : \"dark\");\n    };\n\n    return (\n        <Button\n            size='icon'\n            onClick={handleThemeChange}\n            className={cn(\n                \"relative aspect-square rounded-md border-[1px] border-border bg-primary/5 hover:bg-muted flex shrink-0 items-center justify-center overflow-hidden hover:cursor-pointer backdrop-blur-2xl\",\n                size === \"small\" ? \"size-7\" : \"size-8\"\n            )}\n        >\n            {isDark ? (\n                <div\n                    key='moon'\n                    className='absolute grow-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'\n                >\n                    <Moon size={20} className='text-primary' />\n                </div>\n            ) : (\n                <div\n                    key='sun'\n                    className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'\n                >\n                    <Sun size={20} className='text-primary' />\n                </div>\n            )}\n        </Button>\n    );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

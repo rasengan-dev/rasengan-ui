@@ -2,16 +2,19 @@
 /**
  * Builds the Rasengan UI registry (RFC-0002, "Registry and URLs"), one per engine:
  *
- *   RASENGAN_UI_URL=https://registry.rasengan.dev pnpm registry
+ *   RASENGAN_UI_URL=https://ui.rasengan.dev pnpm registry
  *
  * For each engine it inlines every component's `<name>.styles.ts` into
  * `<name>.<engine>.tsx` (a project receives one file per component), writes
  * .registry/<engine>/registry.json, and builds it with the shadcn CLI into
- * apps/site/public/r/<engine>. It also keeps the `@/components/ui/<name>`
- * paths of registry/ and apps/site in sync with the components that exist.
+ * apps/site/public/r/<engine>, every file pointing at Rasengan UI's schemas
+ * (/schema/registry.json, /schema/registry-item.json). It also keeps the
+ * `@/components/ui/<name>` paths of registry/ and apps/site in sync with the
+ * components that exist.
  *
- * RASENGAN_UI_URL is where /r will be served; items point at each other
- * through it. It defaults to the local site.
+ * RASENGAN_UI_URL is where the site will be served; items and schemas are
+ * referenced through it. It defaults to the local site; `pnpm build` uses
+ * https://ui.rasengan.dev.
  */
 import { execFileSync } from "node:child_process";
 import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
@@ -22,6 +25,8 @@ const root = join(import.meta.dirname, "..");
 const base = (process.env.RASENGAN_UI_URL || "http://localhost:3200").replace(/\/$/, "");
 const ENGINES = ["base"];
 const SHADCN = "shadcn@4.23.0";
+/* Rasengan UI's own schemas (apps/site/public/schema): shadcn's content, served next to /r. */
+const schemas = { registry: `${base}/schema/registry.json`, item: `${base}/schema/registry-item.json` };
 
 const read = (path) => readFileSync(join(root, path), "utf8");
 
@@ -188,14 +193,23 @@ for (const engine of ENGINES) {
 	}
 	items.push(...examples);
 
-	const registry = { $schema: "https://ui.shadcn.com/schema/registry.json", name: "rasengan", homepage: base, items };
+	const registry = { $schema: schemas.registry, name: "rasengan", homepage: base, items };
 	writeFileSync(join(root, out, "registry.json"), `${JSON.stringify(registry, null, "\t")}\n`);
 	console.log(`${out}/registry.json: ${items.length} items, base ${base}`);
 
-	execFileSync("npx", ["--yes", SHADCN, "build", `${out}/registry.json`, "--output", `apps/site/public/r/${engine}`], {
+	const published = `apps/site/public/r/${engine}`;
+	execFileSync("npx", ["--yes", SHADCN, "build", `${out}/registry.json`, "--output", published], {
 		cwd: root,
 		stdio: "inherit",
 	});
+
+	// The shadcn CLI stamps its own schema on every file it writes; the published files point at ours.
+	for (const file of readdirSync(join(root, published)).filter((name) => name.endsWith(".json"))) {
+		const path = join(root, published, file);
+		const { $schema, ...rest } = JSON.parse(readFileSync(path, "utf8"));
+		const own = { $schema: file === "registry.json" ? schemas.registry : schemas.item, ...rest };
+		writeFileSync(path, `${JSON.stringify(own, null, 2)}\n`);
+	}
 }
 
 // ---- Paths -----------------------------------------------------------------

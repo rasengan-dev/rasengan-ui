@@ -17,7 +17,7 @@ export interface Config {
 	registry: string;
 }
 
-export const defaultRegistry = process.env.RASENGAN_UI_REGISTRY ?? "https://registry.rasengan.dev/r";
+export const defaultRegistry = process.env.RASENGAN_UI_REGISTRY ?? "https://ui.rasengan.dev/r";
 
 export const defaults = {
 	engine: "base",

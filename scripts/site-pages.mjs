@@ -35,7 +35,7 @@ export async function siteIsUp() {
 		const response = await fetch(base, { headers: { Accept: "text/html" } });
 		if (!response.ok) throw new Error(String(response.status));
 	} catch (error) {
-		console.error(`The site isn't answering at ${base} (${error.message}). Start it with \`pnpm next:dev\`.`);
+		console.error(`The site isn't answering at ${base} (${error.message}). Start it with \`pnpm dev\`.`);
 		process.exit(1);
 	}
 }

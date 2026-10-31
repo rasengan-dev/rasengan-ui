@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar-01",
+  "title": "Calendar card with range selection",
+  "description": "Calendar card with range selection",
+  "dependencies": [
+    "lucide-react",
+    "react-day-picker"
+  ],
+  "registryDependencies": [
+    "button",
+    "calendar",
+    "checkbox",
+    "input"
+  ],
+  "files": [
+    {
+      "path": "src/registry/application-ui/cards/calendar/calendar1.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { Calendar } from \"@/components/ui/calendar\";\nimport { Checkbox } from \"@/components/ui/checkbox\";\nimport { Input } from \"@/components/ui/input\";\nimport { cn } from \"@/lib/utils\";\nimport { Clock3, X } from \"lucide-react\";\nimport { useState } from \"react\";\nimport { DateRange } from \"react-day-picker\";\n\nexport const CalendarCard1 = () => {\n\tconst [date, setDate] = useState<DateRange | undefined>();\n\n\treturn (\n\t\t<article\n\t\t\tclassName={cn(\n\t\t\t\t\"relative w-full max-w-[400px] md:max-w-[700px] rounded-2xl shadow-md bg-background dark:bg-input/40 border-[1px] border-border\"\n\t\t\t)}\n\t\t>\n\t\t\t<div className='h-[60px] border-b border-border flex items-center justify-between p-3'>\n\t\t\t\t<div className='flex items-center gap-2'>\n\t\t\t\t\t<div className='size-10 rounded-full flex items-center justify-center border border-border'>\n\t\t\t\t\t\t<Clock3 className='text-muted-foreground' />\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<h2 className='text-foreground font-bold'>Event Calendar</h2>\n\t\t\t\t\t\t<p className='text-muted-foreground text-sm'>\n\t\t\t\t\t\t\tManage your events and schedule\n\t\t\t\t\t\t</p>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<Button variant={\"outline\"} size={\"icon\"} className='size-8'>\n\t\t\t\t\t<X size={14} className='text-foreground' />\n\t\t\t\t</Button>\n\t\t\t</div>\n\n\t\t\t<div className='w-full flex flex-col md:flex-row'>\n\t\t\t\t<div className='w-full md:w-1/2 min-h-[100px] border-b md:border-b-0 md:border-r border-border flex flex-col items-center'>\n\t\t\t\t\t<Calendar\n\t\t\t\t\t\tmode='range'\n\t\t\t\t\t\tdefaultMonth={new Date()}\n\t\t\t\t\t\tnumberOfMonths={1}\n\t\t\t\t\t\tselected={date}\n\t\t\t\t\t\tonSelect={setDate}\n\t\t\t\t\t\tclassName='w-full dark:bg-transparent'\n\t\t\t\t\t/>\n\t\t\t\t</div>\n\n\t\t\t\t<div className='w-full md:w-1/2 min-h-[100px]'>\n\t\t\t\t\t<div className='w-full p-4 border-b border-border'>\n\t\t\t\t\t\t<div className='text-foreground'>\n\t\t\t\t\t\t\t<label htmlFor='name' className='font-medium text-sm'>\n\t\t\t\t\t\t\t\tStart Date\n\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t<Input\n\t\t\t\t\t\t\t\tplaceholder='Select start date'\n\t\t\t\t\t\t\t\treadOnly\n\t\t\t\t\t\t\t\tclassName='mt-2'\n\t\t\t\t\t\t\t\tvalue={date?.from?.toLocaleDateString()}\n\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<div className='mt-4 text-foreground'>\n\t\t\t\t\t\t\t<label htmlFor='name' className='font-medium text-sm'>\n\t\t\t\t\t\t\t\tEnd Date\n\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t<Input\n\t\t\t\t\t\t\t\tplaceholder='Select end date'\n\t\t\t\t\t\t\t\treadOnly\n\t\t\t\t\t\t\t\tclassName='mt-2'\n\t\t\t\t\t\t\t\tvalue={date?.to?.toLocaleDateString()}\n\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div className='w-full p-4'>\n\t\t\t\t\t\t<div className='text-foreground'>\n\t\t\t\t\t\t\t<label htmlFor='name' className='font-medium text-sm'>\n\t\t\t\t\t\t\t\tMaximum Attendees\n\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t<Input placeholder='Enter maximum attendees' className='mt-2' />\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<div className='flex items-center gap-2 mt-4'>\n\t\t\t\t\t\t\t<Checkbox />\n\t\t\t\t\t\t\t<label\n\t\t\t\t\t\t\t\thtmlFor='remember-me'\n\t\t\t\t\t\t\t\tclassName='text-sm font-medium text-foreground'\n\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\tOpen to all departments\n\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div className='h-[60px] border-t border-border flex items-center justify-end p-3 gap-2'>\n\t\t\t\t<Button variant='outline' className='dark:text-foreground'>\n\t\t\t\t\tCancel\n\t\t\t\t</Button>\n\t\t\t\t<Button>Schedule Meeting</Button>\n\t\t\t</div>\n\t\t</article>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

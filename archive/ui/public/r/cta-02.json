@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cta-02",
+  "title": "CTA for download action",
+  "description": "CTA for download action",
+  "dependencies": [],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "src/registry/marketing/page-sections/ctas/cta2.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\nexport const Cta2 = () => {\n\treturn (\n\t\t<section className='w-full flex items-center justify-center'>\n\t\t\t<div className='relative overflow-hidden w-full max-w-[1200px] min-h-[650px] lg:min-h-[400px] mt-16 flex flex-col lg:flex-row md:items-center text-[#0F2D0D] dark:text-white md:justify-between gap-8 rounded-4xl bg-[#06976E]/50 dark:bg-[#078460] px-8 md:px-12 lg:py-20 py-10'>\n\t\t\t\t<div className='w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-start'>\n\t\t\t\t\t<h1 className='text-4xl md:text-5xl font-bold lg:max-w-[500px] mb-4 text-pretty'>\n\t\t\t\t\t\tTake full control of your home\n\t\t\t\t\t</h1>\n\t\t\t\t\t<p className='md:max-w-[500px] text-pretty'>\n\t\t\t\t\t\tFrom lights to locks, manage everything effortlessly from one place.\n\t\t\t\t\t</p>\n\n\t\t\t\t\t<div className='mt-6 flex gap-2'>\n\t\t\t\t\t\t<a href='#'>\n\t\t\t\t\t\t\t<Button className='rounded-lg bg-black text-white h-12 items-center px-4'>\n\t\t\t\t\t\t\t\t<div className='flex items-center justify-center shrink-0'>\n\t\t\t\t\t\t\t\t\t<img\n\t\t\t\t\t\t\t\t\t\tsrc='/static/images/icons/appstore.png'\n\t\t\t\t\t\t\t\t\t\talt='App Store'\n\t\t\t\t\t\t\t\t\t\tclassName='w-6 h-auto'\n\t\t\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className='flex flex-col items-start leading-2'>\n\t\t\t\t\t\t\t\t\t<span className='text-[10px]'>Download on the</span>\n\t\t\t\t\t\t\t\t\t<span className='text-lg font-bold'>App Store</span>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</Button>\n\t\t\t\t\t\t</a>\n\n\t\t\t\t\t\t<a href='#'>\n\t\t\t\t\t\t\t<Button className='rounded-lg bg-black text-white h-12 items-center px-4'>\n\t\t\t\t\t\t\t\t<div className='flex items-center justify-center shrink-0'>\n\t\t\t\t\t\t\t\t\t<img\n\t\t\t\t\t\t\t\t\t\tsrc='/static/images/icons/playstore.png'\n\t\t\t\t\t\t\t\t\t\talt='Google Play'\n\t\t\t\t\t\t\t\t\t\tclassName='w-6 h-auto'\n\t\t\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className='flex flex-col items-start leading-2'>\n\t\t\t\t\t\t\t\t\t<span className='text-[10px]'>Get it on</span>\n\t\t\t\t\t\t\t\t\t<span className='text-lg font-bold'>Google Play</span>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</Button>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\t\t\t\t<div className='w-full h-full lg:w-1/2 max-w-[700px] lg:max-w-[500px]'>\n\t\t\t\t\t<div className='size-[500px] rounded-full absolute top-[350px] lg:top-32 right-1/2 translate-x-1/2 lg:translate-x-0 lg:right-6 bg-[#06976E]/20 dark:bg-[#38b08e8e]'>\n\t\t\t\t\t\t<div className='absolute -top-28'>\n\t\t\t\t\t\t\t<img\n\t\t\t\t\t\t\t\tsrc={`${registryUrl}/static/images/mockups/1.png`}\n\t\t\t\t\t\t\t\talt='Image'\n\t\t\t\t\t\t\t\tclassName='object-cover w-[520px] h-auto'\n\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</section>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

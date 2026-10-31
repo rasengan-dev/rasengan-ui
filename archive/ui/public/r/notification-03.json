@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "notification-03",
+  "title": "Notification with actions",
+  "description": "Notification with actions",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "src/registry/application-ui/overlays/notifications/notification3.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { Archive, Trash, Undo, X } from \"lucide-react\";\n\nexport const Notification3 = () => {\n\treturn (\n\t\t<article className='w-full md:w-[450px] rounded-lg border border-border p-4 bg-background dark:bg-input/40 flex justify-between items-start gap-4'>\n\t\t\t<div className='flex items-start gap-4'>\n\t\t\t\t<Archive className='text-foreground/70' size={28} />\n\t\t\t\t<div>\n\t\t\t\t\t<span className='block font-medium text-foreground'>\n\t\t\t\t\t\tDiscussion moved\n\t\t\t\t\t</span>\n\t\t\t\t\t<span className='block text-foreground/70 text-sm'>\n\t\t\t\t\t\tLorem ipsum dolor sit amet consectetur adipisicing elit oluptatum\n\t\t\t\t\t\ttenetur.\n\t\t\t\t\t</span>\n\t\t\t\t\t<div className='mt-4 flex gap-4'>\n\t\t\t\t\t\t<Button variant={\"outline\"} className='text-foreground'>\n\t\t\t\t\t\t\t<Undo />\n\t\t\t\t\t\t\t<span>Undo</span>\n\t\t\t\t\t\t</Button>\n\n\t\t\t\t\t\t<Button\n\t\t\t\t\t\t\tvariant={\"outline\"}\n\t\t\t\t\t\t\tclassName='text-red-500 dark:text-red-300 hover:text-red-600 hover:dark-tex-red-400'\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<Trash />\n\t\t\t\t\t\t\t<span>Dismiss</span>\n\t\t\t\t\t\t</Button>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div>\n\t\t\t\t<Button size={\"icon\"} variant={\"ghost\"} className='text-foreground'>\n\t\t\t\t\t<X />\n\t\t\t\t</Button>\n\t\t\t</div>\n\t\t</article>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

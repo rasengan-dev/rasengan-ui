@@ -171,7 +171,7 @@ The CLI is not published on npm yet (`"private": true`). Until it is, the server
    line in `rasengan-ui.json`, easy to undo, but it changes every page at once.
 2. Should `add_components` ask the client for confirmation itself (MCP elicitation), or rely on the client's own
    permission prompt, as today?
-3. The hosted server: on `registry.rasengan.dev/mcp`, read-only, or also able to return a ready-to-paste `add` command
+3. The hosted server: on `ui.rasengan.dev/mcp`, read-only, or also able to return a ready-to-paste `add` command
    per project?
 4. Should the component docs (the MDX pages: anatomy, props, accessibility notes) be published in the registry for
    `get_component`, or linked only?

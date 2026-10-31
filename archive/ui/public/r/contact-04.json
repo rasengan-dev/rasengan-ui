@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "contact-04",
+  "title": "Contact form with image",
+  "description": "Contact form with image",
+  "dependencies": [],
+  "registryDependencies": [
+    "button",
+    "input"
+  ],
+  "files": [
+    {
+      "path": "src/registry/marketing/page-sections/contacts/contact4.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { Input } from \"@/components/ui/input\";\nimport { cn } from \"@/lib/utils\";\n\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\nexport const Contact4 = () => {\n\treturn (\n\t\t<section className='w-full flex items-center justify-center px-4'>\n\t\t\t<div className='w-full max-w-[600px] lg:max-w-[1200px] min-h-[250px] mt-16 flex flex-col-reverse lg:flex-row md:items-center border md:justify-between gap-4 rounded-4xl px-8 md:px-10 py-10'>\n\t\t\t\t<form\n\t\t\t\t\taction=''\n\t\t\t\t\tclassName='w-full h-full lg:w-1/2 bg-background dark:bg-input/40 p-6 rounded-xl border'\n\t\t\t\t>\n\t\t\t\t\t<div className='flex flex-col gap-4'>\n\t\t\t\t\t\t<div className='flex flex-col gap-2'>\n\t\t\t\t\t\t\t<label htmlFor='name' className='text-foreground'>\n\t\t\t\t\t\t\t\tName\n\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t<Input\n\t\t\t\t\t\t\t\ttype='text'\n\t\t\t\t\t\t\t\tname='name'\n\t\t\t\t\t\t\t\tid='name'\n\t\t\t\t\t\t\t\tplaceholder='Enter your name'\n\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div className='flex flex-col gap-2'>\n\t\t\t\t\t\t\t<label htmlFor='email' className='text-foreground'>\n\t\t\t\t\t\t\t\tEmail\n\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t<Input\n\t\t\t\t\t\t\t\ttype='email'\n\t\t\t\t\t\t\t\tname='email'\n\t\t\t\t\t\t\t\tid='email'\n\t\t\t\t\t\t\t\tplaceholder='Enter your email'\n\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div className='flex flex-col gap-2'>\n\t\t\t\t\t\t\t<label htmlFor='message' className='text-foreground'>\n\t\t\t\t\t\t\t\tMessage\n\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t\tclassName={cn(\n\t\t\t\t\t\t\t\t\t\"relative rounded-2xl border w-full h-auto bg-background dark:bg-input/70 mx-auto\"\n\t\t\t\t\t\t\t\t)}\n\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t\t\t// ref={messageRef}\n\t\t\t\t\t\t\t\t\tcontentEditable\n\t\t\t\t\t\t\t\t\tdata-placeholder={\"Ask us anything\"}\n\t\t\t\t\t\t\t\t\tclassName='w-full min-h-[200px] max-h-[250px] h-auto empty:before:content-[attr(data-placeholder)] empty:before:text-muted-foreground empty:before:absolute empty:before:pointer-events-none empty:before:inset-4 outline-0 text-foreground py-4 px-4 pb-4 overflow-auto rounded-2xl'\n\t\t\t\t\t\t\t\t></div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<Button type='submit'>Send</Button>\n\t\t\t\t\t</div>\n\t\t\t\t</form>\n\n\t\t\t\t<div className='w-full lg:w-1/2 lg:max-w-[500px]'>\n\t\t\t\t\t<img\n\t\t\t\t\t\tsrc={`${registryUrl}/static/images/cta/1.jpeg`}\n\t\t\t\t\t\talt='cta4'\n\t\t\t\t\t\tclassName='w-full aspect-square object-cover rounded-xl'\n\t\t\t\t\t/>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</section>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

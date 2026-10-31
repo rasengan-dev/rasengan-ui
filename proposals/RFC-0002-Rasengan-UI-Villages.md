@@ -339,7 +339,7 @@ village tokens, so a landing page restyles completely with the village. The
 - v1 items stay at `/r/<name>.json`. No v1 name collides with an engine
   folder.
 - shadcn users add a namespace once:
-  `"registries": { "@rasengan": "https://registry.rasengan.dev/r/base/{name}.json" }`.
+  `"registries": { "@rasengan": "https://ui.rasengan.dev/r/base/{name}.json" }`.
 - Shared code is published as `registry:lib` items: `rasengan-core` (cn,
   variants) and `rasengan-motion`. Villages are `registry:theme` items, one
   per village plus `rasengan-natures`.
@@ -356,7 +356,7 @@ village tokens, so a landing page restyles completely with the village. The
   "tint": "village",
   "css": "src/styles/index.css",
   "aliases": { "components": "@/components", "ui": "@/components/ui", "lib": "@/lib" },
-  "registry": "https://registry.rasengan.dev/r"
+  "registry": "https://ui.rasengan.dev/r"
 }
 ```
 
@@ -419,10 +419,11 @@ The plan below implements it.
    Next.js projects. `apps/playground` runs it from source against the local
    registry.
 6. **Then**: rebuild the RFC-0001 blocks; Kumo, Suna, Uzushio; Figma modes
-   once the team is on a paid plan; switch-over (`apps/site` serves the v1
-   JSON at the same `/r/<name>.json` paths and takes over
-   `registry.rasengan.dev`, `apps/ui` and `apps/docs` are archived); the
-   Radix engine (`.radix.tsx`, `/r/radix/…`, `migrate`).
+   once the team is on a paid plan; the Radix engine (`.radix.tsx`,
+   `/r/radix/…`, `migrate`). Switch-over done (2026-10-31): `apps/site` serves
+   the registry on `ui.rasengan.dev` with its own schemas, and the v1 JSON and
+   images at their old paths (`/r/<name>.json`, `/static/…`); `apps/ui`,
+   `apps/docs` and `packages/data` are in `archive/`.
 
 ## Alternatives considered
 
@@ -440,8 +441,10 @@ The plan below implements it.
 
 ## Open questions
 
-1. Domain: keep `registry.rasengan.dev` for both registry and docs, or a new
-   `ui.rasengan.dev`?
+1. ~~Domain: keep `registry.rasengan.dev` for both registry and docs, or a new
+   `ui.rasengan.dev`?~~ Decided (2026-10-31): `ui.rasengan.dev` serves the site, the
+   registry (`/r`) and its schemas (`/schema`); it also serves the v1 JSON and images
+   at their old paths, so `registry.rasengan.dev` can point at the same deployment.
 2. Fonts per village: open-licence faces only, self-hosted by the CLI or
    loaded from a CDN?
 3. Does the CLI also create a project (`rasengan-ui create`, Rasengan.js

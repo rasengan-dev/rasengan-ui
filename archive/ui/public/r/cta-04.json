@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cta-04",
+  "title": "CTA with one action and image",
+  "description": "CTA with one action and image",
+  "dependencies": [],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "src/registry/marketing/page-sections/ctas/cta4.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\nexport const Cta4 = () => {\n\treturn (\n\t\t<section className='w-full flex items-center justify-center'>\n\t\t\t<div className='w-full max-w-[1200px] min-h-[250px] mt-16 flex flex-col lg:flex-row md:items-center text-white md:justify-between gap-8 rounded-4xl bg-[#2D2D2D] px-8 md:px-10 py-10'>\n\t\t\t\t<div className='w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-start'>\n\t\t\t\t\t<h1 className='text-4xl md:text-5xl font-bold lg:max-w-[500px] mb-4 text-pretty'>\n\t\t\t\t\t\tTransform your Body and Mind.\n\t\t\t\t\t</h1>\n\t\t\t\t\t<p className='md:max-w-[500px] text-pretty'>\n\t\t\t\t\t\tSubscribe to our newsletter and be the first to receive our\n\t\t\t\t\t\tinsights, updates and experts tips on new components added\n\t\t\t\t\t</p>\n\t\t\t\t\t<div className='mt-6 flex gap-2'>\n\t\t\t\t\t\t<a href='#'>\n\t\t\t\t\t\t\t<Button className='rounded-full px-6 bg-white hover:bg-white/80 text-black h-12 items-center'>\n\t\t\t\t\t\t\t\tGet started\n\t\t\t\t\t\t\t</Button>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\t\t\t\t<div className='w-full lg:w-1/2 max-w-[700px] lg:max-w-[500px]'>\n\t\t\t\t\t<img\n\t\t\t\t\t\tsrc={`${registryUrl}/static/images/cta/1.jpeg`}\n\t\t\t\t\t\talt='cta4'\n\t\t\t\t\t\tclassName='w-full h-auto object-cover rounded-xl'\n\t\t\t\t\t/>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</section>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

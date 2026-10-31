@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "notification-04",
+  "title": "Reply Notification",
+  "description": "Reply Notification",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "src/registry/application-ui/overlays/notifications/notification4.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { Reply } from \"lucide-react\";\n\nexport const Notification4 = () => {\n\treturn (\n\t\t<article className='w-full md:w-[400px] rounded-lg border border-border p-4 bg-background dark:bg-input/40 flex justify-between items-center gap-4'>\n\t\t\t<div className='flex items-center gap-4'>\n\t\t\t\t<div className='flex gap-4 items-center'>\n\t\t\t\t\t<img\n\t\t\t\t\t\tsrc='/static/images/avatars/1.jpeg'\n\t\t\t\t\t\tclassName='size-10 rounded-full'\n\t\t\t\t\t/>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<span className='block font-medium text-foreground'>\n\t\t\t\t\t\t\tDilane Kombou\n\t\t\t\t\t\t</span>\n\t\t\t\t\t\t<span className='block font-medium text-foreground/70'>\n\t\t\t\t\t\t\tHello world\n\t\t\t\t\t\t</span>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div>\n\t\t\t\t<Button className=''>\n\t\t\t\t\t<Reply />\n\t\t\t\t\t<span>Reply</span>\n\t\t\t\t</Button>\n\t\t\t</div>\n\t\t</article>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

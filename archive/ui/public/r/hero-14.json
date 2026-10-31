@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hero-14",
+  "title": "Hero with left bottom text and background image",
+  "description": "Hero with left bottom text and background image",
+  "dependencies": [
+    "lucide-react",
+    "@rasenganjs/theme"
+  ],
+  "registryDependencies": [
+    "button",
+    "@rasengan-ui/navbar-05"
+  ],
+  "files": [
+    {
+      "path": "src/registry/marketing/page-sections/heroes/hero14.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { useTheme } from \"@rasenganjs/theme\";\nimport { cn } from \"@/lib/utils\";\nimport { FloatingNavbar2 } from \"@/registry/marketing/elements/headers/navbar5\";\nimport { ChevronRight } from \"lucide-react\";\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\n/**\n * Hero 10\n *\n * Hero with left bottom text and background image\n */\nexport const Hero14 = () => {\n  const { isDark } = useTheme();\n  return (\n    <div className={cn(\"bg-background\", isDark ? \"dark\" : \"light\")}>\n      <section className=\"w-full h-screen overflow-x-hidden \">\n        <section className=\"w-full h-auto background min-h-screen max-h-[1000px] flex flex-col justify-start relative overflow-hidden\">\n          <div className=\"flex justify-center mx-autol items-center gap-5 mt-4\">\n            <FloatingNavbar2 enableTheme={true} />\n          </div>\n\n          <div className=\"z-5 w-full flex flex-col items-center justify-end text-center mt-[60px] md:mt-[80px] px-4 md:px-10 pb-20\">\n            <h1 className=\"mt-8 relative z-1 text-[40px] lg:text-[50px] leading-[50px] lg:leading-[60px] max-w-[600px] font-bold text-center text-foreground text-pretty\">\n              FOCUS ON THE TASK THAT MATTERS\n            </h1>\n            <p className=\"relative z-20 text-sm text-center text-foreground max-w-[400px] mt-4 text-pretty\">\n              Manage priorities, track progress, and keep deadlines under\n              control with the help of AI\n            </p>\n\n            <div className=\"relative z-20 mt-10 flex gap-4\">\n              <Button className=\"bg-foreground hover:bg-white/80 text-card  hover:text-black rounded-full\">\n                <span>Get Started</span>\n              </Button>\n\n              <Button\n                variant=\"outline\"\n                className=\"rounded-full bg-card hover:bg-[#202020]/80 text-foreground hover:text-white border border-[#434343]\"\n              >\n                <span>Try Demo</span>\n                <ChevronRight />\n              </Button>\n            </div>\n          </div>\n\n          <div className=\"relative w-full max-w-6xl mx-auto mt-10 px-4 lg:px-8 rounded-xl overflow-hidden shadow-lg\">\n            <img\n              src={`${registryUrl}/static/images/hero/6.png`}\n              alt=\"Hero Image\"\n              width=\"100%\"\n              height=\"100%\"\n            />\n          </div>\n        </section>\n      </section>\n    </div>\n  );\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}
