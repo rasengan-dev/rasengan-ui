@@ -39,6 +39,9 @@
 			"@/components/ui/collapsible": [
 				"../../registry/components/collapsible/collapsible.base.tsx"
 			],
+			"@/components/ui/combobox": [
+				"../../registry/components/combobox/combobox.base.tsx"
+			],
 			"@/components/ui/dialog": [
 				"../../registry/components/dialog/dialog.base.tsx"
 			],
@@ -53,6 +56,9 @@
 			],
 			"@/components/ui/input": [
 				"../../registry/components/input/input.base.tsx"
+			],
+			"@/components/ui/input-group": [
+				"../../registry/components/input-group/input-group.base.tsx"
 			],
 			"@/components/ui/kbd": [
 				"../../registry/components/kbd/kbd.base.tsx"

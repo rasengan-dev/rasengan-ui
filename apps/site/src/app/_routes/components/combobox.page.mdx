@@ -1,0 +1,111 @@
+---
+metadata:
+  title: Combobox · Rasengan UI
+  description: "A select you can type in: filters a long list as you write, picks one item or several as chips."
+toc: true
+---
+
+# Combobox
+
+A select you can type in: filters a long list as you write, picks one item or several as chips.
+
+<ComponentPreview name="combobox" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add combobox
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/combobox.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/combobox.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList } from "@/components/ui/combobox";
+
+const frameworks = ["Rasengan.js", "Next.js", "Remix", "Astro"];
+
+export function Usage() {
+  return (
+    <Combobox items={frameworks}>
+      <ComboboxInput placeholder="Pick a framework" aria-label="Framework" />
+      <ComboboxContent>
+        <ComboboxEmpty>No framework found.</ComboboxEmpty>
+        <ComboboxList>
+          {(framework: string) => (
+            <ComboboxItem key={framework} value={framework}>
+              {framework}
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  );
+}
+```
+
+Give the items to `Combobox`, not to the list: it filters them as the user types and passes each one that matches to
+the function inside `ComboboxList`. Items can be strings or objects (`{ value, label }`); see Base UI's
+[Combobox](https://base-ui.com/react/components/combobox) for the value, filtering and async options.
+
+`ComboboxInput` shows the chevron that opens the list; `showClear` adds a button that clears the value.
+
+### Several values, as chips
+
+With `multiple`, the value is an array. `ComboboxChips` holds a `ComboboxChip` per value and a `ComboboxChipsInput`;
+give it the anchor from `useComboboxAnchor()`, and the same anchor to `ComboboxContent`, so the list opens under the
+whole field. Backspace in the empty input removes the last chip.
+
+<ComponentPreview name="combobox" demo="combobox-multiple" />
+
+### Groups, sizes and variants
+
+Pass groups as the items, each with its own `items`, and render them with `ComboboxGroup`, `ComboboxLabel` and
+`ComboboxCollection`. The input takes [Input Group](/components/input-group)'s variants and sizes, from the Field around
+it unless it sets its own.
+
+<ComponentPreview name="combobox" demo="combobox-groups" />
+
+## Villages
+
+The input is an Input Group and the list is [Select](/components/select)'s, so a combobox and a select side by side
+look like one family in every village.
+
+<VillageGrid name="combobox" />
+
+## Accessibility
+
+- Base UI's combobox pattern: the input has `role="combobox"`, the list `role="listbox"`, and the highlighted option
+  is announced as the user moves with the arrow keys. Enter picks it, Escape closes the list.
+- The input needs a name: a `FieldLabel` in a [Field](/components/field), or an `aria-label`.
+- Chips are reachable with the left arrow from the start of the input; Backspace or Delete removes the focused one.
+  Give each chip an `aria-label` when its text is not enough.
+- While the list is open, Base UI hides the rest of the page from screen readers, as a modal does, so the virtual
+  cursor stays on the input and the list; Tab out of the input closes the list.
+- The list stays in the nearest `VillageScope`, so it wears that scope's village.
+
+## API reference
+
+| Component | Base UI part | Props |
+| --- | --- | --- |
+| `Combobox` | `Root` | `items`, `value`, `defaultValue`, `onValueChange`, `multiple`… |
+| `ComboboxInput` | `InputGroup` + `Input` | `variant`, `size` (Input Group's), `showTrigger` (default `true`), `showClear` (default `false`) |
+| `ComboboxContent` | `Portal` + `Positioner` + `Popup` | `side`, `sideOffset`, `align`, `alignOffset`, `anchor` |
+| `ComboboxList` | `List` | A function of each item, or children |
+| `ComboboxItem` | `Item` | `value` |
+| `ComboboxGroup`, `ComboboxLabel`, `ComboboxCollection` | `Group`, `GroupLabel`, `Collection` | |
+| `ComboboxEmpty`, `ComboboxSeparator` | `Empty`, `Separator` | |
+| `ComboboxChips`, `ComboboxChip`, `ComboboxChipsInput` | `Chips`, `Chip`, `Input` | `ComboboxChip` takes `showRemove` (default `true`) |
+| `ComboboxValue` | `Value` | A function of the value |
+
+`useComboboxAnchor()` returns the ref to give `ComboboxChips` and `ComboboxContent`.

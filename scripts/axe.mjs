@@ -49,10 +49,18 @@ function record(results, where) {
  */
 const exclude = [["[data-base-ui-focus-guard]"]];
 
-const run = (page) =>
+/*
+ * Rules left out while one overlay is open. Combobox: while its list is open, Base UI hides the rest of the page from
+ * screen readers (aria-hidden, not inert) so the virtual cursor stays on the input and the list, as it does for a
+ * modal; Tab out of the input closes the list and lifts it. axe sees focusable content under aria-hidden.
+ */
+const skippedWhenOpen = { combobox: ["aria-hidden-focus"] };
+
+const run = (page, skip = []) =>
 	page.evaluate(
-		({ runOnly, exclude }) => window.axe.run({ exclude }, { runOnly: { type: "tag", values: runOnly }, resultTypes: ["violations"] }),
-		{ runOnly: tags, exclude },
+		({ runOnly, exclude, skip }) =>
+			window.axe.run({ exclude }, { runOnly: { type: "tag", values: runOnly }, rules: Object.fromEntries(skip.map((id) => [id, { enabled: false }])), resultTypes: ["violations"] }),
+		{ runOnly: tags, exclude, skip },
 	);
 
 async function audit(path) {
@@ -67,7 +75,7 @@ async function audit(path) {
 			record(await run(page), where);
 			if (name && isOverlay(name)) {
 				await openOverlay(page, name);
-				record(await run(page), `${where} · open`);
+				record(await run(page, skippedWhenOpen[name]), `${where} · open`);
 				await closeOverlay(page, name);
 			}
 		}

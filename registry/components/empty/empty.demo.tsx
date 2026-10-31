@@ -20,7 +20,7 @@ export default function EmptyDemo() {
 					</Button>
 					<Button variant="outline">Import</Button>
 				</div>
-				<Button variant="link" size="sm" render={<a href="#docs" />}>
+				<Button variant="link" size="sm" render={<a href="#docs" />} nativeButton={false}>
 					Read the guide
 				</Button>
 			</EmptyContent>

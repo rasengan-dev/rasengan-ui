@@ -1,6 +1,6 @@
 # RFC-0004: Rasengan UI — the twelve components a v1 needs
 
-- Status: Draft (lot A built on `feat/ui-next`)
+- Status: Draft (lots A and B built on `feat/ui-next`)
 - Author: Dilane Kombou
 - Created: 2026-10-31
 - Builds on: RFC-0002 (components, villages, quality gate), plan 002 (variant × tone × size), RFC-0003 (examples in
@@ -117,8 +117,8 @@ Registry dependency: `button`.
 **Input Group** (`input-group`). `InputGroup`, `InputGroupAddon` (`align`: `inline-start` / `inline-end` /
 `block-start` / `block-end`), `InputGroupInput`, `InputGroupTextarea`, `InputGroupButton`, `InputGroupText`. The
 group draws the field (border, background, focus ring through `has-[:focus-visible]`) and the input inside is bare.
-`variant` (`default` / `filled` / `underline`) and `size` are Input's, read from the Field context as Input does, so
-`<Field size="sm">` sizes the whole group. Registry dependencies: `input`, `textarea`, `button`.
+`variant` (`default` / `filled` / `underline`, plus Select's `ghost`) and `size` are Input's, read from the Field
+context as Input does, so `<Field size="sm">` sizes the whole group. Registry dependencies: `input`, `textarea`, `button`.
 
 **Combobox** (`combobox`). Base UI Combobox. `Combobox` (Root), `ComboboxInput` (Base UI's InputGroup, with the
 trigger and the clear button inside), `ComboboxContent` (Portal, Positioner, Popup; the portal container comes from
@@ -126,7 +126,7 @@ trigger and the clear button inside), `ComboboxContent` (Portal, Positioner, Pop
 `ComboboxGroup`, `ComboboxLabel`, `ComboboxEmpty`, `ComboboxSeparator`, and for `multiple`: `ComboboxChips`,
 `ComboboxChip`. The input takes Select's trigger variants and sizes (`default` / `filled` / `underline` / `ghost`
 × `sm` / `default` / `lg`) and the popup Select's styles, so the two read as one family. Filtering is Base UI's
-(`items` and `useFilter`). Registry dependencies: `input-group`, `field`.
+(`items` and `useFilter`). Registry dependencies: `input-group`, and `select`, whose list styles it shares.
 
 ### Lot C — overlays and navigation
 

@@ -80,6 +80,7 @@ const openers = {
 	popover: (preview) => firstButton(preview).click(),
 	"dropdown-menu": (preview) => firstButton(preview).click(),
 	select: (preview) => preview.locator('[data-slot="select-trigger"]').first().click(),
+	combobox: (preview) => preview.locator('[data-slot="combobox-trigger"]').first().click(),
 	tooltip: (preview) => firstButton(preview).hover(),
 	toast: async (preview) => {
 		await preview.getByRole("button", { name: "Send invite" }).click();
