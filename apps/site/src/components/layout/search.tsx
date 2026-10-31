@@ -20,6 +20,7 @@ const groups = [
       { label: 'Overview', description: 'Components on Base UI, dressed by villages and natures.', to: '/' },
       { label: 'Installation', description: 'Set up a project with the rasengan-ui CLI.', to: '/docs/installation' },
       { label: 'CLI', description: 'init, add, village, nature, diff, update, doctor.', to: '/docs/cli' },
+      { label: 'MCP server', description: 'Let an agent read the components and install them.', to: '/docs/mcp' },
       { label: 'All components', description: 'Every component, with its demo.', to: '/components' },
     ],
   },

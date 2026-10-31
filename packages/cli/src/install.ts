@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { basename, dirname, join } from "node:path";
+import { basename, dirname, extname, join } from "node:path";
 import type { Config } from "./config.ts";
 import { aliasToPath } from "./project.ts";
 import type { RegistryItem } from "./registry.ts";
@@ -14,6 +14,7 @@ import type { RegistryItem } from "./registry.ts";
 export function targetPath(root: string, config: Config, item: RegistryItem, file: RegistryItem["files"][number]): string {
 	if (file.type === "registry:ui") return join(aliasToPath(root, config.aliases.ui), basename(file.target ?? file.path));
 	if (file.type === "registry:lib" || file.type === "registry:hook") return join(aliasToPath(root, config.aliases.lib), basename(file.target ?? file.path));
+	if (file.type === "registry:example") return join(aliasToPath(root, config.aliases.components), "examples", file.target ? basename(file.target) : `${item.name}${extname(file.path)}`);
 	if (!file.target) throw new Error(`${item.name}: ${file.path} has no target.`);
 	if (file.target.startsWith("styles/")) return join(dirname(config.css), file.target.slice("styles/".length));
 	return file.target.replace(/^~\//, "");
@@ -35,7 +36,7 @@ export function rewriteImports(content: string, config: Config): string {
 /** A registry file as the project gets it: its path from the root, and its content with the project's aliases. */
 export function renderFile(root: string, config: Config, item: RegistryItem, file: RegistryItem["files"][number]) {
 	const path = targetPath(root, config, item, file).split("\\").join("/");
-	const content = file.type === "registry:ui" || file.type === "registry:lib" ? rewriteImports(file.content, config) : file.content;
+	const content = file.type === "registry:ui" || file.type === "registry:lib" || file.type === "registry:example" ? rewriteImports(file.content, config) : file.content;
 	return { path, content };
 }
 

@@ -25,7 +25,9 @@
 	"license": "MIT",
 	"dependencies": {
 		"@clack/prompts": "^1.8.1",
+		"@modelcontextprotocol/sdk": "^1.32.1",
 		"diff": "^9.0.0",
-		"node-diff3": "^3.2.1"
+		"node-diff3": "^3.2.1",
+		"zod": "^4.6.7"
 	}
 }

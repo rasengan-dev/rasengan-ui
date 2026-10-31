@@ -37,14 +37,14 @@ export async function loadItem(config: Config, root: string, nameOrUrl: string):
 }
 
 /** The registry's index (registry.json): every item, without file contents. */
-export async function loadIndex(config: Config, root: string): Promise<{ items: Omit<RegistryItem, "files">[] }> {
+export async function loadIndex(config: Config, root: string): Promise<{ homepage?: string; items: Omit<RegistryItem, "files">[] }> {
 	const location = isUrl(config.registry) ? `${config.registry.replace(/\/$/, "")}/${config.engine}/registry.json` : join(resolve(root, config.registry), config.engine, "registry.json");
 	if (isUrl(location)) {
 		const response = await fetch(location).catch((error: Error) => {
 			throw new Error(`Can't reach the registry at ${location}: ${error.message}`);
 		});
 		if (!response.ok) throw new Error(`The registry answered ${response.status} for ${location}.`);
-		return (await response.json()) as { items: Omit<RegistryItem, "files">[] };
+		return (await response.json()) as { homepage?: string; items: Omit<RegistryItem, "files">[] };
 	}
 	if (!existsSync(location)) throw new Error(`No registry at ${location}.`);
 	return JSON.parse(readFileSync(location, "utf8"));

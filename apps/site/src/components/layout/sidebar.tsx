@@ -19,6 +19,9 @@ export function Sidebar() {
         <Item to="/docs/cli" active={current === '/docs/cli'}>
           CLI
         </Item>
+        <Item to="/docs/mcp" active={current === '/docs/mcp'}>
+          MCP server
+        </Item>
         <Item to="/components" active={current === '/components'}>
           All components
         </Item>

@@ -129,6 +129,37 @@ function sharedItems(url) {
 	];
 }
 
+/**
+ * The component's demos as `registry:example` items (RFC-0003, "Examples in the registry"):
+ * `dialog.demo.tsx` is `dialog-demo`, `dialog-sizes.demo.tsx` is `dialog-sizes-demo`. Each depends on
+ * the components and npm packages it imports.
+ */
+function exampleItems(meta, dir, url) {
+	return readdirSync(join(root, dir))
+		.filter((file) => file.endsWith(".demo.tsx"))
+		.sort((a, b) => (a === `${meta.name}.demo.tsx` ? -1 : b === `${meta.name}.demo.tsx` ? 1 : a.localeCompare(b)))
+		.map((file) => {
+			const demo = file.slice(0, -".demo.tsx".length);
+			const source = read(`${dir}/${file}`);
+			const specifiers = [...source.matchAll(/from\s+["']([^"']+)["']/g)].map(([, specifier]) => specifier);
+			const ui = specifiers.filter((specifier) => specifier.startsWith("@/components/ui/")).map((specifier) => specifier.slice("@/components/ui/".length));
+			const packages = specifiers
+				.filter((specifier) => !specifier.startsWith("@/") && !specifier.startsWith("."))
+				.map((specifier) => specifier.split("/").slice(0, specifier.startsWith("@") ? 2 : 1).join("/"))
+				.filter((name) => name !== "react" && name !== "react-dom");
+			const variant = demo.slice(meta.name.length + 1).replace(/-/g, " ");
+			return {
+				name: `${demo}-demo`,
+				type: "registry:example",
+				title: variant ? `${meta.title} example: ${variant}` : `${meta.title} example`,
+				description: variant ? `How to use ${meta.title}: ${variant}.` : `How to use ${meta.title}.`,
+				dependencies: [...new Set(packages)],
+				registryDependencies: [...new Set([meta.name, ...ui])].map(url),
+				files: [{ path: `${dir}/${file}`, type: "registry:example" }],
+			};
+		});
+}
+
 for (const engine of ENGINES) {
 	const url = (name) => `${base}/r/${engine}/${name}.json`;
 	const out = `.registry/${engine}`;
@@ -136,22 +167,26 @@ for (const engine of ENGINES) {
 	mkdirSync(join(root, out, "components"), { recursive: true });
 
 	const items = sharedItems(url);
+	const examples = [];
 	for (const meta of components.filter((meta) => meta.engines.includes(engine))) {
 		const dir = `registry/components/${meta.name}`;
 		const stylesModule = `${meta.name}.styles`;
 		const file = `${out}/components/${meta.name}.tsx`;
 		writeFileSync(join(root, file), inlineStyles(read(`${dir}/${meta.name}.${engine}.tsx`), read(`${dir}/${stylesModule}.ts`), stylesModule));
+		const demos = exampleItems(meta, dir, url);
+		examples.push(...demos);
 		items.push({
 			name: meta.name,
 			type: "registry:ui",
 			title: meta.title,
 			description: meta.description,
-			meta: { engine, status: meta.status },
+			meta: { engine, status: meta.status, examples: demos.map((demo) => demo.name) },
 			dependencies: [...(meta.dependencies[engine] ?? [])],
 			registryDependencies: [url("rasengan-core"), ...meta.registryDependencies.map(url)],
 			files: [{ path: file, type: "registry:ui" }],
 		});
 	}
+	items.push(...examples);
 
 	const registry = { $schema: "https://ui.shadcn.com/schema/registry.json", name: "rasengan", homepage: base, items };
 	writeFileSync(join(root, out, "registry.json"), `${JSON.stringify(registry, null, "\t")}\n`);

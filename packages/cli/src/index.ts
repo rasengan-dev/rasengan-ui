@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 /**
  * rasengan-ui (RFC-0002, "CLI"): sets up a project, adds components, switches villages and natures,
- * and updates installed files without losing local edits.
+ * and updates installed files without losing local edits. `mcp` serves the same to agents (RFC-0003).
  */
 import { styleText } from "node:util";
 import { add } from "./commands/add.ts";
 import { init } from "./commands/init.ts";
 import { nature, tint, village } from "./commands/look.ts";
 import { doctor } from "./commands/doctor.ts";
+import { mcp } from "./commands/mcp.ts";
 import { diff, update } from "./commands/sync.ts";
 
 interface Command {
@@ -25,6 +26,7 @@ const commands: Record<string, Command> = {
 	diff: { usage: "diff [name...]", summary: "Show local and registry changes since install", run: diff },
 	update: { usage: "update [name...]", summary: "Update installed files, keeping local edits (3-way merge)", run: update },
 	doctor: { usage: "doctor", summary: "Check config, CSS imports, versions and dependencies", run: doctor },
+	mcp: { usage: "mcp", summary: "Start the MCP server, for agents (stdio)", run: mcp },
 };
 
 function help() {
