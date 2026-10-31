@@ -77,10 +77,12 @@ const firstButton = (preview) => preview.locator("button").first();
 const openers = {
 	dialog: (preview) => firstButton(preview).click(),
 	"alert-dialog": (preview) => firstButton(preview).click(),
+	sheet: (preview) => firstButton(preview).click(),
 	popover: (preview) => firstButton(preview).click(),
 	"dropdown-menu": (preview) => firstButton(preview).click(),
 	select: (preview) => preview.locator('[data-slot="select-trigger"]').first().click(),
 	combobox: (preview) => preview.locator('[data-slot="combobox-trigger"]').first().click(),
+	"navigation-menu": (preview) => preview.locator('[data-slot="navigation-menu-trigger"]').first().click(),
 	tooltip: (preview) => firstButton(preview).hover(),
 	toast: async (preview) => {
 		await preview.getByRole("button", { name: "Send invite" }).click();

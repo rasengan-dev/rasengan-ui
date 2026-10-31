@@ -1,0 +1,113 @@
+---
+metadata:
+  title: Command · Rasengan UI
+  description: "A search field over a list of actions or pages, filtered as you type: the command palette, in a dialog or inline."
+toc: true
+---
+
+# Command
+
+A search field over a list of actions or pages, filtered as you type: the command palette, in a dialog or inline.
+
+<ComponentPreview name="command" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add command
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/command.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/command.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { Command, CommandEmpty, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+
+const actions = ["New project", "Invite a teammate", "Open settings"];
+
+export function Usage() {
+  return (
+    <Command items={actions}>
+      <CommandInput placeholder="Run an action…" aria-label="Search actions" />
+      <CommandEmpty>No action found.</CommandEmpty>
+      <CommandList>
+        {(action: string) => (
+          <CommandItem key={action} value={action} onSelect={() => run(action)}>
+            {action}
+          </CommandItem>
+        )}
+      </CommandList>
+    </Command>
+  );
+}
+```
+
+Command is Base UI's [Autocomplete](https://base-ui.com/react/components/autocomplete), inline: the list is always shown
+and the first match is highlighted, so Enter runs it. Give the items (or groups of items, rendered with `CommandGroup`,
+`CommandGroupLabel` and `CommandCollection`, as in the demo at the top) to `Command`, not to the list. `onSelect` runs on
+a click or on Enter; the field keeps what was typed.
+
+### In a dialog: the ⌘K palette
+
+`CommandDialog` puts a Command in a dialog near the top of the screen, with a title for screen readers. Open it from a
+button and from a shortcut; this site's search is one.
+
+<ComponentPreview name="command" demo="command-dialog" />
+
+### Coming from shadcn
+
+shadcn's Command is built on cmdk, which filters the items it finds in its children. This one filters the `items` you
+give it and renders the list from a function, as Base UI does. With shadcn:
+
+```tsx
+<CommandList>
+  <CommandItem onSelect={…}>Profile</CommandItem>
+</CommandList>
+```
+
+With Rasengan UI:
+
+```tsx
+<Command items={["Profile"]}>
+  <CommandList>{(item: string) => <CommandItem key={item} value={item} onSelect={…}>{item}</CommandItem>}</CommandList>
+</Command>
+```
+
+For your own ranking, pass `filteredItems` (the items to show, in order) and control `value`, as this site's search does.
+
+## Villages
+
+The list highlights the item under the arrow keys in the village's highlight colour; group labels are in mono capitals.
+
+<VillageGrid name="command" />
+
+## Accessibility
+
+- The field has `role="combobox"` and the list `role="listbox"`: the arrow keys move the highlight and screen readers
+  announce it, Enter runs the item.
+- Name the field with `aria-label` (or a label) when the placeholder is the only text.
+- `CommandDialog` has a visually hidden title and description; Escape closes it and focus returns to what opened it.
+
+## API reference
+
+| Component | Base UI part | Props |
+| --- | --- | --- |
+| `Command` | `Autocomplete.Root` (inline, always open) | `items`, `filteredItems`, `value`, `onValueChange`, `itemToStringValue`, `autoHighlight` (default `"always"`)… |
+| `CommandInput` | `Input` | |
+| `CommandEmpty` | `Empty` | Before `CommandList` |
+| `CommandList` | `List` | A function of each item or group |
+| `CommandGroup`, `CommandGroupLabel`, `CommandCollection` | `Group`, `GroupLabel`, `Collection` | |
+| `CommandItem` | `Item` | `value`, `onSelect` |
+| `CommandSeparator` | `Separator` | |
+| `CommandShortcut` | | A [Kbd](/components/kbd) at the end of an item |
+| `CommandDialog` | [Dialog](/components/dialog) | `open`, `onOpenChange`, `title`, `description` |

@@ -1,0 +1,111 @@
+---
+metadata:
+  title: Navigation Menu · Rasengan UI
+  description: "The links at the top of a site, with panels of links that open under them: product menus, docs, resources."
+toc: true
+---
+
+# Navigation Menu
+
+The links at the top of a site, with panels of links that open under them: product menus, docs, resources.
+
+<ComponentPreview name="navigation-menu" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add navigation-menu
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://registry.rasengan.dev/r/base/navigation-menu.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/navigation-menu.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+
+export function Usage() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Guides</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <NavigationMenuLink href="/docs/installation">Installation</NavigationMenuLink>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink href="/pricing" className={navigationMenuTriggerStyle()}>
+            Pricing
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+}
+```
+
+Every panel opens in one popup that moves under the open trigger and resizes to the panel, so moving from one trigger
+to the next slides the content instead of closing and reopening a menu. A link at the top level takes
+`navigationMenuTriggerStyle()` to look like a trigger.
+
+### Router links and the current page
+
+`NavigationMenuLink` is an `<a>`; give your router's link in `render`. `active` marks the current page with
+`aria-current="page"` and a fill.
+
+```tsx
+import { Link } from "rasengan";
+
+<NavigationMenuLink render={<Link to="/docs" />} active={pathname === "/docs"}>
+  Docs
+</NavigationMenuLink>
+```
+
+### On phones
+
+The menu is for wide screens. Below `md`, show the same links in a [Sheet](/components/sheet) opened from a menu button
+instead, as landing headers do.
+
+## Villages
+
+Triggers take the village's control face and case (mono capitals in Iwa); the popup is a popover surface with the
+village's radius, border, shadow and motion.
+
+<VillageGrid name="navigation-menu" />
+
+## Accessibility
+
+- Base UI's navigation menu: a `<nav>` with a list. Triggers are buttons with `aria-expanded`; the arrow keys move
+  between them, Enter or Space opens a panel, Tab enters it, Escape closes it and returns focus to its trigger.
+- Panels open on hover after a short delay, and on click; nothing is reachable by hover alone.
+- Icons in links are decorative (`aria-hidden`); the link text names the link.
+
+## API reference
+
+| Component | Props |
+| --- | --- |
+| `NavigationMenu` | Base UI `NavigationMenu.Root` (`value`, `onValueChange`, `delay`…), plus the popup's `side`, `sideOffset`, `align` (default `"start"`) and `alignOffset` |
+| `NavigationMenuList`, `NavigationMenuItem` | Base UI `List` and `Item` |
+| `NavigationMenuTrigger` | Base UI `Trigger`, with a chevron that turns when the panel is open |
+| `NavigationMenuContent` | Base UI `Content`: the panel |
+| `NavigationMenuLink` | Base UI `Link`: `href`, `active`, `closeOnClick`, `render` |
+
+`navigationMenuTriggerStyle()` returns a trigger's classes, for a link at the top level.

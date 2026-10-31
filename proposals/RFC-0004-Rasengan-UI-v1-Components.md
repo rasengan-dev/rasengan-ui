@@ -1,6 +1,6 @@
 # RFC-0004: Rasengan UI — the twelve components a v1 needs
 
-- Status: Draft (lots A and B built on `feat/ui-next`)
+- Status: Draft (lots A, B and C built on `feat/ui-next`)
 - Author: Dilane Kombou
 - Created: 2026-10-31
 - Builds on: RFC-0002 (components, villages, quality gate), plan 002 (variant × tone × size), RFC-0003 (examples in
@@ -134,8 +134,10 @@ trigger and the clear button inside), `ComboboxContent` (Portal, Positioner, Pop
 `left`, default `right`; `showCloseButton`, default `true`), `SheetHeader`, `SheetFooter`, `SheetTitle`,
 `SheetDescription`, `SheetClose`. Swiping toward the side it came from closes it (`swipeDirection` follows `side`).
 `size`: `sm` / `default` / `lg` (width on the sides, height on top and bottom). `snapPoints` passes through for a
-bottom sheet that stops halfway. The overlay, surface, shadow, blur and enter and exit motion are Dialog's tokens, so a
-sheet looks like a dialog of the same village. The portal comes from `usePortalContainer()`.
+bottom sheet that stops halfway. The overlay, surface, shadow, blur and motion durations are Dialog's tokens, so a
+sheet looks like a dialog of the same village. It animates with transitions on `transform`, not Dialog's keyframes:
+the Drawer moves the panel with `--drawer-swipe-movement-*` while it is dragged and animates from there on release. A
+bottom sheet shows a handle. The portal comes from `usePortalContainer()`.
 
 shadcn has both Sheet (on Dialog) and Drawer (on vaul, bottom, swipeable). Base UI's Drawer does both, so one
 component is enough. Whether to publish a `drawer` item that re-exports Sheet with `side="bottom"` for shadcn code is
@@ -150,8 +152,10 @@ the header block and the site show.
 
 **Command** (`command`). Base UI Autocomplete with `inline` (the list is always shown, no popup) and
 `autoHighlight`. `Command` (Root), `CommandInput` (with a search icon), `CommandList`, `CommandEmpty`,
-`CommandGroup` (with its heading), `CommandItem`, `CommandSeparator`, `CommandShortcut` (a `Kbd`), and
-`CommandDialog` (Dialog + Command, with a visually hidden title). Registry dependencies: `dialog`, `kbd`.
+`CommandGroup`, `CommandGroupLabel` and `CommandCollection` (for grouped items), `CommandItem` (with `onSelect`),
+`CommandSeparator`, `CommandShortcut` (a `Kbd`), and `CommandDialog` (Dialog + Command, with a visually hidden title
+and description). Unless the project controls `value`, picking an item leaves the query as typed instead of writing
+the item into the field. Registry dependencies: `dialog`, `kbd`.
 
 The one real difference with shadcn: cmdk filters the items it finds in its children, Base UI filters an `items`
 array and renders the list from it. Command follows Base UI (data in, render function out), which is what the site

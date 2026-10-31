@@ -308,7 +308,8 @@ export const meta = {
 badge, button, card, checkbox, collapsible, dialog, dropdown-menu, input,
 label, popover, progress, radio-group, scroll-area, select, separator,
 skeleton, slider, switch, tabs, textarea, toast, toggle, tooltip. Names
-match shadcn so a project can move between the two.
+match shadcn so a project can move between the two. RFC-0004 adds the twelve
+more a v1 needs (navigation, data, Input Group, Combobox, Sheet, Command): 41 in all.
 
 Toast is the one exception to the engine rule: it wraps Sonner, like shadcn,
 rather than Base UI's toast. Sonner runs unstyled, so it keeps its stacking,

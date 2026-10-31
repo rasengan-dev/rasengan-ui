@@ -53,6 +53,9 @@
 			"@/components/ui/combobox": [
 				"./components/combobox/combobox.base.tsx"
 			],
+			"@/components/ui/command": [
+				"./components/command/command.base.tsx"
+			],
 			"@/components/ui/dialog": [
 				"./components/dialog/dialog.base.tsx"
 			],
@@ -77,6 +80,9 @@
 			"@/components/ui/label": [
 				"./components/label/label.base.tsx"
 			],
+			"@/components/ui/navigation-menu": [
+				"./components/navigation-menu/navigation-menu.base.tsx"
+			],
 			"@/components/ui/pagination": [
 				"./components/pagination/pagination.base.tsx"
 			],
@@ -97,6 +103,9 @@
 			],
 			"@/components/ui/separator": [
 				"./components/separator/separator.base.tsx"
+			],
+			"@/components/ui/sheet": [
+				"./components/sheet/sheet.base.tsx"
 			],
 			"@/components/ui/skeleton": [
 				"./components/skeleton/skeleton.base.tsx"
