@@ -6,8 +6,10 @@ import { missingPackages } from "../dependencies.ts";
 import { checkVersions, detectFramework, frameworkNames, htmlFile } from "../framework.ts";
 import { readLock } from "../install.ts";
 import { findRoot, hasAlias } from "../project.ts";
-import { choices, loadItem, type RegistryItem } from "../registry.ts";
+import { ENGINE_VERSION } from "@rasengan-ui/villages/engine";
+import { choices, loadLockedItem, type RegistryItem } from "../registry.ts";
 import { htmlAttributes, installedVillages, villageConflicts } from "../setup.ts";
+import { GENERATED } from "../villages.ts";
 
 export const usage = `Usage: rasengan-ui doctor
 
@@ -67,6 +69,15 @@ export async function doctor(argv: string[]) {
 	if (missingFiles.length) report("warn", `Installed files you deleted: ${missingFiles.join(", ")}`);
 	else report("ok", `${Object.keys(lock.items).length} items installed, every file in place`);
 
+	// Villages made by `village create` (RFC-0006): the engine that wrote them, and their recipe.
+	for (const name of installedVillages(lock).filter((v) => lock.items[`village-${v}`]?.source === GENERATED)) {
+		const saved = config.villages?.[name];
+		if (!saved) report("warn", `The village ${name} was generated but ${configFile} has no recipe for it: \`village create ${name} --update\` can't regenerate it.`);
+		else if (saved.engineVersion !== ENGINE_VERSION)
+			report("warn", `The village ${name} was made by engine ${saved.engineVersion}; this CLI has ${ENGINE_VERSION}. \`rasengan-ui village create ${name} --update\` regenerates it, keeping your edits.`);
+		else report("ok", `The village ${name} is up to date with the engine (${ENGINE_VERSION})`);
+	}
+
 	// The stylesheet.
 	const cssPath = join(root, config.css);
 	if (!existsSync(cssPath)) report("error", `${config.css} doesn't exist (css in ${configFile}).`);
@@ -96,7 +107,8 @@ export async function doctor(argv: string[]) {
 
 	// npm packages the installed items need.
 	try {
-		const items: RegistryItem[] = await Promise.all(Object.keys(lock.items).map((name) => loadItem(config, root, name)));
+		const loaded = await Promise.all(Object.entries(lock.items).map(([name, entry]) => loadLockedItem(config, root, name, entry)));
+		const items = loaded.filter((item): item is RegistryItem => item !== undefined);
 		const packages = missingPackages(root, items);
 		const missing = [...packages.dependencies, ...packages.devDependencies];
 		report(missing.length ? "error" : "ok", missing.length ? `Missing packages: ${missing.join(" ")}` : "Every npm package the components need is installed");

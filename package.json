@@ -7,7 +7,7 @@
     "build": "RASENGAN_UI_URL=${RASENGAN_UI_URL:-https://ui.rasengan.dev} pnpm registry && pnpm --filter @rasengan-ui/site build",
     "start": "pnpm --filter @rasengan-ui/site serve",
     "lint": "pnpm -r lint",
-    "test": "pnpm --filter @rasengan-ui/villages test",
+    "test": "pnpm --filter @rasengan-ui/villages --filter rasengan-ui test",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx,css,html}\" --write \"**/*.json\" --write \"**/*.{yml,yaml}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,css,html}\" --check \"**/*.json\" --check \"**/*.{yml,yaml}\"",
     "prepare": "husky",

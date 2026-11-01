@@ -219,22 +219,33 @@ installed villages with the theme's.
 ```text
 Usage: rasengan-ui village <list|set|add|create|check|export> [name...]
 
-  create <name>   Found a village from a recipe, write it and switch to it
-  check <name>    Run the contrast check on an installed village (built-in or not)
-  export <name>   Write the village as a registry item, to publish it
+  add <name|url...>   Install villages without switching; a URL or a .json file installs a village someone exported
+  create <name>       Found your own village from a recipe, write it and switch to it
+  check <name>        Check an installed village's contrast in every nature, scheme and tint
+  export <name>       Write a village you made as a registry item, to publish it
 
 Options for create:
-  --from <file|url>  A recipe file, or a link from the village workshop
-  --base <village>   The village to start from (default: konoha)
-  --color <colour>   The brand colour
-  --radius, --density, --depth, --motion, --contrast, --border  One knob each
-  --update           Regenerate an existing village from its saved recipe with this engine
-  --no-switch        Write the village without making it the project's
-  --dry-run          Print the report and the CSS, write nothing
+  --from <file|url>     A recipe file, a workshop link, or a URL to a recipe or an exported village
+  --base <village>      The village to start from: konoha, kiri or iwa (default: konoha)
+  --color <colour>      The brand colour: #rrggbb, rgb(r g b) or oklch(L C H)
+  --hue <degrees>       A brand hue, when you have no exact colour
+  --contrast, --radius, --density, --depth, --motion, --border   One knob each
+  --font <family>       The body font; --heading-font for headings
+  --title, --description
+  --update              Regenerate a village you made from its saved recipe (and these options), keeping your edits
+  --no-switch           Write the village without making it the project's
+  --dry-run             Print the report and the CSS, write nothing
+
+Options for export:
+  --out <file>          Where to write the item (default: village-<name>.json)
 ```
 
-Without `--from` or knobs in a terminal, `create` asks: base village, brand colour, then the knobs with the base's
-values as defaults. It writes:
+Without `--from` or knobs in a terminal, `create` asks the base village, the brand colour and the density; the
+traits and the rest come from the base, and the recipe file or `--update` with options changes them later. It reports
+every adjustment and note, refuses with the failing pairs when there are problems, and ends with the Google Fonts URL
+for the village's fonts and the workshop link to its recipe. The contract and natures it makes and checks against are
+the project's own (`styles/rasengan/contract.css`, `natures.css`), so a village is always made for the contract the
+project has. It writes:
 
 - `styles/rasengan/villages/<name>.css`, imported with the other villages (the import order `doctor` checks);
 - `villages.<name>` in `rasengan-ui.json`: the recipe and `engineVersion`;
@@ -244,8 +255,17 @@ values as defaults. It writes:
 file are kept, conflicts are marked. `doctor` warns when a generated village was made by an older engine than the
 installed one, and says to run `village create <name> --update`.
 
-`village add` accepts a URL to a `village-<name>` item, as it accepts a name today. A village installed this way is
-the publisher's, not generated here: `--update` does not apply to it, `sync` does.
+`village add` accepts a URL or a file holding a `village-<name>` item, as it accepts a name. The lockfile records where
+it came from (`source`); `diff` and `update` read it from there, and its registry dependencies from the project's
+registry. A village installed this way is the publisher's, not generated here: `--update` does not apply to it,
+`update` does. A name already taken (a registry village, one you made, one from elsewhere) is refused.
+
+The project's villages and the natures they declare join the registry's in `village list`, `nature list`, `set`,
+`doctor` and the MCP server's `get_project`. `diff` and `update` leave generated villages out (naming one points to
+`village create <name> --update`).
+
+The CLI imports the engine from `@rasengan-ui/villages` (a workspace dependency). It runs from source today; publishing
+it on npm will need the engine bundled into it, or `@rasengan-ui/villages` published.
 
 ### Contract changes
 

@@ -20,7 +20,7 @@ interface Command {
 const commands: Record<string, Command> = {
 	init: { usage: "init", summary: "Set up a project: engine, village, nature, CSS imports, rasengan-ui.json", run: init },
 	add: { usage: "add <name...>", summary: "Install components or blocks for the project's engine", run: add },
-	village: { usage: "village <list|set|add> [name]", summary: "List, switch or install villages", run: village },
+	village: { usage: "village <list|set|add|create|check|export> [name]", summary: "List, switch, install, make or check villages", run: village },
 	nature: { usage: "nature <list|set> [name]", summary: "List or switch the nature (accent hue)", run: nature },
 	tint: { usage: "tint <list|set> [name]", summary: "Switch between the village's greys and neutral greys", run: tint },
 	diff: { usage: "diff [name...]", summary: "Show local and registry changes since install", run: diff },

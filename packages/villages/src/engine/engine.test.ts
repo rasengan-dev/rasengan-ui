@@ -14,6 +14,8 @@ import {
 	parseColor,
 	RECIPE_SCHEMA,
 	type Recipe,
+	recipeFromLink,
+	recipeLink,
 	traitOptions,
 	validateRecipe,
 } from "./index.ts";
@@ -162,6 +164,16 @@ test("the JSON schema offers what the engine takes", () => {
 	for (const [knob, values] of Object.entries(options)) assert.deepEqual(schema.properties[knob].enum, [...values], knob);
 	for (const [trait, values] of Object.entries(traitOptions)) assert.deepEqual(schema.properties.traits.properties[trait].enum, [...values], trait);
 	assert.equal(schema.$id, RECIPE_SCHEMA);
+});
+
+test("a recipe goes into a link and comes back", () => {
+	const recipe: Recipe = { $schema: RECIPE_SCHEMA, name: "acme", title: "Àcme", base: "kiri", brand: { color: "#ff5a1f" }, traits: { tabs: "bar" } };
+	const link = recipeLink(recipe);
+	assert.match(link, /^https:\/\/ui\.rasengan\.dev\/villages\/create#r=[\w-]+$/);
+	const { $schema, ...rest } = recipe;
+	assert.deepEqual(recipeFromLink(link), rest);
+	assert.equal(recipeFromLink("https://ui.rasengan.dev/villages/create"), undefined);
+	assert.throws(() => recipeFromLink("https://ui.rasengan.dev/villages/create#r=@@@"));
 });
 
 test("colours parse from hex, rgb and oklch", () => {

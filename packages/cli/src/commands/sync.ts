@@ -122,7 +122,9 @@ export async function update(argv: string[]) {
 	if (!dryRun) writeLock(root, lock);
 
 	// Dependencies the items gained since install: new registry items, then npm packages.
-	const all = await resolveItems(config, root, items.map((item) => item.name));
+	// Items added from a URL bring their own content; only their dependencies come from the registry.
+	const fromUrl = items.filter((item) => lock.items[item.name]?.source);
+	const all = [...(await resolveItems(config, root, items.flatMap((item) => (lock.items[item.name]?.source ? (item.registryDependencies ?? []) : [item.name])))), ...fromUrl];
 	const added = all.filter((item) => !lock.items[item.name]);
 	if (added.length) {
 		for (const { path, outcome } of writeItems(root, config, added, { dryRun })) if (outcome === "created") console.log(`${styleText("green", "+")} ${path}`);

@@ -1,6 +1,8 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import type { Config } from "./config.ts";
+import type { LockEntry } from "./install.ts";
+import { fetchItem, GENERATED, localVillages } from "./villages.ts";
 
 /** A registry item, in the shadcn format the registry is built with. */
 export interface RegistryItem {
@@ -57,7 +59,10 @@ export interface Choice {
 	defaultNature?: string;
 }
 
-/** The villages the registry offers, and the natures and tints its theme item lists. */
+/**
+ * The villages the registry offers, and the natures and tints its theme item lists; then the project's own villages
+ * (made by `village create` or added from a URL, RFC-0006) and the natures they declare.
+ */
 export async function choices(config: Config, root: string) {
 	const index = await loadIndex(config, root);
 	const villages: Record<string, Choice> = Object.fromEntries(
@@ -66,9 +71,23 @@ export async function choices(config: Config, root: string) {
 			.map((item) => [item.name.slice("village-".length), { title: item.title?.replace(/ village$/, "") ?? item.name, description: item.description, defaultNature: item.meta?.defaultNature as string }]),
 	);
 	const theme = index.items.find((item) => item.name === "rasengan-theme");
-	const natures = (theme?.meta?.natures ?? {}) as Record<string, Choice>;
+	const natures = { ...(theme?.meta?.natures ?? {}) } as Record<string, Choice>;
 	const tints = (theme?.meta?.tints ?? {}) as Record<string, Choice>;
+	for (const [name, village] of Object.entries(localVillages(root, config))) {
+		villages[name] ??= { title: village.title, description: village.description ?? (village.source === GENERATED ? "Made with village create" : `From ${village.source}`), defaultNature: village.defaultNature };
+		for (const nature of village.natures) natures[nature] ??= { title: village.title, element: `${village.title}'s brand` };
+	}
 	return { villages, natures, tints };
+}
+
+/**
+ * An installed item as its source has it now: the project's registry, or the URL it was added from. Undefined for a
+ * generated village, which only `village create --update` changes.
+ */
+export async function loadLockedItem(config: Config, root: string, name: string, entry: LockEntry | undefined): Promise<RegistryItem | undefined> {
+	if (entry?.source === GENERATED) return undefined;
+	if (entry?.source) return fetchItem(entry.source, root);
+	return loadItem(config, root, name);
 }
 
 /** The items and everything they depend on, each once, dependencies first. */

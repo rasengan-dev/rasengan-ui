@@ -17,6 +17,7 @@ import { writeVillage } from "./write.ts";
 
 export * from "./color.ts";
 export type { Adjustment, Problem } from "./fix.ts";
+export * from "./link.ts";
 export * from "./recipe.ts";
 export { foundation, resolveRecipe } from "./resolve.ts";
 

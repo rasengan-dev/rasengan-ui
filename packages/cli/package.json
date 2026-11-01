@@ -13,7 +13,8 @@
 	"scripts": {
 		"build": "tsc -p .",
 		"dev": "node src/index.ts",
-		"typecheck": "tsc --noEmit"
+		"typecheck": "tsc --noEmit",
+		"test": "node --test \"src/**/*.test.ts\""
 	},
 	"engines": {
 		"node": ">=20.18.0"
@@ -24,6 +25,7 @@
 	},
 	"license": "MIT",
 	"dependencies": {
+		"@rasengan-ui/villages": "workspace:*",
 		"@clack/prompts": "^1.8.1",
 		"@modelcontextprotocol/sdk": "^1.32.1",
 		"diff": "^9.0.0",
