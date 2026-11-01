@@ -95,18 +95,22 @@ engine needs it as data. `packages/villages/src/contract.ts` lists every token a
 ```ts
 export const contract = {
 	"--background": { group: "colour", kind: "color", schemes: true, tinted: true },
-	"--muted-foreground": { group: "colour", kind: "color", schemes: true, tinted: true, on: ["--muted", "--background", "--card"] },
-	"--primary-l": { group: "accent", kind: "number", schemes: true, max: { light: 0.52 } },
+	"--primary-l": { group: "accent", kind: "number", schemes: true },
 	"--radius": { group: "shape", kind: "length" },
-	"--focus-width": { group: "focus", kind: "length", default: "3px" },
+	"--focus-width": { group: "focus", kind: "length", default: true },
+	"--success-text": { group: "status", kind: "color", default: true, derived: true },
 	// …
 } as const satisfies Record<string, TokenSpec>;
 ```
 
-`schemes` says whether the token has a dark value, `tinted` whether its chroma is multiplied by `--tint`, `on` which
-backgrounds it is read on (the contrast pairs come from there), `default` whether `contract.css` gives one. A test
-checks it against `contract.css` and the three villages, so it cannot drift: a token used and not listed, or listed and
-never used, fails.
+`schemes` says whether the token may take another value under `.dark`, `tinted` whether its chroma is multiplied by
+`--tint`, `default` whether `contract.css` gives it a value, `derived` whether `contract.css` computes it from other
+tokens (a village leaves it alone). A test checks it against `contract.css` and the three villages, so it cannot drift:
+a token a village sets and the contract does not list, a default the contract claims and `contract.css` lacks, a
+required token a village leaves out, a dark or tinted value on a token not marked so, all fail.
+
+The contrast pairs stay in `contrast.ts` (`TEXT`, `CONTROLS`, `TONE_EDGES`, `TONE_PAIRS`): they are read on resolved
+tokens (`--success-text` on `--success-soft` over a card), most of which a village never sets.
 
 ### The recipe
 
@@ -262,7 +266,7 @@ decides.
 
 | File | What it holds |
 |---|---|
-| `packages/villages/src/contract.ts` | The contract as data: token, group, kind, schemes, tint, pairs, default |
+| `packages/villages/src/contract.ts` | The contract as data: token, group, kind, schemes, tint, default, derived |
 | `packages/villages/src/contrast.ts` | Scope resolution and the checks, from `scripts/contrast.mjs` |
 | `packages/villages/src/engine/` | `recipe.ts` (type, schema, defaults), `resolve.ts`, `brand.ts`, `fix.ts`, `write.ts`, `createVillage` |
 | `packages/villages/src/fonts.ts` | The curated fonts: family, licence, fallback stack, the CSS to load them |

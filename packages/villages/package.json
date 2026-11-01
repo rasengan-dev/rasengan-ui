@@ -8,12 +8,16 @@
 		".": "./src/index.ts",
 		"./contract.css": "./src/contract.css",
 		"./natures.css": "./src/natures.css",
-		"./villages/*": "./src/villages/*"
+		"./villages/*": "./src/villages/*",
+		"./contract": "./src/contract.ts",
+		"./contrast": "./src/contrast.ts"
 	},
 	"scripts": {
-		"typecheck": "tsc --noEmit"
+		"typecheck": "tsc --noEmit",
+		"test": "node --test src/*.test.ts"
 	},
 	"devDependencies": {
+		"@types/node": "^22",
 		"typescript": "^5.9.3"
 	}
 }
