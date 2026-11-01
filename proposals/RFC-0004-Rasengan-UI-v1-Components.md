@@ -197,7 +197,7 @@ In this order, each one needing its own decision:
 | Component | Why later |
 |---|---|
 | Sidebar | The largest shadcn component (collapsible, mobile sheet, cookie state); built with the app blocks |
-| Calendar, Date Picker | Built on `react-day-picker`, which every village has to restyle; a project of its own |
+| Calendar, Date Picker | Done in RFC-0005, with Time Picker (2026-11-01) |
 | Input OTP | Base UI `otp-field`; with the authentication blocks |
 | Hover Card, Context Menu | Base UI `preview-card` and `context-menu`; useful, not essential |
 | Item | A list or settings row with media, title and actions; with the app blocks |

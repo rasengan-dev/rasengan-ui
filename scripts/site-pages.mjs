@@ -82,6 +82,8 @@ const openers = {
 	"dropdown-menu": (preview) => firstButton(preview).click(),
 	select: (preview) => preview.locator('[data-slot="select-trigger"]').first().click(),
 	combobox: (preview) => preview.locator('[data-slot="combobox-trigger"]').first().click(),
+	"date-picker": (preview) => preview.locator('[data-slot="date-picker-trigger"]').first().click(),
+	"time-picker": (preview) => preview.locator('[data-slot="select-trigger"]').first().click(),
 	"navigation-menu": (preview) => preview.locator('[data-slot="navigation-menu-trigger"]').first().click(),
 	tooltip: (preview) => firstButton(preview).hover(),
 	toast: async (preview) => {

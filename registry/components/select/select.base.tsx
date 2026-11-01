@@ -9,7 +9,7 @@ import { usePortalContainer } from "@/lib/village-scope";
 import { selectStyles, selectTriggerVariants, type SelectTriggerVariantProps } from "./select.styles";
 
 /* selectStyles: the list's parts, shared with Combobox. */
-export { selectStyles, selectTriggerVariants } from "./select.styles";
+export { selectStyles, selectTriggerVariants, type SelectTriggerVariantProps } from "./select.styles";
 
 /** Rasengan UI parts take a plain string className on every engine. */
 type Props<P> = Omit<P, "className"> & { className?: string };

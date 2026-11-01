@@ -36,7 +36,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.9.0
-        version: 1.9.0(@types/react@19.2.10)(react-dom@19.2.4)(react@19.2.4)
+        version: 1.9.0(@types/react@19.2.10)(date-fns@4.4.0)(react-dom@19.2.4)(react@19.2.4)
       '@rasenganjs/image':
         specifier: ^1.0.0
         version: 1.1.3(react@19.2.4)
@@ -103,7 +103,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.9.0
-        version: 1.9.0(@types/react@19.2.10)(react-dom@19.2.4)(react@19.2.4)
+        version: 1.9.0(@types/react@19.2.10)(date-fns@4.4.0)(react-dom@19.2.4)(react@19.2.4)
       '@rasengan-ui/core':
         specifier: workspace:*
         version: link:../../packages/core
@@ -122,12 +122,18 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.3.3
         version: 4.3.3(vite@8.3.5)
+      chrono-node:
+        specifier: ^2.10.2
+        version: 2.10.3
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      date-fns:
+        specifier: ^4.4.0
+        version: 4.4.0
       lucide-react:
         specifier: ^1.63.0
         version: 1.63.0(@types/react@19.2.10)(react@19.2.4)
@@ -137,6 +143,9 @@ importers:
       react:
         specifier: ^19.2.0
         version: 19.2.4
+      react-day-picker:
+        specifier: ^10.0.2
+        version: 10.0.2(@types/react@19.2.10)(react@19.2.4)
       react-dom:
         specifier: ^19.2.0
         version: 19.2.4(react@19.2.4)
@@ -262,19 +271,28 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.9.0
-        version: 1.9.0(@types/react@19.2.10)(react-dom@19.2.4)(react@19.2.4)
+        version: 1.9.0(@types/react@19.2.10)(date-fns@4.4.0)(react-dom@19.2.4)(react@19.2.4)
       '@rasengan-ui/core':
         specifier: workspace:*
         version: link:../packages/core
+      chrono-node:
+        specifier: ^2.10.2
+        version: 2.10.3
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
+      date-fns:
+        specifier: ^4.4.0
+        version: 4.4.0
       lucide-react:
         specifier: ^1.63.0
         version: 1.63.0(@types/react@19.2.10)(react@19.2.4)
       react:
         specifier: ^19.2.0
         version: 19.2.4
+      react-day-picker:
+        specifier: ^10.0.2
+        version: 10.0.2(@types/react@19.2.10)(react@19.2.4)
       react-dom:
         specifier: ^19.2.0
         version: 19.2.4(react@19.2.4)
@@ -298,7 +316,7 @@ packages:
     resolution: {integrity: sha512-dEu8nGlRqjsJsvviUUoSMfcRHpwomCiRlXsc2mPfJ79+ffTpDm+JtfUtTMzUrqCApHQnCsVPD3gT1ZT8RgBRCQ==}
     dev: false
 
-  /@base-ui/react@1.9.0(@types/react@19.2.10)(react-dom@19.2.4)(react@19.2.4):
+  /@base-ui/react@1.9.0(@types/react@19.2.10)(date-fns@4.4.0)(react-dom@19.2.4)(react@19.2.4):
     resolution: {integrity: sha512-S8CSYosASBKtpL8SWUfS78rFElfLijiCgA7oHOK22jCJ95FULsYyKwBNFOgudt0RA+/7yNc7F81bOvQnRgbBiQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -320,6 +338,7 @@ packages:
       '@floating-ui/react-dom': 2.1.9(react-dom@19.2.4)(react@19.2.4)
       '@floating-ui/utils': 0.2.12
       '@types/react': 19.2.10
+      date-fns: 4.4.0
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
       use-sync-external-store: 1.7.0(react@19.2.4)
@@ -360,6 +379,10 @@ packages:
       fast-string-width: 3.0.2
       fast-wrap-ansi: 0.2.2
       sisteransi: 1.0.5
+    dev: false
+
+  /@date-fns/tz@1.5.0:
+    resolution: {integrity: sha512-lwYN/vDPeNRULcepoE/LO2Pgx+7/RV+S9ARfbc9lr2DtGkOD7pAiruHvbR1RX3Qyf6ja47EWJDMsNK5vK08DJg==}
     dev: false
 
   /@esbuild/aix-ppc64@0.28.2:
@@ -1696,6 +1719,11 @@ packages:
     resolution: {integrity: sha512-PsezH1rqdV9VvyNhxxOW32/d75r01NY7TQCmOqomRo15ZSOKbpTFVsfjghxo6JloQUCGnH4k1LGu0R4yCLlWQQ==}
     dev: false
 
+  /chrono-node@2.10.3:
+    resolution: {integrity: sha512-MOfrzXgSMZTH4SZ5gyRKQCVwiCrCKY+uYkSJiWoRLXS88DA6WGJm8UjgS+VVEuUQeew/UUXaxrO+SeDn/WCisg==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dev: false
+
   /class-variance-authority@0.7.1:
     resolution: {integrity: sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg==}
     dependencies:
@@ -1815,6 +1843,10 @@ packages:
 
   /csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
+
+  /date-fns@4.4.0:
+    resolution: {integrity: sha512-+1UMbeh68lH1SegH83CGWwpb6OHHbpSgr3+s5Eww5M4CAgswBpoWS0AjTOfEJ33HiYKz1hdj/KTFprzXHmq/6w==}
+    dev: false
 
   /debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
@@ -3842,6 +3874,22 @@ packages:
       http-errors: 2.0.1
       iconv-lite: 0.7.2
       unpipe: 1.0.0
+    dev: false
+
+  /react-day-picker@10.0.2(@types/react@19.2.10)(react@19.2.4):
+    resolution: {integrity: sha512-QetiKtZWE9Uaw/pM/SYNv6WPYOTRnSJ2puL0GgwkmUFMIwiY0dtjH1W4B7DOVXVNQM0ZOClGpH/heOfBSzWeiA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@types/react': '>=16.8.0'
+      react: '>=16.8.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@date-fns/tz': 1.5.0
+      '@types/react': 19.2.10
+      date-fns: 4.4.0
+      react: 19.2.4
     dev: false
 
   /react-dom@19.2.4(react@19.2.4):

@@ -41,6 +41,9 @@
 			"@/components/ui/button-group": [
 				"./components/button-group/button-group.base.tsx"
 			],
+			"@/components/ui/calendar": [
+				"./components/calendar/calendar.base.tsx"
+			],
 			"@/components/ui/card": [
 				"./components/card/card.base.tsx"
 			],
@@ -55,6 +58,9 @@
 			],
 			"@/components/ui/command": [
 				"./components/command/command.base.tsx"
+			],
+			"@/components/ui/date-picker": [
+				"./components/date-picker/date-picker.base.tsx"
 			],
 			"@/components/ui/dialog": [
 				"./components/dialog/dialog.base.tsx"
@@ -127,6 +133,9 @@
 			],
 			"@/components/ui/textarea": [
 				"./components/textarea/textarea.base.tsx"
+			],
+			"@/components/ui/time-picker": [
+				"./components/time-picker/time-picker.base.tsx"
 			],
 			"@/components/ui/toast": [
 				"./components/toast/toast.base.tsx"

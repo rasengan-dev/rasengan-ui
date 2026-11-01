@@ -9,4 +9,5 @@ implementation. `Status` goes from `Draft` to `Accepted` to `Implemented`.
 | [RFC-0002](RFC-0002-Rasengan-UI-Villages.md) | Rasengan UI — components on Base UI, themed by villages | Draft |
 | [RFC-0003](RFC-0003-Rasengan-UI-MCP.md) | Rasengan UI MCP server — the registry, for agents | Draft |
 | [RFC-0004](RFC-0004-Rasengan-UI-v1-Components.md) | Rasengan UI — the twelve components a v1 needs | Draft |
+| [RFC-0005](RFC-0005-Rasengan-UI-Dates-and-Times.md) | Rasengan UI — dates and times | Draft |
 | [RFC-0006](RFC-0006-Rasengan-UI-Custom-Villages.md) | Rasengan UI — found your own village | Accepted |
