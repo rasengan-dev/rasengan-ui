@@ -1,0 +1,34 @@
+{
+	"name": "kiri",
+	"title": "Kiri",
+	"description": "The Mist: soft contrast, translucent surfaces, airy controls.",
+	"brand": { "nature": "suiton" },
+	"neutrals": { "hue": 235, "inkHue": 245, "chroma": 1 },
+	"contrast": "soft",
+	"radius": 1,
+	"density": "comfortable",
+	"depth": "raised",
+	"motion": "gentle",
+	"border": 1,
+	"fonts": { "body": "Manrope", "heading": "Manrope", "code": "JetBrains Mono" },
+	"traits": {
+		"tabs": "segmented",
+		"highlight": "soft",
+		"focus": "halo",
+		"press": "scale",
+		"labels": "plain",
+		"headings": "plain",
+		"surfaces": "glass",
+		"edges": "soft",
+		"skeleton": "pulse"
+	},
+	"overrides": {
+		"light": {
+			"--control-radius": "0.875rem",
+			"--input-px": "0.9375rem",
+			"--control-weight": "600",
+			"--focus-width": "4px",
+			"--press-scale": "0.985"
+		}
+	}
+}

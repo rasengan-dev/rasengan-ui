@@ -1,0 +1,28 @@
+{
+	"name": "iwa",
+	"title": "Iwa",
+	"description": "The Stone: no radius, heavy borders, mono labels, dense.",
+	"brand": { "nature": "doton" },
+	"neutrals": { "hue": 85, "inkHue": 85, "chroma": 1 },
+	"contrast": "high",
+	"radius": 0,
+	"density": "compact",
+	"depth": "hard",
+	"motion": "quick",
+	"border": 2,
+	"fonts": { "body": "Space Grotesk", "heading": "JetBrains Mono", "code": "JetBrains Mono" },
+	"traits": {
+		"tabs": "bar",
+		"highlight": "inverted",
+		"focus": "ring",
+		"press": "sink",
+		"labels": "mono-capitals",
+		"headings": "capitals",
+		"surfaces": "solid",
+		"edges": "ink",
+		"skeleton": "hatched"
+	},
+	"overrides": {
+		"light": { "--input-px": "0.65625rem" }
+	}
+}

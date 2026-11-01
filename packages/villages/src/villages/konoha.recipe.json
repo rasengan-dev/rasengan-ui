@@ -1,0 +1,28 @@
+{
+	"name": "konoha",
+	"title": "Konoha",
+	"description": "The Leaf: warm, rounded and balanced. The default.",
+	"brand": { "nature": "katon" },
+	"neutrals": { "hue": 75, "inkHue": 60, "chroma": 1 },
+	"contrast": "standard",
+	"radius": 0.5,
+	"density": "default",
+	"depth": "soft",
+	"motion": "calm",
+	"border": 1,
+	"fonts": { "body": "Figtree", "heading": "Figtree", "code": "JetBrains Mono" },
+	"traits": {
+		"tabs": "segmented",
+		"highlight": "soft",
+		"focus": "halo",
+		"press": "scale",
+		"labels": "plain",
+		"headings": "plain",
+		"surfaces": "solid",
+		"edges": "soft",
+		"skeleton": "pulse"
+	},
+	"overrides": {
+		"dark": { "--control-border": "oklch(0.54 calc(0.012 * var(--tint, 1)) 65)" }
+	}
+}

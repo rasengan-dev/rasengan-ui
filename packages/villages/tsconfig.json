@@ -10,7 +10,8 @@
 		"isolatedModules": true,
 		"types": ["node"],
 		"allowImportingTsExtensions": true,
-		"erasableSyntaxOnly": true
+		"erasableSyntaxOnly": true,
+		"resolveJsonModule": true
 	},
 	"include": ["src"]
 }

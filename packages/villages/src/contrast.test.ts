@@ -54,7 +54,7 @@ test("Onmyōton makes the primary the village's ink", () => {
 });
 
 test("a village file may declare its own nature", () => {
-	const acme = `${files.villages.konoha.replaceAll('"konoha"', '"acme"')}\n[data-nature="acme"] {\n\t--nature-hue: 38;\n}\n`;
+	const acme = `${files.villages.konoha.replace(/"konoha"/g, '"acme"')}\n[data-nature="acme"] {\n\t--nature-hue: 38;\n}\n`;
 	const parsed = parseSources({ ...files, villages: { ...files.villages, acme } });
 	assert.equal(parsed.natures.acme, 38);
 	assert.equal(Object.keys(parsed.natures)[0], "katon", "natures.css keeps its order");

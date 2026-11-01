@@ -216,6 +216,13 @@ export interface PairResult {
 	pass: boolean;
 }
 
+/** One pair's ratio, as `checkScope` measures it: `on` lists the layers from the bottom, over the page. */
+export function pairValue(tokens: Tokens, fg: string, on: string[]): number {
+	const page = color(tokens["--background"], tokens).rgb;
+	const under = on.reduce((acc, name) => (name === "--background" ? acc : over(color(tokens[name], tokens), acc)), page);
+	return ratio(over(color(tokens[fg], tokens), under), under);
+}
+
 /** Every pair of one scope's tokens. */
 export function checkScope(tokens: Tokens): PairResult[] {
 	const results: PairResult[] = [];
