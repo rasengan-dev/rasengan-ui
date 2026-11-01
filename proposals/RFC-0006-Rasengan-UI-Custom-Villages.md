@@ -276,8 +276,11 @@ engine then sets it explicitly in new villages, and `doctor` suggests `--update`
 ### The workshop (`apps/site`, `/villages/create`)
 
 The knobs on the left, the components on the right: the existing demos of the registry, in a `VillageScope` that wears
-the village being made, light and dark side by side. The engine runs in the browser on every change; the CSS goes into
-a `<style>` element. Under the knobs, the report: the adjustments, and the pairs that fail with where they are.
+the village being made, light and dark side by side. The engine runs in the browser on every change, in a web worker
+(a village takes about a quarter of a second; requests that pile up are folded into the latest); the CSS goes into a
+`<style>` element. Beside the preview, the report: the brand colour's moves, the adjustments, and the pairs that fail
+with where they are. The home page's examples are the preview, the cards laid out with container queries since the
+preview is narrower than the page. Below `lg` the recipe is a bottom sheet.
 
 Nothing is stored on the server. The recipe is encoded in the link (`/villages/create#r=<base64url>`), so a link is the
 way to share a work in progress. Three exports:

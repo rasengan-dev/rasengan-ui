@@ -68,7 +68,7 @@ import { Bars } from './bars';
  * registry components and contract tokens, so every card changes with the village and the nature.
  */
 
-function StatsCard() {
+export function StatsCard() {
   return (
     <Card>
       <CardHeader>
@@ -92,7 +92,7 @@ function StatsCard() {
   );
 }
 
-function CreateAccountCard() {
+export function CreateAccountCard() {
   return (
     <Card>
       <CardHeader>
@@ -131,7 +131,7 @@ function CreateAccountCard() {
 
 type Message = { from: 'me' | 'them'; text: string };
 
-function ChatCard() {
+export function ChatCard() {
   const [messages, setMessages] = useState<Message[]>([
     { from: 'them', text: 'Hi, how can I help you today?' },
     { from: 'me', text: 'My deploy to Hidden Leaf is stuck at step 3.' },
@@ -204,7 +204,7 @@ const members = [
   { initials: 'SU', name: 'Sasuke Uchiha', email: 'sasuke@konoha.dev', role: 'viewer' },
 ];
 
-function TeamCard() {
+export function TeamCard() {
   return (
     <Card>
       <CardHeader>
@@ -275,7 +275,7 @@ function TeamCard() {
   );
 }
 
-function GoalCard() {
+export function GoalCard() {
   const [goal, setGoal] = useState(6);
   const change = (by: number) => setGoal((value) => Math.min(12, Math.max(1, value + by)));
   return (
@@ -351,7 +351,7 @@ function GoalCard() {
 const areas = { billing: 'Billing', deploys: 'Deploys', account: 'Account', other: 'Other' };
 const severities = { low: 'Low', medium: 'Medium', high: 'High', critical: 'Critical' };
 
-function ReportCard() {
+export function ReportCard() {
   return (
     <Card>
       <CardHeader>
@@ -437,7 +437,7 @@ const notifications = [
   },
 ];
 
-function NotificationsCard() {
+export function NotificationsCard() {
   return (
     <Card>
       <CardHeader>
@@ -477,7 +477,7 @@ const plans = [
   },
 ];
 
-function PlanCard() {
+export function PlanCard() {
   const [plan, setPlan] = useState('chunin');
   const [yearly, setYearly] = useState(true);
   return (
@@ -536,7 +536,7 @@ function PlanCard() {
 
 const access = { edit: 'Can edit', view: 'Can view' };
 
-function ShareCard() {
+export function ShareCard() {
   const [copied, setCopied] = useState(false);
   const link = 'https://rasengan.dev/d/hokage-report';
   const copy = () => {
@@ -597,7 +597,7 @@ function ShareCard() {
   );
 }
 
-function UploadCard() {
+export function UploadCard() {
   return (
     <Card>
       <CardHeader>
@@ -644,7 +644,7 @@ function UploadCard() {
 
 const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
-function ScheduleCard() {
+export function ScheduleCard() {
   const [intensity, setIntensity] = useState(60);
   return (
     <Card>
@@ -685,7 +685,7 @@ function ScheduleCard() {
   );
 }
 
-function FaqCard() {
+export function FaqCard() {
   return (
     <Card>
       <CardHeader>
