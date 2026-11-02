@@ -22,6 +22,9 @@ export function Sidebar() {
         <Item to="/docs/mcp" active={current === '/docs/mcp'}>
           MCP server
         </Item>
+        <Item to="/docs/villages" active={current === '/docs/villages'}>
+          Your own village
+        </Item>
         <Item to="/components" active={current === '/components'}>
           All components
         </Item>

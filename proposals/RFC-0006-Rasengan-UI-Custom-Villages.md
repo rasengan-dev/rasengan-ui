@@ -95,18 +95,22 @@ engine needs it as data. `packages/villages/src/contract.ts` lists every token a
 ```ts
 export const contract = {
 	"--background": { group: "colour", kind: "color", schemes: true, tinted: true },
-	"--muted-foreground": { group: "colour", kind: "color", schemes: true, tinted: true, on: ["--muted", "--background", "--card"] },
-	"--primary-l": { group: "accent", kind: "number", schemes: true, max: { light: 0.52 } },
+	"--primary-l": { group: "accent", kind: "number", schemes: true },
 	"--radius": { group: "shape", kind: "length" },
-	"--focus-width": { group: "focus", kind: "length", default: "3px" },
+	"--focus-width": { group: "focus", kind: "length", default: true },
+	"--success-text": { group: "status", kind: "color", default: true, derived: true },
 	// …
 } as const satisfies Record<string, TokenSpec>;
 ```
 
-`schemes` says whether the token has a dark value, `tinted` whether its chroma is multiplied by `--tint`, `on` which
-backgrounds it is read on (the contrast pairs come from there), `default` whether `contract.css` gives one. A test
-checks it against `contract.css` and the three villages, so it cannot drift: a token used and not listed, or listed and
-never used, fails.
+`schemes` says whether the token may take another value under `.dark`, `tinted` whether its chroma is multiplied by
+`--tint`, `default` whether `contract.css` gives it a value, `derived` whether `contract.css` computes it from other
+tokens (a village leaves it alone). A test checks it against `contract.css` and the three villages, so it cannot drift:
+a token a village sets and the contract does not list, a default the contract claims and `contract.css` lacks, a
+required token a village leaves out, a dark or tinted value on a token not marked so, all fail.
+
+The contrast pairs stay in `contrast.ts` (`TEXT`, `CONTROLS`, `TONE_EDGES`, `TONE_PAIRS`): they are read on resolved
+tokens (`--success-text` on `--success-soft` over a card), most of which a village never sets.
 
 ### The recipe
 
@@ -118,7 +122,7 @@ never used, fails.
 	"description": "Sharp, compact and orange.",
 	"base": "kiri",
 	"brand": { "color": "#ff5a1f" },
-	"neutrals": { "hue": 60, "chroma": 0.5 },
+	"neutrals": { "hue": 60, "chroma": 1 },
 	"contrast": "standard",
 	"radius": 0.4,
 	"density": "compact",
@@ -126,52 +130,67 @@ never used, fails.
 	"motion": "calm",
 	"border": 1,
 	"fonts": { "body": "Inter", "heading": "Fraunces", "code": "JetBrains Mono" },
-	"traits": { "tabs": "underline", "highlight": "soft", "skeleton": "pulse", "focus": "halo", "press": "scale", "case": { "controls": "none", "headings": "none" }, "surfaces": "solid" },
-	"overrides": {}
+	"traits": { "tabs": "bar", "highlight": "soft", "focus": "halo", "press": "scale", "labels": "plain", "headings": "plain", "surfaces": "solid", "edges": "soft", "skeleton": "pulse" },
+	"overrides": { "light": { "--focus-width": "4px" } }
 }
 ```
 
-Every field but `name` and `base` is optional: an empty recipe on Konoha gives Konoha.
+Every field but `name` is optional (`base` defaults to Konoha): an empty recipe on Konoha gives Konoha.
 
 | Knob | Values | Tokens it sets |
 |---|---|---|
-| `brand.color` or `brand.hue` | a CSS colour, or a hue in degrees | the village's nature (`--nature-hue`), `--primary-l`/`-c` light and dark, `--on-primary` |
-| `neutrals` | `hue` (degrees), `chroma` (0 grey … 1 strongly tinted) | every grey, light and dark, with the `--tint` multiplier |
-| `contrast` | `soft`, `standard`, `high` | the lightness spread of background, card, muted, border, input, control border, foregrounds |
-| `radius` | 0 … 1 (0: none, 0.5: Konoha, 1: Kiri's) | `--radius`, `--control-radius`; the check and badge radii follow through the contract defaults |
-| `density` | `compact`, `default`, `comfortable` | `--control-sm/md/lg`, `--control-px`, `--control-text`, `--indicator-*` |
-| `depth` | `flat`, `soft`, `raised`, `hard` | `--elevation-sm/md/lg`, `--input-shadow`, `--thumb-shadow`; `hard` is Iwa's offset shadow and `--press-shadow` |
-| `motion` | `still`, `calm`, `lively` | `--motion-fast/base/slow`, the easings, `--press-scale` |
+| `brand` | one of `nature` (an existing one), `hue` (degrees) or `color` (`#rrggbb`, `rgb()`, `oklch()`); `exact` to refuse rather than move it | `--nature-hue`; a hue or a colour also declares the village's own nature; a colour sets `--primary-l`/`-c`, light and dark |
+| `neutrals` | `hue` (surfaces), `inkHue` (text and shadows; follows `hue` when left out), `chroma` (0 grey, 1 the ladder's own tint, 2 twice that) | every grey, light and dark, with the `--tint` multiplier |
+| `contrast` | `soft` (Kiri's ladder), `standard` (Konoha's), `high` (Iwa's) | every colour of the ladder: surfaces, ink, borders, overlay, the primary's and the status colours' strength, the soft washes, the charts |
+| `radius` | 0 … 1 (0: none, 0.5: Konoha's 0.625rem, 1: Kiri's 1rem) | `--radius`, `--control-radius`; at 0 the pill and check radii too; from 0.9, pill badges |
+| `density` | `compact`, `default`, `comfortable` | `--control-sm/md/lg`, `--control-px`, `--control-text` |
+| `depth` | `flat`, `soft`, `raised`, `hard` | `--elevation-sm/md/lg`, `--input-shadow`; `hard` is Iwa's offset shadow, without thumb shadows |
+| `motion` | `quick` (Iwa's), `calm` (Konoha's), `gentle` (Kiri's) | `--motion-fast/base/slow`, the easings |
 | `border` | 1, 1.5, 2 (px) | `--border-width` |
-| `fonts` | names from the curated list (open licences) | `--font-body`, `--font-heading`, `--font-code`, `--display-tracking` |
-| `traits` | the choices a village makes that are not a scale | tabs (segmented or underline), highlight (soft or inverted), skeleton (pulse or hatched), focus (halo or ring with a gap), press (scale or sink), case, surfaces (solid or glass: `--surface-blur`, translucent cards, `--texture`) |
-| `overrides` | any contract token, light and/or dark | that token, after everything else; checked like the rest |
+| `fonts` | `body`, `heading`, `code`: names from the catalogue (`fonts.ts`), or any other the project loads | `--font-body`, `--font-heading`, `--font-code`, `--display-tracking` |
+| `traits` | the choices that are not a scale | `tabs` (segmented, or a bar with an inverted active tab), `highlight` (soft or inverted), `focus` (halo, or a ring with a gap), `press` (scale or sink), `labels` (plain, capitals, or mono capitals), `headings` (plain or capitals), `surfaces` (solid, or glass: translucent cards, `--surface-blur`, `--texture`), `edges` (soft greys, or ink borders and bordered tracks), `skeleton` (pulse or hatched) |
+| `overrides` | `light` and `dark`: any contract token that is not derived | that token, after everything else; pinned: the fixer never moves it, and a failing one refuses the village |
 
-The base gives the traits a recipe leaves out: a recipe on Iwa keeps underlined tabs and inverted highlights unless it
+The base gives everything a recipe leaves out: a recipe on Iwa keeps the bar tabs and inverted highlights unless it
 says otherwise. That is why the knobs can stay few: the base carries the character, the knobs move it.
+
+The three ladders, the depths, the motions and the traits are taken from the villages that made them, so the
+built-in villages need few overrides: one for Konoha (a dark control border's hue), five for Kiri (its control radius,
+input padding, label weight, focus width and press scale), one for Iwa (its input padding). A base override stays only
+on tokens the recipe's knobs do not change: change `neutrals` on Konoha and its hand-tuned dark control border gives
+way to the engine's, and the result's `notes` say so.
 
 ### The engine
 
 ```ts
 import { createVillage } from "@rasengan-ui/villages/engine";
+import { parseSources } from "@rasengan-ui/villages/contrast";
 
-const result = createVillage(recipe); // { css, tokens: { light, dark }, adjustments, report, errors }
+const { villages, ...sources } = parseSources({ contract, natures, villages: {} }); // the CSS, as strings
+const village = createVillage(recipe, { sources });
+// { css, light, dark, natureHue, ownNature, knobs, overrides, adjustments, problems, notes }
 ```
 
-1. **Resolve.** Start from the base village's tokens (read from its recipe, see below), apply the knobs in the order of
-   the table, then the overrides. Colours are computed in OKLCH; greys get the `calc(c * var(--tint, 1))` form.
-2. **Brand.** The brand colour becomes a hue, a lightness and a chroma. For each scheme the engine tries, in order: the
-   colour as given with white text, the colour as given with dark text, then the closest lightness that passes with
-   white text. It reports which one it took. The colour is checked against every nature the project can switch to,
-   as the built-in villages are, because `--primary-l`/`-c` stay when the nature changes.
+1. **Resolve.** Merge the recipe onto its base's recipe (`resolveRecipe`), then make every token from the knobs
+   (`foundation`): the ladder of the contrast level, the depth, the surfaces, the edges and the other traits, the
+   shape, type, density and motion. Colours are OKLCH; greys get the `calc(c * var(--tint, 1))` form. Then the
+   overrides.
+2. **Brand.** The brand colour becomes a hue, a lightness and a chroma. The contract asks three things of it: its text
+   on it at 4.5:1, the colour itself as text on the page at 4.5:1, and its border at 3:1, in every nature. For each
+   scheme the engine tries the scheme's own text, then the other scheme's, and for each the lightness nearest to the
+   brand's at which all three hold; it keeps the nearest. It reports what it changed.
 3. **Check.** The contrast library resolves every scope (the village × 7 natures, its own included × 2 schemes × 2
-   tints) and checks the pairs `contract.ts` declares: 4.5:1 for text, 3:1 for control borders and tracks.
-4. **Fix.** For a failing pair, move the lightness of the token no knob pinned (the foreground, usually; never the
-   brand colour the user asked to keep) by 0.01 toward more contrast, re-check, stop at a pass or at 0.15. Each move is
-   an `adjustment` in the result. A pair still failing is an `error`, and nothing is written.
-5. **Write.** One file, in the shape of `konoha.css`: a header with the recipe and the engine version, the default
-   nature rule, the village's own nature, the light block, the dark block. Values rounded to 3 decimals, tokens in
-   contract order, so a regenerated file diffs cleanly.
+   tints) and checks every pair of `contrast.ts`: 4.5:1 for text, 3:1 for control borders, tracks and tone edges.
+4. **Fix.** For a failing pair, move the lightness of the token behind it (an alias is first copied into the token, so
+   only that token moves) by 0.01 toward more contrast, to the first value that passes without breaking a pair that
+   passed, at most 0.15. A pinned token (an override, or the brand with `exact`) never moves. Each move is an
+   `adjustment`; a pair still failing is a `problem`, and the CLI writes nothing.
+5. **Write.** One file, in the shape of `konoha.css`: a header with the engine version, the default nature rule, the
+   village's own nature, the light block, the dark block (only what differs). Tokens in contract order, values left
+   out where they equal the contract's default, so a regenerated file diffs cleanly.
+
+A sweep of 288 recipes (3 bases × 12 brand colours × 8 combinations of contrast, tint, glass and ink) refuses none and
+takes about 0.25 s each.
 
 The built-in villages get a recipe each (`packages/villages/src/villages/konoha.recipe.json`…), with the values a knob
 cannot produce as overrides. A test generates each and compares tokens with the CSS file. Once it passes, a change to
@@ -200,22 +219,33 @@ installed villages with the theme's.
 ```text
 Usage: rasengan-ui village <list|set|add|create|check|export> [name...]
 
-  create <name>   Found a village from a recipe, write it and switch to it
-  check <name>    Run the contrast check on an installed village (built-in or not)
-  export <name>   Write the village as a registry item, to publish it
+  add <name|url...>   Install villages without switching; a URL or a .json file installs a village someone exported
+  create <name>       Found your own village from a recipe, write it and switch to it
+  check <name>        Check an installed village's contrast in every nature, scheme and tint
+  export <name>       Write a village you made as a registry item, to publish it
 
 Options for create:
-  --from <file|url>  A recipe file, or a link from the village workshop
-  --base <village>   The village to start from (default: konoha)
-  --color <colour>   The brand colour
-  --radius, --density, --depth, --motion, --contrast, --border  One knob each
-  --update           Regenerate an existing village from its saved recipe with this engine
-  --no-switch        Write the village without making it the project's
-  --dry-run          Print the report and the CSS, write nothing
+  --from <file|url>     A recipe file, a workshop link, or a URL to a recipe or an exported village
+  --base <village>      The village to start from: konoha, kiri or iwa (default: konoha)
+  --color <colour>      The brand colour: #rrggbb, rgb(r g b) or oklch(L C H)
+  --hue <degrees>       A brand hue, when you have no exact colour
+  --contrast, --radius, --density, --depth, --motion, --border   One knob each
+  --font <family>       The body font; --heading-font for headings
+  --title, --description
+  --update              Regenerate a village you made from its saved recipe (and these options), keeping your edits
+  --no-switch           Write the village without making it the project's
+  --dry-run             Print the report and the CSS, write nothing
+
+Options for export:
+  --out <file>          Where to write the item (default: village-<name>.json)
 ```
 
-Without `--from` or knobs in a terminal, `create` asks: base village, brand colour, then the knobs with the base's
-values as defaults. It writes:
+Without `--from` or knobs in a terminal, `create` asks the base village, the brand colour and the density; the
+traits and the rest come from the base, and the recipe file or `--update` with options changes them later. It reports
+every adjustment and note, refuses with the failing pairs when there are problems, and ends with the Google Fonts URL
+for the village's fonts and the workshop link to its recipe. The contract and natures it makes and checks against are
+the project's own (`styles/rasengan/contract.css`, `natures.css`), so a village is always made for the contract the
+project has. It writes:
 
 - `styles/rasengan/villages/<name>.css`, imported with the other villages (the import order `doctor` checks);
 - `villages.<name>` in `rasengan-ui.json`: the recipe and `engineVersion`;
@@ -225,8 +255,17 @@ values as defaults. It writes:
 file are kept, conflicts are marked. `doctor` warns when a generated village was made by an older engine than the
 installed one, and says to run `village create <name> --update`.
 
-`village add` accepts a URL to a `village-<name>` item, as it accepts a name today. A village installed this way is
-the publisher's, not generated here: `--update` does not apply to it, `sync` does.
+`village add` accepts a URL or a file holding a `village-<name>` item, as it accepts a name. The lockfile records where
+it came from (`source`); `diff` and `update` read it from there, and its registry dependencies from the project's
+registry. A village installed this way is the publisher's, not generated here: `--update` does not apply to it,
+`update` does. A name already taken (a registry village, one you made, one from elsewhere) is refused.
+
+The project's villages and the natures they declare join the registry's in `village list`, `nature list`, `set`,
+`doctor` and the MCP server's `get_project`. `diff` and `update` leave generated villages out (naming one points to
+`village create <name> --update`).
+
+The CLI imports the engine from `@rasengan-ui/villages` (a workspace dependency). It runs from source today; publishing
+it on npm will need the engine bundled into it, or `@rasengan-ui/villages` published.
 
 ### Contract changes
 
@@ -237,8 +276,11 @@ engine then sets it explicitly in new villages, and `doctor` suggests `--update`
 ### The workshop (`apps/site`, `/villages/create`)
 
 The knobs on the left, the components on the right: the existing demos of the registry, in a `VillageScope` that wears
-the village being made, light and dark side by side. The engine runs in the browser on every change; the CSS goes into
-a `<style>` element. Under the knobs, the report: the adjustments, and the pairs that fail with where they are.
+the village being made, light and dark side by side. The engine runs in the browser on every change, in a web worker
+(a village takes about a quarter of a second; requests that pile up are folded into the latest); the CSS goes into a
+`<style>` element. Beside the preview, the report: the brand colour's moves, the adjustments, and the pairs that fail
+with where they are. The home page's examples are the preview, the cards laid out with container queries since the
+preview is narrower than the page. Below `lg` the recipe is a bottom sheet.
 
 Nothing is stored on the server. The recipe is encoded in the link (`/villages/create#r=<base64url>`), so a link is the
 way to share a work in progress. Three exports:
@@ -262,10 +304,10 @@ decides.
 
 | File | What it holds |
 |---|---|
-| `packages/villages/src/contract.ts` | The contract as data: token, group, kind, schemes, tint, pairs, default |
+| `packages/villages/src/contract.ts` | The contract as data: token, group, kind, schemes, tint, default, derived |
 | `packages/villages/src/contrast.ts` | Scope resolution and the checks, from `scripts/contrast.mjs` |
-| `packages/villages/src/engine/` | `recipe.ts` (type, schema, defaults), `resolve.ts`, `brand.ts`, `fix.ts`, `write.ts`, `createVillage` |
-| `packages/villages/src/fonts.ts` | The curated fonts: family, licence, fallback stack, the CSS to load them |
+| `packages/villages/src/engine/` | `recipe.ts` (types, options, validation), `recipe.schema.json`, `color.ts` (brand colours to OKLCH), `ladders.ts` (the three colour ladders, densities, motions, depths), `resolve.ts` (knobs to tokens, recipe onto base), `fix.ts` (brand, then every pair), `write.ts`, `index.ts` (`createVillage`, `createBaseVillage`) |
+| `packages/villages/src/fonts.ts` | The font catalogue: category, the stack a village writes, the Google Fonts family to load |
 | `packages/villages/src/villages/*.recipe.json` | The recipes of Konoha, Kiri and Iwa |
 | `scripts/contrast.mjs` | A thin wrapper: checks the built-in villages with the library |
 | `scripts/registry.mjs` | `meta.recipe` and `meta.natures` on village items; the recipe schema in `public/schema/` |
@@ -316,3 +358,7 @@ decides.
    vocabulary?
 6. Is `traits.surfaces: "glass"` safe to offer without a check on what sits behind a translucent surface? Kiri's
    contrast is checked against its own background only.
+7. The contract checks `--primary` as text on the page at 4.5:1, so a bright brand colour cannot stay as it is in light
+   mode: `#ff5a1f` goes from L 0.68 to 0.50, `#f5c518` from 0.84 to 0.52. Keep the rule, or split the brand colour
+   from the colour of brand-coloured text (`--primary-text` already exists), so the fill keeps the brand's lightness
+   with dark text on it and only links and outlined text darken?

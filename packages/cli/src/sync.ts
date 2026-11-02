@@ -3,7 +3,8 @@ import { join } from "node:path";
 import { merge } from "node-diff3";
 import type { Config } from "./config.ts";
 import { hash, type Lock, readBase, readLock, renderFile } from "./install.ts";
-import { loadItem, type RegistryItem } from "./registry.ts";
+import { loadLockedItem, type RegistryItem } from "./registry.ts";
+import { GENERATED } from "./villages.ts";
 
 /**
  * Where an installed file stands, from three versions: the base (as installed, hash in the lock),
@@ -48,7 +49,13 @@ export function installedItems(lock: Lock, names: string[]): string[] {
 /** Each file of the items, with its state and its three versions; also the items as the registry has them now. */
 export async function fileStates(root: string, config: Config, names: string[] = []): Promise<{ files: FileState[]; items: RegistryItem[] }> {
 	const lock = readLock(root);
-	const items = await Promise.all(installedItems(lock, names).map((name) => loadItem(config, root, name)));
+	const generated = names.filter((name) => lock.items[name]?.source === GENERATED);
+	if (generated.length)
+		throw new Error(
+			`${generated.join(", ")} ${generated.length > 1 ? "were" : "was"} made by \`village create\`: ${generated.map((item) => `\`rasengan-ui village create ${item.replace(/^village-/, "")} --update\``).join(", ")} regenerates it, keeping your edits.`,
+		);
+	const loaded = await Promise.all(installedItems(lock, names).map((name) => loadLockedItem(config, root, name, lock.items[name])));
+	const items = loaded.filter((item): item is RegistryItem => item !== undefined);
 	const files: FileState[] = [];
 	for (const item of items) {
 		const installed = lock.items[item.name]?.files ?? {};

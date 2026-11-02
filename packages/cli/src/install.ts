@@ -46,10 +46,19 @@ export const lockFile = "rasengan-ui.lock";
 /** The files as installed, before any local edit: what `diff` and `update` compare and merge against. */
 export const baseDir = ".rasengan-ui/base";
 
+export interface LockEntry {
+	/** Each file the item installed (path from the root) → hash of its content at install. */
+	files: Record<string, string>;
+	/**
+	 * Where the item came from, when not the project's registry: `generated` for a village made by
+	 * `village create` (RFC-0006), or the URL or file of an item added with `village add <url>`.
+	 */
+	source?: string;
+}
+
 export interface Lock {
 	lockfileVersion: 1;
-	/** Item → each file it installed (path from the root) → hash of its content at install. */
-	items: Record<string, { files: Record<string, string> }>;
+	items: Record<string, LockEntry>;
 }
 
 export const hash = (content: string) => `sha256-${createHash("sha256").update(content).digest("hex")}`;
@@ -115,7 +124,7 @@ export function writeItems(root: string, config: Config, items: RegistryItem[], 
 			writeFile(root, path, content);
 			writeFile(root, path, content, { base: true });
 		}
-		lock.items[item.name] = { files };
+		lock.items[item.name] = { ...lock.items[item.name], files };
 	}
 	if (!dryRun) writeLock(root, lock);
 	return written;

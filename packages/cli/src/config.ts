@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import type { Recipe } from "@rasengan-ui/villages/engine";
 
 export const configFile = "rasengan-ui.json";
 
@@ -15,6 +16,8 @@ export interface Config {
 	aliases: { components: string; ui: string; lib: string };
 	/** Where the registry is: a URL, or a folder (the site's public/r, for local work). */
 	registry: string;
+	/** Villages made by `village create` (RFC-0006): each one's recipe, and the engine version that wrote it. */
+	villages?: Record<string, { recipe: Recipe; engineVersion: string }>;
 }
 
 export const defaultRegistry = process.env.RASENGAN_UI_REGISTRY ?? "https://ui.rasengan.dev/r";

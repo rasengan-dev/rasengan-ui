@@ -10,7 +10,8 @@
 		"outDir": "dist",
 		"rootDir": "src",
 		"erasableSyntaxOnly": true,
-		"rewriteRelativeImportExtensions": true
+		"rewriteRelativeImportExtensions": true,
+		"resolveJsonModule": true
 	},
 	"include": ["src"]
 }
