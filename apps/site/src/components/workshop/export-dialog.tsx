@@ -29,7 +29,7 @@ function Code({ title, text, file, type, wrap }: { title: string; text: string; 
           <CopyButton text={text} className="static border-transparent opacity-100" />
         </span>
       </figcaption>
-      <pre className={cn('max-h-80 overflow-auto p-4 font-mono text-xs leading-relaxed', wrap && 'break-all whitespace-pre-wrap')}>
+      <pre className={cn('hide-scrollbar max-h-80 overflow-auto p-4 font-mono text-xs leading-relaxed', wrap && 'break-all whitespace-pre-wrap')}>
         <code>{text}</code>
       </pre>
     </figure>
@@ -37,13 +37,13 @@ function Code({ title, text, file, type, wrap }: { title: string; text: string; 
 }
 
 /** The village out of the workshop: a CLI command with the recipe link, the CSS file, or the recipe. */
-export function ExportDialog({ village, recipe, link, disabled }: { village?: Village; recipe: Recipe; link: string; disabled?: boolean }) {
+export function ExportDialog({ village, recipe, link, disabled, className }: { village?: Village; recipe: Recipe; link: string; disabled?: boolean; className?: string }) {
   const name = village?.name ?? recipe.name;
   const command = `npx rasengan-ui village create ${name} --from "${link}"`;
   const json = `${JSON.stringify(recipe, null, 2)}\n`;
   return (
     <Dialog>
-      <DialogTrigger render={<Button disabled={disabled} />}>
+      <DialogTrigger render={<Button disabled={disabled} className={className} />}>
         <DownloadIcon />
         Export
       </DialogTrigger>

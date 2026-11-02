@@ -4,7 +4,9 @@ import { cn } from '@/lib/utils';
 import type { VillageState } from './use-village';
 
 const reasons: Record<string, string> = {
-  'the brand colour holds with its text and on the page': 'so the colour holds with its text and as text on the page',
+  'the brand colour holds with its text': 'so the colour holds with the text on it',
+  '--primary-text on --background': 'so the brand colour’s words read on the page',
+  '--primary-border on --background': 'so what the brand colour fills stands out from the page',
 };
 
 function Status({ state }: { state: VillageState }) {
@@ -47,18 +49,18 @@ function Brand({ village }: { village: Village }) {
   );
 }
 
-export function Report({ state }: { state: VillageState }) {
+export function Report({ state, className }: { state: VillageState; className?: string }) {
   const { village } = state;
   const adjustments = village?.adjustments.filter((a) => a.token !== '--primary-l' && a.token !== '--on-primary') ?? [];
   return (
-    <div className="grid items-start gap-4 md:grid-cols-2 2xl:grid-cols-1">
-      <section className="grid gap-4 rounded-xl border-village bg-card p-5 text-card-foreground">
+    <div className={cn('grid items-start gap-3', className)}>
+      <section className="grid gap-4 rounded-lg border-village p-4">
         <Status state={state} />
         {village && village.ownNature ? <Brand village={village} /> : null}
       </section>
 
       {village?.problems.length ? (
-        <section className="grid gap-2 rounded-xl border-village bg-card p-5 text-card-foreground">
+        <section className="grid gap-2 rounded-lg border-village p-4">
           <h2 className="text-sm font-semibold">Pairs under the minimum</h2>
           {village.problems.map((p) => (
             <div key={`${p.scheme} ${p.pair}`} className="grid gap-0.5 rounded-control border-village p-3 text-sm">
@@ -72,7 +74,7 @@ export function Report({ state }: { state: VillageState }) {
       ) : null}
 
       {village ? (
-        <section className="grid gap-2 rounded-xl border-village bg-card p-5 text-card-foreground">
+        <section className="grid gap-2 rounded-lg border-village p-4">
           <div className="flex items-baseline justify-between">
             <h2 className="text-sm font-semibold">Adjustments</h2>
             <span className="text-xs text-muted-foreground">{adjustments.length ? `${adjustments.length} made for you` : ''}</span>
