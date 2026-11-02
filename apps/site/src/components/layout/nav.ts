@@ -2,7 +2,6 @@
 export const sections = [
   { label: 'Docs', to: '/docs/installation', match: (path: string) => path.startsWith('/docs') },
   { label: 'Components', to: '/components', match: (path: string) => path.startsWith('/components') },
-  { label: 'Workshop', to: '/villages/create', match: (path: string) => path.startsWith('/villages') },
 ];
 
 export const repository = 'https://github.com/rasengan-dev/rasengan-ui';

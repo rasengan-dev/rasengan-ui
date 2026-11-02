@@ -22,9 +22,10 @@ and you can switch to it at runtime.
 
 ## In the workshop
 
-The [village workshop](/villages/create) shows your village on real components while you change it, with the contrast
-report beside them. Its address holds the recipe, so a link is enough to share a village in progress: nothing is stored
-on our side. **Export** gives you the command to install it, the CSS file, or the recipe.
+The [village workshop](/villages/create) shows your village on real components while you change it: one row per knob on
+the left, the preview filling the rest, and the contrast report one click away on its status. **Shuffle** draws a recipe
+at random. Its address holds the recipe, so a link is enough to share a village in progress: nothing is stored on our
+side. **Export** gives you the command to install it, the CSS file, or the recipe.
 
 ## With the CLI
 
@@ -118,7 +119,16 @@ its bar tabs and inverted highlights unless it says otherwise.
 
 ## Your brand colour
 
-The contract asks three things of the brand colour, in every nature: its text on it at 4.5:1, the colour itself as
-text on the page at 4.5:1, and its border at 3:1. The engine keeps your colour when it can; when it can't, it takes
-the nearest lightness at which all three hold and says so. A bright colour, such as an orange or a gold, comes out
-darker in light mode. With `exact: true` the engine refuses instead.
+Your brand colour plays three roles, and each has its own lightness, so the fill can stay exactly your colour:
+
+| Role | Where | Must hold |
+| --- | --- | --- |
+| The fill (`--primary`) | Solid buttons, badges, checked boxes, slider ranges | Its text at 4.5:1: white or dark, whichever reads |
+| The words (`--primary-text`) | Links, outline, ghost and link buttons, soft badges | 4.5:1 on the page, a card and its soft wash |
+| The edge (`--primary-border`) | The border of what the fill fills | 3:1 on the page |
+
+So a bright orange or a gold keeps its fill, with dark text on it; only its words and its edge are darker. The engine
+moves the fill itself only when neither white nor dark text reads on it, and then as little as it must. In dark mode
+the fill is lifted to sit on a dark page. With `exact: true` the engine refuses rather than move the fill.
+
+The status colours (success, info) keep the base village's strength rather than following a brand colour.

@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'rasengan';
+import { PlusIcon } from 'lucide-react';
 import { buttonVariants } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { SchemeToggle, ThemePopover } from '@/components/village-settings';
@@ -10,13 +11,15 @@ import { repository, sections } from './nav';
 
 /**
  * After shadcn's docs header: brand and sections on the left; on the right, the search, the theme (village, nature and
- * greys in one popover), GitHub and light/dark. Below `lg`, a menu replaces the sections.
+ * greys in one popover), New (the village workshop), GitHub and light/dark. Below `lg`, a menu replaces the sections.
  */
 export function Header() {
   const { pathname } = useLocation();
+  // The workshop fills the window, as an app would: its header spans it too, lined up with the panels below.
+  const full = pathname.startsWith('/villages');
   return (
     <header className="sticky top-0 z-40 w-full bg-background/90 backdrop-blur-sm">
-      <div className="mx-auto flex h-(--header-height) max-w-[1440px] items-center gap-2 px-4 md:px-6">
+      <div className={cn('mx-auto flex h-(--header-height) items-center gap-2', full ? 'px-2 sm:px-3' : 'max-w-[1440px] px-4 md:px-6')}>
         <MobileMenu className="lg:hidden" />
         <Link to="/" className="hidden items-center gap-2 rounded-control pe-2 outline-none focus-visible:focus-ring lg:flex">
           <img src="/rasengan.svg" alt="" className="size-5" />
@@ -40,6 +43,11 @@ export function Header() {
         <div className="ms-auto flex items-center gap-1.5">
           <Search className="sm:w-48 md:w-56 lg:w-64" />
           <ThemePopover />
+          {/* Found a village. On the workshop itself it starts a fresh one: a full load drops the recipe in progress. */}
+          <Link to="/villages/create" reloadDocument={full} aria-label="New village" className={buttonVariants({ size: 'sm' })}>
+            <PlusIcon />
+            New
+          </Link>
           <Separator orientation="vertical" className="mx-1 h-4 data-[orientation=vertical]:self-center" />
           <a href={repository} target="_blank" rel="noreferrer" aria-label="GitHub" className={buttonVariants({ variant: 'ghost', size: 'icon' })}>
             <GitHubIcon />
