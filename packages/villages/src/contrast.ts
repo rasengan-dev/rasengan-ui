@@ -162,7 +162,8 @@ export const TEXT: [string, string][] = [
 	["--popover-foreground", "--popover"],
 	["--primary-foreground", "--primary"],
 	["--destructive-foreground", "--destructive"],
-	["--primary", "--background"],
+	// No --primary on --background: components write the brand colour's words in --primary-text (the tone pairs
+	// below hold it at 4.5:1), so the fill can keep a bright brand colour (RFC-0006, "Your brand colour").
 	["--destructive", "--background"],
 	["--destructive", "--card"],
 	["--tooltip-foreground", "--tooltip"],

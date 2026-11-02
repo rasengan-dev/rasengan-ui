@@ -175,10 +175,12 @@ const village = createVillage(recipe, { sources });
    (`foundation`): the ladder of the contrast level, the depth, the surfaces, the edges and the other traits, the
    shape, type, density and motion. Colours are OKLCH; greys get the `calc(c * var(--tint, 1))` form. Then the
    overrides.
-2. **Brand.** The brand colour becomes a hue, a lightness and a chroma. The contract asks three things of it: its text
-   on it at 4.5:1, the colour itself as text on the page at 4.5:1, and its border at 3:1, in every nature. For each
-   scheme the engine tries the scheme's own text, then the other scheme's, and for each the lightness nearest to the
-   brand's at which all three hold; it keeps the nearest. It reports what it changed.
+2. **Brand.** The brand colour becomes a hue, a lightness and a chroma. It plays three roles, each with its own
+   lightness (see "The brand colour's three roles"): the fill (`--primary-l`), the words (`--tone-text-l`) and the edge
+   of what it fills (`--primary-border-l`). This step settles the fill: for each scheme the engine tries the scheme's
+   own text on it, then the other scheme's, and for each the lightness nearest to the brand's at which that text holds
+   4.5:1 in every nature; it keeps the nearest. The words and the edge are left to step 4. With a brand colour, the
+   status colours keep the ladder's strength and text instead of following the primary's.
 3. **Check.** The contrast library resolves every scope (the village × 7 natures, its own included × 2 schemes × 2
    tints) and checks every pair of `contrast.ts`: 4.5:1 for text, 3:1 for control borders, tracks and tone edges.
 4. **Fix.** For a failing pair, move the lightness of the token behind it (an alias is first copied into the token, so
@@ -190,7 +192,30 @@ const village = createVillage(recipe, { sources });
    out where they equal the contract's default, so a regenerated file diffs cleanly.
 
 A sweep of 288 recipes (3 bases × 12 brand colours × 8 combinations of contrast, tint, glass and ink) refuses none and
-takes about 0.25 s each.
+takes about 0.25 s each; the fill keeps the brand colour exactly, in light mode, in 216 of them, and moves by a few
+hundredths in the others (mid-lightness colours that need a step for their text to read).
+
+### The brand colour's three roles
+
+Decided 2026-11-02 (it was open question 7). The contract used to check `--primary` as text on the page at 4.5:1, so a
+bright brand colour could not stay as it is: `#ff5a1f` went from L 0.68 to 0.50. No component writes words in
+`--primary`, though: brand-coloured words (links, outline, ghost and link buttons, soft badges, alert titles) are
+`text-tone-text`, that is `--primary-text`, with its own lightness, `--tone-text-l`. So the primary's roles are split:
+
+| Role | Token | Lightness | Holds |
+| --- | --- | --- | --- |
+| The fill | `--primary` | `--primary-l` | Its text (`--on-primary`) at 4.5:1 |
+| The words | `--primary-text` | `--tone-text-l` | 4.5:1 on the page, a card and its soft wash |
+| The edge of what it fills | `--primary-border` | `--primary-border-l`, new, `var(--primary-l)` by default | 3:1 on the page and a card |
+
+The `--primary` on `--background` pair leaves the checks; the words and the edge are checked as before. The engine
+settles the fill alone (step 2) and darkens the words and the edge where they need it (step 4): a token that only
+followed another, such as `--primary-border-l`, may move as far as the brand could, since nobody chose its value. The
+built-in villages do not change: `--primary-border-l` defaults to their `--primary-l`.
+
+With the split, Onmyōton's override sets `--primary-border` too, and no longer reaches a scope that names another
+nature (`<VillageScope nature="katon">` on an Onmyōton page, the workshop's preview): it used to repaint every nested
+village in ink.
 
 The built-in villages get a recipe each (`packages/villages/src/villages/konoha.recipe.json`…), with the values a knob
 cannot produce as overrides. A test generates each and compares tokens with the CSS file. Once it passes, a change to
@@ -275,12 +300,14 @@ engine then sets it explicitly in new villages, and `doctor` suggests `--update`
 
 ### The workshop (`apps/site`, `/villages/create`)
 
-The knobs on the left, the components on the right: the existing demos of the registry, in a `VillageScope` that wears
-the village being made, light and dark side by side. The engine runs in the browser on every change, in a web worker
-(a village takes about a quarter of a second; requests that pile up are folded into the latest); the CSS goes into a
-`<style>` element. Beside the preview, the report: the brand colour's moves, the adjustments, and the pairs that fail
-with where they are. The home page's examples are the preview, the cards laid out with container queries since the
-preview is narrower than the page. Below `lg` the recipe is a bottom sheet.
+Laid out after shadcn's `/create`: the recipe is a narrow panel on the left, in the site's dark scheme, one row per
+knob (its value, a hint of it, and a menu or popover beside it), with Copy link, Reset, Shuffle (a recipe at random)
+and Export at its foot. The preview fills the rest of the window: the home page's examples in a `VillageScope` that
+wears the village being made, light, dark or both, the cards laid out with container queries. Over it float the status
+(its popover holds the report: the brand colour's moves, the adjustments, the pairs that fail) and the choice of
+example and scheme. The engine runs in the browser on every change, in a web worker (a village takes about a quarter
+of a second; requests that pile up are folded into the latest); the CSS goes into a `<style>` element. Below `lg` the
+recipe is a bottom sheet.
 
 Nothing is stored on the server. The recipe is encoded in the link (`/villages/create#r=<base64url>`), so a link is the
 way to share a work in progress. Three exports:
@@ -358,7 +385,6 @@ decides.
    vocabulary?
 6. Is `traits.surfaces: "glass"` safe to offer without a check on what sits behind a translucent surface? Kiri's
    contrast is checked against its own background only.
-7. The contract checks `--primary` as text on the page at 4.5:1, so a bright brand colour cannot stay as it is in light
-   mode: `#ff5a1f` goes from L 0.68 to 0.50, `#f5c518` from 0.84 to 0.52. Keep the rule, or split the brand colour
-   from the colour of brand-coloured text (`--primary-text` already exists), so the fill keeps the brand's lightness
-   with dark text on it and only links and outlined text darken?
+7. ~~The contract checks `--primary` as text on the page at 4.5:1, so a bright brand colour cannot stay as it is in
+   light mode. Keep the rule, or split the fill from the words?~~ Decided (2026-11-02): split, see "The brand colour's
+   three roles".

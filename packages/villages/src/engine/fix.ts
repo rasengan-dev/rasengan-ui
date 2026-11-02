@@ -2,7 +2,8 @@
  * The contrast fixer (RFC-0006, "The engine", steps 2 to 4).
  *
  * 1. The brand: the text on it (the scheme's own, or the other scheme's) and the nearest lightness at which the brand
- *    colour holds with that text and on the page too, in every nature.
+ *    colour holds with that text, in every nature. Only the fill: the brand colour's words (--tone-text-l) and the
+ *    edge of what it fills (--primary-border-l) have their own lightness, and darken in step 2 if they need to.
  * 2. Every other failing pair: the lightness of the token behind it moves in 0.01 steps, at most 0.15, and only to a
  *    value that breaks no pair that passed.
  *
@@ -51,16 +52,11 @@ const schemes: Scheme[] = ["light", "dark"];
 const tints = [1, 0];
 const STEP = 0.01;
 const LIMIT = 0.15;
-/** How far the brand colour may move to hold with its text and on the page. */
+/** How far the brand colour may move to hold with its text. */
 const BRAND_LIMIT = 0.5;
 
-/** The pairs the brand colour must hold, whatever the nature. */
-const BRAND_PAIRS: [fg: string, on: string[], min: number][] = [
-	["--primary-foreground", ["--primary"], 4.5],
-	["--primary", ["--background"], 4.5],
-	["--primary-border", ["--background"], 3],
-	["--primary-border", ["--card"], 3],
-];
+/** The pair the brand fill must hold, whatever the nature. */
+const BRAND_PAIRS: [fg: string, on: string[], min: number][] = [["--primary-foreground", ["--primary"], 4.5]];
 
 /** The foreground of a failing pair, as the token behind its lightness: special cases first. */
 const LEVERS: Record<string, string> = {
@@ -138,7 +134,7 @@ export function fixContrast(draft: Draft, ctx: FixContext): { adjustments: Adjus
 		}
 		if (best.distance > 0) {
 			set(scheme, "--primary-l", num(best.l, 3));
-			adjustments.push({ scheme, token: "--primary-l", from: originalL ?? num(startL, 3), to: num(best.l, 3), reason: "the brand colour holds with its text and on the page" });
+			adjustments.push({ scheme, token: "--primary-l", from: originalL ?? num(startL, 3), to: num(best.l, 3), reason: "the brand colour holds with its text" });
 		}
 	}
 
@@ -191,7 +187,10 @@ export function fixContrast(draft: Draft, ctx: FixContext): { adjustments: Adjus
 			return pairValue(tokensOf(scheme, nature, tint), pair.fg, pair.on);
 		};
 		const direction = value(current + STEP) >= value(current - STEP) ? 1 : -1;
-		for (let moved = STEP; moved <= LIMIT + 1e-9; moved += STEP) {
+		// The limit guards values someone chose. A token that only followed another (--primary-border-l after the
+		// brand's --primary-l) had none of its own, and may go as far as the brand could.
+		const limit = /^var\(/.test(start) ? BRAND_LIMIT : LIMIT;
+		for (let moved = STEP; moved <= limit + 1e-9; moved += STEP) {
 			const n = current + direction * moved;
 			if (n < 0 || n > 1) break;
 			if (value(n) < pair.min) continue;
@@ -245,5 +244,13 @@ export function fixContrast(draft: Draft, ctx: FixContext): { adjustments: Adjus
 					problem.scopes.push(scopeName(nature, tint));
 					problems.set(key, problem);
 				}
-	return { adjustments, problems: [...problems.values()], ringWarnings };
+	// A token moved in several steps (one per scope that asked) is one adjustment: from its first value to its last.
+	const merged = new Map<string, Adjustment>();
+	for (const a of adjustments) {
+		const key = `${a.scheme} ${a.token}`;
+		const seen = merged.get(key);
+		if (seen) seen.to = a.to;
+		else merged.set(key, { ...a });
+	}
+	return { adjustments: [...merged.values()].filter((a) => a.from !== a.to), problems: [...problems.values()], ringWarnings };
 }

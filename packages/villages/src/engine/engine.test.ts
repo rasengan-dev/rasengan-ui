@@ -86,17 +86,27 @@ test("a brand colour gets a nature of its own, and the village passes every scop
 	assert.deepEqual(failing, []);
 });
 
-test("a light brand colour moves, and says so", () => {
+test("a bright brand colour keeps its fill; only its edge darkens", () => {
 	const village = createVillage({ name: "gold", base: "konoha", brand: { color: "#f5c518" } }, { sources });
 	assert.deepEqual(village.problems, []);
-	const moved = village.adjustments.filter((a) => a.scheme === "light" && (a.token === "--primary-l" || a.token === "--on-primary"));
-	assert.ok(moved.length > 0, "a gold this light cannot stay as it is on a light page");
+	assert.equal(village.light["--primary-l"], "0.842", "the gold is kept as it is");
+	assert.ok(!village.adjustments.some((a) => a.scheme === "light" && a.token === "--primary-l"));
+	const onPrimary = village.adjustments.find((a) => a.scheme === "light" && a.token === "--on-primary");
+	assert.ok(onPrimary, "dark text on a light gold");
+	const edge = village.adjustments.filter((a) => a.scheme === "light" && a.token === "--primary-border-l");
+	assert.equal(edge.length, 1, "one adjustment per token, however many steps it took");
+	assert.ok(Number(edge[0].to) < 0.7, "the edge of what the gold fills darkens to hold 3:1 on the page");
+	assert.equal(village.light["--status-l"], "0.52", "success and info keep Konoha's strength, not the gold's");
 });
 
 test("an exact brand colour that cannot pass is refused, not moved", () => {
-	const village = createVillage({ name: "gold", base: "konoha", brand: { color: "#f5c518", exact: true } }, { sources });
-	assert.ok(village.problems.some((p) => p.scheme === "light" && p.pair.startsWith("--primary")));
+	// Neither white nor dark text reaches 4.5:1 on this red as it is.
+	const village = createVillage({ name: "brick", base: "konoha", brand: { color: "oklch(0.6 0.2 25)", exact: true } }, { sources });
+	assert.ok(village.problems.some((p) => p.scheme === "light" && p.pair.startsWith("--primary-foreground")));
 	assert.ok(!village.adjustments.some((a) => a.scheme === "light" && a.token === "--primary-l"));
+	const free = createVillage({ name: "brick", base: "konoha", brand: { color: "oklch(0.6 0.2 25)" } }, { sources });
+	assert.deepEqual(free.problems, []);
+	assert.ok(free.adjustments.some((a) => a.scheme === "light" && a.token === "--primary-l"), "without exact, it moves as little as it must");
 });
 
 test("a grey that fails is darkened until it passes, and the move is reported", () => {

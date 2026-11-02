@@ -207,6 +207,7 @@ export const contract = {
 	"--primary-c": { group: "accent", kind: "number", schemes: true },
 	"--on-primary": { group: "accent", kind: "color", schemes: true, tinted: true },
 	"--tone-text-l": { group: "accent", kind: "number", schemes: true, default: true },
+	"--primary-border-l": { group: "accent", kind: "number", schemes: true, default: true },
 	"--soft-alpha": { group: "accent", kind: "percentage", schemes: true, default: true },
 	"--soft-edge-alpha": { group: "accent", kind: "percentage", schemes: true, default: true },
 
