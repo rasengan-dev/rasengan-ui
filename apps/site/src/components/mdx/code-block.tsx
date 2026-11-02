@@ -54,7 +54,7 @@ export function CopyButton({ text, target, className }: { text?: string; target?
         className,
       )}
     >
-      {copied ? <Check className="size-3.5 text-primary" /> : <Copy className="size-3.5" />}
+      {copied ? <Check className="size-3.5 text-tone-text" /> : <Copy className="size-3.5" />}
     </button>
   );
 }

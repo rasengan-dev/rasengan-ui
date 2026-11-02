@@ -307,6 +307,12 @@
 	--warning-c: 0.16;
 	--on-warning: oklch(0.25 0.05 60);
 	--tone-text-l: var(--primary-l);
+	/*
+	 * The primary's three roles each have their lightness (RFC-0006, "Your brand colour"): the fill (--primary-l, with
+	 * its text at 4.5:1), the words (--tone-text-l, 4.5:1 on the page) and the edge of what it fills (--primary-border-l,
+	 * 3:1 on the page). A bright brand colour keeps its fill; only its words and edge darken.
+	 */
+	--primary-border-l: var(--primary-l);
 	--warning-text-l: var(--tone-text-l);
 	--warning-text-c: 0.09;
 	--success: oklch(var(--status-l) var(--status-c) var(--success-hue));
@@ -360,7 +366,7 @@
 	--primary-foreground: var(--on-primary);
 	--primary-text: oklch(var(--tone-text-l) var(--primary-c) var(--nature-hue));
 	--primary-soft: color-mix(in oklab, var(--primary) var(--soft-alpha), transparent);
-	--primary-border: var(--primary);
+	--primary-border: oklch(var(--primary-border-l) var(--primary-c) var(--nature-hue));
 	--ring: oklch(var(--primary-l) var(--primary-c) var(--nature-hue) / var(--ring-alpha));
 	/* The default tone, so bg-tone and friends work without a tone-* utility. */
 	--tone: var(--primary);

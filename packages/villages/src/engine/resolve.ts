@@ -169,6 +169,12 @@ export function foundation(k: Knobs, natures: Record<string, number>): Foundatio
 		light["--primary-c"] = num(color.c, 3);
 		darkOnly["--primary-l"] = num(Math.max(color.l, Number(ladder.dark["--primary-l"])), 3);
 		darkOnly["--primary-c"] = num(Math.min(color.c, Number(ladder.dark["--primary-c"])), 3);
+		// The status colours follow the primary's strength by default; a brand colour is no reason to turn success
+		// pale gold. They keep the ladder's, with its text on them.
+		light["--status-l"] = String(ladder.light["--primary-l"]);
+		darkOnly["--status-l"] = String(ladder.dark["--primary-l"]);
+		light["--on-status"] = render(ladder.light["--on-primary"]);
+		darkOnly["--on-status"] = render(ladder.dark["--on-primary"]);
 	}
 
 	return { light, dark: { ...light, ...darkOnly }, natureHue, ownNature: k.brand.nature === undefined };
