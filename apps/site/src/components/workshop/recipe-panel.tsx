@@ -228,7 +228,7 @@ export function RecipePanel({ recipe, onChange, nameError, actions, className }:
           value={brandColor ?? `${k.base.title}'s nature`}
           hint={<Dot color={brandColor ?? 'var(--primary)'} />}
           title="Brand colour"
-          description={`Any colour: the engine keeps it, or moves it as little as contrast needs. Empty: ${k.base.title}'s own nature.`}
+          description={`Any colour. If text on it would be hard to read, it is adjusted as little as possible. Empty: ${k.base.title}'s own colour.`}
         >
           <div role="radiogroup" aria-label="Brand colour" className="grid grid-cols-8 gap-1.5">
             {swatches.map((s) => {
@@ -273,7 +273,7 @@ export function RecipePanel({ recipe, onChange, nameError, actions, className }:
           value={`${Math.round(k.neutrals.hue)}° · ${Math.round(k.neutrals.chroma * 100)}% tint`}
           hint={<Dot color={`oklch(0.72 ${Math.min(0.12, 0.05 * k.neutrals.chroma)} ${k.neutrals.hue})`} />}
           title="Neutrals"
-          description="The greys of the surfaces and the ink: their hue, and how tinted they are."
+          description="The greys of backgrounds, borders and text: their hue, and how tinted they are."
         >
           <Range name="Grey hue" value={k.neutrals.hue} display={`${Math.round(k.neutrals.hue)}°`} min={0} max={360} step={1} onChange={(hue) => set({ neutrals: { ...recipe.neutrals, hue, inkHue: undefined } })} />
           <Range name="Tint" value={k.neutrals.chroma} display={`${Math.round(k.neutrals.chroma * 100)}%`} min={0} max={2} step={0.05} onChange={(chroma) => set({ neutrals: { ...recipe.neutrals, chroma } })} />
@@ -319,7 +319,7 @@ export function RecipePanel({ recipe, onChange, nameError, actions, className }:
           value={changedTraits ? `${changedTraits} changed from ${k.base.title}` : `As ${k.base.title}`}
           hint={<Settings2Icon />}
           title="Traits"
-          description="The choices that are not a scale. The base gives the ones you leave."
+          description="How tabs, focus, labels, surfaces and other details look. Any you leave come from the base village."
         >
           <div className="grid gap-3">
             {(Object.keys(traitOptions) as (keyof Traits)[]).map((trait) => (

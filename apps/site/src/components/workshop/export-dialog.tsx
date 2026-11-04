@@ -50,7 +50,7 @@ export function ExportDialog({ village, recipe, link, disabled, className }: { v
       <DialogContent size="lg">
         <DialogHeader>
           <DialogTitle>Export {village?.title ?? name}</DialogTitle>
-          <DialogDescription>One CSS file, in the shape of the built-in villages: every component, VillageScope and the natures work with it.</DialogDescription>
+          <DialogDescription>Your village as one CSS file. It works like the built-in villages: with every component, every nature, light and dark.</DialogDescription>
         </DialogHeader>
         <Tabs defaultValue="install" className="min-w-0 gap-4">
           <TabsList>
@@ -60,17 +60,16 @@ export function ExportDialog({ village, recipe, link, disabled, className }: { v
           </TabsList>
           <TabsContent value="install" className="grid gap-3">
             <p className="text-sm text-muted-foreground">
-              In your project: the CLI decodes the recipe from the link (nothing is stored anywhere), makes the village with your contract,
-              writes it, imports it, saves the recipe in rasengan-ui.json and switches to it.
+              Run this in your project. It adds the village, imports it in your CSS and switches your project to it.
             </p>
             <Code title="Terminal" text={command} wrap />
           </TabsContent>
           <TabsContent value="css" className="grid gap-3">
-            <p className="text-sm text-muted-foreground">For a project without the CLI: put it next to the other villages, after contract.css and before natures.css.</p>
+            <p className="text-sm text-muted-foreground">Without the CLI: save this file next to your other villages, and import it after contract.css and before natures.css.</p>
             <Code title={`styles/rasengan/villages/${name}.css`} text={village?.css ?? ''} file={`${name}.css`} type="text/css" />
           </TabsContent>
           <TabsContent value="recipe" className="grid gap-3">
-            <p className="text-sm text-muted-foreground">The source of the village: `village create --from` takes it, and the CLI regenerates the village from it when the contract grows.</p>
+            <p className="text-sm text-muted-foreground">The settings behind this village. Keep it to make the village again later, or pass it to <code className="font-mono text-xs">village create --from</code>.</p>
             <Code title={`${name}.recipe.json`} text={json} file={`${name}.recipe.json`} type="application/json" />
           </TabsContent>
         </Tabs>

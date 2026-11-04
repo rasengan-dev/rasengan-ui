@@ -17,8 +17,8 @@ function Status({ state }: { state: VillageState }) {
   const line = error
     ? error.replace(/^Invalid recipe:\s*/, '')
     : failing
-      ? `${failing} pair${failing > 1 ? 's' : ''} under the minimum: the CLI would write nothing.`
-      : 'Every pair passes in every nature, light and dark, with the village greys and neutral ones.';
+      ? `${failing} colour pair${failing > 1 ? 's are' : ' is'} too low in contrast. Change the recipe to export the village.`
+      : 'Every text and colour pair is readable, in every nature, light and dark.';
   return (
     <div className="flex items-start gap-3">
       <span className={cn('grid size-8 shrink-0 place-items-center rounded-full', tone === 'success' ? 'bg-success text-success-foreground' : 'bg-destructive text-destructive-foreground')} aria-hidden>
@@ -26,7 +26,7 @@ function Status({ state }: { state: VillageState }) {
       </span>
       <div className="grid min-w-0 gap-0.5" role="status" aria-live="polite">
         <strong className="font-semibold">{pending && !village ? 'Making the village…' : title}</strong>
-        <span className="text-sm whitespace-pre-line text-muted-foreground">{pending && !village ? 'The engine runs in your browser.' : line}</span>
+        <span className="text-sm whitespace-pre-line text-muted-foreground">{pending && !village ? 'Everything happens in your browser.' : line}</span>
       </div>
     </div>
   );
@@ -36,8 +36,11 @@ function Brand({ village }: { village: Village }) {
   const lines = (['light', 'dark'] as const).map((scheme) => {
     const moved = village.adjustments.find((a) => a.scheme === scheme && a.token === '--primary-l');
     const text = village.adjustments.find((a) => a.scheme === scheme && a.token === '--on-primary');
-    const tone = text ? 'the other scheme’s text on it' : 'its own text on it';
-    return `${scheme === 'light' ? 'Light' : 'Dark'}: ${moved ? `lightness ${moved.from} → ${moved.to}` : 'kept as it is'}, ${tone}.`;
+    const label = scheme === 'light' ? 'Light' : 'Dark';
+    const change = moved ? `adjusted so text on it stays readable (lightness ${moved.from} → ${moved.to})` : 'as you picked it';
+    // The text on it switched to the other scheme's: dark text in light mode, light text in dark mode.
+    const flipped = text ? `, with ${scheme === 'light' ? 'dark' : 'light'} text on it` : '';
+    return `${label}: ${change}${flipped}.`;
   });
   return (
     <div className="grid gap-1 rounded-control bg-muted p-3 text-sm">
@@ -61,12 +64,12 @@ export function Report({ state, className }: { state: VillageState; className?: 
 
       {village?.problems.length ? (
         <section className="grid gap-2 rounded-lg border-village p-4">
-          <h2 className="text-sm font-semibold">Pairs under the minimum</h2>
+          <h2 className="text-sm font-semibold">Too low in contrast</h2>
           {village.problems.map((p) => (
             <div key={`${p.scheme} ${p.pair}`} className="grid gap-0.5 rounded-control border-village p-3 text-sm">
               <span className="font-mono text-xs break-all">{p.pair}</span>
               <span className="text-muted-foreground">
-                {p.scheme}: {p.value.toFixed(2)}:1, needs {p.min}:1 · {p.scopes.length} scope{p.scopes.length > 1 ? 's' : ''}
+                {p.scheme === 'light' ? 'Light' : 'Dark'}: {p.value.toFixed(2)}:1, needs at least {p.min}:1
               </span>
             </div>
           ))}
@@ -77,9 +80,9 @@ export function Report({ state, className }: { state: VillageState; className?: 
         <section className="grid gap-2 rounded-lg border-village p-4">
           <div className="flex items-baseline justify-between">
             <h2 className="text-sm font-semibold">Adjustments</h2>
-            <span className="text-xs text-muted-foreground">{adjustments.length ? `${adjustments.length} made for you` : ''}</span>
+            <span className="text-xs text-muted-foreground">{adjustments.length ? `${adjustments.length} made to keep text readable` : ''}</span>
           </div>
-          {adjustments.length === 0 ? <p className="text-sm text-muted-foreground">None: every other value is as the recipe makes it.</p> : null}
+          {adjustments.length === 0 ? <p className="text-sm text-muted-foreground">None: the village uses your values as they are.</p> : null}
           {adjustments.map((a) => (
             <div key={`${a.scheme} ${a.token} ${a.to}`} className="grid gap-0.5 rounded-control border-village p-3 text-sm">
               <span className="flex justify-between gap-2 font-mono text-xs">
@@ -89,7 +92,7 @@ export function Report({ state, className }: { state: VillageState; className?: 
               <span className="font-mono text-xs">
                 {a.from} → {a.to}
               </span>
-              <span className="text-xs text-muted-foreground">{reasons[a.reason] ?? `for ${a.reason}`}</span>
+              <span className="text-xs text-muted-foreground">{reasons[a.reason] ?? `so ${a.reason} stays readable`}</span>
             </div>
           ))}
           {village.notes.map((note) => (

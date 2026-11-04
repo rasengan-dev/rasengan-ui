@@ -67,7 +67,7 @@ function build(
 	const natures = made.ownNature ? { ...sources.natures, [meta.name]: made.natureHue } : sources.natures;
 	const draft = { name: meta.name, light: { ...made.light }, dark: { ...made.dark } };
 	const { adjustments, problems, ringWarnings } = fixContrast(draft, { base: sources, natures, pinned });
-	if (ringWarnings) notes.push(`${ringWarnings} focus ring scope${ringWarnings > 1 ? "s are" : " is"} under 3:1 (reported, not failing: RFC-0002, open question 5).`);
+	if (ringWarnings) notes.push(`The focus ring is faint in ${ringWarnings} place${ringWarnings > 1 ? "s" : ""} (under 3:1 against the page). It still shows; nothing else is affected.`);
 	for (const role of ["body", "heading", "code"] as const)
 		if (!fontInfo(knobs.fonts[role]).known) notes.push(`The font "${knobs.fonts[role]}" is not in the catalogue: the project loads it.`);
 	const css = writeVillage({ ...meta, natureHue: made.natureHue, ownNature: made.ownNature, light: draft.light, dark: draft.dark, defaults: sources.defaults });
