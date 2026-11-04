@@ -21,7 +21,11 @@ export function MobileMenu({ className }: { className?: string }) {
         <Menu />
         Menu
       </PopoverTrigger>
-      <PopoverContent align="start" sideOffset={8} className="max-h-[calc(100svh-var(--header-height)-1rem)] w-[min(20rem,calc(100vw-2rem))] overflow-y-auto">
+      {/*
+       * The popup is portaled to <body>, outside the layout that sets --header-height: its height comes from Base UI's
+       * --available-height (the room under the button), and its scroll stays inside it.
+       */}
+      <PopoverContent align="start" sideOffset={8} className="max-h-(--available-height) w-[min(20rem,calc(100vw-2rem))] overflow-y-auto overscroll-contain">
         <PopoverTitle className="sr-only">Menu</PopoverTitle>
         <nav aria-label="Main" className="mb-6 flex flex-col gap-1">
           {sections.map((section) => (

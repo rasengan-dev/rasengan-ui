@@ -112,7 +112,8 @@ export function ThemePopover({ className }: { className?: string }) {
         <span className="sr-only sm:not-sr-only">{villages[village].title}</span>
         <span className="sr-only text-muted-foreground md:not-sr-only">{natures[nature].title}</span>
       </PopoverTrigger>
-      <PopoverContent align="end" sideOffset={8} className="max-h-[calc(100svh-var(--header-height)-1rem)] w-[min(22rem,calc(100vw-2rem))] overflow-y-auto">
+      {/* Portaled to <body>, away from --header-height: Base UI's --available-height bounds it, as in the mobile menu. */}
+      <PopoverContent align="end" sideOffset={8} className="max-h-(--available-height) w-[min(22rem,calc(100vw-2rem))] overflow-y-auto overscroll-contain">
         <div className="mb-4 grid gap-1">
           <PopoverTitle>Theme</PopoverTitle>
           <PopoverDescription>The whole page and every demo wear it. Kept in this browser.</PopoverDescription>
