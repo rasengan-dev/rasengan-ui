@@ -1,0 +1,28 @@
+{
+	"name": "@rasengan-ui/core",
+	"version": "0.0.0",
+	"private": true,
+	"description": "What every Rasengan UI component shares: cn(), VillageScope and the engine variants. Distributed through the registry; this package is the source.",
+	"type": "module",
+	"exports": {
+		".": "./src/utils.ts",
+		"./village-scope": "./src/village-scope.tsx",
+		"./field-context": "./src/field-context.tsx",
+		"./variants.css": "./src/variants.css"
+	},
+	"scripts": {
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"clsx": "^2.1.1",
+		"tailwind-merge": "^3.7.0"
+	},
+	"devDependencies": {
+		"@types/react": "^19.2.0",
+		"react": "^19.2.0",
+		"typescript": "^5.9.3"
+	},
+	"peerDependencies": {
+		"react": "^19.0.0"
+	}
+}

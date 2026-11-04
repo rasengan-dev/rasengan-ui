@@ -1,0 +1,86 @@
+---
+metadata:
+  title: Empty · Rasengan UI
+  description: "An empty state: an icon, a title, a line of help and the action that fills the space."
+toc: true
+---
+
+# Empty
+
+An empty state: an icon, a title, a line of help and the action that fills the space.
+
+<ComponentPreview name="empty" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add empty
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/empty.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/empty.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { FolderOpenIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty";
+
+export function Usage() {
+  return (
+    <Empty>
+      <EmptyHeader>
+        <EmptyMedia variant="icon">
+          <FolderOpenIcon />
+        </EmptyMedia>
+        <EmptyTitle>No projects yet</EmptyTitle>
+        <EmptyDescription>Create a project to start building with your team.</EmptyDescription>
+      </EmptyHeader>
+      <EmptyContent>
+        <Button>New project</Button>
+      </EmptyContent>
+    </Empty>
+  );
+}
+```
+
+### Variants
+
+`default` has no frame, for a page or a panel that already has one; `outline` draws a dashed border, for drop zones
+and empty lists. `EmptyMedia variant="icon"` puts an icon on a muted tile; `default` shows the media as given (an
+illustration, avatars).
+
+<ComponentPreview name="empty" demo="empty-variants" />
+
+## Villages
+
+The title is in the village's display face and heading case: capitals in Iwa.
+
+<VillageGrid name="empty" />
+
+## Accessibility
+
+- Plain `<div>`s. `EmptyTitle` is a `<div>` too: when the empty state stands for a whole page or section, render a
+  heading inside it.
+- Put the action that fills the space first in `EmptyContent`, so keyboard users reach it first.
+
+## API reference
+
+`Empty`, `EmptyHeader`, `EmptyMedia`, `EmptyTitle`, `EmptyDescription` and `EmptyContent`, each a `<div>` taking its
+props and `className`.
+
+| Component | Prop | Type | Default |
+| --- | --- | --- | --- |
+| `Empty` | `variant` | `"default" \| "outline"` | `"default"` |
+| `EmptyMedia` | `variant` | `"default" \| "icon"` | `"default"` |
+
+`emptyVariants` and `emptyMediaVariants` return their classes.

@@ -1,0 +1,78 @@
+---
+metadata:
+  title: Toggle · Rasengan UI
+  description: "A button that stays pressed: bold on, watching on. Two variants and three sizes."
+toc: true
+---
+
+# Toggle
+
+A button that stays pressed: bold on, watching on. Two variants and three sizes. For a set of them, use [Toggle group](/components/toggle-group).
+
+<ComponentPreview name="toggle" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add toggle
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/toggle.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/toggle.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/bold.tsx"
+import { BoldIcon } from "lucide-react";
+import { Toggle } from "@/components/ui/toggle";
+
+export function Bold() {
+  return (
+    <Toggle aria-label="Bold">
+      <BoldIcon />
+    </Toggle>
+  );
+}
+```
+
+### Variants and sizes
+
+`default` is flat until pressed, then takes the accent grey; `outline` has the input's border; `soft` takes a wash of the
+primary when pressed, so the on state reads as the brand colour (with a border in Iwa). Sizes are `sm`, `default` and
+`lg`, the village's control heights.
+
+<ComponentPreview name="toggle" demo="toggle-variants" />
+
+```tsx
+<Toggle variant="outline" size="sm">Watching</Toggle>
+```
+
+## Villages
+
+Pressed, it takes the accent surface; the outline variant keeps the village's shadow, like an outline button.
+
+<VillageGrid name="toggle" />
+
+## Accessibility
+
+- A `<button>` with `aria-pressed`; <kbd>Space</kbd> and <kbd>Enter</kbd> toggle it.
+- An icon-only toggle needs an `aria-label`, which should not change with the state.
+
+## API reference
+
+The props of Base UI's [Toggle](https://base-ui.com/react/components/toggle) (`pressed`, `defaultPressed`, `onPressedChange`, `disabled`), plus:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `variant` | `"default" \| "outline" \| "soft"` | `"default"` |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` |
+
+`toggleVariants({ variant, size })` returns the same classes.

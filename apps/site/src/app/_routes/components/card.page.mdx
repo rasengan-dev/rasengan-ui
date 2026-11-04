@@ -1,0 +1,88 @@
+---
+metadata:
+  title: Card · Rasengan UI
+  description: "A surface that groups a header, content and actions. Glass in Kiri, hard-shadowed in Iwa."
+toc: true
+---
+
+# Card
+
+A surface that groups a header, content and actions. Glass in Kiri, hard-shadowed in Iwa.
+
+<ComponentPreview name="card" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add card
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/card.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/card.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+
+export function Usage() {
+  return (
+    <Card className="w-80">
+      <CardHeader>
+        <CardTitle>Usage</CardTitle>
+        <CardDescription>This month, across every project.</CardDescription>
+      </CardHeader>
+      <CardContent>1,204 builds</CardContent>
+      <CardFooter>
+        <Button variant="outline">See details</Button>
+      </CardFooter>
+    </Card>
+  );
+}
+```
+
+### An action in the header
+
+`CardAction` sits at the end of the header, beside the title and description: a menu, a badge, a link.
+
+### Variants and sizes
+
+`default` is a raised surface; `outline` keeps the border without the shadow, for cards in a list; `ghost` keeps only
+the layout; `elevated` has a deeper shadow, for what stands above the rest. `size="sm"` tightens the padding and gaps of
+every part.
+
+<ComponentPreview name="card" demo="card-variants" />
+
+```tsx
+<Card variant="outline" size="sm">…</Card>
+```
+
+## Villages
+
+The card is `--card` over the page: translucent with a blur in Kiri, with a 3px ink shadow in Iwa, whose title is in capitals.
+
+<VillageGrid name="card" />
+
+## Accessibility
+
+- Plain `<div>`s. `CardTitle` is a `<div>` too: when the card is a section of the page, render a heading inside it, or give the card `role="region"` and an `aria-labelledby`.
+
+## API reference
+
+`Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardAction`, `CardContent` and `CardFooter`, each a `<div>` taking its props and `className`. `Card` also takes:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `variant` | `"default" \| "outline" \| "ghost" \| "elevated"` | `"default"` |
+| `size` | `"sm" \| "default"` | `"default"` |
+
+`cardVariants({ variant, size })` returns the card's classes.

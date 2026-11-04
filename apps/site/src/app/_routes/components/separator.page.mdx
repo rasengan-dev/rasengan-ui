@@ -1,0 +1,66 @@
+---
+metadata:
+  title: Separator · Rasengan UI
+  description: "A line between groups of content, horizontal or vertical, as thick as the village's borders."
+toc: true
+---
+
+# Separator
+
+A line between groups of content, horizontal or vertical, as thick as the village's borders.
+
+<ComponentPreview name="separator" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add separator
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/separator.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/separator.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/links.tsx"
+import { Separator } from "@/components/ui/separator";
+
+export function Links() {
+  return (
+    <div className="flex h-5 items-center gap-4 text-sm">
+      <a href="/docs">Docs</a>
+      <Separator orientation="vertical" />
+      <a href="/blog">Blog</a>
+    </div>
+  );
+}
+```
+
+### Variants
+
+`default` is a solid line; `dashed` a dashed one of the same width, for a softer break.
+
+<ComponentPreview name="separator" demo="separator-variants" />
+
+## Villages
+
+It is `--border-width` thick and `--border` coloured: a hairline in Konoha and Kiri, a 2px ink rule in Iwa.
+
+<VillageGrid name="separator" />
+
+## Accessibility
+
+- A `role="separator"` with `aria-orientation`. When it is only decoration, between items a list already separates, it can be left out of the accessibility tree with `aria-hidden`.
+
+## API reference
+
+The props of Base UI's [Separator](https://base-ui.com/react/components/separator) (`orientation`, default `"horizontal"`), plus `variant` (`"default" \| "dashed"`) and `className`.
+`separatorVariants({ variant })` returns its classes.

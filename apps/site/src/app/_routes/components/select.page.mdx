@@ -1,0 +1,109 @@
+---
+metadata:
+  title: Select · Rasengan UI
+  description: "Picks one option from a list that opens over the page. Its list follows the nearest VillageScope."
+toc: true
+---
+
+# Select
+
+Picks one option from a list that opens over the page. Its list follows the nearest `VillageScope`.
+
+<ComponentPreview name="select" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add select
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/select.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/select.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/village-picker.tsx"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
+const villages = { konoha: "Konoha", kiri: "Kiri", iwa: "Iwa" };
+
+export function VillagePicker() {
+  return (
+    <Select items={villages} defaultValue="konoha">
+      <SelectTrigger aria-label="Village">
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="konoha">Konoha</SelectItem>
+        <SelectItem value="kiri">Kiri</SelectItem>
+        <SelectItem value="iwa">Iwa</SelectItem>
+      </SelectContent>
+    </Select>
+  );
+}
+```
+
+### Variants
+
+The trigger takes the input's variants, `default`, `filled` and `underline`, so a form mixing both looks of a piece.
+`ghost` has no border or fill until it is hovered or open, for a select in a toolbar or a table header.
+
+<ComponentPreview name="select" demo="select-variants" />
+
+```tsx
+<SelectTrigger variant="ghost" aria-label="Sort by">
+  <SelectValue />
+</SelectTrigger>
+```
+
+### Sizes
+
+`sm`, `default` and `lg` on the trigger, at the village's control heights. Inside a [Field](/components/field), the
+trigger takes the Field's `size` and `variant`.
+
+<ComponentPreview name="select" demo="select-sizes" />
+
+### Labels in the trigger
+
+Pass `items` (value → label) to the Select, so the trigger shows the selected option's label before the list has ever
+opened. Without it, the trigger shows the raw value until then.
+
+### Groups
+
+`SelectGroup` with a `SelectLabel`, and `SelectSeparator` between groups. A `disabled` item stays visible but can't be
+picked.
+
+## Villages
+
+The trigger is an input; the list is a popover surface (glass in Kiri, hard-shadowed in Iwa) with the village's highlight.
+
+<VillageGrid name="select" />
+
+## Accessibility
+
+- The trigger is a combobox button: name it with `aria-label` or a Field's label.
+- Arrow keys move the highlight, typing jumps to a matching option, <kbd>Enter</kbd> picks, <kbd>Esc</kbd> closes.
+- The list renders in a portal on `<body>`, inside the nearest VillageScope's twin, so it wears the right village.
+
+## API reference
+
+The parts of Base UI's [Select](https://base-ui.com/react/components/select), styled:
+
+| Part | Notes |
+| --- | --- |
+| `Select` | `items`, `value`, `defaultValue`, `onValueChange`, `multiple`, `name`, `disabled`, `required` |
+| `SelectTrigger` | the button, with its chevron; `variant` (`"default" \| "filled" \| "underline" \| "ghost"`) and `size` (`"sm" \| "default" \| "lg"`), else the Field's |
+| `SelectValue` | the selected label; `placeholder`, or a function of the value as children |
+| `SelectContent` | portal and popup; `side`, `align`, `sideOffset`, `alignItemWithTrigger` (default `true`) |
+| `SelectItem` | `value`, `disabled` |
+| `SelectGroup`, `SelectLabel`, `SelectSeparator` | grouping |
+
+`selectTriggerVariants({ variant, size })` returns the trigger's classes.

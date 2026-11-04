@@ -1,0 +1,109 @@
+---
+metadata:
+  title: Input · Rasengan UI
+  description: "A single-line text field. Inside a Field it gets its label, description and error wired for you."
+toc: true
+---
+
+# Input
+
+A single-line text field. Inside a [Field](/components/field) it gets its label, description and error wired for you.
+
+<ComponentPreview name="input" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add input
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/input.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/input.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/email.tsx"
+import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+
+export function Email() {
+  return (
+    <Field>
+      <FieldLabel>Email</FieldLabel>
+      <Input type="email" placeholder="sakura@konoha.dev" />
+      <FieldDescription>Used to sign in. Never shared.</FieldDescription>
+    </Field>
+  );
+}
+```
+
+### Variants
+
+`default` is a bordered field. `filled` is a grey well that becomes a bordered field on focus, for dense forms and
+settings panels. `underline` keeps only the bottom border, for inline edits; its focus thickens the line rather than
+drawing a ring. Each village draws them its own way: Iwa's filled well keeps its heavy border.
+
+<ComponentPreview name="input" demo="input-variants" />
+
+```tsx
+<Input variant="filled" placeholder="naruto@konoha.dev" />
+```
+
+### Sizes
+
+`sm`, `default` and `lg` follow the village's control heights, so an input lines up with a button of the same size. On
+phones the text stays at 16px whatever the size, so the browser doesn't zoom into the field.
+
+<ComponentPreview name="input" demo="input-sizes" />
+
+Inside a [Field](/components/field), the input takes the Field's `size` and `variant`; its own props win.
+
+### Invalid
+
+Inside a Field, the input turns destructive when the field is invalid: from its own validation (`required`, `type="email"`),
+or from `invalid` on the Field. Outside a Field, pass `aria-invalid`.
+
+```tsx
+<Field invalid>
+  <FieldLabel>Password</FieldLabel>
+  <Input type="password" />
+  <FieldError>Use at least 12 characters.</FieldError>
+</Field>
+```
+
+### Disabled
+
+`disabled` greys the input out and keeps it out of the tab order.
+
+## Villages
+
+Height, padding, radius and border come from the village: the input lines up with a button of the same size.
+
+<VillageGrid name="input" />
+
+## Accessibility
+
+- An `<input>`: label it with a `FieldLabel` (or a `<label>`), never with the placeholder alone.
+- Inside a Field, the description and error are linked with `aria-describedby`, and the field's validity sets `aria-invalid`.
+- The focus ring is the village's and shows for the keyboard and the pointer alike, as text fields expect.
+
+## API reference
+
+The props of Base UI's [Input](https://base-ui.com/react/components/input), which are those of `<input>`, plus:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `variant` | `"default" \| "filled" \| "underline"` | the Field's, else `"default"` |
+| `size` | `"sm" \| "default" \| "lg"` | the Field's, else `"default"` |
+| `className` | `string` | |
+
+`size` replaces the `<input>` attribute of the same name; set a width with `className`. `inputVariants({ variant, size })`
+returns the classes, for an element that should look like an input.

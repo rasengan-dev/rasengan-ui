@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "filter-01",
+  "title": "Dashboard filter",
+  "description": "Dashboard filter",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "select",
+    "input"
+  ],
+  "files": [
+    {
+      "path": "src/registry/application-ui/forms/filters/filter1.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { Input } from \"@/components/ui/input\";\nimport {\n\tSelect,\n\tSelectContent,\n\tSelectItem,\n\tSelectTrigger,\n\tSelectValue,\n} from \"@/components/ui/select\";\nimport { cn } from \"@/lib/utils\";\nimport { Grid2X2, List, XCircle } from \"lucide-react\";\nimport { ComponentProps } from \"react\";\n\ntype Props = {\n\tclassName?: ComponentProps<\"div\">[\"className\"];\n};\n\nexport const Filter01 = ({ className }: Props) => {\n\treturn (\n\t\t<div\n\t\t\tclassName={cn(\n\t\t\t\t\"w-full max-w-[700px] min-h-[100px] h-auto rounded-xl p-3 bg-background dark:bg-input/70 border border-border\",\n\t\t\t\tclassName\n\t\t\t)}\n\t\t>\n\t\t\t<div className='flex items-center justify-between gap-2'>\n\t\t\t\t<h1 className='text-lg font-medium text-foreground'>Funnels</h1>\n\t\t\t\t<div className='flex items-center gap-2'>\n\t\t\t\t\t<div className='flex md:hidden items-center gap-2'>\n\t\t\t\t\t\t<Button size='icon' variant='ghost'>\n\t\t\t\t\t\t\t<List size={16} className='text-foreground' />\n\t\t\t\t\t\t</Button>\n\n\t\t\t\t\t\t<Button size='icon' variant='ghost'>\n\t\t\t\t\t\t\t<Grid2X2 size={16} className='text-foreground' />\n\t\t\t\t\t\t</Button>\n\t\t\t\t\t</div>\n\t\t\t\t\t<Button>Create a funnel</Button>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div className='flex items-center justify-between gap-2 mt-4'>\n\t\t\t\t<div className='flex items-center flex-wrap gap-2'>\n\t\t\t\t\t<Input\n\t\t\t\t\t\tplaceholder='Search by name or link'\n\t\t\t\t\t\tclassName='w-full sm:w-[200px] text-foreground'\n\t\t\t\t\t/>\n\n\t\t\t\t\t<Select>\n\t\t\t\t\t\t<SelectTrigger className='w-full sm:w-[120px] text-foreground'>\n\t\t\t\t\t\t\t<SelectValue placeholder='Filter by status' />\n\t\t\t\t\t\t</SelectTrigger>\n\t\t\t\t\t\t<SelectContent>\n\t\t\t\t\t\t\t<SelectItem value='all'>All Status</SelectItem>\n\t\t\t\t\t\t\t<SelectItem value='completed'>Completed</SelectItem>\n\t\t\t\t\t\t\t<SelectItem value='pending'>Pending</SelectItem>\n\t\t\t\t\t\t</SelectContent>\n\t\t\t\t\t</Select>\n\n\t\t\t\t\t<Select>\n\t\t\t\t\t\t<SelectTrigger className='w-full sm:w-[120px] text-foreground'>\n\t\t\t\t\t\t\t<SelectValue placeholder='Filter by tag' />\n\t\t\t\t\t\t</SelectTrigger>\n\t\t\t\t\t\t<SelectContent>\n\t\t\t\t\t\t\t<SelectItem value='all'>All Tags</SelectItem>\n\t\t\t\t\t\t\t<SelectItem value='link'>Link</SelectItem>\n\t\t\t\t\t\t\t<SelectItem value='email'>Email</SelectItem>\n\t\t\t\t\t\t</SelectContent>\n\t\t\t\t\t</Select>\n\n\t\t\t\t\t<Button variant='ghost' className='flex items-center gap-2'>\n\t\t\t\t\t\t<XCircle className='text-red-400 dark:text-red-200' />\n\t\t\t\t\t\t<span className='text-foreground/70'>Reset</span>\n\t\t\t\t\t</Button>\n\t\t\t\t</div>\n\n\t\t\t\t<div className='items-center gap-2 hidden md:flex'>\n\t\t\t\t\t<Button size='icon' variant='ghost'>\n\t\t\t\t\t\t<List size={16} className='text-foreground' />\n\t\t\t\t\t</Button>\n\n\t\t\t\t\t<Button size='icon' variant='ghost'>\n\t\t\t\t\t\t<Grid2X2 size={16} className='text-foreground' />\n\t\t\t\t\t</Button>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

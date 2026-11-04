@@ -1,0 +1,124 @@
+---
+metadata:
+  title: Installation · Rasengan UI
+  description: Set up Rasengan UI in a Rasengan.js, Vite or Next.js project with Tailwind CSS v4.
+toc: true
+---
+
+# Installation
+
+Rasengan UI needs React and Tailwind CSS v4. `rasengan-ui init` sets the rest up: the core, the token contract, a
+village, the CSS imports and the village on `<html>`.
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI isn't on npm yet. Until the first release, build it in this repository (`pnpm --filter
+  rasengan-ui build`), run `pnpm registry`, and point the CLI at the local registry with
+  `RASENGAN_UI_REGISTRY=http://localhost:3200/r`.
+</Note>
+
+## Rasengan.js
+
+<Steps>
+  <Step title="Start from a Tailwind v4 project">
+    Any Rasengan.js 2 project with Tailwind v4, such as the `tailwind-v4-ts` starter. Its `@/*` alias is already set.
+  </Step>
+  <Step title="Run init">
+    ```bash title="Terminal"
+    npx rasengan-ui init
+    ```
+
+    It asks for a village and a nature, then imports them in `src/styles/index.css` and sets the village on `<html>` in
+    `src/template.tsx`.
+  </Step>
+  <Step title="Add components">
+    ```bash title="Terminal"
+    npx rasengan-ui add button dialog
+    ```
+  </Step>
+</Steps>
+
+## Vite
+
+<Steps>
+  <Step title="Add Tailwind CSS">
+    Install `tailwindcss` and `@tailwindcss/vite`, add the plugin to `vite.config.ts`, and import Tailwind at the top of
+    `src/index.css`: see [Tailwind's guide](https://tailwindcss.com/docs/installation/using-vite).
+  </Step>
+  <Step title="Add the @ alias">
+    The components import `@/components/…` and `@/lib/…`. Add the alias to `tsconfig.app.json` and `tsconfig.json`:
+
+    ```json title="tsconfig.app.json"
+    {
+      "compilerOptions": {
+        "paths": { "@/*": ["./src/*"] }
+      }
+    }
+    ```
+
+    and to Vite:
+
+    ```ts title="vite.config.ts"
+    import path from "node:path";
+
+    export default defineConfig({
+      plugins: [react(), tailwindcss()],
+      resolve: { alias: { "@": path.resolve(import.meta.dirname, "./src") } },
+    });
+    ```
+  </Step>
+  <Step title="Run init, then add components">
+    ```bash title="Terminal"
+    npx rasengan-ui init
+    npx rasengan-ui add button dialog
+    ```
+
+    The village goes on `<html>` in `index.html`.
+  </Step>
+</Steps>
+
+## Next.js
+
+<Steps>
+  <Step title="Create the app with Tailwind">
+    ```bash title="Terminal"
+    npx create-next-app@latest my-app --ts --tailwind --app
+    ```
+  </Step>
+  <Step title="Run init, then add components">
+    ```bash title="Terminal"
+    npx rasengan-ui init
+    npx rasengan-ui add button dialog
+    ```
+
+    The village goes on `<html>` in `app/layout.tsx`. The components that need the browser start with `"use client"`, so
+    they work from Server Components.
+  </Step>
+</Steps>
+
+## Other setups
+
+`init` writes the config and the stylesheet imports for any project with Tailwind v4 and an `@/` alias, then prints the
+attributes to put on your `<html>` element:
+
+```html
+<html data-village="konoha" data-nature="katon" data-tint="village">
+```
+
+## What init changes
+
+- **rasengan-ui.json**: the engine, village, nature, greys, the stylesheet and the aliases.
+- **The core and the contract**: `lib/utils.ts`, `lib/village-scope.tsx`, and `rasengan/` next to your stylesheet
+  (the engine variants, the token contract, the natures and the village).
+- **Your stylesheet**: one block of imports right after Tailwind's, in the order the contract needs.
+- **Theme tokens already there**: a starter or shadcn theme in the same stylesheet (`--background`, `--primary`,
+  `--radius-sm`, a `font-family` on `body`…) would override the village. `init` comments out only those declarations,
+  after asking; `--keep-css` leaves them.
+- **`<html>`**: `data-village`, `data-nature` and `data-tint`.
+
+`rasengan-ui doctor` checks all of it later on.
+
+## Fonts
+
+Each village has its own type: Figtree in Konoha, Manrope in Kiri, Space Grotesk and JetBrains Mono in Iwa. `init`
+says which ones the village uses; load them from Google Fonts or host them yourself. Until then the system fonts stand
+in.

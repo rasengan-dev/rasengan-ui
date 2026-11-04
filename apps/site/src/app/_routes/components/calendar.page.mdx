@@ -1,0 +1,106 @@
+---
+metadata:
+  title: Calendar · Rasengan UI
+  description: "A month grid to pick one day, several days or a range, with month and year dropdowns, week numbers and locales."
+toc: true
+---
+
+# Calendar
+
+A month grid to pick one day, several days or a range, with month and year dropdowns, week numbers and locales.
+
+<ComponentPreview name="calendar" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add calendar
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/calendar.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/calendar.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { useState } from "react";
+import { Calendar } from "@/components/ui/calendar";
+
+export function Usage() {
+  const [date, setDate] = useState<Date | undefined>(new Date());
+  return <Calendar mode="single" selected={date} onSelect={setDate} />;
+}
+```
+
+Calendar is [React DayPicker](https://daypicker.dev) 10, as in shadcn: `mode` (`"single"`, `"multiple"` or `"range"`),
+`selected` and `onSelect`, and every other DayPicker prop. To pick a date in a field, use the
+[Date Picker](/components/date-picker).
+
+### A range over two months
+
+<ComponentPreview name="calendar" demo="calendar-range" />
+
+```tsx
+<Calendar mode="range" selected={range} onSelect={setRange} numberOfMonths={2} />
+```
+
+### Month and year dropdowns, week numbers
+
+`captionLayout="dropdown"` replaces the caption with a month and a year select, for dates far from today; set
+`startMonth` and `endMonth` to bound them. `showWeekNumber` adds the ISO week in front of each row.
+
+<ComponentPreview name="calendar" demo="calendar-dropdowns" />
+
+### Disabled and booked days
+
+`disabled` takes dates, ranges and rules (`{ before }`, `{ after }`, `{ dayOfWeek }`). `modifiers` and
+`modifiersClassNames` mark days with your own state, such as booked days.
+
+<ComponentPreview name="calendar" demo="calendar-booked" />
+
+### Sizes
+
+A cell is as tall as the village's small control. `size="sm"` tightens it, `size="lg"` gives it the full control height.
+
+<ComponentPreview name="calendar" demo="calendar-sizes" />
+
+### Locales, time zones and other calendars
+
+Pass a date-fns locale to `locale` (`import { fr } from "date-fns/locale"`) for the month names, the first day of the
+week and the labels read by screen readers, and `timeZone` (`"Africa/Douala"`) to show the days of another zone.
+`dir="rtl"` turns the arrows. The Persian, Hijri and other calendars come with DayPicker's `@daypicker/*` packages and
+are not wired in yet.
+
+## Villages
+
+The selected day is the primary, the days between a range's ends the accent, today bold on the muted fill. Cells take
+the village's control height and radius: round and roomy in Kiri, square and dense in Iwa.
+
+<VillageGrid name="calendar" />
+
+## Accessibility
+
+- DayPicker's grid: the arrow keys move a day or a week, Page Up and Page Down a month (with Shift, a year), Home and End
+  the week's ends, Enter or Space picks. Each day is named with its full date.
+- The month and year dropdowns are native selects, with their own labels.
+- Disabled days are skipped by the keyboard and announced as unavailable.
+
+## API reference
+
+`Calendar` takes [DayPicker's props](https://daypicker.dev/api/type-aliases/DayPickerProps) plus:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` |
+| `showOutsideDays` | `boolean` | `true` |
+| `captionLayout` | `"label" \| "dropdown" \| "dropdown-months" \| "dropdown-years"` | `"label"` |
+
+`CalendarDayButton` is the day it renders, to reuse in `components={{ DayButton }}`.

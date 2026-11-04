@@ -1,0 +1,91 @@
+---
+metadata:
+  title: Tabs · Rasengan UI
+  description: "Switches between panels in one place. A segmented control in Konoha and Kiri, an underlined bar in Iwa."
+toc: true
+---
+
+# Tabs
+
+Switches between panels in one place. A segmented control in Konoha and Kiri, an underlined bar in Iwa.
+
+<ComponentPreview name="tabs" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add tabs
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/tabs.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/tabs.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/settings.tsx"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+export function Settings() {
+  return (
+    <Tabs defaultValue="account">
+      <TabsList aria-label="Settings">
+        <TabsTrigger value="account">Account</TabsTrigger>
+        <TabsTrigger value="password">Password</TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">…</TabsContent>
+      <TabsContent value="password">…</TabsContent>
+    </Tabs>
+  );
+}
+```
+
+### Vertical
+
+`orientation="vertical"` on the Tabs puts the list beside the panels; the arrow keys become up and down.
+
+### Variants and sizes
+
+`variant` and `size` go on `Tabs`, and its list and tabs follow. `default` is segmented: the active tab raised on the
+list's well (in Iwa, an ink fill over an underlined bar). `underline` marks the active tab with a primary line on a
+bottom border, for a page's sections. `pills` drops the well and fills the active tab with the primary. `sm`, `default`
+and `lg` follow the village's control heights.
+
+<ComponentPreview name="tabs" demo="tabs-variants" />
+
+<ComponentPreview name="tabs" demo="tabs-sizes" />
+
+```tsx
+<Tabs variant="underline" size="sm" defaultValue="overview">…</Tabs>
+```
+
+## Villages
+
+Its look is five tokens (`--tabs-list`, `--tabs-list-padding`, `--tab-active`, `--tab-active-foreground`, `--tab-active-shadow`): a raised segment in Konoha and Kiri, an inverted tab over a rule in Iwa.
+
+<VillageGrid name="tabs" />
+
+## Accessibility
+
+- A `tablist` of `tab`s, each linked to its `tabpanel`; name the list with `aria-label`.
+- <kbd>Tab</kbd> reaches the selected tab; arrow keys move between tabs, <kbd>Enter</kbd> or <kbd>Space</kbd> selects (or pass `activateOnFocus` to the list).
+
+## API reference
+
+The parts of Base UI's [Tabs](https://base-ui.com/react/components/tabs), styled:
+
+| Part | Notes |
+| --- | --- |
+| `Tabs` | `value`, `defaultValue`, `onValueChange`, `orientation`; `variant` (`"default" \| "underline" \| "pills"`) and `size` (`"sm" \| "default" \| "lg"`) for its list and tabs |
+| `TabsList` | `activateOnFocus`, `loopFocus` |
+| `TabsTrigger` | `value`, `disabled` |
+| `TabsContent` | `value`, `keepMounted` |
+
+`tabsListVariants({ variant })` and `tabsTriggerVariants({ variant, size })` return the classes.

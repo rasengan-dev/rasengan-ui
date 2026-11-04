@@ -1,0 +1,122 @@
+---
+metadata:
+  title: CLI · Rasengan UI
+  description: rasengan-ui sets up a project, adds components, switches villages and keeps installed files up to date.
+toc: true
+---
+
+# CLI
+
+`rasengan-ui` sets up a project, adds components, switches villages, natures and greys, and brings installed files up
+to date without losing your edits. It reads the registry at `https://ui.rasengan.dev/r`, described by Rasengan UI's
+schemas ([registry](https://ui.rasengan.dev/schema/registry.json),
+[item](https://ui.rasengan.dev/schema/registry-item.json)). They hold the same fields as shadcn's, so the shadcn CLI
+reads the registry too.
+
+```bash title="Terminal"
+npx rasengan-ui <command> --help
+```
+
+## init
+
+Sets up the project. See [Installation](/docs/installation).
+
+| Option | What it does |
+| --- | --- |
+| `--village <name>` | The village (asked otherwise) |
+| `--nature <name>` | The nature (default: the village's) |
+| `--tint <village\|neutral>` | The greys (default: `village`) |
+| `--css <path>` | The stylesheet that imports Tailwind (found otherwise) |
+| `--registry <url>` | Another registry: a URL or a folder |
+| `-y`, `--yes` | Take the defaults instead of asking |
+| `--keep-css` | Leave the stylesheet's own theme tokens as they are |
+| `--force` | Run again over an existing `rasengan-ui.json` |
+| `--skip-install` | Don't install npm packages |
+
+## add
+
+```bash title="Terminal"
+npx rasengan-ui add dialog toast
+```
+
+Installs components, the components they use, and their npm packages, with your project's package manager. Files go
+where your aliases point, and their imports are rewritten to match.
+
+A file you edited since it was installed is kept and reported; `--overwrite` replaces it. `--dry-run` shows what would
+change, `--skip-install` leaves the npm packages to you.
+
+## village, nature, tint
+
+```bash title="Terminal"
+npx rasengan-ui village list
+npx rasengan-ui village set kiri
+npx rasengan-ui village add iwa
+npx rasengan-ui nature set raiton
+npx rasengan-ui tint set neutral
+```
+
+- `village set` makes a village the project's, installing it if needed. A nature you picked stays; the village's
+  default nature follows the new village. `--nature` picks one.
+- `village add` installs villages without switching, for a section of a page:
+
+  ```tsx
+  <VillageScope village="iwa">…</VillageScope>
+  ```
+
+- `nature set` and `tint set` switch the accent hue and the greys.
+
+Each updates `rasengan-ui.json`, the stylesheet's imports and the attributes on `<html>`.
+
+## diff
+
+```bash title="Terminal"
+npx rasengan-ui diff
+npx rasengan-ui diff dialog
+```
+
+Tells, for each installed file, whether you edited it, the registry changed it, or both. Name a component, or pass
+`--patch`, to see the changes themselves.
+
+## update
+
+```bash title="Terminal"
+npx rasengan-ui update
+```
+
+Brings installed files up to the registry:
+
+- a file you didn't edit takes the registry's version;
+- a file you edited gets the registry's changes merged into yours. Where both changed the same lines, the file keeps
+  both between conflict markers (`<<<<<<< yours` … `>>>>>>> registry`), and the command exits with 1;
+- a file you deleted stays deleted;
+- what the components gained since (new files, components, npm packages) is installed.
+
+`--dry-run` shows what would change.
+
+## doctor
+
+```bash title="Terminal"
+npx rasengan-ui doctor
+```
+
+Checks the config, the registry, the Tailwind and React versions, the `@/` alias, the stylesheet's imports and their
+order, theme tokens that override the village, the village on `<html>`, installed files and npm packages. It exits with
+1 when something is broken.
+
+## mcp
+
+```bash title="Terminal"
+claude mcp add rasengan-ui -- npx rasengan-ui mcp
+```
+
+Starts the MCP server, for agents. See [MCP server](/docs/mcp).
+
+## Files it keeps
+
+| File | What it holds |
+| --- | --- |
+| `rasengan-ui.json` | Engine, village, nature, greys, stylesheet, aliases, registry |
+| `rasengan-ui.lock` | For each installed file, the component that installed it and the hash it had then |
+| `.rasengan-ui/base/` | Each file as it was installed: what `diff` and `update` compare and merge against |
+
+Commit all three: they let anyone on the team update components without losing anyone's edits.

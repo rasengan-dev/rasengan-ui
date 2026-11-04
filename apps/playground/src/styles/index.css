@@ -1,0 +1,121 @@
+@import 'tailwindcss';
+
+/* Rasengan UI (rasengan-ui): engine variants, token contract, villages, then natures. */
+@import "tw-animate-css";
+@import "./rasengan/variants.css";
+@import "./rasengan/contract.css";
+@import "./rasengan/villages/iwa.css";
+@import "./rasengan/villages/kiri.css";
+@import "./rasengan/natures.css";
+
+/*
+ * The playground git-ignores what the CLI writes, and Tailwind skips ignored files when it looks
+ * for classes: point it at them. A real project commits its components and needs none of this.
+ */
+@source "../components/ui";
+@source "../lib";
+
+@custom-variant dark (&:is(.dark *));
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('/fonts/geist-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@theme {
+  /* --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'; (rasengan-ui: the village sets it) */
+}
+
+@theme inline {
+  /* --radius-sm: calc(var(--radius) - 4px); (rasengan-ui: the village sets it) */
+  /* --radius-md: calc(var(--radius) - 2px); (rasengan-ui: the village sets it) */
+  /* --radius-lg: var(--radius); (rasengan-ui: the village sets it) */
+  /* --radius-xl: calc(var(--radius) + 4px); (rasengan-ui: the village sets it) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  /* --radius: 0.625rem; (rasengan-ui: the village sets it) */
+  /* --background: oklch(1 0 0); (rasengan-ui: the village sets it) */
+  /* --foreground: oklch(0.141 0.005 285.823); (rasengan-ui: the village sets it) */
+  /* --card: oklch(1 0 0); (rasengan-ui: the village sets it) */
+  /* --card-foreground: oklch(0.141 0.005 285.823); (rasengan-ui: the village sets it) */
+  /* --popover: oklch(1 0 0); (rasengan-ui: the village sets it) */
+  /* --popover-foreground: oklch(0.141 0.005 285.823); (rasengan-ui: the village sets it) */
+  /* Rasengan blue — constant brand color, not inverted between themes */
+  /* --primary: #2a7fff; (rasengan-ui: the village sets it) */
+  /* --primary-foreground: oklch(0.985 0 0); (rasengan-ui: the village sets it) */
+  /* --secondary: oklch(0.967 0.001 286.375); (rasengan-ui: the village sets it) */
+  /* --secondary-foreground: oklch(0.21 0.006 285.885); (rasengan-ui: the village sets it) */
+  /* --muted: oklch(0.967 0.001 286.375); (rasengan-ui: the village sets it) */
+  /* --muted-foreground: oklch(0.552 0.016 285.938); (rasengan-ui: the village sets it) */
+  /* --accent: oklch(0.967 0.001 286.375); (rasengan-ui: the village sets it) */
+  /* --accent-foreground: oklch(0.21 0.006 285.885); (rasengan-ui: the village sets it) */
+  /* --destructive: oklch(0.577 0.245 27.325); (rasengan-ui: the village sets it) */
+  /* --border: oklch(0.92 0.004 286.32); (rasengan-ui: the village sets it) */
+  /* --input: oklch(0.92 0.004 286.32); (rasengan-ui: the village sets it) */
+  /* --ring: #2a7fff; (rasengan-ui: the village sets it) */
+}
+
+.dark {
+  /* --background: oklch(0.141 0.005 285.823); (rasengan-ui: the village sets it) */
+  /* --foreground: oklch(0.985 0 0); (rasengan-ui: the village sets it) */
+  /* --card: oklch(0.21 0.006 285.885); (rasengan-ui: the village sets it) */
+  /* --card-foreground: oklch(0.985 0 0); (rasengan-ui: the village sets it) */
+  /* --popover: oklch(0.21 0.006 285.885); (rasengan-ui: the village sets it) */
+  /* --popover-foreground: oklch(0.985 0 0); (rasengan-ui: the village sets it) */
+  /* Rasengan blue — constant brand color, not inverted between themes */
+  /* --primary: #2a7fff; (rasengan-ui: the village sets it) */
+  /* --primary-foreground: oklch(0.985 0 0); (rasengan-ui: the village sets it) */
+  /* --secondary: oklch(0.274 0.006 286.033); (rasengan-ui: the village sets it) */
+  /* --secondary-foreground: oklch(0.985 0 0); (rasengan-ui: the village sets it) */
+  /* --muted: oklch(0.274 0.006 286.033); (rasengan-ui: the village sets it) */
+  /* --muted-foreground: oklch(0.705 0.015 286.067); (rasengan-ui: the village sets it) */
+  /* --accent: oklch(0.274 0.006 286.033); (rasengan-ui: the village sets it) */
+  /* --accent-foreground: oklch(0.985 0 0); (rasengan-ui: the village sets it) */
+  /* --destructive: oklch(0.704 0.191 22.216); (rasengan-ui: the village sets it) */
+  /* --border: oklch(1 0 0 / 10%); (rasengan-ui: the village sets it) */
+  /* --input: oklch(1 0 0 / 15%); (rasengan-ui: the village sets it) */
+  /* --ring: #2a7fff; (rasengan-ui: the village sets it) */
+}
+
+body,
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}

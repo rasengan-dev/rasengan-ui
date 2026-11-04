@@ -1,0 +1,28 @@
+/*
+ * Engine variants (RFC-0002, "Engines").
+ *
+ * Base UI and Radix mark state with different attributes (data-open vs
+ * data-state="open"). Components only use these variants, so one class
+ * string works on either engine:  ui-open:animate-in  ui-checked:bg-primary
+ *
+ * :is() keeps the specificity of Tailwind's own data-[…] variants, and these
+ * come after hover: in the stylesheet, so a state (active tab, pressed toggle,
+ * invalid field) wins over hover and focus.
+ *
+ * Import after Tailwind:  @import "tailwindcss";
+ *                          @import "./rasengan/variants.css";
+ */
+
+@custom-variant ui-open (&:is([data-open], [data-popup-open], [data-state="open"]));
+@custom-variant ui-closed (&:is([data-closed], [data-state="closed"]));
+@custom-variant ui-checked (&:is([data-checked], [data-state="checked"]));
+@custom-variant ui-unchecked (&:is([data-unchecked], [data-state="unchecked"]));
+@custom-variant ui-indeterminate (&:is([data-indeterminate], [data-state="indeterminate"]));
+@custom-variant ui-invalid (&:is([data-invalid], [aria-invalid="true"]));
+@custom-variant ui-active (&:is([data-active], [data-state="active"]));
+@custom-variant ui-disabled (&:is([data-disabled], :disabled));
+@custom-variant ui-highlighted (&:is([data-highlighted]));
+@custom-variant ui-pressed (&:is([data-pressed], [data-state="on"]));
+
+/* shadcn's dark variant: `.dark` on <html> or on any ancestor. */
+@custom-variant dark (&:is(.dark *));

@@ -1,0 +1,167 @@
+{
+	"compilerOptions": {
+		"target": "ES2022",
+		"lib": [
+			"ES2023",
+			"DOM",
+			"DOM.Iterable"
+		],
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"jsx": "react-jsx",
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"skipLibCheck": true,
+		"noEmit": true,
+		"isolatedModules": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/components/ui/accordion": [
+				"./components/accordion/accordion.base.tsx"
+			],
+			"@/components/ui/alert": [
+				"./components/alert/alert.base.tsx"
+			],
+			"@/components/ui/alert-dialog": [
+				"./components/alert-dialog/alert-dialog.base.tsx"
+			],
+			"@/components/ui/avatar": [
+				"./components/avatar/avatar.base.tsx"
+			],
+			"@/components/ui/badge": [
+				"./components/badge/badge.base.tsx"
+			],
+			"@/components/ui/breadcrumb": [
+				"./components/breadcrumb/breadcrumb.base.tsx"
+			],
+			"@/components/ui/button": [
+				"./components/button/button.base.tsx"
+			],
+			"@/components/ui/button-group": [
+				"./components/button-group/button-group.base.tsx"
+			],
+			"@/components/ui/calendar": [
+				"./components/calendar/calendar.base.tsx"
+			],
+			"@/components/ui/card": [
+				"./components/card/card.base.tsx"
+			],
+			"@/components/ui/checkbox": [
+				"./components/checkbox/checkbox.base.tsx"
+			],
+			"@/components/ui/collapsible": [
+				"./components/collapsible/collapsible.base.tsx"
+			],
+			"@/components/ui/combobox": [
+				"./components/combobox/combobox.base.tsx"
+			],
+			"@/components/ui/command": [
+				"./components/command/command.base.tsx"
+			],
+			"@/components/ui/date-picker": [
+				"./components/date-picker/date-picker.base.tsx"
+			],
+			"@/components/ui/dialog": [
+				"./components/dialog/dialog.base.tsx"
+			],
+			"@/components/ui/dropdown-menu": [
+				"./components/dropdown-menu/dropdown-menu.base.tsx"
+			],
+			"@/components/ui/empty": [
+				"./components/empty/empty.base.tsx"
+			],
+			"@/components/ui/field": [
+				"./components/field/field.base.tsx"
+			],
+			"@/components/ui/input": [
+				"./components/input/input.base.tsx"
+			],
+			"@/components/ui/input-group": [
+				"./components/input-group/input-group.base.tsx"
+			],
+			"@/components/ui/kbd": [
+				"./components/kbd/kbd.base.tsx"
+			],
+			"@/components/ui/label": [
+				"./components/label/label.base.tsx"
+			],
+			"@/components/ui/navigation-menu": [
+				"./components/navigation-menu/navigation-menu.base.tsx"
+			],
+			"@/components/ui/pagination": [
+				"./components/pagination/pagination.base.tsx"
+			],
+			"@/components/ui/popover": [
+				"./components/popover/popover.base.tsx"
+			],
+			"@/components/ui/progress": [
+				"./components/progress/progress.base.tsx"
+			],
+			"@/components/ui/radio-group": [
+				"./components/radio-group/radio-group.base.tsx"
+			],
+			"@/components/ui/scroll-area": [
+				"./components/scroll-area/scroll-area.base.tsx"
+			],
+			"@/components/ui/select": [
+				"./components/select/select.base.tsx"
+			],
+			"@/components/ui/separator": [
+				"./components/separator/separator.base.tsx"
+			],
+			"@/components/ui/sheet": [
+				"./components/sheet/sheet.base.tsx"
+			],
+			"@/components/ui/skeleton": [
+				"./components/skeleton/skeleton.base.tsx"
+			],
+			"@/components/ui/slider": [
+				"./components/slider/slider.base.tsx"
+			],
+			"@/components/ui/spinner": [
+				"./components/spinner/spinner.base.tsx"
+			],
+			"@/components/ui/switch": [
+				"./components/switch/switch.base.tsx"
+			],
+			"@/components/ui/table": [
+				"./components/table/table.base.tsx"
+			],
+			"@/components/ui/tabs": [
+				"./components/tabs/tabs.base.tsx"
+			],
+			"@/components/ui/textarea": [
+				"./components/textarea/textarea.base.tsx"
+			],
+			"@/components/ui/time-picker": [
+				"./components/time-picker/time-picker.base.tsx"
+			],
+			"@/components/ui/toast": [
+				"./components/toast/toast.base.tsx"
+			],
+			"@/components/ui/toggle": [
+				"./components/toggle/toggle.base.tsx"
+			],
+			"@/components/ui/toggle-group": [
+				"./components/toggle-group/toggle-group.base.tsx"
+			],
+			"@/components/ui/tooltip": [
+				"./components/tooltip/tooltip.base.tsx"
+			],
+			"@/lib/utils": [
+				"../packages/core/src/utils.ts"
+			],
+			"@/lib/village-scope": [
+				"../packages/core/src/village-scope.tsx"
+			],
+			"@/lib/field-context": [
+				"../packages/core/src/field-context.tsx"
+			]
+		}
+	},
+	"include": [
+		"components",
+		"blocks"
+	]
+}

@@ -1,0 +1,167 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"target": "ES2022",
+		"moduleResolution": "bundler",
+		"module": "ESNext",
+		"jsx": "react-jsx",
+		"paths": {
+			"@/components/ui/accordion": [
+				"../../registry/components/accordion/accordion.base.tsx"
+			],
+			"@/components/ui/alert": [
+				"../../registry/components/alert/alert.base.tsx"
+			],
+			"@/components/ui/alert-dialog": [
+				"../../registry/components/alert-dialog/alert-dialog.base.tsx"
+			],
+			"@/components/ui/avatar": [
+				"../../registry/components/avatar/avatar.base.tsx"
+			],
+			"@/components/ui/badge": [
+				"../../registry/components/badge/badge.base.tsx"
+			],
+			"@/components/ui/breadcrumb": [
+				"../../registry/components/breadcrumb/breadcrumb.base.tsx"
+			],
+			"@/components/ui/button": [
+				"../../registry/components/button/button.base.tsx"
+			],
+			"@/components/ui/button-group": [
+				"../../registry/components/button-group/button-group.base.tsx"
+			],
+			"@/components/ui/calendar": [
+				"../../registry/components/calendar/calendar.base.tsx"
+			],
+			"@/components/ui/card": [
+				"../../registry/components/card/card.base.tsx"
+			],
+			"@/components/ui/checkbox": [
+				"../../registry/components/checkbox/checkbox.base.tsx"
+			],
+			"@/components/ui/collapsible": [
+				"../../registry/components/collapsible/collapsible.base.tsx"
+			],
+			"@/components/ui/combobox": [
+				"../../registry/components/combobox/combobox.base.tsx"
+			],
+			"@/components/ui/command": [
+				"../../registry/components/command/command.base.tsx"
+			],
+			"@/components/ui/date-picker": [
+				"../../registry/components/date-picker/date-picker.base.tsx"
+			],
+			"@/components/ui/dialog": [
+				"../../registry/components/dialog/dialog.base.tsx"
+			],
+			"@/components/ui/dropdown-menu": [
+				"../../registry/components/dropdown-menu/dropdown-menu.base.tsx"
+			],
+			"@/components/ui/empty": [
+				"../../registry/components/empty/empty.base.tsx"
+			],
+			"@/components/ui/field": [
+				"../../registry/components/field/field.base.tsx"
+			],
+			"@/components/ui/input": [
+				"../../registry/components/input/input.base.tsx"
+			],
+			"@/components/ui/input-group": [
+				"../../registry/components/input-group/input-group.base.tsx"
+			],
+			"@/components/ui/kbd": [
+				"../../registry/components/kbd/kbd.base.tsx"
+			],
+			"@/components/ui/label": [
+				"../../registry/components/label/label.base.tsx"
+			],
+			"@/components/ui/navigation-menu": [
+				"../../registry/components/navigation-menu/navigation-menu.base.tsx"
+			],
+			"@/components/ui/pagination": [
+				"../../registry/components/pagination/pagination.base.tsx"
+			],
+			"@/components/ui/popover": [
+				"../../registry/components/popover/popover.base.tsx"
+			],
+			"@/components/ui/progress": [
+				"../../registry/components/progress/progress.base.tsx"
+			],
+			"@/components/ui/radio-group": [
+				"../../registry/components/radio-group/radio-group.base.tsx"
+			],
+			"@/components/ui/scroll-area": [
+				"../../registry/components/scroll-area/scroll-area.base.tsx"
+			],
+			"@/components/ui/select": [
+				"../../registry/components/select/select.base.tsx"
+			],
+			"@/components/ui/separator": [
+				"../../registry/components/separator/separator.base.tsx"
+			],
+			"@/components/ui/sheet": [
+				"../../registry/components/sheet/sheet.base.tsx"
+			],
+			"@/components/ui/skeleton": [
+				"../../registry/components/skeleton/skeleton.base.tsx"
+			],
+			"@/components/ui/slider": [
+				"../../registry/components/slider/slider.base.tsx"
+			],
+			"@/components/ui/spinner": [
+				"../../registry/components/spinner/spinner.base.tsx"
+			],
+			"@/components/ui/switch": [
+				"../../registry/components/switch/switch.base.tsx"
+			],
+			"@/components/ui/table": [
+				"../../registry/components/table/table.base.tsx"
+			],
+			"@/components/ui/tabs": [
+				"../../registry/components/tabs/tabs.base.tsx"
+			],
+			"@/components/ui/textarea": [
+				"../../registry/components/textarea/textarea.base.tsx"
+			],
+			"@/components/ui/time-picker": [
+				"../../registry/components/time-picker/time-picker.base.tsx"
+			],
+			"@/components/ui/toast": [
+				"../../registry/components/toast/toast.base.tsx"
+			],
+			"@/components/ui/toggle": [
+				"../../registry/components/toggle/toggle.base.tsx"
+			],
+			"@/components/ui/toggle-group": [
+				"../../registry/components/toggle-group/toggle-group.base.tsx"
+			],
+			"@/components/ui/tooltip": [
+				"../../registry/components/tooltip/tooltip.base.tsx"
+			],
+			"@/lib/utils": [
+				"../../packages/core/src/utils.ts"
+			],
+			"@/lib/village-scope": [
+				"../../packages/core/src/village-scope.tsx"
+			],
+			"@/lib/field-context": [
+				"../../packages/core/src/field-context.tsx"
+			],
+			"@/registry/*": [
+				"../../registry/*"
+			],
+			"@/*": [
+				"src/*"
+			]
+		}
+	},
+	"include": [
+		"src",
+		"rasengan-env.d.ts",
+		"mdx-components.tsx",
+		"../../registry/components",
+		"../../packages/core/src",
+		"../../packages/villages/src"
+	],
+	"extends": "./node_modules/rasengan/tsconfig.base.json"
+}

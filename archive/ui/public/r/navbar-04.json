@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "navbar-04",
+  "title": "Floating Navbar with medium border rounded",
+  "description": "Floating Navbar with medium border rounded",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "@rasengan-ui/logo-01",
+    "@rasengan-ui/theme-button-01"
+  ],
+  "files": [
+    {
+      "path": "src/registry/marketing/elements/headers/navbar4.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { cn } from \"@/lib/utils\";\nimport ThemeButton from \"@/registry/application-ui/granulars/buttons/theme-button1\";\nimport AppLogo from \"@/registry/application-ui/granulars/logos/logo1\";\nimport { AlignJustify } from \"lucide-react\";\nimport { ComponentProps, useState } from \"react\";\n\ntype Props = {\n\tclassName?: ComponentProps<\"div\">[\"className\"];\n\tenableTheme?: boolean;\n};\n\n/**\n * Floating Navbar 1\n *\n * Floating navbar with centered text menu\n */\nexport const FloatingNavbar1 = ({ className, enableTheme }: Props) => {\n\tconst [isOpen, setIsOpen] = useState(false);\n\n\treturn (\n\t\t<header\n\t\t\tclassName={cn(\n\t\t\t\t\"bg-background w-full max-w-[1000px] h-[60px] border-[1px] border-border flex items-center justify-between px-3 rounded-xl mx-auto\",\n\t\t\t\tclassName\n\t\t\t)}\n\t\t>\n\t\t\t<div>\n\t\t\t\t<AppLogo size='sm' />\n\t\t\t</div>\n\n\t\t\t<nav className='hidden md:block'>\n\t\t\t\t<ul className='flex items-center gap-8 text-foreground'>\n\t\t\t\t\t<a href='#'>\n\t\t\t\t\t\t<li className='font-medium text-md bg-primary/5 px-3 py-1 rounded-full'>\n\t\t\t\t\t\t\tHome\n\t\t\t\t\t\t</li>\n\t\t\t\t\t</a>\n\t\t\t\t\t<a href='#'>\n\t\t\t\t\t\t<li className='font-medium text-md px-3 py-1 rounded-full hover:bg-muted'>\n\t\t\t\t\t\t\tAbout\n\t\t\t\t\t\t</li>\n\t\t\t\t\t</a>\n\t\t\t\t\t<a href='#'>\n\t\t\t\t\t\t<li className='font-medium text-md px-3 py-1 rounded-full hover:bg-muted'>\n\t\t\t\t\t\t\tContact\n\t\t\t\t\t\t</li>\n\t\t\t\t\t</a>\n\t\t\t\t\t<a href='#'>\n\t\t\t\t\t\t<li className='font-medium text-md px-3 py-1 rounded-full hover:bg-muted'>\n\t\t\t\t\t\t\tBlog\n\t\t\t\t\t\t</li>\n\t\t\t\t\t</a>\n\t\t\t\t</ul>\n\t\t\t</nav>\n\n\t\t\t<div className='flex items-center gap-2'>\n\t\t\t\t{enableTheme && <ThemeButton />}\n\t\t\t\t<Button>Start now</Button>\n\n\t\t\t\t<Button\n\t\t\t\t\tsize='icon'\n\t\t\t\t\tclassName='md:hidden'\n\t\t\t\t\tonClick={() => setIsOpen((prev) => !prev)}\n\t\t\t\t>\n\t\t\t\t\t<AlignJustify />\n\t\t\t\t</Button>\n\t\t\t</div>\n\n\t\t\t<div\n\t\t\t\tclassName={cn(\n\t\t\t\t\t\"fixed right-0 top-0 bottom-0 max-w-[300px] w-full bg-background z-30 p-4 transition-all duration-300\",\n\t\t\t\t\tisOpen ? \"translate-x-0\" : \"translate-x-full\"\n\t\t\t\t)}\n\t\t\t>\n\t\t\t\t<nav className='mt-10'>\n\t\t\t\t\t<ul className='flex flex-col justify-center gap-8 text-foreground'>\n\t\t\t\t\t\t<a href='#'>\n\t\t\t\t\t\t\t<li className='font-medium text-md'>Home</li>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<a href='#'>\n\t\t\t\t\t\t\t<li className='font-medium text-md'>About</li>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<a href='#'>\n\t\t\t\t\t\t\t<li className='font-medium text-md'>Contact</li>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<a href='#'>\n\t\t\t\t\t\t\t<li className='font-medium text-md'>Blog</li>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</ul>\n\t\t\t\t</nav>\n\t\t\t</div>\n\t\t\t<div\n\t\t\t\tclassName={cn(\n\t\t\t\t\t\"fixed top-0 right-0 left-0 bottom-0 bg-black/70 z-10\",\n\t\t\t\t\tisOpen ? \"block\" : \"hidden\"\n\t\t\t\t)}\n\t\t\t\tonClick={() => setIsOpen(false)}\n\t\t\t></div>\n\t\t</header>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

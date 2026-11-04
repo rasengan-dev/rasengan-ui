@@ -1,0 +1,77 @@
+---
+metadata:
+  title: Kbd · Rasengan UI
+  description: "A key or a shortcut, in the village's mono face: for menus, tooltips and the command palette."
+toc: true
+---
+
+# Kbd
+
+A key or a shortcut, in the village's mono face: for menus, tooltips and the command palette.
+
+<ComponentPreview name="kbd" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add kbd
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/kbd.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/kbd.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { Kbd, KbdGroup } from "@/components/ui/kbd";
+
+export function Usage() {
+  return (
+    <p>
+      Press{" "}
+      <KbdGroup>
+        <Kbd>Ctrl</Kbd>
+        <Kbd>K</Kbd>
+      </KbdGroup>{" "}
+      to search.
+    </p>
+  );
+}
+```
+
+### Sizes, and in a tooltip
+
+`size="sm"` fits menus and tooltips. In the default tooltip, which is inverted, the key turns into a wash of the
+tooltip's ink so it still reads on the dark surface.
+
+<ComponentPreview name="kbd" demo="kbd-sizes" />
+
+## Villages
+
+The key takes the village's border width and small radius: thin and rounded in Konoha, square with a heavy edge in Iwa.
+
+<VillageGrid name="kbd" />
+
+## Accessibility
+
+- A `<kbd>`, which screen readers read as text. Spell keys the way people say them (`Ctrl`, `Enter`), or give the
+  group an `aria-label` when you use symbols such as `⌘`.
+- When the shortcut repeats a label that is already read (a button's name), hide it with `aria-hidden`.
+
+## API reference
+
+`Kbd` and `KbdGroup`, each a `<kbd>` taking its props and `className`. `Kbd` also takes:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `size` | `"sm" \| "default"` | `"default"` |
+
+`kbdVariants({ size })` returns the key's classes.

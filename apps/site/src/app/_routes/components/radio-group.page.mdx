@@ -1,0 +1,85 @@
+---
+metadata:
+  title: Radio group · Rasengan UI
+  description: "Picks one option out of a few. Arrow keys move the choice, as the platform expects."
+toc: true
+---
+
+# Radio group
+
+Picks one option out of a few. Arrow keys move the choice, as the platform expects. For a long list, use [Select](/components/select).
+
+<ComponentPreview name="radio-group" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add radio-group
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/radio-group.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/radio-group.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/plan.tsx"
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+
+export function Plan() {
+  return (
+    <RadioGroup defaultValue="team" aria-label="Plan">
+      <div className="flex items-center gap-2">
+        <RadioGroupItem value="solo" id="solo" />
+        <Label htmlFor="solo">Solo</Label>
+      </div>
+      <div className="flex items-center gap-2">
+        <RadioGroupItem value="team" id="team" />
+        <Label htmlFor="team">Team</Label>
+      </div>
+    </RadioGroup>
+  );
+}
+```
+
+### Tones
+
+`tone` on the RadioGroup colours every item's checked ring and dot; an item can set its own. Checked, the ring takes the tone's edge, which holds 3:1 against the page: the colour itself, or for `warning`, whose amber is too light for that, its darker text colour.
+
+<ComponentPreview name="radio-group" demo="radio-group-tones" />
+
+### Sizes
+
+`sm`, `default` and `lg` on the RadioGroup, at the village's indicator sizes; an item can set its own.
+
+<ComponentPreview name="radio-group" demo="radio-group-sizes" />
+
+## Villages
+
+Round in Konoha and Kiri, square in Iwa (its pill radius is 0); the dot is the nature's primary.
+
+<VillageGrid name="radio-group" />
+
+## Accessibility
+
+- A `radiogroup` of `radio` buttons: name the group with `aria-label`, or with a Field's label.
+- <kbd>Tab</kbd> reaches the checked option; arrow keys move and check the next one.
+
+## API reference
+
+The parts of Base UI's [Radio Group](https://base-ui.com/react/components/radio):
+
+| Part | Notes |
+| --- | --- |
+| `RadioGroup` | `value`, `defaultValue`, `onValueChange`, `name`, `disabled`, `required`; `tone` (`"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"`, default `"primary"`) and `size` (`"sm" \| "default" \| "lg"`) for every item |
+| `RadioGroupItem` | `value`, `disabled`; `tone` and `size` override the group's |
+
+`radioVariants({ tone, size })` returns an item's classes.

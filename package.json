@@ -3,16 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "pnpm --filter @rasengan-ui/* dev",
-    "build": "pnpm packages:build && pnpm --filter @rasengan-ui/* build",
-    "registry:build": "pnpm --filter @rasengan-ui/kit registry:build",
-    "packages:build": "pnpm --filter @rasengan-ui/data-ui build",
-    "start": "pnpm --filter @rasengan-ui/* start",
+    "dev": "pnpm --filter @rasengan-ui/site dev",
+    "build": "RASENGAN_UI_URL=${RASENGAN_UI_URL:-https://ui.rasengan.dev} pnpm registry && pnpm --filter @rasengan-ui/site build",
+    "start": "pnpm --filter @rasengan-ui/site serve",
     "lint": "pnpm -r lint",
-    "test": "",
+    "test": "pnpm --filter @rasengan-ui/villages --filter rasengan-ui test",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx,css,html}\" --write \"**/*.json\" --write \"**/*.{yml,yaml}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,css,html}\" --check \"**/*.json\" --check \"**/*.{yml,yaml}\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "playground": "pnpm --filter @rasengan-ui/playground",
+    "registry": "node scripts/registry.mjs",
+    "typecheck": "pnpm --filter @rasengan-ui/core --filter @rasengan-ui/villages --filter @rasengan-ui/registry --filter @rasengan-ui/site --filter rasengan-ui typecheck",
+    "contrast": "node scripts/contrast.mjs",
+    "screenshots": "node scripts/screenshots.mjs",
+    "axe": "node scripts/axe.mjs"
   },
   "engines": {
     "node": ">=20.18.0"
@@ -23,12 +27,16 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "axe-core": "^4.14.0",
     "husky": "^9.1.7",
+    "pixelmatch": "^8.0.0",
+    "playwright-core": "^1.64.1",
+    "pngjs": "^7.0.0",
     "prettier": "^3.7.4"
   },
   "pnpm": {
     "patchedDependencies": {
-      "react-syntax-highlighter@16.1.0": "patches/react-syntax-highlighter@16.1.0.patch"
+      "rasengan@2.0.0": "patches/rasengan@2.0.0.patch"
     }
   }
 }

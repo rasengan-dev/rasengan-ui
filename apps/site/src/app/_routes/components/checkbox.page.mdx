@@ -1,0 +1,94 @@
+---
+metadata:
+  title: Checkbox · Rasengan UI
+  description: "Turns an option on or off, with an indeterminate state for “some of these”. Square in Iwa, as in every village."
+toc: true
+---
+
+# Checkbox
+
+Turns an option on or off, with an indeterminate state for “some of these”. Square in every village, rounder in Konoha and Kiri, sharp in Iwa.
+
+<ComponentPreview name="checkbox" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add checkbox
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/checkbox.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/checkbox.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/updates.tsx"
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+
+export function Updates() {
+  return (
+    <div className="flex items-center gap-2">
+      <Checkbox id="updates" defaultChecked />
+      <Label htmlFor="updates">Email me product updates</Label>
+    </div>
+  );
+}
+```
+
+### Indeterminate
+
+`indeterminate` draws a dash, for a parent checkbox whose children are partly checked. Base UI's `CheckboxGroup` can
+manage such a parent for you (`parent` on the parent checkbox).
+
+```tsx
+<Checkbox indeterminate aria-label="Select all" />
+```
+
+### Tones
+
+`tone` colours the checked box: `primary` by default, `neutral` for the village's ink, and `success`, `warning`, `info` or `destructive` when the choice carries that meaning. Checked, the box takes the tone's edge, which holds 3:1 against the page: the colour itself, or for `warning`, whose amber is too light for that, its darker text colour.
+
+```tsx
+<Checkbox tone="destructive" />
+```
+
+<ComponentPreview name="checkbox" demo="checkbox-tones" />
+
+### Sizes
+
+`sm`, `default` and `lg` follow the village's indicator sizes (`--indicator-sm`, `--indicator-md`, `--indicator-lg`), shared with Radio group and Slider's thumb.
+
+<ComponentPreview name="checkbox" demo="checkbox-sizes" />
+
+## Villages
+
+The box takes the village's check radius and border width; checked, it fills with the nature's primary.
+
+<VillageGrid name="checkbox" />
+
+## Accessibility
+
+- A `role="checkbox"` button with `aria-checked` (`mixed` when indeterminate), backed by a hidden input for forms.
+- <kbd>Space</kbd> toggles it; a linked label toggles it on click.
+- Inside a Field, an invalid checkbox (a `required` one left unchecked) turns destructive.
+
+## API reference
+
+The props of Base UI's [Checkbox](https://base-ui.com/react/components/checkbox) root (`checked`, `defaultChecked`, `onCheckedChange`, `indeterminate`, `name`, `value`, `required`, `disabled`…), plus:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `tone` | `"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"` | `"primary"` |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` |
+| `className` | `string` | |
+
+`checkboxVariants({ tone, size })` returns its classes.

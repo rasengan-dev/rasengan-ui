@@ -1,0 +1,63 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+/* What a project gets from `rasengan-ui init`, read from the sources: contract, villages, then natures. */
+@import '../../../../packages/core/src/variants.css';
+@import '../../../../packages/villages/src/contract.css';
+@import '../../../../packages/villages/src/villages/konoha.css';
+@import '../../../../packages/villages/src/villages/kiri.css';
+@import '../../../../packages/villages/src/villages/iwa.css';
+@import '../../../../packages/villages/src/natures.css';
+
+/* Components live outside the app; let Tailwind see their classes. */
+@source '../../../../registry/components';
+
+/*
+ * Code blocks: shiki renders both themes into each token (`--shiki-light`, `--shiki-dark`),
+ * in MDX blocks (rehype-pretty-code) and `?source` imports alike; `.dark` picks one.
+ */
+pre code[data-theme] span,
+.shiki span {
+  color: var(--shiki-light);
+}
+.dark pre code[data-theme] span,
+.dark .shiki span {
+  color: var(--shiki-dark);
+}
+
+/* A grid drops the newline text between lines, which a <pre> would otherwise render as blank lines. */
+pre > code[data-language] {
+  display: grid;
+}
+pre [data-line] {
+  padding: 0 1.25rem;
+  border-left: 2px solid transparent;
+}
+pre [data-highlighted-line] {
+  background: color-mix(in oklab, var(--primary) 10%, transparent);
+  border-left-color: var(--primary);
+}
+pre mark[data-highlighted-chars] {
+  background: color-mix(in oklab, var(--primary) 14%, transparent);
+  border-radius: 4px;
+  padding: 0.1rem 0.25rem;
+}
+pre code[data-line-numbers] {
+  counter-reset: line;
+}
+pre code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 2ch;
+  margin-right: 1.25rem;
+  text-align: right;
+  color: var(--muted-foreground);
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

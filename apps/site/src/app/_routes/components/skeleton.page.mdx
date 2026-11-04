@@ -1,0 +1,62 @@
+---
+metadata:
+  title: Skeleton · Rasengan UI
+  description: "A placeholder shape while content loads. Pulses in Konoha and Kiri, hatched and still in Iwa, still everywhere under reduced motion."
+toc: true
+---
+
+# Skeleton
+
+A placeholder shape while content loads. Pulses in Konoha and Kiri, hatched and still in Iwa, still everywhere under reduced motion.
+
+<ComponentPreview name="skeleton" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add skeleton
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/skeleton.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/skeleton.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/loading.tsx"
+import { Skeleton } from "@/components/ui/skeleton";
+
+export function Loading() {
+  return (
+    <div className="flex items-center gap-4">
+      <Skeleton className="size-12 rounded-pill" />
+      <div className="grid gap-2">
+        <Skeleton className="h-4 w-48" />
+        <Skeleton className="h-4 w-32" />
+      </div>
+    </div>
+  );
+}
+```
+
+## Villages
+
+Its fill and motion are tokens: `--skeleton-fill` (Iwa hatches it) and `--skeleton-motion` (Iwa keeps it still).
+
+<VillageGrid name="skeleton" />
+
+## Accessibility
+
+- A `<div>` with no role: the region that is loading should carry `aria-busy="true"`, and the skeletons can be hidden with `aria-hidden`.
+- The pulse stops under `prefers-reduced-motion`.
+
+## API reference
+
+The props of `<div>`, plus `className`: size and shape it with utilities.

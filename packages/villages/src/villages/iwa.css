@@ -1,0 +1,126 @@
+/*
+ * Iwa, the Stone (RFC-0002): no radius, heavy borders, mono uppercase labels, hard shadows, dense and quick.
+ * Default nature: doton. Greys multiply their chroma by --tint (data-tint="neutral" → 0).
+ */
+
+:where([data-village="iwa"]:not([data-village] *)) {
+	--nature-hue: 75;
+}
+
+[data-village="iwa"] {
+	/* Shape */
+	--radius: 0px;
+	--control-radius: 0px;
+	--pill-radius: 0px;
+	--check-radius: 0px;
+	--border-width: 2px;
+
+	/* Type */
+	--font-body: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+	--font-heading: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+	--font-code: var(--font-heading);
+	--display-tracking: 0em;
+
+	/* Controls: mono, uppercase, tracked */
+	--control-sm: 1.875rem;
+	--control-md: 2.125rem;
+	--control-lg: 2.625rem;
+	--control-px: 0.875rem;
+	--input-px: 0.65625rem;
+	--control-font: var(--font-code);
+	--control-text: 0.75rem;
+	--control-weight: 600;
+	--control-tracking: 0.06em;
+	--control-case: uppercase;
+	--heading-case: uppercase;
+
+	/* Focus and press: a ring with a gap; buttons sink into their shadow */
+	--focus-width: 2px;
+	--focus-offset: 2px;
+	--ring-alpha: 100%;
+	--press-scale: 1;
+	--press-offset: 3px;
+	--press-shadow: none;
+
+	/* Motion: quick and plain */
+	--motion-fast: 80ms;
+	--motion-base: 140ms;
+	--motion-slow: 220ms;
+	--motion-ease-out: cubic-bezier(0.2, 0, 0, 1);
+	--motion-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+	/* Colour (light) */
+	--background: oklch(0.94 calc(0.006 * var(--tint, 1)) 85);
+	--foreground: oklch(0.16 calc(0.005 * var(--tint, 1)) 85);
+	--card: oklch(0.97 calc(0.004 * var(--tint, 1)) 85);
+	--secondary: oklch(0.87 calc(0.008 * var(--tint, 1)) 85);
+	--secondary-foreground: var(--foreground);
+	--muted: oklch(0.88 calc(0.008 * var(--tint, 1)) 85);
+	--muted-foreground: oklch(0.4 calc(0.01 * var(--tint, 1)) 85);
+	--accent: oklch(0.87 calc(0.008 * var(--tint, 1)) 85);
+	--destructive: oklch(0.5 0.2 28);
+	--destructive-foreground: oklch(0.99 0 0);
+	--border: var(--foreground);
+	--input: var(--foreground);
+	--input-bg: var(--card);
+	--field-filled-edge: var(--foreground);
+	--tabs-list: transparent;
+	--tabs-list-padding: 0px;
+	--tab-active: var(--foreground);
+	--tab-active-foreground: var(--background);
+	--tab-active-shadow: none;
+	--thumb-shadow: none;
+	--highlight: var(--foreground);
+	--highlight-foreground: var(--background);
+	--switch-track: var(--muted);
+	--control-track: var(--muted);
+	--switch-thumb: var(--foreground);
+	--track-border: var(--foreground);
+	--skeleton-fill: repeating-linear-gradient(-45deg, var(--muted) 0 6px, var(--secondary) 6px 12px);
+	--skeleton-motion: none;
+	--overlay: oklch(0.16 calc(0.005 * var(--tint, 1)) 85 / 45%);
+
+	--primary-l: 0.5;
+	--primary-c: 0.14;
+	--on-primary: oklch(0.99 0 0);
+	/* Tones: soft is a flat tint inside a full-strength border, like a printed stamp. */
+	--tone-text-l: 0.44;
+	--status-c: 0.12;
+	--warning-l: 0.78;
+	--warning-c: 0.15;
+	--on-warning: oklch(0.16 0 0);
+	--soft-alpha: 18%;
+	--soft-edge-alpha: 100%;
+	--destructive-text: oklch(0.46 0.19 28);
+	--chart-l: 0.55;
+	--chart-c: 0.13;
+
+	/* Depth: hard offset shadows in the ink colour */
+	--elevation-sm: 3px 3px 0 0 var(--foreground);
+	--elevation-md: 4px 4px 0 0 var(--foreground);
+	--elevation-lg: 6px 6px 0 0 var(--foreground);
+}
+
+/* Dark: under a .dark ancestor unless a nearer .light scope says otherwise (VillageScope scheme="light"). */
+:is(.dark [data-village="iwa"]:not(.light, .light *), .light .dark [data-village="iwa"], [data-village="iwa"].dark) {
+	--background: oklch(0.17 calc(0.004 * var(--tint, 1)) 85);
+	--foreground: oklch(0.93 calc(0.006 * var(--tint, 1)) 85);
+	--card: oklch(0.21 calc(0.005 * var(--tint, 1)) 85);
+	--secondary: oklch(0.28 calc(0.006 * var(--tint, 1)) 85);
+	--muted: oklch(0.25 calc(0.006 * var(--tint, 1)) 85);
+	--muted-foreground: oklch(0.72 calc(0.008 * var(--tint, 1)) 85);
+	--accent: oklch(0.28 calc(0.006 * var(--tint, 1)) 85);
+	--destructive: oklch(0.66 0.19 28);
+	--destructive-foreground: oklch(0.15 0 0);
+	--overlay: oklch(0 0 0 / 60%);
+
+	--primary-l: 0.74;
+	--primary-c: 0.14;
+	--on-primary: oklch(0.15 0 0);
+	--tone-text-l: var(--primary-l);
+	--status-c: 0.13;
+	--soft-alpha: 20%;
+	--destructive-text: oklch(0.74 0.16 28);
+	--chart-l: 0.72;
+	--chart-c: 0.12;
+}

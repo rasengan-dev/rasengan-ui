@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "booking-03",
+  "title": "Booking place card",
+  "description": "Booking place card",
+  "dependencies": [
+    "lucide-react",
+    "embla-carousel-autoplay"
+  ],
+  "registryDependencies": [
+    "button",
+    "carousel",
+    "badge"
+  ],
+  "files": [
+    {
+      "path": "src/registry/application-ui/cards/booking/booking3.tsx",
+      "content": "import {\n\tCarousel,\n\tCarouselContent,\n\tCarouselItem,\n} from \"@/components/ui/carousel\";\nimport { Button } from \"@/components/ui/button\";\nimport { ComponentProps } from \"react\";\nimport { ArrowUpRight, Star } from \"lucide-react\";\nimport { Badge } from \"@/components/ui/badge\";\nimport Autoplay from \"embla-carousel-autoplay\";\nimport { cn } from \"@/lib/utils\";\n\ntype Props = {\n\tclassName?: ComponentProps<\"article\">[\"className\"];\n};\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\nexport const BookingCard3 = ({ className }: Props) => {\n\treturn (\n\t\t<article\n\t\t\tclassName={cn(\n\t\t\t\t\"w-full max-w-[400px] rounded-xl p-1 shadow-md bg-background dark:bg-input/40 overflow-hidden\",\n\t\t\t\tclassName\n\t\t\t)}\n\t\t>\n\t\t\t<div className='relative w-full'>\n\t\t\t\t<Carousel\n\t\t\t\t\tclassName='w-full'\n\t\t\t\t\topts={{\n\t\t\t\t\t\talign: \"start\",\n\t\t\t\t\t\tloop: true,\n\t\t\t\t\t}}\n\t\t\t\t\tplugins={[\n\t\t\t\t\t\tAutoplay({\n\t\t\t\t\t\t\tdelay: 4000,\n\t\t\t\t\t\t}),\n\t\t\t\t\t]}\n\t\t\t\t>\n\t\t\t\t\t<CarouselContent>\n\t\t\t\t\t\t{Array.from({ length: 4 }).map((_, index) => (\n\t\t\t\t\t\t\t<CarouselItem key={index}>\n\t\t\t\t\t\t\t\t<div className='relative p-0'>\n\t\t\t\t\t\t\t\t\t<img\n\t\t\t\t\t\t\t\t\t\tsrc={`${registryUrl}/static/images/booking/${index + 1}.jpeg`}\n\t\t\t\t\t\t\t\t\t\talt='Avatar'\n\t\t\t\t\t\t\t\t\t\tclassName='rounded-xl w-full h-[340px]'\n\t\t\t\t\t\t\t\t\t/>\n\n\t\t\t\t\t\t\t\t\t<div className='absolute inset-0 bg-black/50 p-4 rounded-xl flex justify-between'>\n\t\t\t\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t\t\t\t<Badge\n\t\t\t\t\t\t\t\t\t\t\t\tvariant={\"secondary\"}\n\t\t\t\t\t\t\t\t\t\t\t\tclassName='rounded-full py-2 px-4'\n\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\tAdventure\n\t\t\t\t\t\t\t\t\t\t\t</Badge>\n\n\t\t\t\t\t\t\t\t\t\t\t<Badge\n\t\t\t\t\t\t\t\t\t\t\t\tvariant={\"secondary\"}\n\t\t\t\t\t\t\t\t\t\t\t\tclassName='rounded-full py-2 px-4 ml-2'\n\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\tJungle\n\t\t\t\t\t\t\t\t\t\t\t</Badge>\n\t\t\t\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t\t\t\t<Badge className='bg-transparent hover:bg-transparent text-white rounded-full py-2 px-4 ml-2 gap-1'>\n\t\t\t\t\t\t\t\t\t\t\t\t<Star size={14} />\n\t\t\t\t\t\t\t\t\t\t\t\t<span>4.8</span>\n\t\t\t\t\t\t\t\t\t\t\t</Badge>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</CarouselItem>\n\t\t\t\t\t\t))}\n\t\t\t\t\t</CarouselContent>\n\t\t\t\t</Carousel>\n\t\t\t</div>\n\n\t\t\t<div className='p-4'>\n\t\t\t\t<div className='flex items-baseline justify-between'>\n\t\t\t\t\t<div className='flex flex-col items-start justify-between'>\n\t\t\t\t\t\t<h1 className='font-medium text-foreground'>\n\t\t\t\t\t\t\tThe Ubud Jungle Villa\n\t\t\t\t\t\t</h1>\n\t\t\t\t\t\t<span className='text-sm text-muted-foreground'>\n\t\t\t\t\t\t\tLocated in Ubud, Bali, Indonesia\n\t\t\t\t\t\t</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<Badge variant={\"outline\"} className='rounded-full py-2 px-4'>\n\t\t\t\t\t\tTop rated\n\t\t\t\t\t</Badge>\n\t\t\t\t</div>\n\n\t\t\t\t<div className='mt-4 text-sm'>\n\t\t\t\t\t<p className='text-foreground'>\n\t\t\t\t\t\tPerched above the lush tropical rainforest, this open-air Balinese\n\t\t\t\t\t\tvilla features thatched roofs, bamboo...\n\t\t\t\t\t</p>\n\t\t\t\t</div>\n\n\t\t\t\t<div className='flex items-center justify-between gap-4 mt-4'>\n\t\t\t\t\t<p className='text-foreground'>From $199.99 / night</p>\n\t\t\t\t\t<Button className='rounded-full h-10 pr-2'>\n\t\t\t\t\t\t<span>Book Now</span>\n\t\t\t\t\t\t<div className='rounded-full p-1 bg-background flex items-center justify-center text-foreground'>\n\t\t\t\t\t\t\t<ArrowUpRight size={14} />\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</Button>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</article>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

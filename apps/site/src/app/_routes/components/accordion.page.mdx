@@ -1,0 +1,87 @@
+---
+metadata:
+  title: Accordion · Rasengan UI
+  description: "Questions that open their answer in place. Height animates with the village's motion, and not at all under reduced motion."
+toc: true
+---
+
+# Accordion
+
+Questions that open their answer in place. Height animates with the village's motion, and not at all under reduced motion.
+
+<ComponentPreview name="accordion" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add accordion
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/accordion.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/accordion.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/faq.tsx"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+
+export function Faq() {
+  return (
+    <Accordion>
+      <AccordionItem value="accessible">
+        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        <AccordionContent>Yes. Base UI handles the keyboard and the ARIA roles.</AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="styled">
+        <AccordionTrigger>Is it styled?</AccordionTrigger>
+        <AccordionContent>It reads only the village tokens.</AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}
+```
+
+### Several open
+
+One item is open at a time. Pass `multiple` to let several stay open; the value is an array either way.
+
+### Variants
+
+`default` splits the items with a rule. `outline` puts them inside one bordered block; `separated` makes each item its
+own card, for a FAQ on a page.
+
+<ComponentPreview name="accordion" demo="accordion-variants" />
+
+```tsx
+<Accordion variant="separated">…</Accordion>
+```
+
+## Villages
+
+Rules between items in the village's border, headings in its type; Iwa sets the questions in capitals.
+
+<VillageGrid name="accordion" />
+
+## Accessibility
+
+- Each trigger is a button inside a heading, with `aria-expanded` and `aria-controls`; each panel is a `region` named by its trigger.
+- <kbd>Enter</kbd> or <kbd>Space</kbd> toggles; arrow keys, <kbd>Home</kbd> and <kbd>End</kbd> move between triggers.
+
+## API reference
+
+The parts of Base UI's [Accordion](https://base-ui.com/react/components/accordion), styled:
+
+| Part | Notes |
+| --- | --- |
+| `Accordion` | `value`, `defaultValue`, `onValueChange`, `multiple`, `disabled`; `variant` (`"default" \| "outline" \| "separated"`) for its items |
+| `AccordionItem` | `value`, `disabled` |
+| `AccordionTrigger` | the heading's button, with its chevron |
+| `AccordionContent` | the panel; `keepMounted`, `hiddenUntilFound` |

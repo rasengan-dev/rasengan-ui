@@ -1,0 +1,134 @@
+---
+metadata:
+  title: Your own village · Rasengan UI
+  description: Make a village of your own from a brand colour and a few knobs; every colour pair is checked for contrast before it is written.
+toc: true
+---
+
+# Your own village
+
+Konoha, Kiri and Iwa are three design languages. Your product may need a fourth: your brand colour, your radius,
+your fonts, your density. A **recipe** describes it in a few lines; the village engine turns it into a village file,
+light and dark, and checks every colour pair in it for contrast before it is written.
+
+The result is a village like the built-in ones: every component, `VillageScope`, the natures and the tint work with it,
+and you can switch to it at runtime.
+
+<Note title="Accessible by construction">
+  The engine checks each village with every nature, both schemes and both tints: 4.5:1 for text, 3:1 for control
+  borders and tracks. Where a pair falls short, it moves the lightness behind it and tells you what it changed; where
+  it can't, it refuses, and nothing is written.
+</Note>
+
+## In the workshop
+
+The [village workshop](/villages/create) shows your village on real components while you change it: one row per knob on
+the left, the preview filling the rest, and the contrast report one click away on its status. **Shuffle** draws a recipe
+at random. Its address holds the recipe, so a link is enough to share a village in progress: nothing is stored on our
+side. **Export** gives you the command to install it, the CSS file, or the recipe.
+
+## With the CLI
+
+```bash title="Terminal"
+npx rasengan-ui village create acme --base kiri --color "#ff5a1f" --density compact
+```
+
+`village create` makes the village with your project's own contract, writes it next to the other villages, imports it,
+saves the recipe in `rasengan-ui.json` and switches the project to it. Without options, in a terminal, it asks a few
+questions. It also takes a recipe from a file or a workshop link:
+
+```bash title="Terminal"
+npx rasengan-ui village create acme --from acme.recipe.json
+npx rasengan-ui village create acme --from "https://ui.rasengan.dev/villages/create#r=…"
+```
+
+| Option | What it sets |
+| --- | --- |
+| `--base <village>` | The village to start from: `konoha` (default), `kiri` or `iwa` |
+| `--color <colour>` | The brand colour: `#rrggbb`, `rgb(r g b)` or `oklch(L C H)` |
+| `--hue <degrees>` | A brand hue, when you have no exact colour |
+| `--contrast`, `--radius`, `--density`, `--depth`, `--motion`, `--border` | One knob each (see the recipe below) |
+| `--font`, `--heading-font` | The body and heading fonts |
+| `--title`, `--description` | How the village is named in lists and in its file |
+| `--dry-run` | Print the report and the CSS, write nothing |
+| `--no-switch` | Write the village without making it the project's |
+
+### Changing it later
+
+```bash title="Terminal"
+npx rasengan-ui village create acme --update --radius 0.6
+```
+
+`--update` regenerates the village from its saved recipe, with any option you pass. If you edited the CSS file, your
+edits are kept and the new version is merged in, as `update` merges a component. `doctor` tells you when a village was
+made by an older engine.
+
+### Checking any village
+
+```bash title="Terminal"
+npx rasengan-ui village check acme
+```
+
+Runs the contrast check on an installed village, built-in or not, in every scope.
+
+### Sharing it
+
+```bash title="Terminal"
+npx rasengan-ui village export acme
+```
+
+Writes `village-acme.json`, a registry item with the village and its recipe. Publish it anywhere; another project
+installs it with:
+
+```bash title="Terminal"
+npx rasengan-ui village add https://example.com/village-acme.json
+```
+
+## The recipe
+
+```json title="acme.recipe.json"
+{
+  "$schema": "https://ui.rasengan.dev/schema/village-recipe.json",
+  "name": "acme",
+  "title": "Acme",
+  "base": "kiri",
+  "brand": { "color": "#ff5a1f" },
+  "radius": 0.3,
+  "density": "compact",
+  "traits": { "tabs": "bar" }
+}
+```
+
+Every field but `name` is optional: the base village gives everything a recipe leaves out, so a recipe on Iwa keeps
+its bar tabs and inverted highlights unless it says otherwise.
+
+| Field | Values |
+| --- | --- |
+| `base` | `konoha`, `kiri` or `iwa` |
+| `brand` | One of `nature` (an existing nature), `hue` or `color`. A hue or a colour gives the village a nature of its own, named after it. `exact: true` refuses rather than moves the colour. |
+| `neutrals` | `hue` (surfaces), `inkHue` (text and shadows; follows `hue` when left out), `chroma` (0 grey, 1 the ladder's own tint, 2 twice that) |
+| `contrast` | `soft` (Kiri's colours), `standard` (Konoha's), `high` (Iwa's) |
+| `radius` | 0 (square) to 1 (very round); 0.5 is 0.625rem |
+| `density` | `compact`, `default`, `comfortable` |
+| `depth` | `flat`, `soft`, `raised`, `hard` (offset shadows) |
+| `motion` | `quick`, `calm`, `gentle` |
+| `border` | 1, 1.5 or 2 (px) |
+| `fonts` | `body`, `heading`, `code`: font family names |
+| `traits` | `tabs` (`segmented`, `bar`), `highlight` (`soft`, `inverted`), `focus` (`halo`, `ring`), `press` (`scale`, `sink`), `labels` (`plain`, `capitals`, `mono-capitals`), `headings` (`plain`, `capitals`), `surfaces` (`solid`, `glass`), `edges` (`soft`, `ink`), `skeleton` (`pulse`, `hatched`) |
+| `overrides` | `light` and `dark`: any contract token, set last. The engine never moves them; one that fails refuses the village. |
+
+## Your brand colour
+
+Your brand colour plays three roles, and each has its own lightness, so the fill can stay exactly your colour:
+
+| Role | Where | Must hold |
+| --- | --- | --- |
+| The fill (`--primary`) | Solid buttons, badges, checked boxes, slider ranges | Its text at 4.5:1: white or dark, whichever reads |
+| The words (`--primary-text`) | Links, outline, ghost and link buttons, soft badges | 4.5:1 on the page, a card and its soft wash |
+| The edge (`--primary-border`) | The border of what the fill fills | 3:1 on the page |
+
+So a bright orange or a gold keeps its fill, with dark text on it; only its words and its edge are darker. The engine
+moves the fill itself only when neither white nor dark text reads on it, and then as little as it must. In dark mode
+the fill is lifted to sit on a dark page. With `exact: true` the engine refuses rather than move the fill.
+
+The status colours (success, info) keep the base village's strength rather than following a brand colour.

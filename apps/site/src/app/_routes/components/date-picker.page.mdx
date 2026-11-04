@@ -1,0 +1,119 @@
+---
+metadata:
+  title: Date Picker · Rasengan UI
+  description: "A date picked from a calendar, typed, or with a time: single days, ranges with presets, dates of birth."
+toc: true
+---
+
+# Date Picker
+
+A date picked from a calendar, typed, or with a time: single days, ranges with presets, dates of birth.
+
+<ComponentPreview name="date-picker" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add date-picker
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/date-picker.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/date-picker.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { DatePicker } from "@/components/ui/date-picker";
+import { Label } from "@/components/ui/label";
+
+export function Usage() {
+  return (
+    <div className="grid gap-2">
+      <Label htmlFor="due">Due date</Label>
+      <DatePicker id="due" onValueChange={(date) => console.log(date)} />
+    </div>
+  );
+}
+```
+
+`DatePicker` is a trigger with Select's look (its variants and sizes, and the Field's) that opens a
+[Calendar](/components/calendar) in a popover; picking a day closes it. Its value is a `Date`, or `null` for none. With
+`name`, a hidden input submits the day as `yyyy-MM-dd`.
+
+### A range
+
+`DateRangePicker` shows two months and stays open while you adjust either end. Its value is `{ from, to }`.
+
+<ComponentPreview name="date-picker" demo="date-picker-range" />
+
+### Presets
+
+`presets` lists dates (or ranges) beside the calendar: "Today", "In a week", "Last 30 days".
+
+<ComponentPreview name="date-picker" demo="date-picker-presets" />
+
+### Date of birth
+
+`captionLayout="dropdown"` adds month and year selects, so a date decades away is two choices instead of hundreds of
+clicks. Bound them with `startMonth` and `endMonth`, and `disabledDays={{ after: new Date() }}` keeps the future out.
+
+<ComponentPreview name="date-picker" demo="date-picker-birth" />
+
+### Typed
+
+`DateInput` is a field you type the date in, read when you leave it or press Enter: in its `format` first (`"P"`,
+6/12/2026 in English), then ISO (2026-06-12), then as words the browser reads (June 12 2026). Text it can't read marks
+the field invalid. The button, or Arrow Down in the field, opens the calendar. It is a Field control, so a `FieldLabel`
+names it.
+
+<ComponentPreview name="date-picker" demo="date-picker-input" />
+
+### With a time
+
+`DateTimePicker` is a `DatePicker` and a [TimeInput](/components/time-picker) side by side, holding one `Date`. A time
+typed before the day is kept for it; `step` under 60 shows the seconds.
+
+<ComponentPreview name="date-picker" demo="date-picker-time" />
+
+### In words
+
+Parse what people write ("next friday at 3pm") with [chrono-node](https://github.com/wanasit/chrono) and keep the
+calendar beside it. This one is an example to copy, not a component: `npx rasengan-ui add date-picker-natural-language-demo`.
+
+<ComponentPreview name="date-picker" demo="date-picker-natural-language" />
+
+## Villages
+
+The trigger is Select's and the popup Popover's, so a date picker sits in a form like every other field of the village.
+
+<VillageGrid name="date-picker" />
+
+## Accessibility
+
+- The trigger is a button: name it with `<Label htmlFor>` and an `id`, or `aria-label`, which it follows with the date it
+  shows ("Due date, June 12th, 2026"), so the name always holds the visible text.
+- The calendar opens with focus on the selected day (or today); see [Calendar](/components/calendar) for its keys.
+  Escape closes it and returns focus to the trigger.
+- `DateInput` sets `aria-invalid` on text it can't read; say what's expected in a `FieldDescription`.
+- `DateTimePicker` is a group: name it with `aria-label` or `aria-labelledby`; its two fields are named "Date" and
+  "Time" (`dateLabel`, `timeLabel`).
+
+## API reference
+
+| Component | Value | Props |
+| --- | --- | --- |
+| `DatePicker` | `Date \| null` | `value`, `defaultValue`, `onValueChange`, `format` (date-fns, `"PPP"`), `placeholder`, `presets`, `name`, `id`, `disabled`, `variant`, `size`, `align` |
+| `DateRangePicker` | `{ from, to } \| null` | As `DatePicker`, plus `numberOfMonths` (2); `format` is `"LLL d, y"` |
+| `DateInput` | `Date \| null` | `value`, `defaultValue`, `onValueChange`, `format` (`"P"`), `placeholder`, `name`, `id`, `disabled`, Input Group's `variant` and `size` |
+| `DateTimePicker` | `Date \| null` | As `DatePicker`, plus `step`, `dateLabel`, `timeLabel` |
+
+All four take the calendar's `disabledDays`, `captionLayout`, `startMonth`, `endMonth`, `locale`, `timeZone`,
+`weekStartsOn` and `showWeekNumber`. `parseDate(text, format, locale)` is the reader `DateInput` uses.

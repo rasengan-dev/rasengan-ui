@@ -1,0 +1,84 @@
+---
+metadata:
+  title: Progress · Rasengan UI
+  description: "How far a task has gone, with an optional label and value. The track is bordered in Iwa."
+toc: true
+---
+
+# Progress
+
+How far a task has gone, with an optional label and value. The track is bordered in Iwa.
+
+<ComponentPreview name="progress" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add progress
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/progress.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/progress.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/upload.tsx"
+import { Progress, ProgressLabel, ProgressValue } from "@/components/ui/progress";
+
+export function Upload({ value }: { value: number }) {
+  return (
+    <Progress value={value} className="w-72">
+      <ProgressLabel>Uploading</ProgressLabel>
+      <ProgressValue />
+    </Progress>
+  );
+}
+```
+
+### Indeterminate
+
+`value={null}` when the end can't be known yet.
+
+### Variants and tones
+
+`default` draws the bar on a grey track; `soft` draws its track as a wash of the bar's own tone, for a quieter bar.
+`tone` colours the bar: `primary` by default, `success` for a finished task, `warning` for a quota running out.
+`sm`, `default` and `lg` set the track's height.
+
+<ComponentPreview name="progress" demo="progress-variants" />
+
+<ComponentPreview name="progress" demo="progress-tones" />
+
+```tsx
+<Progress variant="soft" tone="success" size="sm" value={100} aria-label="Deployed" />
+```
+
+## Villages
+
+The track is muted with `--track-border`, the indicator the nature's primary; its width animates with the village's motion.
+
+<VillageGrid name="progress" />
+
+## Accessibility
+
+- A `progressbar` with `aria-valuenow`, named by `ProgressLabel`; `ProgressValue` shows the formatted value.
+
+## API reference
+
+The parts of Base UI's [Progress](https://base-ui.com/react/components/progress):
+
+| Part | Notes |
+| --- | --- |
+| `Progress` | `value` (`null` for indeterminate), `min`, `max`, `format`; `variant` (`"default" \| "soft"`), `tone` (`"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"`, default `"primary"`) and `size` (`"sm" \| "default" \| "lg"`); draws the track and indicator after its children |
+| `ProgressLabel` | names the bar |
+| `ProgressValue` | the formatted value |
+
+`progressVariants({ variant, tone, size })` returns the root's classes.

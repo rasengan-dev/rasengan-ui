@@ -1,0 +1,71 @@
+---
+metadata:
+  title: Popover · Rasengan UI
+  description: "A floating panel anchored to a button, for a few settings or details. Glass in Kiri, hard-shadowed in Iwa."
+toc: true
+---
+
+# Popover
+
+A floating panel anchored to a button, for a few settings or details. Glass in Kiri, hard-shadowed in Iwa.
+
+<ComponentPreview name="popover" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add popover
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/popover.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/popover.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/share.tsx"
+import { Button } from "@/components/ui/button";
+import { Popover, PopoverContent, PopoverDescription, PopoverTitle, PopoverTrigger } from "@/components/ui/popover";
+
+export function Share() {
+  return (
+    <Popover>
+      <PopoverTrigger render={<Button variant="outline" />}>Share</PopoverTrigger>
+      <PopoverContent className="w-72">
+        <PopoverTitle>Share this page</PopoverTitle>
+        <PopoverDescription>Anyone with the link can view it.</PopoverDescription>
+      </PopoverContent>
+    </Popover>
+  );
+}
+```
+
+## Villages
+
+A popover surface: card colours, the village's large radius and shadow, blur in Kiri.
+
+<VillageGrid name="popover" />
+
+## Accessibility
+
+- The popup is a `dialog` named by `PopoverTitle` and described by `PopoverDescription`.
+- Opening moves focus into it; <kbd>Esc</kbd> or a click outside closes it and returns focus to the trigger.
+
+## API reference
+
+The parts of Base UI's [Popover](https://base-ui.com/react/components/popover), styled:
+
+| Part | Notes |
+| --- | --- |
+| `Popover` | `open`, `defaultOpen`, `onOpenChange`, `modal` |
+| `PopoverTrigger` | `render` to use a `Button`; `openOnHover` |
+| `PopoverContent` | portal and popup; `side` (default `"bottom"`), `sideOffset`, `align` |
+| `PopoverTitle`, `PopoverDescription` | name and describe the popup |
+| `PopoverClose` | a button that closes it |

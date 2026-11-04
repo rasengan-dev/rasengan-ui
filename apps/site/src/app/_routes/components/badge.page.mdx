@@ -1,0 +1,85 @@
+---
+metadata:
+  title: Badge · Rasengan UI
+  description: "A short label for a status or a count. Renders a link or any element through `render`."
+toc: true
+---
+
+# Badge
+
+A short label for a status or a count. Renders a link or any element through `render`.
+
+<ComponentPreview name="badge" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add badge
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/badge.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/badge.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/status.tsx"
+import { Badge } from "@/components/ui/badge";
+
+export function Status() {
+  return <Badge variant="secondary">Beta</Badge>;
+}
+```
+
+### Variants
+
+`default` filled, `soft` as a wash, `outline` as a border, `secondary` in grey, and `destructive` for errors (shorthand
+for `tone="destructive"`). `tone` is the colour: `primary` by default, or `neutral`, `success`, `warning`, `info`,
+`destructive`; `outline` stays neutral in `primary`.
+
+<ComponentPreview name="badge" demo="badge-tones" />
+
+```tsx
+<Badge variant="soft" tone="success">Live</Badge>
+```
+
+### Sizes
+
+`sm`, `default` and `lg` set the padding, the text and the icon.
+
+<ComponentPreview name="badge" demo="badge-sizes" />
+
+### As a link
+
+```tsx
+<Badge render={<a href="/changelog" />}>New</Badge>
+```
+
+## Villages
+
+Its radius is `--badge-radius`: soft in Konoha, a pill in Kiri, square in Iwa, where it is also set in mono capitals.
+
+<VillageGrid name="badge" />
+
+## Accessibility
+
+- A `<span>`: its text is read in place. A badge that only shows a count needs the thing counted in the text around it, or an `aria-label`.
+
+## API reference
+
+The props of `<span>`, plus `render` (any element, through Base UI's `useRender`) and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `variant` | `"default" \| "secondary" \| "outline" \| "soft" \| "destructive"` | `"default"` |
+| `tone` | `"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"` | `"primary"` |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` |
+
+`badgeVariants({ variant, tone, size })` returns the same classes.

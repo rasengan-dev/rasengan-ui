@@ -1,0 +1,26 @@
+{
+	"name": "@rasengan-ui/villages",
+	"version": "0.0.0",
+	"private": true,
+	"description": "The Rasengan UI token contract, its villages and natures. Distributed through the registry; this package is the source.",
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts",
+		"./contract": "./src/contract.ts",
+		"./contrast": "./src/contrast.ts",
+		"./engine": "./src/engine/index.ts",
+		"./fonts": "./src/fonts.ts",
+		"./recipe.schema.json": "./src/engine/recipe.schema.json",
+		"./contract.css": "./src/contract.css",
+		"./natures.css": "./src/natures.css",
+		"./villages/*": "./src/villages/*"
+	},
+	"scripts": {
+		"typecheck": "tsc --noEmit",
+		"test": "node --test \"src/**/*.test.ts\""
+	},
+	"devDependencies": {
+		"@types/node": "^22",
+		"typescript": "^5.9.3"
+	}
+}

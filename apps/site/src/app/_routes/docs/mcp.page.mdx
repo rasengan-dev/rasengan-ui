@@ -1,0 +1,83 @@
+---
+metadata:
+  title: MCP server · Rasengan UI
+  description: rasengan-ui mcp lets an agent read the components, their examples and your project, and install components.
+toc: true
+---
+
+# MCP server
+
+`rasengan-ui mcp` is a [Model Context Protocol](https://modelcontextprotocol.io) server. With it, an agent such as
+Claude Code, Cursor or VS Code reads the components and their examples before writing code, sees your village and
+what you installed, and installs components the way `rasengan-ui add` does.
+
+<Note title="Not published yet">
+  Until the CLI is on npm, run the server from this repository: replace `npx rasengan-ui mcp` with
+  `node <path to the repository>/packages/cli/src/index.ts mcp` below.
+</Note>
+
+## Set-up
+
+The client starts the server in your project folder, so it reads your `rasengan-ui.json`.
+
+### Claude Code
+
+```bash title="Terminal"
+claude mcp add rasengan-ui -- npx rasengan-ui mcp
+```
+
+Or, to share it with your team, commit a `.mcp.json` at the project root:
+
+```json title=".mcp.json"
+{
+  "mcpServers": {
+    "rasengan-ui": { "command": "npx", "args": ["-y", "rasengan-ui", "mcp"] }
+  }
+}
+```
+
+### Cursor
+
+```json title=".cursor/mcp.json"
+{
+  "mcpServers": {
+    "rasengan-ui": { "command": "npx", "args": ["-y", "rasengan-ui", "mcp"] }
+  }
+}
+```
+
+### VS Code
+
+```json title=".vscode/mcp.json"
+{
+  "servers": {
+    "rasengan-ui": { "command": "npx", "args": ["-y", "rasengan-ui", "mcp"] }
+  }
+}
+```
+
+## Tools
+
+| Tool | What it does |
+| --- | --- |
+| `list_components` | Lists components, villages or examples, filtered by words |
+| `get_component` | A component's source with your paths and aliases, what it needs, its examples and its docs page |
+| `get_examples` | The source of a component's examples |
+| `get_project` | Your village, nature and greys, what you installed, the files you edited since install |
+| `add_components` | Installs components, examples or villages, with their npm packages |
+
+Only `add_components` writes. Like `rasengan-ui add`, it keeps a file you edited since install unless the agent sets
+`overwrite`, and records what it wrote in `rasengan-ui.lock`, so `rasengan-ui diff` shows it.
+
+The read tools also work in a folder without `rasengan-ui.json`: the agent can explore Rasengan UI before you run
+`init`.
+
+## Options
+
+| Option | What it does |
+| --- | --- |
+| `--cwd <path>` | The project, when the client starts the server elsewhere |
+| `--registry <url>` | The registry to read in a folder without `rasengan-ui.json` (a URL or a folder) |
+
+Ask the agent to build a page with Rasengan UI: the server tells it to look components up before using them, to
+style with the village tokens instead of raw colours, and to install through `add_components`.

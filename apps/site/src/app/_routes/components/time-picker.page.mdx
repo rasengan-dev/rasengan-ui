@@ -1,0 +1,97 @@
+---
+metadata:
+  title: Time Picker · Rasengan UI
+  description: "A time typed in a field (hours, minutes, seconds) or picked from slots between two hours, in 12 or 24 hours."
+toc: true
+---
+
+# Time Picker
+
+A time typed in a field (hours, minutes, seconds) or picked from slots between two hours, in 12 or 24 hours.
+
+<ComponentPreview name="time-picker" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add time-picker
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/time-picker.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/time-picker.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { Field, FieldLabel } from "@/components/ui/field";
+import { TimeInput, TimePicker } from "@/components/ui/time-picker";
+
+export function Usage() {
+  return (
+    <>
+      <Field>
+        <FieldLabel>Start time</FieldLabel>
+        <TimeInput defaultValue="09:30" />
+      </Field>
+      <Field>
+        <FieldLabel>Meeting slot</FieldLabel>
+        <TimePicker min="09:00" max="17:30" interval={30} />
+      </Field>
+    </>
+  );
+}
+```
+
+Two ways to ask for a time, both valued `"HH:mm"`:
+
+- `TimeInput` is the browser's own time field in an [Input Group](/components/input-group): typed segment by segment,
+  in the locale's 12 or 24 hours, with a native picker on phones.
+- `TimePicker` is a [Select](/components/select) of slots from `min` to `max`, every `interval` minutes: opening hours,
+  appointments.
+
+Both are Field controls, so a `FieldLabel` names them and they take the Field's size and variant.
+
+### Seconds, 12 or 24 hours
+
+`step` under 60 adds the seconds to `TimeInput` (`"HH:mm:ss"`). `TimePicker` labels its slots in the locale's hour
+cycle, or the one you set with `hourCycle={12}` or `{24}`.
+
+<ComponentPreview name="time-picker" demo="time-picker-formats" />
+
+### Slots beside a calendar
+
+`timeSlots({ min, max, interval })` returns the slots with their labels, to lay out yourself: here as toggle
+buttons (`aria-pressed`) beside a [Calendar](/components/calendar), for a booking.
+
+<ComponentPreview name="time-picker" demo="time-picker-slots" />
+
+For a day and a time together, use [DateTimePicker](/components/date-picker).
+
+## Villages
+
+`TimeInput` is Input's field and `TimePicker` Select's, in every village.
+
+<VillageGrid name="time-picker" />
+
+## Accessibility
+
+- `TimeInput` is a native time input: screen readers announce each segment, and the arrow keys change it.
+- `TimePicker` is Base UI's select: type a time's first characters to jump to it, Enter picks.
+- Taken slots in your own layouts should be disabled, not only greyed, so the keyboard skips them.
+
+## API reference
+
+| Component | Props |
+| --- | --- |
+| `TimeInput` | Input's props (`value`, `defaultValue`, `onChange`, `min`, `max`, `step`, `name`…), plus Input Group's `variant` and `size`, and `groupClassName` |
+| `TimePicker` | `value`, `defaultValue`, `onValueChange` (`"HH:mm" \| null`), `min`, `max`, `interval` (30), `hourCycle`, `locale`, `placeholder`, `name`, `id`, `disabled`, Select's `variant` and `size` |
+
+`timeSlots({ min, max, interval, locale, hourCycle })` returns `{ value, label }[]`.

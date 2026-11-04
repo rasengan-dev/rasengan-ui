@@ -1,0 +1,122 @@
+---
+metadata:
+  title: Dialog · Rasengan UI
+  description: A window over the page that keeps focus until it is closed.
+toc: true
+---
+
+# Dialog
+
+A window over the page that keeps focus until it is closed. For a question that needs an answer before anything else, use
+[Alert dialog](/components/alert-dialog).
+
+<ComponentPreview name="dialog" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add dialog
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/dialog.json
+```
+
+It installs [Button](/components/button) too.
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/dialog.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/invite.tsx"
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+export function Invite() {
+  return (
+    <Dialog>
+      <DialogTrigger render={<Button variant="outline" />}>Invite a teammate</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Invite a teammate</DialogTitle>
+          <DialogDescription>They get access to every project in this workspace.</DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose render={<Button variant="ghost" />}>Cancel</DialogClose>
+          <Button>Send invite</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+```
+
+### Controlled
+
+Pass `open` and `onOpenChange` to open the dialog from elsewhere, or to close it once a form is saved.
+
+```tsx
+const [open, setOpen] = useState(false);
+
+<Dialog open={open} onOpenChange={setOpen}>
+  …
+</Dialog>
+```
+
+### Sizes
+
+`size` on `DialogContent` sets its width from the sm breakpoint: `sm`, `default`, `lg`, or `full`, which fills the window
+less a margin and scrolls its body. Below sm, every size takes the window's width less a margin.
+
+<ComponentPreview name="dialog" demo="dialog-sizes" />
+
+```tsx
+<DialogContent size="lg">…</DialogContent>
+```
+
+### Without the close button
+
+`DialogContent` draws a close button in its corner. Pass `showCloseButton={false}` when the footer already has one.
+
+## Villages
+
+Open a dialog in a cell: it renders in a portal on `<body>`, yet wears that cell's village, because the cell is a
+`VillageScope`.
+
+<VillageGrid name="dialog" />
+
+## Accessibility
+
+- The popup is a `dialog`, named by `DialogTitle` and described by `DialogDescription`.
+- Opening moves focus into the dialog, <kbd>Tab</kbd> stays inside it, and closing returns focus to the trigger.
+- <kbd>Esc</kbd> and a click on the backdrop close it; the page behind can't be scrolled or reached by screen readers.
+- The close button in the corner is labelled "Close".
+
+## API reference
+
+The parts of Base UI's [Dialog](https://base-ui.com/react/components/dialog), styled:
+
+| Part | Renders | Notes |
+| --- | --- | --- |
+| `Dialog` | nothing | `open`, `defaultOpen`, `onOpenChange`, `modal` |
+| `DialogTrigger` | `<button>` | `render` to use a `Button` |
+| `DialogContent` | portal, backdrop and popup | `showCloseButton` (default `true`), `size` (`"sm" \| "default" \| "lg" \| "full"`); `dialogContentVariants({ size })` returns its classes |
+| `DialogHeader`, `DialogFooter` | `<div>` | layout only |
+| `DialogTitle` | `<h2>` | names the dialog |
+| `DialogDescription` | `<p>` | describes the dialog |
+| `DialogClose` | `<button>` | closes the dialog |
+| `DialogPortal`, `DialogOverlay` | | for a custom popup; the portal follows the nearest `VillageScope` |

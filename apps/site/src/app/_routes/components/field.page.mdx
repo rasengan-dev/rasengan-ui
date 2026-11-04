@@ -1,0 +1,101 @@
+---
+metadata:
+  title: Field · Rasengan UI
+  description: "Groups a label, a control, a description and an error, and links them for assistive technology."
+toc: true
+---
+
+# Field
+
+Groups a label, a control, a description and an error, and links them for assistive technology. Every form control works inside it: [Input](/components/input), [Textarea](/components/textarea), [Select](/components/select), [Checkbox](/components/checkbox), [Switch](/components/switch)…
+
+<ComponentPreview name="field" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add field
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/field.json
+```
+
+It installs [Label](/components/label) and [Input](/components/input) too.
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/field.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/workspace.tsx"
+import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+
+export function Workspace() {
+  return (
+    <Field>
+      <FieldLabel>Workspace</FieldLabel>
+      <Input required placeholder="Hidden Leaf" />
+      <FieldDescription>Shown to your teammates.</FieldDescription>
+      <FieldError match="valueMissing">Name your workspace.</FieldError>
+    </Field>
+  );
+}
+```
+
+### Size and variant
+
+`size` and `variant` on the Field go to the control inside it (Input, Textarea or a Select's trigger), so a form sets its
+look once per field rather than on every control. `size` also scales the label, description, error and the gaps between
+them. A control's own `size` or `variant` wins over the Field's.
+
+<ComponentPreview name="field" demo="field-look" />
+
+```tsx
+<Field size="sm" variant="filled">
+  <FieldLabel>Name</FieldLabel>
+  <Input />
+</Field>
+```
+
+### Validation
+
+Base UI validates the control when it loses focus, from its native constraints (`required`, `type`, `pattern`, `min`…) or
+from `validate` on the Field. `FieldError` shows when the field is invalid; `match` picks the constraint it is for. Pass
+`invalid` to the Field to set it from your own form library instead.
+
+```tsx
+<Field validate={(value) => (String(value).includes(" ") ? "No spaces." : null)}>
+  <FieldLabel>Handle</FieldLabel>
+  <Input />
+  <FieldError />
+</Field>
+```
+
+## Villages
+
+The gaps follow the page; the label, description and error take the village's type and colours.
+
+<VillageGrid name="field" />
+
+## Accessibility
+
+- `FieldLabel` names the control; `FieldDescription` and `FieldError` are linked to it with `aria-describedby`.
+- An invalid field sets `aria-invalid` on its control, so screen readers announce it.
+- `disabled` on the Field disables its control and dims its label.
+
+## API reference
+
+The parts of Base UI's [Field](https://base-ui.com/react/components/field), styled:
+
+| Part | Renders | Notes |
+| --- | --- | --- |
+| `Field` | `<div>` | `name`, `disabled`, `invalid`, `validate`, `validationMode`; `size` (`"sm" \| "default" \| "lg"`) and `variant` (`"default" \| "filled" \| "underline"`) for its control |
+| `FieldLabel` | `<label>` | linked to the control |
+| `FieldDescription` | `<p>` | linked with `aria-describedby` |
+| `FieldError` | `<div>` | `match` for one constraint; hidden while the field is valid |

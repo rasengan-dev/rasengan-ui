@@ -1,0 +1,91 @@
+---
+metadata:
+  title: Sheet · Rasengan UI
+  description: "A panel that slides in from an edge of the screen and swipes away: navigation on phones, filters, details, a bottom sheet."
+toc: true
+---
+
+# Sheet
+
+A panel that slides in from an edge of the screen and swipes away: navigation on phones, filters, details, a bottom sheet.
+
+<ComponentPreview name="sheet" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add sheet
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/sheet.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/sheet.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+
+export function Usage() {
+  return (
+    <Sheet>
+      <SheetTrigger render={<Button variant="outline" />}>Filters</SheetTrigger>
+      <SheetContent side="left">
+        <SheetHeader>
+          <SheetTitle>Filters</SheetTitle>
+          <SheetDescription>Narrow the list down.</SheetDescription>
+        </SheetHeader>
+        <div className="px-6">…</div>
+      </SheetContent>
+    </Sheet>
+  );
+}
+```
+
+`SheetHeader` and `SheetFooter` carry their own padding; give the body between them `px-6`. The footer sits at the
+bottom of the panel, and the body scrolls when it is taller than the screen.
+
+### Sides and sizes
+
+`side` is `right` (the default), `left`, `top` or `bottom`. Swiping the panel back toward its edge closes it, on touch
+screens and with a mouse. A bottom sheet shows a handle and rounds its top corners. `size` sets the width of a side
+panel (`sm`, `default`, `lg`) and the height of a top or bottom one.
+
+<ComponentPreview name="sheet" demo="sheet-sides" />
+
+Sheet is built on Base UI's [Drawer](https://base-ui.com/react/components/drawer), so a bottom sheet can also stop
+halfway: pass `snapPoints` to `Sheet`. shadcn's Drawer (vaul) and Sheet are one component here.
+
+## Villages
+
+The panel is a dialog of the same village: its surface, border, shadow, blur and motion. Kiri's is translucent, Iwa's
+has a heavy edge on the side that faces the page.
+
+<VillageGrid name="sheet" />
+
+## Accessibility
+
+- A modal dialog: focus moves into the panel and stays there until it closes, and the page behind is inert.
+- Name it with `SheetTitle` and describe it with `SheetDescription`; both are linked to the panel.
+- Escape, a click outside, the close button and a swipe all close it. Focus then returns to the trigger.
+- With reduced motion the panel appears without sliding.
+
+## API reference
+
+| Component | Props |
+| --- | --- |
+| `Sheet` | Base UI `Drawer.Root`: `open`, `defaultOpen`, `onOpenChange`, `modal`, `snapPoints`… The swipe direction follows the content's `side` |
+| `SheetTrigger`, `SheetClose` | Base UI `Drawer.Trigger` and `Drawer.Close`, with `render` |
+| `SheetContent` | `side`: `"top" \| "right" \| "bottom" \| "left"` (default `"right"`), `size`: `"sm" \| "default" \| "lg"`, `showCloseButton` (default `true`) |
+| `SheetHeader`, `SheetFooter` | The props of `<div>` |
+| `SheetTitle`, `SheetDescription` | Base UI `Drawer.Title` and `Drawer.Description` |
+
+`sheetContentVariants({ side, size })` returns the panel's classes.

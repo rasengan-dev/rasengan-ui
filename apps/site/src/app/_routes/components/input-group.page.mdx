@@ -1,0 +1,93 @@
+---
+metadata:
+  title: Input Group · Rasengan UI
+  description: "An input or a textarea with icons, text, buttons or a toolbar inside its border: search, passwords, URLs, prompts."
+toc: true
+---
+
+# Input Group
+
+An input or a textarea with icons, text, buttons or a toolbar inside its border: search, passwords, URLs, prompts.
+
+<ComponentPreview name="input-group" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add input-group
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/input-group.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/input-group.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { SearchIcon } from "lucide-react";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
+
+export function Usage() {
+  return (
+    <InputGroup>
+      <InputGroupInput placeholder="Search…" aria-label="Search" />
+      <InputGroupAddon>
+        <SearchIcon />
+      </InputGroupAddon>
+    </InputGroup>
+  );
+}
+```
+
+The group draws the field; `InputGroupInput` and `InputGroupTextarea` inside it have no border of their own. Put the
+addons after the control in the markup: `align` places them (`inline-start` before it, `inline-end` after it), and the
+control stays first for the keyboard. A click on an addon focuses the control.
+
+### A textarea with a toolbar
+
+`block-start` and `block-end` put an addon above or below the control, the full width of the group: a toolbar under a
+prompt, a header above a code field. `InputGroupButton` fits inside the field (`xs`, `icon-xs`, `sm`, `icon-sm`) and is
+ghost unless you pick another variant.
+
+<ComponentPreview name="input-group" demo="input-group-textarea" />
+
+### Variants and sizes
+
+The group takes [Input](/components/input)'s variants, plus `ghost` (no border or fill until hovered), and its sizes. Like
+Input, it takes them from the [Field](/components/field) around it unless it sets its own.
+
+<ComponentPreview name="input-group" demo="input-group-variants" />
+
+## Villages
+
+The field is Input's: the village's border, radius, fill and focus ring. Underline keeps only the bottom line, with the
+addons on it.
+
+<VillageGrid name="input-group" />
+
+## Accessibility
+
+- `role="group"`. The control needs its own name: a `FieldLabel` around it, or an `aria-label`. Text in an addon
+  (`https://`) is not part of that name; repeat it in the label when it matters.
+- Icons that only decorate are hidden from screen readers by Lucide; an icon that carries meaning (a check for
+  "available") needs an `aria-label`. Icon buttons need an `aria-label` too.
+- The focus ring is drawn on the group when the control has focus, so it frames the addons as well.
+
+## API reference
+
+| Component | Props |
+| --- | --- |
+| `InputGroup` | The props of `<div>`, plus `variant`: `"default" \| "filled" \| "underline" \| "ghost"` and `size`: `"sm" \| "default" \| "lg"` (from the Field by default) |
+| `InputGroupAddon` | The props of `<div>`, plus `align`: `"inline-start" \| "inline-end" \| "block-start" \| "block-end"` (default `"inline-start"`) |
+| `InputGroupButton` | [Button](/components/button)'s props; `variant` defaults to `"ghost"`, `size` is `"xs" \| "sm" \| "icon-xs" \| "icon-sm"` (default `"xs"`) |
+| `InputGroupText` | The props of `<span>` |
+| `InputGroupInput`, `InputGroupTextarea` | [Input](/components/input)'s and [Textarea](/components/textarea)'s props |
+
+`inputGroupVariants({ variant, size })` and `inputGroupAddonVariants({ align })` return their classes.

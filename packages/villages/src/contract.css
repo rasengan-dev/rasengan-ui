@@ -1,0 +1,411 @@
+/*
+ * Rasengan UI token contract (RFC-0002, "Villages").
+ *
+ * Import after Tailwind and the engine variants, then the villages the
+ * project uses, then the natures (last, so Onmyōton can override what a
+ * village derives):
+ *
+ *   @import "tailwindcss";
+ *   @import "tw-animate-css";
+ *   @import "./rasengan/variants.css";
+ *   @import "./rasengan/contract.css";
+ *   @import "./rasengan/villages/konoha.css";
+ *   @import "./rasengan/natures.css";
+ *
+ *   <html data-village="konoha" data-nature="katon" data-tint="village">
+ *
+ * Components only use the Tailwind names below. A village sets the raw
+ * values (--background, --radius, --control-md…); this file only gives
+ * defaults that a village may leave out, and the colours derived from the
+ * nature.
+ */
+
+@theme inline {
+	/* shadcn names, so shadcn components follow the village too. */
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-destructive-foreground: var(--destructive-foreground);
+	--color-border: var(--border);
+	/* Status colours, each with the text on it, a soft wash and the text in that colour. */
+	--color-success: var(--success);
+	--color-success-foreground: var(--success-foreground);
+	--color-warning: var(--warning);
+	--color-warning-foreground: var(--warning-foreground);
+	--color-info: var(--info);
+	--color-info-foreground: var(--info-foreground);
+	/* The current tone (see the tone-* utilities): bg-tone, text-tone-foreground, bg-tone-soft, text-tone-text, border-tone-edge. */
+	--color-tone: var(--tone);
+	--color-tone-foreground: var(--tone-foreground);
+	--color-tone-soft: var(--tone-soft);
+	--color-tone-text: var(--tone-text);
+	--color-tone-edge: var(--tone-edge);
+	--color-tone-border: var(--tone-border);
+	--color-input: var(--input);
+	--color-input-bg: var(--input-bg);
+	--color-field-filled: var(--field-filled);
+	--color-field-filled-hover: var(--field-filled-hover);
+	--color-field-filled-edge: var(--field-filled-edge);
+	--color-ring: var(--ring);
+	--color-overlay: var(--overlay);
+	--color-tooltip: var(--tooltip);
+	--color-tooltip-foreground: var(--tooltip-foreground);
+	--color-tabs-list: var(--tabs-list);
+	--color-tab-active: var(--tab-active);
+	--color-tab-active-foreground: var(--tab-active-foreground);
+	--color-highlight: var(--highlight);
+	--color-highlight-foreground: var(--highlight-foreground);
+	--color-control-border: var(--control-border);
+	--color-control-track: var(--control-track);
+	--color-switch-track: var(--switch-track);
+	--color-switch-thumb: var(--switch-thumb);
+	--color-track-border: var(--track-border);
+	--color-chart-1: var(--chart-1);
+	--color-chart-2: var(--chart-2);
+	--color-chart-3: var(--chart-3);
+	--color-chart-4: var(--chart-4);
+	--color-chart-5: var(--chart-5);
+
+	/* Shape. Multiplied rather than subtracted, so a village with no radius stays at 0. */
+	--radius-sm: calc(var(--radius) * 0.6);
+	--radius-md: calc(var(--radius) * 0.8);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) * 1.4);
+	--radius-control: var(--control-radius);
+	--radius-pill: var(--pill-radius);
+	--radius-check: var(--check-radius);
+	--radius-badge: var(--badge-radius);
+
+	/* Type. */
+	--font-sans: var(--font-body);
+	--font-display: var(--font-heading);
+	--font-mono: var(--font-code);
+	--tracking-display: var(--display-tracking);
+
+	/* Controls: h-control(-sm/-lg), px-control-x, px-input-x, font-control, text-control,
+	 * font-control-weight, tracking-control (and case-control below). */
+	--spacing-control-sm: var(--control-sm);
+	--spacing-control: var(--control-md);
+	--spacing-control-lg: var(--control-lg);
+	--spacing-control-x: var(--control-px);
+	--spacing-input-x: var(--input-px);
+	--font-control: var(--control-font);
+	--text-control-sm: var(--control-text-sm);
+	--text-control: var(--control-text);
+	--text-control-lg: var(--control-text-lg);
+	--font-weight-control-weight: var(--control-weight);
+	--tracking-control: var(--control-tracking);
+
+	/* Indicators (checkbox, radio, switch thumb, slider thumb): size-indicator(-sm/-lg). */
+	--spacing-indicator-sm: var(--indicator-sm);
+	--spacing-indicator: var(--indicator-md);
+	--spacing-indicator-lg: var(--indicator-lg);
+
+	/* Depth. */
+	--shadow-sm: var(--elevation-sm);
+	--shadow-md: var(--elevation-md);
+	--shadow-lg: var(--elevation-lg);
+	--shadow-input: var(--input-shadow);
+	--shadow-tab: var(--tab-active-shadow);
+	--shadow-thumb: var(--thumb-shadow);
+	--blur-surface: var(--surface-blur);
+	--animate-skeleton: var(--skeleton-motion);
+
+	/* Motion: the ease-out and ease-in-out utilities follow the village. */
+	--ease-out: var(--motion-ease-out);
+	--ease-in-out: var(--motion-ease-in-out);
+}
+
+/* The village's border width on every bordered element, like Tailwind's own 1px default. */
+@utility border-village {
+	border-style: solid;
+	border-width: var(--border-width);
+}
+
+/* Iwa writes its control labels in capitals; the others leave them as written. */
+@utility case-control {
+	text-transform: var(--control-case);
+}
+
+/* Iwa sets its headings (card titles, dialog titles) in capitals too. */
+@utility case-heading {
+	text-transform: var(--heading-case);
+}
+
+/* Focus as the village draws it: a halo (Konoha, Kiri) or a ring with a gap (Iwa). Use with focus-visible:. */
+@utility focus-ring {
+	outline: var(--focus-width) solid var(--ring);
+	outline-offset: var(--focus-offset);
+}
+
+/* Press as the village feels it: Konoha and Kiri scale down, Iwa sinks into its shadow. */
+@utility pressable {
+	&:active:not(:disabled, [data-disabled]) {
+		scale: var(--press-scale);
+		translate: var(--press-offset) var(--press-offset);
+		box-shadow: var(--press-shadow);
+	}
+}
+
+/*
+ * Tones: a component's colour, apart from its style. Each utility only points the --tone* properties at one
+ * colour, so a variant is written once (bg-tone, bg-tone-soft text-tone-text…) and works in every tone.
+ * --tone-edge is the soft variant's border: transparent, unless the village draws one (--soft-edge-alpha).
+ * --tone-border is the edge of something filled with the tone (a checked box, a slider's thumb): 3:1 on the page.
+ */
+@utility tone-neutral {
+	--tone: var(--neutral);
+	--tone-foreground: var(--neutral-foreground);
+	--tone-soft: var(--neutral-soft);
+	--tone-text: var(--neutral-text);
+	--tone-edge: color-mix(in oklab, var(--neutral-text) var(--soft-edge-alpha), transparent);
+	--tone-border: var(--neutral-border);
+}
+@utility tone-primary {
+	--tone: var(--primary);
+	--tone-foreground: var(--primary-foreground);
+	--tone-soft: var(--primary-soft);
+	--tone-text: var(--primary-text);
+	--tone-edge: color-mix(in oklab, var(--primary-text) var(--soft-edge-alpha), transparent);
+	--tone-border: var(--primary-border);
+	--tone-border: var(--primary-border);
+}
+@utility tone-success {
+	--tone: var(--success);
+	--tone-foreground: var(--success-foreground);
+	--tone-soft: var(--success-soft);
+	--tone-text: var(--success-text);
+	--tone-edge: color-mix(in oklab, var(--success-text) var(--soft-edge-alpha), transparent);
+	--tone-border: var(--success-border);
+}
+@utility tone-warning {
+	--tone: var(--warning);
+	--tone-foreground: var(--warning-foreground);
+	--tone-soft: var(--warning-soft);
+	--tone-text: var(--warning-text);
+	--tone-edge: color-mix(in oklab, var(--warning-text) var(--soft-edge-alpha), transparent);
+	--tone-border: var(--warning-border);
+}
+@utility tone-info {
+	--tone: var(--info);
+	--tone-foreground: var(--info-foreground);
+	--tone-soft: var(--info-soft);
+	--tone-text: var(--info-text);
+	--tone-edge: color-mix(in oklab, var(--info-text) var(--soft-edge-alpha), transparent);
+	--tone-border: var(--info-border);
+}
+@utility tone-destructive {
+	--tone: var(--destructive);
+	--tone-foreground: var(--destructive-foreground);
+	--tone-soft: var(--destructive-soft);
+	--tone-text: var(--destructive-text);
+	--tone-edge: color-mix(in oklab, var(--destructive-text) var(--soft-edge-alpha), transparent);
+	--tone-border: var(--destructive-border);
+}
+
+/* The default skeleton motion; a village may replace it (Iwa: none) with --skeleton-motion. */
+@keyframes rui-pulse {
+	50% {
+		opacity: 0.55;
+	}
+}
+
+/* Durations from the village, for transitions and tw-animate-css alike. */
+@utility duration-fast {
+	--tw-duration: var(--motion-fast);
+	transition-duration: var(--motion-fast);
+}
+@utility duration-base {
+	--tw-duration: var(--motion-base);
+	transition-duration: var(--motion-base);
+}
+@utility duration-slow {
+	--tw-duration: var(--motion-slow);
+	transition-duration: var(--motion-slow);
+}
+
+/* Defaults a village may leave out. Zero specificity: any village rule wins. */
+:where([data-village]) {
+	--card-foreground: var(--foreground);
+	--popover: var(--card);
+	--popover-foreground: var(--foreground);
+	--accent-foreground: var(--foreground);
+	--tooltip: var(--foreground);
+	--tooltip-foreground: var(--background);
+	--tabs-list: var(--muted);
+	--tabs-list-padding: 3px;
+	--tab-active: var(--background);
+	--tab-active-foreground: var(--foreground);
+	--tab-active-shadow: var(--elevation-sm);
+	--thumb-shadow: var(--elevation-sm);
+	--highlight: var(--accent);
+	--highlight-foreground: var(--accent-foreground);
+	/* What identifies a state control, 3:1 on the page (WCAG 1.4.11); text fields keep the softer --input. */
+	--control-border: var(--input);
+	--control-track: var(--control-border);
+	--switch-track: var(--control-border);
+	--switch-thumb: var(--background);
+	--track-border: transparent;
+	--input-bg: var(--background);
+	--input-shadow: none;
+	/* The filled field variant: a grey well, no border unless the village draws one (Iwa). */
+	--field-filled: var(--muted);
+	--field-filled-hover: color-mix(in oklab, var(--field-filled), var(--foreground) 5%);
+	--field-filled-edge: transparent;
+	--input-px: calc(var(--control-px) * 0.75);
+	--control-font: var(--font-body);
+	--control-text: 0.875rem;
+	--control-text-sm: calc(var(--control-text) * 0.93);
+	--control-text-lg: calc(var(--control-text) * 1.07);
+	--indicator-sm: 0.875rem;
+	--indicator-md: 1.125rem;
+	--indicator-lg: 1.375rem;
+	--control-weight: 500;
+	--control-tracking: 0em;
+	--control-case: none;
+	--pill-radius: 9999px;
+	--check-radius: calc(var(--control-radius) * 0.45);
+	--badge-radius: calc(var(--control-radius) * 0.75);
+	--heading-case: none;
+	--skeleton-fill: var(--muted);
+	--skeleton-motion: rui-pulse 2s ease-in-out infinite;
+	--focus-width: 3px;
+	--focus-offset: 0px;
+	--ring-alpha: 50%;
+	--press-scale: 0.98;
+	--press-offset: 0px;
+	--press-shadow: var(--elevation-sm);
+	--surface-blur: 0px;
+	--texture: none;
+
+	/*
+	 * Status colours. Hues are fixed (green, amber, blue); the village gives the strength per mode, like the
+	 * primary's: by default the primary's own, with the text that sits on the primary. Warning is light with dark
+	 * text, so it has its own knobs. --tone-text-l is the lightness of a tone's words (outline, ghost, soft), on
+	 * the page and on its soft wash: a little darker than the solid colour in light mode.
+	 * Not multiplied by --tint: a neutral village keeps its status colours, like destructive.
+	 */
+	--success-hue: 150;
+	--warning-hue: 75;
+	--info-hue: 255;
+	--status-l: var(--primary-l);
+	--status-c: var(--primary-c);
+	--on-status: var(--on-primary);
+	--warning-l: 0.8;
+	--warning-c: 0.16;
+	--on-warning: oklch(0.25 0.05 60);
+	--tone-text-l: var(--primary-l);
+	/*
+	 * The primary's three roles each have their lightness (RFC-0006, "Your brand colour"): the fill (--primary-l, with
+	 * its text at 4.5:1), the words (--tone-text-l, 4.5:1 on the page) and the edge of what it fills (--primary-border-l,
+	 * 3:1 on the page). A bright brand colour keeps its fill; only its words and edge darken.
+	 */
+	--primary-border-l: var(--primary-l);
+	--warning-text-l: var(--tone-text-l);
+	--warning-text-c: 0.09;
+	--success: oklch(var(--status-l) var(--status-c) var(--success-hue));
+	--success-foreground: var(--on-status);
+	--success-text: oklch(var(--tone-text-l) var(--status-c) var(--success-hue));
+	--warning: oklch(var(--warning-l) var(--warning-c) var(--warning-hue));
+	--warning-foreground: var(--on-warning);
+	--warning-text: oklch(var(--warning-text-l) var(--warning-text-c) var(--warning-hue));
+	--info: oklch(var(--status-l) var(--status-c) var(--info-hue));
+	--info-foreground: var(--on-status);
+	--info-text: oklch(var(--tone-text-l) var(--status-c) var(--info-hue));
+	--destructive-text: var(--destructive);
+	--neutral: var(--foreground);
+	--neutral-foreground: var(--background);
+	--neutral-text: var(--foreground);
+	/* The edge of a control filled with the colour: the colour itself, but amber is too light for 3:1 on a light page. */
+	--neutral-border: var(--neutral);
+	--success-border: var(--success);
+	--warning-border: var(--warning-text);
+	--info-border: var(--info);
+	--destructive-border: var(--destructive);
+
+	/* Soft: the colour as a translucent wash, so it works on the page, a card or a popup alike. */
+	--soft-alpha: 12%;
+	--soft-edge-alpha: 0%;
+	--success-soft: color-mix(in oklab, var(--success) var(--soft-alpha), transparent);
+	--warning-soft: color-mix(in oklab, var(--warning) var(--soft-alpha), transparent);
+	--info-soft: color-mix(in oklab, var(--info) var(--soft-alpha), transparent);
+	--destructive-soft: color-mix(in oklab, var(--destructive) var(--soft-alpha), transparent);
+	--neutral-soft: color-mix(in oklab, var(--foreground) var(--soft-alpha), transparent);
+}
+
+/*
+ * The tint: every grey a village declares multiplies its chroma by --tint,
+ * so data-tint="neutral" turns them into pure greys (destructive excepted).
+ */
+[data-tint="village"] {
+	--tint: 1;
+}
+[data-tint="neutral"] {
+	--tint: 0;
+}
+
+/*
+ * The nature gives the hue; the village gives how strong it is (lightness
+ * and chroma, per mode) and the text that sits on it. Declared on every
+ * element that sets either, so a nested village or nature recomputes them.
+ */
+:where([data-village], [data-nature]) {
+	--primary: oklch(var(--primary-l) var(--primary-c) var(--nature-hue));
+	--primary-foreground: var(--on-primary);
+	--primary-text: oklch(var(--tone-text-l) var(--primary-c) var(--nature-hue));
+	--primary-soft: color-mix(in oklab, var(--primary) var(--soft-alpha), transparent);
+	--primary-border: oklch(var(--primary-border-l) var(--primary-c) var(--nature-hue));
+	--ring: oklch(var(--primary-l) var(--primary-c) var(--nature-hue) / var(--ring-alpha));
+	/* The default tone, so bg-tone and friends work without a tone-* utility. */
+	--tone: var(--primary);
+	--tone-foreground: var(--primary-foreground);
+	--tone-soft: var(--primary-soft);
+	--tone-text: var(--primary-text);
+	--tone-edge: color-mix(in oklab, var(--primary-text) var(--soft-edge-alpha), transparent);
+	--chart-1: oklch(var(--chart-l) var(--chart-c) var(--nature-hue));
+	--chart-2: oklch(var(--chart-l) var(--chart-c) calc(var(--nature-hue) + 72));
+	--chart-3: oklch(var(--chart-l) var(--chart-c) calc(var(--nature-hue) + 144));
+	--chart-4: oklch(var(--chart-l) var(--chart-c) calc(var(--nature-hue) + 216));
+	--chart-5: oklch(var(--chart-l) var(--chart-c) calc(var(--nature-hue) + 288));
+}
+
+/* A village scope repaints itself: one section can wear another village. */
+[data-village] {
+	background-color: var(--background);
+	background-image: var(--texture);
+	color: var(--foreground);
+	font-family: var(--font-body);
+	-webkit-font-smoothing: antialiased;
+}
+
+@layer base {
+	[data-village] *,
+	[data-village] ::before,
+	[data-village] ::after {
+		border-color: var(--border);
+	}
+}
+
+/* Doubled attribute: wins over the village files, which set these at a lower specificity. */
+@media (prefers-reduced-motion: reduce) {
+	[data-village][data-village] {
+		--motion-fast: 0ms;
+		--motion-base: 0ms;
+		--motion-slow: 0ms;
+		--press-scale: 1;
+		--press-offset: 0px;
+		--skeleton-motion: none;
+	}
+}

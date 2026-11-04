@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-02",
+  "title": "Chatbot text input 2",
+  "description": "Chatbot text input 2",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "select"
+  ],
+  "files": [
+    {
+      "path": "src/registry/application-ui/forms/inputs/input2.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { ArrowUp, Mic, Paperclip } from \"lucide-react\";\nimport { ComponentProps } from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport {\n\tSelect,\n\tSelectContent,\n\tSelectItem,\n\tSelectTrigger,\n\tSelectValue,\n} from \"@/components/ui/select\";\n\ntype Props = {\n\tplaceholder?: string;\n\tclassName?: ComponentProps<\"div\">[\"className\"];\n\tvalue?: string;\n};\n\nexport const Input2 = ({ placeholder, className, value }: Props) => {\n\treturn (\n\t\t<div\n\t\t\tclassName={cn(\n\t\t\t\t\"relative rounded-3xl border max-w-[600px] w-full h-auto bg-background dark:bg-input/70 mx-auto\",\n\t\t\t\tclassName\n\t\t\t)}\n\t\t>\n\t\t\t<div\n\t\t\t\tcontentEditable\n\t\t\t\tdata-placeholder={placeholder}\n\t\t\t\tclassName='w-full min-h-[75px] max-h-[200px] h-auto peer empty:before:content-[attr(data-placeholder)] empty:before:text-muted-foreground empty:before:absolute empty:before:pointer-events-none empty:before:block empty:before:inset-4 outline-0 text-foreground py-4 px-4 pb-4 overflow-auto rounded-2xl'\n\t\t\t\t// dangerouslySetInnerHTML={{ __html: value || \"\" }}\n\t\t\t></div>\n\t\t\t<div className='flex items-center justify-between px-2'>\n\t\t\t\t<div className='p-2 py-3 absolutef left-2 bottom-2 text-muted-foreground'>\n\t\t\t\t\t<Select>\n\t\t\t\t\t\t<SelectTrigger className='rounded-xl w-[140px] text-[12px]'>\n\t\t\t\t\t\t\t<SelectValue placeholder='Select a source' />\n\t\t\t\t\t\t</SelectTrigger>\n\t\t\t\t\t\t<SelectContent>\n\t\t\t\t\t\t\t<SelectItem value='1'>Facebook</SelectItem>\n\t\t\t\t\t\t\t<SelectItem value='2'>Twitter</SelectItem>\n\t\t\t\t\t\t\t<SelectItem value='3'>Instagram</SelectItem>\n\t\t\t\t\t\t</SelectContent>\n\t\t\t\t\t</Select>\n\t\t\t\t</div>\n\n\t\t\t\t<div className='flex items-center gap-2'>\n\t\t\t\t\t<Button\n\t\t\t\t\t\tclassName='rounded-xl text-[12px] px-3 size-8 h-auto sm:size-auto sm:h-8 text-foreground'\n\t\t\t\t\t\tvariant='outline'\n\t\t\t\t\t>\n\t\t\t\t\t\t<Paperclip size={18} />\n\t\t\t\t\t\t<span className='hidden sm:block'>Attach</span>\n\t\t\t\t\t</Button>\n\t\t\t\t\t<Button\n\t\t\t\t\t\tclassName='rounded-xl text-[12px] px-3 size-8 h-auto sm:size-auto sm:h-8 text-foreground'\n\t\t\t\t\t\tvariant='outline'\n\t\t\t\t\t>\n\t\t\t\t\t\t<Mic size={18} />\n\t\t\t\t\t\t<span className='hidden sm:block'>Voice</span>\n\t\t\t\t\t</Button>\n\t\t\t\t\t<Button\n\t\t\t\t\t\tclassName='rounded-xl text-[12px] px-3 size-8 h-auto sm:size-auto sm:h-8'\n\t\t\t\t\t\tvariant='default'\n\t\t\t\t\t>\n\t\t\t\t\t\t<ArrowUp size={18} />\n\t\t\t\t\t\t<span className='hidden sm:block'>Send</span>\n\t\t\t\t\t</Button>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

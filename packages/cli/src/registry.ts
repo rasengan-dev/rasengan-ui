@@ -1,0 +1,103 @@
+import { existsSync, readFileSync } from "node:fs";
+import { join, resolve } from "node:path";
+import type { Config } from "./config.ts";
+import { fetchJson } from "./fetch.ts";
+import type { LockEntry } from "./install.ts";
+import { fetchItem, GENERATED, localVillages } from "./villages.ts";
+
+/** A registry item, in the shadcn format the registry is built with. */
+export interface RegistryItem {
+	name: string;
+	type: string;
+	title?: string;
+	description?: string;
+	dependencies?: string[];
+	devDependencies?: string[];
+	registryDependencies?: string[];
+	files: { path: string; type: string; target?: string; content: string }[];
+	meta?: Record<string, unknown>;
+}
+
+const isUrl = (location: string) => /^https?:\/\//.test(location);
+
+/** Where the registry address is set, for the messages when it serves no registry. */
+const registryHint = "The registry address is `registry` in rasengan-ui.json, or RASENGAN_UI_REGISTRY.";
+
+/**
+ * An item by name, for the project's engine. A dependency written as a URL is read by its name
+ * from the project's registry, so a registry built for one address works from another (or a folder).
+ */
+export async function loadItem(config: Config, root: string, nameOrUrl: string): Promise<RegistryItem> {
+	const name = nameOrUrl.replace(/^.*\//, "").replace(/\.json$/, "");
+	const location = isUrl(config.registry) ? `${config.registry.replace(/\/$/, "")}/${config.engine}/${name}.json` : join(resolve(root, config.registry), config.engine, `${name}.json`);
+	if (isUrl(location)) return fetchJson<RegistryItem>(location, { what: "the registry", notFound: `No item named "${name}" in the registry (${location}).`, hint: registryHint });
+	if (!existsSync(location)) throw new Error(`No item named "${name}" in the registry (${location}).`);
+	return JSON.parse(readFileSync(location, "utf8")) as RegistryItem;
+}
+
+/** The registry's index (registry.json): every item, without file contents. */
+export async function loadIndex(config: Config, root: string): Promise<{ homepage?: string; items: Omit<RegistryItem, "files">[] }> {
+	const location = isUrl(config.registry) ? `${config.registry.replace(/\/$/, "")}/${config.engine}/registry.json` : join(resolve(root, config.registry), config.engine, "registry.json");
+	if (isUrl(location)) return fetchJson(location, { what: "the registry", hint: registryHint });
+	if (!existsSync(location)) throw new Error(`No registry at ${location}.`);
+	return JSON.parse(readFileSync(location, "utf8"));
+}
+
+export interface Choice {
+	title: string;
+	description?: string;
+	element?: string;
+	defaultNature?: string;
+}
+
+/**
+ * The villages the registry offers, and the natures and tints its theme item lists; then the project's own villages
+ * (made by `village create` or added from a URL, RFC-0006) and the natures they declare.
+ */
+export async function choices(config: Config, root: string) {
+	const index = await loadIndex(config, root);
+	const villages: Record<string, Choice> = Object.fromEntries(
+		index.items
+			.filter((item) => item.name.startsWith("village-"))
+			.map((item) => [item.name.slice("village-".length), { title: item.title?.replace(/ village$/, "") ?? item.name, description: item.description, defaultNature: item.meta?.defaultNature as string }]),
+	);
+	const theme = index.items.find((item) => item.name === "rasengan-theme");
+	const natures = { ...(theme?.meta?.natures ?? {}) } as Record<string, Choice>;
+	const tints = (theme?.meta?.tints ?? {}) as Record<string, Choice>;
+	for (const [name, village] of Object.entries(localVillages(root, config))) {
+		villages[name] ??= { title: village.title, description: village.description ?? (village.source === GENERATED ? "Made with village create" : `From ${village.source}`), defaultNature: village.defaultNature };
+		for (const nature of village.natures) natures[nature] ??= { title: village.title, element: `${village.title}'s brand` };
+	}
+	return { villages, natures, tints };
+}
+
+/**
+ * An installed item as its source has it now: the project's registry, or the URL it was added from. Undefined for a
+ * generated village, which only `village create --update` changes.
+ */
+export async function loadLockedItem(config: Config, root: string, name: string, entry: LockEntry | undefined): Promise<RegistryItem | undefined> {
+	if (entry?.source === GENERATED) return undefined;
+	if (entry?.source) return fetchItem(entry.source, root);
+	return loadItem(config, root, name);
+}
+
+/** The items and everything they depend on, each once, dependencies first. */
+export async function resolveItems(config: Config, root: string, names: string[]): Promise<RegistryItem[]> {
+	const ordered: RegistryItem[] = [];
+	const seen = new Map<string, Promise<void>>();
+	const visit = (nameOrUrl: string): Promise<void> => {
+		const name = nameOrUrl.replace(/^.*\//, "").replace(/\.json$/, "");
+		if (!seen.has(name))
+			seen.set(
+				name,
+				(async () => {
+					const item = await loadItem(config, root, name);
+					for (const dependency of item.registryDependencies ?? []) await visit(dependency);
+					ordered.push(item);
+				})(),
+			);
+		return seen.get(name)!;
+	};
+	for (const name of names) await visit(name);
+	return ordered;
+}

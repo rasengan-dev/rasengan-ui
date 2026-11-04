@@ -1,0 +1,92 @@
+---
+metadata:
+  title: Table · Rasengan UI
+  description: "Rows and columns of data, scrolling sideways on small screens. Plain or striped, in two densities."
+toc: true
+---
+
+# Table
+
+Rows and columns of data, scrolling sideways on small screens. Plain or striped, in two densities.
+
+<ComponentPreview name="table" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add table
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/table.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/table.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
+export function Usage() {
+  return (
+    <Table>
+      <TableCaption>Your recent invoices.</TableCaption>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Invoice</TableHead>
+          <TableHead className="text-end">Amount</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>INV-001</TableCell>
+          <TableCell className="text-end">$250.00</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  );
+}
+```
+
+### Striped, small and selected rows
+
+`variant="striped"` tints every other row; `size="sm"` lowers the rows, for tables inside cards and panels. A row
+with `data-state="selected"` takes the muted fill. A checkbox in the first column lines up with the text.
+
+<ComponentPreview name="table" demo="table-variants" />
+
+For sorting, filtering and pagination, build on [TanStack Table](https://tanstack.com/table) with these parts; a data
+table block will come later.
+
+## Villages
+
+Row lines are as thick as the village's borders and row heights follow its control heights, so Iwa's table is dense
+and heavily ruled without a prop.
+
+<VillageGrid name="table" />
+
+## Accessibility
+
+- A real `<table>`, with `<th>` headers: screen readers announce the column of each cell. Name the table with
+  `TableCaption`, or with `aria-label` on `Table`.
+- Selection is shown by the fill only: say it in the row too (a checked checkbox, as in the demo).
+- The container scrolls sideways when the columns don't fit; it is reachable by keyboard through the cells' links and
+  controls.
+
+## API reference
+
+`Table` (a `<table>` in a scrolling `<div>`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`,
+`TableCell` and `TableCaption`, each taking the props of its element and `className`. `Table` also takes:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `variant` | `"default" \| "striped"` | `"default"` |
+| `size` | `"sm" \| "default"` | `"default"` |
+
+`tableVariants({ variant, size })` returns the table's classes.

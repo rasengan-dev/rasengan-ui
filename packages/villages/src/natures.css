@@ -1,0 +1,50 @@
+/*
+ * Natures (RFC-0002, "Villages"): the accent hue, in oklch degrees.
+ * Import after the villages, so Onmyōton can replace what a village derives.
+ *
+ * A village gives the top-level scope its default nature (see the village
+ * files); a nested village keeps the nature it inherits, so the brand
+ * colour stays the same across sections.
+ */
+
+[data-nature="katon"] {
+	--nature-hue: 48;
+}
+[data-nature="doton"] {
+	--nature-hue: 75;
+}
+[data-nature="futon"] {
+	--nature-hue: 160;
+}
+[data-nature="suiton"] {
+	--nature-hue: 240;
+}
+[data-nature="raiton"] {
+	--nature-hue: 290;
+}
+
+/*
+ * Onmyōton (yin–yang release): no hue. The primary is the village's own ink,
+ * black on light and white on dark. Declared on every village element inside
+ * the nature, so a nested dark section gets white rather than the page's black;
+ * but not on a scope that names another nature, nor inside one: a
+ * <VillageScope nature="katon"> (or the village workshop's preview) keeps its
+ * colour on an Onmyōton page.
+ */
+[data-nature="onmyoton"] {
+	--nature-hue: 0;
+	--link-underline: underline;
+}
+[data-nature]:not([data-nature="onmyoton"]) {
+	--link-underline: none;
+}
+[data-nature="onmyoton"][data-village],
+[data-nature="onmyoton"]
+	[data-village]:not([data-nature]:not([data-nature="onmyoton"])):not([data-nature="onmyoton"] [data-nature]:not([data-nature="onmyoton"]) *),
+[data-village] [data-nature="onmyoton"] {
+	--primary: var(--foreground);
+	--primary-foreground: var(--background);
+	--primary-text: var(--foreground);
+	--primary-border: var(--foreground);
+	--ring: color-mix(in oklab, var(--foreground) var(--ring-alpha), transparent);
+}

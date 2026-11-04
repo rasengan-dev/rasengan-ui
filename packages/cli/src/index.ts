@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+/**
+ * rasengan-ui (RFC-0002, "CLI"): sets up a project, adds components, switches villages and natures,
+ * and updates installed files without losing local edits. `mcp` serves the same to agents (RFC-0003).
+ */
+import { styleText } from "node:util";
+import { add } from "./commands/add.ts";
+import { init } from "./commands/init.ts";
+import { nature, tint, village } from "./commands/look.ts";
+import { doctor } from "./commands/doctor.ts";
+import { mcp } from "./commands/mcp.ts";
+import { diff, update } from "./commands/sync.ts";
+import { version } from "./config.ts";
+
+interface Command {
+	usage: string;
+	summary: string;
+	run: (argv: string[]) => Promise<void>;
+}
+
+const commands: Record<string, Command> = {
+	init: { usage: "init", summary: "Set up a project: engine, village, nature, CSS imports, rasengan-ui.json", run: init },
+	add: { usage: "add <name...>", summary: "Install components or blocks for the project's engine", run: add },
+	village: { usage: "village <list|set|add|create|check|export> [name]", summary: "List, switch, install, make or check villages", run: village },
+	nature: { usage: "nature <list|set> [name]", summary: "List or switch the nature (accent hue)", run: nature },
+	tint: { usage: "tint <list|set> [name]", summary: "Switch between the village's greys and neutral greys", run: tint },
+	diff: { usage: "diff [name...]", summary: "Show local and registry changes since install", run: diff },
+	update: { usage: "update [name...]", summary: "Update installed files, keeping local edits (3-way merge)", run: update },
+	doctor: { usage: "doctor", summary: "Check config, CSS imports, versions and dependencies", run: doctor },
+	mcp: { usage: "mcp", summary: "Start the MCP server, for agents (stdio)", run: mcp },
+};
+
+function help() {
+	const width = Math.max(...Object.values(commands).map(({ usage }) => usage.length));
+	console.log("Usage: rasengan-ui <command>\n\nCommands:");
+	for (const { usage, summary } of Object.values(commands)) console.log(`  ${usage.padEnd(width)}  ${summary}`);
+	console.log("\n`rasengan-ui <command> --help` for a command's options, `rasengan-ui --version` for the version.");
+}
+
+const [name, ...argv] = process.argv.slice(2);
+const command = name ? commands[name] : undefined;
+
+if (!name || name === "help" || name === "--help" || name === "-h") {
+	help();
+} else if (name === "--version" || name === "-v") {
+	console.log(version);
+} else if (!command) {
+	console.error(`Unknown command: ${name}\n`);
+	help();
+	process.exitCode = 1;
+} else {
+	try {
+		await command.run(argv);
+	} catch (error) {
+		console.error(styleText("red", error instanceof Error ? error.message : String(error)));
+		process.exitCode = 1;
+	}
+}

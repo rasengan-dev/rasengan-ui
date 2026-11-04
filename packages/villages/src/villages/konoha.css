@@ -1,0 +1,115 @@
+/*
+ * Konoha, the Leaf (RFC-0002): warm neutrals, rounded, balanced. The default village.
+ * Default nature: katon. Greys multiply their chroma by --tint (data-tint="neutral" → 0).
+ */
+
+/* Default nature, only for a top-level village: a nested one keeps the nature it inherits. */
+:where([data-village="konoha"]:not([data-village] *)) {
+	--nature-hue: 48;
+}
+
+[data-village="konoha"] {
+	/* Shape */
+	--radius: 0.625rem;
+	--control-radius: 0.5rem;
+	--border-width: 1px;
+
+	/* Type */
+	--font-body: "Figtree", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+	--font-heading: var(--font-body);
+	--font-code: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+	--display-tracking: -0.02em;
+
+	/* Controls */
+	--control-sm: 2rem;
+	--control-md: 2.25rem;
+	--control-lg: 2.75rem;
+	--control-px: 1rem;
+	--control-text: 0.875rem;
+	--control-weight: 500;
+
+	/* Focus and press */
+	--focus-width: 3px;
+	--ring-alpha: 42%;
+	--press-scale: 0.98;
+
+	/* Motion */
+	--motion-fast: 120ms;
+	--motion-base: 200ms;
+	--motion-slow: 360ms;
+	--motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+	--motion-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+	/* Colour (light) */
+	--background: oklch(0.985 calc(0.004 * var(--tint, 1)) 75);
+	--foreground: oklch(0.22 calc(0.012 * var(--tint, 1)) 60);
+	--card: oklch(1 0 0);
+	--popover: oklch(1 0 0);
+	--secondary: oklch(0.95 calc(0.008 * var(--tint, 1)) 75);
+	--secondary-foreground: oklch(0.27 calc(0.012 * var(--tint, 1)) 60);
+	--muted: oklch(0.95 calc(0.008 * var(--tint, 1)) 75);
+	--muted-foreground: oklch(0.5 calc(0.014 * var(--tint, 1)) 60);
+	--accent: oklch(0.94 calc(0.012 * var(--tint, 1)) 75);
+	--destructive: oklch(0.55 0.21 27);
+	--destructive-foreground: oklch(0.99 calc(0.005 * var(--tint, 1)) 75);
+	--border: oklch(0.9 calc(0.01 * var(--tint, 1)) 75);
+	--input: oklch(0.87 calc(0.012 * var(--tint, 1)) 75);
+	--control-border: oklch(0.63 calc(0.014 * var(--tint, 1)) 70);
+	--input-bg: oklch(1 0 0);
+	--overlay: oklch(0.2 calc(0.02 * var(--tint, 1)) 60 / 40%);
+
+	/* The nature's hue at this strength. 0.52 is the highest lightness at which white text
+	 * stays above 4.5:1 for every nature: green (futon) and blue (suiton) fail at 0.55. */
+	--primary-l: 0.52;
+	--primary-c: 0.18;
+	--on-primary: oklch(0.99 calc(0.005 * var(--tint, 1)) 75);
+	/* Tones: words in a tone sit a little darker than the solid colour, to hold 4.5:1 on its soft wash too. */
+	--tone-text-l: 0.46;
+	--status-c: 0.12;
+	--destructive-text: oklch(0.5 0.2 27);
+	--chart-l: 0.66;
+	--chart-c: 0.16;
+
+	/* Depth */
+	--elevation-sm: 0 1px 2px oklch(0.2 calc(0.02 * var(--tint, 1)) 60 / 8%);
+	--elevation-md: 0 1px 2px oklch(0.2 calc(0.02 * var(--tint, 1)) 60 / 6%), 0 6px 16px -4px oklch(0.2 calc(0.02 * var(--tint, 1)) 60 / 12%);
+	--elevation-lg: 0 2px 4px oklch(0.2 calc(0.02 * var(--tint, 1)) 60 / 6%), 0 24px 48px -16px oklch(0.2 calc(0.02 * var(--tint, 1)) 60 / 28%);
+	--input-shadow: 0 1px 2px oklch(0.2 calc(0.02 * var(--tint, 1)) 60 / 5%);
+}
+
+/* Dark: under a .dark ancestor unless a nearer .light scope says otherwise (VillageScope scheme="light"). */
+:is(.dark [data-village="konoha"]:not(.light, .light *), .light .dark [data-village="konoha"], [data-village="konoha"].dark) {
+	--background: oklch(0.17 calc(0.008 * var(--tint, 1)) 60);
+	--foreground: oklch(0.96 calc(0.006 * var(--tint, 1)) 75);
+	--card: oklch(0.205 calc(0.009 * var(--tint, 1)) 60);
+	--popover: oklch(0.22 calc(0.01 * var(--tint, 1)) 60);
+	--secondary: oklch(0.26 calc(0.01 * var(--tint, 1)) 60);
+	--secondary-foreground: var(--foreground);
+	--muted: oklch(0.26 calc(0.01 * var(--tint, 1)) 60);
+	--muted-foreground: oklch(0.72 calc(0.012 * var(--tint, 1)) 70);
+	--accent: oklch(0.28 calc(0.012 * var(--tint, 1)) 60);
+	--destructive: oklch(0.68 0.19 25);
+	--destructive-foreground: oklch(0.17 calc(0.008 * var(--tint, 1)) 60);
+	--border: oklch(1 0 0 / 10%);
+	--input: oklch(1 0 0 / 16%);
+	--control-border: oklch(0.54 calc(0.012 * var(--tint, 1)) 65);
+	--input-bg: oklch(1 0 0 / 4%);
+	--overlay: oklch(0 0 0 / 60%);
+	--switch-thumb: var(--foreground);
+
+	--primary-l: 0.74;
+	--primary-c: 0.16;
+	--on-primary: oklch(0.18 calc(0.01 * var(--tint, 1)) 60);
+	--tone-text-l: var(--primary-l);
+	--status-c: 0.13;
+	--warning-l: 0.8;
+	--soft-alpha: 16%;
+	--destructive-text: var(--destructive);
+	--chart-l: 0.72;
+	--chart-c: 0.15;
+
+	--elevation-sm: 0 1px 2px oklch(0 0 0 / 30%);
+	--elevation-md: 0 1px 2px oklch(0 0 0 / 30%), 0 8px 20px -6px oklch(0 0 0 / 45%);
+	--elevation-lg: 0 24px 56px -16px oklch(0 0 0 / 65%);
+	--input-shadow: none;
+}

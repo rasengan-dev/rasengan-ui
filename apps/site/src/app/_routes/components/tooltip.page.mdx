@@ -1,0 +1,88 @@
+---
+metadata:
+  title: Tooltip · Rasengan UI
+  description: "A short hint on hover or keyboard focus, in the village's inverse colours. It names, it never holds actions."
+toc: true
+---
+
+# Tooltip
+
+A short hint on hover or keyboard focus, in the village's inverse colours. It names, it never holds actions: for those, use [Popover](/components/popover).
+
+<ComponentPreview name="tooltip" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add tooltip
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/tooltip.json
+```
+
+<Note title="Not published yet">
+  The `rasengan-ui` CLI and the registry address above come with the first release. Until then, run `pnpm registry` in
+  this repository and add from `http://localhost:3200/r/base/tooltip.json`.
+</Note>
+
+## Usage
+
+```tsx title="app/copy.tsx"
+import { LinkIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+
+export function Copy() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger render={<Button variant="outline" size="icon" aria-label="Copy link" />}>
+          <LinkIcon />
+        </TooltipTrigger>
+        <TooltipContent>Copy link</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+}
+```
+
+### One provider
+
+Put one `TooltipProvider` near the root of the app: once a tooltip is open, the next one opens without the delay
+(`delay`, 300ms here).
+
+### Variants
+
+`default` is inverted, in the village's ink. `outline` is a popover surface with a border, for a tooltip over dark
+content or one that should stay quiet.
+
+<ComponentPreview name="tooltip" demo="tooltip-variants" />
+
+```tsx
+<TooltipContent variant="outline">Copy the link</TooltipContent>
+```
+
+## Villages
+
+It is drawn in `--tooltip` and `--tooltip-foreground`, the inverse of the page, with an arrow; it opens in the nearest VillageScope.
+
+<VillageGrid name="tooltip" />
+
+## Accessibility
+
+- It shows on hover and on keyboard focus, and closes on <kbd>Esc</kbd>.
+- Base UI's tooltip is not linked to its trigger with `aria-describedby`: the trigger needs its own accessible name, as with the `aria-label` above. Never put information only in a tooltip.
+
+## API reference
+
+The parts of Base UI's [Tooltip](https://base-ui.com/react/components/tooltip), styled:
+
+| Part | Notes |
+| --- | --- |
+| `TooltipProvider` | `delay` (default `300`), `closeDelay` |
+| `Tooltip` | `open`, `defaultOpen`, `onOpenChange`, `disabled` |
+| `TooltipTrigger` | `render` to use a `Button` |
+| `TooltipContent` | portal, popup and arrow; `side` (default `"top"`), `sideOffset`, `align`, `variant` (`"default" \| "outline"`); `tooltipVariants({ variant })` returns its classes |

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "profile-04",
+  "title": "Profile card 3",
+  "description": "Profile card 3",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "src/registry/application-ui/cards/profile/profile4.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { ArrowRight, Plus } from \"lucide-react\";\n\nconst registryUrl = import.meta.env[\"RASENGAN_REGISTRY_URL\"] || \"https://registry.rasengan.dev\"\n\nexport const ProfileCard4 = () => {\n\treturn (\n\t\t<article className='relative w-full max-w-[320px] h-[400px] rounded-3xl p-1 shadow-md bg-background overflow-hidden'>\n\t\t\t<div className='absolute inset-0'>\n\t\t\t\t<img\n\t\t\t\t\tsrc={`${registryUrl}/static/images/teams/dilane-kombou.png`}\n\t\t\t\t\talt='Avatar'\n\t\t\t\t\tclassName='rounded-[22px] object-top h-full w-full'\n\t\t\t\t/>\n\t\t\t</div>\n\t\t\t<div className='absolute bottom-0 h-1/2 inset-x-0 bg-gradient-to-b from-transparent to-[#49291F] z-10 rounded-[22px]'></div>\n\n\t\t\t<div className='relative h-full z-50 p-4 flex flex-col justify-between'>\n\t\t\t\t<div className='w-full flex justify-end'>\n\t\t\t\t\t<Button size='icon' className='bg-foreground/50'>\n\t\t\t\t\t\t<Plus />\n\t\t\t\t\t</Button>\n\t\t\t\t</div>\n\n\t\t\t\t<div className='w-full h-[60px] rounded-lg bg-background p-3 flex justify-between items-center'>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<h2 className='font-bold text-sm text-foreground'>Dilane Kombou</h2>\n\t\t\t\t\t\t<p className='text-[12px] text-foreground/60'>\n\t\t\t\t\t\t\tFounder & CEO Rasengan Labs\n\t\t\t\t\t\t</p>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<Button\n\t\t\t\t\t\t\tsize='icon'\n\t\t\t\t\t\t\tvariant={\"outline\"}\n\t\t\t\t\t\t\tclassName='rounded-full text-foreground/70'\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<ArrowRight />\n\t\t\t\t\t\t</Button>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</article>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}
