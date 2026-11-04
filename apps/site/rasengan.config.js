@@ -32,6 +32,9 @@ function source() {
 
 export default defineConfig(async () => {
   return {
+    // Every page is rendered to HTML at build time (static/): the site and the registry ship as static files, with no
+    // server code per request (a server-rendered page costs ~50-100 ms of CPU, over a Worker's budget).
+    prerender: true,
     // The address `pnpm registry` expects by default (Rasengan's own default, 5320, is v1's apps/ui).
     server: { development: { port: 3200 } },
     vite: {
