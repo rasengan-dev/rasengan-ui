@@ -20,6 +20,9 @@ export interface Config {
 	villages?: Record<string, { recipe: Recipe; engineVersion: string }>;
 }
 
+/** The CLI's own version. From src/ and from the bundle in dist/ alike, package.json is one folder up. */
+export const version = (JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")) as { version: string }).version;
+
 export const defaultRegistry = process.env.RASENGAN_UI_REGISTRY ?? "https://ui.rasengan.dev/r";
 
 export const defaults = {

@@ -10,6 +10,7 @@ import { nature, tint, village } from "./commands/look.ts";
 import { doctor } from "./commands/doctor.ts";
 import { mcp } from "./commands/mcp.ts";
 import { diff, update } from "./commands/sync.ts";
+import { version } from "./config.ts";
 
 interface Command {
 	usage: string;
@@ -33,7 +34,7 @@ function help() {
 	const width = Math.max(...Object.values(commands).map(({ usage }) => usage.length));
 	console.log("Usage: rasengan-ui <command>\n\nCommands:");
 	for (const { usage, summary } of Object.values(commands)) console.log(`  ${usage.padEnd(width)}  ${summary}`);
-	console.log("\n`rasengan-ui <command> --help` for a command's options.");
+	console.log("\n`rasengan-ui <command> --help` for a command's options, `rasengan-ui --version` for the version.");
 }
 
 const [name, ...argv] = process.argv.slice(2);
@@ -41,6 +42,8 @@ const command = name ? commands[name] : undefined;
 
 if (!name || name === "help" || name === "--help" || name === "-h") {
 	help();
+} else if (name === "--version" || name === "-v") {
+	console.log(version);
 } else if (!command) {
 	console.error(`Unknown command: ${name}\n`);
 	help();

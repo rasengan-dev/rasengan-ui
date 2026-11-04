@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { extname, join, resolve } from "node:path";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { type Config, configFile, defaultRegistry, defaults, readConfig } from "./config.ts";
+import { type Config, configFile, defaultRegistry, defaults, readConfig, version } from "./config.ts";
 import { installPackages, missingPackages } from "./dependencies.ts";
 import { hash, readLock, renderFile, writeItems } from "./install.ts";
 import { findRoot } from "./project.ts";
@@ -17,8 +17,6 @@ const instructions = `Rasengan UI is a React component system (Base UI, Tailwind
 - Style with the token contract's Tailwind names (bg-primary, text-muted-foreground, border-border, rounded-lg, shadow-md, font-display…) and the components' variant, tone and size props. Never use raw colours, radii or shadows: they would not follow a village or nature switch.
 - Install components with add_components, not by copying their source, so the import aliases, the npm packages and rasengan-ui.lock stay right.
 - get_project tells you the project's village, nature and installed components, and which files the user edited.`;
-
-const version = (JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")) as { version: string }).version;
 
 interface Options {
 	/** The folder the client started the server in. */
