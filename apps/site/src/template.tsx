@@ -9,15 +9,27 @@ const restoreSettings = `try {
 } catch (e) {}`;
 
 /*
- * Google Analytics, when the build has a measurement ID: RASENGAN_GA_ID, a build variable of the production
- * environment on Hiraiship, so local and preview builds send nothing. GA4 counts client-side navigations itself
- * (enhanced measurement, browser history changes). Anything but a G-… ID is ignored: it goes into a script.
+ * Google Analytics, when the build has an ID: RASENGAN_GA_ID, a build variable of the production environment on
+ * Hiraiship, so local and preview builds send nothing. A GA4 measurement ID (G-…) loads gtag.js, which counts
+ * client-side navigations itself (enhanced measurement); a Tag Manager container (GTM-…) loads gtm.js, and its GA4
+ * tag does the counting. Anything else is ignored: the ID goes into a script.
  */
-const gaId = /^G-[A-Z0-9]+$/.test(import.meta.env.RASENGAN_GA_ID ?? '') ? (import.meta.env.RASENGAN_GA_ID as string) : null;
-const gaSetup = `window.dataLayer = window.dataLayer || [];
+const analyticsId = (import.meta.env.RASENGAN_GA_ID ?? '').trim();
+const analytics = /^G-[A-Z0-9]+$/.test(analyticsId)
+  ? {
+      src: `https://www.googletagmanager.com/gtag/js?id=${analyticsId}`,
+      setup: `window.dataLayer = window.dataLayer || [];
 function gtag() { dataLayer.push(arguments); }
 gtag('js', new Date());
-gtag('config', '${gaId}');`;
+gtag('config', '${analyticsId}');`,
+    }
+  : /^GTM-[A-Z0-9]+$/.test(analyticsId)
+    ? {
+        src: `https://www.googletagmanager.com/gtm.js?id=${analyticsId}`,
+        setup: `window.dataLayer = window.dataLayer || [];
+dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });`,
+      }
+    : null;
 
 export default function Template({ Head, Body, Script }: TemplateProps) {
   return (
@@ -28,10 +40,10 @@ export default function Template({ Head, Body, Script }: TemplateProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="color-scheme" content="light dark" />
         <script dangerouslySetInnerHTML={{ __html: restoreSettings }} />
-        {gaId && (
+        {analytics && (
           <>
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
-            <script dangerouslySetInnerHTML={{ __html: gaSetup }} />
+            <script dangerouslySetInnerHTML={{ __html: analytics.setup }} />
+            <script async src={analytics.src} />
           </>
         )}
         {/* Village faces. Self-hosting them is RFC-0002 open question 2. */}

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "pnpm --filter @rasengan-ui/site dev",
-    "build": "RASENGAN_UI_URL=${RASENGAN_UI_URL:-https://ui.rasengan.dev} pnpm registry && pnpm --filter @rasengan-ui/site build",
+    "build": "pnpm --filter @rasengan-ui/site build",
     "start": "pnpm --filter @rasengan-ui/site serve",
     "lint": "pnpm -r lint",
     "test": "pnpm --filter @rasengan-ui/villages --filter rasengan-ui test",

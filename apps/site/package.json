@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "rasengan dev",
-		"build": "rasengan build && node ../../scripts/sitemap.mjs",
+		"build": "RASENGAN_UI_URL=${RASENGAN_UI_URL:-https://ui.rasengan.dev} node ../../scripts/registry.mjs && rasengan build && node ../../scripts/sitemap.mjs",
 		"serve": "rasengan-serve ./dist",
 		"typecheck": "tsc --noEmit"
 	},

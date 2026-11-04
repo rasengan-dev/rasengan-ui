@@ -13,8 +13,8 @@
  * components that exist.
  *
  * RASENGAN_UI_URL is where the site will be served; items and schemas are
- * referenced through it. It defaults to the local site; `pnpm build` uses
- * https://ui.rasengan.dev.
+ * referenced through it. It defaults to the local site; the site's build (`pnpm build`, or `pnpm run build` in
+ * apps/site, as Hiraiship runs it) uses https://ui.rasengan.dev.
  */
 import { execFileSync } from "node:child_process";
 import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
