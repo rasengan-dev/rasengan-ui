@@ -17,7 +17,8 @@ const root = join(import.meta.dirname, "..");
 const out = join(root, "apps/site/static");
 const base = (process.env.RASENGAN_UI_URL || "https://ui.rasengan.dev").replace(/\/$/, "");
 
-if (!existsSync(out)) throw new Error(`No prerendered site in ${relative(root, out)}: run \`rasengan build\` first.`);
+// `rasengan build` can exit 0 after a failed build: this is where such a build stops.
+if (!existsSync(out)) throw new Error(`No prerendered site in ${relative(root, out)}: run \`rasengan build\` first, or see why it failed above.`);
 
 const routes = readdirSync(out, { recursive: true })
 	.filter((file) => file === "index.html" || file.endsWith(`${sep}index.html`))
