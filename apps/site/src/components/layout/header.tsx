@@ -11,7 +11,8 @@ import { repository, sections } from './nav';
 
 /**
  * After shadcn's docs header: brand and sections on the left; on the right, the search, the theme (village, nature and
- * greys in one popover), New (the village workshop, hidden on it), GitHub and light/dark. Below `lg`, a menu replaces the sections.
+ * greys in one popover), GitHub, light/dark, and last New (the village workshop, hidden on it). Below `lg`, a menu
+ * replaces the sections.
  */
 export function Header() {
   const { pathname } = useLocation();
@@ -45,17 +46,17 @@ export function Header() {
         <div className="ms-auto flex items-center gap-1.5">
           <Search className="sm:w-48 md:w-56 lg:w-64" />
           <ThemePopover />
-          {!creating && (
-            <Link to="/villages/create" aria-label="New village" className={buttonVariants({ size: 'sm' })}>
-              <PlusIcon />
-              New
-            </Link>
-          )}
           <Separator orientation="vertical" className="mx-1 h-4 data-[orientation=vertical]:self-center" />
           <a href={repository} target="_blank" rel="noreferrer" aria-label="GitHub" className={buttonVariants({ variant: 'ghost', size: 'icon' })}>
             <GitHubIcon />
           </a>
           <SchemeToggle />
+          {!creating && (
+            <Link to="/villages/create" aria-label="New village" className={cn(buttonVariants({ size: 'sm' }), 'ms-1')}>
+              <PlusIcon />
+              New
+            </Link>
+          )}
         </div>
       </div>
     </header>
