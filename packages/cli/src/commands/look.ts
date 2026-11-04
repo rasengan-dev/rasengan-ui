@@ -6,6 +6,7 @@ import { fontInfo } from "@rasengan-ui/villages/fonts";
 import { createVillage, ENGINE_VERSION, options, type Recipe, RECIPE_SCHEMA, recipeFromLink, recipeLink, type Village } from "@rasengan-ui/villages/engine";
 import { type Config, readConfig, writeConfig } from "../config.ts";
 import { installPackages, missingPackages } from "../dependencies.ts";
+import { fetchJson } from "../fetch.ts";
 import { detectFramework, htmlFile } from "../framework.ts";
 import { readLock, writeItems, writeLock } from "../install.ts";
 import { findRoot } from "../project.ts";
@@ -195,13 +196,8 @@ async function readRecipe(from: string): Promise<Partial<Recipe>> {
 	const linked = recipeFromLink(from);
 	if (linked) return linked as Partial<Recipe>;
 	let json: Record<string, unknown>;
-	if (/^https?:\/\//.test(from)) {
-		const response = await fetch(from).catch((error: Error) => {
-			throw new Error(`Can't reach ${from}: ${error.message}`);
-		});
-		if (!response.ok) throw new Error(`${from} answered ${response.status}.`);
-		json = (await response.json()) as Record<string, unknown>;
-	} else {
+	if (/^https?:\/\//.test(from)) json = await fetchJson<Record<string, unknown>>(from);
+	else {
 		const path = resolve(process.cwd(), from);
 		if (!existsSync(path)) throw new Error(`No recipe at ${from}.`);
 		json = JSON.parse(readFileSync(path, "utf8"));

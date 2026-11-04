@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import type { Config } from "./config.ts";
+import { fetchJson } from "./fetch.ts";
 import type { LockEntry } from "./install.ts";
 import { fetchItem, GENERATED, localVillages } from "./villages.ts";
 
@@ -19,6 +20,9 @@ export interface RegistryItem {
 
 const isUrl = (location: string) => /^https?:\/\//.test(location);
 
+/** Where the registry address is set, for the messages when it serves no registry. */
+const registryHint = "The registry address is `registry` in rasengan-ui.json, or RASENGAN_UI_REGISTRY.";
+
 /**
  * An item by name, for the project's engine. A dependency written as a URL is read by its name
  * from the project's registry, so a registry built for one address works from another (or a folder).
@@ -26,14 +30,7 @@ const isUrl = (location: string) => /^https?:\/\//.test(location);
 export async function loadItem(config: Config, root: string, nameOrUrl: string): Promise<RegistryItem> {
 	const name = nameOrUrl.replace(/^.*\//, "").replace(/\.json$/, "");
 	const location = isUrl(config.registry) ? `${config.registry.replace(/\/$/, "")}/${config.engine}/${name}.json` : join(resolve(root, config.registry), config.engine, `${name}.json`);
-	if (isUrl(location)) {
-		const response = await fetch(location).catch((error: Error) => {
-			throw new Error(`Can't reach the registry at ${location}: ${error.message}`);
-		});
-		if (response.status === 404) throw new Error(`No item named "${name}" in the registry (${location}).`);
-		if (!response.ok) throw new Error(`The registry answered ${response.status} for ${location}.`);
-		return (await response.json()) as RegistryItem;
-	}
+	if (isUrl(location)) return fetchJson<RegistryItem>(location, { what: "the registry", notFound: `No item named "${name}" in the registry (${location}).`, hint: registryHint });
 	if (!existsSync(location)) throw new Error(`No item named "${name}" in the registry (${location}).`);
 	return JSON.parse(readFileSync(location, "utf8")) as RegistryItem;
 }
@@ -41,13 +38,7 @@ export async function loadItem(config: Config, root: string, nameOrUrl: string):
 /** The registry's index (registry.json): every item, without file contents. */
 export async function loadIndex(config: Config, root: string): Promise<{ homepage?: string; items: Omit<RegistryItem, "files">[] }> {
 	const location = isUrl(config.registry) ? `${config.registry.replace(/\/$/, "")}/${config.engine}/registry.json` : join(resolve(root, config.registry), config.engine, "registry.json");
-	if (isUrl(location)) {
-		const response = await fetch(location).catch((error: Error) => {
-			throw new Error(`Can't reach the registry at ${location}: ${error.message}`);
-		});
-		if (!response.ok) throw new Error(`The registry answered ${response.status} for ${location}.`);
-		return (await response.json()) as { homepage?: string; items: Omit<RegistryItem, "files">[] };
-	}
+	if (isUrl(location)) return fetchJson(location, { what: "the registry", hint: registryHint });
 	if (!existsSync(location)) throw new Error(`No registry at ${location}.`);
 	return JSON.parse(readFileSync(location, "utf8"));
 }

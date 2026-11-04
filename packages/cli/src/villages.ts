@@ -3,6 +3,7 @@ import { dirname, join, resolve } from "node:path";
 import { checkVillages, parseSources, type ScopeResult, type Sources } from "@rasengan-ui/villages/contrast";
 import { builtinRecipes, type Recipe } from "@rasengan-ui/villages/engine";
 import type { Config } from "./config.ts";
+import { fetchJson } from "./fetch.ts";
 import { hash, type Lock, readBase, readLock, writeFile, writeLock } from "./install.ts";
 import type { RegistryItem } from "./registry.ts";
 import { mergeFile } from "./sync.ts";
@@ -66,13 +67,7 @@ export function localVillages(root: string, config: Config, lock: Lock = readLoc
 
 /** An item from a URL or a file (relative to the project's root, as the lockfile records it): `village add <url>`. */
 export async function fetchItem(source: string, root: string): Promise<RegistryItem> {
-	if (/^https?:\/\//.test(source)) {
-		const response = await fetch(source).catch((error: Error) => {
-			throw new Error(`Can't reach ${source}: ${error.message}`);
-		});
-		if (!response.ok) throw new Error(`${source} answered ${response.status}.`);
-		return (await response.json()) as RegistryItem;
-	}
+	if (/^https?:\/\//.test(source)) return fetchJson<RegistryItem>(source);
 	const path = resolve(root, source);
 	if (!existsSync(path)) throw new Error(`No file at ${source}.`);
 	return JSON.parse(readFileSync(path, "utf8")) as RegistryItem;
