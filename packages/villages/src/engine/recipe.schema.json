@@ -2,7 +2,7 @@
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	"$id": "https://ui.rasengan.dev/schema/village-recipe.json",
 	"title": "Rasengan UI village recipe",
-	"description": "What a village is made from (RFC-0006): a base village and the knobs, traits and overrides that change it. The village engine turns it into a checked CSS file.",
+	"description": "What a village is made from: a base village and the knobs, traits and overrides that change it. The village engine turns it into a checked CSS file.",
 	"type": "object",
 	"required": ["name"],
 	"additionalProperties": false,

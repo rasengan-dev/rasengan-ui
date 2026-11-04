@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"private": true,
 	"type": "module",
-	"description": "Rasengan UI components and blocks, as the CLI copies them into projects (RFC-0002). One source file per engine.",
+	"description": "Rasengan UI components and blocks, as the CLI copies them into projects. One source file per engine.",
 	"scripts": {
 		"typecheck": "tsc --noEmit"
 	},

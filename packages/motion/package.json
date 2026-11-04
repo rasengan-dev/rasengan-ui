@@ -2,7 +2,7 @@
 	"name": "@rasengan-ui/motion",
 	"version": "0.1.0",
 	"private": true,
-	"description": "Animation primitives for Rasengan UI v2 blocks (RFC-0001): Motion for components, GSAP for scroll scenes. Distributed through the registry; this package is the source.",
+	"description": "Animation primitives for Rasengan UI v2 blocks: Motion for components, GSAP for scroll scenes. Distributed through the registry; this package is the source.",
 	"type": "module",
 	"exports": {
 		".": "./src/index.ts",

@@ -2,7 +2,7 @@
 	"name": "@rasengan-ui/core",
 	"version": "0.0.0",
 	"private": true,
-	"description": "What every Rasengan UI component shares: cn(), VillageScope and the engine variants (RFC-0002). Distributed through the registry; this package is the source.",
+	"description": "What every Rasengan UI component shares: cn(), VillageScope and the engine variants. Distributed through the registry; this package is the source.",
 	"type": "module",
 	"exports": {
 		".": "./src/utils.ts",
