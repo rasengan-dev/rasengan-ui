@@ -192,9 +192,6 @@ importers:
       '@modelcontextprotocol/sdk':
         specifier: ^1.32.1
         version: 1.32.2(zod@4.6.7)
-      '@rasengan-ui/villages':
-        specifier: workspace:*
-        version: link:../villages
       diff:
         specifier: ^9.0.0
         version: 9.0.0
@@ -205,6 +202,9 @@ importers:
         specifier: ^4.6.7
         version: 4.6.7
     devDependencies:
+      '@rasengan-ui/villages':
+        specifier: workspace:*
+        version: link:../villages
       '@types/node':
         specifier: ^22
         version: 22.20.5
