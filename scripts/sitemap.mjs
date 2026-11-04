@@ -5,7 +5,8 @@
  *   RASENGAN_UI_URL=https://ui.rasengan.dev node scripts/sitemap.mjs
  *
  * The sitemap lists every page the prerender wrote (each `<route>/index.html`), so it holds exactly what is deployed;
- * 404.html and spa-fallback.html are not pages. URLs have no trailing slash, as the site links them.
+ * 404.html and spa-fallback.html are not pages. URLs end with a slash: each page is a folder's index.html, and the host
+ * (Hiraiship) redirects /components/button to /components/button/, so that is the address that answers 200.
  *
  * RASENGAN_UI_URL is where the site is served. Unlike the registry's, it defaults to the production address: a
  * sitemap of localhost URLs is of no use to anyone.
@@ -22,13 +23,13 @@ if (!existsSync(out)) throw new Error(`No prerendered site in ${relative(root, o
 
 const routes = readdirSync(out, { recursive: true })
 	.filter((file) => file === "index.html" || file.endsWith(`${sep}index.html`))
-	.map((file) => `/${file.slice(0, -"index.html".length).split(sep).join("/")}`.replace(/(.)\/$/, "$1"))
+	.map((file) => `/${file.slice(0, -"index.html".length).split(sep).join("/")}`)
 	.sort();
 
 const escape = (text) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${routes.map((route) => `\t<url><loc>${escape(base + (route === "/" ? "/" : route))}</loc></url>`).join("\n")}
+${routes.map((route) => `\t<url><loc>${escape(base + route)}</loc></url>`).join("\n")}
 </urlset>
 `;
 writeFileSync(join(out, "sitemap.xml"), sitemap);
