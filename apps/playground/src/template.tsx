@@ -3,7 +3,7 @@ import { ThemeScript } from '@rasenganjs/theme';
 
 export default function Template({ Head, Body, Script }: TemplateProps) {
   return (
-    <html lang="en">
+    <html lang="en" data-village="kiri" data-nature="onmyoton" data-tint="village">
       <Head>
         <meta charSet="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/rasengan.svg" />
