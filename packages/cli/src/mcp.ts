@@ -4,7 +4,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { type Config, configFile, defaultRegistry, defaults, readConfig, version } from "./config.ts";
 import { installPackages, missingPackages } from "./dependencies.ts";
-import { hash, readLock, renderFile, writeItems } from "./install.ts";
+import { hasConflictMarkers, hash, readLock, renderFile, writeItems } from "./install.ts";
 import { findRoot } from "./project.ts";
 import { type RegistryItem, choices, loadIndex, loadItem, resolveItems } from "./registry.ts";
 import { installedVillages } from "./setup.ts";
@@ -175,13 +175,15 @@ export function createServer(options: Options) {
 
 			const lock = readLock(root);
 			const installed = Object.entries(lock.items).map(([name, { files }]) => {
+				const read = (path: string) => (existsSync(join(root, path)) ? readFileSync(join(root, path), "utf8") : undefined);
 				const edited = Object.entries(files)
 					.filter(([path, installedHash]) => {
-						const file = join(root, path);
-						return !existsSync(file) || hash(readFileSync(file, "utf8")) !== installedHash;
+						const content = read(path);
+						return content === undefined || hash(content) !== installedHash;
 					})
 					.map(([path]) => path);
-				return `- ${name}${edited.length ? ` (edited since install: ${edited.join(", ")})` : ""}`;
+				const conflicted = edited.filter((path) => hasConflictMarkers(read(path) ?? ""));
+				return `- ${name}${edited.length ? ` (edited since install: ${edited.join(", ")})` : ""}${conflicted.length ? ` (unresolved conflict markers: ${conflicted.join(", ")})` : ""}`;
 			});
 			const lines = [
 				`# ${root}`,
@@ -198,7 +200,7 @@ export function createServer(options: Options) {
 				"",
 				...(installed.length ? installed : ["Nothing yet."]),
 				"",
-				"Edited files are kept by add_components unless overwrite is set; the user merges registry changes with `npx rasengan-ui update`.",
+				"Edited files are kept by add_components unless overwrite is set; the user merges registry changes with `npx rasengan-ui update`. Files with unresolved conflict markers need the user (or you, if asked) to resolve them before anything else touches them.",
 				"",
 				...offered,
 			];
@@ -224,12 +226,13 @@ export function createServer(options: Options) {
 			const { root, config, setUp } = project(options);
 			if (!setUp) throw new Error(`${root} has no ${configFile}. Ask the user to run \`npx rasengan-ui init\` first.`);
 			const items = await resolveItems(config, root, names);
-			const written = writeItems(root, config, items, { overwrite, dryRun });
+			const written = writeItems(root, config, items, { overwrite, dryRun, named: names });
 
 			const lines = written.filter(({ outcome }) => outcome !== "unchanged").map(({ path, outcome }) => `- ${outcome}: ${path}`);
 			const unchanged = written.length - lines.length;
 			if (unchanged) lines.push(`- ${unchanged} file${unchanged === 1 ? "" : "s"} already up to date`);
 			if (written.some(({ outcome }) => outcome === "kept")) lines.push("", "Kept files were edited by the user since install; they were not replaced.");
+			if (written.some(({ outcome }) => outcome === "left-out")) lines.push("", "Left-out files were deleted by the user since install; they were not brought back.");
 
 			const packages = missingPackages(root, items);
 			const toInstall = [...packages.dependencies, ...packages.devDependencies];
