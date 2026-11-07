@@ -2,7 +2,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 /* Checked, the box fills with its tone (primary by default) and takes the tone's edge, 3:1 on the page even in amber. */
 export const checkboxVariants = cva(
-	"group/checkbox peer inline-flex shrink-0 cursor-pointer items-center justify-center rounded-check border-village border-control-border bg-input-bg text-tone-foreground shadow-input outline-none transition-[background-color,border-color] duration-fast ease-out focus-visible:focus-ring ui-checked:border-tone-border ui-checked:bg-tone ui-indeterminate:border-tone-border ui-indeterminate:bg-tone ui-invalid:border-destructive ui-disabled:cursor-not-allowed ui-disabled:opacity-50 [&_svg]:stroke-[3]",
+	"group/checkbox peer inline-flex shrink-0 cursor-pointer items-center justify-center rounded-check border-village border-control-border bg-input-bg text-tone-foreground shadow-check outline-none transition-[background-color,border-color] duration-fast ease-out focus-visible:focus-ring ui-checked:border-tone-border ui-checked:bg-tone ui-checked:lip-tone ui-indeterminate:border-tone-border ui-indeterminate:bg-tone ui-indeterminate:lip-tone ui-invalid:border-destructive ui-disabled:cursor-not-allowed ui-disabled:opacity-50 [&_svg]:stroke-[3]",
 	{
 		variants: {
 			tone: {

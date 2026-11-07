@@ -34,7 +34,7 @@ test("color() resolves var(), calc() with the tint, and translucent mixes", () =
 
 test("every built-in village passes, in every scope", () => {
 	const results = checkVillages(sources);
-	assert.equal(results.length, 3 * 2 * 6 * 2);
+	assert.equal(results.length, Object.keys(sources.villages).length * 2 * 6 * 2);
 	const failures = results.flatMap((s) =>
 		s.pairs.filter((p) => !p.pass && p.kind !== "ring").map((p) => `${s.village} ${s.scheme} ${s.nature}: ${p.fg}`),
 	);

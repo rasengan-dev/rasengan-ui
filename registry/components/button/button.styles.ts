@@ -5,6 +5,9 @@ const tones = ["neutral", "primary", "success", "warning", "info", "destructive"
 const accented = ["neutral", "success", "warning", "info", "destructive"] as const;
 
 /*
+ * In a village with a lip (Kusa), filled styles stand on a darker shade of their tone, soft ones on a stronger wash,
+ * outline on the edge colour; ghost and link have none.
+ *
  * The variant is the style, the tone the colour (primary by default). Tones are applied through compoundVariants so
  * that `variant="destructive"` (shorthand for the default style in the destructive tone) never meets a second tone,
  * and `secondary` stays grey whatever the tone.
@@ -14,12 +17,12 @@ export const buttonVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: "bg-tone text-tone-foreground shadow-sm hover:bg-tone/90",
-				secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+				default: "bg-tone text-tone-foreground shadow-sm lip-tone hover:bg-tone/90",
+				secondary: "bg-secondary text-secondary-foreground shadow-lip lip-secondary hover:bg-secondary/80",
 				outline: "border-input bg-input-bg shadow-sm hover:bg-accent hover:text-accent-foreground",
 				ghost: "hover:bg-accent hover:text-accent-foreground",
-				soft: "border-tone-edge bg-tone-soft text-tone-text hover:bg-tone-soft/70",
-				destructive: "tone-destructive bg-tone text-tone-foreground shadow-sm hover:bg-tone/90 focus-visible:ring-destructive/40",
+				soft: "border-tone-edge bg-tone-soft text-tone-text shadow-lip lip-soft hover:bg-tone-soft/70",
+				destructive: "tone-destructive bg-tone text-tone-foreground shadow-sm lip-tone hover:bg-tone/90 focus-visible:ring-destructive/40",
 				// Onmyōton sets --link-underline: a black-and-white link cannot rely on colour.
 				link: "text-tone-text underline-offset-4 [text-decoration-line:var(--link-underline,none)] hover:underline",
 			},

@@ -11,7 +11,7 @@
 |---|---|
 | Components | 44, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md)) |
 | Variants | `variant` × `tone` × `size` on most components ([plan 002](plans/002-component-variants.md)) |
-| Villages | Konoha, Kiri, Iwa committed; **Kusa built but not committed** (contract lip, [ADR-0008](adr/0008-lip-in-the-token-contract.md)) |
+| Villages | Konoha, Kiri, Iwa, Kusa (the contract's lip, [ADR-0008](adr/0008-lip-in-the-token-contract.md)) |
 | Natures | Six, with Onmyōton; neutral tint |
 | Village engine, workshop, `village create/check/export` | Built ([RFC-0006](rfc/0006-custom-villages.md), steps 1 to 4) |
 | CLI | `rasengan-ui` 0.1.1 on npm |
@@ -25,9 +25,8 @@
 
 ### Next
 
-- **Commit Kusa**: the village, the lip in the contract, the touched components (button, badge, kbd, switch, tabs,
-  fields, checkbox, radio, slider). Before: rerun `pnpm axe`; update the component pages that still name three
-  villages; add Kusa's fonts to `/docs/installation`.
+- **Finish Kusa**: rerun `pnpm axe` with Kusa; say what Kusa does in the component pages' prose (they describe
+  Konoha, Kiri and Iwa only); its focus halos are 2.3 to 2.4:1 on the background in dark mode (see 0002-Q5).
 - **Motion components** (RFC-0007, to write): text reveal, typewriter, scramble text, rolling numbers, marquee,
   carousel, cursor, 3D gallery, page transitions, built clean-room on `motion` and the village motion tokens. Lot 0
   wires `packages/motion` into the registry as the `rasengan-motion` item and reads its tokens from the village.

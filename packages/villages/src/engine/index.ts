@@ -10,6 +10,7 @@ import { fontInfo } from "../fonts.ts";
 import iwa from "../villages/iwa.recipe.json" with { type: "json" };
 import kiri from "../villages/kiri.recipe.json" with { type: "json" };
 import konoha from "../villages/konoha.recipe.json" with { type: "json" };
+import kusa from "../villages/kusa.recipe.json" with { type: "json" };
 import { type Adjustment, fixContrast, type Problem } from "./fix.ts";
 import { type Base, type BaseRecipe, bases, ENGINE_VERSION, type Knobs, type Overrides, type Recipe, validateRecipe } from "./recipe.ts";
 import { applyOverrides, foundation, resolveRecipe } from "./resolve.ts";
@@ -21,8 +22,8 @@ export * from "./link.ts";
 export * from "./recipe.ts";
 export { foundation, resolveRecipe } from "./resolve.ts";
 
-/** Konoha, Kiri and Iwa as recipes: the engine makes their CSS files token for token. */
-export const builtinRecipes = { konoha, kiri, iwa } as unknown as Record<Base, BaseRecipe>;
+/** Konoha, Kiri, Iwa and Kusa as recipes: the engine makes their CSS files token for token. */
+export const builtinRecipes = { konoha, kiri, iwa, kusa } as unknown as Record<Base, BaseRecipe>;
 
 export interface CreateOptions {
 	/** contract.css and natures.css, parsed; the villages in it are ignored. */
@@ -106,7 +107,7 @@ export function createVillage(recipe: Recipe, options: CreateOptions): Village {
 	);
 }
 
-/** A built-in village from its own recipe: how konoha.css, kiri.css and iwa.css are regenerated. */
+/** A built-in village from its own recipe: how konoha.css, kiri.css, iwa.css and kusa.css are regenerated. */
 export function createBaseVillage(recipe: BaseRecipe, options: Pick<CreateOptions, "sources">): Village {
 	if (!(bases as readonly string[]).includes(recipe.name)) throw new Error(`"${recipe.name}" is not a built-in village.`);
 	const pinned: Record<Scheme, Set<string>> = { light: new Set(Object.keys(recipe.overrides.light ?? {})), dark: new Set(Object.keys(recipe.overrides.dark ?? {})) };

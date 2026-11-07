@@ -12,11 +12,11 @@
 			"description": "The village's name: data-village, the file name, and its own nature when the brand is a hue or a colour.",
 			"type": "string",
 			"pattern": "^[a-z][a-z0-9-]{0,39}$",
-			"not": { "enum": ["konoha", "kiri", "iwa"] }
+			"not": { "enum": ["konoha", "kiri", "iwa", "kusa"] }
 		},
 		"title": { "type": "string" },
 		"description": { "type": "string" },
-		"base": { "description": "The village to start from; it gives every value the recipe does not set.", "enum": ["konoha", "kiri", "iwa"], "default": "konoha" },
+		"base": { "description": "The village to start from; it gives every value the recipe does not set.", "enum": ["konoha", "kiri", "iwa", "kusa"], "default": "konoha" },
 		"brand": {
 			"description": "One of: an existing nature, a hue, or a colour.",
 			"type": "object",
@@ -41,7 +41,7 @@
 		"contrast": { "description": "The colour ladder: soft (Kiri's), standard (Konoha's) or high (Iwa's).", "enum": ["soft", "standard", "high"] },
 		"radius": { "description": "0 (square) to 1 (very round); 0.5 is 0.625rem.", "type": "number", "minimum": 0, "maximum": 1 },
 		"density": { "enum": ["compact", "default", "comfortable"] },
-		"depth": { "enum": ["flat", "soft", "raised", "hard"] },
+		"depth": { "enum": ["flat", "soft", "raised", "hard", "lip"] },
 		"motion": { "enum": ["quick", "calm", "gentle"] },
 		"border": { "description": "Border width in px.", "enum": [1, 1.5, 2] },
 		"fonts": {
@@ -60,7 +60,7 @@
 				"tabs": { "enum": ["segmented", "bar"] },
 				"highlight": { "enum": ["soft", "inverted"] },
 				"focus": { "enum": ["halo", "ring"] },
-				"press": { "enum": ["scale", "sink"] },
+				"press": { "enum": ["scale", "sink", "drop"] },
 				"labels": { "enum": ["plain", "capitals", "mono-capitals"] },
 				"headings": { "enum": ["plain", "capitals"] },
 				"surfaces": { "enum": ["solid", "glass"] },

@@ -99,7 +99,7 @@ flowchart LR
   utilities components use (`focus-ring`, `pressable`, `tone-*`, `lip-*`, `case-*`…). `contract.ts` describes the same
   tokens (group, kind, schemes, default) and a test checks the two never drift.
 - A **village** is one CSS file that overrides contract tokens under `[data-village="<name>"]`, light and dark.
-  Villages today: Konoha (default), Kiri, Iwa, Kusa (🚧 uncommitted).
+  Villages today: Konoha (default), Kiri, Iwa, Kusa (3D: controls stand on a lip, [ADR-0008](adr/0008-lip-in-the-token-contract.md)).
 - A **nature** sets the accent (`--primary-h`, chroma…) under `[data-nature]`; natures are imported **after** villages.
   Six: Katon, Doton, Futon, Suiton, Raiton, and Onmyōton (no hue: the primary is the village's foreground).
 - **Engine variants** (`ui-open`, `ui-checked`, `ui-invalid`…) in `packages/core/src/variants.css` match both Base

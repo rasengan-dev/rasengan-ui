@@ -92,6 +92,8 @@ export const contract = {
 	"--press-scale": { group: "press", kind: "number", default: true },
 	"--press-offset": { group: "press", kind: "length", default: true },
 	"--press-shadow": { group: "press", kind: "shadow", schemes: true, default: true },
+	"--press-x": { group: "press", kind: "length", default: true },
+	"--press-y": { group: "press", kind: "length", default: true },
 
 	"--motion-fast": { group: "motion", kind: "time" },
 	"--motion-base": { group: "motion", kind: "time" },
@@ -201,6 +203,7 @@ export const contract = {
 	"--switch-track": { group: "tracks", kind: "color", schemes: true, tinted: true, default: true },
 	"--switch-thumb": { group: "tracks", kind: "color", schemes: true, tinted: true, default: true },
 	"--track-border": { group: "tracks", kind: "color", schemes: true, tinted: true, default: true },
+	"--track-scale": { group: "tracks", kind: "number", default: true },
 
 	/* The primary: the nature gives the hue, the village its strength and the text on it. */
 	"--primary-l": { group: "accent", kind: "number", schemes: true },
@@ -252,6 +255,10 @@ export const contract = {
 	"--elevation-md": { group: "depth", kind: "shadow", schemes: true, tinted: true },
 	"--elevation-lg": { group: "depth", kind: "shadow", schemes: true, tinted: true },
 	"--thumb-shadow": { group: "depth", kind: "shadow", schemes: true, tinted: true, default: true },
+	/* The lip (Kusa): a solid edge under controls and surfaces, that they sink into when pressed. */
+	"--lip": { group: "depth", kind: "length", default: true },
+	"--lip-shade": { group: "depth", kind: "percentage", schemes: true, default: true },
+	"--lip-edge": { group: "depth", kind: "color", schemes: true, tinted: true, default: true },
 	"--surface-blur": { group: "depth", kind: "length", default: true },
 	"--texture": { group: "depth", kind: "image", schemes: true, tinted: true, default: true },
 

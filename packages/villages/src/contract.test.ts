@@ -26,7 +26,7 @@ const villages = readdirSync(join(src, "villages"))
 	});
 
 test("the built-in villages are found", () => {
-	assert.deepEqual(villages.map((v) => v.name).sort(), ["iwa", "kiri", "konoha"]);
+	assert.deepEqual(villages.map((v) => v.name).sort(), ["iwa", "kiri", "konoha", "kusa"]);
 });
 
 test("every token a village sets is in the contract", () => {

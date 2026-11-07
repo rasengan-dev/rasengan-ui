@@ -4,7 +4,7 @@ Components on [Base UI](https://base-ui.com), styled with Tailwind CSS v4 and co
 **villages**: whole design languages (shape, type, density, depth, motion and palette) that you switch at runtime,
 crossed with **natures**, the accent hues.
 
-- 44 components, each in Konoha, Kiri and Iwa, light and dark, and six natures
+- 44 components, each in Konoha, Kiri, Iwa and Kusa, light and dark, and six natures
 - A CLI that installs them and updates them without losing your edits
 - An MCP server, so agents read and install them the right way
 - A registry the shadcn CLI reads too

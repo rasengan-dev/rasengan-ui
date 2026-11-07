@@ -113,13 +113,23 @@
 	--spacing-indicator: var(--indicator-md);
 	--spacing-indicator-lg: var(--indicator-lg);
 
-	/* Depth. */
-	--shadow-sm: var(--elevation-sm);
-	--shadow-md: var(--elevation-md);
-	--shadow-lg: var(--elevation-lg);
-	--shadow-input: var(--input-shadow);
-	--shadow-tab: var(--tab-active-shadow);
-	--shadow-thumb: var(--thumb-shadow);
+	/*
+	 * Depth. Each shadow ends with the village's lip (Kusa): a solid edge under the element, in --lip-color, which a
+	 * component sets per variant (lip-tone, lip-soft…). Declared here, the lip colour is read on the element itself;
+	 * a village without a lip (--lip: 0px) draws nothing. shadow-lip(-sm) is the lip alone, for what has no shadow.
+	 */
+	--shadow-sm: var(--elevation-sm), 0 var(--lip) 0 0 var(--lip-color);
+	--shadow-md: var(--elevation-md), 0 var(--lip) 0 0 var(--lip-color);
+	--shadow-lg: var(--elevation-lg), 0 calc(var(--lip) * 1.5) 0 0 var(--lip-color);
+	--shadow-input: var(--input-shadow), 0 var(--lip) 0 0 var(--lip-color);
+	/* Checkbox and radio: the field's shadow on a half lip, for their size. */
+	--shadow-check: var(--input-shadow), 0 calc(var(--lip) * 0.5) 0 0 var(--lip-color);
+	--shadow-tab: var(--tab-active-shadow), 0 calc(var(--lip) * 0.5) 0 0 var(--lip-color);
+	/* A thumb inside a track (switch) on a half lip; one that stands free (slider) on the whole lip. */
+	--shadow-thumb: var(--thumb-shadow), 0 calc(var(--lip) * 0.5) 0 0 var(--lip-color);
+	--shadow-knob: var(--thumb-shadow), 0 var(--lip) 0 0 var(--lip-color);
+	--shadow-lip: 0 var(--lip) 0 0 var(--lip-color);
+	--shadow-lip-sm: 0 calc(var(--lip) * 0.5) 0 0 var(--lip-color);
 	--blur-surface: var(--surface-blur);
 	--animate-skeleton: var(--skeleton-motion);
 
@@ -150,13 +160,28 @@
 	outline-offset: var(--focus-offset);
 }
 
-/* Press as the village feels it: Konoha and Kiri scale down, Iwa sinks into its shadow. */
+/* Press as the village feels it: Konoha and Kiri scale down, Iwa sinks into its shadow, Kusa drops onto its lip. */
 @utility pressable {
 	&:active:not(:disabled, [data-disabled]) {
 		scale: var(--press-scale);
-		translate: var(--press-offset) var(--press-offset);
+		translate: var(--press-x) var(--press-y);
 		box-shadow: var(--press-shadow);
 	}
+}
+
+/*
+ * The lip's colour (see the shadows above): the edge colour unless a component names another. lip-tone is a darker
+ * shade of the current tone, for filled controls; lip-soft a stronger wash, for soft ones; lip-secondary a darker
+ * secondary. Inert in a village without a lip.
+ */
+@utility lip-tone {
+	--lip-color: var(--tone-lip);
+}
+@utility lip-soft {
+	--lip-color: color-mix(in oklab, var(--tone) calc(var(--soft-alpha) * 3), var(--background));
+}
+@utility lip-secondary {
+	--lip-color: color-mix(in oklab, var(--secondary), black var(--lip-shade));
 }
 
 /*
@@ -172,6 +197,7 @@
 	--tone-text: var(--neutral-text);
 	--tone-edge: color-mix(in oklab, var(--neutral-text) var(--soft-edge-alpha), transparent);
 	--tone-border: var(--neutral-border);
+	--tone-lip: color-mix(in oklab, var(--tone), black var(--lip-shade));
 }
 @utility tone-primary {
 	--tone: var(--primary);
@@ -180,7 +206,7 @@
 	--tone-text: var(--primary-text);
 	--tone-edge: color-mix(in oklab, var(--primary-text) var(--soft-edge-alpha), transparent);
 	--tone-border: var(--primary-border);
-	--tone-border: var(--primary-border);
+	--tone-lip: color-mix(in oklab, var(--tone), black var(--lip-shade));
 }
 @utility tone-success {
 	--tone: var(--success);
@@ -189,6 +215,7 @@
 	--tone-text: var(--success-text);
 	--tone-edge: color-mix(in oklab, var(--success-text) var(--soft-edge-alpha), transparent);
 	--tone-border: var(--success-border);
+	--tone-lip: color-mix(in oklab, var(--tone), black var(--lip-shade));
 }
 @utility tone-warning {
 	--tone: var(--warning);
@@ -197,6 +224,7 @@
 	--tone-text: var(--warning-text);
 	--tone-edge: color-mix(in oklab, var(--warning-text) var(--soft-edge-alpha), transparent);
 	--tone-border: var(--warning-border);
+	--tone-lip: color-mix(in oklab, var(--tone), black var(--lip-shade));
 }
 @utility tone-info {
 	--tone: var(--info);
@@ -205,6 +233,7 @@
 	--tone-text: var(--info-text);
 	--tone-edge: color-mix(in oklab, var(--info-text) var(--soft-edge-alpha), transparent);
 	--tone-border: var(--info-border);
+	--tone-lip: color-mix(in oklab, var(--tone), black var(--lip-shade));
 }
 @utility tone-destructive {
 	--tone: var(--destructive);
@@ -213,6 +242,7 @@
 	--tone-text: var(--destructive-text);
 	--tone-edge: color-mix(in oklab, var(--destructive-text) var(--soft-edge-alpha), transparent);
 	--tone-border: var(--destructive-border);
+	--tone-lip: color-mix(in oklab, var(--tone), black var(--lip-shade));
 }
 
 /* The default skeleton motion; a village may replace it (Iwa: none) with --skeleton-motion. */
@@ -258,6 +288,8 @@
 	--switch-track: var(--control-border);
 	--switch-thumb: var(--background);
 	--track-border: transparent;
+	/* How thick the slider track is, against its default per size (Kusa: twice). */
+	--track-scale: 1;
 	--input-bg: var(--background);
 	--input-shadow: none;
 	/* The filled field variant: a grey well, no border unless the village draws one (Iwa). */
@@ -286,7 +318,13 @@
 	--ring-alpha: 50%;
 	--press-scale: 0.98;
 	--press-offset: 0px;
+	--press-x: var(--press-offset);
+	--press-y: var(--press-offset);
 	--press-shadow: var(--elevation-sm);
+	/* The lip (Kusa): how tall it stands, how much darker than what it holds up, and its colour under neutral things. */
+	--lip: 0px;
+	--lip-shade: 25%;
+	--lip-edge: var(--border);
 	--surface-blur: 0px;
 	--texture: none;
 
@@ -374,6 +412,8 @@
 	--tone-soft: var(--primary-soft);
 	--tone-text: var(--primary-text);
 	--tone-edge: color-mix(in oklab, var(--primary-text) var(--soft-edge-alpha), transparent);
+	--tone-lip: color-mix(in oklab, var(--tone), black var(--lip-shade));
+	--lip-color: var(--lip-edge);
 	--chart-1: oklch(var(--chart-l) var(--chart-c) var(--nature-hue));
 	--chart-2: oklch(var(--chart-l) var(--chart-c) calc(var(--nature-hue) + 72));
 	--chart-3: oklch(var(--chart-l) var(--chart-c) calc(var(--nature-hue) + 144));
@@ -406,6 +446,8 @@
 		--motion-slow: 0ms;
 		--press-scale: 1;
 		--press-offset: 0px;
+		--press-x: 0px;
+		--press-y: 0px;
 		--skeleton-motion: none;
 	}
 }
