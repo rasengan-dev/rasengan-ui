@@ -11,6 +11,14 @@ import { MotionProvider, Stagger } from '@/lib/motion';
 import { VillageScope } from '@/lib/village-scope';
 import { groups } from '@/catalogue';
 
+const setup = `import { MotionProvider, MotionScript } from "@/lib/motion";
+
+// In <head>: sets <html data-motion> to ready, final or off before the first paint.
+<MotionScript />
+
+// Around the app, once.
+<MotionProvider>{children}</MotionProvider>`;
+
 /** What each value of the recipe's `motion` knob feels like. */
 const characters: Record<Motion, string> = {
   quick: 'Exact: fades in place, no travel, no overshoot.',
@@ -102,6 +110,20 @@ const MotionGallery: PageComponent = () => {
                 );
               })}
             </div>
+          </section>
+
+          <section aria-labelledby="setup-title" className="mt-12">
+            <h2 id="setup-title" className="font-display text-[24px] font-semibold tracking-display case-heading">
+              Set up motion once
+            </h2>
+            <p className="mt-2 max-w-2xl text-[15px] leading-[1.7] text-muted-foreground">
+              Motion components bring <code className="font-mono text-[0.9em]">rasengan-motion</code> with them. Put its
+              head script in your template, so the page knows before its first paint whether to animate, and its provider
+              around the app.
+            </p>
+            <pre className="mt-4 overflow-x-auto rounded-lg border-village bg-card p-4 font-mono text-[13px] leading-relaxed">
+              <code>{setup}</code>
+            </pre>
           </section>
 
           <section aria-labelledby="components-title" className="mt-12">

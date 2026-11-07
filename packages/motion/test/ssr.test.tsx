@@ -50,8 +50,8 @@ test("split text: screen readers get the sentence once, the spans are hidden", (
 	assert.match(html, /<h1><span style="[^"]*position:absolute[^"]*">Ship invoices before coffee<\/span><span aria-hidden="true">/);
 	assert.equal(html.match(/data-split="word"/g)?.length, 4 + 5);
 	assert.equal(html.match(/data-split="char"/g)?.length, "Shipinvoicesbeforecoffee".length);
-	// Lines are measured in the browser: the server renders words.
-	assert.doesNotMatch(html, /data-split="line"/);
+	// Lines are measured in the browser: the server renders words without a line.
+	assert.doesNotMatch(html, /data-line=/);
 });
 
 test("splitText keeps graphemes whole", () => {

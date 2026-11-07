@@ -41,7 +41,7 @@ flowchart LR
 ```mermaid
 flowchart TB
   subgraph source[Sources]
-    comps["✅ registry/components<br/>44 components"]
+    comps["✅ registry/components<br/>49 components, 5 of them motion"]
     blocks["⬜ registry/blocks"]
     core["✅ packages/core<br/>cn, ui-* variants, VillageScope, Field context"]
     villages["✅ packages/villages<br/>contract, villages, natures, engine, contrast"]
@@ -72,12 +72,12 @@ flowchart TB
 
 | Container | State | Role |
 |---|---|---|
-| `registry/components/<name>/` | ✅ 44 | One folder per component: `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts` (with its category, [ADR-0009](adr/0009-component-categories.md)), demos |
+| `registry/components/<name>/` | ✅ 49 | One folder per component: `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts` (with its category, [ADR-0009](adr/0009-component-categories.md)), demos |
 | `registry/categories.ts` | ✅ | The seven categories, in the site's order: forms, dates, overlays, navigation, display, feedback, motion |
 | `registry/blocks/` | ⬜ | Marketing blocks rebuilt on the components (RFC-0002, "Blocks"); empty |
 | `packages/core` | ✅ | What every component shares; published as the `rasengan-core` registry item |
 | `packages/villages` | ✅ | The token contract (CSS + TypeScript spec), the villages, the natures, the village engine, the contrast library |
-| `packages/motion` | ✅ | The `rasengan-motion` registry item ([RFC-0007](rfc/0007-motion-components.md)): motion modes, the village's motion tokens read from CSS, `Reveal`, `Stagger`, `Presence`, `Parallax`, `Tilt`, `Magnetic`, `splitText`. No motion component uses it yet (lot A) |
+| `packages/motion` | ✅ | The `rasengan-motion` registry item ([RFC-0007](rfc/0007-motion-components.md)): motion modes, the village's motion tokens read from CSS, `Reveal`, `Stagger`, `Presence`, `Parallax`, `Tilt`, `Magnetic`, `splitText`. Used by the five motion components of lot A |
 | `packages/directions` | — | Empty leftover of RFC-0001; to delete |
 | `scripts/registry.mjs` | ✅ | Builds the registry, one per engine (only `base` today) |
 | `apps/site` | ✅ | The docs and catalogue site; serves the registry and its schemas; live at `rasengan-ui.hiraiship.app` |
@@ -187,6 +187,6 @@ sequenceDiagram
 | `pnpm test` | villages (contract drift, contrast, engine), motion (server render, split text, defaults against the CSS) and CLI; also the pre-commit hook | — |
 | `pnpm contrast` | every token pair of every village × nature × scheme against WCAG (text 4.5:1, control edges 3:1) | — |
 | `pnpm axe` | WCAG 2.2 AA on every page × village × scheme, overlays open, `/motion` animating and with motion off; report in `.axe/report.md` | site running |
-| `pnpm screenshots` | every demo × village × scheme × nature against a local baseline in `.screenshots/` | site running |
+| `pnpm screenshots` | every demo × village × scheme × nature against a local baseline in `.screenshots/`; pages load with `?motion=final`, so motion components are captured in their end state | site running |
 
 There is no CI yet: the gate runs locally (see the [roadmap](roadmap.md)).

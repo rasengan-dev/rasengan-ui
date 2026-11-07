@@ -1,0 +1,90 @@
+---
+metadata:
+  title: Typewriter · Rasengan UI
+  description: "Text typed with a natural rhythm, pausing after commas and full stops; several strings typed and deleted in turn."
+toc: true
+---
+
+# Typewriter
+
+Text typed with a natural rhythm, pausing after commas and full stops; several strings typed and deleted in turn.
+
+<ComponentPreview name="typewriter" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add typewriter
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/typewriter.json
+```
+
+It brings `rasengan-motion` and `button` with it. Put `<MotionScript />` in `<head>` and `<MotionProvider>` around
+the app once.
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { Typewriter } from "@/components/ui/typewriter";
+
+export function Usage() {
+  return (
+    <p className="text-2xl font-semibold">
+      <Typewriter text="Hello. I write your landing page, then I ship it." />
+    </p>
+  );
+}
+```
+
+The rhythm is a little irregular, like a person typing: longer after a comma, longer still after a full stop. It is
+the same on every visit. The line takes its final size from the start, so nothing below it moves while it types.
+
+### Several strings, in a loop
+
+Give an array to type each string, hold it, delete it and type the next. With `loop`, it starts again after the last
+one, and shows a pause button: text that keeps moving needs a way to stop it.
+
+<ComponentPreview name="typewriter" demo="typewriter-loop" />
+
+## Villages
+
+Typing speed is yours (`speed`, in characters per second); the village colours the caret and the pause button, and the
+text keeps the type of the element it sits in.
+
+<VillageGrid name="typewriter" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off`, `?motion=final` or a scope at `data-motion-intensity="0"`, the text is simply there:
+the last string, or the first one when it loops. No caret, no button.
+
+## Accessibility
+
+- Screen readers read the text once, from a visually hidden copy: every string, joined with commas, unless you give a
+  `label`. They never hear it letter by letter.
+- A looping typewriter has a pause button (`aria-pressed`). Hovering also pauses it.
+- The caret blinks only while waiting, and stops after three blinks once the text is done.
+
+## Weight
+
+About 4.5 kB gzip beyond `cn()` and Button, which most pages already have. Nothing from Motion.
+
+## API reference
+
+`Typewriter` renders `as` (a `span` by default) and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `text` | `string \| string[]` | — |
+| `as` | `"span" \| "p" \| "h1" \| "h2" \| "h3" \| "h4" \| "div"` | `"span"` |
+| `speed` | `number` (characters per second) | `16` |
+| `hold` | `number` (seconds a finished string stays) | `1.6` |
+| `loop` | `boolean` | `false` |
+| `caret` | `boolean` | `true` |
+| `trigger` | `"view" \| "mount"` | `"view"` |
+| `delay` | `number` (seconds) | `0` |
+| `label` | `string` | every string, joined |

@@ -43,12 +43,15 @@ export async function siteIsUp() {
 export const launch = () => chromium.launch(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : { channel: "chrome" });
 
 /**
- * Loads a page once React has hydrated it (it tags each DOM node with `__reactProps$…`), so the
+ * Loads a page (with ?motion=final) once React has hydrated it (it tags each DOM node with `__reactProps$…`), so the
  * attributes Base UI sets in effects (a checkbox's aria-labelledby) are there; then still frames:
  * no transitions or animations, no caret.
  */
 export async function open(page, path) {
-	await page.goto(`${base}${path}`, { waitUntil: "networkidle" });
+	// Motion components in their end state (rasengan-motion's "final" mode), unless the path asks for another mode.
+	const url = new URL(path, base);
+	if (!url.searchParams.has("motion")) url.searchParams.set("motion", "final");
+	await page.goto(url.href, { waitUntil: "networkidle" });
 	await page.waitForFunction(() => {
 		const node = document.querySelector('[data-slot="component-preview"] *, main *');
 		return node && Object.keys(node).some((key) => key.startsWith("__reactProps$"));

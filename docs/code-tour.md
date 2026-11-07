@@ -10,7 +10,7 @@
 rasengan-ui-app/
 ├── registry/
 │   ├── categories.ts        the component categories, in the site's order
-│   ├── components/<name>/   the components (44): source, styles, demos, meta
+│   ├── components/<name>/   the components (49): source, styles, demos, meta
 │   └── blocks/              blocks (empty in v2)
 ├── packages/
 │   ├── core/                cn(), engine variants, VillageScope, Field context
@@ -172,7 +172,7 @@ src/
 |---|---|
 | `registry.mjs` | For each engine: inline `<name>.styles.ts` into the component, write `.registry/<engine>/registry.json`, run `shadcn build` into `apps/site/public/r/<engine>`, rewrite `$schema`, keep `@/components/ui/*` paths in sync in `registry/` and `apps/site` tsconfigs |
 | `contrast.mjs` | Every token pair, every village × nature × scheme (`packages/villages/src/contrast.ts`) |
-| `site-pages.mjs` | What axe and screenshots share: the page list, `open()` that waits for React hydration |
+| `site-pages.mjs` | What axe and screenshots share: the page list, `open()` that loads a page with `?motion=final` and waits for React hydration |
 | `axe.mjs` | axe-core WCAG 2.2 AA on every page (and `/motion` with motion off), village and scheme, overlays open; `.axe/report.md` |
 | `screenshots.mjs` | Playwright on system Chrome, pixelmatch against `.screenshots/baseline`; `--accept` |
 | `sitemap.mjs` | `sitemap.xml` and `robots.txt` after the prerender; fails the build if the output is missing |
@@ -186,5 +186,4 @@ src/
 - **MDX pages fail in `.claude/worktrees/`** (dot folders are skipped by `@rasenganjs/mdx`).
 - **Base UI enter animations freeze in a background browser tab** (`requestAnimationFrame` paused): front the tab, or
   check motion with headless Playwright.
-- **No motion component exists yet** (RFC-0007, lot A): `rasengan-motion` is used only by the site's `/motion` page.
 - **esbuild splits Motion's lazy features less well** than Vite or webpack ([ADR-0010](adr/0010-motion-weight.md)).

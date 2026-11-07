@@ -5,8 +5,9 @@
  * ready to animate. Installed as `@/lib/split-text`. No animation here: text-reveal and others animate the spans.
  *
  * Screen readers read the whole text once, from a visually hidden copy; the split spans are hidden from them.
- * Lines depend on the layout, so they are measured after mount and again when the width changes; the server renders
- * words.
+ * Lines depend on the layout: with `by="lines"` the text is split in words, and each word gets the line it sits on
+ * (`data-line`, `--line`), measured after mount and again when the width changes. The words are not regrouped, so
+ * measuring never changes the layout it measures.
  */
 
 import * as React from "react";
@@ -56,49 +57,50 @@ export interface SplitTextProps extends Omit<React.HTMLAttributes<HTMLElement>, 
 }
 
 /**
- * Renders `children` split into spans: `data-split="char" | "word" | "line"`, each with `--index` (its position among
- * its kind), so CSS or Motion can stagger them.
+ * Renders `children` split into spans: `data-split="word"` (and `"char"` inside, with `by="chars"`), each with
+ * `--index`, its position among its kind. With `by="lines"`, words also carry `data-line` and `--line` once measured,
+ * so CSS or Motion can stagger them by line.
  */
 export const SplitText = React.forwardRef<HTMLElement, SplitTextProps>(function SplitText({ as = "span", by = "words", children, ...rest }, forwarded) {
 	const ref = React.useRef<HTMLElement>(null);
 	React.useImperativeHandle(forwarded, () => ref.current as HTMLElement);
 	const words = React.useMemo(() => splitText(children), [children]);
-	const lines = useLines(ref, by === "lines" ? words.length : 0);
+	const lineOf = useLines(ref, by === "lines" ? words.length : 0);
 	const Tag = as as React.ElementType;
 
 	let char = 0;
-	const word = (w: SplitWord, index: number) => (
-		<span key={index} data-split="word" style={{ ...inlineBlock, ["--index" as string]: index }}>
-			{by === "chars"
-				? w.chars.map((c, i) => (
-						<span key={i} data-split="char" style={{ ...inlineBlock, ["--index" as string]: char++ }}>
-							{c}
-						</span>
-					))
-				: w.text}
-		</span>
-	);
-	const spaced = (indices: number[]) => indices.flatMap((i, n) => (n === 0 ? [word(words[i], i)] : [" ", word(words[i], i)]));
-
 	return (
 		<Tag ref={ref} {...rest}>
 			<span style={visuallyHidden}>{children}</span>
 			<span aria-hidden="true">
-				{lines
-					? lines.map((indices, l) => (
-							<span key={l} data-split="line" style={{ display: "block", ["--index" as string]: l }}>
-								{spaced(indices)}
-							</span>
-						))
-					: spaced(words.map((_, i) => i))}
+				{words.flatMap((w, index) => {
+					const line = lineOf?.[index];
+					const word = (
+						<span
+							key={index}
+							data-split="word"
+							data-line={line}
+							style={{ ...inlineBlock, ["--index" as string]: index, ...(line === undefined ? {} : { ["--line" as string]: line }) }}
+						>
+							{by === "chars"
+								? w.chars.map((c, i) => (
+										<span key={i} data-split="char" style={{ ...inlineBlock, ["--index" as string]: char++ }}>
+											{c}
+										</span>
+									))
+								: w.text}
+						</span>
+					);
+					return index === 0 ? [word] : [" ", word];
+				})}
 			</span>
 		</Tag>
 	);
 });
 
-/** Groups the element's word spans by the line they sit on; null until measured. Re-measures when the width changes. */
-function useLines(ref: React.RefObject<HTMLElement | null>, count: number): number[][] | null {
-	const [lines, setLines] = React.useState<number[][] | null>(null);
+/** The line each word sits on (0, 1, 2…), or null until measured. Measured again when the element's width changes. */
+function useLines(ref: React.RefObject<HTMLElement | null>, count: number): number[] | null {
+	const [lines, setLines] = React.useState<number[] | null>(null);
 	React.useLayoutEffect(() => {
 		const element = ref.current;
 		if (!element || count === 0) {
@@ -110,21 +112,17 @@ function useLines(ref: React.RefObject<HTMLElement | null>, count: number): numb
 			const next = element.getBoundingClientRect().width;
 			if (next === width) return;
 			width = next;
-			// Measure the words laid out as one flow: drop the line spans first.
-			setLines(null);
-			requestAnimationFrame(() => {
-				const spans = [...element.querySelectorAll<HTMLElement>('[data-split="word"]')];
-				const grouped: number[][] = [];
-				let top = Number.NaN;
-				spans.forEach((span, index) => {
-					if (span.offsetTop !== top) {
-						top = span.offsetTop;
-						grouped.push([]);
-					}
-					grouped[grouped.length - 1].push(index);
-				});
-				setLines(grouped);
+			const spans = [...element.querySelectorAll<HTMLElement>('[data-split="word"]')];
+			let line = -1;
+			let top = Number.NaN;
+			const lineOf = spans.map((span) => {
+				if (span.offsetTop !== top) {
+					top = span.offsetTop;
+					line += 1;
+				}
+				return line;
 			});
+			setLines((current) => (current && current.length === lineOf.length && current.every((l, i) => l === lineOf[i]) ? current : lineOf));
 		};
 		measure();
 		const observer = new ResizeObserver(measure);

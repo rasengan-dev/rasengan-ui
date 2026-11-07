@@ -1,0 +1,87 @@
+---
+metadata:
+  title: Text Reveal · Rasengan UI
+  description: "A heading or a paragraph that appears word by word, letter by letter or line by line, timed by the village's motion."
+toc: true
+---
+
+# Text Reveal
+
+A heading or a paragraph that appears word by word, letter by letter or line by line, timed by the village's motion.
+
+<ComponentPreview name="text-reveal" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add text-reveal
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/text-reveal.json
+```
+
+It brings `rasengan-motion` with it. Put its head script and provider in your app once, as the
+[motion setup](/motion#setup-title) shows: `<MotionScript />` in `<head>`, `<MotionProvider>` around the app.
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { TextReveal } from "@/components/ui/text-reveal";
+
+export function Usage() {
+  return (
+    <TextReveal as="h1" by="words" effect="rise" className="text-4xl font-semibold">
+      Ship the landing page before lunch
+    </TextReveal>
+  );
+}
+```
+
+The text is a string, so it can be split. Style it like any heading or paragraph: Text Reveal only moves its pieces.
+
+### Effects
+
+`rise` (the default) lifts each piece by the village's travel distance; `fade` only fades; `blur` comes into focus;
+`mask` wipes each piece up. `by` picks the pieces: `words`, `chars` or `lines` (measured in the browser, and again when
+the width changes).
+
+<ComponentPreview name="text-reveal" demo="text-reveal-effects" />
+
+## Villages
+
+Each village times it: Konoha rises smoothly, Kiri slower and further, Kusa overshoots and settles. Iwa's intensity
+is 1, so the whole text fades in place, without travel. Scroll the grid to play it in each.
+
+<VillageGrid name="text-reveal" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off`, `?motion=final` or a scope at `data-motion-intensity="0"`, the text is simply there.
+Without JavaScript too: the hidden starting state only applies once motion is ready.
+
+## Accessibility
+
+- Screen readers read the text once, in full, from a visually hidden copy; the split pieces are hidden from them.
+- The element keeps its role: an `h1` stays a heading.
+
+## Weight
+
+About 3.4 kB gzip beyond `cn()`, which every component shares. Nothing from Motion: the pieces animate with the
+browser's Web Animations API.
+
+## API reference
+
+`TextReveal` renders `as` (a `p` by default) and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `children` | `string` | — |
+| `as` | `"h1" \| "h2" \| "h3" \| "h4" \| "p" \| "span" \| "div"` | `"p"` |
+| `by` | `"words" \| "chars" \| "lines"` | `"words"` |
+| `effect` | `"rise" \| "fade" \| "blur" \| "mask"` | `"rise"` |
+| `trigger` | `"view" \| "mount"` | `"view"` |
+| `delay` | `number` (seconds) | `0` |
+| `stagger` | `number` (seconds) | the village's `--motion-stagger` (half for characters) |

@@ -75,8 +75,14 @@
 			"@/components/ui/label": [
 				"../../registry/components/label/label.base.tsx"
 			],
+			"@/components/ui/marquee": [
+				"../../registry/components/marquee/marquee.base.tsx"
+			],
 			"@/components/ui/navigation-menu": [
 				"../../registry/components/navigation-menu/navigation-menu.base.tsx"
+			],
+			"@/components/ui/number-roll": [
+				"../../registry/components/number-roll/number-roll.base.tsx"
 			],
 			"@/components/ui/pagination": [
 				"../../registry/components/pagination/pagination.base.tsx"
@@ -89,6 +95,9 @@
 			],
 			"@/components/ui/radio-group": [
 				"../../registry/components/radio-group/radio-group.base.tsx"
+			],
+			"@/components/ui/scramble-text": [
+				"../../registry/components/scramble-text/scramble-text.base.tsx"
 			],
 			"@/components/ui/scroll-area": [
 				"../../registry/components/scroll-area/scroll-area.base.tsx"
@@ -120,6 +129,9 @@
 			"@/components/ui/tabs": [
 				"../../registry/components/tabs/tabs.base.tsx"
 			],
+			"@/components/ui/text-reveal": [
+				"../../registry/components/text-reveal/text-reveal.base.tsx"
+			],
 			"@/components/ui/textarea": [
 				"../../registry/components/textarea/textarea.base.tsx"
 			],
@@ -137,6 +149,9 @@
 			],
 			"@/components/ui/tooltip": [
 				"../../registry/components/tooltip/tooltip.base.tsx"
+			],
+			"@/components/ui/typewriter": [
+				"../../registry/components/typewriter/typewriter.base.tsx"
 			],
 			"@/lib/utils": [
 				"../../packages/core/src/utils.ts"

@@ -3,13 +3,14 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-07 (RFC-0007 lot 0).
+> Last updated: 2026-11-07 (RFC-0007 lot A).
 
 ## Where things stand
 
 | Piece | State |
 |---|---|
-| Components | 44, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md)) |
+| Components | 49, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md)) |
+| Motion components | Lot A: text-reveal, typewriter, scramble-text, number-roll, marquee ([RFC-0007](rfc/0007-motion-components.md)); none loads Motion |
 | Variants | `variant` × `tone` × `size` on most components ([plan 002](plans/002-component-variants.md)) |
 | Villages | Konoha, Kiri, Iwa, Kusa (the contract's lip, [ADR-0008](adr/0008-lip-in-the-token-contract.md)) |
 | Natures | Six, with Onmyōton; neutral tint |
@@ -29,11 +30,10 @@
 - **Finish Kusa**: say what Kusa does in the component pages' prose (they describe Konoha, Kiri and Iwa only); its
   focus halos are 2.3 to 2.4:1 on the background in dark mode (see 0002-Q5). `pnpm axe` now runs with Kusa: the site's
   prose links used `text-primary` (4.3:1 in Kusa light) and now use the primary's words (`tone-primary text-tone-text`).
-- **Motion components** ([RFC-0007](rfc/0007-motion-components.md), accepted). Lot 0 is built: categories, motion
-  tokens and `bouncy` (Kusa), `data-motion-intensity`, `rasengan-motion`, `/motion`, the weight measured
-  ([ADR-0010](adr/0010-motion-weight.md)). Next, lot A (text-reveal, typewriter, scramble-text, number-roll, marquee),
-  then lot B (carousel, cursor, Button `hold` and rolling text) and lot C (gallery-3d, page-transition with its
-  Rasengan.js adapter). Screenshots of motion demos in `?motion=final` and `?motion=off` come with lot A's demos.
+- **Motion components** ([RFC-0007](rfc/0007-motion-components.md), accepted). Lots 0 and A are built: categories,
+  motion tokens, `rasengan-motion`, `/motion`, and text-reveal, typewriter, scramble-text, number-roll, marquee. Next,
+  lot B (carousel, cursor, Button `hold` and rolling text), then lot C (gallery-3d, page-transition with its Rasengan.js
+  adapter).
 
 ### Then
 
