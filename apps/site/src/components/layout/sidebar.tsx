@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'rasengan';
 import { groups } from '@/catalogue';
 import { cn } from '@/lib/utils';
+import { NewDot } from './new-dot';
 
 /** The docs pages, then the component pages by category, in the catalogue's order (the pager walks the same list). */
 export function Sidebar() {
@@ -38,7 +39,7 @@ export function Sidebar() {
             </Item>
           )}
           {group.components.map((c) => (
-            <Item key={c.name} to={c.href} active={current === c.href}>
+            <Item key={c.name} to={c.href} active={current === c.href} isNew={c.isNew}>
               {c.title}
             </Item>
           ))}
@@ -48,7 +49,8 @@ export function Sidebar() {
   );
 }
 
-function Item({ to, active, children }: { to: string; active: boolean; children: React.ReactNode }) {
+/** A sidebar link; `isNew` adds a dot in the nature's colour (and "new" for screen readers). */
+function Item({ to, active, isNew, children }: { to: string; active: boolean; isNew?: boolean; children: React.ReactNode }) {
   return (
     <Link
       to={to}
@@ -58,7 +60,10 @@ function Item({ to, active, children }: { to: string; active: boolean; children:
         active ? 'bg-highlight font-medium text-highlight-foreground' : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground',
       )}
     >
-      {children}
+      <span className="flex items-center gap-2">
+        {children}
+        {isNew && <NewDot />}
+      </span>
     </Link>
   );
 }

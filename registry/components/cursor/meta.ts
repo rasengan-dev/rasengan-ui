@@ -3,6 +3,7 @@ export const meta = {
 	title: "Cursor",
 	description: "A custom cursor that follows on the village's spring, wraps itself around buttons and links, and shows labels.",
 	status: "beta",
+	added: "2026-11-07",
 	category: "motion",
 	engines: ["base"],
 	dependencies: { base: ["class-variance-authority"] },

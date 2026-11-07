@@ -3,6 +3,7 @@ export const meta = {
 	title: "Marquee",
 	description: "An endless loop of logos, quotes or tags at a steady speed, with a pause button and only the copies it needs.",
 	status: "beta",
+	added: "2026-11-07",
 	category: "motion",
 	engines: ["base"],
 	dependencies: { base: ["class-variance-authority", "lucide-react"] },
