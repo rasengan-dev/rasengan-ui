@@ -1,5 +1,5 @@
 /**
- * What `pnpm screenshots` and `pnpm axe` share: the site's address, the components, the village
+ * What `pnpm screenshots` and `pnpm axe` share: the site's address, the components and blocks, the village
  * combinations, how to dress a page in one, and how to open and close each overlay.
  */
 import { readdirSync, readFileSync } from "node:fs";
@@ -9,6 +9,7 @@ import { chromium } from "playwright-core";
 export const root = join(import.meta.dirname, "..");
 export const base = process.env.RASENGAN_UI_URL ?? "http://localhost:3200";
 export const components = readdirSync(join(root, "registry/components")).sort();
+export const blocks = readdirSync(join(root, "registry/blocks")).sort();
 
 /** The components named on the command line (every one by default), and the --flags. */
 export function parseArgs(argv = process.argv.slice(2)) {

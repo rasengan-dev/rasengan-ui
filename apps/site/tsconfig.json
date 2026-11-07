@@ -165,6 +165,12 @@
 			"@/components/ui/typewriter": [
 				"../../registry/components/typewriter/typewriter.base.tsx"
 			],
+			"@/components/blocks/cta-banner": [
+				"../../registry/blocks/cta-banner/cta-banner.base.tsx"
+			],
+			"@/components/blocks/*": [
+				"../../registry/blocks/*"
+			],
 			"@/lib/utils": [
 				"../../packages/core/src/utils.ts"
 			],
@@ -176,6 +182,12 @@
 			],
 			"@/lib/motion": [
 				"../../packages/motion/src/motion.tsx"
+			],
+			"@/lib/blocks": [
+				"../../packages/blocks/src/blocks.ts"
+			],
+			"@/lib/block-fields": [
+				"../../packages/blocks/src/block-fields.ts"
 			],
 			"@/lib/motion-features": [
 				"../../packages/motion/src/motion-features.ts"
@@ -196,9 +208,12 @@
 		"rasengan-env.d.ts",
 		"mdx-components.tsx",
 		"../../registry/components",
+		"../../registry/blocks",
 		"../../registry/categories.ts",
+		"../../registry/block-categories.ts",
 		"../../packages/core/src",
 		"../../packages/motion/src",
+		"../../packages/blocks/src",
 		"../../packages/villages/src"
 	],
 	"extends": "./node_modules/rasengan/tsconfig.base.json"

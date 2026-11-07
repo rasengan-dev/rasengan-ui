@@ -1,15 +1,18 @@
 import { Link, useLocation } from 'rasengan';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { blocks } from '@/blocks-catalogue';
 import { components } from '@/catalogue';
 import { cn } from '@/lib/utils';
 
-/** Previous/next links, in the sidebar's order (the catalogue's), rather than written in each page. */
+/** Previous/next links, in the sidebar's order (the catalogues'), rather than written in each page: components, or blocks. */
 export function Pager() {
   const { pathname } = useLocation();
-  const index = components.findIndex((c) => c.href === pathname.replace(/\/$/, ''));
+  const path = pathname.replace(/\/$/, '');
+  const list: { href: string; title: string }[] = path.startsWith('/blocks') ? blocks : components;
+  const index = list.findIndex((c) => c.href === path);
   if (index === -1) return null;
-  const previous = components[index - 1];
-  const next = components[index + 1];
+  const previous = list[index - 1];
+  const next = list[index + 1];
 
   const card = 'group flex flex-1 flex-col gap-1 rounded-lg border-village p-4 transition-colors hover:bg-accent focus-visible:focus-ring';
   const label = 'inline-flex items-center gap-1.5 text-xs font-medium tracking-wide text-muted-foreground uppercase';

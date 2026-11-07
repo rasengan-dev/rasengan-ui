@@ -15,7 +15,7 @@ interface ComponentMeta {
 /** How long a component is marked new after its `added` date. */
 const NEW_FOR_DAYS = 45;
 /* Against the build time, not the visit: a prerendered page and its hydration agree. */
-const isNew = (added?: string) =>
+export const isNew = (added?: string) =>
   added !== undefined && __BUILD_TIME__ - Date.parse(added) < NEW_FOR_DAYS * 24 * 60 * 60 * 1000;
 
 export interface Source {

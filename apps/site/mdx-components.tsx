@@ -1,11 +1,14 @@
 import type React from 'react';
 import type { ComponentProps, ElementType } from 'react';
-import { Link } from 'rasengan';
+import { Link, useLocation } from 'rasengan';
 import { defineMDXConfig } from '@rasenganjs/mdx';
+import { BlockIndex } from '@/components/mdx/block-index';
+import { BlockPreview } from '@/components/mdx/block-preview';
 import { Callout } from '@/components/mdx/callout';
 import { CodeFigure, CodePre, CodeTitle, InlineCode } from '@/components/mdx/code-block';
 import { ComponentIndex } from '@/components/mdx/component-index';
 import { ComponentPreview } from '@/components/mdx/component-preview';
+import { ContentSchema } from '@/components/mdx/content-schema';
 import { Pager } from '@/components/mdx/pager';
 import { Step, Steps } from '@/components/mdx/steps';
 import { Toc } from '@/components/mdx/toc';
@@ -27,7 +30,8 @@ const link = 'font-medium tone-primary text-tone-text underline decoration-tone-
 
 /**
  * How every `.page.mdx` renders, after Hiraiship's apps/docs, in the contract's tokens: the docs
- * wear the village picked in the toolbar. `<ComponentIndex>`, `<ComponentPreview>`, `<VillageGrid>`, `<Note>`,
+ * wear the village picked in the toolbar. `<ComponentIndex>`, `<ComponentPreview>`, `<BlockIndex>`, `<BlockPreview>`,
+ * `<ContentSchema>`, `<VillageGrid>`, `<Note>`,
  * `<Callout>`, `<Steps>` and `<Link>` are usable in MDX without an import.
  */
 export default defineMDXConfig({
@@ -61,8 +65,11 @@ export default defineMDXConfig({
     Callout,
     Steps,
     Step,
+    BlockIndex,
+    BlockPreview,
     ComponentIndex,
     ComponentPreview,
+    ContentSchema,
     VillageGrid,
     Link: ({ className, ...props }: ComponentProps<typeof Link>) => <Link className={cn(link, className)} {...props} />,
     /* defineMDXConfig types `components` as intrinsic elements only, while MDX also accepts custom ones. */
@@ -70,13 +77,20 @@ export default defineMDXConfig({
 
   toc: (items) => <Toc items={items} />,
 
-  layout: ({ children, toc }) => (
+  layout: ({ children, toc }) => <Article toc={toc}>{children}</Article>,
+});
+
+/** The page's column: 760px for reading; a block page is wider, so its preview can show a desktop layout. */
+function Article({ children, toc }: { children: React.ReactNode; toc?: React.ReactNode }) {
+  const { pathname } = useLocation();
+  const wide = pathname.startsWith('/blocks/');
+  return (
     <div className="flex gap-12 px-4 pt-10 pb-16 md:px-10 lg:pt-14">
-      <article className="mx-auto w-full max-w-[760px] min-w-0">
+      <article className={cn('mx-auto w-full min-w-0', wide ? 'max-w-[1120px]' : 'max-w-[760px]')}>
         {children}
         <Pager />
       </article>
       {toc}
     </div>
-  ),
-});
+  );
+}

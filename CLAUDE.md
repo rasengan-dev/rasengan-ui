@@ -36,6 +36,10 @@ The why: the [RFCs](docs/rfc/README.md) (frozen once accepted) and the [ADRs](do
   from `registry/categories.ts`), demos; a page in `apps/site/src/app/_routes/components/<name>.page.mdx`. Contract
   names only, never raw colours, radii, shadows or durations; state through the `ui-*` variants;
   `variant` × `tone` × `size`.
+- Blocks: `registry/blocks/<name>/` with `<name>.base.tsx`, `schema.ts` (`export const schema`), `example.ts`
+  (`export const example`), `meta.ts` (family and category from `registry/block-categories.ts`, `import type` only),
+  a demo; a page in `apps/site/src/app/_routes/blocks/<name>.page.mdx`. `@container` and `@md:`, never `md:`; the
+  component never imports `@/lib/block-fields` (zod) ([ADR-0013](docs/adr/0013-blocks-answer-their-container.md)).
 - Motion: through `@/lib/motion` (`rasengan-motion`), tokens from the village (`useMotion`), end state unless
   `allows(n)`; Web Animations API for fades and travel, Motion's `m` only for springs, drag and exits.
 - Base UI APIs (`render` props, no `asChild`), shadcn part names.

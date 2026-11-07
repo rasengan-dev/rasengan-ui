@@ -39,6 +39,7 @@ Fixing a typo or a link broken by a move is allowed in a frozen document. Anythi
 | A rule nothing may break | `invariants.md`, through an ADR |
 | A step of the project moves forward | `roadmap.md` |
 | A component is added | `roadmap.md` (count), and its site page in `apps/site` |
+| A block is added | `roadmap.md` (count), and its site page in `apps/site/src/app/_routes/blocks/` |
 
 ## Language
 

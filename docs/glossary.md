@@ -12,7 +12,21 @@ by villages. "v1" or "Classic" is the earlier kit of blocks, now in `archive/`.
 project (`@/components/ui/<name>.tsx`).
 
 **Block** — A ready-made page section (hero, pricing, FAQ…) built from components, with a typed `content` prop
-(`schema.ts`, `example.ts`, `meta.ts`). None exist in v2 yet.
+([RFC-0008](rfc/0008-blocks.md)). A registry item of type `registry:block`: one folder in `registry/blocks/`, one
+folder in the user's project (`@/components/blocks/<name>/`).
+
+**Content** (of a block) — The one object a block renders, typed and checked by its **content schema** (`schema.ts`,
+zod, built from the **field types**); `example.ts` is a valid content the block shows by default. Agents get the schema
+as JSON Schema.
+
+**Field type** — A shared piece of content schema in `@/lib/block-fields` (`cta`, `image`, `money`, `pricePlan`,
+`menuItem`, `openingHours`…), so a field means the same in every block.
+
+**Family** and **block category** (`meta.family`, `meta.category`) — A block's audience, `marketing` or `storefront`,
+and its kind within it (`hero`, `pricing`, `menu`…), from `registry/block-categories.ts`.
+
+**Container query** — A block lays out by the width of its container (`@container`, `@md:`), not the window's
+([ADR-0013](adr/0013-blocks-answer-their-container.md)).
 
 **Category** (`meta.category`) — The family a component belongs to, one of `forms`, `dates`, `overlays`, `navigation`,
 `display`, `feedback`, `motion` (`registry/categories.ts`). Groups the sidebar and filters `list_components`.
@@ -97,9 +111,12 @@ soft = Kiri, high = Iwa).
 
 **Registry** — The JSON files the CLI and the shadcn CLI read, at `/r/<engine>/<name>.json`, built by `pnpm registry`.
 
-**Registry item** — One JSON file: a component (`registry:ui`), shared code (`registry:lib`, e.g. `rasengan-core`,
-`rasengan-motion`), a
-village or the natures (`registry:theme`), or an example (`registry:example`).
+**Registry item** — One JSON file: a component (`registry:ui`), a block (`registry:block`), shared code
+(`registry:lib`, e.g. `rasengan-core`, `rasengan-motion`, `rasengan-blocks`), a village or the natures
+(`registry:theme`), or an example (`registry:example`).
+
+**Block catalog** (`/r/<engine>/blocks.json`) — Every block with its family, category, `useWhen`, weight and content
+schema, for an agent choosing sections.
 
 **`rasengan-ui.json`** — The project's config: engine, village, nature, tint, aliases, registry, CSS file, custom
 villages.

@@ -1,0 +1,11 @@
+{
+	"extends": "../../registry/tsconfig.json",
+	"compilerOptions": {
+		"types": ["node"]
+	},
+	"include": [
+		"src",
+		"test",
+		"../../registry/blocks"
+	]
+}

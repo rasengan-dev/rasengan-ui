@@ -13,7 +13,8 @@ export interface Config {
 	tint: "village" | "neutral";
 	/** The stylesheet that imports Tailwind; the village CSS goes next to it, in rasengan/. */
 	css: string;
-	aliases: { components: string; ui: string; lib: string };
+	/** `blocks` (RFC-0008) is optional: `<components>/blocks` by default. */
+	aliases: { components: string; ui: string; lib: string; blocks?: string };
 	/** Where the registry is: a URL, or a folder (the site's public/r, for local work). */
 	registry: string;
 	/** Villages made by `village create` (RFC-0006): each one's recipe, and the engine version that wrote it. */
@@ -38,7 +39,8 @@ export function readConfig(root: string): Config {
 	const file = join(root, configFile);
 	if (!existsSync(file)) throw new Error(`No ${configFile} here. Run \`rasengan-ui init\` first.`);
 	const config = JSON.parse(readFileSync(file, "utf8")) as Partial<Config>;
-	return { ...defaults, ...config, aliases: { ...defaults.aliases, ...config.aliases } } as Config;
+	const aliases = { ...defaults.aliases, ...config.aliases };
+	return { ...defaults, ...config, aliases: { ...aliases, blocks: aliases.blocks ?? `${aliases.components}/blocks` } } as Config;
 }
 
 export function writeConfig(root: string, config: Config) {

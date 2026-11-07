@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-07 (RFC-0007 lot C).
+> Last updated: 2026-11-08 (RFC-0008 lot 0).
 
 ## Where things stand
 
@@ -19,7 +19,7 @@
 | MCP server | `rasengan-ui mcp`, five tools ([RFC-0003](rfc/0003-mcp-server.md), steps 1 to 3) |
 | Site | Live at `rasengan-ui.hiraiship.app`, prerendered, with Tag Manager ([ADR-0005](adr/0005-prerendered-site-on-hiraiship.md)) |
 | Project docs | `docs/` in this format since 2026-11-07 ([ADR-0001](adr/0001-project-docs-like-jutsify.md)) |
-| Blocks | None in v2 (`registry/blocks` empty) |
+| Blocks | RFC-0008 lot 0: `rasengan-blocks`, `registry:block` items and `blocks.json`, CLI `blocks` alias, MCP `kind: "block"`, the site's Blocks section; one pilot block, `cta-banner` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
 | `packages/motion` | `rasengan-motion` in the registry: motion modes, village motion tokens, primitives, `splitText` ([RFC-0007](rfc/0007-motion-components.md) lot 0) |
 | Categories | Every component has one; the site groups by them and has a Motion section ([ADR-0009](adr/0009-component-categories.md)) |
 
@@ -31,9 +31,10 @@
   focus halos are 2.3 to 2.4:1 on the background in dark mode (see 0002-Q5). `pnpm axe` now runs with Kusa: the site's
   prose links used `text-primary` (4.3:1 in Kusa light) and now use the primary's words (`tone-primary text-tone-text`).
 - **Motion components** ([RFC-0007](rfc/0007-motion-components.md)): all four lots built.
-- **Blocks** ([RFC-0008](rfc/0008-blocks.md), accepted): lot 0 (contract, `rasengan-blocks`,
-  `registry:block`, CLI and MCP support, the Blocks section), lot A (a marketing landing page), lot B (a storefront, for
-  Jutsify), lot C (showcase blocks).
+- **Blocks** ([RFC-0008](rfc/0008-blocks.md), accepted): lot 0 built, except installing the test block in Jutsify's
+  sandbox registry copy (it installs in the playground). Next, lot A (a marketing landing page; `cta-banner` is
+  already built), then lot B (a storefront, for Jutsify) and lot C (showcase blocks). The placeholder image set comes
+  with the first block that has images.
 
 ### Then
 
@@ -82,10 +83,6 @@ Numbered by origin, so an ADR can say which one it settles.
 - **0003-Q2**: should `add_components` ask for confirmation itself (MCP elicitation)?
 - **0003-Q3**: a hosted server on `ui.rasengan.dev/mcp`: read-only, or also returning an `add` command per project?
 - **0003-Q4**: publish component docs (anatomy, props, accessibility) in the registry for `get_component`, or link them?
-
-### Blocks (RFC-0008)
-
-- **0008-Q1 · zod's weight**: what `zod@^3.25` adds to a project that had none. Measured in lot 0.
 
 ### Components (RFC-0004, RFC-0005)
 

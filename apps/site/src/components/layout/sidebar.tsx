@@ -1,12 +1,17 @@
 import { Link, useLocation } from 'rasengan';
+import { blockGroups } from '@/blocks-catalogue';
 import { groups } from '@/catalogue';
 import { cn } from '@/lib/utils';
 import { NewDot } from './new-dot';
 
-/** The docs pages, then the component pages by category, in the catalogue's order (the pager walks the same list). */
+/**
+ * The docs pages, then the component pages by category, in the catalogue's order (the pager walks the same list). On a
+ * block page, the blocks by family and category instead.
+ */
 export function Sidebar() {
   const { pathname } = useLocation();
   const current = pathname.replace(/\/$/, '');
+  if (current.startsWith('/blocks')) return <BlocksSidebar current={current} />;
   return (
     <nav aria-label="Components" className="flex flex-col gap-6">
       <div className="flex flex-col gap-1">
@@ -29,6 +34,9 @@ export function Sidebar() {
         <Item to="/components" active={current === '/components'}>
           All components
         </Item>
+        <Item to="/blocks" active={false}>
+          Blocks
+        </Item>
       </div>
       {groups.map((group) => (
         <div key={group.id} className="flex flex-col gap-1">
@@ -45,6 +53,37 @@ export function Sidebar() {
           ))}
         </div>
       ))}
+    </nav>
+  );
+}
+
+function BlocksSidebar({ current }: { current: string }) {
+  return (
+    <nav aria-label="Blocks" className="flex flex-col gap-6">
+      <div className="flex flex-col gap-1">
+        <h2 className="mb-1 px-3 text-xs font-medium tracking-wide text-muted-foreground uppercase">Blocks</h2>
+        <Item to="/blocks" active={current === '/blocks'}>
+          All blocks
+        </Item>
+        <Item to="/components" active={false}>
+          Components
+        </Item>
+      </div>
+      {blockGroups.flatMap((family) =>
+        family.categories.map((category) => (
+          <div key={`${family.id}-${category.id}`} className="flex flex-col gap-1">
+            <h2 className="mb-1 px-3 text-xs font-medium tracking-wide text-muted-foreground uppercase">
+              {category.title}
+              <span className="sr-only">, {family.title}</span>
+            </h2>
+            {category.blocks.map((b) => (
+              <Item key={b.name} to={b.href} active={current === b.href} isNew={b.isNew}>
+                {b.title}
+              </Item>
+            ))}
+          </div>
+        )),
+      )}
     </nav>
   );
 }

@@ -11,11 +11,13 @@ rasengan-ui-app/
 ├── registry/
 │   ├── categories.ts        the component categories, in the site's order
 │   ├── components/<name>/   the components (53): source, styles, demos, meta
-│   └── blocks/              blocks (empty in v2)
+│   ├── block-categories.ts  the block families and categories, in the site's order
+│   └── blocks/<name>/       the blocks (1, lot 0): component, schema, example, meta, demo
 ├── packages/
 │   ├── core/                cn(), engine variants, VillageScope, Field context
 │   ├── villages/            the token contract, villages, natures, village engine, contrast
 │   ├── motion/              rasengan-motion: motion modes, village motion tokens, primitives, splitText
+│   ├── blocks/              rasengan-blocks: BlockProps, BlockMeta, formatMoney; zod field types; block tests
 │   ├── cli/                 `rasengan-ui`: commands and the MCP server
 │   └── directions/          empty leftover of RFC-0001
 ├── apps/
@@ -50,6 +52,26 @@ registry/components/dialog/
   `@/components/ui/button`, `@/lib/village-scope`. `registry/tsconfig.json` maps them to `packages/core` and the
   other component folders.
 - The page lives in `apps/site/src/app/_routes/components/<name>.page.mdx`.
+
+### A block folder
+
+```
+registry/blocks/cta-banner/
+├── cta-banner.base.tsx      the block: `CtaBanner({ content = example, id, className, headingLevel })`, `@container`
+├── schema.ts                `export const schema` (zod, from @/lib/block-fields) and `CtaBannerContent`
+├── example.ts               `export const example`: valid content, shown by default
+├── meta.ts                  family, category, summary, useWhen, layout, content, components; `import type` only
+└── cta-banner.demo.tsx      the docs preview
+```
+
+- `pnpm registry` checks the folder (the files, the family and category), parses the example with the schema, writes
+  the JSON Schema and the gzip weight into the item, and generates the installed `index.ts`.
+- The component imports only `@/lib/blocks`, the components and types, never `@/lib/block-fields`, so rendering a block
+  loads no zod ([ADR-0013](adr/0013-blocks-answer-their-container.md)).
+- `packages/blocks/test/blocks.test.tsx` renders every block on the server and checks every string of its example is
+  in the HTML and its heading is at the level asked.
+- The page lives in `apps/site/src/app/_routes/blocks/<name>.page.mdx`: `<BlockPreview>`, install, usage,
+  `<ContentSchema>`, props.
 
 ## 3. `packages/core`
 
@@ -127,12 +149,12 @@ src/
 ├── framework.ts         Rasengan.js, Vite, Next.js App Router, or manual
 ├── registry.ts          load items (by name, URL or folder), the index, registryDependencies
 ├── fetch.ts             fetchJson: a plain error when a registry URL serves HTML
-├── install.ts           where each file goes, import rewriting, lockfile, base copies
+├── install.ts           where each file goes (blocks into `aliases.blocks/<name>/`), import rewriting, lockfile, base copies
 ├── sync.ts              file states and mergeFile (node-diff3)
 ├── setup.ts             the marked CSS import block, <html> attributes
 ├── villages.ts          local and generated villages
 ├── dependencies.ts      npm installs with the project's package manager
-└── mcp.ts               the MCP server: five tools over stdio
+└── mcp.ts               the MCP server: five tools over stdio; blocks are `kind: "block"`, with JSON Schema and example
 ```
 
 - Runs from source in the repository (`pnpm playground ui <cmd>`, with `RASENGAN_UI_REGISTRY=../site/public/r`).
@@ -148,16 +170,18 @@ src/
 ├── template.tsx         <html>, the settings restore script, the motion head script, analytics
 ├── settings.ts          one store for village, nature, tint, scheme (<html> attributes + localStorage)
 ├── catalogue.ts         the component list (meta + demos), sorted by category, and `groups`, for the sidebar, pager, index, search
+├── blocks-catalogue.ts  the block list (meta, demo, source, schema, example), by family and category, and `blockGroups`
 ├── app/_routes/
 │   ├── layout.tsx       header
 │   ├── index.page.tsx   home
 │   ├── docs/            installation, cli, mcp, villages (MDX)
 │   ├── components/      one <name>.page.mdx per component, plus the index
+│   ├── blocks/          one <name>.page.mdx per block, plus the index (`<BlockIndex />`)
 │   ├── motion/          index.page.tsx: the motion gallery (replay, reduced-motion switch)
 │   └── villages/create.page.tsx   the workshop
 └── components/
     ├── layout/          header, sidebar, search (CommandDialog), mobile menu, footer, docs layout
-    ├── mdx/             code-block, toc, steps, callout, component-preview, village-grid, pager
+    ├── mdx/             code-block, toc, steps, callout, component-preview, block-preview, block-index, content-schema, village-grid, pager
     ├── workshop/        recipe panel, preview cards, report, export dialog, engine worker
     └── home/            the home page's demo dashboard
 ```
@@ -171,10 +195,10 @@ src/
 
 | Script | Does |
 |---|---|
-| `registry.mjs` | For each engine: inline `<name>.styles.ts` into the component, write `.registry/<engine>/registry.json`, run `shadcn build` into `apps/site/public/r/<engine>`, rewrite `$schema`, keep `@/components/ui/*` paths in sync in `registry/` and `apps/site` tsconfigs |
+| `registry.mjs` | For each engine: inline `<name>.styles.ts` into the component, write `.registry/<engine>/registry.json`, run `shadcn build` into `apps/site/public/r/<engine>`, rewrite `$schema`, keep `@/components/ui/*` and `@/components/blocks/*` paths in sync in `registry/` and `apps/site` tsconfigs. Blocks: validate, parse the example, JSON Schema, weight budget, `blocks.json` |
 | `contrast.mjs` | Every token pair, every village × nature × scheme (`packages/villages/src/contrast.ts`) |
 | `site-pages.mjs` | What axe and screenshots share: the page list, `open()` that loads a page with `?motion=final` and waits for React hydration |
-| `axe.mjs` | axe-core WCAG 2.2 AA on every page (and `/motion` with motion off), village and scheme, overlays open; `.axe/report.md` |
+| `axe.mjs` | axe-core WCAG 2.2 AA on every page (and `/motion` with motion off, `/blocks` and each block page), village and scheme, overlays open; `.axe/report.md` |
 | `screenshots.mjs` | Playwright on system Chrome, pixelmatch against `.screenshots/baseline`; `--accept` |
 | `sitemap.mjs` | `sitemap.xml` and `robots.txt` after the prerender; fails the build if the output is missing |
 

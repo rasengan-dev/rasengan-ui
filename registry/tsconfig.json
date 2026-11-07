@@ -176,6 +176,12 @@
 			"@/components/ui/typewriter": [
 				"./components/typewriter/typewriter.base.tsx"
 			],
+			"@/components/blocks/cta-banner": [
+				"./blocks/cta-banner/cta-banner.base.tsx"
+			],
+			"@/components/blocks/*": [
+				"./blocks/*"
+			],
 			"@/lib/utils": [
 				"../packages/core/src/utils.ts"
 			],
@@ -187,6 +193,12 @@
 			],
 			"@/lib/motion": [
 				"../packages/motion/src/motion.tsx"
+			],
+			"@/lib/blocks": [
+				"../packages/blocks/src/blocks.ts"
+			],
+			"@/lib/block-fields": [
+				"../packages/blocks/src/block-fields.ts"
 			],
 			"@/lib/motion-features": [
 				"../packages/motion/src/motion-features.ts"

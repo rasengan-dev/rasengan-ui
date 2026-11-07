@@ -33,6 +33,7 @@ No ADR for what one pull request can undo without consequences.
 | [0010](0010-motion-weight.md) | Reveals run on the Web Animations API; Motion's DOM features load on demand | Accepted | 2026-11-07 |
 | [0011](0011-carousel-and-cursor-without-motion.md) | Carousel on native scroll snapping; carousel and cursor animate without Motion | Accepted | 2026-11-07 |
 | [0012](0012-gallery-and-page-transition-without-motion.md) | Gallery 3D and Page Transition without Motion; the Rasengan.js adapter is documented wiring | Accepted | 2026-11-07 |
+| [0013](0013-blocks-answer-their-container.md) | Blocks lay out by their container's width, and render without zod | Accepted | 2026-11-08 |
 
 ## Template
 

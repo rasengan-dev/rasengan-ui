@@ -40,7 +40,8 @@ npx rasengan-ui add dialog toast
 ```
 
 Installs components, the components they use, and their npm packages, with your project's package manager. Files go
-where your aliases point, and their imports are rewritten to match.
+where your aliases point, and their imports are rewritten to match. A [block](/blocks) goes into a folder of its own,
+`components/blocks/<name>/`, or wherever `aliases.blocks` in `rasengan-ui.json` points.
 
 A file you edited since it was installed is kept and reported; `--overwrite` replaces it. A file you deleted stays
 deleted, unless it belongs to a component you name or one a new component needs; `--overwrite` brings it back too.
