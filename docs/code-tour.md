@@ -10,7 +10,7 @@
 rasengan-ui-app/
 ├── registry/
 │   ├── categories.ts        the component categories, in the site's order
-│   ├── components/<name>/   the components (49): source, styles, demos, meta
+│   ├── components/<name>/   the components (51): source, styles, demos, meta
 │   └── blocks/              blocks (empty in v2)
 ├── packages/
 │   ├── core/                cn(), engine variants, VillageScope, Field context
@@ -97,6 +97,7 @@ src/
 │                        modes: motionScript / MotionScript (head), MotionProvider, useMotionMode
 │                        tokens: readMotionTokens(element), useMotion(ref) → { mode, tokens, measured, allows(min) }
 │                        primitives: Reveal, Stagger (Web Animations API), Presence, Parallax, Tilt, Magnetic (Motion's m)
+│                        without Motion: bezierEasing (scroll moves), stepSpring / springAtRest (the cursor)
 ├── motion-features.ts   @/lib/motion-features: Motion's domAnimation, imported dynamically (its own chunk)
 └── split-text.tsx       @/lib/split-text: splitText(), <SplitText by="chars|words|lines">
 test/ssr.test.tsx        server render, no hidden state without JavaScript, split text, defaults against the CSS

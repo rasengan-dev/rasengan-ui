@@ -7,7 +7,8 @@
  *   animate only under "ready", and render their end state otherwise.
  * - Tokens: durations, easings, the spring, travel, stagger and intensity come from the CSS custom properties of the
  *   element's village (contract.css, villages/*.css), so a component inside a VillageScope moves like that village.
- * - Primitives: Reveal, Stagger, Presence, Parallax, Tilt, Magnetic.
+ * - Primitives: Reveal, Stagger, Presence, Parallax, Tilt, Magnetic; bezierEasing and stepSpring for components that
+ *   animate what CSS cannot (a scroll position, a cursor), without Motion.
  *
  * Put <MotionScript /> in <head> and <MotionProvider> once around the app.
  *
@@ -173,6 +174,61 @@ export function useMotion(ref: React.RefObject<Element | null>): Motion {
 	const allows = React.useCallback((min: MotionIntensity = 1) => mode === "ready" && intensity >= min, [mode, intensity]);
 	return { mode, tokens: tokens ?? defaultMotionTokens, measured: tokens !== null, allows };
 }
+
+// ---- Easing and springs, without Motion ------------------------------------------------------------------------
+
+/**
+ * A village easing as a function of time (0 to 1), for what CSS and the Web Animations API cannot animate, such as a
+ * scroll position. Solves the cubic bezier's x for t (Newton, then bisection), like the browser does.
+ */
+export function bezierEasing([x1, y1, x2, y2]: Bezier): (t: number) => number {
+	const curve = (a: number, b: number, t: number) => ((1 - 3 * b + 3 * a) * t + (3 * b - 6 * a)) * t * t + 3 * a * t;
+	const slope = (a: number, b: number, t: number) => 3 * (1 - 3 * b + 3 * a) * t * t + 2 * (3 * b - 6 * a) * t + 3 * a;
+	return (x: number) => {
+		if (x <= 0) return 0;
+		if (x >= 1) return 1;
+		let t = x;
+		for (let i = 0; i < 8; i++) {
+			const d = slope(x1, x2, t);
+			if (Math.abs(d) < 1e-6) break;
+			t -= (curve(x1, x2, t) - x) / d;
+		}
+		if (t < 0 || t > 1 || Math.abs(curve(x1, x2, t) - x) > 1e-4) {
+			let lo = 0;
+			let hi = 1;
+			t = x;
+			for (let i = 0; i < 30; i++) {
+				if (curve(x1, x2, t) < x) lo = t;
+				else hi = t;
+				t = (lo + hi) / 2;
+			}
+		}
+		return curve(y1, y2, t);
+	};
+}
+
+export interface SpringState {
+	value: number;
+	velocity: number;
+}
+
+/**
+ * Moves a spring (mass 1) toward `target` by `dt` seconds, with the village's stiffness and damping. Small fixed
+ * substeps keep stiff springs (Iwa) stable at any frame rate.
+ */
+export function stepSpring(state: SpringState, target: number, spring: MotionTokens["spring"], dt: number): SpringState {
+	let { value, velocity } = state;
+	const steps = Math.max(1, Math.ceil(dt / (1 / 240)));
+	const h = dt / steps;
+	for (let i = 0; i < steps; i++) {
+		velocity += (-spring.stiffness * (value - target) - spring.damping * velocity) * h;
+		value += velocity * h;
+	}
+	return { value, velocity };
+}
+
+/** Whether a spring has come to rest at `target` (within half a pixel, barely moving). */
+export const springAtRest = (state: SpringState, target: number) => Math.abs(state.value - target) < 0.5 && Math.abs(state.velocity) < 5;
 
 // ---- Reveal and Stagger ----------------------------------------------------------------------------------------
 

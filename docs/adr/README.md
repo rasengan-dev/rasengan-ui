@@ -31,6 +31,7 @@ No ADR for what one pull request can undo without consequences.
 | [0008](0008-lip-in-the-token-contract.md) | The contract carries a lip (`--lip`, `--press-*`), zero by default | Accepted | 2026-11-05 |
 | [0009](0009-component-categories.md) | Every component names one category in its `meta.ts` | Accepted | 2026-11-07 |
 | [0010](0010-motion-weight.md) | Reveals run on the Web Animations API; Motion's DOM features load on demand | Accepted | 2026-11-07 |
+| [0011](0011-carousel-and-cursor-without-motion.md) | Carousel on native scroll snapping; carousel and cursor animate without Motion | Accepted | 2026-11-07 |
 
 ## Template
 

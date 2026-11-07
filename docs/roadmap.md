@@ -3,14 +3,14 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-07 (RFC-0007 lot A).
+> Last updated: 2026-11-07 (RFC-0007 lot B).
 
 ## Where things stand
 
 | Piece | State |
 |---|---|
-| Components | 49, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md)) |
-| Motion components | Lot A: text-reveal, typewriter, scramble-text, number-roll, marquee ([RFC-0007](rfc/0007-motion-components.md)); none loads Motion |
+| Components | 51, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md)) |
+| Motion components | Lots A and B: text-reveal, typewriter, scramble-text, number-roll, marquee, cursor; carousel (display); Button's `HoldButton` and `ButtonRollingText` ([RFC-0007](rfc/0007-motion-components.md), [ADR-0011](adr/0011-carousel-and-cursor-without-motion.md)); none loads Motion |
 | Variants | `variant` × `tone` × `size` on most components ([plan 002](plans/002-component-variants.md)) |
 | Villages | Konoha, Kiri, Iwa, Kusa (the contract's lip, [ADR-0008](adr/0008-lip-in-the-token-contract.md)) |
 | Natures | Six, with Onmyōton; neutral tint |
@@ -30,10 +30,8 @@
 - **Finish Kusa**: say what Kusa does in the component pages' prose (they describe Konoha, Kiri and Iwa only); its
   focus halos are 2.3 to 2.4:1 on the background in dark mode (see 0002-Q5). `pnpm axe` now runs with Kusa: the site's
   prose links used `text-primary` (4.3:1 in Kusa light) and now use the primary's words (`tone-primary text-tone-text`).
-- **Motion components** ([RFC-0007](rfc/0007-motion-components.md), accepted). Lots 0 and A are built: categories,
-  motion tokens, `rasengan-motion`, `/motion`, and text-reveal, typewriter, scramble-text, number-roll, marquee. Next,
-  lot B (carousel, cursor, Button `hold` and rolling text), then lot C (gallery-3d, page-transition with its Rasengan.js
-  adapter).
+- **Motion components** ([RFC-0007](rfc/0007-motion-components.md), accepted). Lots 0, A and B are built. Next, lot C
+  (gallery-3d, page-transition with its Rasengan.js adapter).
 
 ### Then
 
@@ -42,7 +40,7 @@
 - A Radix engine (`/r/radix/…`).
 - Figma: village and nature modes (needs a paid plan; the free-plan file has Theme + Primitives and four components).
 - RFC-0003, later: `mcp init --client`, a hosted read-only MCP server.
-- RFC-0004, later list: Sidebar, Input OTP, Hover Card, Context Menu, Item, Carousel (in RFC-0007, lot B),
+- RFC-0004, later list: Sidebar, Input OTP, Hover Card, Context Menu, Item, Carousel (built in RFC-0007, lot B),
   Number Field.
 
 ### Release and operations

@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { renderToString } from "react-dom/server";
-import { Magnetic, MotionProvider, MotionScript, Parallax, Presence, Reveal, Stagger, Tilt, defaultMotionTokens, motionScript } from "../src/motion";
+import { Magnetic, MotionProvider, MotionScript, Parallax, Presence, Reveal, Stagger, Tilt, bezierEasing, defaultMotionTokens, motionScript, springAtRest, stepSpring } from "../src/motion";
 import { SplitText, splitText } from "../src/split-text";
 
 function page() {
@@ -81,4 +81,34 @@ test("the defaults match contract.css and Konoha", () => {
 	assert.equal(value("--motion-distance"), `${d.distance}px`);
 	assert.equal(value("--motion-stagger"), `${Math.round(d.stagger * 1000)}ms`);
 	assert.equal(value("--motion-intensity"), String(d.intensity));
+});
+
+test("bezierEasing follows the curve, overshoot included", () => {
+	const linear = bezierEasing([0, 0, 1, 1]);
+	assert.ok(Math.abs(linear(0.3) - 0.3) < 1e-3);
+	const ease = bezierEasing([0.25, 0.1, 0.25, 1]);
+	// CSS "ease" at x = 0.5 is about 0.8024.
+	assert.ok(Math.abs(ease(0.5) - 0.8024) < 2e-3);
+	const back = bezierEasing([0.34, 1.56, 0.64, 1]);
+	assert.ok(Math.max(...Array.from({ length: 99 }, (_, i) => back((i + 1) / 100))) > 1, "Kusa's ease-out overshoots");
+	assert.equal(back(0), 0);
+	assert.equal(back(1), 1);
+});
+
+test("stepSpring settles at the target; a soft damping overshoots first", () => {
+	const run = (spring: { stiffness: number; damping: number }) => {
+		let state = { value: 0, velocity: 0 };
+		let max = 0;
+		for (let frame = 0; frame < 240; frame++) {
+			state = stepSpring(state, 100, spring, 1 / 60);
+			max = Math.max(max, state.value);
+		}
+		return { state, max };
+	};
+	const iwa = run({ stiffness: 700, damping: 60 });
+	assert.ok(springAtRest(iwa.state, 100));
+	assert.ok(iwa.max <= 100.5, "Iwa does not overshoot");
+	const kusa = run({ stiffness: 420, damping: 14 });
+	assert.ok(springAtRest(kusa.state, 100));
+	assert.ok(kusa.max > 110, "Kusa overshoots");
 });

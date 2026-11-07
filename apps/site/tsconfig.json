@@ -36,6 +36,9 @@
 			"@/components/ui/card": [
 				"../../registry/components/card/card.base.tsx"
 			],
+			"@/components/ui/carousel": [
+				"../../registry/components/carousel/carousel.base.tsx"
+			],
 			"@/components/ui/checkbox": [
 				"../../registry/components/checkbox/checkbox.base.tsx"
 			],
@@ -47,6 +50,9 @@
 			],
 			"@/components/ui/command": [
 				"../../registry/components/command/command.base.tsx"
+			],
+			"@/components/ui/cursor": [
+				"../../registry/components/cursor/cursor.base.tsx"
 			],
 			"@/components/ui/date-picker": [
 				"../../registry/components/date-picker/date-picker.base.tsx"

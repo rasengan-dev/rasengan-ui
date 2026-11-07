@@ -1,0 +1,85 @@
+---
+metadata:
+  title: Cursor · Rasengan UI
+  description: "A custom cursor that follows on the village's spring, wraps itself around buttons and links, and shows labels."
+toc: true
+---
+
+# Cursor
+
+A custom cursor that follows on the village's spring, wraps itself around buttons and links, and shows labels.
+
+<ComponentPreview name="cursor" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add cursor
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/cursor.json
+```
+
+It brings `rasengan-motion` with it. Put `<MotionScript />` in `<head>` and `<MotionProvider>` around the app once.
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { CursorArea } from "@/components/ui/cursor";
+
+export function Usage({ children }: { children: React.ReactNode }) {
+  return <CursorArea>{children}</CursorArea>;
+}
+```
+
+Wrap a section, or the whole app. Over buttons and links the cursor wraps itself around them, with their own corners;
+over a text field it becomes a caret; over an element with `data-cursor-label="Open"` it becomes a pill that says so.
+`data-cursor="none"` hides it over an element, and `targets` changes what it wraps around.
+
+### Ring and dot, labels, and the system cursor
+
+`variant="ring"` (the default) is an outline in the tone's colour; `variant="dot"` is a filled dot. Both take a
+`tone` and a `size`. The system cursor stays unless you pass `hideNative`.
+
+<ComponentPreview name="cursor" demo="cursor-variants" />
+
+## Villages
+
+It follows on a spring with the village's stiffness and damping: exact in Iwa, soft in Konoha, floaty in Kiri,
+bouncy in Kusa. At intensity 1 (Iwa) it follows without wrapping itself around targets; at intensity 3 (Kusa) it
+leans toward the pointer as if the targets were magnetic.
+
+<VillageGrid name="cursor" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off`, `?motion=final` or a scope at `data-motion-intensity="0"`, there is no custom
+cursor: the system one is shown, even with `hideNative`.
+
+## Accessibility
+
+- Mouse and trackpad only (`pointer: fine`): touch, pens and the keyboard are left alone.
+- The cursor is decoration, hidden from screen readers, and it never replaces focus rings.
+- The system cursor stays by default, because some people rely on a large or high-contrast one. Hide it
+  (`hideNative`) only where the custom cursor is the point of the page, and never over forms.
+
+## Weight
+
+About 4.3 kB gzip beyond `cn()`. Nothing from Motion: the spring is `rasengan-motion`'s `stepSpring`.
+
+## API reference
+
+`CursorArea` renders a `div` and takes its props, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `variant` | `"ring" \| "dot"` | `"ring"` |
+| `tone` | `"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"` | `"primary"` |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` |
+| `hideNative` | `boolean` | `false` |
+| `targets` | `string` (CSS selector) | links, buttons, labels, `summary`, `select`, `[data-cursor]` |
+
+On targets: `data-cursor-label="…"` shows a label, `data-cursor="none"` hides the cursor.
