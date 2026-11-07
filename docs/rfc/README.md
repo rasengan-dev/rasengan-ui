@@ -31,6 +31,7 @@ Accepted ──► Superseded by RFC-NNNN or ADR-NNNN
 | [0005](0005-dates-and-times.md) | Dates and times | Accepted | 2026-11-01 |
 | [0006](0006-custom-villages.md) | Found your own village | Accepted | 2026-11-01 |
 | [0007](0007-motion-components.md) | Motion components | Accepted | 2026-11-07 |
+| [0008](0008-blocks.md) | Blocks: page sections built on the components | Accepted | 2026-11-07 |
 
 RFCs 0001 to 0006 were written before this format and keep their own headers (`- Status:`, `- Author:`…). New RFCs use
 the template below.

@@ -30,13 +30,14 @@
 - **Finish Kusa**: say what Kusa does in the component pages' prose (they describe Konoha, Kiri and Iwa only); its
   focus halos are 2.3 to 2.4:1 on the background in dark mode (see 0002-Q5). `pnpm axe` now runs with Kusa: the site's
   prose links used `text-primary` (4.3:1 in Kusa light) and now use the primary's words (`tone-primary text-tone-text`).
-- **Motion components** ([RFC-0007](rfc/0007-motion-components.md)): all four lots built. Next, the blocks RFC (Motion+'s
-  section ideas on these components: logo ticker, stats counters, split-text hero, testimonial stack).
+- **Motion components** ([RFC-0007](rfc/0007-motion-components.md)): all four lots built.
+- **Blocks** ([RFC-0008](rfc/0008-blocks.md), accepted): lot 0 (contract, `rasengan-blocks`,
+  `registry:block`, CLI and MCP support, the Blocks section), lot A (a marketing landing page), lot B (a storefront, for
+  Jutsify), lot C (showcase blocks).
 
 ### Then
 
 - RFC-0006 step 5: the MCP tool `create_village`.
-- Blocks rebuilt on the components (RFC-0002, "Blocks"), with the RFC-0001 content contract.
 - A Radix engine (`/r/radix/…`).
 - Figma: village and nature modes (needs a paid plan; the free-plan file has Theme + Primitives and four components).
 - RFC-0003, later: `mcp init --client`, a hosted read-only MCP server.
@@ -81,6 +82,10 @@ Numbered by origin, so an ADR can say which one it settles.
 - **0003-Q2**: should `add_components` ask for confirmation itself (MCP elicitation)?
 - **0003-Q3**: a hosted server on `ui.rasengan.dev/mcp`: read-only, or also returning an `add` command per project?
 - **0003-Q4**: publish component docs (anatomy, props, accessibility) in the registry for `get_component`, or link them?
+
+### Blocks (RFC-0008)
+
+- **0008-Q1 · zod's weight**: what `zod@^3.25` adds to a project that had none. Measured in lot 0.
 
 ### Components (RFC-0004, RFC-0005)
 
