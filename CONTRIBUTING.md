@@ -33,7 +33,7 @@ Each component is a folder in `registry/components/<name>/`:
 | --- | --- |
 | `<name>.base.tsx` | The component on Base UI, with shadcn's part names |
 | `<name>.styles.ts` | Its classes (`cva`), inlined into one file per component by `pnpm registry` |
-| `meta.ts` | Name, title, description, status, npm and registry dependencies |
+| `meta.ts` | Name, title, description, status, category (`registry/categories.ts`), npm and registry dependencies |
 | `<name>.demo.tsx` | The main demo; `<name>-<topic>.demo.tsx` for variants, sizes or tones |
 
 Then a page in `apps/site/src/app/_routes/components/<name>.page.mdx`. Components use only the token contract's Tailwind

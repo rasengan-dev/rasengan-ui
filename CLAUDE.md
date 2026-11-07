@@ -32,9 +32,12 @@ The why: the [RFCs](docs/rfc/README.md) (frozen once accepted) and the [ADRs](do
 
 ## Code
 
-- Components: `registry/components/<name>/` with `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts`, demos; a page in
-  `apps/site/src/app/_routes/components/<name>.page.mdx`. Contract names only, never raw colours, radii, shadows or
-  durations; state through the `ui-*` variants; `variant` × `tone` × `size`.
+- Components: `registry/components/<name>/` with `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts` (with a `category`
+  from `registry/categories.ts`), demos; a page in `apps/site/src/app/_routes/components/<name>.page.mdx`. Contract
+  names only, never raw colours, radii, shadows or durations; state through the `ui-*` variants;
+  `variant` × `tone` × `size`.
+- Motion: through `@/lib/motion` (`rasengan-motion`), tokens from the village (`useMotion`), end state unless
+  `allows(n)`; Web Animations API for fades and travel, Motion's `m` only for springs, drag and exits.
 - Base UI APIs (`render` props, no `asChild`), shadcn part names.
 - New tokens go into both `contract.css` and `contract.ts`, with a default that leaves the other villages unchanged.
 - `packages/`, `registry/` and `scripts/`: tabs, double quotes, about 150 columns. Never run `pnpm format`

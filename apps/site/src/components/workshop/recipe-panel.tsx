@@ -72,6 +72,7 @@ const labels: Record<string, string> = {
   quick: 'Quick',
   calm: 'Calm',
   gentle: 'Gentle',
+  bouncy: 'Bouncy',
   segmented: 'Segmented',
   bar: 'Bar',
   inverted: 'Inverted',

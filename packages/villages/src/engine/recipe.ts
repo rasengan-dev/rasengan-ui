@@ -18,7 +18,7 @@ export const options = {
 	contrast: ["soft", "standard", "high"],
 	density: ["compact", "default", "comfortable"],
 	depth: ["flat", "soft", "raised", "hard", "lip"],
-	motion: ["quick", "calm", "gentle"],
+	motion: ["quick", "calm", "gentle", "bouncy"],
 	border: [1, 1.5, 2],
 } as const;
 

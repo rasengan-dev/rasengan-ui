@@ -3,6 +3,7 @@ export const meta = {
 	title: "Tabs",
 	description: "Switches between panels in one place. A segmented control in Konoha and Kiri, an underlined bar in Iwa.",
 	status: "beta",
+	category: "navigation",
 	engines: ["base"],
 	dependencies: { base: ["@base-ui/react", "class-variance-authority"] },
 	registryDependencies: [],

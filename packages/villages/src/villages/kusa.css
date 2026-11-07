@@ -47,11 +47,16 @@
 	--press-y: var(--lip);
 
 	/* Motion */
-	--motion-fast: 80ms;
-	--motion-base: 140ms;
-	--motion-slow: 220ms;
-	--motion-ease-out: cubic-bezier(0.2, 0, 0, 1);
-	--motion-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+	--motion-fast: 100ms;
+	--motion-base: 180ms;
+	--motion-slow: 320ms;
+	--motion-ease-out: cubic-bezier(0.34, 1.56, 0.64, 1);
+	--motion-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+	--motion-spring-stiffness: 420;
+	--motion-spring-damping: 14;
+	--motion-distance: 20px;
+	--motion-stagger: 50ms;
+	--motion-intensity: 3;
 
 	/* Colour */
 	--background: oklch(0.965 calc(0.006 * var(--tint, 1)) 150);

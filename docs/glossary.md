@@ -14,6 +14,12 @@ project (`@/components/ui/<name>.tsx`).
 **Block** — A ready-made page section (hero, pricing, FAQ…) built from components, with a typed `content` prop
 (`schema.ts`, `example.ts`, `meta.ts`). None exist in v2 yet.
 
+**Category** (`meta.category`) — The family a component belongs to, one of `forms`, `dates`, `overlays`, `navigation`,
+`display`, `feedback`, `motion` (`registry/categories.ts`). Groups the sidebar and filters `list_components`.
+
+**Motion component** — A component of the `motion` category: its motion is its purpose, so without the animation it
+makes no sense (marquee, typewriter). A carousel, which still works without motion, is not one.
+
 **Demo** — A small file showing a component (`<name>.demo.tsx`, `<name>-<topic>.demo.tsx`). On the site it is a preview;
 in the registry it is an **example** (`registry:example`, `<demo>-demo`) that agents can read.
 
@@ -22,7 +28,7 @@ registry URL (`/r/base/…`) and of `rasengan-ui.json`. Not to be confused with 
 
 ## Theming
 
-**Token contract** (`contract.css`, `contract.ts`) — The fixed list of CSS custom properties (131 tokens in 17
+**Token contract** (`contract.css`, `contract.ts`) — The fixed list of CSS custom properties (136 tokens in 17
 groups: shape, type, controls, focus, press, motion, depth, status…) that villages set and components read through
 Tailwind names. "Contract names" are those Tailwind names (`bg-primary`, `rounded-control`, `h-control`…).
 
@@ -49,6 +55,16 @@ component-specific ones like `underline` or `pills`). Independent of the tone.
 
 **Engine variants** (`ui-open`, `ui-checked`…) — Tailwind custom variants that match the state attributes of both
 Base UI and Radix. Not to be confused with a component's `variant` prop.
+
+**Motion knob** (`motion` in a recipe) — `quick` (exact, Iwa), `calm` (Konoha), `gentle` (floaty, Kiri), `bouncy`
+(springs that overshoot, Kusa). Sets the village's durations, easings, spring, travel distance, stagger and intensity.
+
+**Motion intensity** (`--motion-intensity`, `data-motion-intensity`) — How much motion components may do: 0 none, 1
+fades only, 2 travel and splits, 3 showcase (tilt, magnetic, 3D, overshoot). Set by the village, overridable on any
+element, 0 under reduced motion.
+
+**Motion mode** (`<html data-motion>`) — `ready` (animate), `final` (every animation in its end state: screenshots,
+tests, agents), `off` (reduced motion, or `?motion=off`). `pending` before the page is read.
 
 **Lip** (`--lip`, `--lip-color`) — The solid edge under a raised element in a 3D village (Kusa). Zero in other villages.
 **Press** (`--press-x`, `--press-y`) is how far a `pressable` element moves when pressed.
@@ -81,7 +97,8 @@ soft = Kiri, high = Iwa).
 
 **Registry** — The JSON files the CLI and the shadcn CLI read, at `/r/<engine>/<name>.json`, built by `pnpm registry`.
 
-**Registry item** — One JSON file: a component (`registry:ui`), shared code (`registry:lib`, e.g. `rasengan-core`), a
+**Registry item** — One JSON file: a component (`registry:ui`), shared code (`registry:lib`, e.g. `rasengan-core`,
+`rasengan-motion`), a
 village or the natures (`registry:theme`), or an example (`registry:example`).
 
 **`rasengan-ui.json`** — The project's config: engine, village, nature, tint, aliases, registry, CSS file, custom

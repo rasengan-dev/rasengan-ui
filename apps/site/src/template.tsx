@@ -1,4 +1,5 @@
 import { type TemplateProps } from 'rasengan';
+import { MotionScript } from '@/lib/motion';
 import { settingsKey } from '@/settings';
 
 /* Before the first paint: the village the toolbar saved, or light/dark from the system. */
@@ -40,6 +41,8 @@ export default function Template({ Head, Body, Script }: TemplateProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="color-scheme" content="light dark" />
         <script dangerouslySetInnerHTML={{ __html: restoreSettings }} />
+        {/* The motion mode (ready, final, off) on <html data-motion>, before the first paint: rasengan-motion. */}
+        <MotionScript />
         {analytics && (
           <>
             <script dangerouslySetInnerHTML={{ __html: analytics.setup }} />

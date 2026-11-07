@@ -42,7 +42,7 @@
 		"radius": { "description": "0 (square) to 1 (very round); 0.5 is 0.625rem.", "type": "number", "minimum": 0, "maximum": 1 },
 		"density": { "enum": ["compact", "default", "comfortable"] },
 		"depth": { "enum": ["flat", "soft", "raised", "hard", "lip"] },
-		"motion": { "enum": ["quick", "calm", "gentle"] },
+		"motion": { "enum": ["quick", "calm", "gentle", "bouncy"] },
 		"border": { "description": "Border width in px.", "enum": [1, 1.5, 2] },
 		"fonts": {
 			"type": "object",

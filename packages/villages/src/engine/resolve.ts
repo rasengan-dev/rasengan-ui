@@ -98,6 +98,11 @@ export function foundation(k: Knobs, natures: Record<string, number>): Foundatio
 	light["--motion-slow"] = m.slow;
 	light["--motion-ease-out"] = m.out;
 	light["--motion-ease-in-out"] = m.inOut;
+	light["--motion-spring-stiffness"] = m.stiffness;
+	light["--motion-spring-damping"] = m.damping;
+	light["--motion-distance"] = m.distance;
+	light["--motion-stagger"] = m.stagger;
+	light["--motion-intensity"] = m.intensity;
 
 	// Colour: the ladder of the contrast level.
 	const ladder = ladders[k.contrast];

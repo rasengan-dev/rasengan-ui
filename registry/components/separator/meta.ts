@@ -3,6 +3,7 @@ export const meta = {
 	title: "Separator",
 	description: "A line between groups of content, horizontal or vertical, as thick as the village's borders.",
 	status: "beta",
+	category: "display",
 	engines: ["base"],
 	dependencies: { base: ["@base-ui/react", "class-variance-authority"] },
 	registryDependencies: [],

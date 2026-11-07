@@ -8,7 +8,7 @@
 	"radius": 1,
 	"density": "comfortable",
 	"depth": "lip",
-	"motion": "quick",
+	"motion": "bouncy",
 	"border": 2,
 	"fonts": { "body": "Plus Jakarta Sans", "heading": "Bricolage Grotesque", "code": "JetBrains Mono" },
 	"traits": {

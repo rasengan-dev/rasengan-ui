@@ -157,6 +157,15 @@
 			],
 			"@/lib/field-context": [
 				"../packages/core/src/field-context.tsx"
+			],
+			"@/lib/motion": [
+				"../packages/motion/src/motion.tsx"
+			],
+			"@/lib/motion-features": [
+				"../packages/motion/src/motion-features.ts"
+			],
+			"@/lib/split-text": [
+				"../packages/motion/src/split-text.tsx"
 			]
 		}
 	},

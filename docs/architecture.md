@@ -45,7 +45,7 @@ flowchart TB
     blocks["⬜ registry/blocks"]
     core["✅ packages/core<br/>cn, ui-* variants, VillageScope, Field context"]
     villages["✅ packages/villages<br/>contract, villages, natures, engine, contrast"]
-    motion["🚧 packages/motion<br/>animation primitives, not wired yet"]
+    motion["✅ packages/motion<br/>rasengan-motion: modes, village motion tokens, primitives, splitText"]
   end
 
   build["✅ scripts/registry.mjs<br/>inlines styles, shadcn build"]
@@ -64,17 +64,20 @@ flowchart TB
   public -- fetch --> cli
   villages -- bundled into --> cli
   cli --> play
+  motion --> build
+  motion --> site
   motion -.-> blocks
   blocks -.-> build
 ```
 
 | Container | State | Role |
 |---|---|---|
-| `registry/components/<name>/` | ✅ 44 | One folder per component: `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts`, demos |
+| `registry/components/<name>/` | ✅ 44 | One folder per component: `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts` (with its category, [ADR-0009](adr/0009-component-categories.md)), demos |
+| `registry/categories.ts` | ✅ | The seven categories, in the site's order: forms, dates, overlays, navigation, display, feedback, motion |
 | `registry/blocks/` | ⬜ | Marketing blocks rebuilt on the components (RFC-0002, "Blocks"); empty |
 | `packages/core` | ✅ | What every component shares; published as the `rasengan-core` registry item |
 | `packages/villages` | ✅ | The token contract (CSS + TypeScript spec), the villages, the natures, the village engine, the contrast library |
-| `packages/motion` | 🚧 | `Reveal`, `Stagger`, `Counter`, `Marquee`, `Tilt`, `Magnetic`, `Parallax`, GSAP `SplitText`. Kept from RFC-0001, used by nothing yet |
+| `packages/motion` | ✅ | The `rasengan-motion` registry item ([RFC-0007](rfc/0007-motion-components.md)): motion modes, the village's motion tokens read from CSS, `Reveal`, `Stagger`, `Presence`, `Parallax`, `Tilt`, `Magnetic`, `splitText`. No motion component uses it yet (lot A) |
 | `packages/directions` | — | Empty leftover of RFC-0001; to delete |
 | `scripts/registry.mjs` | ✅ | Builds the registry, one per engine (only `base` today) |
 | `apps/site` | ✅ | The docs and catalogue site; serves the registry and its schemas; live at `rasengan-ui.hiraiship.app` |
@@ -86,7 +89,7 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-  contract["contract.css<br/>131 tokens in 17 groups<br/>+ Tailwind @theme names + utilities"]
+  contract["contract.css<br/>136 tokens in 17 groups<br/>+ Tailwind @theme names + utilities"]
   village["villages/&lt;name&gt;.css<br/>[data-village=…]<br/>shape, type, density, depth, motion, greys"]
   nature["natures.css<br/>[data-nature=…]<br/>the accent hue"]
   tint["[data-tint=neutral]<br/>greys without chroma"]
@@ -104,8 +107,21 @@ flowchart LR
   Six: Katon, Doton, Futon, Suiton, Raiton, and Onmyōton (no hue: the primary is the village's foreground).
 - **Engine variants** (`ui-open`, `ui-checked`, `ui-invalid`…) in `packages/core/src/variants.css` match both Base
   UI's and Radix's state attributes, so one class string works on either engine.
-- `VillageScope` gives part of a page its own village, nature, tint or scheme, and keeps a twin in `<body>` that
-  popups use as their portal container.
+- `VillageScope` gives part of a page its own village, nature, tint, scheme or motion intensity, and keeps a twin in
+  `<body>` that popups use as their portal container.
+
+### Motion
+
+- Each village sets its motion through the recipe's `motion` knob: Konoha `calm`, Kiri `gentle`, Iwa `quick`, Kusa
+  `bouncy`. It writes the durations and easings CSS transitions use, and (RFC-0007) the spring, travel distance,
+  stagger and intensity (0 to 3) that motion components read. `data-motion-intensity` on any element overrides the
+  intensity for its subtree; reduced motion sets it to 0 everywhere.
+- `rasengan-motion` (`packages/motion`) reads those tokens from the element's computed style, so a component inside a
+  `VillageScope` moves like that village. A head script sets `<html data-motion>`: `ready` animates, `final` renders end
+  states (screenshots, agents), `off` is reduced motion. Hidden initial states apply only under `ready`, from
+  `contract.css`, so content is visible without JavaScript.
+- Reveals use the Web Animations API; components that need springs use Motion's `m`, whose features load on demand
+  ([ADR-0010](adr/0010-motion-weight.md)).
 
 ### The village engine
 
@@ -152,8 +168,12 @@ sequenceDiagram
 
 - Rasengan.js 2 app, **prerendered** at build time and deployed on Hiraiship as static files
   ([ADR-0005](adr/0005-prerendered-site-on-hiraiship.md)). Dev server on port 3200.
-- Pages: home, `/docs/*` (installation, CLI, MCP, villages), `/components/<name>` (MDX, one per component,
-  [ADR-0006](adr/0006-site-mdx-follows-hiraiship-docs.md)), `/villages/create` (the workshop).
+- Pages: home, `/docs/*` (installation, CLI, MCP, villages), `/components` (by category) and `/components/<name>`
+  (MDX, one per component, [ADR-0006](adr/0006-site-mdx-follows-hiraiship-docs.md)), `/motion` (the motion gallery:
+  the village reveal and, from lot A, the motion components), `/villages/create` (the workshop).
+- The header's sections: Docs, Components, Motion. The sidebar and the pager follow the catalogue's order: by category,
+  then by title.
+- `template.tsx` runs the motion head script; the root layout has the one `MotionProvider`.
 - One settings store (`src/settings.ts`) drives the header's village, nature, tint and scheme; it writes `<html>`
   attributes and `localStorage`, restored before paint by an inline script in `template.tsx`.
 - The site imports components from `registry/` through `@/components/ui/<name>` paths kept in sync by
@@ -164,9 +184,9 @@ sequenceDiagram
 | Command | Checks | Needs |
 |---|---|---|
 | `pnpm typecheck` | core, villages, registry, site, CLI | — |
-| `pnpm test` | villages (contract drift, contrast, engine) and CLI (`node:test`); also the pre-commit hook | — |
+| `pnpm test` | villages (contract drift, contrast, engine), motion (server render, split text, defaults against the CSS) and CLI; also the pre-commit hook | — |
 | `pnpm contrast` | every token pair of every village × nature × scheme against WCAG (text 4.5:1, control edges 3:1) | — |
-| `pnpm axe` | WCAG 2.2 AA on every page × village × scheme, overlays open; report in `.axe/report.md` | site running |
+| `pnpm axe` | WCAG 2.2 AA on every page × village × scheme, overlays open, `/motion` animating and with motion off; report in `.axe/report.md` | site running |
 | `pnpm screenshots` | every demo × village × scheme × nature against a local baseline in `.screenshots/` | site running |
 
 There is no CI yet: the gate runs locally (see the [roadmap](roadmap.md)).

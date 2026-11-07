@@ -327,6 +327,16 @@
 	--lip-edge: var(--border);
 	--surface-blur: 0px;
 	--texture: none;
+	/*
+	 * Motion beyond durations (RFC-0007), for motion components (rasengan-motion reads them from the element's
+	 * village): a spring, how far things travel when they reveal, the delay between siblings, and the intensity:
+	 * 0 none, 1 fades only, 2 travel and splits, 3 showcase (tilt, magnetic, 3D, overshoot).
+	 */
+	--motion-spring-stiffness: 260;
+	--motion-spring-damping: 30;
+	--motion-distance: 24px;
+	--motion-stagger: 60ms;
+	--motion-intensity: 2;
 
 	/*
 	 * Status colours. Hues are fixed (green, amber, blue); the village gives the strength per mode, like the
@@ -438,12 +448,52 @@
 	}
 }
 
+/*
+ * Motion intensity for part of a page (RFC-0007): data-motion-intensity="0" to "3" on any element overrides its
+ * village's. Doubled attribute: wins over a village file on the same element.
+ */
+[data-motion-intensity="0"][data-motion-intensity] {
+	--motion-intensity: 0;
+}
+[data-motion-intensity="1"][data-motion-intensity] {
+	--motion-intensity: 1;
+}
+[data-motion-intensity="2"][data-motion-intensity] {
+	--motion-intensity: 2;
+}
+[data-motion-intensity="3"][data-motion-intensity] {
+	--motion-intensity: 3;
+}
+
+/*
+ * Motion modes (RFC-0001, kept by RFC-0007). The head script of rasengan-motion sets <html data-motion>: "ready"
+ * (animate), "final" (every animation in its end state: screenshots, tests, agents) or "off" (reduced motion).
+ * Hidden initial states apply only under "ready", so without JavaScript content stays visible. If the app never
+ * mounts after the script ran, the failsafe shows the content after 3 s; once the provider has mounted
+ * (data-motion-hydrated), the components own it.
+ */
+[data-motion="ready"] [data-reveal]:not([data-revealed]) {
+	opacity: 0;
+}
+[data-motion="ready"]:not([data-motion-hydrated]) [data-reveal]:not([data-revealed]) {
+	animation: rui-reveal-failsafe 0s linear 3s forwards;
+}
+@keyframes rui-reveal-failsafe {
+	to {
+		opacity: 1;
+	}
+}
+
 /* Doubled attribute: wins over the village files, which set these at a lower specificity. */
 @media (prefers-reduced-motion: reduce) {
-	[data-village][data-village] {
+	[data-village][data-village],
+	[data-motion-intensity][data-motion-intensity] {
 		--motion-fast: 0ms;
 		--motion-base: 0ms;
 		--motion-slow: 0ms;
+		--motion-distance: 0px;
+		--motion-stagger: 0ms;
+		--motion-intensity: 0;
 		--press-scale: 1;
 		--press-offset: 0px;
 		--press-x: 0px;

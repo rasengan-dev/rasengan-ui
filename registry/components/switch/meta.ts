@@ -3,6 +3,7 @@ export const meta = {
 	title: "Switch",
 	description: "Turns a setting on or off, with an immediate effect. Its track and thumb are village tokens.",
 	status: "beta",
+	category: "forms",
 	engines: ["base"],
 	dependencies: { base: ["@base-ui/react", "class-variance-authority"] },
 	registryDependencies: [],

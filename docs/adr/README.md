@@ -29,6 +29,8 @@ No ADR for what one pull request can undo without consequences.
 | [0006](0006-site-mdx-follows-hiraiship-docs.md) | The site's MDX follows Hiraiship's `apps/docs` conventions | Accepted | 2026-10-29 |
 | [0007](0007-toast-on-sonner.md) | Toast is built on Sonner, not on Base UI's toast | Accepted | 2026-10-29 |
 | [0008](0008-lip-in-the-token-contract.md) | The contract carries a lip (`--lip`, `--press-*`), zero by default | Accepted | 2026-11-05 |
+| [0009](0009-component-categories.md) | Every component names one category in its `meta.ts` | Accepted | 2026-11-07 |
+| [0010](0010-motion-weight.md) | Reveals run on the Web Animations API; Motion's DOM features load on demand | Accepted | 2026-11-07 |
 
 ## Template
 

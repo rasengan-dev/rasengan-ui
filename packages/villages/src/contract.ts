@@ -100,6 +100,11 @@ export const contract = {
 	"--motion-slow": { group: "motion", kind: "time" },
 	"--motion-ease-out": { group: "motion", kind: "easing" },
 	"--motion-ease-in-out": { group: "motion", kind: "easing" },
+	"--motion-spring-stiffness": { group: "motion", kind: "number", default: true },
+	"--motion-spring-damping": { group: "motion", kind: "number", default: true },
+	"--motion-distance": { group: "motion", kind: "length", default: true },
+	"--motion-stagger": { group: "motion", kind: "time", default: true },
+	"--motion-intensity": { group: "motion", kind: "number", default: true },
 
 	"--background": { group: "colour", kind: "color", schemes: true, tinted: true },
 	"--foreground": { group: "colour", kind: "color", schemes: true, tinted: true },

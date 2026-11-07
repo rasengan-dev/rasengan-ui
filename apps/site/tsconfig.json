@@ -147,6 +147,15 @@
 			"@/lib/field-context": [
 				"../../packages/core/src/field-context.tsx"
 			],
+			"@/lib/motion": [
+				"../../packages/motion/src/motion.tsx"
+			],
+			"@/lib/motion-features": [
+				"../../packages/motion/src/motion-features.ts"
+			],
+			"@/lib/split-text": [
+				"../../packages/motion/src/split-text.tsx"
+			],
 			"@/registry/*": [
 				"../../registry/*"
 			],
@@ -160,7 +169,9 @@
 		"rasengan-env.d.ts",
 		"mdx-components.tsx",
 		"../../registry/components",
+		"../../registry/categories.ts",
 		"../../packages/core/src",
+		"../../packages/motion/src",
 		"../../packages/villages/src"
 	],
 	"extends": "./node_modules/rasengan/tsconfig.base.json"

@@ -61,6 +61,13 @@
 
 ## Motion
 
-19. **Content is visible without JavaScript and under reduced motion.** Hidden initial states apply only once motion
-    is ready; `prefers-reduced-motion` and `data-motion="final"` render every animation in its end state.
-    — [RFC-0001, Motion](rfc/0001-v2-animated-blocks.md) (kept by RFC-0002)
+19. **Content is visible without JavaScript and under reduced motion.** Hidden initial states apply only under
+    `data-motion="ready"`; `off` (reduced motion) and `final` render every animation in its end state.
+    — [RFC-0001, Motion](rfc/0001-v2-animated-blocks.md), [RFC-0007](rfc/0007-motion-components.md)
+20. **Motion comes from the village.** Motion components read durations, easings, springs, travel, stagger and
+    intensity from the contract's `--motion-*` tokens, never from constants, so they move like the village they are in.
+    — [RFC-0007](rfc/0007-motion-components.md)
+21. **What moves on its own for more than five seconds has a visible pause control**, and screen readers read animated
+    text once, in full. — [RFC-0007, Accessibility](rfc/0007-motion-components.md)
+22. **Every component names one category** in its `meta.ts`; `motion` only when the motion is its purpose.
+    — [ADR-0009](adr/0009-component-categories.md)

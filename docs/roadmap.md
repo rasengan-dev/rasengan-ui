@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-07.
+> Last updated: 2026-11-07 (RFC-0007 lot 0).
 
 ## Where things stand
 
@@ -19,18 +19,21 @@
 | Site | Live at `rasengan-ui.hiraiship.app`, prerendered, with Tag Manager ([ADR-0005](adr/0005-prerendered-site-on-hiraiship.md)) |
 | Project docs | `docs/` in this format since 2026-11-07 ([ADR-0001](adr/0001-project-docs-like-jutsify.md)) |
 | Blocks | None in v2 (`registry/blocks` empty) |
-| `packages/motion` | Primitives exist, used by nothing |
+| `packages/motion` | `rasengan-motion` in the registry: motion modes, village motion tokens, primitives, `splitText` ([RFC-0007](rfc/0007-motion-components.md) lot 0) |
+| Categories | Every component has one; the site groups by them and has a Motion section ([ADR-0009](adr/0009-component-categories.md)) |
 
 ## What is left to build
 
 ### Next
 
-- **Finish Kusa**: rerun `pnpm axe` with Kusa; say what Kusa does in the component pages' prose (they describe
-  Konoha, Kiri and Iwa only); its focus halos are 2.3 to 2.4:1 on the background in dark mode (see 0002-Q5).
-- **Motion components** ([RFC-0007](rfc/0007-motion-components.md), accepted): lot 0 (`category` in every `meta.ts`, motion tokens and `bouncy` in the contract, Kusa to `bouncy`,
-  `data-motion-intensity`, `rasengan-motion`, the site's Motion section, and the bundle size measured), lot A
-  (text-reveal, typewriter, scramble-text, number-roll, marquee), lot B (carousel, cursor, Button `hold` and rolling
-  text), lot C (gallery-3d, page-transition with its Rasengan.js adapter).
+- **Finish Kusa**: say what Kusa does in the component pages' prose (they describe Konoha, Kiri and Iwa only); its
+  focus halos are 2.3 to 2.4:1 on the background in dark mode (see 0002-Q5). `pnpm axe` now runs with Kusa: the site's
+  prose links used `text-primary` (4.3:1 in Kusa light) and now use the primary's words (`tone-primary text-tone-text`).
+- **Motion components** ([RFC-0007](rfc/0007-motion-components.md), accepted). Lot 0 is built: categories, motion
+  tokens and `bouncy` (Kusa), `data-motion-intensity`, `rasengan-motion`, `/motion`, the weight measured
+  ([ADR-0010](adr/0010-motion-weight.md)). Next, lot A (text-reveal, typewriter, scramble-text, number-roll, marquee),
+  then lot B (carousel, cursor, Button `hold` and rolling text) and lot C (gallery-3d, page-transition with its
+  Rasengan.js adapter). Screenshots of motion demos in `?motion=final` and `?motion=off` come with lot A's demos.
 
 ### Then
 
@@ -80,11 +83,6 @@ Numbered by origin, so an ADR can say which one it settles.
 - **0003-Q2**: should `add_components` ask for confirmation itself (MCP elicitation)?
 - **0003-Q3**: a hosted server on `ui.rasengan.dev/mcp`: read-only, or also returning an `add` command per project?
 - **0003-Q4**: publish component docs (anatomy, props, accessibility) in the registry for `get_component`, or link them?
-
-### Motion (RFC-0007)
-
-- **0007-Q1 · Bundle size**: what `motion` with `LazyMotion` adds to a page with one motion component. Measured in lot 0
-  and reported on each page; CSS-only components stay free of it.
 
 ### Components (RFC-0004, RFC-0005)
 

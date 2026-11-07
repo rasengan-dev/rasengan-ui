@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | Accepted (2026-11-07). Open questions 2 to 7 settled, see "Decisions"; progress in the [roadmap](../roadmap.md) |
+| Status | Accepted (2026-11-07). Open questions 2 to 7 settled, see "Decisions"; progress in the [roadmap](../roadmap.md). → "Bundle size" (question 1) and the "Engine" bullet replaced by [ADR-0010](../adr/0010-motion-weight.md) |
 | Date | 2026-11-07 |
 | Author | Dilane Kombou |
 | Builds on | RFC-0001 (motion principles, `packages/motion`), RFC-0002 (components, villages, quality gate, motion tokens), RFC-0003 (examples for agents), RFC-0006 (the `motion` knob) |
