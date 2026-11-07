@@ -85,8 +85,9 @@ The button renders a `<button>`. To render another element with the button's loo
 ### Hold to confirm
 
 `HoldButton` acts only once it has been held, with the pointer or with <kbd>Space</kbd> or <kbd>Enter</kbd>: for what is
-hard to undo, such as deleting or publishing. A wash of the button's own colour fills it over the hold time and drains
-if it is let go early. The fill is the feedback, so it runs with reduced motion too.
+hard to undo, such as deleting or publishing. A fill sweeps across it, steadily, over the hold time; let go early and it
+drains back from where it was, easing out with the village. On filled buttons the fill is the tone's darker shade, so
+the label stays readable. The fill is the feedback, so it runs with reduced motion too.
 
 <ComponentPreview name="button" demo="button-hold" />
 
@@ -95,6 +96,12 @@ if it is let go early. The fill is the feedback, so it runs with reduced motion 
   Hold to delete
 </HoldButton>
 ```
+
+The animation is yours to tune: `fill` picks where the fill grows from (`start`, `end`, `center` or `bottom`),
+`drainDuration` how long it takes to drain from full, `confirmEffect` what it does once confirmed (`fade`, `flash` or
+`none`), and `onHoldProgress` reports how full it is on every frame, to show a percentage or a ring elsewhere. The fill is
+`[data-slot=hold-button-fill]` for its colour, the button carries `data-state="holding"` then `"done"`, and the drain
+eases with `--motion-ease-out`, which a `style` can override.
 
 ### Rolling text
 
@@ -138,6 +145,10 @@ The props of Base UI's [Button](https://base-ui.com/react/components/button), pl
 | --- | --- | --- |
 | `onConfirm` | `() => void` | — |
 | `duration` | `number` (seconds) | `1.2` |
+| `drainDuration` | `number`, seconds to drain from full | follows how full it got |
+| `fill` | `"start" \| "end" \| "center" \| "bottom"` | `"start"` |
+| `confirmEffect` | `"fade" \| "flash" \| "none"` | `"fade"` |
+| `onHoldProgress` | `(progress: number) => void`, 0 to 1 on every frame | — |
 | `hint` | `string`, read after the label | `"Press and hold to confirm"` |
 
 `ButtonRollingText` takes a string as `children`, a `span`'s props, and `stagger` (`boolean`, `false` by default).

@@ -32,6 +32,8 @@ export interface Gallery3DProps extends Omit<React.HTMLAttributes<HTMLDivElement
 	height?: number;
 	/** The item in front. Leave it out to let the gallery keep its own. */
 	index?: number;
+	/** The item in front at first, when `index` is left out. */
+	defaultIndex?: number;
 	onIndexChange?: (index: number) => void;
 	/** Called when the item in front is opened; by default it opens in a dialog. */
 	onOpen?: (item: GalleryEntry) => void;
@@ -142,13 +144,13 @@ function Media({ item }: { item: GalleryEntry }) {
  * ring turns forever. Opening the card in front shows a detail view. Below intensity 2, or with motion off, it is a
  * flat grid of the same items.
  */
-export function Gallery3D({ items, layout = "coverflow", label, itemSize = 220, height = 420, index, onIndexChange, onOpen, className, style, ...props }: Gallery3DProps) {
+export function Gallery3D({ items, layout = "coverflow", label, itemSize = 220, height = 420, index, defaultIndex = 0, onIndexChange, onOpen, className, style, ...props }: Gallery3DProps) {
 	const rootRef = React.useRef<HTMLDivElement>(null);
 	const { tokens, allows } = useMotion(rootRef);
 	const threeD = allows(2);
 	const n = items.length;
 	// `turn` is the position in front: an item index, or any integer for the endless ring.
-	const [turn, setTurn] = React.useState(index ?? 0);
+	const [turn, setTurn] = React.useState(index ?? defaultIndex);
 	const [dragged, setDragged] = React.useState<number | null>(null);
 	const [opened, setOpened] = React.useState<GalleryEntry | null>(null);
 	const itemRefs = React.useRef<(HTMLButtonElement | null)[]>([]);

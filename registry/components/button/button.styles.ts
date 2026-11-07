@@ -52,14 +52,17 @@ export const buttonVariants = cva(
 export type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 
 /*
- * HoldButton: a wash of the button's own text colour fills it from the start while it is held, over exactly the hold
- * time (it is the feedback, so it runs under reduced motion too), and drains quickly when let go.
+ * HoldButton: a fill sweeps across from the start while it is held, linearly over exactly the hold time (it is the
+ * feedback, so it runs under reduced motion too), and drains back with the village's ease-out when let go early, in a
+ * time that follows how full it got. On filled styles it is the tone's darker shade (its lip colour), so the label stays
+ * readable; on the others a wash of the text's colour. It sits under the label (negative z inside the isolated button).
  * ButtonRollingText: on hover or keyboard focus the label rolls up and a copy rolls in from below, with the village's
  * base duration and ease-out; letter by letter with `stagger`.
  */
 export const buttonStyles = {
-	hold: "relative overflow-hidden",
-	holdFill: "pointer-events-none absolute inset-0 origin-left scale-x-0 bg-current/20 transition-transform duration-fast ease-out data-[holding]:ease-linear",
+	hold: "relative isolate overflow-hidden",
+	holdFill:
+		"pointer-events-none absolute inset-0 -z-10 bg-current/15 [[data-variant=default]_&]:bg-(--tone-lip) [[data-variant=destructive]_&]:bg-(--tone-lip) rtl:data-[fill=end]:origin-left! rtl:data-[fill=start]:origin-right!",
 	roll: "relative inline-flex overflow-clip",
 	rollLine: "inline-block transition-[translate] duration-base ease-out group-hover/button:-translate-y-full group-focus-visible/button:-translate-y-full",
 	// The copy waits below, invisible (so it is never read as text out of place); it shows while it rolls in and stays until it has rolled out.

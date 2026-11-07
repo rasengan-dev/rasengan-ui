@@ -41,6 +41,7 @@ import {
 } from '@/components/ui/dialog';
 import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
+import { NumberRoll } from '@/components/ui/number-roll';
 import { Label } from '@/components/ui/label';
 import { Progress, ProgressLabel, ProgressValue } from '@/components/ui/progress';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -73,7 +74,9 @@ export function StatsCard() {
     <Card>
       <CardHeader>
         <CardDescription>Missions completed</CardDescription>
-        <CardTitle className="text-3xl tabular-nums">1,284</CardTitle>
+        <CardTitle className="text-3xl tabular-nums">
+          <NumberRoll value={1284} locale="en-US" />
+        </CardTitle>
         <CardAction>
           <Badge variant="outline">
             <ArrowUpRightIcon /> 18.2%
@@ -306,7 +309,7 @@ export function GoalCard() {
             </Tooltip>
             <div className="w-28 text-center" aria-live="polite">
               <div className="font-display text-6xl font-semibold tracking-display tabular-nums">
-                {goal}
+                <NumberRoll value={goal} trigger="mount" />
               </div>
               <div className="text-xs text-muted-foreground uppercase">hours / day</div>
             </div>
