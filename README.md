@@ -42,7 +42,7 @@ then `npx shadcn@latest add @rasengan/dialog`.
 | `packages/villages` | The token contract, the villages and the natures |
 | `packages/motion` | Animation primitives for the blocks |
 | `packages/cli` | The `rasengan-ui` CLI and its MCP server |
-| `proposals` | The RFCs: what changes, why and how, settled before it is built |
+| `docs` | The project docs: architecture, invariants, glossary, roadmap, RFCs and ADRs ([start here](docs/README.md)) |
 | `archive` | Rasengan UI v1 ("Classic"), kept for reference |
 
 ## Development

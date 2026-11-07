@@ -1,6 +1,6 @@
 # RFC-0003: Rasengan UI MCP server — the registry, for agents
 
-- Status: Draft (rollout steps 1 to 3 on `feat/ui-next`)
+- Status: Accepted. Rollout steps 1 to 3 built and live since 2026-11-04; what is left is in the [roadmap](../roadmap.md)
 - Author: Dilane Kombou
 - Created: 2026-10-31
 - Builds on: RFC-0002 (registry, CLI, `rasengan-ui.json`, lockfile)

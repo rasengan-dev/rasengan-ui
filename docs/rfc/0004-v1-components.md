@@ -1,6 +1,6 @@
 # RFC-0004: Rasengan UI — the twelve components a v1 needs
 
-- Status: Draft (lots A, B and C built on `feat/ui-next`)
+- Status: Accepted. Lots A, B and C built and live since 2026-11-04; open questions in the [roadmap](../roadmap.md)
 - Author: Dilane Kombou
 - Created: 2026-10-31
 - Builds on: RFC-0002 (components, villages, quality gate), plan 002 (variant × tone × size), RFC-0003 (examples in

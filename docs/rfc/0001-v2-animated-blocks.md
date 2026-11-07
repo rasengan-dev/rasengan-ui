@@ -1,6 +1,6 @@
 # RFC-0001: Rasengan UI v2 — animated blocks an agent can compose
 
-- Status: Superseded by [RFC-0002](RFC-0002-Rasengan-UI-Villages.md), except the block content contract. Was: Draft (v1 port map proposed, see "Porting v1"; step 2 implemented: `packages/motion`, `packages/directions` with the token layer and `nova`, `apps/ui/src/registry/v2/lib`, `pnpm registry:catalog`, registry items `motion`, `motion-gsap`, `tokens`, `direction-nova`, `blocks-lib`; first block `hero-split-reveal`)
+- Status: Superseded by [RFC-0002](0002-villages.md), except the block content contract. Was: Draft (v1 port map proposed, see "Porting v1"; step 2 implemented: `packages/motion`, `packages/directions` with the token layer and `nova`, `apps/ui/src/registry/v2/lib`, `pnpm registry:catalog`, registry items `motion`, `motion-gsap`, `tokens`, `direction-nova`, `blocks-lib`; first block `hero-split-reveal`)
 - Author: Dilane Kombou
 - Created: 2026-10-22
 - Package(s): `apps/ui` (registry), `apps/docs`, new `packages/motion`, new `packages/directions`

@@ -1,6 +1,6 @@
 # RFC-0002: Rasengan UI — components on Base UI, themed by villages
 
-- Status: Draft (implementation plan steps 1 to 5 on `feat/ui-next`)
+- Status: Accepted. Implementation plan steps 1 to 5 built and live since 2026-11-04; what is left is in the [roadmap](../roadmap.md)
 - Author: Dilane Kombou
 - Created: 2026-10-28
 - Supersedes: RFC-0001 for everything except the block content contract (`schema.ts`, `example.ts`, `meta.ts`), which is kept

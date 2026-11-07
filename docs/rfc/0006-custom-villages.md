@@ -1,6 +1,6 @@
 # RFC-0006: Rasengan UI — found your own village
 
-- Status: Accepted (2026-11-01; implementation on `feat/custom-villages`)
+- Status: Accepted (2026-11-01). Steps 1 to 4 built and live since 2026-11-04; step 5 (MCP) and open questions in the [roadmap](../roadmap.md)
 - Author: Dilane Kombou
 - Created: 2026-11-01
 - Builds on: RFC-0002 (token contract, villages, natures, tint, CLI, lockfile, `pnpm contrast`), RFC-0003 (MCP server)

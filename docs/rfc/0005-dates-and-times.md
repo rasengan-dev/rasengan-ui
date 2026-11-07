@@ -1,6 +1,6 @@
 # RFC-0005: Rasengan UI — dates and times
 
-- Status: Draft (built on `feat/ui-next`)
+- Status: Accepted. Built and live since 2026-11-04; open questions in the [roadmap](../roadmap.md)
 - Author: Dilane Kombou
 - Created: 2026-11-01
 - Builds on: RFC-0002 (components, villages, quality gate), RFC-0004 ("Later": Calendar, Date Picker)
