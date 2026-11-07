@@ -27,9 +27,10 @@
 
 - **Finish Kusa**: rerun `pnpm axe` with Kusa; say what Kusa does in the component pages' prose (they describe
   Konoha, Kiri and Iwa only); its focus halos are 2.3 to 2.4:1 on the background in dark mode (see 0002-Q5).
-- **Motion components** (RFC-0007, to write): text reveal, typewriter, scramble text, rolling numbers, marquee,
-  carousel, cursor, 3D gallery, page transitions, built clean-room on `motion` and the village motion tokens. Lot 0
-  wires `packages/motion` into the registry as the `rasengan-motion` item and reads its tokens from the village.
+- **Motion components** ([RFC-0007](rfc/0007-motion-components.md), accepted): lot 0 (`category` in every `meta.ts`, motion tokens and `bouncy` in the contract, Kusa to `bouncy`,
+  `data-motion-intensity`, `rasengan-motion`, the site's Motion section, and the bundle size measured), lot A
+  (text-reveal, typewriter, scramble-text, number-roll, marquee), lot B (carousel, cursor, Button `hold` and rolling
+  text), lot C (gallery-3d, page-transition with its Rasengan.js adapter).
 
 ### Then
 
@@ -38,7 +39,7 @@
 - A Radix engine (`/r/radix/…`).
 - Figma: village and nature modes (needs a paid plan; the free-plan file has Theme + Primitives and four components).
 - RFC-0003, later: `mcp init --client`, a hosted read-only MCP server.
-- RFC-0004, later list: Sidebar, Input OTP, Hover Card, Context Menu, Item, Carousel (folded into the motion RFC),
+- RFC-0004, later list: Sidebar, Input OTP, Hover Card, Context Menu, Item, Carousel (in RFC-0007, lot B),
   Number Field.
 
 ### Release and operations
@@ -79,6 +80,11 @@ Numbered by origin, so an ADR can say which one it settles.
 - **0003-Q2**: should `add_components` ask for confirmation itself (MCP elicitation)?
 - **0003-Q3**: a hosted server on `ui.rasengan.dev/mcp`: read-only, or also returning an `add` command per project?
 - **0003-Q4**: publish component docs (anatomy, props, accessibility) in the registry for `get_component`, or link them?
+
+### Motion (RFC-0007)
+
+- **0007-Q1 · Bundle size**: what `motion` with `LazyMotion` adds to a page with one motion component. Measured in lot 0
+  and reported on each page; CSS-only components stay free of it.
 
 ### Components (RFC-0004, RFC-0005)
 
