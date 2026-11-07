@@ -3,14 +3,14 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-07 (RFC-0007 lot B).
+> Last updated: 2026-11-07 (RFC-0007 lot C).
 
 ## Where things stand
 
 | Piece | State |
 |---|---|
-| Components | 51, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md)) |
-| Motion components | Lots A and B: text-reveal, typewriter, scramble-text, number-roll, marquee, cursor; carousel (display); Button's `HoldButton` and `ButtonRollingText` ([RFC-0007](rfc/0007-motion-components.md), [ADR-0011](adr/0011-carousel-and-cursor-without-motion.md)); none loads Motion |
+| Components | 53, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md)) |
+| Motion components | RFC-0007 complete: text-reveal, typewriter, scramble-text, number-roll, marquee, cursor, gallery-3d, page-transition; carousel (display); Button's `HoldButton` and `ButtonRollingText` ([ADR-0011](adr/0011-carousel-and-cursor-without-motion.md), [ADR-0012](adr/0012-gallery-and-page-transition-without-motion.md)); none loads Motion |
 | Variants | `variant` × `tone` × `size` on most components ([plan 002](plans/002-component-variants.md)) |
 | Villages | Konoha, Kiri, Iwa, Kusa (the contract's lip, [ADR-0008](adr/0008-lip-in-the-token-contract.md)) |
 | Natures | Six, with Onmyōton; neutral tint |
@@ -30,8 +30,8 @@
 - **Finish Kusa**: say what Kusa does in the component pages' prose (they describe Konoha, Kiri and Iwa only); its
   focus halos are 2.3 to 2.4:1 on the background in dark mode (see 0002-Q5). `pnpm axe` now runs with Kusa: the site's
   prose links used `text-primary` (4.3:1 in Kusa light) and now use the primary's words (`tone-primary text-tone-text`).
-- **Motion components** ([RFC-0007](rfc/0007-motion-components.md), accepted). Lots 0, A and B are built. Next, lot C
-  (gallery-3d, page-transition with its Rasengan.js adapter).
+- **Motion components** ([RFC-0007](rfc/0007-motion-components.md)): all four lots built. Next, the blocks RFC (Motion+'s
+  section ideas on these components: logo ticker, stats counters, split-text hero, testimonial stack).
 
 ### Then
 

@@ -41,7 +41,7 @@ flowchart LR
 ```mermaid
 flowchart TB
   subgraph source[Sources]
-    comps["✅ registry/components<br/>51 components, 6 of them motion"]
+    comps["✅ registry/components<br/>53 components, 8 of them motion"]
     blocks["⬜ registry/blocks"]
     core["✅ packages/core<br/>cn, ui-* variants, VillageScope, Field context"]
     villages["✅ packages/villages<br/>contract, villages, natures, engine, contrast"]
@@ -72,7 +72,7 @@ flowchart TB
 
 | Container | State | Role |
 |---|---|---|
-| `registry/components/<name>/` | ✅ 51 | One folder per component: `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts` (with its category, [ADR-0009](adr/0009-component-categories.md)), demos |
+| `registry/components/<name>/` | ✅ 53 | One folder per component: `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts` (with its category, [ADR-0009](adr/0009-component-categories.md)), demos |
 | `registry/categories.ts` | ✅ | The seven categories, in the site's order: forms, dates, overlays, navigation, display, feedback, motion |
 | `registry/blocks/` | ⬜ | Marketing blocks rebuilt on the components (RFC-0002, "Blocks"); empty |
 | `packages/core` | ✅ | What every component shares; published as the `rasengan-core` registry item |

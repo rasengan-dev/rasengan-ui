@@ -10,7 +10,7 @@
 rasengan-ui-app/
 ├── registry/
 │   ├── categories.ts        the component categories, in the site's order
-│   ├── components/<name>/   the components (51): source, styles, demos, meta
+│   ├── components/<name>/   the components (53): source, styles, demos, meta
 │   └── blocks/              blocks (empty in v2)
 ├── packages/
 │   ├── core/                cn(), engine variants, VillageScope, Field context

@@ -112,7 +112,7 @@ export function CursorArea({ variant = "ring", tone, size = "default", hideNativ
 		}
 		if (morph && target.dataset.cursorLabel) {
 			const width = (labelRef.current?.offsetWidth ?? 48) + 2;
-			setLook({ radius: "9999px", over: true, label: target.dataset.cursorLabel, hidden: false });
+			setLook({ radius: "9999px", over: false, label: target.dataset.cursorLabel, hidden: false });
 			aim({ x: event.clientX, y: event.clientY, w: Math.max(width, 48), h: 32 });
 			return;
 		}

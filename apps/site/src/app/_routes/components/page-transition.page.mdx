@@ -1,0 +1,147 @@
+---
+metadata:
+  title: Page Transition · Rasengan UI
+  description: "A curtain between pages or states (wipe, blinds, iris, fade) that works with any router and moves focus to the new heading."
+toc: true
+---
+
+# Page Transition
+
+A curtain between pages or states (wipe, blinds, iris, fade) that works with any router and moves focus to the new
+heading.
+
+<ComponentPreview name="page-transition" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add page-transition
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/page-transition.json
+```
+
+It brings `rasengan-motion` with it. Put `<MotionScript />` in `<head>` and `<MotionProvider>` around the app once.
+
+## Usage
+
+The curtain covers the old page, the router changes it underneath, and the curtain uncovers the new one. Give
+`PageTransition` the pathname as `id` and your router's `navigate`, then use `TransitionLink` for links. The browser's
+back and forward buttons uncover the new page too.
+
+### Rasengan.js
+
+```tsx title="src/app/_routes/layout.tsx"
+import { Outlet, useLocation, useNavigate, type LayoutComponent } from "rasengan";
+import { PageTransition, TransitionLink } from "@/components/ui/page-transition";
+
+const RootLayout: LayoutComponent = () => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  return (
+    <PageTransition id={pathname} navigate={navigate} effect="wipe">
+      <nav>
+        <TransitionLink href="/">Home</TransitionLink>
+        <TransitionLink href="/pricing">Pricing</TransitionLink>
+      </nav>
+      <Outlet />
+    </PageTransition>
+  );
+};
+
+export default RootLayout;
+```
+
+### Next.js (App Router)
+
+```tsx title="app/transition.tsx"
+"use client";
+
+import { usePathname, useRouter } from "next/navigation";
+import { PageTransition } from "@/components/ui/page-transition";
+
+export function Transition({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const router = useRouter();
+  return (
+    <PageTransition id={pathname} navigate={(to) => router.push(to)}>
+      {children}
+    </PageTransition>
+  );
+}
+```
+
+### React Router
+
+The same as Rasengan.js, with `useLocation` and `useNavigate` from `react-router`.
+
+### Between two states of an element
+
+With `scope="element"`, the curtain covers one element instead of the page: steps, tabs, a preview. Call `run` from
+`usePageTransition()` with the change to make behind it.
+
+```tsx
+const { run } = usePageTransition();
+<Button onClick={() => run(() => setStep(2))}>Next</Button>
+```
+
+### Effects and timing
+
+`wipe` (the default) slides a panel across with slanted edges: `direction` is the way it travels (`left`, `right`,
+`up`, `down`), `angle` the slant in degrees (10 by default, 0 for a straight edge), and `reverse` uncovers back the way it
+came instead of carrying on past. `blinds` closes and opens slats, `iris` grows from the click and `fade` fades.
+
+The curtain accelerates as it covers and decelerates as it uncovers, so it is fastest where the two meet and reads as
+one gesture. Covering takes the village's slow duration and uncovering a little longer; `duration` sets either
+(`0.4`) or both (`[0.3, 0.5]`), in seconds.
+
+## Villages
+
+The curtain is the nature's colour (`tone` changes it) and moves with the village's slow duration and easing: a quick
+cut in Iwa, a slower sweep in Kiri, a little overshoot in Kusa. A click's position is where the iris opens.
+
+<VillageGrid name="page-transition" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off` or a scope at `data-motion-intensity="0"`, there is no curtain: the page changes
+at once, and focus still moves to the new heading.
+
+## Accessibility
+
+- Once uncovered, focus moves to the new page's `h1` (`focus` picks another selector, `false` leaves it), so
+  screen-reader users hear where they are, as on a full page load.
+- The curtain is hidden from assistive tech, and takes the pointer only while it moves, so nothing is clicked twice.
+- Over the whole page it is shown in the browser's top layer (a manual popover), above dialogs and anything else,
+  without moving focus.
+- `TransitionLink` is a real link: new tabs, modified clicks and links to other sites behave as usual.
+- If a navigation is cancelled, the curtain lifts by itself.
+
+## Weight
+
+About 4.5 kB gzip beyond `cn()`. Nothing from Motion: the curtain moves with the Web Animations API, by transform,
+opacity or clip-path only.
+
+## API reference
+
+`PageTransition` renders a `div` and takes its props, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `id` | `string`: the pathname, a step… | — |
+| `effect` | `"wipe" \| "blinds" \| "iris" \| "fade"` | `"wipe"` |
+| `direction` | `"left" \| "right" \| "up" \| "down"` (wipe) | `"right"` |
+| `angle` | `number`, degrees (wipe) | `10` |
+| `reverse` | `boolean` (wipe, blinds) | `false` |
+| `duration` | `number` or `[cover, uncover]`, seconds | the village's slow duration, and 1.2 times it |
+| `scope` | `"page" \| "element"` | `"page"` |
+| `tone` | `"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"` | `"primary"` |
+| `navigate` | `(to: string) => void` | — |
+| `focus` | `string` (selector) or `false` | `"h1"` |
+| `scrollToTop` | `boolean` | `true` for the page |
+| `blinds` | `number` | one per 64px of height |
+
+`usePageTransition()` gives `run(change, origin?)` and `navigate(to, origin?)`. `TransitionLink` takes an `a`'s props.

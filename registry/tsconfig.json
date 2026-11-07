@@ -80,6 +80,9 @@
 			"@/components/ui/field": [
 				"./components/field/field.base.tsx"
 			],
+			"@/components/ui/gallery-3d": [
+				"./components/gallery-3d/gallery-3d.base.tsx"
+			],
 			"@/components/ui/input": [
 				"./components/input/input.base.tsx"
 			],
@@ -100,6 +103,9 @@
 			],
 			"@/components/ui/number-roll": [
 				"./components/number-roll/number-roll.base.tsx"
+			],
+			"@/components/ui/page-transition": [
+				"./components/page-transition/page-transition.base.tsx"
 			],
 			"@/components/ui/pagination": [
 				"./components/pagination/pagination.base.tsx"
