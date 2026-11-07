@@ -15,6 +15,15 @@ village, the CSS imports and the village on `<html>`.
 <Steps>
   <Step title="Start from a Tailwind v4 project">
     Any Rasengan.js 2 project with Tailwind v4, such as the `tailwind-v4-ts` starter. Its `@/*` alias is already set.
+    If you don't have one yet, `create-rasengan` makes it:
+
+    ```bash title="Terminal"
+    npx create-rasengan@latest my-app --template tailwind -y
+    cd my-app
+    npm install
+    ```
+
+    With `-y`, it picks TypeScript, file-based routing and Tailwind v4. Leave `-y` out to choose them yourself.
   </Step>
   <Step title="Run init">
     ```bash title="Terminal"
