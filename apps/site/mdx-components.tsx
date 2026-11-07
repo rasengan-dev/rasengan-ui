@@ -22,7 +22,8 @@ function styled(Tag: keyof React.JSX.IntrinsicElements, base: string) {
 }
 
 const heading = 'font-display font-semibold tracking-display case-heading scroll-mt-[calc(var(--header-height)+1.5rem)]';
-const link = 'font-medium text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary';
+// The primary's words, not its fill (RFC-0006, "The brand colour's three roles"): text-primary is not held to 4.5:1 on the page.
+const link = 'font-medium tone-primary text-tone-text underline decoration-tone-text/40 underline-offset-4 hover:decoration-tone-text';
 
 /**
  * How every `.page.mdx` renders, after Hiraiship's apps/docs, in the contract's tokens: the docs

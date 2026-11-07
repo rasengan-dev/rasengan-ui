@@ -1,14 +1,26 @@
 {
 	"compilerOptions": {
 		"target": "ES2022",
-		"lib": ["ES2023", "DOM", "DOM.Iterable"],
+		"lib": [
+			"ES2023",
+			"DOM",
+			"DOM.Iterable"
+		],
 		"module": "ESNext",
 		"moduleResolution": "bundler",
 		"jsx": "react-jsx",
 		"strict": true,
 		"noEmit": true,
 		"skipLibCheck": true,
-		"isolatedModules": true
+		"isolatedModules": true,
+		"paths": {
+			"@/lib/motion-features": [
+				"./src/motion-features.ts"
+			]
+		}
 	},
-	"include": ["src", "test"]
+	"include": [
+		"src",
+		"test"
+	]
 }

@@ -2,36 +2,25 @@
 	"name": "@rasengan-ui/motion",
 	"version": "0.1.0",
 	"private": true,
-	"description": "Animation primitives for Rasengan UI v2 blocks: Motion for components, GSAP for scroll scenes. Distributed through the registry; this package is the source.",
+	"description": "rasengan-motion (RFC-0007): what motion components share — modes, the village's motion tokens, Reveal, Stagger, Presence, Parallax, Tilt, Magnetic, splitText. Distributed through the registry; this package is the source.",
 	"type": "module",
 	"exports": {
-		".": "./src/index.ts",
-		"./gsap": "./src/gsap.tsx"
+		".": "./src/motion.tsx",
+		"./split-text": "./src/split-text.tsx",
+		"./features": "./src/motion-features.ts"
 	},
 	"scripts": {
 		"typecheck": "tsc --noEmit",
 		"test": "tsx --test test/*.test.tsx"
 	},
 	"peerDependencies": {
-		"@gsap/react": "^2.1.0",
-		"gsap": "^3.13.0",
 		"motion": "^14.0.0",
 		"react": "^19.0.0"
 	},
-	"peerDependenciesMeta": {
-		"@gsap/react": {
-			"optional": true
-		},
-		"gsap": {
-			"optional": true
-		}
-	},
 	"devDependencies": {
-		"@gsap/react": "2.1.2",
 		"@types/node": "^22",
 		"@types/react": "^19.0.0",
 		"@types/react-dom": "^19.0.0",
-		"gsap": "3.15.0",
 		"motion": "14.6.0",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",

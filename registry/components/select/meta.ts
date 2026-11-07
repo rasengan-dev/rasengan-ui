@@ -3,6 +3,7 @@ export const meta = {
 	title: "Select",
 	description: "Picks one option from a list that opens over the page. Its list follows the nearest VillageScope.",
 	status: "beta",
+	category: "forms",
 	engines: ["base"],
 	dependencies: { base: ["@base-ui/react", "class-variance-authority", "lucide-react"] },
 	registryDependencies: [],

@@ -41,3 +41,17 @@ test("an exported village is an item others can add", () => {
 	assert.equal(item.files[0].target, "styles/rasengan/villages/acme.css");
 	assert.deepEqual(item.meta?.natures, { acme: { title: "Acme", element: "Brand" } });
 });
+
+test("a regenerate that conflicts waits for the markers, and merges again from your version put back", () => {
+	const mine = css("0.75rem").replace("--radius: 0.75rem;", "--radius: 2px; /* mine */");
+	writeFileSync(join(root, path), mine);
+	assert.deepEqual(writeGenerated(root, path, "acme", css("1rem")), { outcome: "merged", conflicts: 1 });
+	assert.throws(() => writeGenerated(root, path, "acme", css("1rem")), /conflict markers/);
+
+	writeFileSync(join(root, path), mine);
+	assert.deepEqual(writeGenerated(root, path, "acme", css("1rem")), { outcome: "merged", conflicts: 1 }, "merged again, not taken as edits on 1rem");
+
+	writeFileSync(join(root, path), mine.replace("--radius: 2px; /* mine */", "--radius: 1rem;"));
+	assert.equal(writeGenerated(root, path, "acme", css("1rem")).outcome, "unchanged");
+	assert.equal(readLock(root).items["village-acme"].merging, undefined, "resolved: the record is gone");
+});

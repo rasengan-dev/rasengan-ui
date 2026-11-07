@@ -4,7 +4,7 @@ Components on [Base UI](https://base-ui.com), styled with Tailwind CSS v4 and co
 **villages**: whole design languages (shape, type, density, depth, motion and palette) that you switch at runtime,
 crossed with **natures**, the accent hues.
 
-- 44 components, each in Konoha, Kiri and Iwa, light and dark, and six natures
+- 53 components, eight of them motion components, each in Konoha, Kiri, Iwa and Kusa, light and dark, and six natures
 - A CLI that installs them and updates them without losing your edits
 - An MCP server, so agents read and install them the right way
 - A registry the shadcn CLI reads too
@@ -42,7 +42,7 @@ then `npx shadcn@latest add @rasengan/dialog`.
 | `packages/villages` | The token contract, the villages and the natures |
 | `packages/motion` | Animation primitives for the blocks |
 | `packages/cli` | The `rasengan-ui` CLI and its MCP server |
-| `proposals` | The RFCs: what changes, why and how, settled before it is built |
+| `docs` | The project docs: architecture, invariants, glossary, roadmap, RFCs and ADRs ([start here](docs/README.md)) |
 | `archive` | Rasengan UI v1 ("Classic"), kept for reference |
 
 ## Development

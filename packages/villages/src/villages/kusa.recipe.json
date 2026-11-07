@@ -1,0 +1,45 @@
+{
+	"name": "kusa",
+	"title": "Kusa",
+	"description": "The Grass: chunky, toy-like 3D. Controls stand on a lip and drop onto it.",
+	"brand": { "nature": "futon" },
+	"neutrals": { "hue": 150, "inkHue": 275, "chroma": 1 },
+	"contrast": "standard",
+	"radius": 1,
+	"density": "comfortable",
+	"depth": "lip",
+	"motion": "bouncy",
+	"border": 2,
+	"fonts": { "body": "Plus Jakarta Sans", "heading": "Bricolage Grotesque", "code": "JetBrains Mono" },
+	"traits": {
+		"tabs": "segmented",
+		"highlight": "soft",
+		"focus": "halo",
+		"press": "drop",
+		"labels": "capitals",
+		"headings": "plain",
+		"surfaces": "solid",
+		"edges": "soft",
+		"skeleton": "pulse"
+	},
+	"overrides": {
+		"light": {
+			"--control-font": "var(--font-heading)",
+			"--control-weight": "800",
+			"--background": "oklch(0.965 calc(0.006 * var(--tint, 1)) 150)",
+			"--secondary": "oklch(0.925 calc(0.01 * var(--tint, 1)) 150)",
+			"--muted": "oklch(0.925 calc(0.01 * var(--tint, 1)) 150)",
+			"--accent": "oklch(0.93 calc(0.014 * var(--tint, 1)) 150)",
+			"--border": "oklch(0.885 calc(0.012 * var(--tint, 1)) 150)",
+			"--indicator-sm": "1rem",
+			"--indicator-md": "1.25rem",
+			"--indicator-lg": "1.5rem",
+			"--track-scale": "2",
+			"--lip-edge": "var(--input)"
+		},
+		"dark": {
+			"--border": "oklch(0.32 calc(0.014 * var(--tint, 1)) 275)",
+			"--input": "oklch(0.38 calc(0.014 * var(--tint, 1)) 275)"
+		}
+	}
+}

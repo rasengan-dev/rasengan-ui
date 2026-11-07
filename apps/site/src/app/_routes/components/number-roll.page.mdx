@@ -1,0 +1,86 @@
+---
+metadata:
+  title: Number Roll · Rasengan UI
+  description: "A number whose digits roll to their value, formatted for any locale: counters, prices, live stats."
+toc: true
+---
+
+# Number Roll
+
+A number whose digits roll to their value, formatted for any locale: counters, prices, live stats.
+
+<ComponentPreview name="number-roll" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add number-roll
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/number-roll.json
+```
+
+It brings `rasengan-motion` with it. Put `<MotionScript />` in `<head>` and `<MotionProvider>` around the app once.
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { NumberRoll } from "@/components/ui/number-roll";
+
+export function Usage() {
+  return (
+    <NumberRoll
+      value={4200000}
+      format={{ style: "currency", currency: "USD", notation: "compact" }}
+      locale="en-US"
+    />
+  );
+}
+```
+
+`format` takes the options of `Intl.NumberFormat`: currencies, percentages, units, compact notation, decimals. The
+digits roll in when the number comes into view, then on every change.
+
+### Live values
+
+Each digit keeps its place when the number grows, so `9` to `10` rolls the units and adds a ten. With `live="polite"`,
+screen readers hear the new value.
+
+<ComponentPreview name="number-roll" demo="number-roll-live" />
+
+## Villages
+
+The columns slide with the village's slow duration and ease-out, one after another by its stagger: Kusa's overshoot
+and settles, Iwa's are short and exact.
+
+<VillageGrid name="number-roll" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off`, `?motion=final` or a scope at `data-motion-intensity="0"`, the number is simply
+there and changes without rolling.
+
+## Accessibility
+
+- Screen readers read the formatted value once (`$4.2M`, `99.97%`); the digit columns are hidden from them.
+- `live="polite"` announces changes; leave it off for numbers that change on their own, or it gets noisy.
+
+## Weight
+
+About 2.8 kB gzip beyond `cn()`. Nothing from Motion: the columns move with CSS transitions timed by the village's
+tokens.
+
+## API reference
+
+`NumberRoll` renders a `span` and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `value` | `number` | — |
+| `format` | `Intl.NumberFormatOptions` | — |
+| `locale` | `string` | the browser's |
+| `trigger` | `"view" \| "mount"` | `"view"` |
+| `live` | `"off" \| "polite"` | `"off"` |

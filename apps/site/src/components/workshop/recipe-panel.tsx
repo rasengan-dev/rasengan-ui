@@ -43,6 +43,7 @@ export const bases: { id: Base; hint: string }[] = [
   { id: 'konoha', hint: 'Warm, rounded, balanced' },
   { id: 'kiri', hint: 'Soft contrast, glass, airy' },
   { id: 'iwa', hint: 'Square, ink borders, mono labels' },
+  { id: 'kusa', hint: 'Chunky 3D, on a lip' },
 ];
 
 /** Brand colours to start from; any other is a colour pick away. */
@@ -67,9 +68,11 @@ const labels: Record<string, string> = {
   flat: 'Flat',
   raised: 'Raised',
   hard: 'Hard',
+  lip: 'Lip',
   quick: 'Quick',
   calm: 'Calm',
   gentle: 'Gentle',
+  bouncy: 'Bouncy',
   segmented: 'Segmented',
   bar: 'Bar',
   inverted: 'Inverted',
@@ -77,6 +80,7 @@ const labels: Record<string, string> = {
   ring: 'Ring',
   scale: 'Scale',
   sink: 'Sink',
+  drop: 'Drop',
   plain: 'Plain',
   capitals: 'Caps',
   'mono-capitals': 'Mono caps',

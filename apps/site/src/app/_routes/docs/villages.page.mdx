@@ -7,7 +7,7 @@ toc: true
 
 # Your own village
 
-Konoha, Kiri and Iwa are three design languages. Your product may need a fourth: your brand colour, your radius,
+Konoha, Kiri, Iwa and Kusa are four design languages. Your product may need a fifth: your brand colour, your radius,
 your fonts, your density. A **recipe** describes it in a few lines; the village engine turns it into a village file,
 light and dark, and checks every colour pair in it for contrast before it is written.
 
@@ -44,7 +44,7 @@ npx rasengan-ui village create acme --from "https://ui.rasengan.dev/villages/cre
 
 | Option | What it sets |
 | --- | --- |
-| `--base <village>` | The village to start from: `konoha` (default), `kiri` or `iwa` |
+| `--base <village>` | The village to start from: `konoha` (default), `kiri`, `iwa` or `kusa` |
 | `--color <colour>` | The brand colour: `#rrggbb`, `rgb(r g b)` or `oklch(L C H)` |
 | `--hue <degrees>` | A brand hue, when you have no exact colour |
 | `--contrast`, `--radius`, `--density`, `--depth`, `--motion`, `--border` | One knob each (see the recipe below) |
@@ -104,17 +104,17 @@ its bar tabs and inverted highlights unless it says otherwise.
 
 | Field | Values |
 | --- | --- |
-| `base` | `konoha`, `kiri` or `iwa` |
+| `base` | `konoha`, `kiri`, `iwa` or `kusa` |
 | `brand` | One of `nature` (an existing nature), `hue` or `color`. A hue or a colour gives the village a nature of its own, named after it. `exact: true` refuses rather than moves the colour. |
 | `neutrals` | `hue` (surfaces), `inkHue` (text and shadows; follows `hue` when left out), `chroma` (0 grey, 1 the ladder's own tint, 2 twice that) |
 | `contrast` | `soft` (Kiri's colours), `standard` (Konoha's), `high` (Iwa's) |
 | `radius` | 0 (square) to 1 (very round); 0.5 is 0.625rem |
 | `density` | `compact`, `default`, `comfortable` |
-| `depth` | `flat`, `soft`, `raised`, `hard` (offset shadows) |
-| `motion` | `quick`, `calm`, `gentle` |
+| `depth` | `flat`, `soft`, `raised`, `hard` (offset shadows), `lip` (Kusa's solid edge under controls and surfaces) |
+| `motion` | `quick` (exact, no travel), `calm`, `gentle` (floaty), `bouncy` (springs that overshoot). Each sets the durations and easings, and the spring, travel, stagger and intensity motion components read |
 | `border` | 1, 1.5 or 2 (px) |
 | `fonts` | `body`, `heading`, `code`: font family names |
-| `traits` | `tabs` (`segmented`, `bar`), `highlight` (`soft`, `inverted`), `focus` (`halo`, `ring`), `press` (`scale`, `sink`), `labels` (`plain`, `capitals`, `mono-capitals`), `headings` (`plain`, `capitals`), `surfaces` (`solid`, `glass`), `edges` (`soft`, `ink`), `skeleton` (`pulse`, `hatched`) |
+| `traits` | `tabs` (`segmented`, `bar`), `highlight` (`soft`, `inverted`), `focus` (`halo`, `ring`), `press` (`scale`, `sink`, `drop`: down onto the lip), `labels` (`plain`, `capitals`, `mono-capitals`), `headings` (`plain`, `capitals`), `surfaces` (`solid`, `glass`), `edges` (`soft`, `ink`), `skeleton` (`pulse`, `hatched`) |
 | `overrides` | `light` and `dark`: any contract token, set last. The engine never moves them; one that fails refuses the village. |
 
 ## Your brand colour

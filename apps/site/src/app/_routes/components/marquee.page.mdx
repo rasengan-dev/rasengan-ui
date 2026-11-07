@@ -1,0 +1,91 @@
+---
+metadata:
+  title: Marquee · Rasengan UI
+  description: "An endless loop of logos, quotes or tags at a steady speed, with a pause button and only the copies it needs."
+toc: true
+---
+
+# Marquee
+
+An endless loop of logos, quotes or tags at a steady speed, with a pause button and only the copies it needs.
+
+<ComponentPreview name="marquee" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add marquee
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/marquee.json
+```
+
+It brings `rasengan-motion` and `button` with it. Put `<MotionScript />` in `<head>` and `<MotionProvider>` around the
+app once.
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { Marquee } from "@/components/ui/marquee";
+
+export function Usage() {
+  return (
+    <Marquee label="Companies using Lumen">
+      <img src="/logos/acme.svg" alt="Acme" className="h-8" />
+      <img src="/logos/globex.svg" alt="Globex" className="h-8" />
+      <img src="/logos/initech.svg" alt="Initech" className="h-8" />
+    </Marquee>
+  );
+}
+```
+
+`speed` is in pixels per second, so a long list moves as fast as a short one. The marquee measures its items and adds
+only the copies the width needs, again when it is resized.
+
+### Directions
+
+`left` (the default) and `right` loop horizontally; `up` and `down` loop vertically and need a height.
+
+<ComponentPreview name="marquee" demo="marquee-directions" />
+
+## Villages
+
+The marquee itself has no look: the items wear the village. The edges fade with a mask, so it works on any surface.
+
+<VillageGrid name="marquee" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off`, `?motion=final` or a scope at `data-motion-intensity="0"`, the items wrap on
+several lines and stand still. Without JavaScript too, so every item can be seen.
+
+## Accessibility
+
+- Moving content needs a way to stop it (WCAG 2.2.2): the pause button (`aria-pressed`) is there by default. Turn it
+  off with `controls={false}` only if the page has another way.
+- It also stops while the pointer is over it or focus is inside it.
+- The copies are hidden from screen readers and out of the tab order (`aria-hidden`, `inert`): links in the items are
+  reached once.
+- Give it a `label` when the items form a list worth naming; it becomes a region.
+
+## Weight
+
+About 4.5 kB gzip beyond `cn()` and Button, which most pages already have. Nothing from Motion: the track moves with
+the Web Animations API.
+
+## API reference
+
+`Marquee` renders a `div` and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `speed` | `number` (pixels per second) | `48` |
+| `direction` | `"left" \| "right" \| "up" \| "down"` | `"left"` |
+| `gap` | `string` (CSS length) | `"2.5rem"` |
+| `fade` | `boolean` | `true` |
+| `pauseOnHover` | `boolean` | `true` |
+| `controls` | `boolean` | `true` |
+| `label` | `string` | — |

@@ -100,15 +100,15 @@ function Villages() {
           id="villages-title"
           className="font-display text-3xl font-semibold tracking-display text-balance case-heading sm:text-4xl"
         >
-          One codebase, three villages
+          One codebase, four villages
         </h2>
         <p className="max-w-2xl text-balance text-muted-foreground">
           A village is a whole design language: radius, borders, type, shadows, motion. Components
-          only read the token contract, so the same card becomes Konoha, Kiri or Iwa without a
+          only read the token contract, so the same card becomes Konoha, Kiri, Iwa or Kusa without a
           single changed line.
         </p>
       </div>
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2">
         {(Object.keys(villages) as Village[]).map((village) => (
           <VillageScope
             key={village}

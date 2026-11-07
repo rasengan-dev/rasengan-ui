@@ -10,15 +10,15 @@ export const ENGINE_VERSION = "1.0.0";
 
 export const RECIPE_SCHEMA = "https://ui.rasengan.dev/schema/village-recipe.json";
 
-export const bases = ["konoha", "kiri", "iwa"] as const;
+export const bases = ["konoha", "kiri", "iwa", "kusa"] as const;
 export type Base = (typeof bases)[number];
 
 /** The values each scale knob and each trait takes. */
 export const options = {
 	contrast: ["soft", "standard", "high"],
 	density: ["compact", "default", "comfortable"],
-	depth: ["flat", "soft", "raised", "hard"],
-	motion: ["quick", "calm", "gentle"],
+	depth: ["flat", "soft", "raised", "hard", "lip"],
+	motion: ["quick", "calm", "gentle", "bouncy"],
 	border: [1, 1.5, 2],
 } as const;
 
@@ -29,8 +29,8 @@ export const traitOptions = {
 	highlight: ["soft", "inverted"],
 	/** A soft halo, or a solid ring with a gap. */
 	focus: ["halo", "ring"],
-	/** Pressed controls scale down, or sink into their shadow. */
-	press: ["scale", "sink"],
+	/** Pressed controls scale down, sink into their shadow, or drop onto their lip (with the lip depth). */
+	press: ["scale", "sink", "drop"],
 	/** Control labels as written, in capitals, or in the code font and capitals. */
 	labels: ["plain", "capitals", "mono-capitals"],
 	headings: ["plain", "capitals"],

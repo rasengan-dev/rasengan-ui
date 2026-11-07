@@ -197,13 +197,68 @@ export const densities: Record<Density, { sm: number; md: number; lg: number; px
 	comfortable: { sm: 2.25, md: 2.625, lg: 3.125, px: 1.25, text: 0.90625 },
 };
 
-export const motions: Record<Motion, { fast: string; base: string; slow: string; out: string; inOut: string }> = {
-	quick: { fast: "80ms", base: "140ms", slow: "220ms", out: "cubic-bezier(0.2, 0, 0, 1)", inOut: "cubic-bezier(0.4, 0, 0.2, 1)" },
-	calm: { fast: "120ms", base: "200ms", slow: "360ms", out: "cubic-bezier(0.16, 1, 0.3, 1)", inOut: "cubic-bezier(0.65, 0, 0.35, 1)" },
-	gentle: { fast: "160ms", base: "280ms", slow: "480ms", out: "cubic-bezier(0.22, 1, 0.36, 1)", inOut: "cubic-bezier(0.45, 0, 0.55, 1)" },
+/**
+ * Durations and easings for CSS transitions, and (RFC-0007) the spring, travel, stagger and intensity motion
+ * components read. Calm is contract.css's default for the RFC-0007 tokens, so Konoha writes none of them.
+ */
+export const motions: Record<
+	Motion,
+	{ fast: string; base: string; slow: string; out: string; inOut: string; stiffness: string; damping: string; distance: string; stagger: string; intensity: string }
+> = {
+	// Exact: no travel, no overshoot (Iwa).
+	quick: {
+		fast: "80ms",
+		base: "140ms",
+		slow: "220ms",
+		out: "cubic-bezier(0.2, 0, 0, 1)",
+		inOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+		stiffness: "700",
+		damping: "60",
+		distance: "8px",
+		stagger: "30ms",
+		intensity: "1",
+	},
+	calm: {
+		fast: "120ms",
+		base: "200ms",
+		slow: "360ms",
+		out: "cubic-bezier(0.16, 1, 0.3, 1)",
+		inOut: "cubic-bezier(0.65, 0, 0.35, 1)",
+		stiffness: "260",
+		damping: "30",
+		distance: "24px",
+		stagger: "60ms",
+		intensity: "2",
+	},
+	// Floaty (Kiri).
+	gentle: {
+		fast: "160ms",
+		base: "280ms",
+		slow: "480ms",
+		out: "cubic-bezier(0.22, 1, 0.36, 1)",
+		inOut: "cubic-bezier(0.45, 0, 0.55, 1)",
+		stiffness: "140",
+		damping: "22",
+		distance: "32px",
+		stagger: "80ms",
+		intensity: "2",
+	},
+	// Springy overshoot, showcase effects on (Kusa).
+	bouncy: {
+		fast: "100ms",
+		base: "180ms",
+		slow: "320ms",
+		out: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+		inOut: "cubic-bezier(0.65, 0, 0.35, 1)",
+		stiffness: "420",
+		damping: "14",
+		distance: "20px",
+		stagger: "50ms",
+		intensity: "3",
+	},
 };
 
-type Shadows = Record<"--elevation-sm" | "--elevation-md" | "--elevation-lg" | "--input-shadow", string> & Partial<Record<"--thumb-shadow", string>>;
+type Shadows = Record<"--elevation-sm" | "--elevation-md" | "--elevation-lg" | "--input-shadow", string> & Partial<Record<"--thumb-shadow" | "--lip", string>>;
 
 /** Shadows per depth and scheme; `grey` writes a tinted ink colour. */
 export function shadows(depth: Depth, grey: (g: Grey) => string): { light: Shadows; dark: Partial<Shadows> } {
@@ -253,6 +308,23 @@ export function shadows(depth: Depth, grey: (g: Grey) => string): { light: Shado
 					"--thumb-shadow": "none",
 				},
 				dark: {},
+			};
+		case "lip":
+			// Kusa: controls, fields and surfaces stand on a solid lip (contract.css adds it to every shadow); popups
+			// still float.
+			return {
+				light: {
+					"--elevation-sm": "0 0 #0000",
+					"--elevation-md": `0 12px 28px -12px ${ink(0.02, 18)}`,
+					"--elevation-lg": `0 24px 48px -16px ${ink(0.02, 28)}`,
+					"--input-shadow": "0 0 #0000",
+					"--thumb-shadow": "0 0 #0000",
+					"--lip": "4px",
+				},
+				dark: {
+					"--elevation-md": "0 12px 28px -12px oklch(0 0 0 / 55%)",
+					"--elevation-lg": "0 24px 56px -16px oklch(0 0 0 / 65%)",
+				},
 			};
 	}
 }

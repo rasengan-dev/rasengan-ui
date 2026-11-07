@@ -1,4 +1,5 @@
 import { type TemplateProps } from 'rasengan';
+import { MotionScript } from '@/lib/motion';
 import { settingsKey } from '@/settings';
 
 /* Before the first paint: the village the toolbar saved, or light/dark from the system. */
@@ -40,6 +41,8 @@ export default function Template({ Head, Body, Script }: TemplateProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="color-scheme" content="light dark" />
         <script dangerouslySetInnerHTML={{ __html: restoreSettings }} />
+        {/* The motion mode (ready, final, off) on <html data-motion>, before the first paint: rasengan-motion. */}
+        <MotionScript />
         {analytics && (
           <>
             <script dangerouslySetInnerHTML={{ __html: analytics.setup }} />
@@ -51,7 +54,7 @@ export default function Template({ Head, Body, Script }: TemplateProps) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap"
         />
       </Head>
 

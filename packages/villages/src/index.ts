@@ -52,6 +52,12 @@ export const villages = {
 		defaultNature: "doton",
 		status: "beta",
 	},
+	kusa: {
+		title: "Kusa",
+		description: "The Grass: chunky, toy-like 3D. Controls stand on a lip and drop onto it.",
+		defaultNature: "futon",
+		status: "beta",
+	},
 } as const satisfies Record<string, VillageInfo>;
 
 export type Village = keyof typeof villages;

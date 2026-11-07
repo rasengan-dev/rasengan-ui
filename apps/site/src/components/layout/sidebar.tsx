@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'rasengan';
-import { components } from '@/catalogue';
+import { groups } from '@/catalogue';
 import { cn } from '@/lib/utils';
 
-/** The docs pages, then every component page in the catalogue's order (the pager walks the same list). */
+/** The docs pages, then the component pages by category, in the catalogue's order (the pager walks the same list). */
 export function Sidebar() {
   const { pathname } = useLocation();
   const current = pathname.replace(/\/$/, '');
@@ -29,14 +29,21 @@ export function Sidebar() {
           All components
         </Item>
       </div>
-      <div className="flex flex-col gap-1">
-        <h2 className="mb-1 px-3 text-xs font-medium tracking-wide text-muted-foreground uppercase">Components</h2>
-        {components.map((c) => (
-          <Item key={c.name} to={c.href} active={current === c.href}>
-            {c.title}
-          </Item>
-        ))}
-      </div>
+      {groups.map((group) => (
+        <div key={group.id} className="flex flex-col gap-1">
+          <h2 className="mb-1 px-3 text-xs font-medium tracking-wide text-muted-foreground uppercase">{group.title}</h2>
+          {group.id === 'motion' && (
+            <Item to="/motion" active={current === '/motion'}>
+              Gallery
+            </Item>
+          )}
+          {group.components.map((c) => (
+            <Item key={c.name} to={c.href} active={current === c.href}>
+              {c.title}
+            </Item>
+          ))}
+        </div>
+      ))}
     </nav>
   );
 }

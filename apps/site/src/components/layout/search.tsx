@@ -32,6 +32,7 @@ const groups = [
       { label: 'CLI', description: 'init, add, village, nature, diff, update, doctor.', to: '/docs/cli' },
       { label: 'MCP server', description: 'Let an agent read the components and install them.', to: '/docs/mcp' },
       { label: 'All components', description: 'Every component, with its demo.', to: '/components' },
+      { label: 'Motion', description: 'Components whose motion is the point, in a gallery.', to: '/motion' },
     ],
   },
   {

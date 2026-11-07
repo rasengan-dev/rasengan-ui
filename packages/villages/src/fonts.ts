@@ -33,6 +33,8 @@ export const fonts = {
 	"DM Sans": font("DM Sans", "sans", "wght@400;500;600;700"),
 	"IBM Plex Sans": font("IBM Plex Sans", "sans", "wght@400;500;600;700"),
 	Geist: font("Geist", "sans", "wght@400;500;600;700"),
+	"Plus Jakarta Sans": font("Plus Jakarta Sans", "sans", "wght@400;500;600;700;800"),
+	"Bricolage Grotesque": font("Bricolage Grotesque", "sans", "opsz,wght@12..96,400..800"),
 	Fraunces: font("Fraunces", "serif", "opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700"),
 	"Instrument Serif": font("Instrument Serif", "serif", "ital@0;1"),
 	"JetBrains Mono": font("JetBrains Mono", "mono", "wght@400;500;600;700"),

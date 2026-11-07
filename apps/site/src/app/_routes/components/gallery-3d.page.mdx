@@ -1,0 +1,91 @@
+---
+metadata:
+  title: Gallery 3D · Rasengan UI
+  description: "Images or cards in 3D (coverflow, ring, helix, sphere, stack, grid), moving between layouts, with drag, keys and a detail view."
+toc: true
+---
+
+# Gallery 3D
+
+Images or cards in 3D (coverflow, ring, helix, sphere, stack, grid), moving between layouts, with drag, keys and a
+detail view.
+
+<ComponentPreview name="gallery-3d" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add gallery-3d
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/gallery-3d.json
+```
+
+It brings `rasengan-motion` and `dialog` with it. Put `<MotionScript />` in `<head>` and `<MotionProvider>` around
+the app once.
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { Gallery3D, type GalleryEntry } from "@/components/ui/gallery-3d";
+
+const items: GalleryEntry[] = [
+  { id: "lumen", label: "Lumen, a SaaS landing page", src: "/work/lumen.jpg", caption: "Lumen" },
+  { id: "northwind", label: "Northwind, a coffee shop", src: "/work/northwind.jpg", caption: "Northwind" },
+  { id: "globex", label: "Globex, an agency", src: "/work/globex.jpg", caption: "Globex" },
+];
+
+export function Usage() {
+  return <Gallery3D label="Our work" items={items} layout="coverflow" />;
+}
+```
+
+Each item is an image (`src`) or any content (`content`), with a `label` that names it for screen readers and serves as
+the image's alt text. Change `layout` and every item moves to its new place with the village's slow duration and
+ease-out. Drag or use the wheel to turn it; the arrow keys, <kbd>Home</kbd> and <kbd>End</kbd> bring an item to the
+front, and so does a click on any card that is not in front, the short way round. Opening the item in front shows it
+in a dialog, or calls `onOpen` instead.
+
+Every card has a back, in the village's secondary surface with the card's name, so a card turned away shows it. The
+ring turns forever, in both directions. In the ring, the helix and the sphere the cards stay on their shape and the
+whole scene turns, with radii set so that neighbouring cards never cut through each other.
+
+## Villages
+
+Konoha and Kiri move smoothly, Kusa overshoots and settles. Iwa's intensity is 1, so it shows the flat grid: no 3D.
+
+<VillageGrid name="gallery-3d" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off`, `?motion=final` or a scope at `data-motion-intensity` below 2, the gallery is a
+flat grid of the same items, still opening in the dialog.
+
+## Accessibility
+
+- A group named by `label`; each item is a button named by its `label`. Only the item in front is in the tab order,
+  and the arrow keys move between items (a roving tab index); the item in front has `aria-current`.
+- <kbd>Enter</kbd> or <kbd>Space</kbd> opens it in a dialog with its label as the title.
+- Items turned away are dimmed or hidden and cannot be clicked.
+
+## Weight
+
+About 2.5 kB gzip beyond `cn()` and Dialog. Nothing from Motion: items move with CSS transitions timed by the
+village's tokens, and a drag settles on `rasengan-motion`'s `stepSpring`.
+
+## API reference
+
+`Gallery3D` renders a `div` and takes its props, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `items` | `GalleryEntry[]` (`id`, `label`, `src` or `content`, `caption`, `description`) | — |
+| `label` | `string` | — |
+| `layout` | `"coverflow" \| "ring" \| "helix" \| "sphere" \| "stack" \| "grid"` | `"coverflow"` |
+| `itemSize` | `number` (pixels wide; 1.3 times as tall) | `220` |
+| `height` | `number` (pixels) | `420` |
+| `index`, `onIndexChange` | the item in front, controlled | — |
+| `onOpen` | `(item) => void`, instead of the dialog | — |

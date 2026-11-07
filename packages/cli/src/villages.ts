@@ -4,7 +4,7 @@ import { checkVillages, parseSources, type ScopeResult, type Sources } from "@ra
 import { builtinRecipes, type Recipe } from "@rasengan-ui/villages/engine";
 import type { Config } from "./config.ts";
 import { fetchJson } from "./fetch.ts";
-import { hash, type Lock, readBase, readLock, writeFile, writeLock } from "./install.ts";
+import { clearConflict, hasConflictMarkers, hash, type Lock, type LockEntry, mergeBase, readLock, recordConflict, writeFile, writeLock } from "./install.ts";
 import type { RegistryItem } from "./registry.ts";
 import { mergeFile } from "./sync.ts";
 
@@ -96,21 +96,27 @@ export function writeGenerated(root: string, path: string, name: string, css: st
 	const lock = readLock(root);
 	const absolute = join(root, path);
 	const local = existsSync(absolute) ? readFileSync(absolute, "utf8") : undefined;
-	const installed = lock.items[`village-${name}`]?.files[path];
+	const previous = lock.items[`village-${name}`];
+	const entry: LockEntry = { files: { [path]: hash(css) }, source: GENERATED, ...(previous?.merging ? { merging: previous.merging } : {}) };
+	if (local !== undefined && local !== css && hasConflictMarkers(local))
+		throw new Error(`${path} still has the conflict markers of the last merge: resolve them, or put your version back to merge again.`);
+	// Your version from before a merge that left conflicts merges again from the base before it.
+	const { hash: installed, content: base } = mergeBase(root, previous, path, local);
 	let result: WriteOutcome;
 	if (local === undefined) result = { outcome: "created" };
 	else if (local === css) result = { outcome: "unchanged" };
 	else if (!installed || hash(local) === installed) result = { outcome: "updated" };
 	else {
-		const base = readBase(root, path);
 		if (base === undefined) throw new Error(`${path} was edited and its generated copy (.rasengan-ui/base) is gone: move your edits aside, delete the file and run again.`);
 		const { content, conflicts } = mergeFile(local, base, css);
 		writeFile(root, path, content);
+		if (conflicts) recordConflict(root, entry, path, local, base);
 		result = { outcome: "merged", conflicts };
 	}
+	if (result.outcome !== "merged" || !result.conflicts) clearConflict(root, entry, path);
 	if (result.outcome === "created" || result.outcome === "updated") writeFile(root, path, css);
 	writeFile(root, path, css, { base: true });
-	lock.items[`village-${name}`] = { files: { [path]: hash(css) }, source: GENERATED };
+	lock.items[`village-${name}`] = entry;
 	writeLock(root, lock);
 	return result;
 }

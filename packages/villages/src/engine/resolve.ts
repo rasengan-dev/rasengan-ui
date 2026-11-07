@@ -79,10 +79,16 @@ export function foundation(k: Knobs, natures: Record<string, number>): Foundatio
 		light["--ring-alpha"] = "100%";
 	}
 	if (k.traits.press === "scale") light["--press-scale"] = "0.98";
-	else {
+	else if (k.traits.press === "sink") {
 		light["--press-scale"] = "1";
 		light["--press-offset"] = "3px";
 		light["--press-shadow"] = "none";
+	} else {
+		// Drop: straight down by the lip's depth, the lip gone. Without a lip, nothing moves.
+		light["--press-scale"] = "1";
+		light["--press-x"] = "0px";
+		light["--press-y"] = "var(--lip)";
+		light["--press-shadow"] = "0 0 #0000";
 	}
 
 	// Motion.
@@ -92,6 +98,11 @@ export function foundation(k: Knobs, natures: Record<string, number>): Foundatio
 	light["--motion-slow"] = m.slow;
 	light["--motion-ease-out"] = m.out;
 	light["--motion-ease-in-out"] = m.inOut;
+	light["--motion-spring-stiffness"] = m.stiffness;
+	light["--motion-spring-damping"] = m.damping;
+	light["--motion-distance"] = m.distance;
+	light["--motion-stagger"] = m.stagger;
+	light["--motion-intensity"] = m.intensity;
 
 	// Colour: the ladder of the contrast level.
 	const ladder = ladders[k.contrast];

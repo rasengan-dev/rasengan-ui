@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { basename, dirname, extname, join } from "node:path";
 import type { Config } from "./config.ts";
 import { aliasToPath } from "./project.ts";
@@ -45,6 +45,8 @@ export function renderFile(root: string, config: Config, item: RegistryItem, fil
 export const lockFile = "rasengan-ui.lock";
 /** The files as installed, before any local edit: what `diff` and `update` compare and merge against. */
 export const baseDir = ".rasengan-ui/base";
+/** The files as they were before a merge that left conflicts: what a file put back to its old version merges against again. */
+export const mergeBaseDir = ".rasengan-ui/merge";
 
 export interface LockEntry {
 	/** Each file the item installed (path from the root) → hash of its content at install. */
@@ -54,6 +56,12 @@ export interface LockEntry {
 	 * `village create` (RFC-0006), or the URL or file of an item added with `village add <url>`.
 	 */
 	source?: string;
+	/**
+	 * Files whose last merge left conflicts → the hash of your version before that merge, and of the base it merged
+	 * against (its copy in .rasengan-ui/merge). Resolve the markers and the merge is done; put your version back
+	 * instead and the next merge starts again from that older base, so the registry's changes aren't lost.
+	 */
+	merging?: Record<string, { yours: string; base: string }>;
 }
 
 export interface Lock {
@@ -86,6 +94,38 @@ export function writeFile(root: string, path: string, content: string, { base = 
 	writeFileSync(target, content);
 }
 
+/** Whether a file still has the markers of a conflicted merge (ours, git's or anyone's): `<<<<<<<`, `=======`, `>>>>>>>`. */
+export const hasConflictMarkers = (content: string) => /^<{7}(?: .*)?\r?\n[\s\S]*?^={7}\r?\n[\s\S]*?^>{7}(?: |\r?$)/m.test(content);
+
+/**
+ * The base a file is compared and merged against. It is the installed version, except when the file is back to your
+ * version from before a merge that left conflicts: then the base from before that merge, so the merge happens again.
+ */
+export function mergeBase(root: string, entry: LockEntry | undefined, path: string, local: string | undefined): { hash?: string; content?: string; restored: boolean } {
+	const pending = entry?.merging?.[path];
+	if (pending && local !== undefined && hash(local) === pending.yours) {
+		const file = join(root, mergeBaseDir, path);
+		return { hash: pending.base, content: existsSync(file) ? readFileSync(file, "utf8") : undefined, restored: true };
+	}
+	return { hash: entry?.files[path], content: readBase(root, path), restored: false };
+}
+
+/** Records a merge that left conflicts: your version before it (its hash) and the base it merged against (a copy). */
+export function recordConflict(root: string, entry: LockEntry, path: string, yours: string, base: string) {
+	if (entry.merging?.[path]?.yours === hash(yours)) return; // merged again from the same place: the record stands
+	entry.merging = { ...entry.merging, [path]: { yours: hash(yours), base: hash(base) } };
+	writeFile(root, join(mergeBaseDir, path), base);
+}
+
+/** Forgets a file's conflicted merge, once it is resolved or the file replaced. */
+export function clearConflict(root: string, entry: LockEntry | undefined, path: string) {
+	if (!entry?.merging?.[path]) return;
+	const { [path]: _, ...rest } = entry.merging;
+	if (Object.keys(rest).length) entry.merging = rest;
+	else delete entry.merging;
+	rmSync(join(root, mergeBaseDir, path), { force: true });
+}
+
 /** Which item installed `path`, and the hash it had then. */
 export function installedHash(lock: Lock, path: string): string | undefined {
 	for (const { files } of Object.values(lock.items)) if (files[path]) return files[path];
@@ -93,7 +133,7 @@ export function installedHash(lock: Lock, path: string): string | undefined {
 
 // ---- Writing --------------------------------------------------------------------------
 
-export type Outcome = "created" | "updated" | "unchanged" | "kept";
+export type Outcome = "created" | "updated" | "unchanged" | "kept" | "left-out";
 
 export interface Written {
 	item: string;
@@ -101,30 +141,49 @@ export interface Written {
 	outcome: Outcome;
 }
 
+/** An item's name from a name, a URL or a path (`…/button.json` → `button`). */
+export const itemName = (nameOrUrl: string) => nameOrUrl.replace(/^.*\//, "").replace(/\.json$/, "");
+
 /**
  * Writes the items' files. A file the project changed since install is kept (with `overwrite`,
  * replaced); one it never touched follows the registry. The lock and the base copies record what
  * was written.
+ *
+ * With `named` (the items asked for, as `add` passes them), a file you deleted since install stays
+ * deleted, unless its item is one you named or one a newly installed item depends on: re-adding a
+ * component doesn't bring back the files you dropped from what it shares with others.
  */
-export function writeItems(root: string, config: Config, items: RegistryItem[], { overwrite = false, dryRun = false } = {}): Written[] {
+export function writeItems(root: string, config: Config, items: RegistryItem[], { overwrite = false, dryRun = false, named }: { overwrite?: boolean; dryRun?: boolean; named?: string[] } = {}): Written[] {
 	const lock = readLock(root);
 	const written: Written[] = [];
+	const fresh = items.filter((item) => !lock.items[item.name]);
+	const needed = new Set([...(named ?? []).map(itemName), ...fresh.flatMap((item) => [item.name, ...(item.registryDependencies ?? []).map(itemName)])]);
 	for (const item of items) {
-		const files: Record<string, string> = { ...lock.items[item.name]?.files };
+		const entry = lock.items[item.name];
+		const files: Record<string, string> = { ...entry?.files };
 		for (const file of item.files) {
 			const { path, content } = renderFile(root, config, item, file);
 			const absolute = join(root, path);
 			const current = existsSync(absolute) ? readFileSync(absolute, "utf8") : undefined;
-			const outcome: Outcome =
-				current === undefined ? "created" : current === content ? "unchanged" : overwrite || hash(current) === installedHash(lock, path) ? "updated" : "kept";
+			const deleted = current === undefined && files[path] !== undefined && named !== undefined && !overwrite && !needed.has(item.name);
+			const outcome: Outcome = deleted
+				? "left-out"
+				: current === undefined
+					? "created"
+					: current === content
+						? "unchanged"
+						: overwrite || hash(current) === installedHash(lock, path)
+							? "updated"
+							: "kept";
 			written.push({ item: item.name, path, outcome });
-			if (outcome === "kept") continue;
+			if (outcome === "kept" || outcome === "left-out") continue;
 			files[path] = hash(content);
 			if (dryRun) continue;
 			writeFile(root, path, content);
 			writeFile(root, path, content, { base: true });
+			clearConflict(root, entry, path);
 		}
-		lock.items[item.name] = { ...lock.items[item.name], files };
+		lock.items[item.name] = { ...entry, files };
 	}
 	if (!dryRun) writeLock(root, lock);
 	return written;

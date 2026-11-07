@@ -3,6 +3,7 @@ export const meta = {
 	title: "Breadcrumb",
 	description: "Where the page sits in the site: the path of links above it, with the current page last.",
 	status: "beta",
+	category: "navigation",
 	engines: ["base"],
 	dependencies: { base: ["@base-ui/react", "lucide-react"] },
 	registryDependencies: [],

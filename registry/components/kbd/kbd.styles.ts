@@ -1,11 +1,11 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 /*
- * A key cap: the village's border and muted fill, in mono. In the default (inverted) tooltip it turns into a wash of
+ * A key cap: the village's border and muted fill, in mono, on the village's lip if it has one. In the default (inverted) tooltip it turns into a wash of
  * the tooltip's ink, so it reads on the dark surface. The size follows the text it sits in: sm for menus and tooltips.
  */
 export const kbdVariants = cva(
-	"pointer-events-none inline-flex w-fit shrink-0 items-center justify-center gap-1 rounded-sm border-village bg-muted font-mono font-medium text-muted-foreground select-none [&_svg:not([class*='size-'])]:size-3 [[data-slot=tooltip-content][data-variant=default]_&]:border-transparent [[data-slot=tooltip-content][data-variant=default]_&]:bg-tooltip-foreground/15 [[data-slot=tooltip-content][data-variant=default]_&]:text-tooltip-foreground",
+	"pointer-events-none inline-flex w-fit shrink-0 items-center justify-center gap-1 rounded-sm border-village bg-muted font-mono font-medium text-muted-foreground shadow-lip-sm select-none [&_svg:not([class*='size-'])]:size-3 [[data-slot=tooltip-content][data-variant=default]_&]:border-transparent [[data-slot=tooltip-content][data-variant=default]_&]:shadow-none [[data-slot=tooltip-content][data-variant=default]_&]:bg-tooltip-foreground/15 [[data-slot=tooltip-content][data-variant=default]_&]:text-tooltip-foreground",
 	{
 		variants: {
 			size: {

@@ -3,6 +3,7 @@ export const meta = {
 	title: "Skeleton",
 	description: "A placeholder shape while content loads. Pulses in Konoha and Kiri, hatched and still in Iwa, still everywhere under reduced motion.",
 	status: "beta",
+	category: "feedback",
 	engines: ["base"],
 	dependencies: { base: [] },
 	registryDependencies: [],
