@@ -9,11 +9,11 @@ export const badgeVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: "bg-tone text-tone-foreground [a&]:hover:bg-tone/90",
-				secondary: "bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/80",
-				outline: "border-input text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
-				soft: "border-tone-edge bg-tone-soft text-tone-text [a&]:hover:bg-tone-soft/70",
-				destructive: "tone-destructive bg-tone text-tone-foreground [a&]:hover:bg-tone/90",
+				default: "bg-tone text-tone-foreground shadow-lip-sm lip-tone [a&]:hover:bg-tone/90",
+				secondary: "bg-secondary text-secondary-foreground shadow-lip-sm lip-secondary [a&]:hover:bg-secondary/80",
+				outline: "border-input text-foreground shadow-lip-sm [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+				soft: "border-tone-edge bg-tone-soft text-tone-text shadow-lip-sm lip-soft [a&]:hover:bg-tone-soft/70",
+				destructive: "tone-destructive bg-tone text-tone-foreground shadow-lip-sm lip-tone [a&]:hover:bg-tone/90",
 			},
 			tone: Object.fromEntries(tones.map((tone) => [tone, ""])) as Record<(typeof tones)[number], string>,
 			size: {

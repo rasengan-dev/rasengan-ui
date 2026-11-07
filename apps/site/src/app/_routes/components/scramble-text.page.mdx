@@ -1,0 +1,78 @@
+---
+metadata:
+  title: Scramble Text · Rasengan UI
+  description: "Text that decodes itself from random glyphs, letter after letter: on view, on hover, or when it changes."
+toc: true
+---
+
+# Scramble Text
+
+Text that decodes itself from random glyphs, letter after letter: on view, on hover, or when it changes.
+
+<ComponentPreview name="scramble-text" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add scramble-text
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/scramble-text.json
+```
+
+It brings `rasengan-motion` with it. Put `<MotionScript />` in `<head>` and `<MotionProvider>` around the app once.
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { ScrambleText } from "@/components/ui/scramble-text";
+
+export function Usage() {
+  return <ScrambleText as="h2" text="Access granted" className="font-mono text-3xl" />;
+}
+```
+
+A mono face suits it best: glyphs of one width keep the line still while it decodes.
+
+### When the text changes, and on hover
+
+Change `text` and it scrambles from the old text to the new one: statuses, step names, a price plan. With
+`trigger="hover"`, it decodes again each time it is pointed at or focused.
+
+<ComponentPreview name="scramble-text" demo="scramble-text-changes" />
+
+## Villages
+
+Glyphs still scrambling wear the nature's colour. The time it takes follows the village's pace: quickest in Iwa and
+Kusa, slowest in Kiri.
+
+<VillageGrid name="scramble-text" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off`, `?motion=final` or a scope at `data-motion-intensity="0"`, the text is simply there.
+
+## Accessibility
+
+- Screen readers read the final text once, from a visually hidden copy; the glyphs are hidden from them, so changes
+  are not announced letter by letter.
+- New glyphs come about twenty times a second: it reads as noise, not as a flash.
+
+## Weight
+
+About 2.7 kB gzip beyond `cn()`. Nothing from Motion.
+
+## API reference
+
+`ScrambleText` renders `as` (a `span` by default) and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `text` | `string` | — |
+| `as` | `"span" \| "p" \| "h1" \| "h2" \| "h3" \| "h4" \| "div"` | `"span"` |
+| `trigger` | `"view" \| "mount" \| "hover"` | `"view"` |
+| `duration` | `number` (seconds) | from the length and the village's pace |
+| `glyphs` | `string` | capitals, digits and a few symbols |

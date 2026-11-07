@@ -236,9 +236,6 @@ importers:
 
   packages/motion:
     devDependencies:
-      '@gsap/react':
-        specifier: 2.1.2
-        version: 2.1.2(gsap@3.15.0)(react@19.2.4)
       '@types/node':
         specifier: ^22
         version: 22.20.5
@@ -248,9 +245,6 @@ importers:
       '@types/react-dom':
         specifier: ^19.0.0
         version: 19.2.3(@types/react@19.2.10)
-      gsap:
-        specifier: 3.15.0
-        version: 3.15.0
       motion:
         specifier: 14.6.0
         version: 14.6.0(react-dom@19.2.4)(react@19.2.4)
@@ -655,16 +649,6 @@ packages:
   /@floating-ui/utils@0.2.12:
     resolution: {integrity: sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww==}
     dev: false
-
-  /@gsap/react@2.1.2(gsap@3.15.0)(react@19.2.4):
-    resolution: {integrity: sha512-JqliybO1837UcgH2hVOM4VO+38APk3ECNrsuSM4MuXp+rbf+/2IG2K1YJiqfTcXQHH7XlA0m3ykniFYstfq0Iw==}
-    peerDependencies:
-      gsap: ^3.12.5
-      react: '>=17'
-    dependencies:
-      gsap: 3.15.0
-      react: 19.2.4
-    dev: true
 
   /@hono/node-server@2.1.5(hono@4.13.14):
     resolution: {integrity: sha512-MgP/I06GdvsilDspMk/qmRzpk8LOUStP6jFAbSRi40W09DhoyUn+Mj7eyKICPqeYKybOjVFLVIAQzvu1bfIa7Q==}
@@ -2341,10 +2325,6 @@ packages:
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
     dev: false
-
-  /gsap@3.15.0:
-    resolution: {integrity: sha512-dMW4CWBTUK1AEEDeZc1g4xpPGIrSf9fJF960qbTZmN/QwZIWY5wgliS6JWl9/25fpTGJrMRtSjGtOmPnfjZB+A==}
-    dev: true
 
   /has-flag@4.0.0:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}

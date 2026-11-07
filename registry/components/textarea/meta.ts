@@ -3,6 +3,7 @@ export const meta = {
 	title: "Textarea",
 	description: "A multi-line text field, styled like Input and wired into a Field the same way.",
 	status: "beta",
+	category: "forms",
 	engines: ["base"],
 	dependencies: { base: ["@base-ui/react", "class-variance-authority"] },
 	registryDependencies: [],

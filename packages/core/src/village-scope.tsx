@@ -22,6 +22,8 @@ export interface VillageSettings {
 	tint?: "village" | "neutral";
 	/** Leave it out to follow the page (the `.dark` class on an ancestor). */
 	scheme?: "light" | "dark";
+	/** Overrides the village's motion intensity (RFC-0007): 0 none, 1 fades only, 2 travel, 3 showcase. */
+	motionIntensity?: 0 | 1 | 2 | 3;
 }
 
 interface ScopeContext {
@@ -41,6 +43,7 @@ function attributes(settings: VillageSettings) {
 		"data-village": settings.village,
 		"data-nature": settings.nature,
 		"data-tint": settings.tint,
+		"data-motion-intensity": settings.motionIntensity === undefined ? undefined : String(settings.motionIntensity),
 	} as const;
 }
 
@@ -51,7 +54,7 @@ export type VillageScopeProps = VillageSettings &
 		children?: React.ReactNode;
 	};
 
-export function VillageScope({ village, nature, tint, scheme, as: Element = "div", className, children, ...props }: VillageScopeProps) {
+export function VillageScope({ village, nature, tint, scheme, motionIntensity, as: Element = "div", className, children, ...props }: VillageScopeProps) {
 	const parent = React.useContext(Context);
 	// A nested scope inherits what it does not set, so its twin in <body> wears the same tokens.
 	const settings: VillageSettings = {
@@ -59,6 +62,7 @@ export function VillageScope({ village, nature, tint, scheme, as: Element = "div
 		nature: nature ?? parent?.settings.nature,
 		tint: tint ?? parent?.settings.tint,
 		scheme: scheme ?? parent?.settings.scheme,
+		motionIntensity: motionIntensity ?? parent?.settings.motionIntensity,
 	};
 	const [container, setContainer] = React.useState<HTMLElement | null>(null);
 
@@ -82,16 +86,19 @@ export function VillageScope({ village, nature, tint, scheme, as: Element = "div
 		}
 		container.classList.toggle("dark", settings.scheme === "dark");
 		container.classList.toggle("light", settings.scheme === "light");
-	}, [container, settings.village, settings.nature, settings.tint, settings.scheme]);
+	}, [container, settings.village, settings.nature, settings.tint, settings.scheme, settings.motionIntensity]);
 
-	const value = React.useMemo(() => ({ settings, container }), [container, settings.village, settings.nature, settings.tint, settings.scheme]);
+	const value = React.useMemo(
+		() => ({ settings, container }),
+		[container, settings.village, settings.nature, settings.tint, settings.scheme, settings.motionIntensity],
+	);
 	const schemeClass = scheme === "dark" ? "dark" : scheme === "light" ? "light" : undefined;
 
 	return (
 		<Context.Provider value={value}>
 			<Element
 				data-slot="village-scope"
-				{...attributes({ village, nature, tint })}
+				{...attributes({ village, nature, tint, motionIntensity })}
 				className={[schemeClass, className].filter(Boolean).join(" ") || undefined}
 				{...props}
 			>

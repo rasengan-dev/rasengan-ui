@@ -10,7 +10,11 @@ export const usage = `Usage: rasengan-ui add <name...> [options]
 Installs components (and what they need) for the project's engine.
 
 Options:
-  --overwrite      Replace files you edited since install (otherwise they are kept)
+  --overwrite      Replace files you edited since install (otherwise they are kept), and bring
+                   back the ones you deleted
+
+A file you deleted stays deleted, unless it belongs to a component you name or one a new
+component needs.
   --skip-install   Write the files, but don't install npm packages
   --dry-run        Show what would change, write nothing`;
 
@@ -19,6 +23,7 @@ const marks: Record<Outcome, string> = {
 	updated: styleText("cyan", "~"),
 	unchanged: styleText("dim", "="),
 	kept: styleText("yellow", "!"),
+	"left-out": styleText("dim", "·"),
 };
 
 export async function add(argv: string[]) {
@@ -37,14 +42,18 @@ export async function add(argv: string[]) {
 	const config = readConfig(root);
 	const items = await resolveItems(config, root, positionals);
 	const dryRun = values["dry-run"] ?? false;
-	const written = writeItems(root, config, items, { overwrite: values.overwrite, dryRun });
+	const written = writeItems(root, config, items, { overwrite: values.overwrite, dryRun, named: positionals });
 
-	for (const { path, outcome } of written) if (outcome !== "unchanged") console.log(`${marks[outcome]} ${path}`);
+	for (const { path, outcome } of written)
+		if (outcome !== "unchanged") console.log(`${marks[outcome]} ${path}${outcome === "left-out" ? styleText("dim", " deleted by you, left out") : ""}`);
 	const kept = written.filter((file) => file.outcome === "kept");
 	if (kept.length)
 		console.log(
 			styleText("yellow", kept.length > 1 ? `\n${kept.length} files kept: you edited them since install. \`--overwrite\` replaces them.` : "\n1 file kept: you edited it since install. `--overwrite` replaces it."),
 		);
+
+	const leftOut = [...new Set(written.filter((file) => file.outcome === "left-out").map((file) => file.item))];
+	if (leftOut.length) console.log(styleText("dim", `\n\`rasengan-ui add ${leftOut.join(" ")}\` brings back the files you deleted.`));
 
 	const packages = missingPackages(root, items);
 	const toInstall = [...packages.dependencies, ...packages.devDependencies];

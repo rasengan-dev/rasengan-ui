@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { merge } from "node-diff3";
 import type { Config } from "./config.ts";
-import { hash, type Lock, readBase, readLock, renderFile } from "./install.ts";
+import { hasConflictMarkers, hash, type Lock, mergeBase, readBase, readLock, renderFile } from "./install.ts";
 import { loadLockedItem, type RegistryItem } from "./registry.ts";
 import { GENERATED } from "./villages.ts";
 
@@ -15,6 +15,7 @@ export type State =
 	| "edited" // you changed it; the registry didn't
 	| "behind" // the registry changed it; you didn't
 	| "diverged" // both changed it
+	| "conflicted" // a merge left conflict markers in it, not resolved yet
 	| "deleted" // you deleted it
 	| "new" // the registry added it to the item
 	| "removed"; // the registry dropped it from the item
@@ -24,6 +25,7 @@ export const stateLabels: Record<State, string> = {
 	edited: "edited by you",
 	behind: "update available",
 	diverged: "edited by you, update available",
+	conflicted: "unresolved conflict markers",
 	deleted: "deleted by you",
 	new: "new in the registry",
 	removed: "no longer in the registry",
@@ -36,6 +38,8 @@ export interface FileState {
 	base?: string;
 	local?: string;
 	upstream?: string;
+	/** Back to your version from before a merge that left conflicts: `base` is the one from before that merge. */
+	restored?: boolean;
 }
 
 /** The items to look at: the ones named (they must be installed), or every installed one. */
@@ -58,24 +62,25 @@ export async function fileStates(root: string, config: Config, names: string[] =
 	const items = loaded.filter((item): item is RegistryItem => item !== undefined);
 	const files: FileState[] = [];
 	for (const item of items) {
-		const installed = lock.items[item.name]?.files ?? {};
+		const entry = lock.items[item.name];
+		const installed = entry?.files ?? {};
 		const seen = new Set<string>();
 		for (const file of item.files) {
 			const { path, content: upstream } = renderFile(root, config, item, file);
 			seen.add(path);
-			const installedHash = installed[path];
 			const absolute = join(root, path);
 			const local = existsSync(absolute) ? readFileSync(absolute, "utf8") : undefined;
-			const base = readBase(root, path);
+			const { hash: installedHash, content: base, restored } = mergeBase(root, entry, path, local);
 			let state: State;
 			if (!installedHash) state = "new";
 			else if (local === undefined) state = "deleted";
+			else if (hasConflictMarkers(local)) state = "conflicted";
 			else {
 				const edited = hash(local) !== installedHash;
 				const moved = hash(upstream) !== installedHash;
 				state = local === upstream ? "current" : edited && moved ? "diverged" : edited ? "edited" : moved ? "behind" : "current";
 			}
-			files.push({ item: item.name, path, state, base, local, upstream });
+			files.push({ item: item.name, path, state, base, local, upstream, ...(restored ? { restored } : {}) });
 		}
 		for (const path of Object.keys(installed)) if (!seen.has(path)) files.push({ item: item.name, path, state: "removed", base: readBase(root, path) });
 	}

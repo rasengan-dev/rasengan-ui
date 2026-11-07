@@ -3,6 +3,7 @@ export const meta = {
 	title: "Dropdown menu",
 	description: "Actions behind a button: items with shortcuts, checkbox and radio items, groups, submenus and a destructive item.",
 	status: "beta",
+	category: "overlays",
 	engines: ["base"],
 	dependencies: { base: ["@base-ui/react", "lucide-react"] },
 	registryDependencies: [],

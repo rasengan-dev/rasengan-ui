@@ -82,6 +82,27 @@ The button renders a `<button>`. To render another element with the button's loo
 <Link to="/docs" className={buttonVariants({ variant: "outline" })}>Read the docs</Link>
 ```
 
+### Hold to confirm
+
+`HoldButton` acts only once it has been held, with the pointer or with <kbd>Space</kbd> or <kbd>Enter</kbd>: for what is
+hard to undo, such as deleting or publishing. A wash of the button's own colour fills it over the hold time and drains
+if it is let go early. The fill is the feedback, so it runs with reduced motion too.
+
+<ComponentPreview name="button" demo="button-hold" />
+
+```tsx
+<HoldButton variant="destructive" duration={1.2} onConfirm={() => deleteProject()}>
+  Hold to delete
+</HoldButton>
+```
+
+### Rolling text
+
+`ButtonRollingText` rolls the label up on hover and keyboard focus while a copy rolls in from below, with the village's
+duration and easing; `stagger` rolls it letter by letter. Screen readers read the label once.
+
+<ComponentPreview name="button" demo="button-rolling" />
+
 ## Villages
 
 The same demo in each village, light and dark, in the nature and greys picked above.
@@ -95,6 +116,8 @@ The same demo in each village, light and dark, in the nature and greys picked ab
 - `disabled` keeps the button out of the tab order. To keep it focusable while it can't be pressed (a loading state,
   for example), pass `focusableWhenDisabled`.
 - An icon-only button needs an `aria-label`.
+- `HoldButton` tells screen-reader users to hold (`hint`), and holds with <kbd>Space</kbd> or <kbd>Enter</kbd> as with
+  the pointer. Announce what the action did yourself, as the demo does with a live region.
 
 ## API reference
 
@@ -108,3 +131,13 @@ The props of Base UI's [Button](https://base-ui.com/react/components/button), pl
 | `className` | `string` | |
 
 `buttonVariants({ variant, tone, size })` returns the same classes, for elements that should look like a button.
+
+`HoldButton` takes Button's props (except `onClick`), and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `onConfirm` | `() => void` | — |
+| `duration` | `number` (seconds) | `1.2` |
+| `hint` | `string`, read after the label | `"Press and hold to confirm"` |
+
+`ButtonRollingText` takes a string as `children`, a `span`'s props, and `stagger` (`boolean`, `false` by default).

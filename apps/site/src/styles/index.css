@@ -7,6 +7,7 @@
 @import '../../../../packages/villages/src/villages/konoha.css';
 @import '../../../../packages/villages/src/villages/kiri.css';
 @import '../../../../packages/villages/src/villages/iwa.css';
+@import '../../../../packages/villages/src/villages/kusa.css';
 @import '../../../../packages/villages/src/natures.css';
 
 /* Components live outside the app; let Tailwind see their classes. */

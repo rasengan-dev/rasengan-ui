@@ -6,7 +6,7 @@ import { extendTailwindMerge } from "tailwind-merge";
  * them for others: without this, text-control reads as a text colour and is
  * dropped by text-primary-foreground, and border-village by border-input.
  */
-const twMerge = extendTailwindMerge({
+const twMerge = extendTailwindMerge<"lip-color">({
 	extend: {
 		// Spacing names (h-control-sm, px-input-x, size-indicator…), so a later h-, px- or size- replaces them.
 		theme: { spacing: ["control", "control-sm", "control-lg", "control-x", "input-x", "indicator", "indicator-sm", "indicator-lg"] },
@@ -17,7 +17,9 @@ const twMerge = extendTailwindMerge({
 			tracking: [{ tracking: ["control", "display"] }],
 			"border-w": ["border-village"],
 			rounded: [{ rounded: ["control", "pill", "check", "badge"] }],
-			shadow: [{ shadow: ["input", "tab", "thumb"] }],
+			shadow: [{ shadow: ["input", "check", "tab", "thumb", "knob", "lip", "lip-sm"] }],
+			// The lip colour (Kusa): a later lip-* replaces an earlier one.
+			"lip-color": ["lip-tone", "lip-soft", "lip-secondary"],
 		},
 	},
 });

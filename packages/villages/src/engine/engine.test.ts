@@ -47,7 +47,7 @@ const effective = (light: Record<string, string>, dark: Record<string, string>) 
 	return out;
 };
 
-for (const name of ["konoha", "kiri", "iwa"] as const)
+for (const name of bases)
 	test(`${name}.recipe.json makes ${name}.css, token for token`, () => {
 		const village = createBaseVillage(builtinRecipes[name], { sources });
 		assert.deepEqual(village.adjustments, [], "a built-in village needs no fix");

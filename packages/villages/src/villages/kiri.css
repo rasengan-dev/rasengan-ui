@@ -40,6 +40,10 @@
 	--motion-slow: 480ms;
 	--motion-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 	--motion-ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+	--motion-spring-stiffness: 140;
+	--motion-spring-damping: 22;
+	--motion-distance: 32px;
+	--motion-stagger: 80ms;
 
 	/* Colour (light) */
 	--background: oklch(0.965 calc(0.008 * var(--tint, 1)) 235);

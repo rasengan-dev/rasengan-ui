@@ -27,7 +27,7 @@ export const tabsTriggerVariants = cva(
 				default: "rounded-[calc(var(--control-radius)*0.8)] ui-active:bg-tab-active ui-active:text-tab-active-foreground ui-active:shadow-tab",
 				underline:
 					"-mb-(--border-width) rounded-none border-b-2 border-transparent ui-active:border-primary ui-active:text-foreground data-[orientation=vertical]:-ms-(--border-width) data-[orientation=vertical]:mb-0 data-[orientation=vertical]:justify-start data-[orientation=vertical]:border-s-2 data-[orientation=vertical]:border-b-0",
-				pills: "rounded-pill ui-active:bg-primary ui-active:text-primary-foreground",
+				pills: "rounded-pill ui-active:bg-primary ui-active:text-primary-foreground ui-active:shadow-lip-sm ui-active:lip-tone",
 			},
 			size: {
 				sm: "h-[calc(var(--control-sm)-var(--tabs-list-padding)*2)] px-2.5 text-control-sm",

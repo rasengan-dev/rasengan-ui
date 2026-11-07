@@ -1,7 +1,7 @@
 # Archive
 
 Rasengan UI v1 ("Classic"), kept for reference. Nothing here is part of the pnpm workspace: it is not installed, built,
-type-checked or deployed. The code that replaced it is in `apps/site`, `registry/`, `packages/` and `proposals/`
+type-checked or deployed. The code that replaced it is in `apps/site`, `registry/`, `packages/` and `docs/rfc/`
 (RFC-0002, "Switch-over").
 
 | Folder | What it was |

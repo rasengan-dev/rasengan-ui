@@ -42,8 +42,9 @@ npx rasengan-ui add dialog toast
 Installs components, the components they use, and their npm packages, with your project's package manager. Files go
 where your aliases point, and their imports are rewritten to match.
 
-A file you edited since it was installed is kept and reported; `--overwrite` replaces it. `--dry-run` shows what would
-change, `--skip-install` leaves the npm packages to you.
+A file you edited since it was installed is kept and reported; `--overwrite` replaces it. A file you deleted stays
+deleted, unless it belongs to a component you name or one a new component needs; `--overwrite` brings it back too.
+`--dry-run` shows what would change, `--skip-install` leaves the npm packages to you.
 
 ## village, nature, tint
 
@@ -74,8 +75,8 @@ npx rasengan-ui diff
 npx rasengan-ui diff dialog
 ```
 
-Tells, for each installed file, whether you edited it, the registry changed it, or both. Name a component, or pass
-`--patch`, to see the changes themselves.
+Tells, for each installed file, whether you edited it, the registry changed it, or both, and which files still have
+conflict markers from the last `update`. Name a component, or pass `--patch`, to see the changes themselves.
 
 ## update
 
@@ -88,10 +89,15 @@ Brings installed files up to the registry:
 - a file you didn't edit takes the registry's version;
 - a file you edited gets the registry's changes merged into yours. Where both changed the same lines, the file keeps
   both between conflict markers (`<<<<<<< yours` … `>>>>>>> registry`), and the command exits with 1;
+- a file that still has those markers is left alone, and the command exits with 1 until you resolve them;
 - a file you deleted stays deleted;
 - what the components gained since (new files, components, npm packages) is installed.
 
 `--dry-run` shows what would change.
+
+To undo the update for a file that conflicted, put your version back (`git checkout -- <file>`) instead of resolving
+the markers: the next `update` merges the registry's changes into it again, rather than taking your version as an edit
+on top of them.
 
 ## doctor
 
@@ -100,7 +106,8 @@ npx rasengan-ui doctor
 ```
 
 Checks the config, the registry, the Tailwind and React versions, the `@/` alias, the stylesheet's imports and their
-order, theme tokens that override the village, the village on `<html>`, installed files and npm packages. It exits with
+order, theme tokens that override the village, the village on `<html>`, installed files (and leftover conflict markers)
+and npm packages. It exits with
 1 when something is broken.
 
 ## mcp
@@ -118,5 +125,6 @@ Starts the MCP server, for agents. See [MCP server](/docs/mcp).
 | `rasengan-ui.json` | Engine, village, nature, greys, stylesheet, aliases, registry |
 | `rasengan-ui.lock` | For each installed file, the component that installed it and the hash it had then |
 | `.rasengan-ui/base/` | Each file as it was installed: what `diff` and `update` compare and merge against |
+| `.rasengan-ui/merge/` | For a file whose last merge conflicted, the base before it, to merge again from if you put your version back |
 
-Commit all three: they let anyone on the team update components without losing anyone's edits.
+Commit them all: they let anyone on the team update components without losing anyone's edits.

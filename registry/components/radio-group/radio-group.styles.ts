@@ -2,7 +2,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 /* Checked, the ring takes the tone's edge (3:1 on the page) and the dot its colour. */
 export const radioVariants = cva(
-	"peer inline-flex aspect-square shrink-0 cursor-pointer items-center justify-center rounded-pill border-village border-control-border bg-input-bg shadow-input outline-none transition-[border-color] duration-fast ease-out focus-visible:focus-ring ui-checked:border-tone-border ui-invalid:border-destructive ui-disabled:cursor-not-allowed ui-disabled:opacity-50 *:data-[slot=radio-group-indicator]:rounded-pill *:data-[slot=radio-group-indicator]:bg-tone",
+	"peer inline-flex aspect-square shrink-0 cursor-pointer items-center justify-center rounded-pill border-village border-control-border bg-input-bg shadow-check outline-none transition-[border-color] duration-fast ease-out focus-visible:focus-ring ui-checked:border-tone-border ui-checked:lip-tone ui-invalid:border-destructive ui-disabled:cursor-not-allowed ui-disabled:opacity-50 *:data-[slot=radio-group-indicator]:rounded-pill *:data-[slot=radio-group-indicator]:bg-tone",
 	{
 		variants: {
 			tone: {

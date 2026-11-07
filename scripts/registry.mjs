@@ -80,18 +80,23 @@ function inlineStyles(source, styles, stylesModule) {
 
 // ---- Items -----------------------------------------------------------------
 
+const { categories } = await import(pathToFileURL(join(root, "registry/categories.ts")).href);
+
 const components = [];
 for (const entry of readdirSync(join(root, "registry/components"), { withFileTypes: true })) {
 	if (!entry.isDirectory()) continue;
 	const { meta } = await import(pathToFileURL(join(root, "registry/components", entry.name, "meta.ts")).href);
 	if (meta.name !== entry.name) throw new Error(`registry/components/${entry.name}: meta.name is "${meta.name}"`);
+	if (!Object.hasOwn(categories, meta.category)) {
+		throw new Error(`registry/components/${entry.name}: category "${meta.category}" is not one of ${Object.keys(categories).join(", ")} (registry/categories.ts)`);
+	}
 	components.push(meta);
 }
 components.sort((a, b) => a.name.localeCompare(b.name));
 
 const { natures, tints, villages } = await import(pathToFileURL(join(root, "packages/villages/src/index.ts")).href);
 
-/** Items every engine shares: core, theme contract, villages. */
+/** Items every engine shares: core, theme contract, motion, villages. */
 function sharedItems(url) {
 	return [
 		{
@@ -118,6 +123,20 @@ function sharedItems(url) {
 			files: [
 				{ path: "packages/villages/src/contract.css", type: "registry:file", target: "styles/rasengan/contract.css" },
 				{ path: "packages/villages/src/natures.css", type: "registry:file", target: "styles/rasengan/natures.css" },
+			],
+		},
+		{
+			name: "rasengan-motion",
+			type: "registry:lib",
+			title: "Rasengan UI motion",
+			description:
+				"What motion components share (RFC-0007): the motion modes (ready, final, off) and their head script, the village's motion tokens read from CSS, Reveal, Stagger, Presence, Parallax, Tilt, Magnetic, and splitText.",
+			dependencies: ["motion"],
+			registryDependencies: [url("rasengan-theme")],
+			files: [
+				{ path: "packages/motion/src/motion.tsx", type: "registry:lib", target: "lib/motion.tsx" },
+				{ path: "packages/motion/src/motion-features.ts", type: "registry:lib", target: "lib/motion-features.ts" },
+				{ path: "packages/motion/src/split-text.tsx", type: "registry:lib", target: "lib/split-text.tsx" },
 			],
 		},
 		...Object.entries(villages).map(([name, village]) => ({
@@ -185,7 +204,7 @@ for (const engine of ENGINES) {
 			type: "registry:ui",
 			title: meta.title,
 			description: meta.description,
-			meta: { engine, status: meta.status, examples: demos.map((demo) => demo.name) },
+			meta: { engine, status: meta.status, category: meta.category, examples: demos.map((demo) => demo.name) },
 			dependencies: [...(meta.dependencies[engine] ?? [])],
 			registryDependencies: [url("rasengan-core"), ...meta.registryDependencies.map(url)],
 			files: [{ path: file, type: "registry:ui" }],

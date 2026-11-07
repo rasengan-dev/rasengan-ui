@@ -47,6 +47,9 @@
 			"@/components/ui/card": [
 				"./components/card/card.base.tsx"
 			],
+			"@/components/ui/carousel": [
+				"./components/carousel/carousel.base.tsx"
+			],
 			"@/components/ui/checkbox": [
 				"./components/checkbox/checkbox.base.tsx"
 			],
@@ -58,6 +61,9 @@
 			],
 			"@/components/ui/command": [
 				"./components/command/command.base.tsx"
+			],
+			"@/components/ui/cursor": [
+				"./components/cursor/cursor.base.tsx"
 			],
 			"@/components/ui/date-picker": [
 				"./components/date-picker/date-picker.base.tsx"
@@ -74,6 +80,9 @@
 			"@/components/ui/field": [
 				"./components/field/field.base.tsx"
 			],
+			"@/components/ui/gallery-3d": [
+				"./components/gallery-3d/gallery-3d.base.tsx"
+			],
 			"@/components/ui/input": [
 				"./components/input/input.base.tsx"
 			],
@@ -86,8 +95,17 @@
 			"@/components/ui/label": [
 				"./components/label/label.base.tsx"
 			],
+			"@/components/ui/marquee": [
+				"./components/marquee/marquee.base.tsx"
+			],
 			"@/components/ui/navigation-menu": [
 				"./components/navigation-menu/navigation-menu.base.tsx"
+			],
+			"@/components/ui/number-roll": [
+				"./components/number-roll/number-roll.base.tsx"
+			],
+			"@/components/ui/page-transition": [
+				"./components/page-transition/page-transition.base.tsx"
 			],
 			"@/components/ui/pagination": [
 				"./components/pagination/pagination.base.tsx"
@@ -100,6 +118,9 @@
 			],
 			"@/components/ui/radio-group": [
 				"./components/radio-group/radio-group.base.tsx"
+			],
+			"@/components/ui/scramble-text": [
+				"./components/scramble-text/scramble-text.base.tsx"
 			],
 			"@/components/ui/scroll-area": [
 				"./components/scroll-area/scroll-area.base.tsx"
@@ -131,6 +152,9 @@
 			"@/components/ui/tabs": [
 				"./components/tabs/tabs.base.tsx"
 			],
+			"@/components/ui/text-reveal": [
+				"./components/text-reveal/text-reveal.base.tsx"
+			],
 			"@/components/ui/textarea": [
 				"./components/textarea/textarea.base.tsx"
 			],
@@ -149,6 +173,9 @@
 			"@/components/ui/tooltip": [
 				"./components/tooltip/tooltip.base.tsx"
 			],
+			"@/components/ui/typewriter": [
+				"./components/typewriter/typewriter.base.tsx"
+			],
 			"@/lib/utils": [
 				"../packages/core/src/utils.ts"
 			],
@@ -157,6 +184,15 @@
 			],
 			"@/lib/field-context": [
 				"../packages/core/src/field-context.tsx"
+			],
+			"@/lib/motion": [
+				"../packages/motion/src/motion.tsx"
+			],
+			"@/lib/motion-features": [
+				"../packages/motion/src/motion-features.ts"
+			],
+			"@/lib/split-text": [
+				"../packages/motion/src/split-text.tsx"
 			]
 		}
 	},

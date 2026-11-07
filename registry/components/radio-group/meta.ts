@@ -3,6 +3,7 @@ export const meta = {
 	title: "Radio group",
 	description: "Picks one option out of a few. Arrow keys move the choice, as the platform expects.",
 	status: "beta",
+	category: "forms",
 	engines: ["base"],
 	dependencies: { base: ["@base-ui/react", "class-variance-authority"] },
 	registryDependencies: [],

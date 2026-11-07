@@ -36,6 +36,9 @@
 			"@/components/ui/card": [
 				"../../registry/components/card/card.base.tsx"
 			],
+			"@/components/ui/carousel": [
+				"../../registry/components/carousel/carousel.base.tsx"
+			],
 			"@/components/ui/checkbox": [
 				"../../registry/components/checkbox/checkbox.base.tsx"
 			],
@@ -47,6 +50,9 @@
 			],
 			"@/components/ui/command": [
 				"../../registry/components/command/command.base.tsx"
+			],
+			"@/components/ui/cursor": [
+				"../../registry/components/cursor/cursor.base.tsx"
 			],
 			"@/components/ui/date-picker": [
 				"../../registry/components/date-picker/date-picker.base.tsx"
@@ -63,6 +69,9 @@
 			"@/components/ui/field": [
 				"../../registry/components/field/field.base.tsx"
 			],
+			"@/components/ui/gallery-3d": [
+				"../../registry/components/gallery-3d/gallery-3d.base.tsx"
+			],
 			"@/components/ui/input": [
 				"../../registry/components/input/input.base.tsx"
 			],
@@ -75,8 +84,17 @@
 			"@/components/ui/label": [
 				"../../registry/components/label/label.base.tsx"
 			],
+			"@/components/ui/marquee": [
+				"../../registry/components/marquee/marquee.base.tsx"
+			],
 			"@/components/ui/navigation-menu": [
 				"../../registry/components/navigation-menu/navigation-menu.base.tsx"
+			],
+			"@/components/ui/number-roll": [
+				"../../registry/components/number-roll/number-roll.base.tsx"
+			],
+			"@/components/ui/page-transition": [
+				"../../registry/components/page-transition/page-transition.base.tsx"
 			],
 			"@/components/ui/pagination": [
 				"../../registry/components/pagination/pagination.base.tsx"
@@ -89,6 +107,9 @@
 			],
 			"@/components/ui/radio-group": [
 				"../../registry/components/radio-group/radio-group.base.tsx"
+			],
+			"@/components/ui/scramble-text": [
+				"../../registry/components/scramble-text/scramble-text.base.tsx"
 			],
 			"@/components/ui/scroll-area": [
 				"../../registry/components/scroll-area/scroll-area.base.tsx"
@@ -120,6 +141,9 @@
 			"@/components/ui/tabs": [
 				"../../registry/components/tabs/tabs.base.tsx"
 			],
+			"@/components/ui/text-reveal": [
+				"../../registry/components/text-reveal/text-reveal.base.tsx"
+			],
 			"@/components/ui/textarea": [
 				"../../registry/components/textarea/textarea.base.tsx"
 			],
@@ -138,6 +162,9 @@
 			"@/components/ui/tooltip": [
 				"../../registry/components/tooltip/tooltip.base.tsx"
 			],
+			"@/components/ui/typewriter": [
+				"../../registry/components/typewriter/typewriter.base.tsx"
+			],
 			"@/lib/utils": [
 				"../../packages/core/src/utils.ts"
 			],
@@ -146,6 +173,15 @@
 			],
 			"@/lib/field-context": [
 				"../../packages/core/src/field-context.tsx"
+			],
+			"@/lib/motion": [
+				"../../packages/motion/src/motion.tsx"
+			],
+			"@/lib/motion-features": [
+				"../../packages/motion/src/motion-features.ts"
+			],
+			"@/lib/split-text": [
+				"../../packages/motion/src/split-text.tsx"
 			],
 			"@/registry/*": [
 				"../../registry/*"
@@ -160,7 +196,9 @@
 		"rasengan-env.d.ts",
 		"mdx-components.tsx",
 		"../../registry/components",
+		"../../registry/categories.ts",
 		"../../packages/core/src",
+		"../../packages/motion/src",
 		"../../packages/villages/src"
 	],
 	"extends": "./node_modules/rasengan/tsconfig.base.json"

@@ -32,7 +32,7 @@ Options:
 
 Options for create:
   --from <file|url>     A recipe file, a workshop link, or a URL to a recipe or an exported village
-  --base <village>      The village to start from: konoha, kiri or iwa (default: konoha)
+  --base <village>      The village to start from: konoha, kiri, iwa or kusa (default: konoha)
   --color <colour>      The brand colour: #rrggbb, rgb(r g b) or oklch(L C H)
   --hue <degrees>       A brand hue, when you have no exact colour
   --contrast, --radius, --density, --depth, --motion, --border   One knob each (see the docs)
@@ -243,6 +243,7 @@ async function interview(name: string): Promise<Partial<Recipe>> {
 				{ value: "konoha", label: "Konoha", hint: "warm, rounded, balanced" },
 				{ value: "kiri", label: "Kiri", hint: "soft contrast, glass, airy" },
 				{ value: "iwa", label: "Iwa", hint: "square, ink borders, mono labels" },
+				{ value: "kusa", label: "Kusa", hint: "chunky 3D, on a lip" },
 			],
 		}),
 	);

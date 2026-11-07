@@ -2,7 +2,7 @@ import { createTwoFilesPatch } from "diff";
 import { parseArgs, styleText } from "node:util";
 import { readConfig } from "../config.ts";
 import { installPackages, missingPackages } from "../dependencies.ts";
-import { hash, readLock, writeFile, writeItems, writeLock } from "../install.ts";
+import { clearConflict, hash, readLock, recordConflict, writeFile, writeItems, writeLock } from "../install.ts";
 import { findRoot } from "../project.ts";
 import { resolveItems } from "../registry.ts";
 import { type FileState, fileStates, mergeFile, type State, stateLabels } from "../sync.ts";
@@ -18,7 +18,8 @@ export const updateUsage = `Usage: rasengan-ui update [name...] [options]
 
 Brings installed files up to the registry. A file you didn't edit is replaced; one you edited
 gets the registry's changes merged into yours, with conflict markers where both changed the
-same lines. A file you deleted stays deleted.
+same lines. A file you deleted stays deleted. A file with conflict markers left from the last update is
+left alone until you resolve them; put your version back instead, and update merges it again.
 
 Options:
   --skip-install   Don't install npm packages the update needs
@@ -29,6 +30,7 @@ const colors: Record<State, Parameters<typeof styleText>[0]> = {
 	edited: "blue",
 	behind: "cyan",
 	diverged: "yellow",
+	conflicted: "red",
 	deleted: "dim",
 	new: "green",
 	removed: "dim",
@@ -66,7 +68,8 @@ export async function diff(argv: string[]) {
 	const width = Math.max(...files.map((file) => file.path.length));
 	for (const file of files) {
 		if (file.state === "current" && positionals.length === 0) continue;
-		console.log(`${file.path.padEnd(width)}  ${styleText(colors[file.state], stateLabels[file.state])}`);
+		const note = file.restored ? styleText("dim", " (back to your version from before the update)") : "";
+		console.log(`${file.path.padEnd(width)}  ${styleText(colors[file.state], stateLabels[file.state])}${note}`);
 		const text = withPatches ? show(file) : "";
 		if (text) console.log(`\n${text}\n`);
 	}
@@ -75,10 +78,15 @@ export async function diff(argv: string[]) {
 	const summary = [
 		`${files.length} file${files.length === 1 ? "" : "s"}`,
 		count("edited") + count("diverged") ? `${count("edited") + count("diverged")} edited by you` : "",
+		count("conflicted") ? `${count("conflicted")} with unresolved conflicts` : "",
 		updatable ? `${updatable} with an update` : "everything up to date with the registry",
 	].filter(Boolean);
 	console.log(`\n${summary.join(", ")}.${updatable ? " `rasengan-ui update` applies them, keeping your edits." : ""}`);
+	if (count("conflicted")) console.log(styleText("yellow", unresolvedHint));
 }
+
+const unresolvedHint =
+	"Resolve the conflict markers (<<<<<<< yours … >>>>>>> registry), or undo the update for a file by putting your version back (`git checkout -- <file>`): the next `rasengan-ui update` merges it again.";
 
 export async function update(argv: string[]) {
 	const { values, positionals } = parseArgs({ args: argv, allowPositionals: true, options: { "skip-install": { type: "boolean" }, "dry-run": { type: "boolean" }, help: { type: "boolean", short: "h" } } });
@@ -97,8 +105,15 @@ export async function update(argv: string[]) {
 
 	let updated = 0;
 	const conflicted: string[] = [];
+	const unresolved: string[] = [];
 	const noBase: string[] = [];
 	for (const file of files) {
+		const entry = lock.items[file.item];
+		if (file.state === "conflicted") {
+			unresolved.push(file.path);
+			console.log(`${styleText("red", "!")} ${file.path} ${styleText("dim", "has unresolved conflict markers, left as it is")}`);
+			continue;
+		}
 		if (file.state === "behind" || file.state === "new") {
 			console.log(`${styleText("green", file.state === "new" ? "+" : "~")} ${file.path}`);
 			if (!dryRun) writeFile(root, file.path, file.upstream!);
@@ -113,11 +128,17 @@ export async function update(argv: string[]) {
 			if (conflicts) conflicted.push(`${file.path} (${conflicts} conflict${conflicts > 1 ? "s" : ""})`);
 			console.log(`${styleText(conflicts ? "yellow" : "green", conflicts ? "!" : "~")} ${file.path} ${styleText("dim", conflicts ? "merged, with conflicts" : "merged with your edits")}`);
 			if (!dryRun) writeFile(root, file.path, content);
+			// Before record() moves the base: the base this merge started from, for a merge again if you put your version back.
+			if (!dryRun && conflicts) recordConflict(root, entry, file.path, file.local!, file.base);
+			else if (!dryRun) clearConflict(root, entry, file.path);
 			record(file);
 			updated++;
+			continue;
 		} else if (file.state === "deleted" && file.upstream !== undefined && file.base !== file.upstream) {
 			console.log(`${styleText("dim", "·")} ${file.path} ${styleText("dim", "deleted by you, left out")}`);
 		}
+		// Resolved since the last update, replaced or deleted: the conflicted merge is over.
+		if (!dryRun) clearConflict(root, entry, file.path);
 	}
 	if (!dryRun) writeLock(root, lock);
 
@@ -137,9 +158,17 @@ export async function update(argv: string[]) {
 
 	if (noBase.length)
 		console.log(styleText("yellow", `\nNo installed copy to merge against (.rasengan-ui/base) for ${noBase.join(", ")}: left as they are. \`rasengan-ui add <name> --overwrite\` replaces them.`));
-	if (conflicted.length) {
-		console.log(styleText("yellow", `\nResolve the conflict markers (<<<<<<< yours … >>>>>>> registry) in ${conflicted.join(", ")}.`));
+	if (conflicted.length || unresolved.length) {
+		if (conflicted.length) console.log(styleText("yellow", `\nConflicts in ${conflicted.join(", ")}.`));
+		if (unresolved.length) console.log(styleText("yellow", `\nStill unresolved from the last update: ${unresolved.join(", ")}.`));
+		console.log(styleText("yellow", unresolvedHint));
 		process.exitCode = 1;
 	}
-	console.log(updated ? `\n${dryRun ? "Would update" : "Updated"} ${updated} file${updated === 1 ? "" : "s"}.` : "\nEverything is up to date with the registry.");
+	console.log(
+		updated
+			? `\n${dryRun ? "Would update" : "Updated"} ${updated} file${updated === 1 ? "" : "s"}.`
+			: unresolved.length
+				? "\nNothing else to update."
+				: "\nEverything is up to date with the registry.",
+	);
 }

@@ -5,7 +5,7 @@
  *   pnpm dev          # the site, on http://localhost:3200
  *   pnpm axe          # every page, or: pnpm axe button dialog
  *
- * Runs axe-core's WCAG 2.2 A and AA rules on the home page, /components and each component page,
+ * Runs axe-core's WCAG 2.2 A and AA rules on the home page, /components, /motion and each component page,
  * in every village, light and dark, and again with each overlay open. Violations are grouped by
  * rule, with where they happen, in the console and in .axe/report.md; the run fails on any.
  */
@@ -20,7 +20,8 @@ const tags = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 const { names } = parseArgs();
 /* Named components: only their pages. Otherwise the home page and the index too. */
 const named = process.argv.slice(2).some((arg) => !arg.startsWith("--"));
-const pages = [...(named ? [] : ["/", "/components"]), ...names.map((name) => `/components/${name}`)];
+// /motion twice: animating, and with motion off (what reduced-motion users get).
+const pages = [...(named ? [] : ["/", "/components", "/motion", "/motion?motion=off"]), ...names.map((name) => `/components/${name}`)];
 const combos = allCombos({ onmyoton: false });
 
 await siteIsUp();

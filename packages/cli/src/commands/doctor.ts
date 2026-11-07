@@ -4,7 +4,7 @@ import { parseArgs, styleText } from "node:util";
 import { type Config, configFile, readConfig } from "../config.ts";
 import { missingPackages } from "../dependencies.ts";
 import { checkVersions, detectFramework, frameworkNames, htmlFile } from "../framework.ts";
-import { readLock } from "../install.ts";
+import { hasConflictMarkers, readLock } from "../install.ts";
 import { findRoot, hasAlias } from "../project.ts";
 import { ENGINE_VERSION } from "@rasengan-ui/villages/engine";
 import { choices, loadLockedItem, type RegistryItem } from "../registry.ts";
@@ -68,6 +68,10 @@ export async function doctor(argv: string[]) {
 	const missingFiles = Object.values(lock.items).flatMap(({ files }) => Object.keys(files).filter((path) => !existsSync(join(root, path))));
 	if (missingFiles.length) report("warn", `Installed files you deleted: ${missingFiles.join(", ")}`);
 	else report("ok", `${Object.keys(lock.items).length} items installed, every file in place`);
+	const unresolved = Object.values(lock.items).flatMap(({ files }) =>
+		Object.keys(files).filter((path) => existsSync(join(root, path)) && hasConflictMarkers(readFileSync(join(root, path), "utf8"))),
+	);
+	if (unresolved.length) report("error", `Unresolved conflict markers (<<<<<<< yours … >>>>>>> registry) in ${unresolved.join(", ")}.`);
 
 	// Villages made by `village create` (RFC-0006): the engine that wrote them, and their recipe.
 	for (const name of installedVillages(lock).filter((v) => lock.items[`village-${v}`]?.source === GENERATED)) {

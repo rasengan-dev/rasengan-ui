@@ -29,5 +29,5 @@ export const switchVariants = cva(
 export type SwitchVariantProps = VariantProps<typeof switchVariants>;
 
 export const switchStyles = {
-	thumb: "pointer-events-none block size-(--thumb-size) rounded-pill bg-switch-thumb shadow-thumb transition-[translate,background-color] duration-base ease-out ui-checked:translate-x-[calc(var(--switch-w)_-_var(--thumb-size)_-_0.25rem_-_var(--border-width)_*_2)] ui-checked:bg-tone-foreground",
+	thumb: "pointer-events-none block size-(--thumb-size) rounded-pill bg-switch-thumb shadow-thumb transition-[translate,background-color] duration-base ease-out ui-checked:translate-x-[calc(var(--switch-w)_-_var(--thumb-size)_-_0.25rem_-_var(--border-width)_*_2)] ui-checked:bg-tone-foreground ui-checked:lip-tone",
 };

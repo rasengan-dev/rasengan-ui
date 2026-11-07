@@ -1,0 +1,119 @@
+---
+metadata:
+  title: Carousel · Rasengan UI
+  description: "Slides on native scroll snapping: swipe, wheel, arrows, dots, keys and drag, moving with the village's easing."
+toc: true
+---
+
+# Carousel
+
+Slides on native scroll snapping: swipe, wheel, arrows, dots, keys and drag, moving with the village's easing.
+
+<ComponentPreview name="carousel" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add carousel
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/carousel.json
+```
+
+It brings `rasengan-motion` and `button` with it.
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselDots,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+export function Usage() {
+  return (
+    <Carousel label="Featured projects">
+      <CarouselContent>
+        <CarouselItem>…</CarouselItem>
+        <CarouselItem>…</CarouselItem>
+        <CarouselItem>…</CarouselItem>
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+      <CarouselDots />
+    </Carousel>
+  );
+}
+```
+
+The parts keep shadcn's names. The viewport is the browser's own scroll container with snap points, so touch,
+trackpads and mouse wheels move it the way the platform does. The arrows, the dots, the arrow keys and a mouse drag
+move it with the village's easing.
+
+### Several slides at a time, and looping
+
+Give the items a `basis-*` class to show several at once; the dots then count resting positions, not slides. With
+`loop`, the next arrow goes from the last position back to the first, and the previous arrow the other way.
+
+<ComponentPreview name="carousel" demo="carousel-sizes" />
+
+### Autoplay
+
+`autoplay={4}` moves to the next slide every four seconds. It pauses while the pointer is over the carousel or focus
+is inside it, and a pause button sits in its corner: content that moves on its own needs a way to stop it. With
+reduced motion it does not move on its own.
+
+<ComponentPreview name="carousel" demo="carousel-autoplay" />
+
+### Your own controls
+
+`useCarousel()`, inside a `Carousel`, gives `index`, `count`, `slides`, `canScrollPrev`, `canScrollNext`,
+`scrollTo(index)`, `scrollPrev()` and `scrollNext()`.
+
+## Villages
+
+The arrows and dots wear the village; the movement takes its slow duration and ease-out: quick in Iwa, floaty in Kiri,
+with a small overshoot in Kusa.
+
+<VillageGrid name="carousel" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off` or a scope at `data-motion-intensity="0"`, the carousel still works: it jumps to
+the slide instead of sliding, and autoplay is off.
+
+## Accessibility
+
+- Built after the [WAI-ARIA carousel pattern](https://www.w3.org/WAI/ARIA/apg/patterns/carousel/): a region named by
+  `label`, each slide a group announced as "2 of 5".
+- The viewport is focusable: <kbd>←</kbd> and <kbd>→</kbd> (<kbd>↑</kbd> and <kbd>↓</kbd> when vertical),
+  <kbd>Home</kbd> and <kbd>End</kbd> move it. The arrows and dots are buttons that name what they do.
+- New slides are announced (`aria-live="polite"`), except while autoplay runs.
+- A mouse drag never clicks a link it started on.
+
+## Weight
+
+About 6.5 kB gzip beyond `cn()` and Button, its four icons included. Nothing from Motion: scrolling is native, and the eased moves use
+`rasengan-motion`'s `bezierEasing`.
+
+## API reference
+
+`Carousel` renders a `div` and takes its props, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `label` | `string` | — |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` |
+| `align` | `"start" \| "center"` | `"start"` |
+| `loop` | `boolean` | `false` |
+| `autoplay` | `number` (seconds per slide) | — |
+
+`CarouselContent` puts its `className` on the track (the height of a vertical carousel; for another gap, `-ms-2` on it and `ps-2` on the items). `CarouselItem`
+is one slide. `CarouselPrevious` and `CarouselNext` take Button's props; `CarouselDots` a `div`'s.
