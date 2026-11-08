@@ -23,7 +23,8 @@ as JSON Schema.
 `menuItem`, `openingHours`…), so a field means the same in every block.
 
 **Family** and **block category** (`meta.family`, `meta.category`) — A block's audience, `marketing` or `storefront`,
-and its kind within it (`hero`, `pricing`, `menu`…), from `registry/block-categories.ts`.
+and its kind within it (`hero`, `pricing`, `menu`…), from `registry/block-categories.ts`. A block that serves both
+names both (`family: ["marketing", "storefront"]`, RFC-0009); `familiesOf(meta)` reads either form as a list.
 
 **Container query** — A block lays out by the width of its container (`@container`, `@md:`), not the window's
 ([ADR-0013](adr/0013-blocks-answer-their-container.md)).

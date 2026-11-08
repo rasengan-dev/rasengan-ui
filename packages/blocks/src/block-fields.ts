@@ -109,6 +109,65 @@ export const contactLink = z.object({
 	label: z.string().max(32).optional(),
 });
 
+// RFC-0009: reviews, staff, branches, offers, comparisons, integrations, and where a form sends its message.
+
+export const review = z.object({
+	author: z.string().min(1).max(48).describe("As the customer signs: 'Aïcha N.', 'Paul from Bonapriso'."),
+	rating: z.number().int().min(1).max(5),
+	text: z.string().min(12).max(400).describe("In the customer's words."),
+	date: z.string().date().optional().describe("'YYYY-MM-DD', shown in the project's locale."),
+	source: z.string().max(24).optional().describe("Where it was left, as a label: 'Google', 'In the shop'. Never a logo."),
+});
+
+export const ratingSummary = z.object({
+	score: z.number().min(0).max(5).describe("The average out of 5, e.g. 4.8."),
+	count: z.number().int().nonnegative().describe("How many reviews the average is over."),
+	source: z.string().max(24).optional().describe("Where the reviews were left, as a label: 'Google'."),
+	href: z.string().optional().describe("A link to read them all or to leave one."),
+});
+
+export const staffMember = z.object({
+	name: z.string().min(1).max(48),
+	role: z.string().min(1).max(48).describe("'Senior barber', 'Head chef'."),
+	image: image.optional(),
+	specialties: z.array(z.string().min(1).max(24)).max(4).optional().describe("Short: 'fades', 'braids', 'pastry'."),
+	cta: cta.optional().describe("Booking with this person, e.g. 'Book with Junior'."),
+});
+
+export const branch = z.object({
+	name: z.string().min(1).max(48).describe("Which one: 'Akwa', 'Bonamoussadi'."),
+	address,
+	openingHours: openingHours.optional(),
+	phone: z.string().max(24).optional().describe("In international form: '+237 6 99 00 00 00'."),
+	image: image.optional().describe("A static map or a photo of the front."),
+});
+
+export const offer = z.object({
+	title: z.string().min(1).max(48),
+	description: z.string().max(140).optional().describe("What it includes."),
+	price: money,
+	was: money.optional().describe("The usual price, shown struck through."),
+	endsAt: z.string().datetime({ offset: true }).optional().describe("When the offer ends, ISO 8601 with its offset; a countdown runs to it."),
+	cta: cta.optional(),
+});
+
+export const comparisonRow = z.object({
+	label: z.string().min(1).max(60).describe("What is compared: 'Set up in a day'."),
+	ours: z.union([z.boolean(), z.string().min(1).max(24)]).describe("Yes, no, or a short value ('2 min')."),
+	theirs: z.union([z.boolean(), z.string().min(1).max(24)]),
+});
+
+export const integration = z.object({
+	name: z.string().min(1).max(32),
+	logo: logo.optional(),
+	category: z.string().max(24).optional().describe("'Payments', 'Calendar'."),
+});
+
+export const formChannel = z.object({
+	kind: z.enum(["whatsapp", "sms", "email"]).describe("Where the visitor's message opens: their WhatsApp, their texts, or their mail app."),
+	to: z.string().min(1).max(120).describe("The business's number in international form, or its email address."),
+});
+
 export type Cta = z.infer<typeof cta>;
 export type Image = z.infer<typeof image>;
 export type Logo = z.infer<typeof logo>;
@@ -122,6 +181,14 @@ export type Service = z.infer<typeof service>;
 export type OpeningHours = z.infer<typeof openingHours>;
 export type Address = z.infer<typeof address>;
 export type ContactLink = z.infer<typeof contactLink>;
+export type Review = z.infer<typeof review>;
+export type RatingSummary = z.infer<typeof ratingSummary>;
+export type StaffMember = z.infer<typeof staffMember>;
+export type Branch = z.infer<typeof branch>;
+export type Offer = z.infer<typeof offer>;
+export type ComparisonRow = z.infer<typeof comparisonRow>;
+export type Integration = z.infer<typeof integration>;
+export type FormChannel = z.infer<typeof formChannel>;
 
 // ---- Definition ----------------------------------------------------------------------------------------------------
 

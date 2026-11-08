@@ -78,9 +78,9 @@ flowchart TB
 | `registry/components/<name>/` | ✅ 53 | One folder per component: `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts` (with its category, [ADR-0009](adr/0009-component-categories.md)), demos |
 | `registry/categories.ts` | ✅ | The seven categories, in the site's order: forms, dates, overlays, navigation, display, feedback, motion |
 | `registry/blocks/<name>/` | 🚧 19 | One folder per block ([RFC-0008](rfc/0008-blocks.md)): `<name>.base.tsx`, `schema.ts` (`export const schema`), `example.ts` (`export const example`), `meta.ts` (family, category, `useWhen`…; type imports only), demos. The ten marketing blocks of lot A and the nine storefront blocks of lot B |
-| `registry/placeholders/` | ✅ | Open placeholder images the examples show (a neutral product shot; flat illustrations of dishes, a room, a kitchen and a map); the `rasengan-placeholders` item installs them in `public/placeholders/`, and a block whose example uses one depends on it. The site serves copies at `/placeholders/` |
-| `registry/block-categories.ts` | ✅ | The two families (marketing, storefront) and their categories, in the site's order |
-| `packages/blocks` | ✅ | The `rasengan-blocks` registry item: `lib/blocks.ts` (`BlockProps`, `heading`, `BlockMeta`, `formatMoney`, no zod) and `lib/block-fields.ts` (zod field types, `defineBlock`), [ADR-0013](adr/0013-blocks-answer-their-container.md); its tests render every block on the server |
+| `registry/placeholders/` | ✅ | Open placeholder images the examples show (a neutral product shot; flat illustrations of dishes, a room, a kitchen and a map; six drawn logo marks with invented names, `logo-*.svg`, [RFC-0009](rfc/0009-blocks-second-wave.md); eleven Unsplash portraits, `person-*.svg` (WebP in an SVG: the registry carries text only), credited in `CREDITS.md`, [ADR-0014](adr/0014-placeholder-photos-from-unsplash.md)); the `rasengan-placeholders` item installs them in `public/placeholders/`, and a block whose example uses one depends on it. The site serves copies at `/placeholders/` |
+| `registry/block-categories.ts` | ✅ | The two families (marketing, storefront) and their categories, in the site's order; RFC-0009 added `integrations`, `comparison`, `booking`, `offers` and `team`, and `contact` for marketing |
+| `packages/blocks` | ✅ | The `rasengan-blocks` registry item: `lib/blocks.ts` (`BlockProps`, `heading`, `BlockMeta`, `familiesOf`, `formatMoney`, no zod) and `lib/block-fields.ts` (zod field types, RFC-0009's `review`, `staffMember`, `branch`, `offer`, `formChannel`… among them; `defineBlock`), [ADR-0013](adr/0013-blocks-answer-their-container.md); its tests render every block on the server |
 | `packages/core` | ✅ | What every component shares; published as the `rasengan-core` registry item |
 | `packages/villages` | ✅ | The token contract (CSS + TypeScript spec), the villages, the natures, the village engine, the contrast library |
 | `packages/motion` | ✅ | The `rasengan-motion` registry item ([RFC-0007](rfc/0007-motion-components.md)): motion modes, the village's motion tokens read from CSS, `Reveal`, `Stagger`, `Presence`, `Parallax`, `Tilt`, `Magnetic`, `splitText`. Used by the five motion components of lot A |
@@ -168,9 +168,10 @@ sequenceDiagram
   `registry:theme` items, one per village plus `rasengan-natures`.
 - Blocks are `registry:block` items: five files (`<name>.tsx`, a generated `index.ts`, `schema.ts`, `example.ts`,
   `meta.ts`) written to `<blocks alias>/<name>/` (`@/components/blocks` by default, `aliases.blocks` in
-  `rasengan-ui.json`). Their meta carries `family`, `category`, `useWhen`, `weightKb`, `contentSchema` (JSON Schema)
-  and `example`; `/r/<engine>/blocks.json` lists them all for agents. The MCP server lists them as `kind: "block"` and
-  `get_component` prints their content schema and example.
+  `rasengan-ui.json`). Their meta carries `family` (one family, or a list for a block in both, RFC-0009, published as
+  written), `category`, `useWhen`, `weightKb`, `contentSchema` (JSON Schema)
+  and `example`; `/r/<engine>/blocks.json` lists them all for agents. The MCP server lists them as `kind: "block"`
+  (its `family` filter matches any of a block's families) and `get_component` prints their content schema and example.
 - `rasengan-ui.json` at the project root holds the engine, village, nature, tint, aliases, registry and CSS file.
 - `update` compares the base copy, the lock hash, the local file and the registry: behind → write, diverged → 3-way
   merge with conflict markers, deleted → stays deleted.
@@ -190,7 +191,8 @@ sequenceDiagram
   a floating toolbar for the theme and the scheme. A block's showcase and the gallery's thumbnails wear a theme of
   their own (`useScopedTheme`, a VillageScope), set in their bar, so the page keeps its theme.
 - The header's sections: Docs, Components, Blocks, Motion. The sidebar and the pager follow the catalogue's order: by
-  category, then by title; on block pages, the blocks' (`src/blocks-catalogue.ts`): by family, category, title.
+  category, then by title; on block pages, the blocks' (`src/blocks-catalogue.ts`): by family, category, title. A block
+  in both families sorts by its first and shows under each in the sidebar and the gallery's family filter.
 - `template.tsx` runs the motion head script; the root layout has the one `MotionProvider`.
 - One settings store (`src/settings.ts`) drives the header's village, nature, tint and scheme; it writes `<html>`
   attributes and `localStorage`, restored before paint by an inline script in `template.tsx`.

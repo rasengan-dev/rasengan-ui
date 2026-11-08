@@ -40,8 +40,10 @@
   `offers`, `comparison`, `integrations`), lot D (ten storefront blocks: booking, menu cards, price list, staff,
   reviews…) and lot E (ten marketing blocks: split and wordmark heroes, comparison, integrations, contact form…), from
   a survey of what designers publish. Its seven questions were settled before acceptance (its "Decisions"). Order:
-  lots D0 and D, then RFC-0008's lot C, then lot E. Next, lot D0 (categories, field types, `family` as an array,
-  placeholder photos of people).
+  lots D0 and D, then RFC-0008's lot C, then lot E. Lot D0 built: the categories, the field types, `family` as a
+  list (registry check, `blocks.json`, MCP filter, the site's grouping; tried with a block in both families), six
+  drawn logo marks and eleven Unsplash portraits ([ADR-0014](adr/0014-placeholder-photos-from-unsplash.md)). Next,
+  lot D. No block in both families yet: the first comes with `contact-form` or `hero-wordmark`.
 
 ### Then
 

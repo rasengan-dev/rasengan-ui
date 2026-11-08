@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | Accepted (2026-11-08). Open questions settled, see "Decisions"; progress in the [roadmap](../roadmap.md) |
+| Status | Accepted (2026-11-08). Open questions settled, see "Decisions"; progress in the [roadmap](../roadmap.md). → "Placeholder people" (decision 4), the photos' licence, replaced by [ADR-0014](../adr/0014-placeholder-photos-from-unsplash.md) |
 | Date | 2026-11-08 |
 | Author | Dilane Kombou |
 | Builds on | RFC-0008 (blocks: contract, rules, quality gate, lots A to C), ADR-0013 (blocks answer their container), RFC-0005 (date and time pickers), RFC-0007 (motion components) |

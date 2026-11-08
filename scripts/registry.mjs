@@ -108,6 +108,9 @@ const BLOCK_BUDGET_KB = { default: 6, showcase: 12 };
 
 /* The placeholder images (registry/placeholders), served by the site at /placeholders/ like in a project. */
 const placeholders = existsSync(join(root, "registry/placeholders")) ? readdirSync(join(root, "registry/placeholders")).sort() : [];
+// A registry file travels as text: a binary image would arrive corrupted. Photos are wrapped in an SVG (ADR-0014).
+for (const file of placeholders)
+	if (!/\.(svg|md)$/.test(file)) throw new Error(`registry/placeholders/${file}: only SVG and Markdown travel through the registry; wrap a photo in an SVG (ADR-0014)`);
 mkdirSync(join(root, "apps/site/public/placeholders"), { recursive: true });
 for (const file of placeholders) copyFileSync(join(root, "registry/placeholders", file), join(root, "apps/site/public/placeholders", file));
 
@@ -118,9 +121,15 @@ if (existsSync(join(root, "registry/blocks"))) {
 		const dir = `registry/blocks/${entry.name}`;
 		const { meta } = await import(pathToFileURL(join(root, dir, "meta.ts")).href);
 		if (meta.name !== entry.name) throw new Error(`${dir}: meta.name is "${meta.name}"`);
-		if (!Object.hasOwn(blockFamilies, meta.family)) throw new Error(`${dir}: family "${meta.family}" is not one of ${Object.keys(blockFamilies).join(", ")}`);
+		// One family, or several (RFC-0009): each must exist, once, and have the block's category.
+		const families = typeof meta.family === "string" ? [meta.family] : meta.family;
+		if (!Array.isArray(families) || families.length === 0) throw new Error(`${dir}: family must be a family or a non-empty list of families`);
+		if (new Set(families).size !== families.length) throw new Error(`${dir}: family lists "${families.join(", ")}", with a repeat`);
+		for (const family of families)
+			if (!Object.hasOwn(blockFamilies, family)) throw new Error(`${dir}: family "${family}" is not one of ${Object.keys(blockFamilies).join(", ")}`);
 		const category = blockCategories[meta.category];
-		if (!category || !category.families.includes(meta.family)) throw new Error(`${dir}: category "${meta.category}" is not a ${meta.family} category (registry/block-categories.ts)`);
+		for (const family of families)
+			if (!category || !category.families.includes(family)) throw new Error(`${dir}: category "${meta.category}" is not a ${family} category (registry/block-categories.ts)`);
 		for (const file of [`${meta.name}.base.tsx`, ...BLOCK_FILES]) if (!existsSync(join(root, dir, file))) throw new Error(`${dir}: ${file} is missing`);
 		// Rendering a block must not load zod (ADR-0013): its component takes only types from the field types.
 		const code = read(`${dir}/${meta.name}.base.tsx`);
@@ -213,7 +222,7 @@ function sharedItems(url) {
 			name: "rasengan-blocks",
 			type: "registry:lib",
 			title: "Rasengan UI blocks",
-			description: "What blocks share (RFC-0008): BlockProps, BlockMeta and formatMoney in lib/blocks.ts; the content field types in zod (cta, image, stat, pricePlan, menuItem, openingHours…) in lib/block-fields.ts, which only schemas import.",
+			description: "What blocks share (RFC-0008, RFC-0009): BlockProps, BlockMeta, familiesOf and formatMoney in lib/blocks.ts; the content field types in zod (cta, image, stat, pricePlan, menuItem, openingHours, review, offer, formChannel…) in lib/block-fields.ts, which only schemas import.",
 			dependencies: ["zod@^3.25.76"],
 			files: [
 				{ path: "packages/blocks/src/blocks.ts", type: "registry:lib", target: "lib/blocks.ts" },

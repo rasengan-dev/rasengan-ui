@@ -45,7 +45,7 @@ const BlockGallery: PageComponent = () => {
     });
   }
 
-  const inFamily = blocks.filter((b) => family === 'all' || b.family === family);
+  const inFamily = blocks.filter((b) => family === 'all' || b.families.includes(family));
   const categories = useMemo(
     () =>
       (Object.keys(blockCategories) as BlockCategory[])
@@ -72,7 +72,7 @@ const BlockGallery: PageComponent = () => {
     ...(Object.keys(blockFamilies) as BlockFamily[]).map((id) => ({
       id,
       title: blockFamilies[id].title,
-      count: blocks.filter((b) => b.family === id).length,
+      count: blocks.filter((b) => b.families.includes(id)).length,
     })),
   ];
 

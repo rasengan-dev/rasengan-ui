@@ -37,7 +37,7 @@ type Width = keyof typeof widths;
 /** The blocks around this one: previous and next, and the first block of the previous and next category. */
 function neighbours(block: BlockEntry) {
   const index = blocks.indexOf(block);
-  const key = (b: BlockEntry) => `${b.family}/${b.category}`;
+  const key = (b: BlockEntry) => `${b.families[0]}/${b.category}`;
   const before = blocks.slice(0, index).reverse();
   const after = blocks.slice(index + 1);
   const previousCategory = before.find((b) => key(b) !== key(block));

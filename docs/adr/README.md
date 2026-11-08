@@ -34,6 +34,7 @@ No ADR for what one pull request can undo without consequences.
 | [0011](0011-carousel-and-cursor-without-motion.md) | Carousel on native scroll snapping; carousel and cursor animate without Motion | Accepted | 2026-11-07 |
 | [0012](0012-gallery-and-page-transition-without-motion.md) | Gallery 3D and Page Transition without Motion; the Rasengan.js adapter is documented wiring | Accepted | 2026-11-07 |
 | [0013](0013-blocks-answer-their-container.md) | Blocks lay out by their container's width, and render without zod | Accepted | 2026-11-08 |
+| [0014](0014-placeholder-photos-from-unsplash.md) | The placeholder photos of people come from Unsplash, under the Unsplash License | Accepted | 2026-11-08 |
 
 ## Template
 

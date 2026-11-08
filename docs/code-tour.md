@@ -11,9 +11,9 @@ rasengan-ui-app/
 ├── registry/
 │   ├── categories.ts        the component categories, in the site's order
 │   ├── components/<name>/   the components (53): source, styles, demos, meta
-│   ├── block-categories.ts  the block families and categories, in the site's order
+│   ├── block-categories.ts  the block families and categories, in the site's order (a block may name both families)
 │   ├── blocks/<name>/       the blocks (19): component, schema, example, meta, demo
-│   └── placeholders/        open images the block examples show (rasengan-placeholders)
+│   └── placeholders/        open images the block examples show (rasengan-placeholders), credited in CREDITS.md
 ├── packages/
 │   ├── core/                cn(), engine variants, VillageScope, Field context
 │   ├── villages/            the token contract, villages, natures, village engine, contrast
@@ -65,7 +65,7 @@ registry/blocks/cta-banner/
 └── cta-banner.demo.tsx      the docs preview
 ```
 
-- `pnpm registry` checks the folder (the files, the family and category), parses the example with the schema, writes
+- `pnpm registry` checks the folder (the files, the family or families, each with the category), parses the example with the schema, writes
   the JSON Schema and the gzip weight into the item, and generates the installed `index.ts`.
 - The component imports only `@/lib/blocks`, the components and types; from `@/lib/block-fields`, only types
   (`import type`), so rendering a block loads no zod ([ADR-0013](adr/0013-blocks-answer-their-container.md)).

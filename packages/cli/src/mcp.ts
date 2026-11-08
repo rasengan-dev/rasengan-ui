@@ -90,7 +90,8 @@ export function createServer(options: Options) {
 			const found = items
 				.filter(kinds[kind])
 				.filter((item) => !category || item.meta?.category === category)
-				.filter((item) => !blockFamily || item.meta?.family === blockFamily)
+				// A block's family is one name, or a list when it serves both (RFC-0009).
+				.filter((item) => !blockFamily || [item.meta?.family].flat().includes(blockFamily))
 				.filter((item) => words.every((word) => `${item.name} ${item.title ?? ""} ${item.description ?? ""}`.toLowerCase().includes(word)));
 			if (found.length === 0) {
 				const what = [query && `"${query}"`, category && `the ${category} category`].filter(Boolean).join(" in ");
@@ -98,7 +99,8 @@ export function createServer(options: Options) {
 			}
 			const lines = found.map((item) => {
 				const status = item.meta?.status ? `, ${item.meta.status}` : "";
-				const family = item.meta?.category ? `, ${item.meta.family ? `${item.meta.family} ` : ""}${item.meta.category}` : "";
+				const families = [item.meta?.family].flat().filter(Boolean).join(" and ");
+				const family = item.meta?.category ? `, ${families ? `${families} ` : ""}${item.meta.category}` : "";
 				// A block also says when to use it and what it weighs, to choose without reading it.
 				const block = item.type === "registry:block" ? ` Use when: ${item.meta?.useWhen ?? ""} (${item.meta?.weightKb ?? "?"} kB)` : "";
 				return `- ${item.name} (${item.title ?? item.name}${family}${status}): ${item.description ?? ""}${block}`;
@@ -134,7 +136,7 @@ export function createServer(options: Options) {
 			if (index.homepage && item.type === "registry:ui") lines.push(`- Docs: ${index.homepage.replace(/\/$/, "")}/components/${item.name}`);
 			if (item.type === "registry:block") {
 				const meta = item.meta ?? {};
-				lines.push(`- Family and category: ${meta.family}, ${meta.category}`, `- Use when: ${meta.useWhen ?? ""}`);
+				lines.push(`- Family and category: ${[meta.family].flat().join(" and ")}, ${meta.category}`, `- Use when: ${meta.useWhen ?? ""}`);
 				if (meta.avoidWhen) lines.push(`- Avoid when: ${meta.avoidWhen}`);
 				if ((meta.pairsWith as string[] | undefined)?.length) lines.push(`- Reads well before: ${(meta.pairsWith as string[]).join(", ")}`);
 				lines.push(`- Weight: ${meta.weightKb ?? "?"} kB gzip of its own code`);

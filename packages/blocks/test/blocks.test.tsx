@@ -6,7 +6,8 @@ import { pathToFileURL } from "node:url";
 import type { ComponentType } from "react";
 import { renderToString } from "react-dom/server";
 import type { ZodTypeAny } from "zod";
-import { formatMoney, heading } from "../src/blocks";
+import { familiesOf, formatMoney, heading, type BlockMeta } from "../src/blocks";
+import { blockCategories, blockFamilies } from "../../../registry/block-categories";
 
 /*
  * Every block in registry/blocks: its example parses with its schema, and it renders on the server, its text content
@@ -49,12 +50,30 @@ test("there is at least one block", () => {
 	assert.ok(names.length > 0);
 });
 
+test("familiesOf lists one family or several", () => {
+	assert.deepEqual(familiesOf({ family: "storefront" }), ["storefront"]);
+	assert.deepEqual(familiesOf({ family: ["marketing", "storefront"] }), ["marketing", "storefront"]);
+});
+
 for (const name of names) {
 	test(`${name}: the example parses with the schema`, async () => {
 		const { schema } = (await load(name, "schema.ts")) as { schema: ZodTypeAny };
 		const { example } = await load(name, "example.ts");
 		const parsed = schema.safeParse(example);
 		assert.ok(parsed.success, parsed.success ? "" : parsed.error.message);
+	});
+
+	test(`${name}: its families exist and each has its category`, async () => {
+		const { meta } = (await load(name, "meta.ts")) as { meta: BlockMeta };
+		const families = familiesOf(meta);
+		assert.ok(families.length > 0);
+		assert.equal(new Set(families).size, families.length, "no family twice");
+		const category = blockCategories[meta.category as keyof typeof blockCategories];
+		assert.ok(category, `category "${meta.category}" is in registry/block-categories.ts`);
+		for (const family of families) {
+			assert.ok(Object.hasOwn(blockFamilies, family), `family "${family}" exists`);
+			assert.ok((category.families as readonly string[]).includes(family), `"${meta.category}" is a ${family} category`);
+		}
 	});
 
 	test(`${name}: renders on the server with all its content, at the heading level asked`, async () => {

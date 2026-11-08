@@ -2,7 +2,7 @@
  * rasengan-blocks (RFC-0008): what a block's component and meta share. Installed as `@/lib/blocks`.
  *
  * - `BlockProps`, the props every block takes, and `heading`, the tag for its heading level.
- * - `BlockMeta`, what a block's meta.ts says.
+ * - `BlockMeta`, what a block's meta.ts says, and `familiesOf`, its families as a list.
  * - `formatMoney` and `moneyFormat`, so prices follow the project's locale.
  *
  * No zod here: the field types are in `@/lib/block-fields`, which only schemas import, so rendering a block costs no
@@ -34,8 +34,9 @@ export interface BlockMeta {
 	/** kebab-case, `<category>-<layout>`, the registry item's name. */
 	name: string;
 	title: string;
-	family: BlockFamily;
-	/** One of registry/block-categories.ts for its family. */
+	/** Its family, or its families when it serves both (RFC-0009): `["marketing", "storefront"]`. */
+	family: BlockFamily | readonly [BlockFamily, ...BlockFamily[]];
+	/** One of registry/block-categories.ts, a category of each of its families. */
 	category: string;
 	status: "beta" | "stable";
 	/** The day it was published, `YYYY-MM-DD`. */
@@ -53,6 +54,11 @@ export interface BlockMeta {
 	dependencies?: readonly string[];
 	/** Blocks that read well right after this one. */
 	pairsWith?: readonly string[];
+}
+
+/** A block's families as a list, whether its meta names one or several: `familiesOf(meta).includes("storefront")`. */
+export function familiesOf(meta: Pick<BlockMeta, "family">): BlockFamily[] {
+	return typeof meta.family === "string" ? [meta.family] : [...meta.family];
 }
 
 /** The props every block takes (RFC-0008, "Rules for a block"). */
