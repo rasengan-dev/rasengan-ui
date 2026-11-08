@@ -36,6 +36,7 @@ const groups = [
       { label: 'All blocks', description: 'Page sections built on the components, with content an agent can fill.', to: '/blocks' },
       { label: 'Landing page example', description: 'A startup landing page made only of marketing blocks.', to: '/examples/landing' },
       { label: 'Restaurant example', description: "A restaurant's site made only of storefront blocks.", to: '/examples/restaurant' },
+      { label: 'Salon example', description: "A barber and braiding studio's site made only of storefront blocks.", to: '/examples/salon' },
       { label: 'Motion', description: 'Components whose motion is the point, in a gallery.', to: '/motion' },
     ],
   },

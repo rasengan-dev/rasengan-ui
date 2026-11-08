@@ -1,0 +1,56 @@
+---
+metadata:
+  title: Gallery, social · Rasengan UI
+  description: "The project's own photos in a square three-column grid, like a profile's feed, with the account's handle and a follow link."
+---
+
+<BlockShowcase name="gallery-social" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add gallery-social
+```
+
+It installs into `components/blocks/gallery-social/`, with what it uses (Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { GallerySocial } from "@/components/blocks/gallery-social";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <GallerySocial content={home.gallery} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type GallerySocialContent } from "@/components/blocks/gallery-social";
+
+export const home = {
+  gallery: { ...example, title: "Follow us" } satisfies GallerySocialContent,
+};
+```
+
+The photos are files in your project, shown square: nothing is embedded or loaded from a social network. Copy a few recent posts in by hand, or from your build. The follow button links to `account.href`.
+
+## Content
+
+<ContentSchema name="gallery-social" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `GallerySocialContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"gallery"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- Each photo has its own `alt`.
+- The follow link says where it goes: the button text and the handle.

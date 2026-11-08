@@ -4,12 +4,13 @@
  * - `BlockProps`, the props every block takes, and `heading`, the tag for its heading level.
  * - `BlockMeta`, what a block's meta.ts says, and `familiesOf`, its families as a list.
  * - `formatMoney` and `moneyFormat`, so prices follow the project's locale.
+ * - `messageUrl`, the link that opens a WhatsApp chat, a text or an email with a message written (RFC-0009).
  *
  * No zod here: the field types are in `@/lib/block-fields`, which only schemas import, so rendering a block costs no
  * schema library.
  */
 
-import type { Money } from "./block-fields";
+import type { FormChannel, Money } from "./block-fields";
 
 /**
  * A price in the given locale, without cents when it has none: `formatMoney({ amount: 12, currency: "EUR" }, "fr-FR")`
@@ -23,6 +24,17 @@ export function formatMoney(money: Money, locale?: string): string {
 export function moneyFormat(money: Money): Intl.NumberFormatOptions {
 	const whole = Number.isInteger(money.amount);
 	return { style: "currency", currency: money.currency, ...(whole ? { minimumFractionDigits: 0, maximumFractionDigits: 0 } : {}) };
+}
+
+/**
+ * The link that opens the visitor's WhatsApp, texts or mail app, addressed to the business, with `text` written for
+ * them to send: forms and order links send by message, with no backend (RFC-0009).
+ */
+export function messageUrl(channel: FormChannel, text: string, subject?: string): string {
+	const number = channel.to.replace(/[^0-9]/g, "");
+	if (channel.kind === "whatsapp") return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+	if (channel.kind === "sms") return `sms:+${number}?body=${encodeURIComponent(text)}`;
+	return `mailto:${channel.to}?${subject ? `subject=${encodeURIComponent(subject)}&` : ""}body=${encodeURIComponent(text)}`;
 }
 
 // ---- Meta ----------------------------------------------------------------------------------------------------------

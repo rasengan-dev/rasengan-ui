@@ -1,0 +1,56 @@
+---
+metadata:
+  title: Location, branches · Rasengan UI
+  description: "One card per branch: a map or a photo, the address and a landmark, today's hours and open now, and call and directions links."
+---
+
+<BlockShowcase name="location-branches" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add location-branches
+```
+
+It installs into `components/blocks/location-branches/`, with what it uses (Badge, Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { LocationBranches } from "@/components/blocks/location-branches";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <LocationBranches content={home.locations} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type LocationBranchesContent } from "@/components/blocks/location-branches";
+
+export const home = {
+  locations: { ...example, title: "Our restaurants" } satisfies LocationBranchesContent,
+};
+```
+
+Give each branch its `openingHours` to show today's hours and an "open now" badge, read in `timeZone` (the business's, not the visitor's) once the page has loaded. A branch without hours shows its address and links only.
+
+## Content
+
+<ContentSchema name="location-branches" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `LocationBranchesContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"locations"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- The address is an `address` element.
+- The phone number is written on the call button.

@@ -22,6 +22,11 @@ as JSON Schema.
 **Field type** — A shared piece of content schema in `@/lib/block-fields` (`cta`, `image`, `money`, `pricePlan`,
 `menuItem`, `openingHours`…), so a field means the same in every block.
 
+**Message link** (`messageUrl`, a `formChannel` in the content) — How a storefront block sends with no backend
+([RFC-0009](rfc/0009-blocks-second-wave.md)): it opens the visitor's WhatsApp, texts or mail app, addressed to the
+business, with the request written; the visitor sends it. The booking form, the dish cards and the order links work
+this way.
+
 **Family** and **block category** (`meta.family`, `meta.category`) — A block's audience, `marketing` or `storefront`,
 and its kind within it (`hero`, `pricing`, `menu`…), from `registry/block-categories.ts`. A block that serves both
 names both (`family: ["marketing", "storefront"]`, RFC-0009); `familiesOf(meta)` reads either form as a list.

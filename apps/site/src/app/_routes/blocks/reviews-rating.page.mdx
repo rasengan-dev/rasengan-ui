@@ -1,0 +1,56 @@
+---
+metadata:
+  title: Reviews, rating · Rasengan UI
+  description: "The average rating written large with its stars, the count and where reviews were left, beside a masonry of starred reviews."
+---
+
+<BlockShowcase name="reviews-rating" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add reviews-rating
+```
+
+It installs into `components/blocks/reviews-rating/`, with what it uses (Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { ReviewsRating } from "@/components/blocks/reviews-rating";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <ReviewsRating content={home.reviews} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type ReviewsRatingContent } from "@/components/blocks/reviews-rating";
+
+export const home = {
+  reviews: { ...example, title: "Reviews" } satisfies ReviewsRatingContent,
+};
+```
+
+The summary and the reviews are content you copy in: nothing is fetched. Quote real reviews, shortened if needed, never rewritten, and give the real average and count. `source` is a label ("Google"); no third-party logo is shown.
+
+## Content
+
+<ContentSchema name="reviews-rating" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `ReviewsRatingContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"reviews"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- Every score is written out ("4.8 out of 5"); the stars are decoration.
+- Reviews are `figure`s with a `blockquote` and a caption naming the author.

@@ -179,6 +179,9 @@
 			"@/components/blocks/about-story": [
 				"./blocks/about-story/about-story.base.tsx"
 			],
+			"@/components/blocks/booking-form": [
+				"./blocks/booking-form/booking-form.base.tsx"
+			],
 			"@/components/blocks/contact-links": [
 				"./blocks/contact-links/contact-links.base.tsx"
 			],
@@ -194,8 +197,14 @@
 			"@/components/blocks/footer-columns": [
 				"./blocks/footer-columns/footer-columns.base.tsx"
 			],
+			"@/components/blocks/footer-local": [
+				"./blocks/footer-local/footer-local.base.tsx"
+			],
 			"@/components/blocks/gallery-grid": [
 				"./blocks/gallery-grid/gallery-grid.base.tsx"
+			],
+			"@/components/blocks/gallery-social": [
+				"./blocks/gallery-social/gallery-social.base.tsx"
 			],
 			"@/components/blocks/hero-centered": [
 				"./blocks/hero-centered/hero-centered.base.tsx"
@@ -206,17 +215,29 @@
 			"@/components/blocks/hours-week": [
 				"./blocks/hours-week/hours-week.base.tsx"
 			],
+			"@/components/blocks/location-branches": [
+				"./blocks/location-branches/location-branches.base.tsx"
+			],
 			"@/components/blocks/location-map": [
 				"./blocks/location-map/location-map.base.tsx"
 			],
 			"@/components/blocks/logos-marquee": [
 				"./blocks/logos-marquee/logos-marquee.base.tsx"
 			],
+			"@/components/blocks/menu-cards": [
+				"./blocks/menu-cards/menu-cards.base.tsx"
+			],
 			"@/components/blocks/menu-categories": [
 				"./blocks/menu-categories/menu-categories.base.tsx"
 			],
+			"@/components/blocks/menu-list": [
+				"./blocks/menu-list/menu-list.base.tsx"
+			],
 			"@/components/blocks/navbar-simple": [
 				"./blocks/navbar-simple/navbar-simple.base.tsx"
+			],
+			"@/components/blocks/offer-deal": [
+				"./blocks/offer-deal/offer-deal.base.tsx"
 			],
 			"@/components/blocks/order-banner": [
 				"./blocks/order-banner/order-banner.base.tsx"
@@ -224,11 +245,20 @@
 			"@/components/blocks/pricing-plans": [
 				"./blocks/pricing-plans/pricing-plans.base.tsx"
 			],
+			"@/components/blocks/reviews-rating": [
+				"./blocks/reviews-rating/reviews-rating.base.tsx"
+			],
 			"@/components/blocks/services-list": [
 				"./blocks/services-list/services-list.base.tsx"
 			],
+			"@/components/blocks/services-pricelist": [
+				"./blocks/services-pricelist/services-pricelist.base.tsx"
+			],
 			"@/components/blocks/stats-numbers": [
 				"./blocks/stats-numbers/stats-numbers.base.tsx"
+			],
+			"@/components/blocks/team-staff": [
+				"./blocks/team-staff/team-staff.base.tsx"
 			],
 			"@/components/blocks/testimonials-carousel": [
 				"./blocks/testimonials-carousel/testimonials-carousel.base.tsx"

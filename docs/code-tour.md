@@ -12,7 +12,7 @@ rasengan-ui-app/
 │   ├── categories.ts        the component categories, in the site's order
 │   ├── components/<name>/   the components (53): source, styles, demos, meta
 │   ├── block-categories.ts  the block families and categories, in the site's order (a block may name both families)
-│   ├── blocks/<name>/       the blocks (19): component, schema, example, meta, demo
+│   ├── blocks/<name>/       the blocks (29): component, schema, example, meta, demo
 │   └── placeholders/        open images the block examples show (rasengan-placeholders), credited in CREDITS.md
 ├── packages/
 │   ├── core/                cn(), engine variants, VillageScope, Field context
@@ -182,7 +182,7 @@ src/
 ├── settings.ts          one store for village, nature, tint, scheme (<html> attributes + localStorage)
 ├── catalogue.ts         the component list (meta + demos), sorted by category, and `groups`, for the sidebar, pager, index, search
 ├── components/theme-scope.tsx  useScopedTheme and ScopedTheme: a theme for part of the page (showcase, thumbnails)
-├── content/restaurant.ts  the restaurant example's content for the marketing blocks it reuses
+├── content/             the example pages' content: restaurant.ts (its navbar), salon.ts (every block but the team)
 ├── blocks-catalogue.ts  the block list (meta, demo, source, schema, example), by family and category, and `blockGroups`
 ├── app/_routes/
 │   ├── layout.tsx       header
@@ -191,7 +191,7 @@ src/
 │   ├── components/      one <name>.page.mdx per component, plus the index
 │   ├── blocks/          one <name>.page.mdx per block; index.page.tsx, the gallery
 │   ├── preview/         [name].page.tsx: one block full window, a page per block (generatePaths)
-│   ├── examples/        landing.page.tsx, restaurant.page.tsx: pages made only of blocks; layout.tsx adds the floating toolbar (the
+│   ├── examples/        landing.page.tsx, restaurant.page.tsx, salon.page.tsx: pages made only of blocks; layout.tsx adds the floating toolbar (the
 │   │                    root layout drops the site header on /examples)
 │   ├── motion/          index.page.tsx: the motion gallery (replay, reduced-motion switch)
 │   └── villages/create.page.tsx   the workshop
