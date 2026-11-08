@@ -33,7 +33,13 @@
 - **Motion components** ([RFC-0007](rfc/0007-motion-components.md)): all four lots built.
 - **Blocks** ([RFC-0008](rfc/0008-blocks.md), accepted): lots 0 and A built. Left from lot 0: installing a block in
   Jutsify's sandbox registry copy (they install in the playground). Next, lot B (a storefront, for Jutsify: its
-  placeholder photos join `registry/placeholders/`), then lot C (showcase blocks).
+  placeholder photos join `registry/placeholders/`), then RFC-0009's lots D0 and D, then lot C (showcase blocks).
+- **Blocks, second wave** ([RFC-0009](rfc/0009-blocks-second-wave.md), accepted): new categories (`team`, `booking`,
+  `offers`, `comparison`, `integrations`), lot D (ten storefront blocks: booking, menu cards, price list, staff,
+  reviews…) and lot E (ten marketing blocks: split and wordmark heroes, comparison, integrations, contact form…), from
+  a survey of what designers publish. Its seven questions were settled before acceptance (its "Decisions"). Order:
+  lots D0 and D, then RFC-0008's lot C, then lot E. Next, lot D0 (categories, field types, `family` as an array,
+  placeholder photos of people).
 
 ### Then
 
