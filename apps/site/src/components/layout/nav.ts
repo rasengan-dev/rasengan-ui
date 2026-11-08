@@ -2,7 +2,7 @@
 export const sections = [
   { label: 'Docs', to: '/docs/installation', match: (path: string) => path.startsWith('/docs') },
   { label: 'Components', to: '/components', match: (path: string) => path.startsWith('/components') },
-  { label: 'Blocks', to: '/blocks', match: (path: string) => path.startsWith('/blocks') },
+  { label: 'Blocks', to: '/blocks', match: (path: string) => path.startsWith('/blocks') || path.startsWith('/examples') },
   { label: 'Motion', to: '/motion', match: (path: string) => path.startsWith('/motion') },
 ];
 

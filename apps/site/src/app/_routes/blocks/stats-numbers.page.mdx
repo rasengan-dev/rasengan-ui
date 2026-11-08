@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Stats, numbers · Rasengan UI
+  description: "A title and two to four large numbers that roll into place when scrolled into view, with their source."
+---
+
+<BlockShowcase name="stats-numbers" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add stats-numbers
+```
+
+It installs into `components/blocks/stats-numbers/`, with what it uses (Number roll) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { StatsNumbers } from "@/components/blocks/stats-numbers";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <StatsNumbers content={home.stats} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type StatsNumbersContent } from "@/components/blocks/stats-numbers";
+
+export const home = {
+  stats: {
+    ...example,
+    title: "Your section title",
+  } satisfies StatsNumbersContent,
+};
+```
+
+`format` is `number`, `percent` (0.94 is 94%), `currency` (with `currency`) or `compact`; `locale` sets how numbers read.
+
+## Content
+
+<ContentSchema name="stats-numbers" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `StatsNumbersContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"stats"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the root element, for spacing |
+
+## Accessibility
+
+- The numbers are a description list: each label (`dt`) with its value (`dd`).
+- Values are in the server's HTML; NumberRoll rolls them in view and leaves them still with motion off.

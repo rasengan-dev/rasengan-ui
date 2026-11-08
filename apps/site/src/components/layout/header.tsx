@@ -16,8 +16,8 @@ import { repository, sections } from './nav';
  */
 export function Header() {
   const { pathname } = useLocation();
-  // The workshop fills the window, as an app would: its header spans it too, lined up with the panels below.
-  const full = pathname.startsWith('/villages');
+  // The workshop and the blocks pages fill the window: their header spans it too, lined up with what is below.
+  const full = pathname.startsWith('/villages') || pathname.startsWith('/blocks');
   // New leads to the workshop: on the workshop itself it has nothing to offer.
   const creating = pathname.replace(/\/$/, '') === '/villages/create';
   return (

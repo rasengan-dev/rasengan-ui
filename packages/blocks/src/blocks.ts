@@ -3,7 +3,7 @@
  *
  * - `BlockProps`, the props every block takes, and `heading`, the tag for its heading level.
  * - `BlockMeta`, what a block's meta.ts says.
- * - `formatMoney`, so prices follow the project's locale.
+ * - `formatMoney` and `moneyFormat`, so prices follow the project's locale.
  *
  * No zod here: the field types are in `@/lib/block-fields`, which only schemas import, so rendering a block costs no
  * schema library.
@@ -11,9 +11,18 @@
 
 import type { Money } from "./block-fields";
 
-/** A price in the given locale: `formatMoney({ amount: 12, currency: "EUR" }, "fr-FR")` is "12,00 €". */
+/**
+ * A price in the given locale, without cents when it has none: `formatMoney({ amount: 12, currency: "EUR" }, "fr-FR")`
+ * is "12 €", `{ amount: 12.5, … }` is "12,50 €".
+ */
 export function formatMoney(money: Money, locale?: string): string {
-	return new Intl.NumberFormat(locale, { style: "currency", currency: money.currency }).format(money.amount);
+	return new Intl.NumberFormat(locale, moneyFormat(money)).format(money.amount);
+}
+
+/** The `Intl.NumberFormat` options `formatMoney` uses, for a NumberRoll that shows a price. */
+export function moneyFormat(money: Money): Intl.NumberFormatOptions {
+	const whole = Number.isInteger(money.amount);
+	return { style: "currency", currency: money.currency, ...(whole ? { minimumFractionDigits: 0, maximumFractionDigits: 0 } : {}) };
 }
 
 // ---- Meta ----------------------------------------------------------------------------------------------------------

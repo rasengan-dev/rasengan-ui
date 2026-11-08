@@ -42,7 +42,7 @@ flowchart LR
 flowchart TB
   subgraph source[Sources]
     comps["✅ registry/components<br/>53 components, 8 of them motion"]
-    blocks["🚧 registry/blocks<br/>1 block (lot 0 pilot)"]
+    blocks["🚧 registry/blocks<br/>10 marketing blocks (lots 0 and A)"]
     blockslib["✅ packages/blocks<br/>rasengan-blocks: BlockProps, BlockMeta, field types"]
     core["✅ packages/core<br/>cn, ui-* variants, VillageScope, Field context"]
     villages["✅ packages/villages<br/>contract, villages, natures, engine, contrast"]
@@ -77,7 +77,8 @@ flowchart TB
 |---|---|---|
 | `registry/components/<name>/` | ✅ 53 | One folder per component: `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts` (with its category, [ADR-0009](adr/0009-component-categories.md)), demos |
 | `registry/categories.ts` | ✅ | The seven categories, in the site's order: forms, dates, overlays, navigation, display, feedback, motion |
-| `registry/blocks/<name>/` | 🚧 1 | One folder per block ([RFC-0008](rfc/0008-blocks.md)): `<name>.base.tsx`, `schema.ts` (`export const schema`), `example.ts` (`export const example`), `meta.ts` (family, category, `useWhen`…; type imports only), demos. Lot 0 has the pilot, `cta-banner` |
+| `registry/blocks/<name>/` | 🚧 10 | One folder per block ([RFC-0008](rfc/0008-blocks.md)): `<name>.base.tsx`, `schema.ts` (`export const schema`), `example.ts` (`export const example`), `meta.ts` (family, category, `useWhen`…; type imports only), demos. The ten marketing blocks of lot A |
+| `registry/placeholders/` | ✅ | Open placeholder images the examples show (a neutral product shot); the `rasengan-placeholders` item installs them in `public/placeholders/`, and a block whose example uses one depends on it. The site serves copies at `/placeholders/` |
 | `registry/block-categories.ts` | ✅ | The two families (marketing, storefront) and their categories, in the site's order |
 | `packages/blocks` | ✅ | The `rasengan-blocks` registry item: `lib/blocks.ts` (`BlockProps`, `heading`, `BlockMeta`, `formatMoney`, no zod) and `lib/block-fields.ts` (zod field types, `defineBlock`), [ADR-0013](adr/0013-blocks-answer-their-container.md); its tests render every block on the server |
 | `packages/core` | ✅ | What every component shares; published as the `rasengan-core` registry item |
@@ -179,10 +180,15 @@ sequenceDiagram
 - Rasengan.js 2 app, **prerendered** at build time and deployed on Hiraiship as static files
   ([ADR-0005](adr/0005-prerendered-site-on-hiraiship.md)). Dev server on port 3200.
 - Pages: home, `/docs/*` (installation, CLI, MCP, villages), `/components` (by category) and `/components/<name>`
-  (MDX, one per component, [ADR-0006](adr/0006-site-mdx-follows-hiraiship-docs.md)), `/blocks` (by family and
-  category) and `/blocks/<name>` (MDX, a wider column: `BlockPreview` at phone, tablet and desktop widths, the
-  `ContentSchema` table), `/motion` (the motion gallery:
+  (MDX, one per component, [ADR-0006](adr/0006-site-mdx-follows-hiraiship-docs.md)), `/blocks` (the gallery:
+  every block as a live, scaled-down thumbnail, with search, a family filter, a category rail and `?category=`),
+  `/blocks/<name>` (MDX: `BlockShowcase` on top, after shadcnblocks' block pages, then installation, usage, the
+  `ContentSchema` table, props), `/preview/<name>` (one block alone, full window, one page per block from
+  `generatePaths`), `/examples/landing` (a landing page made only of blocks), `/motion` (the motion gallery:
   the village reveal and, from lot A, the motion components), `/villages/create` (the workshop).
+- The blocks pages take the whole window, header included. `/examples/*` and `/preview/*` have no site header and
+  a floating toolbar for the theme and the scheme. A block's showcase and the gallery's thumbnails wear a theme of
+  their own (`useScopedTheme`, a VillageScope), set in their bar, so the page keeps its theme.
 - The header's sections: Docs, Components, Blocks, Motion. The sidebar and the pager follow the catalogue's order: by
   category, then by title; on block pages, the blocks' (`src/blocks-catalogue.ts`): by family, category, title.
 - `template.tsx` runs the motion head script; the root layout has the one `MotionProvider`.
@@ -198,7 +204,7 @@ sequenceDiagram
 | `pnpm typecheck` | core, villages, motion, blocks, registry, site, CLI | — |
 | `pnpm test` | villages (contract drift, contrast, engine), motion (server render, split text, defaults against the CSS), blocks (each example parses; each block renders on the server with all its content, at the heading level asked) and CLI; also the pre-commit hook | — |
 | `pnpm contrast` | every token pair of every village × nature × scheme against WCAG (text 4.5:1, control edges 3:1) | — |
-| `pnpm axe` | WCAG 2.2 AA on every page × village × scheme (blocks pages included), overlays open, `/motion` animating and with motion off; report in `.axe/report.md` | site running |
-| `pnpm screenshots` | every demo × village × scheme × nature against a local baseline in `.screenshots/`; pages load with `?motion=final`, so motion components are captured in their end state | site running |
+| `pnpm axe` | WCAG 2.2 AA on every page × village × scheme (block pages and the example page also at 360px), overlays open, `/motion` animating and with motion off; report in `.axe/report.md` | site running |
+| `pnpm screenshots` | every demo × village × scheme × nature against a local baseline in `.screenshots/`; pages load with `?motion=final`, so motion components are captured in their end state; each block's preview at 360px and 1440px | site running |
 
 There is no CI yet: the gate runs locally (see the [roadmap](roadmap.md)).

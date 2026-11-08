@@ -168,6 +168,33 @@
 			"@/components/blocks/cta-banner": [
 				"../../registry/blocks/cta-banner/cta-banner.base.tsx"
 			],
+			"@/components/blocks/faq-accordion": [
+				"../../registry/blocks/faq-accordion/faq-accordion.base.tsx"
+			],
+			"@/components/blocks/features-grid": [
+				"../../registry/blocks/features-grid/features-grid.base.tsx"
+			],
+			"@/components/blocks/footer-columns": [
+				"../../registry/blocks/footer-columns/footer-columns.base.tsx"
+			],
+			"@/components/blocks/hero-centered": [
+				"../../registry/blocks/hero-centered/hero-centered.base.tsx"
+			],
+			"@/components/blocks/logos-marquee": [
+				"../../registry/blocks/logos-marquee/logos-marquee.base.tsx"
+			],
+			"@/components/blocks/navbar-simple": [
+				"../../registry/blocks/navbar-simple/navbar-simple.base.tsx"
+			],
+			"@/components/blocks/pricing-plans": [
+				"../../registry/blocks/pricing-plans/pricing-plans.base.tsx"
+			],
+			"@/components/blocks/stats-numbers": [
+				"../../registry/blocks/stats-numbers/stats-numbers.base.tsx"
+			],
+			"@/components/blocks/testimonials-carousel": [
+				"../../registry/blocks/testimonials-carousel/testimonials-carousel.base.tsx"
+			],
 			"@/components/blocks/*": [
 				"../../registry/blocks/*"
 			],

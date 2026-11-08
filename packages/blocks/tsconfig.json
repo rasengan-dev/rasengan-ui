@@ -6,6 +6,7 @@
 	"include": [
 		"src",
 		"test",
-		"../../registry/blocks"
+		"../../registry/blocks",
+		"../../registry/components"
 	]
 }

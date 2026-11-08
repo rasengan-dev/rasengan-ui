@@ -34,6 +34,7 @@ const groups = [
       { label: 'MCP server', description: 'Let an agent read the components and install them.', to: '/docs/mcp' },
       { label: 'All components', description: 'Every component, with its demo.', to: '/components' },
       { label: 'All blocks', description: 'Page sections built on the components, with content an agent can fill.', to: '/blocks' },
+      { label: 'Landing page example', description: 'A startup landing page made only of marketing blocks.', to: '/examples/landing' },
       { label: 'Motion', description: 'Components whose motion is the point, in a gallery.', to: '/motion' },
     ],
   },

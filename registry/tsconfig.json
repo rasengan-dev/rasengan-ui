@@ -179,6 +179,33 @@
 			"@/components/blocks/cta-banner": [
 				"./blocks/cta-banner/cta-banner.base.tsx"
 			],
+			"@/components/blocks/faq-accordion": [
+				"./blocks/faq-accordion/faq-accordion.base.tsx"
+			],
+			"@/components/blocks/features-grid": [
+				"./blocks/features-grid/features-grid.base.tsx"
+			],
+			"@/components/blocks/footer-columns": [
+				"./blocks/footer-columns/footer-columns.base.tsx"
+			],
+			"@/components/blocks/hero-centered": [
+				"./blocks/hero-centered/hero-centered.base.tsx"
+			],
+			"@/components/blocks/logos-marquee": [
+				"./blocks/logos-marquee/logos-marquee.base.tsx"
+			],
+			"@/components/blocks/navbar-simple": [
+				"./blocks/navbar-simple/navbar-simple.base.tsx"
+			],
+			"@/components/blocks/pricing-plans": [
+				"./blocks/pricing-plans/pricing-plans.base.tsx"
+			],
+			"@/components/blocks/stats-numbers": [
+				"./blocks/stats-numbers/stats-numbers.base.tsx"
+			],
+			"@/components/blocks/testimonials-carousel": [
+				"./blocks/testimonials-carousel/testimonials-carousel.base.tsx"
+			],
 			"@/components/blocks/*": [
 				"./blocks/*"
 			],

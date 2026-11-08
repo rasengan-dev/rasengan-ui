@@ -4,12 +4,7 @@ metadata:
   description: A framed band with a headline revealed word by word, a line of reassurance, two calls to action and small print.
 ---
 
-# Call to action, banner
-
-A framed band with a headline revealed word by word, a line of reassurance, two calls to action and small print. Use it
-near the end of a page, to turn interest into one clear action; avoid it when there are more than two actions to offer.
-
-<BlockPreview name="cta-banner" />
+<BlockShowcase name="cta-banner" />
 
 ## Installation
 
@@ -28,11 +23,11 @@ Without `content`, the block shows its example. Pass your own, typed by the bloc
 import { CtaBanner, type CtaBannerContent } from "@/components/blocks/cta-banner";
 
 const content: CtaBannerContent = {
-  headline: "Ship your landing page today",
-  subline: "Pick a village, write your content, and every section follows.",
-  primary: { label: "Get started", href: "/docs/installation" },
-  secondary: { label: "Browse blocks", href: "/blocks" },
-  note: "Free and open source, MIT licensed.",
+  headline: "Get paid on time, starting this week",
+  subline: "Send your first invoice in minutes. Senbon chases it for you.",
+  primary: { label: "Start free", href: "/signup" },
+  secondary: { label: "Book a demo", href: "/demo" },
+  note: "Free for 14 days. No card needed.",
 };
 
 export default function Home() {

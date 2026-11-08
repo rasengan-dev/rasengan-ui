@@ -54,7 +54,7 @@ Each block is a folder in `registry/blocks/<name>/` ([RFC-0008](docs/rfc/0008-bl
 
 Then a page in `apps/site/src/app/_routes/blocks/<name>.page.mdx`. A block's root is a `<section>` with `@container`,
 named by its heading; it lays out with container variants (`@md:`), never `md:`
-([ADR-0013](docs/adr/0013-blocks-answer-their-container.md)); its component never imports `@/lib/block-fields`, so it
+([ADR-0013](docs/adr/0013-blocks-answer-their-container.md)); its component imports only types from `@/lib/block-fields`, so it
 loads no zod. `pnpm registry` refuses a block whose example does not parse or that weighs over its budget (6 kB gzip,
 12 kB for showcase and bento).
 

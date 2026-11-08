@@ -6,26 +6,27 @@
  *   pnpm axe          # every page, or: pnpm axe button dialog
  *
  * Runs axe-core's WCAG 2.2 A and AA rules on the home page, /components, /motion, each component page, /blocks and
- * each block page,
+ * each block page (also at 360px), the example landing page,
  * in every village, light and dark, and again with each overlay open. Violations are grouped by
  * rule, with where they happen, in the console and in .axe/report.md; the run fails on any.
  */
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { join } from "node:path";
-import { blocks, closeOverlay, combos as allCombos, dress, isOverlay, launch, open, openOverlay, parseArgs, pool, root, siteIsUp } from "./site-pages.mjs";
+import { blockWidths, closeOverlay, combos as allCombos, dress, isOverlay, launch, open, openOverlay, parseArgs, pool, root, siteIsUp } from "./site-pages.mjs";
 
 const axeSource = readFileSync(createRequire(import.meta.url).resolve("axe-core/axe.min.js"), "utf8");
 const tags = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 
-const { names } = parseArgs();
+const { names, blockNames } = parseArgs();
 /* Named components: only their pages. Otherwise the home page and the index too. */
 const named = process.argv.slice(2).some((arg) => !arg.startsWith("--"));
 // /motion twice: animating, and with motion off (what reduced-motion users get).
 const pages = [
 	...(named ? [] : ["/", "/components", "/motion", "/motion?motion=off"]),
 	...names.map((name) => `/components/${name}`),
-	...(named ? [] : ["/blocks", ...blocks.map((name) => `/blocks/${name}`)]),
+	...(named ? [] : ["/blocks", "/examples/landing"]),
+	...blockNames.map((name) => `/blocks/${name}`),
 ];
 const combos = allCombos({ onmyoton: false });
 
@@ -69,6 +70,8 @@ const run = (page, skip = []) =>
 		{ runOnly: tags, exclude, skip },
 	);
 
+const atPhoneWidth = (path) => path.startsWith("/blocks/") || path.startsWith("/examples/");
+
 async function audit(path) {
 	const page = await context.newPage();
 	try {
@@ -85,6 +88,14 @@ async function audit(path) {
 				await closeOverlay(page, name);
 			}
 		}
+		// Blocks lay out by their container (ADR-0013): their pages are audited at a phone's width too.
+		if (atPhoneWidth(path)) {
+			await page.setViewportSize(blockWidths[0].viewport);
+			for (const combo of combos) {
+				await dress(page, combo);
+				record(await run(page), `${path} · ${combo.village} ${combo.scheme} · ${blockWidths[0].id}px`);
+			}
+		}
 	} finally {
 		await page.close();
 	}
@@ -99,7 +110,7 @@ process.stdout.write("\n");
 
 const order = { critical: 0, serious: 1, moderate: 2, minor: 3 };
 const sorted = [...rules.entries()].sort(([, a], [, b]) => order[a.impact] - order[b.impact]);
-const runs = pages.length * combos.length + names.filter(isOverlay).length * combos.length;
+const runs = (pages.length + names.filter(isOverlay).length + pages.filter(atPhoneWidth).length) * combos.length;
 
 /* Where a target fails everywhere it is checked, say so rather than list every village. */
 const places = (wheres) => {

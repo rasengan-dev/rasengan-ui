@@ -17,7 +17,7 @@
  * apps/site, as Hiraiship runs it) uses https://ui.rasengan.dev.
  */
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { gzipSync } from "node:zlib";
@@ -106,6 +106,11 @@ const BLOCK_FILES = ["schema.ts", "example.ts", "meta.ts"];
 /* Weight budget of a block's own code, gzip (RFC-0008, "Quality gate"). */
 const BLOCK_BUDGET_KB = { default: 6, showcase: 12 };
 
+/* The placeholder images (registry/placeholders), served by the site at /placeholders/ like in a project. */
+const placeholders = existsSync(join(root, "registry/placeholders")) ? readdirSync(join(root, "registry/placeholders")).sort() : [];
+mkdirSync(join(root, "apps/site/public/placeholders"), { recursive: true });
+for (const file of placeholders) copyFileSync(join(root, "registry/placeholders", file), join(root, "apps/site/public/placeholders", file));
+
 const blocks = [];
 if (existsSync(join(root, "registry/blocks"))) {
 	for (const entry of readdirSync(join(root, "registry/blocks"), { withFileTypes: true })) {
@@ -117,6 +122,10 @@ if (existsSync(join(root, "registry/blocks"))) {
 		const category = blockCategories[meta.category];
 		if (!category || !category.families.includes(meta.family)) throw new Error(`${dir}: category "${meta.category}" is not a ${meta.family} category (registry/block-categories.ts)`);
 		for (const file of [`${meta.name}.base.tsx`, ...BLOCK_FILES]) if (!existsSync(join(root, dir, file))) throw new Error(`${dir}: ${file} is missing`);
+		// Rendering a block must not load zod (ADR-0013): its component takes only types from the field types.
+		const code = read(`${dir}/${meta.name}.base.tsx`);
+		if (/import\s+(?!type\b)[^;]*from\s+"@\/lib\/block-fields"/.test(code))
+			throw new Error(`${dir}: ${meta.name}.base.tsx imports values from @/lib/block-fields; use \`import type\` (ADR-0013)`);
 
 		// Schema and example, bundled so the @/lib/block-fields alias resolves: the example must parse, the schema becomes JSON Schema.
 		const bundled = await build({
@@ -210,6 +219,13 @@ function sharedItems(url) {
 				{ path: "packages/blocks/src/blocks.ts", type: "registry:lib", target: "lib/blocks.ts" },
 				{ path: "packages/blocks/src/block-fields.ts", type: "registry:lib", target: "lib/block-fields.ts" },
 			],
+		},
+		{
+			name: "rasengan-placeholders",
+			type: "registry:file",
+			title: "Rasengan UI placeholder images",
+			description: "The open images the block examples show (RFC-0008), installed in public/placeholders/ until you replace them.",
+			files: placeholders.map((file) => ({ path: `registry/placeholders/${file}`, type: "registry:file", target: `public/placeholders/${file}` })),
 		},
 		...Object.entries(villages).map(([name, village]) => ({
 			name: `village-${name}`,
@@ -312,7 +328,13 @@ for (const engine of ENGINES) {
 				example,
 			},
 			dependencies: ["zod@^3.25.76", ...(meta.dependencies ?? [])],
-			registryDependencies: [url("rasengan-core"), url("rasengan-blocks"), ...meta.components.map(url)],
+			// An example that shows a registry placeholder brings it along, so the block renders as in the docs.
+			registryDependencies: [
+				url("rasengan-core"),
+				url("rasengan-blocks"),
+				...(JSON.stringify(example).includes("/placeholders/") ? [url("rasengan-placeholders")] : []),
+				...meta.components.map(url),
+			],
 			files: [`${meta.name}.tsx`, "index.ts", ...BLOCK_FILES].map((file) => ({ path: `${folder}/${file}`, type: "registry:block", target: `components/blocks/${meta.name}/${file}` })),
 		});
 	}

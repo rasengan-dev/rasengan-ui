@@ -24,6 +24,8 @@ if (!existsSync(out)) throw new Error(`No prerendered site in ${relative(root, o
 const routes = readdirSync(out, { recursive: true })
 	.filter((file) => file === "index.html" || file.endsWith(`${sep}index.html`))
 	.map((file) => `/${file.slice(0, -"index.html".length).split(sep).join("/")}`)
+	// The parent of the block previews (/preview/<name>) is an empty page the prerender writes anyway.
+	.filter((route) => route !== "/preview/")
 	.sort();
 
 const escape = (text) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");

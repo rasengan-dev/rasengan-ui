@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Features, grid · Rasengan UI
+  description: "A title and three to nine features, each an icon, a benefit and one sentence, in one to three columns."
+---
+
+<BlockShowcase name="features-grid" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add features-grid
+```
+
+It installs into `components/blocks/features-grid/`, with what it uses (no component, Lucide icons) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { FeaturesGrid } from "@/components/blocks/features-grid";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <FeaturesGrid content={home.features} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type FeaturesGridContent } from "@/components/blocks/features-grid";
+
+export const home = {
+  features: {
+    ...example,
+    title: "What your product does for them",
+  } satisfies FeaturesGridContent,
+};
+```
+
+Icons are picked by name from a fixed set of sixteen (`featureIcons` in `schema.ts`), so the block imports only those.
+
+## Content
+
+<ContentSchema name="features-grid" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `FeaturesGridContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"features"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the root element, for spacing |
+
+## Accessibility
+
+- A `<section>` named by its title; each feature is a list item whose title is a heading one level below.
+- Icons are decorative (`aria-hidden`): the title says what the feature is.

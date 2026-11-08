@@ -1,9 +1,9 @@
 import type { CtaBannerContent } from "./schema";
 
 export const example: CtaBannerContent = {
-	headline: "Ship your landing page today",
-	subline: "Pick a village, write your content, and every section follows. The components are yours once installed.",
-	primary: { label: "Get started", href: "/docs/installation" },
-	secondary: { label: "Browse blocks", href: "/blocks" },
-	note: "Free and open source, MIT licensed.",
+	headline: "Get paid on time, starting this week",
+	subline: "Send your first invoice in minutes. Senbon chases it for you, and your client pays in one tap.",
+	primary: { label: "Start free", href: "/signup" },
+	secondary: { label: "Book a demo", href: "/demo" },
+	note: "Free for 14 days. No card needed.",
 };

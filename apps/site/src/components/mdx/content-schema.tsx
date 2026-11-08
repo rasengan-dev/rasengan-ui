@@ -73,7 +73,8 @@ export function ContentSchema({ name }: { name: string }) {
   if (!schema) return null;
   const json = zodToJsonSchema(schema, { $refStrategy: 'none' }) as JsonSchema;
   return (
-    <div className="my-6 w-full overflow-x-auto rounded-lg border-village">
+    // Focusable and named: on a phone the table scrolls sideways, and the keyboard must be able to scroll it.
+    <div role="region" aria-label="Content fields" tabIndex={0} className="my-6 w-full overflow-x-auto rounded-lg border-village outline-none focus-visible:focus-ring">
       <table className="w-full border-collapse text-sm">
         <thead>
           <tr>

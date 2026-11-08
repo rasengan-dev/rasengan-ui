@@ -65,6 +65,9 @@ function BlocksSidebar({ current }: { current: string }) {
         <Item to="/blocks" active={current === '/blocks'}>
           All blocks
         </Item>
+        <Item to="/examples/landing" active={false}>
+          Example: landing page
+        </Item>
         <Item to="/components" active={false}>
           Components
         </Item>
