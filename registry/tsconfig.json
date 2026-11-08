@@ -176,6 +176,12 @@
 			"@/components/ui/typewriter": [
 				"./components/typewriter/typewriter.base.tsx"
 			],
+			"@/components/blocks/about-story": [
+				"./blocks/about-story/about-story.base.tsx"
+			],
+			"@/components/blocks/contact-links": [
+				"./blocks/contact-links/contact-links.base.tsx"
+			],
 			"@/components/blocks/cta-banner": [
 				"./blocks/cta-banner/cta-banner.base.tsx"
 			],
@@ -188,17 +194,38 @@
 			"@/components/blocks/footer-columns": [
 				"./blocks/footer-columns/footer-columns.base.tsx"
 			],
+			"@/components/blocks/gallery-grid": [
+				"./blocks/gallery-grid/gallery-grid.base.tsx"
+			],
 			"@/components/blocks/hero-centered": [
 				"./blocks/hero-centered/hero-centered.base.tsx"
+			],
+			"@/components/blocks/hero-photo": [
+				"./blocks/hero-photo/hero-photo.base.tsx"
+			],
+			"@/components/blocks/hours-week": [
+				"./blocks/hours-week/hours-week.base.tsx"
+			],
+			"@/components/blocks/location-map": [
+				"./blocks/location-map/location-map.base.tsx"
 			],
 			"@/components/blocks/logos-marquee": [
 				"./blocks/logos-marquee/logos-marquee.base.tsx"
 			],
+			"@/components/blocks/menu-categories": [
+				"./blocks/menu-categories/menu-categories.base.tsx"
+			],
 			"@/components/blocks/navbar-simple": [
 				"./blocks/navbar-simple/navbar-simple.base.tsx"
 			],
+			"@/components/blocks/order-banner": [
+				"./blocks/order-banner/order-banner.base.tsx"
+			],
 			"@/components/blocks/pricing-plans": [
 				"./blocks/pricing-plans/pricing-plans.base.tsx"
+			],
+			"@/components/blocks/services-list": [
+				"./blocks/services-list/services-list.base.tsx"
 			],
 			"@/components/blocks/stats-numbers": [
 				"./blocks/stats-numbers/stats-numbers.base.tsx"

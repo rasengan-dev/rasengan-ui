@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Services, list · Rasengan UI
+  description: "What a salon, a garage or a studio offers: each service with what it includes, how long it takes and its price."
+---
+
+<BlockShowcase name="services-list" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add services-list
+```
+
+It installs into `components/blocks/services-list/`, with what it uses (Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { ServicesList } from "@/components/blocks/services-list";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <ServicesList content={home.services} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type ServicesListContent } from "@/components/blocks/services-list";
+
+export const home = {
+  services: {
+    ...example,
+    title: "What we do",
+  } satisfies ServicesListContent,
+};
+```
+
+`duration` is in minutes, followed by `minutes` ("min"). One `book` action serves every service: a WhatsApp link, a booking page or a phone number.
+
+## Content
+
+<ContentSchema name="services-list" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `ServicesListContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"services"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- Services are a list; each name is a heading one level below the block's.
+- The clock icon is decorative: the duration is written out.

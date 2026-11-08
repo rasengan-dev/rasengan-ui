@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-08 (RFC-0008 lot A).
+> Last updated: 2026-11-08 (RFC-0008 lot B).
 
 ## Where things stand
 
@@ -19,7 +19,7 @@
 | MCP server | `rasengan-ui mcp`, five tools ([RFC-0003](rfc/0003-mcp-server.md), steps 1 to 3) |
 | Site | Live at `rasengan-ui.hiraiship.app`, prerendered, with Tag Manager ([ADR-0005](adr/0005-prerendered-site-on-hiraiship.md)) |
 | Project docs | `docs/` in this format since 2026-11-07 ([ADR-0001](adr/0001-project-docs-like-jutsify.md)) |
-| Blocks | 10 marketing blocks (RFC-0008 lots 0 and A): navbar-simple, hero-centered, logos-marquee, features-grid, stats-numbers, testimonials-carousel, pricing-plans, faq-accordion, cta-banner, footer-columns; the example landing page at `/examples/landing`; `rasengan-blocks`, `rasengan-placeholders`, `blocks.json`, MCP `kind: "block"` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
+| Blocks | 19 (RFC-0008 lots 0, A and B): 10 marketing (navbar-simple, hero-centered, logos-marquee, features-grid, stats-numbers, testimonials-carousel, pricing-plans, faq-accordion, cta-banner, footer-columns) and 9 storefront (hero-photo, menu-categories, services-list, gallery-grid, hours-week, location-map, order-banner, about-story, contact-links); the examples `/examples/landing` and `/examples/restaurant`; the gallery at `/blocks`; `rasengan-blocks`, `rasengan-placeholders`, `blocks.json`, MCP `kind: "block"` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
 | `packages/motion` | `rasengan-motion` in the registry: motion modes, village motion tokens, primitives, `splitText` ([RFC-0007](rfc/0007-motion-components.md) lot 0) |
 | Categories | Every component has one; the site groups by them and has a Motion section ([ADR-0009](adr/0009-component-categories.md)) |
 
@@ -31,9 +31,11 @@
   focus halos are 2.3 to 2.4:1 on the background in dark mode (see 0002-Q5). `pnpm axe` now runs with Kusa: the site's
   prose links used `text-primary` (4.3:1 in Kusa light) and now use the primary's words (`tone-primary text-tone-text`).
 - **Motion components** ([RFC-0007](rfc/0007-motion-components.md)): all four lots built.
-- **Blocks** ([RFC-0008](rfc/0008-blocks.md), accepted): lots 0 and A built. Left from lot 0: installing a block in
-  Jutsify's sandbox registry copy (they install in the playground). Next, lot B (a storefront, for Jutsify: its
-  placeholder photos join `registry/placeholders/`), then RFC-0009's lots D0 and D, then lot C (showcase blocks).
+- **Blocks** ([RFC-0008](rfc/0008-blocks.md), accepted): lots 0, A and B built. Left from lot 0: installing a block in
+  Jutsify's sandbox registry copy (they install in the playground). `gallery-grid` is a photo grid with a Dialog
+  lightbox rather than Gallery3D (its cards are portrait; Gallery3D waits for lot C). The storefront placeholders are
+  flat SVG illustrations (dishes, a room, a kitchen, a map); real open photos could replace them. Lot C (showcase
+  blocks) now comes after RFC-0009's lots D0 and D (below).
 - **Blocks, second wave** ([RFC-0009](rfc/0009-blocks-second-wave.md), accepted): new categories (`team`, `booking`,
   `offers`, `comparison`, `integrations`), lot D (ten storefront blocks: booking, menu cards, price list, staff,
   reviews…) and lot E (ten marketing blocks: split and wordmark heroes, comparison, integrations, contact form…), from

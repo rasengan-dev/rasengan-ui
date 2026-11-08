@@ -95,13 +95,22 @@ const BlockGallery: PageComponent = () => {
           content as one typed object, so you or an agent fill it in without touching the layout.
           Install one and its code is yours.
         </p>
-        <Link
-          to="/examples/landing"
-          className="inline-flex items-center gap-1.5 self-start rounded-control text-sm font-medium tone-primary text-tone-text underline-offset-4 outline-none hover:underline focus-visible:focus-ring"
-        >
-          See them together in a landing page
-          <ArrowRight aria-hidden="true" className="size-3.5" />
-        </Link>
+        <p className="flex flex-wrap gap-x-5 gap-y-1 text-sm">
+          See them together:
+          {[
+            { to: '/examples/landing', label: 'a landing page' },
+            { to: '/examples/restaurant', label: 'a restaurant' },
+          ].map((example) => (
+            <Link
+              key={example.to}
+              to={example.to}
+              className="inline-flex items-center gap-1.5 rounded-control font-medium tone-primary text-tone-text underline-offset-4 outline-none hover:underline focus-visible:focus-ring"
+            >
+              {example.label}
+              <ArrowRight aria-hidden="true" className="size-3.5" />
+            </Link>
+          ))}
+        </p>
       </header>
 
       <div className="sticky top-(--header-height) z-20 -mx-4 mt-8 flex flex-wrap items-center gap-3 border-y-(length:--border-width) bg-background/90 px-4 py-3 backdrop-blur-sm md:-mx-8 md:px-8">

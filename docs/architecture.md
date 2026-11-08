@@ -42,7 +42,7 @@ flowchart LR
 flowchart TB
   subgraph source[Sources]
     comps["✅ registry/components<br/>53 components, 8 of them motion"]
-    blocks["🚧 registry/blocks<br/>10 marketing blocks (lots 0 and A)"]
+    blocks["🚧 registry/blocks<br/>19 blocks: 10 marketing, 9 storefront"]
     blockslib["✅ packages/blocks<br/>rasengan-blocks: BlockProps, BlockMeta, field types"]
     core["✅ packages/core<br/>cn, ui-* variants, VillageScope, Field context"]
     villages["✅ packages/villages<br/>contract, villages, natures, engine, contrast"]
@@ -77,8 +77,8 @@ flowchart TB
 |---|---|---|
 | `registry/components/<name>/` | ✅ 53 | One folder per component: `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts` (with its category, [ADR-0009](adr/0009-component-categories.md)), demos |
 | `registry/categories.ts` | ✅ | The seven categories, in the site's order: forms, dates, overlays, navigation, display, feedback, motion |
-| `registry/blocks/<name>/` | 🚧 10 | One folder per block ([RFC-0008](rfc/0008-blocks.md)): `<name>.base.tsx`, `schema.ts` (`export const schema`), `example.ts` (`export const example`), `meta.ts` (family, category, `useWhen`…; type imports only), demos. The ten marketing blocks of lot A |
-| `registry/placeholders/` | ✅ | Open placeholder images the examples show (a neutral product shot); the `rasengan-placeholders` item installs them in `public/placeholders/`, and a block whose example uses one depends on it. The site serves copies at `/placeholders/` |
+| `registry/blocks/<name>/` | 🚧 19 | One folder per block ([RFC-0008](rfc/0008-blocks.md)): `<name>.base.tsx`, `schema.ts` (`export const schema`), `example.ts` (`export const example`), `meta.ts` (family, category, `useWhen`…; type imports only), demos. The ten marketing blocks of lot A and the nine storefront blocks of lot B |
+| `registry/placeholders/` | ✅ | Open placeholder images the examples show (a neutral product shot; flat illustrations of dishes, a room, a kitchen and a map); the `rasengan-placeholders` item installs them in `public/placeholders/`, and a block whose example uses one depends on it. The site serves copies at `/placeholders/` |
 | `registry/block-categories.ts` | ✅ | The two families (marketing, storefront) and their categories, in the site's order |
 | `packages/blocks` | ✅ | The `rasengan-blocks` registry item: `lib/blocks.ts` (`BlockProps`, `heading`, `BlockMeta`, `formatMoney`, no zod) and `lib/block-fields.ts` (zod field types, `defineBlock`), [ADR-0013](adr/0013-blocks-answer-their-container.md); its tests render every block on the server |
 | `packages/core` | ✅ | What every component shares; published as the `rasengan-core` registry item |
@@ -184,7 +184,7 @@ sequenceDiagram
   every block as a live, scaled-down thumbnail, with search, a family filter, a category rail and `?category=`),
   `/blocks/<name>` (MDX: `BlockShowcase` on top, after shadcnblocks' block pages, then installation, usage, the
   `ContentSchema` table, props), `/preview/<name>` (one block alone, full window, one page per block from
-  `generatePaths`), `/examples/landing` (a landing page made only of blocks), `/motion` (the motion gallery:
+  `generatePaths`), `/examples/landing` and `/examples/restaurant` (pages made only of blocks; the restaurant passes its own content from `src/content/restaurant.ts`), `/motion` (the motion gallery:
   the village reveal and, from lot A, the motion components), `/villages/create` (the workshop).
 - The blocks pages take the whole window, header included. `/examples/*` and `/preview/*` have no site header and
   a floating toolbar for the theme and the scheme. A block's showcase and the gallery's thumbnails wear a theme of

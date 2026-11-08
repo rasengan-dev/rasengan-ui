@@ -1,0 +1,60 @@
+---
+metadata:
+  title: Location, map · Rasengan UI
+  description: "The address with how locals find it, a directions link and practical notes beside a static map; an OpenStreetMap embed on request."
+---
+
+<BlockShowcase name="location-map" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add location-map
+```
+
+It installs into `components/blocks/location-map/`, with what it uses (Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { LocationMap } from "@/components/blocks/location-map";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <LocationMap content={home.location} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type LocationMapContent } from "@/components/blocks/location-map";
+
+export const home = {
+  location: {
+    ...example,
+    title: "Where we are",
+  } satisfies LocationMapContent,
+};
+```
+
+By default the map is the content's static picture, linking to the full map, so the page loads nothing from a third party. `embed` swaps it for a live OpenStreetMap when the address has coordinates: `<LocationMap embed />`. Mention it in the site's privacy policy.
+
+## Content
+
+<ContentSchema name="location-map" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `LocationMapContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"location"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `embed` | `true` for a live OpenStreetMap instead of the static picture, when `address.coordinates` is set; `false` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- The address is an `<address>`; the landmark says how locals find the place.
+- The live map's frame is named by the map's `alt`.

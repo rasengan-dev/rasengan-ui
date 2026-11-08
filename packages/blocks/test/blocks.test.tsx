@@ -23,10 +23,10 @@ const load = (name: string, file: string) => import(pathToFileURL(join(root, nam
 const pascal = (name: string) => name.replace(/(^|-)(\w)/g, (_, __, c: string) => c.toUpperCase());
 
 /* Fields that are not shown as text: addresses, codes, icon names, options. */
-const notText = new Set(["href", "src", "locale", "currency", "format", "icon", "period", "kind", "value"]);
+const notText = new Set(["href", "src", "locale", "currency", "format", "icon", "period", "kind", "value", "day", "open", "close", "timeZone", "message"]);
 
-/* Label sets, of which only the labels in use show (a price's period). */
-const labelSets = new Set(["periods"]);
+/* Label sets, of which only the labels in use show (a price's period, "Open now" once the clock is read). */
+const labelSets = new Set(["periods", "labels"]);
 
 /** Every string in the content that is shown as text: each should reach the HTML. */
 function strings(value: unknown, keys: string[] = []): string[] {

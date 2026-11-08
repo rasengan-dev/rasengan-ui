@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Menu, categories · Rasengan UI
+  description: "A restaurant's menu by category, in tabs: each dish with its description, tags and price in the local currency."
+---
+
+<BlockShowcase name="menu-categories" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add menu-categories
+```
+
+It installs into `components/blocks/menu-categories/`, with what it uses (Tabs, Badge) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { MenuCategories } from "@/components/blocks/menu-categories";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <MenuCategories content={home.menu} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type MenuCategoriesContent } from "@/components/blocks/menu-categories";
+
+export const home = {
+  menu: {
+    ...example,
+    title: "Our menu",
+  } satisfies MenuCategoriesContent,
+};
+```
+
+Prices are formatted with `Intl.NumberFormat` in `locale`: `{ amount: 4500, currency: "XAF" }` reads "FCFA 4,500" in `en-CM` and "4 500 FCFA" in `fr-CM`. Every category stays in the HTML (`keepMounted`), so search engines read the whole menu.
+
+## Content
+
+<ContentSchema name="menu-categories" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `MenuCategoriesContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"menu"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- Each category is a tab panel with a hidden heading, so the outline lists the categories.
+- Dishes are a list; the dotted leader between a name and its price is decorative.

@@ -12,7 +12,7 @@ rasengan-ui-app/
 │   ├── categories.ts        the component categories, in the site's order
 │   ├── components/<name>/   the components (53): source, styles, demos, meta
 │   ├── block-categories.ts  the block families and categories, in the site's order
-│   ├── blocks/<name>/       the blocks (10): component, schema, example, meta, demo
+│   ├── blocks/<name>/       the blocks (19): component, schema, example, meta, demo
 │   └── placeholders/        open images the block examples show (rasengan-placeholders)
 ├── packages/
 │   ├── core/                cn(), engine variants, VillageScope, Field context
@@ -73,7 +73,11 @@ registry/blocks/cta-banner/
 - A visible string comes from `content`, labels included (a price's period, a badge, a menu button's name). Icons are
   picked by name from a fixed set the block imports (`featureIcons` in features-grid), never loaded by name at runtime.
 - Numbers formatted on the server and in the browser must agree: give `Intl` explicit fraction digits (Node and
-  Chrome round compact currency differently).
+  Chrome round compact currency differently). Anything that reads the clock (hours-week's "open now") waits for
+  the browser, in the business's time zone, so the prerendered HTML matches.
+- Text on a soft badge or a translucent fill can fall under 4.5:1 when the block sits on a muted section: give it an
+  opaque surface, or use the outline variant. On a primary band, use the primary/primary-foreground pair at full
+  strength, never `opacity`.
 - `packages/blocks/test/blocks.test.tsx` renders every block on the server and checks every string of its example is
   in the HTML and its heading is at the level asked.
 - The page lives in `apps/site/src/app/_routes/blocks/<name>.page.mdx`: `<BlockShowcase>` (title, navigation,
@@ -178,6 +182,7 @@ src/
 ├── settings.ts          one store for village, nature, tint, scheme (<html> attributes + localStorage)
 ├── catalogue.ts         the component list (meta + demos), sorted by category, and `groups`, for the sidebar, pager, index, search
 ├── components/theme-scope.tsx  useScopedTheme and ScopedTheme: a theme for part of the page (showcase, thumbnails)
+├── content/restaurant.ts  the restaurant example's content for the marketing blocks it reuses
 ├── blocks-catalogue.ts  the block list (meta, demo, source, schema, example), by family and category, and `blockGroups`
 ├── app/_routes/
 │   ├── layout.tsx       header
@@ -186,7 +191,7 @@ src/
 │   ├── components/      one <name>.page.mdx per component, plus the index
 │   ├── blocks/          one <name>.page.mdx per block; index.page.tsx, the gallery
 │   ├── preview/         [name].page.tsx: one block full window, a page per block (generatePaths)
-│   ├── examples/        landing.page.tsx: a page made only of blocks; layout.tsx adds the floating toolbar (the
+│   ├── examples/        landing.page.tsx, restaurant.page.tsx: pages made only of blocks; layout.tsx adds the floating toolbar (the
 │   │                    root layout drops the site header on /examples)
 │   ├── motion/          index.page.tsx: the motion gallery (replay, reduced-motion switch)
 │   └── villages/create.page.tsx   the workshop

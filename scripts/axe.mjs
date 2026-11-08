@@ -25,7 +25,7 @@ const named = process.argv.slice(2).some((arg) => !arg.startsWith("--"));
 const pages = [
 	...(named ? [] : ["/", "/components", "/motion", "/motion?motion=off"]),
 	...names.map((name) => `/components/${name}`),
-	...(named ? [] : ["/blocks", "/examples/landing"]),
+	...(named ? [] : ["/blocks", "/examples/landing", "/examples/restaurant"]),
 	...blockNames.map((name) => `/blocks/${name}`),
 ];
 const combos = allCombos({ onmyoton: false });

@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Contact, links · Rasengan UI
+  description: "Every way to reach the business as a grid of cards: WhatsApp, phone, email and social profiles, each one tap away."
+---
+
+<BlockShowcase name="contact-links" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add contact-links
+```
+
+It installs into `components/blocks/contact-links/`, with what it uses (no component, Lucide icons) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { ContactLinks } from "@/components/blocks/contact-links";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <ContactLinks content={home.contact} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type ContactLinksContent } from "@/components/blocks/contact-links";
+
+export const home = {
+  contact: {
+    ...example,
+    title: "Talk to us",
+  } satisfies ContactLinksContent,
+};
+```
+
+Each `kind` makes its own link: `phone` a call, `whatsapp` a chat (`wa.me`), `email` a message, the others the profile's URL. Icons are generic, as Lucide carries no brand logos.
+
+## Content
+
+<ContentSchema name="contact-links" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `ContactLinksContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"contact"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- Each card is one link, named by its label and the number or address.
+- Links that leave the site open in a new tab.

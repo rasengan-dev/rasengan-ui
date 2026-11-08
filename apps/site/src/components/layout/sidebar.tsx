@@ -68,6 +68,9 @@ function BlocksSidebar({ current }: { current: string }) {
         <Item to="/examples/landing" active={false}>
           Example: landing page
         </Item>
+        <Item to="/examples/restaurant" active={false}>
+          Example: restaurant
+        </Item>
         <Item to="/components" active={false}>
           Components
         </Item>

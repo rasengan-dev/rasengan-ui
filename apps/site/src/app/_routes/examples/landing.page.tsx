@@ -16,7 +16,7 @@ import { TestimonialsCarousel } from '@/components/blocks/testimonials-carousel'
  * page passes its own `content` to each.
  */
 const LandingExample: PageComponent = () => (
-  <main id="main">
+  <main id="main" className="[&_section]:scroll-mt-16">
     <NavbarSimple className="sticky top-0 z-40" />
     <HeroCentered />
     <LogosMarquee />
