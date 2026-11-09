@@ -37,8 +37,8 @@
   the placeholders (`product-invoice`, `product-payment`), and the example pages linked through a page transition
   (the floating toolbar's switcher). `newsletter-inline` posts to the provider's URL in its content, or to `onSubmit`:
   a newsletter has no message to send to the business. Gallery3D is still in no block: `gallery-grid` is a photo grid
-  with a Dialog lightbox (its cards are portrait). The storefront placeholders are flat SVG illustrations; real open
-  photos could replace them.
+  with a Dialog lightbox (its cards are portrait). The storefront placeholders became real photos on 2026-11-09
+  ([ADR-0015](adr/0015-placeholder-photos-of-food-and-places.md)).
 - **Blocks, second wave** ([RFC-0009](rfc/0009-blocks-second-wave.md), accepted): new categories (`team`, `booking`,
   `offers`, `comparison`, `integrations`), lot D (ten storefront blocks: booking, menu cards, price list, staff,
   reviews…) and lot E (ten marketing blocks: split and wordmark heroes, comparison, integrations, contact form…), from

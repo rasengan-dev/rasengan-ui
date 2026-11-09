@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | Accepted (2026-11-07). Open questions settled, see "Decisions"; progress in the [roadmap](../roadmap.md) |
+| Status | Accepted (2026-11-07). Open questions settled, see "Decisions"; progress in the [roadmap](../roadmap.md). → Rule 7, "illustrations" for dishes and places, replaced by [ADR-0015](../adr/0015-placeholder-photos-of-food-and-places.md) |
 | Date | 2026-11-07 |
 | Author | Dilane Kombou |
 | Builds on | RFC-0001 (the block content contract, kept by RFC-0002), RFC-0002 ("Blocks"), RFC-0003 (MCP server), RFC-0007 (motion components), ADR-0009 (categories), ADR-0010 to ADR-0012 (motion without Motion's runtime); Jutsify's design step 05 ("Rasengan UI integration") |

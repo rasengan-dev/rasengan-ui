@@ -10,7 +10,7 @@ export const example: BentoFeaturesContent = {
 			size: "large",
 			title: "Your cash flow, live",
 			description: "What is owed, what is late and what lands next month, by client and by project.",
-			image: { src: "/placeholders/product-dashboard.svg", alt: "The Senbon dashboard: money owed, late invoices and next month's income.", width: 1280, height: 800 },
+			image: { src: "/placeholders/product-dashboard.svg", alt: "The Senbon dashboard: this month's invoices, payments per day and the latest activity.", width: 1280, height: 800 },
 		},
 		{ kind: "stat", size: "small", stat: { label: "invoices paid on time", value: 0.94, format: "percent" }, description: "Across studios using reminders, last quarter." },
 		{ kind: "feature", size: "small", icon: "bell", title: "Reminders that stop", description: "Polite nudges before and after the due date, and none once the client pays." },
