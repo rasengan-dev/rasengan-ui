@@ -185,14 +185,26 @@
 			"@/components/blocks/booking-form": [
 				"./blocks/booking-form/booking-form.base.tsx"
 			],
+			"@/components/blocks/comparison-table": [
+				"./blocks/comparison-table/comparison-table.base.tsx"
+			],
+			"@/components/blocks/contact-form": [
+				"./blocks/contact-form/contact-form.base.tsx"
+			],
 			"@/components/blocks/contact-links": [
 				"./blocks/contact-links/contact-links.base.tsx"
+			],
+			"@/components/blocks/cta-app": [
+				"./blocks/cta-app/cta-app.base.tsx"
 			],
 			"@/components/blocks/cta-banner": [
 				"./blocks/cta-banner/cta-banner.base.tsx"
 			],
 			"@/components/blocks/faq-accordion": [
 				"./blocks/faq-accordion/faq-accordion.base.tsx"
+			],
+			"@/components/blocks/features-alternating": [
+				"./blocks/features-alternating/features-alternating.base.tsx"
 			],
 			"@/components/blocks/features-grid": [
 				"./blocks/features-grid/features-grid.base.tsx"
@@ -202,6 +214,9 @@
 			],
 			"@/components/blocks/footer-local": [
 				"./blocks/footer-local/footer-local.base.tsx"
+			],
+			"@/components/blocks/footer-wordmark": [
+				"./blocks/footer-wordmark/footer-wordmark.base.tsx"
 			],
 			"@/components/blocks/gallery-grid": [
 				"./blocks/gallery-grid/gallery-grid.base.tsx"
@@ -215,14 +230,26 @@
 			"@/components/blocks/hero-photo": [
 				"./blocks/hero-photo/hero-photo.base.tsx"
 			],
+			"@/components/blocks/hero-split": [
+				"./blocks/hero-split/hero-split.base.tsx"
+			],
+			"@/components/blocks/hero-wordmark": [
+				"./blocks/hero-wordmark/hero-wordmark.base.tsx"
+			],
 			"@/components/blocks/hours-week": [
 				"./blocks/hours-week/hours-week.base.tsx"
+			],
+			"@/components/blocks/integrations-orbit": [
+				"./blocks/integrations-orbit/integrations-orbit.base.tsx"
 			],
 			"@/components/blocks/location-branches": [
 				"./blocks/location-branches/location-branches.base.tsx"
 			],
 			"@/components/blocks/location-map": [
 				"./blocks/location-map/location-map.base.tsx"
+			],
+			"@/components/blocks/logos-grid": [
+				"./blocks/logos-grid/logos-grid.base.tsx"
 			],
 			"@/components/blocks/logos-marquee": [
 				"./blocks/logos-marquee/logos-marquee.base.tsx"
@@ -280,6 +307,9 @@
 			],
 			"@/components/blocks/testimonials-carousel": [
 				"./blocks/testimonials-carousel/testimonials-carousel.base.tsx"
+			],
+			"@/components/blocks/testimonials-wall": [
+				"./blocks/testimonials-wall/testimonials-wall.base.tsx"
 			],
 			"@/components/blocks/*": [
 				"./blocks/*"

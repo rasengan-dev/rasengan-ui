@@ -26,5 +26,5 @@ in an SVG (the registry carries text files only), so they show in an `<img>` lik
 
 ## Everything else
 
-The illustrations (`dish-*`, `kitchen`, `restaurant-room`, `map-akwa`, `product-dashboard`, `product-invoice`, `product-payment`) and the logo marks
+The illustrations (`dish-*`, `kitchen`, `restaurant-room`, `map-akwa`, `product-dashboard`, `product-invoice`, `product-payment`, `product-phone`) and the logo marks
 (`logo-*`, invented names, no real brand) were drawn for Rasengan UI and are under its MIT licence.

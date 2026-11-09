@@ -12,7 +12,7 @@ rasengan-ui-app/
 │   ├── categories.ts        the component categories, in the site's order
 │   ├── components/<name>/   the components (53): source, styles, demos, meta
 │   ├── block-categories.ts  the block families and categories, in the site's order (a block may name both families)
-│   ├── blocks/<name>/       the blocks (35): component, schema, example, meta, demo
+│   ├── blocks/<name>/       the blocks (45): component, schema, example, meta, demo
 │   └── placeholders/        open images the block examples show (rasengan-placeholders), credited in CREDITS.md
 ├── packages/
 │   ├── core/                cn(), engine variants, VillageScope, Field context
@@ -81,7 +81,8 @@ registry/blocks/cta-banner/
 - `packages/blocks/test/blocks.test.tsx` renders every block on the server and checks every string of its example is
   in the HTML and its heading is at the level asked.
 - The page lives in `apps/site/src/app/_routes/blocks/<name>.page.mdx`: `<BlockShowcase>` (title, navigation,
-  preview with widths and its own theme, code, facts), then install, usage, `<ContentSchema>`, props. The gallery
+  preview with widths and its own theme, code, facts), then install, usage (with `<BlockVariant>` for a block's other
+  demos, `<name>-<topic>.demo.tsx`), `<ContentSchema>`, props. The gallery
   and `/preview/<name>` find a new block on their own.
 
 ## 3. `packages/core`

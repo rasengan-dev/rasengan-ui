@@ -1,0 +1,56 @@
+---
+metadata:
+  title: Call to action, app · Rasengan UI
+  description: "Get the app: the promise, ticked facts and a link per store, beside the app's screen in a phone frame."
+---
+
+<BlockShowcase name="cta-app" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add cta-app
+```
+
+It installs into `components/blocks/cta-app/`, with what it uses (Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { CtaApp } from "@/components/blocks/cta-app";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <CtaApp content={home.app} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type CtaAppContent } from "@/components/blocks/cta-app";
+
+export const home = {
+  app: { ...example, title: "Take Senbon with you" } satisfies CtaAppContent,
+};
+```
+
+Store links are text buttons with generic icons, not the stores' official badges (those artworks have their own terms of use). The app's screen sits in a phone frame drawn with CSS: give a portrait screenshot, about 9:19.5.
+
+## Content
+
+<ContentSchema name="cta-app" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `CtaAppContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"app"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- Each store link says the store in words.
+- The screen's `alt` says what the app shows.

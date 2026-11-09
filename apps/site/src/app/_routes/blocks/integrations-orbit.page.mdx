@@ -1,0 +1,56 @@
+---
+metadata:
+  title: Integrations, orbit · Rasengan UI
+  description: "Your product at the centre, the tools it connects to on two slowly turning rings, with a pause button and a plain list below."
+---
+
+<BlockShowcase name="integrations-orbit" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add integrations-orbit
+```
+
+It installs into `components/blocks/integrations-orbit/`, with what it uses (Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { IntegrationsOrbit } from "@/components/blocks/integrations-orbit";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <IntegrationsOrbit content={home.integrations} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type IntegrationsOrbitContent } from "@/components/blocks/integrations-orbit";
+
+export const home = {
+  integrations: { ...example, title: "Plays well with your stack" } satisfies IntegrationsOrbitContent,
+};
+```
+
+The first four integrations go on the inner ring, the rest on the outer one; the rings turn slowly in opposite directions (Web Animations API), the logos staying upright. There is a pause button, and with motion off or at intensity 0 the orbit stands still. Below `@md`, the orbit gives way to a plain list.
+
+## Content
+
+<ContentSchema name="integrations-orbit" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `IntegrationsOrbitContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"integrations"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- The orbit is hidden from screen readers; the list with each tool's category is read instead, at every width.
+- The pause button says what it does (`labels.pause`) and is pressed while paused.

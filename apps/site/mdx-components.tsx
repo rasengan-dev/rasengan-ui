@@ -3,6 +3,7 @@ import type { ComponentProps, ElementType } from 'react';
 import { Link, useLocation } from 'rasengan';
 import { defineMDXConfig } from '@rasenganjs/mdx';
 import { BlockShowcase } from '@/components/mdx/block-showcase';
+import { BlockVariant } from '@/components/mdx/block-variant';
 import { Callout } from '@/components/mdx/callout';
 import { CodeFigure, CodePre, CodeTitle, InlineCode } from '@/components/mdx/code-block';
 import { ComponentIndex } from '@/components/mdx/component-index';
@@ -31,7 +32,7 @@ const link =
 
 /**
  * How every `.page.mdx` renders, after Hiraiship's apps/docs, in the contract's tokens: the docs
- * wear the village picked in the toolbar. `<ComponentIndex>`, `<ComponentPreview>`, `<BlockShowcase>`,
+ * wear the village picked in the toolbar. `<ComponentIndex>`, `<ComponentPreview>`, `<BlockShowcase>`, `<BlockVariant>`,
  * `<ContentSchema>`, `<VillageGrid>`, `<Note>`,
  * `<Callout>`, `<Steps>` and `<Link>` are usable in MDX without an import.
  */
@@ -91,6 +92,7 @@ export default defineMDXConfig({
     Steps,
     Step,
     BlockShowcase,
+    BlockVariant,
     ComponentIndex,
     ComponentPreview,
     ContentSchema,

@@ -1,0 +1,56 @@
+---
+metadata:
+  title: Features, alternating · Rasengan UI
+  description: "Two to five features told one at a time, as rows of text and image that swap sides, each with ticked facts and a link."
+---
+
+<BlockShowcase name="features-alternating" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add features-alternating
+```
+
+It installs into `components/blocks/features-alternating/`, with what it uses (Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { FeaturesAlternating } from "@/components/blocks/features-alternating";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <FeaturesAlternating content={home.features} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type FeaturesAlternatingContent } from "@/components/blocks/features-alternating";
+
+export const home = {
+  features: { ...example, title: "What Senbon does for you" } satisfies FeaturesAlternatingContent,
+};
+```
+
+Rows alternate on a wide screen (text then image, image then text) and stack, text first, on a narrow one. Two to four rows read best; each can have up to three ticked facts and a link.
+
+## Content
+
+<ContentSchema name="features-alternating" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `FeaturesAlternatingContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"features"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- Each row's title is a heading one level below the block's.
+- Images have their own `alt`.

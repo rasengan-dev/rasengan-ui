@@ -174,14 +174,26 @@
 			"@/components/blocks/booking-form": [
 				"../../registry/blocks/booking-form/booking-form.base.tsx"
 			],
+			"@/components/blocks/comparison-table": [
+				"../../registry/blocks/comparison-table/comparison-table.base.tsx"
+			],
+			"@/components/blocks/contact-form": [
+				"../../registry/blocks/contact-form/contact-form.base.tsx"
+			],
 			"@/components/blocks/contact-links": [
 				"../../registry/blocks/contact-links/contact-links.base.tsx"
+			],
+			"@/components/blocks/cta-app": [
+				"../../registry/blocks/cta-app/cta-app.base.tsx"
 			],
 			"@/components/blocks/cta-banner": [
 				"../../registry/blocks/cta-banner/cta-banner.base.tsx"
 			],
 			"@/components/blocks/faq-accordion": [
 				"../../registry/blocks/faq-accordion/faq-accordion.base.tsx"
+			],
+			"@/components/blocks/features-alternating": [
+				"../../registry/blocks/features-alternating/features-alternating.base.tsx"
 			],
 			"@/components/blocks/features-grid": [
 				"../../registry/blocks/features-grid/features-grid.base.tsx"
@@ -191,6 +203,9 @@
 			],
 			"@/components/blocks/footer-local": [
 				"../../registry/blocks/footer-local/footer-local.base.tsx"
+			],
+			"@/components/blocks/footer-wordmark": [
+				"../../registry/blocks/footer-wordmark/footer-wordmark.base.tsx"
 			],
 			"@/components/blocks/gallery-grid": [
 				"../../registry/blocks/gallery-grid/gallery-grid.base.tsx"
@@ -204,14 +219,26 @@
 			"@/components/blocks/hero-photo": [
 				"../../registry/blocks/hero-photo/hero-photo.base.tsx"
 			],
+			"@/components/blocks/hero-split": [
+				"../../registry/blocks/hero-split/hero-split.base.tsx"
+			],
+			"@/components/blocks/hero-wordmark": [
+				"../../registry/blocks/hero-wordmark/hero-wordmark.base.tsx"
+			],
 			"@/components/blocks/hours-week": [
 				"../../registry/blocks/hours-week/hours-week.base.tsx"
+			],
+			"@/components/blocks/integrations-orbit": [
+				"../../registry/blocks/integrations-orbit/integrations-orbit.base.tsx"
 			],
 			"@/components/blocks/location-branches": [
 				"../../registry/blocks/location-branches/location-branches.base.tsx"
 			],
 			"@/components/blocks/location-map": [
 				"../../registry/blocks/location-map/location-map.base.tsx"
+			],
+			"@/components/blocks/logos-grid": [
+				"../../registry/blocks/logos-grid/logos-grid.base.tsx"
 			],
 			"@/components/blocks/logos-marquee": [
 				"../../registry/blocks/logos-marquee/logos-marquee.base.tsx"
@@ -269,6 +296,9 @@
 			],
 			"@/components/blocks/testimonials-carousel": [
 				"../../registry/blocks/testimonials-carousel/testimonials-carousel.base.tsx"
+			],
+			"@/components/blocks/testimonials-wall": [
+				"../../registry/blocks/testimonials-wall/testimonials-wall.base.tsx"
 			],
 			"@/components/blocks/*": [
 				"../../registry/blocks/*"

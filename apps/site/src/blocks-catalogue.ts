@@ -29,6 +29,12 @@ export const blocks = Object.entries(metas)
       isNew: isNew(meta.added),
       href: `/blocks/${meta.name}`,
       Demo: demos[`${dir}${meta.name}.demo.tsx`]?.default,
+      // Its other demos (`<name>-<topic>.demo.tsx`), by file name: a variant of the block for another kind of page.
+      variants: Object.fromEntries(
+        Object.entries(demos)
+          .filter(([file]) => file.startsWith(`${dir}${meta.name}-`))
+          .map(([file, module]) => [file.slice(dir.length, -'.demo.tsx'.length), module.default]),
+      ),
       source: sources[`${dir}${meta.name}.base.tsx`],
       schema: schemas[`${dir}schema.ts`]?.schema,
       example: examples[`${dir}example.ts`]?.example,

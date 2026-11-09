@@ -19,7 +19,7 @@
 | MCP server | `rasengan-ui mcp`, five tools ([RFC-0003](rfc/0003-mcp-server.md), steps 1 to 3) |
 | Site | Live at `rasengan-ui.hiraiship.app`, prerendered, with Tag Manager ([ADR-0005](adr/0005-prerendered-site-on-hiraiship.md)) |
 | Project docs | `docs/` in this format since 2026-11-07 ([ADR-0001](adr/0001-project-docs-like-jutsify.md)) |
-| Blocks | 35 (RFC-0008 lots 0, A, B and C; RFC-0009 lots D0 and D): 16 marketing (navbar-simple, hero-centered, logos-marquee, features-grid, bento-features, steps-scroll, showcase-tabs, stats-numbers, testimonials-carousel, pricing-plans, pricing-comparison, faq-accordion, cta-banner, newsletter-inline, team-grid, footer-columns) and 19 storefront (hero-photo, menu-categories, menu-cards, menu-list, services-list, services-pricelist, booking-form, offer-deal, gallery-grid, gallery-social, hours-week, location-map, location-branches, order-banner, about-story, team-staff, reviews-rating, contact-links, footer-local); the examples `/examples/landing`, `/examples/restaurant` and `/examples/salon`, linked through a page transition; the gallery at `/blocks`; `rasengan-blocks`, `rasengan-placeholders`, `blocks.json`, MCP `kind: "block"` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
+| Blocks | 45 (RFC-0008 lots 0, A, B and C; RFC-0009 lots D0, D and E): 26 marketing (navbar-simple, hero-centered, hero-split, hero-wordmark, logos-marquee, logos-grid, features-grid, features-alternating, bento-features, steps-scroll, showcase-tabs, integrations-orbit, comparison-table, stats-numbers, testimonials-carousel, testimonials-wall, pricing-plans, pricing-comparison, faq-accordion, cta-banner, cta-app, newsletter-inline, team-grid, contact-form, footer-columns, footer-wordmark) and 21 storefront (hero-photo, hero-wordmark, menu-categories, menu-cards, menu-list, services-list, services-pricelist, booking-form, offer-deal, gallery-grid, gallery-social, hours-week, location-map, location-branches, order-banner, about-story, team-staff, reviews-rating, contact-links, contact-form, footer-local), `hero-wordmark` and `contact-form` in both families; the examples `/examples/landing`, `/examples/restaurant` and `/examples/salon`, linked through a page transition; the gallery at `/blocks`; `rasengan-blocks`, `rasengan-placeholders`, `blocks.json`, MCP `kind: "block"` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
 | `packages/motion` | `rasengan-motion` in the registry: motion modes, village motion tokens, primitives, `splitText` ([RFC-0007](rfc/0007-motion-components.md) lot 0) |
 | Categories | Every component has one; the site groups by them and has a Motion section ([ADR-0009](adr/0009-component-categories.md)) |
 
@@ -51,8 +51,13 @@
   opens a message; the restaurant example gains dish cards, reviews, booking and the local footer, and
   `/examples/salon` is new. Differences from the RFC's table: `gallery-social` has no lightbox (photos and one follow
   link) and `reviews-rating` no carousel (a masonry that stacks); the booking form's date trigger is written by
-  date-fns in English whatever `locale` says (the message uses `Intl`). No block in both families yet: the first comes
-  with `contact-form` or `hero-wordmark`. Next, lot E (RFC-0008's lot C is built).
+  date-fns in English whatever `locale` says (the message uses `Intl`). Lot E built: hero-split, hero-wordmark,
+  features-alternating, testimonials-wall, comparison-table, integrations-orbit, logos-grid, cta-app, footer-wordmark,
+  contact-form (0.8 to 2.1 kB each); `hero-wordmark` and `contact-form` are the first blocks in both families, and a
+  `product-phone` placeholder joins the product screens. `contact-form`'s subject is a set of radio chips, not a
+  select: every choice stays visible and in the HTML. The site's `<BlockVariant>` shows a block's other demos on its
+  page (the wordmark for a restaurant, the form for catering, the booking form for a salon). RFC-0009's lots are all
+  built; lot F stays a list to pick from.
 
 ### Then
 

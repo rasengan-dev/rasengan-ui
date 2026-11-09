@@ -52,6 +52,10 @@ To use your own backend instead, pass `action`: the form posts `name`, `date` (`
 
 Give `fields.party` for a restaurant (how many guests, from one to `max`), or `fields.services` for a salon, a barber or a spa (one service to pick, with its duration and price). Either, both, or neither.
 
+The same block for a salon, with services and sent by text:
+
+<BlockVariant name="booking-form" demo="booking-form-salon" />
+
 ### Days and times
 
 `hours` uses the same shape as the opening hours block. A day with no slot can't be picked, nor a day in the past or more than `daysAhead` days ahead. The times offered are every `interval` minutes inside the chosen day's slots, the last one `interval` before closing. The form knows your hours, not your bookings: a time already taken can still be asked for.
