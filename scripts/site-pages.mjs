@@ -1,5 +1,5 @@
 /**
- * What `pnpm screenshots` and `pnpm axe` share: the site's address, the components, the village
+ * What `pnpm screenshots` and `pnpm axe` share: the site's address, the components and blocks, the village
  * combinations, how to dress a page in one, and how to open and close each overlay.
  */
 import { readdirSync, readFileSync } from "node:fs";
@@ -9,14 +9,25 @@ import { chromium } from "playwright-core";
 export const root = join(import.meta.dirname, "..");
 export const base = process.env.RASENGAN_UI_URL ?? "http://localhost:3200";
 export const components = readdirSync(join(root, "registry/components")).sort();
+export const blocks = readdirSync(join(root, "registry/blocks")).sort();
 
-/** The components named on the command line (every one by default), and the --flags. */
+/** The components and blocks named on the command line (every one by default), and the --flags. */
 export function parseArgs(argv = process.argv.slice(2)) {
 	const asked = argv.filter((arg) => !arg.startsWith("--"));
-	const unknown = asked.filter((name) => !components.includes(name));
-	if (unknown.length) throw new Error(`No component named ${unknown.join(", ")}`);
-	return { names: asked.length ? asked : components, flags: new Set(argv.filter((arg) => arg.startsWith("--"))) };
+	const unknown = asked.filter((name) => !components.includes(name) && !blocks.includes(name));
+	if (unknown.length) throw new Error(`No component or block named ${unknown.join(", ")}`);
+	return {
+		names: asked.length ? asked.filter((name) => components.includes(name)) : components,
+		blockNames: asked.length ? asked.filter((name) => blocks.includes(name)) : blocks,
+		flags: new Set(argv.filter((arg) => arg.startsWith("--"))),
+	};
 }
+
+/* The widths a block is checked at (RFC-0008, "Quality gate"): a phone and a wide desktop. */
+export const blockWidths = [
+	{ id: "360", viewport: { width: 360, height: 800 } },
+	{ id: "1440", viewport: { width: 1440, height: 900 } },
+];
 
 /* The villages and their default nature, from packages/villages (a .ts file, so read rather than imported). */
 const index = readFileSync(join(root, "packages/villages/src/index.ts"), "utf8");

@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Order, banner · Rasengan UI
+  description: "A band in the brand colour that invites an order: a headline, how delivery works, and WhatsApp and phone buttons."
+---
+
+<BlockShowcase name="order-banner" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add order-banner
+```
+
+It installs into `components/blocks/order-banner/`, with what it uses (Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { OrderBanner } from "@/components/blocks/order-banner";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <OrderBanner content={home.order} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type OrderBannerContent } from "@/components/blocks/order-banner";
+
+export const home = {
+  order: {
+    ...example,
+    headline: "Order now, we deliver",
+  } satisfies OrderBannerContent,
+};
+```
+
+The WhatsApp button opens a chat with `message` already typed; the phone button calls. Give one or both. The band takes the primary colour, so it follows the nature.
+
+## Content
+
+<ContentSchema name="order-banner" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `OrderBannerContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"order"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- The numbers are written on the buttons, not only in their links.
+- Text on the band is the primary's foreground, the pair the contract checks for contrast.

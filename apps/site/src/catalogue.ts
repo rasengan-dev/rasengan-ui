@@ -7,8 +7,16 @@ interface ComponentMeta {
   description: string;
   status: 'beta' | 'stable';
   category: Category;
+  /** The day it was published, `YYYY-MM-DD`: the site marks it new for a while. */
+  added?: string;
   engines: readonly string[];
 }
+
+/** How long a component is marked new after its `added` date. */
+const NEW_FOR_DAYS = 45;
+/* Against the build time, not the visit: a prerendered page and its hydration agree. */
+export const isNew = (added?: string) =>
+  added !== undefined && __BUILD_TIME__ - Date.parse(added) < NEW_FOR_DAYS * 24 * 60 * 60 * 1000;
 
 export interface Source {
   code: string;
@@ -45,7 +53,14 @@ export const components = Object.entries(metas)
   .map(([path, { meta }]) => {
     const all = demosIn(path.slice(0, -'meta.ts'.length));
     const main = all[meta.name];
-    return { ...meta, href: `/components/${meta.name}`, Demo: main?.Demo, source: main?.source, demos: all };
+    return {
+      ...meta,
+      isNew: isNew(meta.added),
+      href: `/components/${meta.name}`,
+      Demo: main?.Demo,
+      source: main?.source,
+      demos: all,
+    };
   })
   .sort((a, b) => order.indexOf(a.category) - order.indexOf(b.category) || a.title.localeCompare(b.title));
 

@@ -46,7 +46,9 @@ digits roll in when the number comes into view, then on every change.
 
 ### Live values
 
-Each digit keeps its place when the number grows, so `9` to `10` rolls the units and adds a ten. With `live="polite"`,
+Each digit keeps its place when the number grows, so `9` to `10` rolls the units and adds a ten. When the number gets
+longer or shorter, the new places and separators grow in (and the old ones shrink out) with the village's timing, so
+the digits around them and the text after the number slide instead of jumping. With `live="polite"`,
 screen readers hear the new value.
 
 <ComponentPreview name="number-roll" demo="number-roll-live" />

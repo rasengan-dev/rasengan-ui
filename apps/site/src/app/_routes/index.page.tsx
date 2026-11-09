@@ -6,17 +6,20 @@ import { VillageScope } from '@/lib/village-scope';
 import { Badge } from '@/components/ui/badge';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { TextReveal } from '@/components/ui/text-reveal';
 import { CopyButton } from '@/components/mdx/code-block';
 import { SiteFooter } from '@/components/layout/footer';
 import { AuthenticationExample } from '@/components/home/authentication';
 import { CardsExample } from '@/components/home/cards';
 import { DashboardExample } from '@/components/home/dashboard';
+import { MotionExample } from '@/components/home/motion';
 import { SettingsExample } from '@/components/home/settings';
 import { VillageSwitch } from '@/components/home/village-switch';
 import { setSettings, useSettings } from '@/settings';
 
 const examples = [
   { value: 'cards', label: 'Examples', Example: CardsExample },
+  { value: 'motion', label: 'Motion', Example: MotionExample },
   { value: 'dashboard', label: 'Dashboard', Example: DashboardExample },
   { value: 'settings', label: 'Settings', Example: SettingsExample },
   { value: 'authentication', label: 'Authentication', Example: AuthenticationExample },
@@ -27,12 +30,16 @@ const install = 'npx rasengan-ui init';
 function Hero() {
   return (
     <section className="flex flex-col items-center gap-5 px-4 pt-16 pb-10 text-center sm:pt-24">
-      <Badge variant="secondary" render={<Link to="/docs/cli" />}>
-        New · the rasengan-ui CLI <ArrowRightIcon />
+      <Badge variant="secondary" render={<Link to="/motion" />}>
+        New · motion components <ArrowRightIcon />
       </Badge>
-      <h1 className="max-w-3xl font-display text-4xl leading-tight font-semibold tracking-display text-balance case-heading sm:text-6xl">
+      <TextReveal
+        as="h1"
+        trigger="mount"
+        className="max-w-3xl font-display text-4xl leading-tight font-semibold tracking-display text-balance case-heading sm:text-6xl"
+      >
         Components that wear a village
-      </h1>
+      </TextReveal>
       <p className="max-w-2xl text-lg text-balance text-muted-foreground">
         {components.length} accessible components on Base UI and Tailwind, copied into your project.
         Pick a village for the design language, a nature for the colour, and switch both at runtime.

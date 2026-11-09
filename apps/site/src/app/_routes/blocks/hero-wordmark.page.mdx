@@ -1,0 +1,58 @@
+---
+metadata:
+  title: Hero, wordmark · Rasengan UI
+  description: "A heading and its actions over a wide photo, with the brand or one word set across the full width beneath it."
+---
+
+<BlockShowcase name="hero-wordmark" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add hero-wordmark
+```
+
+It installs into `components/blocks/hero-wordmark/`, with what it uses (Button, Text Reveal) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { HeroWordmark } from "@/components/blocks/hero-wordmark";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <HeroWordmark content={home.hero} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type HeroWordmarkContent } from "@/components/blocks/hero-wordmark";
+
+export const home = {
+  hero: { ...example, word: "Lumen" } satisfies HeroWordmarkContent,
+};
+```
+
+The block is in both families: a product's brand or a place's name. The word's size follows the block's width (`cqi`) and its length, so it fills the width on one line; past about twelve letters it wraps to a second line on a phone rather than shrinking out of reach. The photo overlaps its top.
+
+<BlockVariant name="hero-wordmark" demo="hero-wordmark-restaurant" />
+
+## Content
+
+<ContentSchema name="hero-wordmark" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `HeroWordmarkContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"hero"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `1` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- The big word is decoration, hidden from screen readers: the heading carries the meaning.
+- The page's one `h1` by default.

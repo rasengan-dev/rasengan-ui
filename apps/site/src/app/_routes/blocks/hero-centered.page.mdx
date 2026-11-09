@@ -1,0 +1,60 @@
+---
+metadata:
+  title: Hero, centred · Rasengan UI
+  description: "An announcement, a headline revealed word by word, one line of subcopy, two calls to action and a product shot."
+---
+
+<BlockShowcase name="hero-centered" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add hero-centered
+```
+
+It installs into `components/blocks/hero-centered/`, with what it uses (Button, Badge, Text reveal) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { HeroCentered } from "@/components/blocks/hero-centered";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <HeroCentered content={home.hero} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type HeroCenteredContent } from "@/components/blocks/hero-centered";
+
+export const home = {
+  hero: {
+    ...example,
+    headline: "Your promise in nine words",
+  } satisfies HeroCenteredContent,
+};
+```
+
+The example's product shot is a placeholder installed in `public/placeholders/`; replace `image` with your own screen.
+
+## Content
+
+<ContentSchema name="hero-centered" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `HeroCenteredContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"hero"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `1` by default |
+| `className` | on the root element, for spacing |
+
+## Accessibility
+
+- A `<section>` named by its headline, which is the page's `h1` by default.
+- The headline is in the server's HTML; with motion off or reduced it is simply there.
+- The product shot loads eagerly (`fetchpriority="high"`): it is above the fold. Its `alt` says what the screen shows.

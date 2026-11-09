@@ -1,0 +1,56 @@
+---
+metadata:
+  title: Services, price list · Rasengan UI
+  description: "A salon's or a spa's prices grouped by kind, each with a dotted leader, its duration and what it includes, beside one photo."
+---
+
+<BlockShowcase name="services-pricelist" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add services-pricelist
+```
+
+It installs into `components/blocks/services-pricelist/`, with what it uses (Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { ServicesPricelist } from "@/components/blocks/services-pricelist";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <ServicesPricelist content={home.prices} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type ServicesPricelistContent } from "@/components/blocks/services-pricelist";
+
+export const home = {
+  prices: { ...example, title: "Our prices" } satisfies ServicesPricelistContent,
+};
+```
+
+Group the services by kind (`groups`), up to six. The photo stays in view beside the list on a wide screen; leave `image` out and the list takes the width.
+
+## Content
+
+<ContentSchema name="services-pricelist" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `ServicesPricelistContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"prices"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- Group names are headings one level below the title.
+- Durations are written with your unit (`minutes`), not shown as an icon alone.

@@ -1,0 +1,58 @@
+---
+metadata:
+  title: Call to action, banner · Rasengan UI
+  description: A framed band with a headline revealed word by word, a line of reassurance, two calls to action and small print.
+---
+
+<BlockShowcase name="cta-banner" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add cta-banner
+```
+
+It installs into `components/blocks/cta-banner/`, with the components it uses (Button, Text reveal) and
+`lib/blocks.ts`, the field types every block shares.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema:
+
+```tsx title="app/_routes/index.page.tsx"
+import { CtaBanner, type CtaBannerContent } from "@/components/blocks/cta-banner";
+
+const content: CtaBannerContent = {
+  headline: "Get paid on time, starting this week",
+  subline: "Send your first invoice in minutes. Senbon chases it for you.",
+  primary: { label: "Start free", href: "/signup" },
+  secondary: { label: "Book a demo", href: "/demo" },
+  note: "Free for 14 days. No card needed.",
+};
+
+export default function Home() {
+  return <CtaBanner content={content} />;
+}
+```
+
+Content that comes from elsewhere (a CMS, a file, an agent) can be checked first: `schema.parse(data)` throws on a
+missing field or a headline over 60 characters.
+
+## Content
+
+<ContentSchema name="cta-banner" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `CtaBannerContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"cta"` by default |
+| `headingLevel` | `1`, `2` (default) or `3`: the headline's tag, so the page keeps one `h1` and an unbroken outline |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- A `<section>` named by its headline (`aria-labelledby`).
+- With motion off or reduced, the headline is simply there; it is in the server's HTML either way.
+- The actions are links, styled as buttons: they go somewhere.

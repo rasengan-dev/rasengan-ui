@@ -1,0 +1,56 @@
+---
+metadata:
+  title: Steps, scroll · Rasengan UI
+  description: "Numbered steps down one column, a stage beside them in view: as each step reaches the middle of the screen, its image takes the stage."
+---
+
+<BlockShowcase name="steps-scroll" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add steps-scroll
+```
+
+It installs into `components/blocks/steps-scroll/`, with `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { StepsScroll } from "@/components/blocks/steps-scroll";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <StepsScroll content={home.steps} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type StepsScrollContent } from "@/components/blocks/steps-scroll";
+
+export const home = {
+  steps: { ...example, title: "Three steps to paid" } satisfies StepsScrollContent,
+};
+```
+
+On a wide screen the steps run down the left, and the image of the step crossing the middle of the screen takes the stage on the right, cross-fading at the village's slow duration. On a narrow screen each step shows its image under its text and nothing moves. With motion off, the images swap without fading.
+
+## Content
+
+<ContentSchema name="steps-scroll" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `StepsScrollContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"steps"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- The steps are an ordered list; the current one carries `aria-current="step"`.
+- The stage repeats the steps' images for the eye only: it is hidden from screen readers, which read each image once, in its step.

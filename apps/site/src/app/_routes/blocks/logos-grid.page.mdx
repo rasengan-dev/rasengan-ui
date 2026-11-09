@@ -1,0 +1,55 @@
+---
+metadata:
+  title: Logos, grid · Rasengan UI
+  description: "Customers' logos standing still in a grid of bordered cells, each mark with its name, under one line of social proof."
+---
+
+<BlockShowcase name="logos-grid" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add logos-grid
+```
+
+It installs into `components/blocks/logos-grid/`, with `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { LogosGrid } from "@/components/blocks/logos-grid";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <LogosGrid content={home.logos} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type LogosGridContent } from "@/components/blocks/logos-grid";
+
+export const home = {
+  logos: { ...example, title: "Used by teams at" } satisfies LogosGridContent,
+};
+```
+
+Four, eight or twelve logos fill the grid. A logo with an image shows its mark beside its name; one without shows its name in the display face. For logos that move, see logos-marquee.
+
+## Content
+
+<ContentSchema name="logos-grid" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `LogosGridContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"logos"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- Each logo's name is text; its mark is decoration.

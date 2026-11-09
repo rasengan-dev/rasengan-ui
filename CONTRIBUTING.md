@@ -39,12 +39,32 @@ Each component is a folder in `registry/components/<name>/`:
 Then a page in `apps/site/src/app/_routes/components/<name>.page.mdx`. Components use only the token contract's Tailwind
 names and the `ui-*` variants, never raw colours, radii or shadows, so they follow every village.
 
+## Adding a block
+
+Each block is a folder in `registry/blocks/<name>/` ([RFC-0008](docs/rfc/0008-blocks.md)), named
+`<category>-<layout>`:
+
+| File | What it holds |
+| --- | --- |
+| `<name>.base.tsx` | The block, `PascalName({ content = example, id, className, headingLevel }: BlockProps<Content>)`, composed of registry components |
+| `schema.ts` | `export const schema`, in zod, from the field types in `@/lib/block-fields`, with limits and `.describe()` guidance |
+| `example.ts` | `export const example`: content that parses, in English, with the registry's placeholder images |
+| `meta.ts` | Family and category (`registry/block-categories.ts`), summary, `useWhen`, layout, content, components; `import type` only |
+| `<name>.demo.tsx` | The docs preview |
+
+Then a page in `apps/site/src/app/_routes/blocks/<name>.page.mdx`. A block's root is a `<section>` with `@container`,
+named by its heading; it lays out with container variants (`@md:`), never `md:`
+([ADR-0013](docs/adr/0013-blocks-answer-their-container.md)); its component imports only types from `@/lib/block-fields`, so it
+loads no zod. `pnpm registry` refuses a block whose example does not parse or that weighs over its budget (6 kB gzip,
+12 kB for showcase and bento).
+
 ## Quality gate
 
 Run these with the site up (`pnpm dev`):
 
 ```bash
 pnpm typecheck
+pnpm test           # contract, motion, blocks (every block rendered on the server), CLI
 pnpm contrast       # every token pair against WCAG
 pnpm axe            # WCAG 2.2 AA on every page, village and scheme, overlays open
 pnpm screenshots    # every component × village × scheme × nature, compared with your local baseline

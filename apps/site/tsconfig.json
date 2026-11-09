@@ -165,6 +165,144 @@
 			"@/components/ui/typewriter": [
 				"../../registry/components/typewriter/typewriter.base.tsx"
 			],
+			"@/components/blocks/about-story": [
+				"../../registry/blocks/about-story/about-story.base.tsx"
+			],
+			"@/components/blocks/bento-features": [
+				"../../registry/blocks/bento-features/bento-features.base.tsx"
+			],
+			"@/components/blocks/booking-form": [
+				"../../registry/blocks/booking-form/booking-form.base.tsx"
+			],
+			"@/components/blocks/comparison-table": [
+				"../../registry/blocks/comparison-table/comparison-table.base.tsx"
+			],
+			"@/components/blocks/contact-form": [
+				"../../registry/blocks/contact-form/contact-form.base.tsx"
+			],
+			"@/components/blocks/contact-links": [
+				"../../registry/blocks/contact-links/contact-links.base.tsx"
+			],
+			"@/components/blocks/cta-app": [
+				"../../registry/blocks/cta-app/cta-app.base.tsx"
+			],
+			"@/components/blocks/cta-banner": [
+				"../../registry/blocks/cta-banner/cta-banner.base.tsx"
+			],
+			"@/components/blocks/faq-accordion": [
+				"../../registry/blocks/faq-accordion/faq-accordion.base.tsx"
+			],
+			"@/components/blocks/features-alternating": [
+				"../../registry/blocks/features-alternating/features-alternating.base.tsx"
+			],
+			"@/components/blocks/features-grid": [
+				"../../registry/blocks/features-grid/features-grid.base.tsx"
+			],
+			"@/components/blocks/footer-columns": [
+				"../../registry/blocks/footer-columns/footer-columns.base.tsx"
+			],
+			"@/components/blocks/footer-local": [
+				"../../registry/blocks/footer-local/footer-local.base.tsx"
+			],
+			"@/components/blocks/footer-wordmark": [
+				"../../registry/blocks/footer-wordmark/footer-wordmark.base.tsx"
+			],
+			"@/components/blocks/gallery-grid": [
+				"../../registry/blocks/gallery-grid/gallery-grid.base.tsx"
+			],
+			"@/components/blocks/gallery-social": [
+				"../../registry/blocks/gallery-social/gallery-social.base.tsx"
+			],
+			"@/components/blocks/hero-centered": [
+				"../../registry/blocks/hero-centered/hero-centered.base.tsx"
+			],
+			"@/components/blocks/hero-photo": [
+				"../../registry/blocks/hero-photo/hero-photo.base.tsx"
+			],
+			"@/components/blocks/hero-split": [
+				"../../registry/blocks/hero-split/hero-split.base.tsx"
+			],
+			"@/components/blocks/hero-wordmark": [
+				"../../registry/blocks/hero-wordmark/hero-wordmark.base.tsx"
+			],
+			"@/components/blocks/hours-week": [
+				"../../registry/blocks/hours-week/hours-week.base.tsx"
+			],
+			"@/components/blocks/integrations-orbit": [
+				"../../registry/blocks/integrations-orbit/integrations-orbit.base.tsx"
+			],
+			"@/components/blocks/location-branches": [
+				"../../registry/blocks/location-branches/location-branches.base.tsx"
+			],
+			"@/components/blocks/location-map": [
+				"../../registry/blocks/location-map/location-map.base.tsx"
+			],
+			"@/components/blocks/logos-grid": [
+				"../../registry/blocks/logos-grid/logos-grid.base.tsx"
+			],
+			"@/components/blocks/logos-marquee": [
+				"../../registry/blocks/logos-marquee/logos-marquee.base.tsx"
+			],
+			"@/components/blocks/menu-cards": [
+				"../../registry/blocks/menu-cards/menu-cards.base.tsx"
+			],
+			"@/components/blocks/menu-categories": [
+				"../../registry/blocks/menu-categories/menu-categories.base.tsx"
+			],
+			"@/components/blocks/menu-list": [
+				"../../registry/blocks/menu-list/menu-list.base.tsx"
+			],
+			"@/components/blocks/navbar-simple": [
+				"../../registry/blocks/navbar-simple/navbar-simple.base.tsx"
+			],
+			"@/components/blocks/newsletter-inline": [
+				"../../registry/blocks/newsletter-inline/newsletter-inline.base.tsx"
+			],
+			"@/components/blocks/offer-deal": [
+				"../../registry/blocks/offer-deal/offer-deal.base.tsx"
+			],
+			"@/components/blocks/order-banner": [
+				"../../registry/blocks/order-banner/order-banner.base.tsx"
+			],
+			"@/components/blocks/pricing-comparison": [
+				"../../registry/blocks/pricing-comparison/pricing-comparison.base.tsx"
+			],
+			"@/components/blocks/pricing-plans": [
+				"../../registry/blocks/pricing-plans/pricing-plans.base.tsx"
+			],
+			"@/components/blocks/reviews-rating": [
+				"../../registry/blocks/reviews-rating/reviews-rating.base.tsx"
+			],
+			"@/components/blocks/services-list": [
+				"../../registry/blocks/services-list/services-list.base.tsx"
+			],
+			"@/components/blocks/services-pricelist": [
+				"../../registry/blocks/services-pricelist/services-pricelist.base.tsx"
+			],
+			"@/components/blocks/showcase-tabs": [
+				"../../registry/blocks/showcase-tabs/showcase-tabs.base.tsx"
+			],
+			"@/components/blocks/stats-numbers": [
+				"../../registry/blocks/stats-numbers/stats-numbers.base.tsx"
+			],
+			"@/components/blocks/steps-scroll": [
+				"../../registry/blocks/steps-scroll/steps-scroll.base.tsx"
+			],
+			"@/components/blocks/team-grid": [
+				"../../registry/blocks/team-grid/team-grid.base.tsx"
+			],
+			"@/components/blocks/team-staff": [
+				"../../registry/blocks/team-staff/team-staff.base.tsx"
+			],
+			"@/components/blocks/testimonials-carousel": [
+				"../../registry/blocks/testimonials-carousel/testimonials-carousel.base.tsx"
+			],
+			"@/components/blocks/testimonials-wall": [
+				"../../registry/blocks/testimonials-wall/testimonials-wall.base.tsx"
+			],
+			"@/components/blocks/*": [
+				"../../registry/blocks/*"
+			],
 			"@/lib/utils": [
 				"../../packages/core/src/utils.ts"
 			],
@@ -176,6 +314,12 @@
 			],
 			"@/lib/motion": [
 				"../../packages/motion/src/motion.tsx"
+			],
+			"@/lib/blocks": [
+				"../../packages/blocks/src/blocks.ts"
+			],
+			"@/lib/block-fields": [
+				"../../packages/blocks/src/block-fields.ts"
 			],
 			"@/lib/motion-features": [
 				"../../packages/motion/src/motion-features.ts"
@@ -196,9 +340,12 @@
 		"rasengan-env.d.ts",
 		"mdx-components.tsx",
 		"../../registry/components",
+		"../../registry/blocks",
 		"../../registry/categories.ts",
+		"../../registry/block-categories.ts",
 		"../../packages/core/src",
 		"../../packages/motion/src",
+		"../../packages/blocks/src",
 		"../../packages/villages/src"
 	],
 	"extends": "./node_modules/rasengan/tsconfig.base.json"

@@ -1,0 +1,56 @@
+---
+metadata:
+  title: Footer, wordmark · Rasengan UI
+  description: "The link columns, copyright and social links of footer-columns, with the brand set huge along the bottom edge."
+---
+
+<BlockShowcase name="footer-wordmark" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add footer-wordmark
+```
+
+It installs into `components/blocks/footer-wordmark/`, with what it uses (Separator) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { FooterWordmark } from "@/components/blocks/footer-wordmark";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <FooterWordmark content={home.footer} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type FooterWordmarkContent } from "@/components/blocks/footer-wordmark";
+
+export const home = {
+  footer: { ...example, wordmark: "senbon" } satisfies FooterWordmarkContent,
+};
+```
+
+The same columns as footer-columns, with the brand (or `wordmark`) set huge along the bottom edge and cut by it. The word's size follows the footer's width and its length; a long word wraps to two lines on a phone.
+
+## Content
+
+<ContentSchema name="footer-wordmark" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `FooterWordmarkContent`; the example when left out |
+| `id` | the footer's id, for anchor links; `"footer"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<footer>`, for spacing |
+
+## Accessibility
+
+- The block is the page's `footer` landmark; column titles are headings at `headingLevel`.
+- The big word is decoration, hidden from screen readers.

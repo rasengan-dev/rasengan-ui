@@ -1,0 +1,56 @@
+---
+metadata:
+  title: Menu, cards · Rasengan UI
+  description: "Signature dishes as cards: a photo, tags, a line and the price, each with an order link that opens WhatsApp with the dish written."
+---
+
+<BlockShowcase name="menu-cards" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add menu-cards
+```
+
+It installs into `components/blocks/menu-cards/`, with what it uses (Badge, Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { MenuCards } from "@/components/blocks/menu-cards";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <MenuCards content={home.dishes} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type MenuCardsContent } from "@/components/blocks/menu-cards";
+
+export const home = {
+  dishes: { ...example, title: "This week's favourites" } satisfies MenuCardsContent,
+};
+```
+
+Each card's order link opens `order.channel` (WhatsApp, a text or an email) with `order.message` and the dish's name written. Leave `order` out for cards without a link. Three, six or nine dishes fill the grid evenly.
+
+## Content
+
+<ContentSchema name="menu-cards" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `MenuCardsContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"dishes"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- Each order link is named with its dish ("Order Ndolé with prawns"), not only "Order".
+- Photos have their own `alt`; tags are text, not colour alone.

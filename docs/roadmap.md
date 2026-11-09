@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-07 (RFC-0007 lot C).
+> Last updated: 2026-11-08 (RFC-0008 lot B).
 
 ## Where things stand
 
@@ -19,7 +19,7 @@
 | MCP server | `rasengan-ui mcp`, five tools ([RFC-0003](rfc/0003-mcp-server.md), steps 1 to 3) |
 | Site | Live at `rasengan-ui.hiraiship.app`, prerendered, with Tag Manager ([ADR-0005](adr/0005-prerendered-site-on-hiraiship.md)) |
 | Project docs | `docs/` in this format since 2026-11-07 ([ADR-0001](adr/0001-project-docs-like-jutsify.md)) |
-| Blocks | None in v2 (`registry/blocks` empty) |
+| Blocks | 45 (RFC-0008 lots 0, A, B and C; RFC-0009 lots D0, D and E): 26 marketing (navbar-simple, hero-centered, hero-split, hero-wordmark, logos-marquee, logos-grid, features-grid, features-alternating, bento-features, steps-scroll, showcase-tabs, integrations-orbit, comparison-table, stats-numbers, testimonials-carousel, testimonials-wall, pricing-plans, pricing-comparison, faq-accordion, cta-banner, cta-app, newsletter-inline, team-grid, contact-form, footer-columns, footer-wordmark) and 21 storefront (hero-photo, hero-wordmark, menu-categories, menu-cards, menu-list, services-list, services-pricelist, booking-form, offer-deal, gallery-grid, gallery-social, hours-week, location-map, location-branches, order-banner, about-story, team-staff, reviews-rating, contact-links, contact-form, footer-local), `hero-wordmark` and `contact-form` in both families; the examples `/examples/landing`, `/examples/restaurant` and `/examples/salon`, linked through a page transition; the gallery at `/blocks`; `rasengan-blocks`, `rasengan-placeholders`, `blocks.json`, MCP `kind: "block"` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
 | `packages/motion` | `rasengan-motion` in the registry: motion modes, village motion tokens, primitives, `splitText` ([RFC-0007](rfc/0007-motion-components.md) lot 0) |
 | Categories | Every component has one; the site groups by them and has a Motion section ([ADR-0009](adr/0009-component-categories.md)) |
 
@@ -30,13 +30,38 @@
 - **Finish Kusa**: say what Kusa does in the component pages' prose (they describe Konoha, Kiri and Iwa only); its
   focus halos are 2.3 to 2.4:1 on the background in dark mode (see 0002-Q5). `pnpm axe` now runs with Kusa: the site's
   prose links used `text-primary` (4.3:1 in Kusa light) and now use the primary's words (`tone-primary text-tone-text`).
-- **Motion components** ([RFC-0007](rfc/0007-motion-components.md)): all four lots built. Next, the blocks RFC (Motion+'s
-  section ideas on these components: logo ticker, stats counters, split-text hero, testimonial stack).
+- **Motion components** ([RFC-0007](rfc/0007-motion-components.md)): all four lots built.
+- **Blocks** ([RFC-0008](rfc/0008-blocks.md), accepted): all lots built. Left from lot 0: installing a block in
+  Jutsify's sandbox registry copy (they install in the playground). Lot C: bento-features, steps-scroll,
+  showcase-tabs, pricing-comparison, newsletter-inline and team-grid (1.2 to 2 kB each), two more product screens in
+  the placeholders (`product-invoice`, `product-payment`), and the example pages linked through a page transition
+  (the floating toolbar's switcher). `newsletter-inline` posts to the provider's URL in its content, or to `onSubmit`:
+  a newsletter has no message to send to the business. Gallery3D is still in no block: `gallery-grid` is a photo grid
+  with a Dialog lightbox (its cards are portrait). The storefront placeholders are flat SVG illustrations; real open
+  photos could replace them.
+- **Blocks, second wave** ([RFC-0009](rfc/0009-blocks-second-wave.md), accepted): new categories (`team`, `booking`,
+  `offers`, `comparison`, `integrations`), lot D (ten storefront blocks: booking, menu cards, price list, staff,
+  reviews…) and lot E (ten marketing blocks: split and wordmark heroes, comparison, integrations, contact form…), from
+  a survey of what designers publish. Its seven questions were settled before acceptance (its "Decisions"). Order:
+  lots D0 and D, then RFC-0008's lot C, then lot E. Lot D0 built: the categories, the field types, `family` as a
+  list (registry check, `blocks.json`, MCP filter, the site's grouping; tried with a block in both families), six
+  drawn logo marks and eleven Unsplash portraits ([ADR-0014](adr/0014-placeholder-photos-from-unsplash.md)). Lot D
+  built: booking-form, menu-cards, menu-list, services-pricelist, team-staff, reviews-rating, gallery-social,
+  location-branches, offer-deal, footer-local (1.2 to 3.3 kB each); `messageUrl` in `lib/blocks` for every link that
+  opens a message; the restaurant example gains dish cards, reviews, booking and the local footer, and
+  `/examples/salon` is new. Differences from the RFC's table: `gallery-social` has no lightbox (photos and one follow
+  link) and `reviews-rating` no carousel (a masonry that stacks); the booking form's date trigger is written by
+  date-fns in English whatever `locale` says (the message uses `Intl`). Lot E built: hero-split, hero-wordmark,
+  features-alternating, testimonials-wall, comparison-table, integrations-orbit, logos-grid, cta-app, footer-wordmark,
+  contact-form (0.8 to 2.1 kB each); `hero-wordmark` and `contact-form` are the first blocks in both families, and a
+  `product-phone` placeholder joins the product screens. `contact-form`'s subject is a set of radio chips, not a
+  select: every choice stays visible and in the HTML. The site's `<BlockVariant>` shows a block's other demos on its
+  page (the wordmark for a restaurant, the form for catering, the booking form for a salon). RFC-0009's lots are all
+  built; lot F stays a list to pick from.
 
 ### Then
 
 - RFC-0006 step 5: the MCP tool `create_village`.
-- Blocks rebuilt on the components (RFC-0002, "Blocks"), with the RFC-0001 content contract.
 - A Radix engine (`/r/radix/…`).
 - Figma: village and nature modes (needs a paid plan; the free-plan file has Theme + Primitives and four components).
 - RFC-0003, later: `mcp init --client`, a hosted read-only MCP server.

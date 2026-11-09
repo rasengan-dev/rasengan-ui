@@ -38,6 +38,8 @@ export default defineConfig(async () => {
     // The address `pnpm registry` expects by default (Rasengan's own default, 5320, is v1's apps/ui).
     server: { development: { port: 3200 } },
     vite: {
+      // When the site was built: "new" marks are computed against it, the same on the server and in the browser.
+      define: { __BUILD_TIME__: JSON.stringify(Date.now()) },
       plugins: [tailwindcss(), rasengan({}), mdx({ code: { theme: themes, keepBackground: false } }), source()],
       resolve: {
         // Rasengan puts its own "@" → ./src alias first, which would shadow the paths below.
@@ -49,6 +51,10 @@ export default defineConfig(async () => {
           { find: '@/lib/utils', replacement: '../../packages/core/src/utils.ts' },
           { find: '@/lib/village-scope', replacement: '../../packages/core/src/village-scope.tsx' },
           { find: '@/lib/field-context', replacement: '../../packages/core/src/field-context.tsx' },
+          { find: /^@\/components\/blocks\/([^/]+)$/, replacement: '../../registry/blocks/$1/$1.base.tsx' },
+          { find: /^@\/components\/blocks\/(.+)$/, replacement: '../../registry/blocks/$1' },
+          { find: '@/lib/blocks', replacement: '../../packages/blocks/src/blocks.ts' },
+          { find: '@/lib/block-fields', replacement: '../../packages/blocks/src/block-fields.ts' },
           { find: '@/lib/motion-features', replacement: '../../packages/motion/src/motion-features.ts' },
           { find: '@/lib/motion', replacement: '../../packages/motion/src/motion.tsx' },
           { find: '@/lib/split-text', replacement: '../../packages/motion/src/split-text.tsx' },

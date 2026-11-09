@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Logos, marquee · Rasengan UI
+  description: "A line of customer logos that scrolls endlessly, pauses on hover and has a pause button; still with motion off."
+---
+
+<BlockShowcase name="logos-marquee" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add logos-marquee
+```
+
+It installs into `components/blocks/logos-marquee/`, with what it uses (Marquee) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { LogosMarquee } from "@/components/blocks/logos-marquee";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <LogosMarquee content={home.logos} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type LogosMarqueeContent } from "@/components/blocks/logos-marquee";
+
+export const home = {
+  logos: {
+    ...example,
+    title: "Your section title",
+  } satisfies LogosMarqueeContent,
+};
+```
+
+A logo with `src` shows the image, greyed until hovered; without one, the company's name.
+
+## Content
+
+<ContentSchema name="logos-marquee" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `LogosMarqueeContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"logos"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the root element, for spacing |
+
+## Accessibility
+
+- The Marquee pauses on hover and has a pause button; it stays still with motion off or reduced.
+- Its copies are hidden from screen readers, which read each logo once (an image's `alt` is the company's name).

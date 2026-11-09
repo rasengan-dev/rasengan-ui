@@ -1,0 +1,56 @@
+---
+metadata:
+  title: Team, grid · Rasengan UI
+  description: "The company's people in a grid: a portrait, name and role, a line about them and their profiles, and a link to open roles."
+---
+
+<BlockShowcase name="team-grid" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add team-grid
+```
+
+It installs into `components/blocks/team-grid/`, with what it uses (Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { TeamGrid } from "@/components/blocks/team-grid";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <TeamGrid content={home.team} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type TeamGridContent } from "@/components/blocks/team-grid";
+
+export const home = {
+  team: { ...example, title: "Meet the team" } satisfies TeamGridContent,
+};
+```
+
+Three to twelve people, each with a portrait (4:5), a role, an optional line and up to three profile links. A member without a photo shows their initials. For a business whose clients book with a person, use `team-staff`.
+
+## Content
+
+<ContentSchema name="team-grid" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `TeamGridContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"team"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- Profile links are named with the person ("LinkedIn, Nadia Ekotto").
+- Each name is a heading one level below the block's.

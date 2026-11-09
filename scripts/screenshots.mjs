@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Screenshots of every component for visual review (RFC-0002, "Quality gate"):
+ * Screenshots of every component and block for visual review (RFC-0002 and RFC-0008, "Quality gate"):
  *
  *   pnpm dev                         # the site, on http://localhost:3200
  *   pnpm screenshots                 # every component, or: pnpm screenshots button dialog
@@ -8,7 +8,8 @@
  *
  * For each component page, the preview in the three villages × light/dark × two natures (the
  * village's default and Onmyōton), plus the whole window with the popup open for the overlays, and
- * each of its other demos (variants, sizes…) as `<demo>--<combo>.png`.
+ * each of its other demos (variants, sizes…) as `<demo>--<combo>.png`. For each block page, its preview at 360px and
+ * 1440px wide, as `<combo>-360.png` and `<combo>-1440.png`.
  * Each run is compared with the baseline: .screenshots/index.html lists what changed first, with
  * the before, after and a diff, then every capture. It drives the Chrome installed on the machine
  * (CHROME_PATH to pick another) and reports console errors.
@@ -17,20 +18,25 @@ import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, write
 import { join } from "node:path";
 import pixelmatch from "pixelmatch";
 import { PNG } from "pngjs";
-import { base, closeOverlay, overlayStillOpen, combos as allCombos, components as all, dress, extraDemos, isOverlay, launch, open, openOverlay, parseArgs, pool, preview, root, siteIsUp } from "./site-pages.mjs";
+import { base, blocks as allBlocks, blockWidths, closeOverlay, overlayStillOpen, combos as allCombos, components as all, dress, extraDemos, isOverlay, launch, open, openOverlay, parseArgs, pool, preview, root, siteIsUp } from "./site-pages.mjs";
 
 const out = join(root, ".screenshots");
 const dirs = { latest: join(out, "latest"), baseline: join(out, "baseline"), diff: join(out, "diff") };
 
 // ---- What to capture ------------------------------------------------------------
 
-const { names, flags } = parseArgs();
+const { names: componentNames, blockNames, flags } = parseArgs();
+const names = [...componentNames, ...blockNames];
+const isBlock = (name) => allBlocks.includes(name);
 const accept = flags.has("--accept");
 const combos = allCombos();
 const file = ({ village, scheme, nature }, suffix = "") => `${village}-${scheme}-${nature}${suffix}.png`;
 /* Overlays are only a trigger at rest: they also get the whole window with the popup open. */
+/* Blocks: the preview at a phone's width and a wide desktop's (RFC-0008, "Quality gate"). */
 const shots = (name) =>
-	combos.flatMap((combo) => [
+	isBlock(name)
+		? combos.flatMap((combo) => blockWidths.map((width) => file(combo, `-${width.id}`)))
+		: combos.flatMap((combo) => [
 		...(isOverlay(name) ? [file(combo), file(combo, "-open")] : [file(combo)]),
 		...extraDemos(name).map((demo) => `${demo}--${file(combo)}`),
 	]);
@@ -43,7 +49,31 @@ const context = await browser.newContext({ viewport: { width: 1280, height: 900 
 
 const errors = {};
 
+/** A block's page, its preview in every combination, at each width. */
+async function captureBlock(name) {
+	errors[name] = [];
+	const dir = join(dirs.latest, name);
+	rmSync(dir, { recursive: true, force: true });
+	mkdirSync(dir, { recursive: true });
+	for (const width of blockWidths) {
+		const page = await browser.newPage({ viewport: width.viewport, deviceScaleFactor: width.id === "360" ? 2 : 1 });
+		page.on("console", (message) => message.type() === "error" && errors[name].push(message.text().split("\n")[0]));
+		page.on("pageerror", (error) => errors[name].push(error.message));
+		try {
+			await open(page, `/blocks/${name}`);
+			for (const combo of combos) {
+				await dress(page, combo);
+				await page.locator('[data-slot="block-preview"]').screenshot({ path: join(dir, file(combo, `-${width.id}`)) });
+			}
+		} finally {
+			await page.close();
+		}
+	}
+	process.stdout.write(".");
+}
+
 async function capture(name) {
+	if (isBlock(name)) return captureBlock(name);
 	const page = await context.newPage();
 	errors[name] = [];
 	page.on("console", (message) => message.type() === "error" && errors[name].push(message.text().split("\n")[0]));
@@ -111,7 +141,7 @@ if (accept) {
 // ---- Contact sheet ------------------------------------------------------------------
 
 /* Every component captured so far, this run's first in its own state. */
-const listed = readdirSync(dirs.latest).filter((name) => all.includes(name)).sort();
+const listed = readdirSync(dirs.latest).filter((name) => all.includes(name) || allBlocks.includes(name)).sort();
 const escape = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const caption = (shot) => shot.replace(/\.png$/, "").replaceAll("-", " · ");
 const img = (dir, name, shot) => `<a href="${dir}/${name}/${shot}"><img loading="lazy" src="${dir}/${name}/${shot}" alt="${name}, ${caption(shot)}"></a>`;
@@ -133,7 +163,7 @@ const sections = listed
 			.map((shot) => `<figure class="${status[name]?.[shot] ?? ""}">${img("latest", name, shot)}<figcaption>${caption(shot)}</figcaption></figure>`)
 			.join("");
 		const problems = errors[name]?.length ? `<ul class="errors">${errors[name].map((e) => `<li>${escape(e)}</li>`).join("")}</ul>` : "";
-		return `<section id="${name}"><h2><a href="${base}/components/${name}">${name}</a></h2>${problems}<div class="grid">${cells}</div></section>`;
+		return `<section id="${name}"><h2><a href="${base}/${allBlocks.includes(name) ? "blocks" : "components"}/${name}">${name}</a></h2>${problems}<div class="grid">${cells}</div></section>`;
 	})
 	.join("\n");
 
@@ -159,7 +189,7 @@ writeFileSync(
   figcaption { padding: 6px 10px; font-size: 12px; color: #52525b; border-top: 1px solid #e4e4e7; }
   .errors { color: #b91c1c; }
 </style>
-<h1>Rasengan UI · ${listed.length} components × ${combos.length} combinations</h1>
+<h1>Rasengan UI · ${listed.length} components and blocks × ${combos.length} combinations</h1>
 <p>Orange: changed since the baseline. Dashed: no baseline yet. <code>pnpm screenshots --accept</code> makes this run the baseline.</p>
 <nav>${changed.length ? `<a href="#changes"><strong>${changed.length} changed</strong></a>` : ""}${listed.map((name) => `<a href="#${name}">${name}</a>`).join("")}</nav>
 ${changes}

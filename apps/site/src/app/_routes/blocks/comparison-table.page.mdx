@@ -1,0 +1,56 @@
+---
+metadata:
+  title: Comparison, table · Rasengan UI
+  description: "Your product beside the usual way of doing things, row by row: ticks, crosses or short values, your column tinted."
+---
+
+<BlockShowcase name="comparison-table" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add comparison-table
+```
+
+It installs into `components/blocks/comparison-table/`, with what it uses (Button, Table) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { ComparisonTable } from "@/components/blocks/comparison-table";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <ComparisonTable content={home.comparison} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type ComparisonTableContent } from "@/components/blocks/comparison-table";
+
+export const home = {
+  comparison: { ...example, columns: { ours: "Senbon", theirs: "Paper invoices" } } satisfies ComparisonTableContent,
+};
+```
+
+Compare with the way things are usually done (spreadsheets, email, paper), not with a named competitor. Each row has a value for your product and one for the other way: `true` (a tick), `false` (a cross) or a short text. Rows where you are not better are allowed, and read as honest.
+
+## Content
+
+<ContentSchema name="comparison-table" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `ComparisonTableContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"comparison"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- A real table: the two columns are column headers, each row's label a row header.
+- Ticks and crosses are read as `labels.yes` and `labels.no`.

@@ -16,7 +16,8 @@ const instructions = `Rasengan UI is a React component system (Base UI, Tailwind
 - Before writing code that uses a component, read it with get_component and its examples with get_examples. The APIs are Base UI's (render props such as render={<Button />}), not Radix's (no asChild).
 - Style with the token contract's Tailwind names (bg-primary, text-muted-foreground, border-border, rounded-lg, shadow-md, font-display…) and the components' variant, tone and size props. Never use raw colours, radii or shadows: they would not follow a village or nature switch.
 - Install components with add_components, not by copying their source, so the import aliases, the npm packages and rasengan-ui.lock stay right.
-- get_project tells you the project's village, nature and installed components, and which files the user edited.`;
+- get_project tells you the project's village, nature and installed components, and which files the user edited.
+- For a page section, look for a block first (list_components with kind "block"). A block takes one content object: read its content schema and example with get_component, install it with add_components, then write the content in src/content/, not in JSX.`;
 
 interface Options {
 	/** The folder the client started the server in. */
@@ -61,6 +62,7 @@ const kinds = {
 	component: (item: { type: string }) => item.type === "registry:ui",
 	village: (item: { name: string }) => item.name.startsWith("village-"),
 	example: (item: { type: string }) => item.type === "registry:example",
+	block: (item: { type: string }) => item.type === "registry:block",
 	all: () => true,
 };
 
@@ -72,24 +74,24 @@ export function createServer(options: Options) {
 		{
 			title: "List Rasengan UI components",
 			description:
-				"The items of the Rasengan UI registry with a one-line description: components by default, or villages, examples, or everything. Pass a query to keep the items whose name, title or description contain all its words, and a category to keep one family of components (motion: components whose animation is the point, such as a marquee or a typewriter).",
+				"The items of the Rasengan UI registry with a one-line description: components by default, or blocks (page sections: hero, pricing, menu, opening hours…), villages, examples, or everything. Pass a query to keep the items whose name, title or description contain all its words; a category to keep one family of components (motion: components whose animation is the point) or of blocks (hero, pricing, menu…); a family for blocks (marketing or storefront).",
 			inputSchema: {
 				query: z.string().optional().describe('Words to look for, e.g. "menu" or "date input"'),
-				kind: z.enum(["component", "village", "example", "all"]).default("component").describe("Which items to list"),
-				category: z
-					.enum(["forms", "dates", "overlays", "navigation", "display", "feedback", "motion"])
-					.optional()
-					.describe("Only components of this category"),
+				kind: z.enum(["component", "block", "village", "example", "all"]).default("component").describe("Which items to list"),
+				category: z.string().optional().describe('Only items of this category: for components forms, dates, overlays, navigation, display, feedback or motion; for blocks hero, pricing, menu, hours…'),
+				family: z.enum(["marketing", "storefront"]).optional().describe("Blocks only: marketing (landing pages) or storefront (local businesses)"),
 			},
 			annotations: { readOnlyHint: true, openWorldHint: false },
 		},
-		async ({ query, kind, category }) => {
+		async ({ query, kind, category, family: blockFamily }) => {
 			const { root, config } = project(options);
 			const { items } = await loadIndex(config, root);
 			const words = query?.toLowerCase().split(/\s+/).filter(Boolean) ?? [];
 			const found = items
 				.filter(kinds[kind])
 				.filter((item) => !category || item.meta?.category === category)
+				// A block's family is one name, or a list when it serves both (RFC-0009).
+				.filter((item) => !blockFamily || [item.meta?.family].flat().includes(blockFamily))
 				.filter((item) => words.every((word) => `${item.name} ${item.title ?? ""} ${item.description ?? ""}`.toLowerCase().includes(word)));
 			if (found.length === 0) {
 				const what = [query && `"${query}"`, category && `the ${category} category`].filter(Boolean).join(" in ");
@@ -97,8 +99,11 @@ export function createServer(options: Options) {
 			}
 			const lines = found.map((item) => {
 				const status = item.meta?.status ? `, ${item.meta.status}` : "";
-				const family = item.meta?.category ? `, ${item.meta.category}` : "";
-				return `- ${item.name} (${item.title ?? item.name}${family}${status}): ${item.description ?? ""}`;
+				const families = [item.meta?.family].flat().filter(Boolean).join(" and ");
+				const family = item.meta?.category ? `, ${families ? `${families} ` : ""}${item.meta.category}` : "";
+				// A block also says when to use it and what it weighs, to choose without reading it.
+				const block = item.type === "registry:block" ? ` Use when: ${item.meta?.useWhen ?? ""} (${item.meta?.weightKb ?? "?"} kB)` : "";
+				return `- ${item.name} (${item.title ?? item.name}${family}${status}): ${item.description ?? ""}${block}`;
 			});
 			return text(`${found.length} item${found.length === 1 ? "" : "s"} in the ${config.engine} registry:\n\n${lines.join("\n")}`);
 		},
@@ -129,6 +134,26 @@ export function createServer(options: Options) {
 			if (item.registryDependencies?.length) lines.push(`- Uses: ${item.registryDependencies.map(nameOf).join(", ")} (installed with it)`);
 			if (examples.length) lines.push(`- Examples: ${examples.join(", ")} (get_examples)`);
 			if (index.homepage && item.type === "registry:ui") lines.push(`- Docs: ${index.homepage.replace(/\/$/, "")}/components/${item.name}`);
+			if (item.type === "registry:block") {
+				const meta = item.meta ?? {};
+				lines.push(`- Family and category: ${[meta.family].flat().join(" and ")}, ${meta.category}`, `- Use when: ${meta.useWhen ?? ""}`);
+				if (meta.avoidWhen) lines.push(`- Avoid when: ${meta.avoidWhen}`);
+				if ((meta.pairsWith as string[] | undefined)?.length) lines.push(`- Reads well before: ${(meta.pairsWith as string[]).join(", ")}`);
+				lines.push(`- Weight: ${meta.weightKb ?? "?"} kB gzip of its own code`);
+				if (index.homepage) lines.push(`- Docs: ${index.homepage.replace(/\/$/, "")}/blocks/${item.name}`);
+				lines.push(
+					"",
+					"Write the content as an object of this shape in src/content/, and pass it as `content`. Keep within the limits.",
+					"",
+					"## Content schema (JSON Schema)",
+					"",
+					fence(JSON.stringify(meta.contentSchema, null, 2), "schema.json"),
+					"",
+					"## Example content",
+					"",
+					fence(JSON.stringify(meta.example, null, 2), "example.json"),
+				);
+			}
 			for (const file of item.files) {
 				const { path, content } = render(root, config, item, file);
 				lines.push("", `## ${path}`, "", fence(content, path));
@@ -222,7 +247,7 @@ export function createServer(options: Options) {
 		{
 			title: "Install components",
 			description:
-				"Installs components, examples or villages into the project with the components and npm packages they need, as `rasengan-ui add` does: files go where the project's aliases point, and rasengan-ui.lock records them. A file the user edited since install is kept unless overwrite is set.",
+				"Installs components, blocks, examples or villages into the project with the components and npm packages they need, as `rasengan-ui add` does: files go where the project's aliases point, and rasengan-ui.lock records them. A file the user edited since install is kept unless overwrite is set.",
 			inputSchema: {
 				names: z.array(z.string()).min(1).describe('Item names, e.g. ["dialog", "toast"]'),
 				overwrite: z.boolean().default(false).describe("Replace files the user edited since install. Only when the user asked for it."),
@@ -255,7 +280,9 @@ export function createServer(options: Options) {
 				}
 
 			const asked = new Set(names.map(nameOf));
-			const imports = items.filter((item) => item.type === "registry:ui" && asked.has(item.name)).map((item) => `${config.aliases.ui}/${item.name}`);
+			const imports = items
+				.filter((item) => (item.type === "registry:ui" || item.type === "registry:block") && asked.has(item.name))
+				.map((item) => (item.type === "registry:block" ? `${config.aliases.blocks}/${item.name}` : `${config.aliases.ui}/${item.name}`));
 			if (!dryRun && imports.length) lines.push("", `Import from: ${imports.join(", ")}`);
 			return text(`${dryRun ? "Dry run, nothing written. Adding" : "Installed"} ${names.join(", ")}${dryRun ? " would give" : ""}:\n\n${lines.join("\n")}`);
 		},

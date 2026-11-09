@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Hours, week · Rasengan UI
+  description: "The week's opening hours, one or more slots a day, today highlighted and a live 'open now' in the business's time zone."
+---
+
+<BlockShowcase name="hours-week" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add hours-week
+```
+
+It installs into `components/blocks/hours-week/`, with what it uses (Badge) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { HoursWeek } from "@/components/blocks/hours-week";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <HoursWeek content={home.hours} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type HoursWeekContent } from "@/components/blocks/hours-week";
+
+export const home = {
+  hours: {
+    ...example,
+    title: "When to find us",
+  } satisfies HoursWeekContent,
+};
+```
+
+Slots that close after midnight (`{ open: "18:30", close: "00:30" }`) count for the next day too. "Open now" and today's highlight use `timeZone`, the business's, not the visitor's; they appear once the page has read the clock, so the prerendered HTML and the hydrated page agree.
+
+## Content
+
+<ContentSchema name="hours-week" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `HoursWeekContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"hours"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- The week is a description list: each day (`dt`) with its slots (`dd`).
+- Day names and times follow `locale`.

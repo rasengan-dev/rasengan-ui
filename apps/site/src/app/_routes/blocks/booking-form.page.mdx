@@ -1,0 +1,82 @@
+---
+metadata:
+  title: Booking, form · Rasengan UI
+  description: "A name, a day, a time inside the opening hours and a party size or a service; sends the request as a WhatsApp, text or email message."
+---
+
+<BlockShowcase name="booking-form" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add booking-form
+```
+
+It installs into `components/blocks/booking-form/`, with what it uses (Button, Date Picker, Field, Input, Label, Radio Group, Select, Textarea, Time Picker) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { BookingForm } from "@/components/blocks/booking-form";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <BookingForm content={home.booking} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type BookingFormContent } from "@/components/blocks/booking-form";
+
+export const home = {
+  booking: {
+    ...example,
+    channel: { kind: "whatsapp", to: "+237 6 70 00 00 00" },
+  } satisfies BookingFormContent,
+};
+```
+
+### Where the request goes
+
+There is no server behind the form. When the visitor sends it, the block writes the request as a message (your `labels.intro`, then one line per field) and opens it in the app named by `channel`: WhatsApp, their text messages or their mail app, addressed to you. They send it themselves, and you confirm by reply.
+
+To use your own backend instead, pass `action`: the form posts `name`, `date` (`yyyy-MM-dd`), `time` (`HH:mm`), `party`, `service` and `note` to that URL. Or pass `onSubmit` to take the values in code.
+
+```tsx
+<BookingForm content={home.booking} action="/api/bookings" />
+```
+
+### A table or an appointment
+
+Give `fields.party` for a restaurant (how many guests, from one to `max`), or `fields.services` for a salon, a barber or a spa (one service to pick, with its duration and price). Either, both, or neither.
+
+The same block for a salon, with services and sent by text:
+
+<BlockVariant name="booking-form" demo="booking-form-salon" />
+
+### Days and times
+
+`hours` uses the same shape as the opening hours block. A day with no slot can't be picked, nor a day in the past or more than `daysAhead` days ahead. The times offered are every `interval` minutes inside the chosen day's slots, the last one `interval` before closing. The form knows your hours, not your bookings: a time already taken can still be asked for.
+
+## Content
+
+<ContentSchema name="booking-form" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `BookingFormContent`; the example when left out |
+| `action` | a URL: the form posts its fields there instead of opening a message |
+| `onSubmit` | `(values) => void`: the values in code instead of a message |
+| `id` | the section's id, for anchor links; `"booking"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- Every control has its visible label; an empty required field says so under it, and the form does not send.
+- The services are a radio group, read with their duration and price.
+- After sending, a status line says where the message is waiting.

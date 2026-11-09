@@ -1,5 +1,6 @@
 import { Link } from 'rasengan';
 import { groups } from '@/catalogue';
+import { NewDot } from '@/components/layout/new-dot';
 
 /** `<ComponentIndex />`: every component, as links to their pages, by category. */
 export function ComponentIndex() {
@@ -21,9 +22,10 @@ export function ComponentIndex() {
                 <li key={c.name}>
                   <Link
                     to={c.href}
-                    className="block rounded-control py-1.5 font-medium underline-offset-4 outline-none hover:underline focus-visible:focus-ring"
+                    className="flex items-center gap-2 rounded-control py-1.5 font-medium underline-offset-4 outline-none hover:underline focus-visible:focus-ring"
                   >
                     {c.title}
+                    {c.isNew && <NewDot />}
                   </Link>
                 </li>
               ))}

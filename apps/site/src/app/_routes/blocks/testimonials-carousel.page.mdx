@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Testimonials, carousel · Rasengan UI
+  description: "A title and three to ten customer quotes in cards, one to three at a time, with arrows, dots and swipe."
+---
+
+<BlockShowcase name="testimonials-carousel" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add testimonials-carousel
+```
+
+It installs into `components/blocks/testimonials-carousel/`, with what it uses (Carousel, Card, Avatar) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { TestimonialsCarousel } from "@/components/blocks/testimonials-carousel";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <TestimonialsCarousel content={home.testimonials} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type TestimonialsCarouselContent } from "@/components/blocks/testimonials-carousel";
+
+export const home = {
+  testimonials: {
+    ...example,
+    title: "Your section title",
+  } satisfies TestimonialsCarouselContent,
+};
+```
+
+One card shows in a narrow container, two from `@2xl`, three from `@5xl`. Without an avatar image, the initials show.
+
+## Content
+
+<ContentSchema name="testimonials-carousel" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `TestimonialsCarouselContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"testimonials"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the root element, for spacing |
+
+## Accessibility
+
+- The Carousel is a region named by the title, each slide a group ("2 of 4"), with arrows, dots, the keyboard and swipe.
+- Each quote is a `<figure>`: the `<blockquote>`, then who said it in the `<figcaption>`.

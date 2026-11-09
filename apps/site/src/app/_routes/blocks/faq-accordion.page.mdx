@@ -1,0 +1,59 @@
+---
+metadata:
+  title: FAQ, accordion · Rasengan UI
+  description: "A title beside three to twelve questions that open one by one, and a contact link; closed answers stay findable."
+---
+
+<BlockShowcase name="faq-accordion" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add faq-accordion
+```
+
+It installs into `components/blocks/faq-accordion/`, with what it uses (Accordion, Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { FaqAccordion } from "@/components/blocks/faq-accordion";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <FaqAccordion content={home.faq} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type FaqAccordionContent } from "@/components/blocks/faq-accordion";
+
+export const home = {
+  faq: {
+    ...example,
+    title: "Your section title",
+  } satisfies FaqAccordionContent,
+};
+```
+
+Closed answers are rendered with `hidden="until-found"`: search engines read them, and the browser's find-in-page opens the one that matches.
+
+## Content
+
+<ContentSchema name="faq-accordion" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `FaqAccordionContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"faq"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the root element, for spacing |
+
+## Accessibility
+
+- Each question is a button that opens its answer, with Base UI's keyboard support and ARIA.
+- The title and the contact link come before the questions in reading order.

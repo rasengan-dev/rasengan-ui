@@ -1,0 +1,59 @@
+---
+metadata:
+  title: About, story · Rasengan UI
+  description: "The owner tells the story beside a photo: a title, two or three short paragraphs, a signature and three facts."
+---
+
+<BlockShowcase name="about-story" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add about-story
+```
+
+It installs into `components/blocks/about-story/`, with what it uses (no component) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { AboutStory } from "@/components/blocks/about-story";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <AboutStory content={home.about} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type AboutStoryContent } from "@/components/blocks/about-story";
+
+export const home = {
+  about: {
+    ...example,
+    title: "Our story",
+  } satisfies AboutStoryContent,
+};
+```
+
+Write the paragraphs in the owner's voice. The facts are short strings ("2009", "30"), shown large.
+
+## Content
+
+<ContentSchema name="about-story" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `AboutStoryContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"about"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- The facts are a description list: each label with its value.
+- The photo's `alt` says who or what it shows.

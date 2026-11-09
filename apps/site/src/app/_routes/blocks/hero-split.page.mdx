@@ -1,0 +1,56 @@
+---
+metadata:
+  title: Hero, split · Rasengan UI
+  description: "Headline, subcopy and two actions beside a portrait photo, with up to three figure chips over its corners."
+---
+
+<BlockShowcase name="hero-split" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add hero-split
+```
+
+It installs into `components/blocks/hero-split/`, with what it uses (Button, Text Reveal) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { HeroSplit } from "@/components/blocks/hero-split";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <HeroSplit content={home.hero} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type HeroSplitContent } from "@/components/blocks/hero-split";
+
+export const home = {
+  hero: { ...example, headline: "Invoices that chase themselves" } satisfies HeroSplitContent,
+};
+```
+
+The headline reveals word by word when the page loads (`trigger="mount"`), and is simply there with motion off. Up to three `chips` sit over the photo's corners on a wide screen and line up under it on a narrow one: use real figures. Its heading is the page's `h1`; pass `headingLevel={2}` if it is not the page's first section.
+
+## Content
+
+<ContentSchema name="hero-split" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `HeroSplitContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"hero"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `1` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- The photo has its own `alt`; the chips are text, read after it.
+- The page's one `h1` by default.

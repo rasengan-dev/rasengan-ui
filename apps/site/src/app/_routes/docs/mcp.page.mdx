@@ -55,11 +55,11 @@ Or, to share it with your team, commit a `.mcp.json` at the project root:
 
 | Tool | What it does |
 | --- | --- |
-| `list_components` | Lists components, villages or examples, filtered by words |
-| `get_component` | A component's source with your paths and aliases, what it needs, its examples and its docs page |
+| `list_components` | Lists components, blocks, villages or examples, filtered by words, category or family |
+| `get_component` | A component's source with your paths and aliases, what it needs, its examples and its docs page; for a block, its content schema (JSON Schema) and example too |
 | `get_examples` | The source of a component's examples |
 | `get_project` | Your village, nature and greys, what you installed, the files you edited since install |
-| `add_components` | Installs components, examples or villages, with their npm packages |
+| `add_components` | Installs components, blocks, examples or villages, with their npm packages |
 
 Only `add_components` writes. Like `rasengan-ui add`, it keeps a file you edited since install unless the agent sets
 `overwrite`, and records what it wrote in `rasengan-ui.lock`, so `rasengan-ui diff` shows it.

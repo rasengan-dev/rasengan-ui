@@ -1,0 +1,56 @@
+---
+metadata:
+  title: Showcase, tabs · Rasengan UI
+  description: "The product one part at a time: tabs above a panel with the part's promise, ticked facts and a link beside its screenshot."
+---
+
+<BlockShowcase name="showcase-tabs" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add showcase-tabs
+```
+
+It installs into `components/blocks/showcase-tabs/`, with what it uses (Button, Tabs) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { ShowcaseTabs } from "@/components/blocks/showcase-tabs";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <ShowcaseTabs content={home.showcase} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type ShowcaseTabsContent } from "@/components/blocks/showcase-tabs";
+
+export const home = {
+  showcase: { ...example, title: "Inside Senbon" } satisfies ShowcaseTabsContent,
+};
+```
+
+Two to five tabs, each a part of the product: its promise, up to four ticked facts, an optional link and its screenshot. Every panel stays in the page's HTML, so search engines and find-in-page reach all of them.
+
+## Content
+
+<ContentSchema name="showcase-tabs" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `ShowcaseTabsContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"showcase"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- The tabs follow the WAI-ARIA tabs pattern (arrow keys, Home, End), from Base UI.
+- Each panel's title is a heading one level below the block's.

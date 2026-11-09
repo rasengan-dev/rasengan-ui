@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Hero, photo · Rasengan UI
+  description: "Where and what, a warm headline, two actions and three short facts beside a large photo of the place or a dish."
+---
+
+<BlockShowcase name="hero-photo" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add hero-photo
+```
+
+It installs into `components/blocks/hero-photo/`, with what it uses (Button, Text reveal) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { HeroPhoto } from "@/components/blocks/hero-photo";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <HeroPhoto content={home.hero} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type HeroPhotoContent } from "@/components/blocks/hero-photo";
+
+export const home = {
+  hero: {
+    ...example,
+    headline: "Your welcome in a few words",
+  } satisfies HeroPhotoContent,
+};
+```
+
+The photo loads eagerly, as it is above the fold. Use a real photo of the place or its best dish, landscape (about 4:3).
+
+## Content
+
+<ContentSchema name="hero-photo" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `HeroPhotoContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"hero"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `1` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- A `<section>` named by its headline, the page's `h1` by default.
+- The photo's `alt` says what it shows; the highlights are a list.

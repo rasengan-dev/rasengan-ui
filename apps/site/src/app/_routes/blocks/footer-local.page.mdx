@@ -1,0 +1,56 @@
+---
+metadata:
+  title: Footer, local · Rasengan UI
+  description: "A footer for a place people visit: the address with a landmark, the week's hours grouped by day, phone and social links, the copyright."
+---
+
+<BlockShowcase name="footer-local" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add footer-local
+```
+
+It installs into `components/blocks/footer-local/`, with `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { FooterLocal } from "@/components/blocks/footer-local";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <FooterLocal content={home.footer} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type FooterLocalContent } from "@/components/blocks/footer-local";
+
+export const home = {
+  footer: { ...example, copyright: "© 2026 Your business" } satisfies FooterLocalContent,
+};
+```
+
+Days with the same opening slots share a row ("Tue – Fri"); a day missing from `hours` is left out. Contacts take the same shape as the contact links block.
+
+## Content
+
+<ContentSchema name="footer-local" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `FooterLocalContent`; the example when left out |
+| `id` | the footer's id, for anchor links; `"footer"` by default |
+| `headingLevel` | `1`, `2` or `3`: the column titles' tag; `2` by default |
+| `className` | on the `<footer>`, for spacing |
+
+## Accessibility
+
+- The block is the page's `footer` landmark; column titles are headings at `headingLevel`.
+- Links that leave the site open in a new tab.

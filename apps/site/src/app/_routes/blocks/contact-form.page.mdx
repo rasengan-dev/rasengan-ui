@@ -1,0 +1,62 @@
+---
+metadata:
+  title: Contact, form · Rasengan UI
+  description: "Name, email, a subject and a message beside your other contact details; sends as a WhatsApp, text or email message."
+---
+
+<BlockShowcase name="contact-form" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add contact-form
+```
+
+It installs into `components/blocks/contact-form/`, with what it uses (Button, Field, Input, Label, Radio Group, Textarea) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { ContactForm } from "@/components/blocks/contact-form";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <ContactForm content={home.contact} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type ContactFormContent } from "@/components/blocks/contact-form";
+
+export const home = {
+  contact: { ...example, channel: { kind: "email", to: "support@senbon.example" } } satisfies ContactFormContent,
+};
+```
+
+There is no server behind the form. When the visitor sends it, the block writes the message (your `labels.intro`, then the fields) and opens it in the app named by `channel`: WhatsApp, their texts or their mail app, addressed to you. To use your own backend, pass `action` (the form posts `name`, `email`, `topic` and `message`), or `onSubmit` to take the values in code.
+
+The block is in both families: a product's support page, or a restaurant's events and catering.
+
+<BlockVariant name="contact-form" demo="contact-form-catering" />
+
+## Content
+
+<ContentSchema name="contact-form" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `ContactFormContent`; the example when left out |
+| `action` | a URL: the form posts its fields there instead of opening a message |
+| `onSubmit` | `(values) => void`: the values in code instead of a message |
+| `id` | the section's id, for anchor links; `"contact"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- Every field has its visible label; an empty field or a malformed address says so under it, and the form does not send.
+- The subjects are a radio group, every choice visible.

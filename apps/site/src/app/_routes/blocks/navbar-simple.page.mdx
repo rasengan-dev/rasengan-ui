@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Navbar, simple · Rasengan UI
+  description: "The product's name, up to six links and two actions; below a narrow width, the links fold into a sheet."
+---
+
+<BlockShowcase name="navbar-simple" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add navbar-simple
+```
+
+It installs into `components/blocks/navbar-simple/`, with what it uses (Button, Sheet) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { NavbarSimple } from "@/components/blocks/navbar-simple";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <NavbarSimple content={home.navbar} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type NavbarSimpleContent } from "@/components/blocks/navbar-simple";
+
+export const home = {
+  navbar: {
+    ...example,
+    brand: { ...example.brand, name: "Your product" },
+  } satisfies NavbarSimpleContent,
+};
+```
+
+Make it stick to the top with `className="sticky top-0 z-40"`.
+
+## Content
+
+<ContentSchema name="navbar-simple" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `NavbarSimpleContent`; the example when left out |
+| `id` | the header's id, for anchor links; `"top"` by default |
+| `className` | on the root element, for spacing |
+
+## Accessibility
+
+- A `<header>` with a `<nav>` named by the product's name; the menu button is named by `menuLabel`.
+- Below `@3xl` the links move into a Sheet: focus goes into it and comes back to the button when it closes.
+- It has no heading, so `headingLevel` does nothing.

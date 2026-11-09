@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'rasengan';
 import { Search as SearchIcon } from 'lucide-react';
+import { blocks } from '@/blocks-catalogue';
 import { components } from '@/catalogue';
 import {
   Command,
@@ -22,7 +23,7 @@ interface Entry {
   to: string;
 }
 
-/* What the search finds: the docs pages, then every component, as the sidebar lists them. */
+/* What the search finds: the docs pages, then every component and every block, as the sidebar lists them. */
 const groups = [
   {
     value: 'Get started',
@@ -32,12 +33,20 @@ const groups = [
       { label: 'CLI', description: 'init, add, village, nature, diff, update, doctor.', to: '/docs/cli' },
       { label: 'MCP server', description: 'Let an agent read the components and install them.', to: '/docs/mcp' },
       { label: 'All components', description: 'Every component, with its demo.', to: '/components' },
+      { label: 'All blocks', description: 'Page sections built on the components, with content an agent can fill.', to: '/blocks' },
+      { label: 'Landing page example', description: 'A startup landing page made only of marketing blocks.', to: '/examples/landing' },
+      { label: 'Restaurant example', description: "A restaurant's site made only of storefront blocks.", to: '/examples/restaurant' },
+      { label: 'Salon example', description: "A barber and braiding studio's site made only of storefront blocks.", to: '/examples/salon' },
       { label: 'Motion', description: 'Components whose motion is the point, in a gallery.', to: '/motion' },
     ],
   },
   {
     value: 'Components',
     items: components.map((c) => ({ label: c.title, description: c.description, to: c.href })),
+  },
+  {
+    value: 'Blocks',
+    items: blocks.map((b) => ({ label: b.title, description: b.summary, to: b.href })),
   },
 ] satisfies { value: string; items: Entry[] }[];
 

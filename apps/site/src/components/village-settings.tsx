@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverDescription, PopoverTitle, PopoverTrigger } from '@/components/ui/popover';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
-import { setSettings, useSettings } from '@/settings';
+import { setSettings, useSettings, type Settings } from '@/settings';
 import { cn } from '@/lib/utils';
 
 /** A dot in the nature's own primary, whatever the page wears. */
@@ -31,9 +31,24 @@ function Section({ id, title, children }: { id: string; title: string; children:
   );
 }
 
+/** A theme other than the page's: a block preview's, a gallery's. Left out, the controls set the whole page. */
+export interface ThemeControl {
+  value: Settings;
+  onChange: (patch: Partial<Settings>) => void;
+}
+
+/** The page's theme, or the one passed in. */
+function useTheme(control?: ThemeControl) {
+  const page = useSettings();
+  return control ?? { value: page, onChange: setSettings };
+}
+
 /** The three axes with every option in view: villages with what they are, natures with their element, the greys. */
-export function ThemeOptions() {
-  const { village, nature, tint } = useSettings();
+export function ThemeOptions({ control }: { control?: ThemeControl } = {}) {
+  const {
+    value: { village, nature, tint },
+    onChange: setSettings,
+  } = useTheme(control);
   const id = useId();
 
   return (
@@ -100,34 +115,51 @@ export function ThemeOptions() {
 }
 
 /** One button for the village, nature and greys: it shows the current pair and opens every option. */
-export function ThemePopover({ className }: { className?: string }) {
-  const { village, nature } = useSettings();
+export function ThemePopover({
+  className,
+  side = 'bottom',
+  control,
+  label = 'Theme',
+  description = 'The whole page and every demo wear it. Kept in this browser.',
+}: {
+  className?: string;
+  side?: 'top' | 'bottom';
+  control?: ThemeControl;
+  label?: string;
+  description?: string;
+}) {
+  const {
+    value: { village, nature },
+  } = useTheme(control);
   return (
     <Popover>
       {/* Named by its text ("Theme Kiri Katon"): what is hidden on small screens is still read, so the visible words stay in the name. */}
       <PopoverTrigger render={<Button variant="ghost" size="sm" className={cn('gap-2', className)} />}>
-        <span className="sr-only">Theme</span>
+        <span className="sr-only">{label}</span>
         <Palette className="sm:hidden" />
         <NatureDot nature={nature} className="hidden sm:block" />
         <span className="sr-only sm:not-sr-only">{villages[village].title}</span>
         <span className="sr-only text-muted-foreground md:not-sr-only">{natures[nature].title}</span>
       </PopoverTrigger>
       {/* Portaled to <body>, away from --header-height: Base UI's --available-height bounds it, as in the mobile menu. */}
-      <PopoverContent align="end" sideOffset={8} className="max-h-(--available-height) w-[min(22rem,calc(100vw-2rem))] overflow-y-auto overscroll-contain">
+      <PopoverContent side={side} align="end" sideOffset={8} className="max-h-(--available-height) w-[min(22rem,calc(100vw-2rem))] overflow-y-auto overscroll-contain">
         <div className="mb-4 grid gap-1">
-          <PopoverTitle>Theme</PopoverTitle>
-          <PopoverDescription>The whole page and every demo wear it. Kept in this browser.</PopoverDescription>
+          <PopoverTitle>{label}</PopoverTitle>
+          <PopoverDescription>{description}</PopoverDescription>
         </div>
-        <ThemeOptions />
+        <ThemeOptions control={control} />
       </PopoverContent>
     </Popover>
   );
 }
 
-export function SchemeToggle() {
-  const { dark } = useSettings();
+export function SchemeToggle({ control, className }: { control?: ThemeControl; className?: string }) {
+  const {
+    value: { dark },
+    onChange,
+  } = useTheme(control);
   return (
-    <Button variant="ghost" size="icon" aria-label={dark ? 'Light mode' : 'Dark mode'} onClick={() => setSettings({ dark: !dark })}>
+    <Button variant="ghost" size="icon" className={className} aria-label={dark ? 'Light mode' : 'Dark mode'} onClick={() => onChange({ dark: !dark })}>
       {dark ? <Sun /> : <Moon />}
     </Button>
   );

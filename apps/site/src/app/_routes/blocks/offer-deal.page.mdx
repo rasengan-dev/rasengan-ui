@@ -1,0 +1,56 @@
+---
+metadata:
+  title: Offer, deal · Rasengan UI
+  description: "One offer beside a photo: what it includes, the new price and the usual one struck through, and a countdown to its end."
+---
+
+<BlockShowcase name="offer-deal" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add offer-deal
+```
+
+It installs into `components/blocks/offer-deal/`, with what it uses (Badge, Button, Number Roll) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { OfferDeal } from "@/components/blocks/offer-deal";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <OfferDeal content={home.offer} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type OfferDealContent } from "@/components/blocks/offer-deal";
+
+export const home = {
+  offer: { ...example, offer: { ...example.offer, title: "Lunch combo" } } satisfies OfferDealContent,
+};
+```
+
+With `offer.endsAt` (ISO 8601 with its offset), the end date is written in `timeZone`, then days, hours and minutes count down once the page has loaded. Past the end, the action goes and `labels.expired` says the offer has ended. Without `endsAt`, there is no countdown.
+
+## Content
+
+<ContentSchema name="offer-deal" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `OfferDealContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"offer"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- The usual price is read as such (`labels.was`) before the struck-through amount.
+- The countdown is hidden from screen readers, which read the end date instead: it does not chatter every minute.
