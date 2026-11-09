@@ -1,0 +1,61 @@
+---
+metadata:
+  title: Newsletter, inline · Rasengan UI
+  description: "A band asking for an email address: the promise beside a field and a button, posting to your newsletter provider."
+---
+
+<BlockShowcase name="newsletter-inline" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add newsletter-inline
+```
+
+It installs into `components/blocks/newsletter-inline/`, with what it uses (Button, Field, Input) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { NewsletterInline } from "@/components/blocks/newsletter-inline";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <NewsletterInline content={home.newsletter} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type NewsletterInlineContent } from "@/components/blocks/newsletter-inline";
+
+export const home = {
+  newsletter: { ...example, form: { ...example.form, action: "https://buttondown.com/api/emails/embed-subscribe/senbon" } } satisfies NewsletterInlineContent,
+};
+```
+
+The form posts the address to `form.action`, your newsletter provider's subscribe URL (most give one for embedded forms) or your own endpoint, under the field name `form.name`. Set `form.newTab` to open the provider's confirmation page in a new tab. To call the provider yourself, pass `onSubmit`: the block takes the address, waits for your function and shows `labels.sent`.
+
+```tsx
+<NewsletterInline content={home.newsletter} onSubmit={(email) => subscribe(email)} />
+```
+
+## Content
+
+<ContentSchema name="newsletter-inline" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `NewsletterInlineContent`; the example when left out |
+| `onSubmit` | `(email) => void \| Promise<void>`: take the address in code instead of posting the form |
+| `id` | the section's id, for anchor links; `"newsletter"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- The field has its visible label; a malformed address says so under it and is not sent.
+- After `onSubmit`, a status line says what happens next.

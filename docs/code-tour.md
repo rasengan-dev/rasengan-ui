@@ -12,7 +12,7 @@ rasengan-ui-app/
 │   ├── categories.ts        the component categories, in the site's order
 │   ├── components/<name>/   the components (53): source, styles, demos, meta
 │   ├── block-categories.ts  the block families and categories, in the site's order (a block may name both families)
-│   ├── blocks/<name>/       the blocks (29): component, schema, example, meta, demo
+│   ├── blocks/<name>/       the blocks (35): component, schema, example, meta, demo
 │   └── placeholders/        open images the block examples show (rasengan-placeholders), credited in CREDITS.md
 ├── packages/
 │   ├── core/                cn(), engine variants, VillageScope, Field context
@@ -191,8 +191,8 @@ src/
 │   ├── components/      one <name>.page.mdx per component, plus the index
 │   ├── blocks/          one <name>.page.mdx per block; index.page.tsx, the gallery
 │   ├── preview/         [name].page.tsx: one block full window, a page per block (generatePaths)
-│   ├── examples/        landing.page.tsx, restaurant.page.tsx, salon.page.tsx: pages made only of blocks; layout.tsx adds the floating toolbar (the
-│   │                    root layout drops the site header on /examples)
+│   ├── examples/        landing.page.tsx, restaurant.page.tsx, salon.page.tsx: pages made only of blocks; layout.tsx wraps them in a PageTransition and
+│   │                    adds the floating toolbar with its example switcher (the root layout drops the site header on /examples)
 │   ├── motion/          index.page.tsx: the motion gallery (replay, reduced-motion switch)
 │   └── villages/create.page.tsx   the workshop
 └── components/

@@ -19,7 +19,7 @@
 | MCP server | `rasengan-ui mcp`, five tools ([RFC-0003](rfc/0003-mcp-server.md), steps 1 to 3) |
 | Site | Live at `rasengan-ui.hiraiship.app`, prerendered, with Tag Manager ([ADR-0005](adr/0005-prerendered-site-on-hiraiship.md)) |
 | Project docs | `docs/` in this format since 2026-11-07 ([ADR-0001](adr/0001-project-docs-like-jutsify.md)) |
-| Blocks | 29 (RFC-0008 lots 0, A and B; RFC-0009 lots D0 and D): 10 marketing (navbar-simple, hero-centered, logos-marquee, features-grid, stats-numbers, testimonials-carousel, pricing-plans, faq-accordion, cta-banner, footer-columns) and 19 storefront (hero-photo, menu-categories, menu-cards, menu-list, services-list, services-pricelist, booking-form, offer-deal, gallery-grid, gallery-social, hours-week, location-map, location-branches, order-banner, about-story, team-staff, reviews-rating, contact-links, footer-local); the examples `/examples/landing`, `/examples/restaurant` and `/examples/salon`; the gallery at `/blocks`; `rasengan-blocks`, `rasengan-placeholders`, `blocks.json`, MCP `kind: "block"` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
+| Blocks | 35 (RFC-0008 lots 0, A, B and C; RFC-0009 lots D0 and D): 16 marketing (navbar-simple, hero-centered, logos-marquee, features-grid, bento-features, steps-scroll, showcase-tabs, stats-numbers, testimonials-carousel, pricing-plans, pricing-comparison, faq-accordion, cta-banner, newsletter-inline, team-grid, footer-columns) and 19 storefront (hero-photo, menu-categories, menu-cards, menu-list, services-list, services-pricelist, booking-form, offer-deal, gallery-grid, gallery-social, hours-week, location-map, location-branches, order-banner, about-story, team-staff, reviews-rating, contact-links, footer-local); the examples `/examples/landing`, `/examples/restaurant` and `/examples/salon`, linked through a page transition; the gallery at `/blocks`; `rasengan-blocks`, `rasengan-placeholders`, `blocks.json`, MCP `kind: "block"` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
 | `packages/motion` | `rasengan-motion` in the registry: motion modes, village motion tokens, primitives, `splitText` ([RFC-0007](rfc/0007-motion-components.md) lot 0) |
 | Categories | Every component has one; the site groups by them and has a Motion section ([ADR-0009](adr/0009-component-categories.md)) |
 
@@ -31,11 +31,14 @@
   focus halos are 2.3 to 2.4:1 on the background in dark mode (see 0002-Q5). `pnpm axe` now runs with Kusa: the site's
   prose links used `text-primary` (4.3:1 in Kusa light) and now use the primary's words (`tone-primary text-tone-text`).
 - **Motion components** ([RFC-0007](rfc/0007-motion-components.md)): all four lots built.
-- **Blocks** ([RFC-0008](rfc/0008-blocks.md), accepted): lots 0, A and B built. Left from lot 0: installing a block in
-  Jutsify's sandbox registry copy (they install in the playground). `gallery-grid` is a photo grid with a Dialog
-  lightbox rather than Gallery3D (its cards are portrait; Gallery3D waits for lot C). The storefront placeholders are
-  flat SVG illustrations (dishes, a room, a kitchen, a map); real open photos could replace them. Next, lot C (showcase
-  blocks), RFC-0009's lots D0 and D being built (below).
+- **Blocks** ([RFC-0008](rfc/0008-blocks.md), accepted): all lots built. Left from lot 0: installing a block in
+  Jutsify's sandbox registry copy (they install in the playground). Lot C: bento-features, steps-scroll,
+  showcase-tabs, pricing-comparison, newsletter-inline and team-grid (1.2 to 2 kB each), two more product screens in
+  the placeholders (`product-invoice`, `product-payment`), and the example pages linked through a page transition
+  (the floating toolbar's switcher). `newsletter-inline` posts to the provider's URL in its content, or to `onSubmit`:
+  a newsletter has no message to send to the business. Gallery3D is still in no block: `gallery-grid` is a photo grid
+  with a Dialog lightbox (its cards are portrait). The storefront placeholders are flat SVG illustrations; real open
+  photos could replace them.
 - **Blocks, second wave** ([RFC-0009](rfc/0009-blocks-second-wave.md), accepted): new categories (`team`, `booking`,
   `offers`, `comparison`, `integrations`), lot D (ten storefront blocks: booking, menu cards, price list, staff,
   reviews…) and lot E (ten marketing blocks: split and wordmark heroes, comparison, integrations, contact form…), from
@@ -49,7 +52,7 @@
   `/examples/salon` is new. Differences from the RFC's table: `gallery-social` has no lightbox (photos and one follow
   link) and `reviews-rating` no carousel (a masonry that stacks); the booking form's date trigger is written by
   date-fns in English whatever `locale` says (the message uses `Intl`). No block in both families yet: the first comes
-  with `contact-form` or `hero-wordmark`. Next, RFC-0008's lot C, then lot E.
+  with `contact-form` or `hero-wordmark`. Next, lot E (RFC-0008's lot C is built).
 
 ### Then
 

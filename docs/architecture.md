@@ -42,7 +42,7 @@ flowchart LR
 flowchart TB
   subgraph source[Sources]
     comps["✅ registry/components<br/>53 components, 8 of them motion"]
-    blocks["🚧 registry/blocks<br/>29 blocks: 10 marketing, 19 storefront"]
+    blocks["🚧 registry/blocks<br/>35 blocks: 16 marketing, 19 storefront"]
     blockslib["✅ packages/blocks<br/>rasengan-blocks: BlockProps, BlockMeta, field types"]
     core["✅ packages/core<br/>cn, ui-* variants, VillageScope, Field context"]
     villages["✅ packages/villages<br/>contract, villages, natures, engine, contrast"]
@@ -77,7 +77,7 @@ flowchart TB
 |---|---|---|
 | `registry/components/<name>/` | ✅ 53 | One folder per component: `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts` (with its category, [ADR-0009](adr/0009-component-categories.md)), demos |
 | `registry/categories.ts` | ✅ | The seven categories, in the site's order: forms, dates, overlays, navigation, display, feedback, motion |
-| `registry/blocks/<name>/` | 🚧 29 | One folder per block ([RFC-0008](rfc/0008-blocks.md)): `<name>.base.tsx`, `schema.ts` (`export const schema`), `example.ts` (`export const example`), `meta.ts` (family, category, `useWhen`…; type imports only), demos. The ten marketing blocks of lot A, the nine storefront blocks of lot B and the ten of RFC-0009's lot D |
+| `registry/blocks/<name>/` | 🚧 35 | One folder per block ([RFC-0008](rfc/0008-blocks.md)): `<name>.base.tsx`, `schema.ts` (`export const schema`), `example.ts` (`export const example`), `meta.ts` (family, category, `useWhen`…; type imports only), demos. The ten marketing blocks of lot A, the nine storefront blocks of lot B, the six showcase blocks of lot C and the ten of RFC-0009's lot D |
 | `registry/placeholders/` | ✅ | Open placeholder images the examples show (a neutral product shot; flat illustrations of dishes, a room, a kitchen and a map; six drawn logo marks with invented names, `logo-*.svg`, [RFC-0009](rfc/0009-blocks-second-wave.md); eleven Unsplash portraits, `person-*.svg` (WebP in an SVG: the registry carries text only), credited in `CREDITS.md`, [ADR-0014](adr/0014-placeholder-photos-from-unsplash.md)); the `rasengan-placeholders` item installs them in `public/placeholders/`, and a block whose example uses one depends on it. The site serves copies at `/placeholders/` |
 | `registry/block-categories.ts` | ✅ | The two families (marketing, storefront) and their categories, in the site's order; RFC-0009 added `integrations`, `comparison`, `booking`, `offers` and `team`, and `contact` for marketing |
 | `packages/blocks` | ✅ | The `rasengan-blocks` registry item: `lib/blocks.ts` (`BlockProps`, `heading`, `BlockMeta`, `familiesOf`, `formatMoney`, `messageUrl`, no zod) and `lib/block-fields.ts` (zod field types, RFC-0009's `review`, `staffMember`, `branch`, `offer`, `formChannel`… among them; `defineBlock`), [ADR-0013](adr/0013-blocks-answer-their-container.md); its tests render every block on the server |
@@ -185,7 +185,7 @@ sequenceDiagram
   every block as a live, scaled-down thumbnail, with search, a family filter, a category rail and `?category=`),
   `/blocks/<name>` (MDX: `BlockShowcase` on top, after shadcnblocks' block pages, then installation, usage, the
   `ContentSchema` table, props), `/preview/<name>` (one block alone, full window, one page per block from
-  `generatePaths`), `/examples/landing`, `/examples/restaurant` and `/examples/salon` (pages made only of blocks; the restaurant and the salon pass their own content from `src/content/`), `/motion` (the motion gallery:
+  `generatePaths`), `/examples/landing`, `/examples/restaurant` and `/examples/salon` (pages made only of blocks; the restaurant and the salon pass their own content from `src/content/`; their layout wraps them in a `PageTransition`, and the floating toolbar's switcher moves between them behind it), `/motion` (the motion gallery:
   the village reveal and, from lot A, the motion components), `/villages/create` (the workshop).
 - The blocks pages take the whole window, header included. `/examples/*` and `/preview/*` have no site header and
   a floating toolbar for the theme and the scheme. A block's showcase and the gallery's thumbnails wear a theme of

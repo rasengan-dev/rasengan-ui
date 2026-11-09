@@ -168,6 +168,9 @@
 			"@/components/blocks/about-story": [
 				"../../registry/blocks/about-story/about-story.base.tsx"
 			],
+			"@/components/blocks/bento-features": [
+				"../../registry/blocks/bento-features/bento-features.base.tsx"
+			],
 			"@/components/blocks/booking-form": [
 				"../../registry/blocks/booking-form/booking-form.base.tsx"
 			],
@@ -225,11 +228,17 @@
 			"@/components/blocks/navbar-simple": [
 				"../../registry/blocks/navbar-simple/navbar-simple.base.tsx"
 			],
+			"@/components/blocks/newsletter-inline": [
+				"../../registry/blocks/newsletter-inline/newsletter-inline.base.tsx"
+			],
 			"@/components/blocks/offer-deal": [
 				"../../registry/blocks/offer-deal/offer-deal.base.tsx"
 			],
 			"@/components/blocks/order-banner": [
 				"../../registry/blocks/order-banner/order-banner.base.tsx"
+			],
+			"@/components/blocks/pricing-comparison": [
+				"../../registry/blocks/pricing-comparison/pricing-comparison.base.tsx"
 			],
 			"@/components/blocks/pricing-plans": [
 				"../../registry/blocks/pricing-plans/pricing-plans.base.tsx"
@@ -243,8 +252,17 @@
 			"@/components/blocks/services-pricelist": [
 				"../../registry/blocks/services-pricelist/services-pricelist.base.tsx"
 			],
+			"@/components/blocks/showcase-tabs": [
+				"../../registry/blocks/showcase-tabs/showcase-tabs.base.tsx"
+			],
 			"@/components/blocks/stats-numbers": [
 				"../../registry/blocks/stats-numbers/stats-numbers.base.tsx"
+			],
+			"@/components/blocks/steps-scroll": [
+				"../../registry/blocks/steps-scroll/steps-scroll.base.tsx"
+			],
+			"@/components/blocks/team-grid": [
+				"../../registry/blocks/team-grid/team-grid.base.tsx"
 			],
 			"@/components/blocks/team-staff": [
 				"../../registry/blocks/team-staff/team-staff.base.tsx"

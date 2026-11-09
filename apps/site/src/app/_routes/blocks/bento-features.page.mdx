@@ -1,0 +1,56 @@
+---
+metadata:
+  title: Bento, features · Rasengan UI
+  description: "Features, numbers that roll in and a product shot in a bento grid of small, wide, tall and large tiles."
+---
+
+<BlockShowcase name="bento-features" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add bento-features
+```
+
+It installs into `components/blocks/bento-features/`, with what it uses (Number Roll) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
+
+```tsx title="app/_routes/index.page.tsx"
+import { BentoFeatures } from "@/components/blocks/bento-features";
+import { home } from "@/content/home";
+
+export default function Home() {
+  return <BentoFeatures content={home.bento} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type BentoFeaturesContent } from "@/components/blocks/bento-features";
+
+export const home = {
+  bento: { ...example, title: "Why studios switch" } satisfies BentoFeaturesContent,
+};
+```
+
+Each tile is a `feature` (an icon, a title and a line), a `stat` (a real number that rolls in when it scrolls into view) or an `image` (a product shot under its caption). `size` sets its span on a wide screen, where the grid has four columns: `small` is one cell, `wide` two across, `tall` two down, `large` two by two. Pick sizes that fill rows of four cells; below that width the grid has two columns, then one.
+
+## Content
+
+<ContentSchema name="bento-features" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `BentoFeaturesContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"bento"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the `<section>`, for spacing |
+
+## Accessibility
+
+- Each tile's title is a heading one level below the block's; a stat's label is its heading.
+- Numbers are text, read once, not announced as they roll.
