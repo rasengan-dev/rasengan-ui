@@ -123,6 +123,11 @@ header and workshop (the engine runs in `components/workshop/engine.worker.ts`).
 
 Gotcha: the workshop's worker does not hot-reload engine or contract changes; restart the site's dev server.
 
+Published as `@rasengan-ui/villages` ([ADR-0016](adr/0016-villages-published-on-npm.md)). `tsup.config.ts` builds
+`dist/` (one ESM file per entry of `exports`, declarations, the CSS and JSON files copied as they are); `prepack` runs
+it. In the workspace `exports` points at `src/`, and `publishConfig.exports` at `dist/`: publish with `pnpm publish`,
+never `npm publish`.
+
 ## 5. `packages/motion`
 
 ```
@@ -170,7 +175,7 @@ src/
 ```
 
 - Runs from source in the repository (`pnpm playground ui <cmd>`, with `RASENGAN_UI_REGISTRY=../site/public/r`).
-- `build.mjs` bundles it with esbuild into `dist/index.js`, inlining `@rasengan-ui/villages`; npm dependencies stay
+- `tsup.config.ts` bundles it into `dist/index.js`, inlining `@rasengan-ui/villages`; npm dependencies stay
   external. Publish with `pnpm publish` (npm leaves `workspace:*` in place).
 - Tests next to the code (`*.test.ts`, `node:test`), run by `pnpm test`.
 - `mcp.ts` must never write to stdout outside the protocol.

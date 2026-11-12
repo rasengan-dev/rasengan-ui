@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-08 (RFC-0008 lot B).
+> Last updated: 2026-11-12 (ADR-0016).
 
 ## Where things stand
 
@@ -16,6 +16,7 @@
 | Natures | Six, with Onmyōton; neutral tint |
 | Village engine, workshop, `village create/check/export` | Built ([RFC-0006](rfc/0006-custom-villages.md), steps 1 to 4) |
 | CLI | `rasengan-ui` 0.1.1 on npm |
+| `@rasengan-ui/villages` | Ready to publish at 0.1.0, not published yet: the `@rasengan-ui` scope has to be created on npm first ([ADR-0016](adr/0016-villages-published-on-npm.md)) |
 | MCP server | `rasengan-ui mcp`, five tools ([RFC-0003](rfc/0003-mcp-server.md), steps 1 to 3) |
 | Site | Live at `rasengan-ui.hiraiship.app`, prerendered, with Tag Manager ([ADR-0005](adr/0005-prerendered-site-on-hiraiship.md)) |
 | Project docs | `docs/` in this format since 2026-11-07 ([ADR-0001](adr/0001-project-docs-like-jutsify.md)) |
