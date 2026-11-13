@@ -84,6 +84,7 @@ flowchart TB
 | `packages/core` | ✅ | What every component shares; published as the `rasengan-core` registry item |
 | `packages/villages` | ✅ | The token contract (CSS + TypeScript spec), the villages, the natures, the village engine, the contrast library; prepared for npm as `@rasengan-ui/villages` ([ADR-0016](adr/0016-villages-published-on-npm.md)) |
 | `packages/motion` | ✅ | The `rasengan-motion` registry item ([RFC-0007](rfc/0007-motion-components.md)): motion modes, the village's motion tokens read from CSS, `Reveal`, `Stagger`, `Presence`, `Parallax`, `Tilt`, `Magnetic`, `splitText`. Used by the five motion components of lot A |
+| `packages/workshop` | ✅ | The `rasengan-workshop` registry item ([ADR-0017](adr/0017-workshop-as-a-shared-registry-item.md)): the village workshop's `RecipePanel`, `Report`, `VillageStatus`, `useVillage` (the engine in a web worker) and its labels in English and French; its tests render the panel and the report on the server in both |
 | `packages/directions` | — | Empty leftover of RFC-0001; to delete |
 | `scripts/registry.mjs` | ✅ | Builds the registry, one per engine (only `base` today); for blocks it also parses each example with its schema, writes the JSON Schema and the gzip weight into the item's meta (budget 6 kB, 12 kB for showcase and bento), and writes `blocks.json` |
 | `apps/site` | ✅ | The docs and catalogue site; serves the registry and its schemas; live at `rasengan-ui.hiraiship.app` |
@@ -141,7 +142,8 @@ flowchart LR
 ```
 
 Built-in villages are recipes too (`villages/*.recipe.json`), reproduced token for token. The same engine runs in the
-CLI (`village create/check/export`) and in the site's workshop (`/villages/create`, in a web worker).
+CLI (`village create/check/export`) and in the workshop (`packages/workshop`, in a web worker), which the site shows at
+`/villages/create` and any project can install ([ADR-0017](adr/0017-workshop-as-a-shared-registry-item.md)).
 Why: [RFC-0006](rfc/0006-custom-villages.md).
 
 ## 4. From a component folder to a user's project
@@ -164,6 +166,8 @@ sequenceDiagram
 
 - Registry URL shape: `/r/<engine>/<name>.json`. Demos are `registry:example` items `<demo>-demo`, listed in the
   component's `meta.examples`, so agents can read them (RFC-0003).
+- `rasengan-workshop` is a shared item made of components: its six files are `registry:component` files, written to
+  `<components alias>/workshop/` ([ADR-0017](adr/0017-workshop-as-a-shared-registry-item.md)).
 - Shared code is published as `registry:lib` items (`rasengan-core`, `rasengan-motion`, `rasengan-blocks`); villages as
   `registry:theme` items, one per village plus `rasengan-natures`.
 - Blocks are `registry:block` items: five files (`<name>.tsx`, a generated `index.ts`, `schema.ts`, `example.ts`,

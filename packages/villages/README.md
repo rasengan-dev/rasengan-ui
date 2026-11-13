@@ -36,7 +36,14 @@ if (village.problems.length === 0) console.log(village.css);
 `village.problems` lists the colour pairs still under their WCAG minimum: when there are any, do not write the file.
 `village.adjustments` lists what the engine moved to pass.
 
-In a bundler, import the two CSS files as text instead of reading them (`contract.css?raw` with Vite).
+Where files cannot be read (a browser, a web worker), take the two files already parsed:
+
+```ts
+import { createVillage } from "@rasengan-ui/villages/engine";
+import { sources } from "@rasengan-ui/villages/sources";
+
+const village = createVillage({ name: "acme", base: "kiri", brand: { color: "#ff5a1f" } }, { sources });
+```
 
 ## What it exports
 
@@ -45,6 +52,7 @@ In a bundler, import the two CSS files as text instead of reading them (`contrac
 | `@rasengan-ui/villages` | The villages, natures and tints that exist, as data |
 | `@rasengan-ui/villages/engine` | `createVillage`, the `Recipe` type, the built-in recipes, recipe links |
 | `@rasengan-ui/villages/contrast` | The contrast library: parse the CSS, check every colour pair |
+| `@rasengan-ui/villages/sources` | `contract.css` and `natures.css` already parsed, for `createVillage` |
 | `@rasengan-ui/villages/contract` | The token contract as data |
 | `@rasengan-ui/villages/fonts` | The font catalogue a village may name |
 | `@rasengan-ui/villages/contract.css`, `/natures.css`, `/villages/<name>.css` | The CSS files |

@@ -31,6 +31,7 @@
 		"./contrast": "./src/contrast.ts",
 		"./engine": "./src/engine/index.ts",
 		"./fonts": "./src/fonts.ts",
+		"./sources": "./src/sources.ts",
 		"./recipe.schema.json": "./src/engine/recipe.schema.json",
 		"./contract.css": "./src/contract.css",
 		"./natures.css": "./src/natures.css",
@@ -61,6 +62,10 @@
 			"./fonts": {
 				"types": "./dist/fonts.d.ts",
 				"default": "./dist/fonts.js"
+			},
+			"./sources": {
+				"types": "./dist/sources.d.ts",
+				"default": "./dist/sources.js"
 			},
 			"./recipe.schema.json": "./dist/engine/recipe.schema.json",
 			"./contract.css": "./dist/contract.css",

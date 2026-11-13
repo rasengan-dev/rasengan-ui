@@ -119,7 +119,7 @@ src/
 ```
 
 Who calls it: `scripts/registry.mjs` (the theme items), `scripts/contrast.mjs`, the CLI (bundled in), the site's
-header and workshop (the engine runs in `components/workshop/engine.worker.ts`).
+header, and the workshop (`packages/workshop/src/engine.worker.ts`).
 
 Gotcha: the workshop's worker does not hot-reload engine or contract changes; restart the site's dev server.
 
@@ -127,6 +127,28 @@ Published as `@rasengan-ui/villages` ([ADR-0016](adr/0016-villages-published-on-
 `dist/` (one ESM file per entry of `exports`, declarations, the CSS and JSON files copied as they are); `prepack` runs
 it. In the workspace `exports` points at `src/`, and `publishConfig.exports` at `dist/`: publish with `pnpm publish`,
 never `npm publish`.
+
+`sources.ts` exports `contract.css` and `natures.css` already parsed, for code that cannot read files (the workshop's
+worker). It imports them with `?raw`: Vite's in the workspace, a small esbuild plugin of `tsup.config.ts` in the build.
+Nothing run by Node imports it (the tests and the CLI read the two files).
+
+### `packages/workshop`: the workshop's parts
+
+```
+src/
+├── recipe-panel.tsx     RecipePanel: a row per knob, a menu or popover beside each; `knobs()`, `bases`, `swatches`
+├── report.tsx           Report: the status, the brand colour's moves, the pairs that fail, the adjustments
+├── village-status.tsx   VillageStatus: the pill that opens the report
+├── use-village.ts       useVillage(recipe): the village, made in the worker, the latest recipe winning
+├── engine.worker.ts     the engine off the main thread
+└── labels.ts            WorkshopLabels, and the `en` and `fr` dictionaries
+test/workshop.test.tsx   the panel and the report rendered on the server, in both languages
+```
+
+The source of the `rasengan-workshop` registry item ([ADR-0017](adr/0017-workshop-as-a-shared-registry-item.md)); the
+list of its files is in `scripts/registry.mjs` (`sharedItems`). It imports the components by their installed paths
+(`@/components/ui/…`), and its own files relatively, so they work as they are once installed in
+`components/workshop/`. A new word goes into `WorkshopLabels` and both dictionaries, never into a component.
 
 ## 5. `packages/motion`
 
@@ -205,7 +227,7 @@ src/
     ├── layout/          header, sidebar, search (CommandDialog), mobile menu, footer, docs layout, example toolbar
     ├── mdx/             code-block, toc, steps, callout, component-preview, block-showcase, content-schema, village-grid, pager
     ├── gallery/         block-thumbnail: a block live, scaled down, rendered once near the viewport
-    ├── workshop/        recipe panel, preview cards, report, export dialog, engine worker
+    ├── workshop/        what the site's workshop page adds to `packages/workshop`: preview cards, export dialog
     └── home/            the home page's demo dashboard
 ```
 

@@ -1,0 +1,10 @@
+{
+	"extends": "../../registry/tsconfig.json",
+	"compilerOptions": {
+		"lib": ["ES2023", "DOM", "DOM.Iterable", "WebWorker"],
+		"types": ["node"],
+		"allowImportingTsExtensions": true
+	},
+	// The registry components the panel is made of, so tsx compiles their JSX with this config in the tests.
+	"include": ["src", "test", "../villages/src/raw.d.ts", "../../registry/components"]
+}
