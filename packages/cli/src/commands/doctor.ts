@@ -13,7 +13,7 @@ import { GENERATED } from "../villages.ts";
 
 export const usage = `Usage: rasengan-ui doctor
 
-Checks the project: config, registry, Tailwind and React versions, the @/ alias, the CSS imports,
+Checks the project: config, registry, Tailwind and React versions, the import aliases, the CSS imports,
 the village on <html>, installed files and npm packages. Exits with 1 when something is broken.`;
 
 type Level = "ok" | "warn" | "error";

@@ -150,13 +150,13 @@ test/ssr.test.tsx        server render, no hidden state without JavaScript, spli
 src/
 ├── index.ts             the command table and help
 ├── commands/
-│   ├── init.ts          detect the framework, ask village and nature, write rasengan-ui.json and CSS imports
+│   ├── init.ts          detect the framework, ask village and nature, check the aliases (--aliases), write rasengan-ui.json and CSS imports
 │   ├── add.ts           resolve items and their dependencies, install files and npm packages
 │   ├── look.ts          village list|set|add|create|check|export, nature, tint
 │   ├── sync.ts          diff and update (3-way merge)
 │   ├── doctor.ts        checks config, registry, aliases, CSS order, overriding tokens, packages
 │   └── mcp.ts           starts the MCP server
-├── config.ts            rasengan-ui.json; RASENGAN_UI_REGISTRY overrides the default registry
+├── config.ts            rasengan-ui.json, aliasesFor(prefix); RASENGAN_UI_REGISTRY overrides the default registry
 ├── project.ts           project root, tsconfig/jsconfig paths, package manager
 ├── framework.ts         Rasengan.js, Vite, Next.js App Router, or manual
 ├── registry.ts          load items (by name, URL or folder), the index, registryDependencies
