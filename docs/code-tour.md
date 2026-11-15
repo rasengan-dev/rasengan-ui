@@ -157,7 +157,7 @@ src/
 │   ├── doctor.ts        checks config, registry, aliases, CSS order, overriding tokens, packages
 │   └── mcp.ts           starts the MCP server
 ├── config.ts            rasengan-ui.json, aliasesFor(prefix); RASENGAN_UI_REGISTRY overrides the default registry
-├── project.ts           project root, tsconfig/jsconfig paths, package manager
+├── project.ts           project root, tsconfig/jsconfig paths, package manager, a package's exports (doctor)
 ├── framework.ts         Rasengan.js, Vite, Next.js App Router, or manual
 ├── registry.ts          load items (by name, URL or folder), the index, registryDependencies
 ├── fetch.ts             fetchJson: a plain error when a registry URL serves HTML

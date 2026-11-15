@@ -87,7 +87,7 @@ flowchart TB
 | `packages/directions` | — | Empty leftover of RFC-0001; to delete |
 | `scripts/registry.mjs` | ✅ | Builds the registry, one per engine (only `base` today); for blocks it also parses each example with its schema, writes the JSON Schema and the gzip weight into the item's meta (budget 6 kB, 12 kB for showcase and bento), and writes `blocks.json` |
 | `apps/site` | ✅ | The docs and catalogue site; serves the registry and its schemas; live at `rasengan-ui.hiraiship.app` |
-| `packages/cli` | ✅ | `rasengan-ui` on npm (0.2.0): `init` (`--aliases` for a package of a workspace), `add`, `village`, `nature`, `tint`, `diff`, `update`, `doctor`, `mcp` |
+| `packages/cli` | ✅ | `rasengan-ui` on npm (0.2.1): `init` (`--aliases` for a package of a workspace), `add`, `village`, `nature`, `tint`, `diff`, `update`, `doctor`, `mcp` |
 | `apps/playground` | ✅ | A Rasengan.js starter wired to the local registry |
 | `archive/` | frozen | Rasengan UI v1, outside the workspace ([ADR-0003](adr/0003-v1-archived-old-urls-kept.md)) |
 

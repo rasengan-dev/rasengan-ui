@@ -1,11 +1,11 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parseArgs, styleText } from "node:util";
-import { type Config, configFile, readConfig } from "../config.ts";
+import { aliasPrefix, type Config, configFile, readConfig } from "../config.ts";
 import { missingPackages } from "../dependencies.ts";
 import { checkVersions, detectFramework, frameworkNames, htmlFile } from "../framework.ts";
 import { hasConflictMarkers, readLock } from "../install.ts";
-import { findRoot, hasAlias } from "../project.ts";
+import { findRoot, hasAlias, unexportedFiles } from "../project.ts";
 import { ENGINE_VERSION } from "@rasengan-ui/villages/engine";
 import { choices, loadLockedItem, type RegistryItem } from "../registry.ts";
 import { htmlAttributes, installedVillages, villageConflicts } from "../setup.ts";
@@ -42,6 +42,16 @@ export async function doctor(argv: string[]) {
 	for (const message of warnings) report("warn", message);
 	if (!errors.length) report("ok", `${frameworkNames[framework]}, Tailwind v4, React`);
 	report(hasAlias(root, config.aliases.components) ? "ok" : "error", hasAlias(root, config.aliases.components) ? `Alias ${config.aliases.components} resolves` : `No path in tsconfig.json covers ${config.aliases.components}: the components' imports won't resolve.`);
+
+	// A package of a workspace (init --aliases <its name>): its apps reach the components through its exports.
+	if (hasAlias(root, config.aliases.components)) {
+		const unexported = unexportedFiles(root, config.aliases, aliasPrefix(config.aliases));
+		if (unexported.length)
+			report(
+				"warn",
+				`The package's exports don't reach ${unexported.length} file${unexported.length > 1 ? "s" : ""}, so the apps can't import ${unexported.length > 1 ? "them" : "it"}. Add to "exports" in package.json:\n${unexported.map(({ line }) => `    ${line},`).join("\n")}`,
+			);
+	}
 
 	// The registry, and what it knows.
 	let known: Awaited<ReturnType<typeof choices>> | undefined;
