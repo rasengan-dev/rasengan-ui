@@ -1,11 +1,11 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { after, test } from "node:test";
 import { aliasesFor, aliasPrefix, type Config, defaults } from "./config.ts";
 import { rewriteImports } from "./install.ts";
-import { aliasHelp, aliasToPath, hasAlias } from "./project.ts";
+import { aliasHelp, aliasToPath, hasAlias, resolveExport, unexportedFiles } from "./project.ts";
 
 const root = mkdtempSync(join(tmpdir(), "rasengan-ui-aliases-"));
 after(() => rmSync(root, { recursive: true, force: true }));
@@ -45,5 +45,43 @@ test("the help names the alias to add", () => {
 	const help = aliasHelp("@acme/ui", false);
 	assert.match(help, /"@acme\/ui\/\*": \["\.\/src\/\*"\]/);
 	assert.match(help, /"exports"/);
+	assert.match(help, /"\.\/lib\/village-scope": "\.\/src\/lib\/village-scope\.tsx"/);
 	assert.match(help, /init --aliases @acme\/ui/);
+});
+
+test("exports resolve an exact key before the longest pattern", () => {
+	const exports = {
+		"./lib/village-scope": "./src/lib/village-scope.tsx",
+		"./lib/*": "./src/lib/*.ts",
+		"./components/ui/*": { import: "./src/components/ui/*.tsx" },
+		"./*": "./src/components/ui/*.tsx",
+	};
+	assert.equal(resolveExport(exports, "./lib/village-scope"), "./src/lib/village-scope.tsx");
+	assert.equal(resolveExport(exports, "./lib/utils"), "./src/lib/utils.ts");
+	assert.equal(resolveExport(exports, "./components/ui/button"), "./src/components/ui/button.tsx");
+	assert.equal(resolveExport(exports, "./button"), "./src/components/ui/button.tsx");
+	assert.equal(resolveExport(undefined, "./lib/utils"), undefined);
+});
+
+test("doctor lists the package's files its exports don't reach", () => {
+	const pkg = mkdtempSync(join(tmpdir(), "rasengan-ui-exports-"));
+	after(() => rmSync(pkg, { recursive: true, force: true }));
+	writeFileSync(join(pkg, "tsconfig.json"), '{ "compilerOptions": { "paths": { "@acme/ui/*": ["./src/*"] } } }');
+	mkdirSync(join(pkg, "src/lib"), { recursive: true });
+	mkdirSync(join(pkg, "src/components/ui"), { recursive: true });
+	for (const file of ["src/lib/utils.ts", "src/lib/village-scope.tsx", "src/components/ui/button.tsx"]) writeFileSync(join(pkg, file), "");
+	const write = (exports: Record<string, string>) => writeFileSync(join(pkg, "package.json"), JSON.stringify({ name: "@acme/ui", exports }));
+	const aliases = aliasesFor("@acme/ui");
+
+	write({ "./lib/*": "./src/lib/*.ts", "./components/*": "./src/components/*.tsx" });
+	assert.deepEqual(unexportedFiles(pkg, aliases, "@acme/ui"), [
+		{ file: "src/lib/village-scope.tsx", line: '"./lib/village-scope": "./src/lib/village-scope.tsx"' },
+	]);
+
+	write({ "./lib/village-scope": "./src/lib/village-scope.tsx", "./lib/*": "./src/lib/*.ts", "./components/*": "./src/components/*.tsx" });
+	assert.deepEqual(unexportedFiles(pkg, aliases, "@acme/ui"), []);
+
+	// An app's own @/ alias, or another package's name: nothing to export.
+	assert.deepEqual(unexportedFiles(pkg, aliases, "@"), []);
+	assert.deepEqual(unexportedFiles(pkg, aliases, "@other/ui"), []);
 });

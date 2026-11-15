@@ -113,12 +113,15 @@ would point into each app, not into the package: the components import the packa
     }
     ```
 
-    and export the same folders to the apps:
+    and export the same folders to the apps. A pattern takes one extension (bundlers use only the first target of a
+    list), so each `.tsx` file of `lib/` gets its own line, before the pattern:
 
     ```json title="packages/ui/package.json"
     {
       "name": "@acme/ui",
       "exports": {
+        "./lib/village-scope": "./src/lib/village-scope.tsx",
+        "./lib/field-context": "./src/lib/field-context.tsx",
         "./lib/*": "./src/lib/*.ts",
         "./components/*": "./src/components/*.tsx"
       }
@@ -134,7 +137,8 @@ would point into each app, not into the package: the components import the packa
 
     The components then import `@acme/ui/lib/utils` and `@acme/ui/components/ui/…`, which the package resolves through
     its own `exports`. An app imports `@acme/ui/components/ui/button`, and its Tailwind setup scans the package with
-    `@source "../../packages/ui/src";`.
+    `@source "../../packages/ui/src";`. After an `add`, `rasengan-ui doctor` lists any file the `exports` don't reach,
+    with the line to add.
   </Step>
 </Steps>
 
