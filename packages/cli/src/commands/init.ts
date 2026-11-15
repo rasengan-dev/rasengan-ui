@@ -2,11 +2,11 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { parseArgs, styleText } from "node:util";
 import * as p from "@clack/prompts";
-import { type Config, configFile, defaults, writeConfig } from "../config.ts";
+import { aliasesFor, aliasPrefix, type Config, configFile, defaults, readConfig, writeConfig } from "../config.ts";
 import { installPackages, missingPackages } from "../dependencies.ts";
 import { checkVersions, detectFramework, findTailwindCss, frameworkNames, htmlFile } from "../framework.ts";
 import { readLock, writeItems } from "../install.ts";
-import { findRoot, hasAlias } from "../project.ts";
+import { aliasHelp, findRoot, hasAlias } from "../project.ts";
 import { choices, type RegistryItem, resolveItems } from "../registry.ts";
 import { htmlAttributes, installedVillages, setHtmlAttributes, villageConflicts, writeCssImports } from "../setup.ts";
 
@@ -21,6 +21,8 @@ Options:
   --nature <name>     The nature, the accent hue (default: the village's)
   --tint <name>       village or neutral greys (default: village)
   --css <path>        The stylesheet that imports Tailwind (found otherwise)
+  --aliases <prefix>  Where the components import from (default: @, for @/components and @/lib).
+                      A package of a workspace uses its own name: --aliases @acme/ui
   --registry <url>    Where the registry is: a URL or a folder
   -y, --yes           Take the defaults instead of asking
   --keep-css          Leave the stylesheet's own theme tokens as they are (they override the village)
@@ -51,6 +53,7 @@ export async function init(argv: string[]) {
 			nature: { type: "string" },
 			tint: { type: "string" },
 			css: { type: "string" },
+			aliases: { type: "string" },
 			registry: { type: "string" },
 			yes: { type: "boolean", short: "y" },
 			force: { type: "boolean" },
@@ -62,7 +65,8 @@ export async function init(argv: string[]) {
 	if (values.help) return console.log(usage);
 
 	const root = findRoot();
-	if (existsSync(join(root, configFile)) && !values.force)
+	const existing = existsSync(join(root, configFile));
+	if (existing && !values.force)
 		throw new Error(`${configFile} already exists. \`rasengan-ui village set\` and \`nature set\` change the village; \`init --force\` starts over.`);
 
 	p.intro(styleText("bold", "Rasengan UI"));
@@ -76,18 +80,17 @@ export async function init(argv: string[]) {
 	if (!css) throw new Error('No stylesheet imports Tailwind (`@import "tailwindcss";`). Add one, or pass `--css <path>`.');
 	if (!existsSync(join(root, css))) throw new Error(`${css} doesn't exist.`);
 
-	if (!hasAlias(root, "@/components"))
+	/* --aliases wins; `init --force` keeps the aliases already chosen. */
+	const aliases = values.aliases ? aliasesFor(values.aliases) : existing ? readConfig(root).aliases : defaults.aliases;
+	if (!hasAlias(root, aliases.components)) {
+		const prefix = aliasPrefix(aliases);
 		throw new Error(
-			[
-				`The components import \`@/components/…\` and \`@/lib/…\`, and this project has no \`@/\` alias yet. Add it to ${framework === "vite" ? "tsconfig.app.json and tsconfig.json" : "tsconfig.json"}:`,
-				'  "compilerOptions": { "paths": { "@/*": ["./src/*"] } }',
-				...(framework === "vite" ? ["and to vite.config, with `import path from \"node:path\"`:", '  resolve: { alias: { "@": path.resolve(import.meta.dirname, "./src") } }'] : []),
-				"then run `rasengan-ui init` again.",
-			].join("\n"),
+			prefix ? aliasHelp(prefix, framework === "vite") : `No path in tsconfig.json covers ${aliases.components}: add one, then run \`rasengan-ui init\` again.`,
 		);
+	}
 
 	const registry = values.registry ?? defaults.registry;
-	const draft = { ...defaults, registry, css } as Config;
+	const draft = { ...defaults, aliases, registry, css } as Config;
 	const { villages, natures, tints } = await choices(draft, root);
 	const check = (kind: string, value: string | undefined, known: Record<string, unknown>) => {
 		if (value && !(value in known)) throw new Error(`Unknown ${kind} "${value}". Known: ${Object.keys(known).join(", ")}.`);

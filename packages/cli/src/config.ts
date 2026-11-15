@@ -35,6 +35,24 @@ export const defaults = {
 	registry: defaultRegistry,
 } satisfies Partial<Config>;
 
+/**
+ * The aliases under one prefix: `@` gives `@/components`, `@/components/ui` and `@/lib`. A package of a workspace,
+ * consumed in source by its apps, uses its own name (`@acme/ui`): the apps then resolve its imports through its
+ * `exports`, where `@/` would point into the app.
+ */
+export function aliasesFor(prefix: string): Config["aliases"] {
+	const base = prefix.trim().replace(/\/+$/, "");
+	if (!base || /\s/.test(base)) throw new Error(`"${prefix}" isn't an import prefix: use \`@\` or a package name such as \`@acme/ui\`.`);
+	return { components: `${base}/components`, ui: `${base}/components/ui`, lib: `${base}/lib` };
+}
+
+/** The prefix the aliases share (`@/components` → `@`), or undefined when they were set one by one. */
+export function aliasPrefix(aliases: Config["aliases"]): string | undefined {
+	const prefix = aliases.components.replace(/\/components$/, "");
+	const same = aliasesFor(prefix);
+	return prefix !== aliases.components && same.ui === aliases.ui && same.lib === aliases.lib ? prefix : undefined;
+}
+
 export function readConfig(root: string): Config {
 	const file = join(root, configFile);
 	if (!existsSync(file)) throw new Error(`No ${configFile} here. Run \`rasengan-ui init\` first.`);

@@ -91,5 +91,26 @@ export function aliasToPath(root: string, alias: string): string {
 	throw new Error(`Can't tell where "${alias}" points: add it to the paths of tsconfig.json.`);
 }
 
+/**
+ * What to add when the project's TypeScript paths don't cover the aliases. `@` is an app's own alias (Vite also needs
+ * it in its config); any other prefix is a package's own name, which its apps reach through its `exports`.
+ */
+export function aliasHelp(prefix: string, vite: boolean): string {
+	if (prefix === "@")
+		return [
+			`The components import \`@/components/…\` and \`@/lib/…\`, and this project has no \`@/\` alias yet. Add it to ${vite ? "tsconfig.app.json and tsconfig.json" : "tsconfig.json"}:`,
+			'  "compilerOptions": { "paths": { "@/*": ["./src/*"] } }',
+			...(vite ? ["and to vite.config, with `import path from \"node:path\"`:", '  resolve: { alias: { "@": path.resolve(import.meta.dirname, "./src") } }'] : []),
+			"then run `rasengan-ui init` again.",
+		].join("\n");
+	return [
+		`The components will import \`${prefix}/components/…\` and \`${prefix}/lib/…\`, and no path in tsconfig.json covers them yet. Add:`,
+		`  "compilerOptions": { "paths": { "${prefix}/*": ["./src/*"] } }`,
+		`For the apps that use this package, its package.json exports these folders, for example:`,
+		`  "exports": { "./lib/*": "./src/lib/*.ts", "./components/*": "./src/components/*.tsx" }`,
+		`then run \`rasengan-ui init --aliases ${prefix}\` again.`,
+	].join("\n");
+}
+
 /** A path for messages: relative to the project, with forward slashes. */
 export const display = (root: string, file: string) => relative(root, resolve(root, file)).split(sep).join("/");

@@ -98,9 +98,50 @@ village, the CSS imports and the village on `<html>`.
   </Step>
 </Steps>
 
+## A package of a workspace
+
+In a monorepo, the components can live in a package that the apps import in source, such as `@acme/ui`. There, `@/`
+would point into each app, not into the package: the components import the package's own name instead.
+
+<Steps>
+  <Step title="Point the name at the package's source">
+    ```json title="packages/ui/tsconfig.json"
+    {
+      "compilerOptions": {
+        "paths": { "@acme/ui/*": ["./src/*"] }
+      }
+    }
+    ```
+
+    and export the same folders to the apps:
+
+    ```json title="packages/ui/package.json"
+    {
+      "name": "@acme/ui",
+      "exports": {
+        "./lib/*": "./src/lib/*.ts",
+        "./components/*": "./src/components/*.tsx"
+      }
+    }
+    ```
+  </Step>
+  <Step title="Run init with the package's name">
+    ```bash title="Terminal"
+    cd packages/ui
+    npx rasengan-ui init --aliases @acme/ui
+    npx rasengan-ui add button dialog
+    ```
+
+    The components then import `@acme/ui/lib/utils` and `@acme/ui/components/ui/…`, which the package resolves through
+    its own `exports`. An app imports `@acme/ui/components/ui/button`, and its Tailwind setup scans the package with
+    `@source "../../packages/ui/src";`.
+  </Step>
+</Steps>
+
 ## Other setups
 
-`init` writes the config and the stylesheet imports for any project with Tailwind v4 and an `@/` alias, then prints the
+`init` writes the config and the stylesheet imports for any project with Tailwind v4 and an import alias (`@/`, or
+`--aliases`), then prints the
 attributes to put on your `<html>` element:
 
 ```html
