@@ -27,7 +27,7 @@ const commands: Record<string, Command> = {
 	diff: { usage: "diff [name...]", summary: "Show local and registry changes since install", run: diff },
 	update: { usage: "update [name...]", summary: "Update installed files, keeping local edits (3-way merge)", run: update },
 	doctor: { usage: "doctor", summary: "Check config, CSS imports, versions and dependencies", run: doctor },
-	mcp: { usage: "mcp", summary: "Start the MCP server, for agents (stdio)", run: mcp },
+	mcp: { usage: "mcp", summary: "Start the MCP server, for agents (stdio, or --http)", run: mcp },
 };
 
 function help() {

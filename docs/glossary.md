@@ -136,8 +136,9 @@ villages.
 **File states** (CLI `diff`) — `current`, `edited` (by the user), `behind` (registry is newer), `diverged` (both),
 `deleted`, `new`, `removed`.
 
-**MCP server** (`rasengan-ui mcp`) — The CLI serving the registry to agents over stdio: `list_components`,
-`get_component`, `get_examples`, `get_project`, `add_components`.
+**MCP server** (`rasengan-ui mcp`) — The CLI serving the registry to agents over stdio, or over Streamable HTTP
+with `--http` (at `/mcp`, without sessions): `list_components`, `get_component`, `get_examples`, `get_project`,
+`add_components`.
 
 ## Quality
 
