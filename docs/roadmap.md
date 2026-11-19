@@ -15,9 +15,9 @@
 | Villages | Konoha, Kiri, Iwa, Kusa (the contract's lip, [ADR-0008](adr/0008-lip-in-the-token-contract.md)) |
 | Natures | Six, with Onmyōton; neutral tint |
 | Village engine, workshop, `village create/check/export` | Built ([RFC-0006](rfc/0006-custom-villages.md), steps 1 to 4) |
-| CLI | `rasengan-ui` 0.2.2 on npm |
+| CLI | `rasengan-ui` 0.2.2 on npm; 0.3.0 ready to publish (`mcp --http`, see its CHANGELOG) |
 | `rasengan-workshop` | In the registry: the workshop's parts, in English and French ([ADR-0017](adr/0017-workshop-as-a-shared-registry-item.md)). Usable by other projects once `@rasengan-ui/villages` and the next CLI are on npm |
-| `@rasengan-ui/villages` | 0.1.0 on npm but broken: published with `npm publish`, its `exports` point at `src/`, not in the package. 0.1.1 fixes it, and publishing now refuses anything but `pnpm publish`; 0.1.0 to deprecate ([ADR-0016](adr/0016-villages-published-on-npm.md)) |
+| `@rasengan-ui/villages` | 0.1.1 on npm ([ADR-0016](adr/0016-villages-published-on-npm.md)); 0.1.0 deprecated, its `exports` pointed at `src/`. Publishing refuses anything but `pnpm publish` |
 | MCP server | `rasengan-ui mcp`, five tools ([RFC-0003](rfc/0003-mcp-server.md), steps 1 to 3) |
 | Site | Live at `rasengan-ui.hiraiship.app`, prerendered, with Tag Manager ([ADR-0005](adr/0005-prerendered-site-on-hiraiship.md)) |
 | Project docs | `docs/` in this format since 2026-11-07 ([ADR-0001](adr/0001-project-docs-like-jutsify.md)) |
