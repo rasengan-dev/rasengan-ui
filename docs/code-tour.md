@@ -126,7 +126,8 @@ Gotcha: the workshop's worker does not hot-reload engine or contract changes; re
 Published as `@rasengan-ui/villages` ([ADR-0016](adr/0016-villages-published-on-npm.md)). `tsup.config.ts` builds
 `dist/` (one ESM file per entry of `exports`, declarations, the CSS and JSON files copied as they are); `prepack` runs
 it. In the workspace `exports` points at `src/`, and `publishConfig.exports` at `dist/`: publish with `pnpm publish`,
-never `npm publish`.
+never `npm publish`. `prepublishOnly` (`scripts/publish-with-pnpm.mjs`) refuses any other client: 0.1.0 went out with
+npm and its `exports` pointed at `src/`.
 
 `sources.ts` exports `contract.css` and `natures.css` already parsed, for code that cannot read files (the workshop's
 worker). It imports them with `?raw`: Vite's in the workspace, a small esbuild plugin of `tsup.config.ts` in the build.

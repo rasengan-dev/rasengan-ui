@@ -17,7 +17,7 @@
 | Village engine, workshop, `village create/check/export` | Built ([RFC-0006](rfc/0006-custom-villages.md), steps 1 to 4) |
 | CLI | `rasengan-ui` 0.2.2 on npm |
 | `rasengan-workshop` | In the registry: the workshop's parts, in English and French ([ADR-0017](adr/0017-workshop-as-a-shared-registry-item.md)). Usable by other projects once `@rasengan-ui/villages` and the next CLI are on npm |
-| `@rasengan-ui/villages` | Ready to publish at 0.1.0, not published yet: the `@rasengan-ui` scope has to be created on npm first ([ADR-0016](adr/0016-villages-published-on-npm.md)) |
+| `@rasengan-ui/villages` | 0.1.0 on npm but broken: published with `npm publish`, its `exports` point at `src/`, not in the package. 0.1.1 fixes it, and publishing now refuses anything but `pnpm publish`; 0.1.0 to deprecate ([ADR-0016](adr/0016-villages-published-on-npm.md)) |
 | MCP server | `rasengan-ui mcp`, five tools ([RFC-0003](rfc/0003-mcp-server.md), steps 1 to 3) |
 | Site | Live at `rasengan-ui.hiraiship.app`, prerendered, with Tag Manager ([ADR-0005](adr/0005-prerendered-site-on-hiraiship.md)) |
 | Project docs | `docs/` in this format since 2026-11-07 ([ADR-0001](adr/0001-project-docs-like-jutsify.md)) |
