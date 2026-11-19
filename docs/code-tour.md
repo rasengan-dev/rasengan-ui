@@ -194,7 +194,9 @@ src/
 ├── setup.ts             the marked CSS import block, <html> attributes
 ├── villages.ts          local and generated villages
 ├── dependencies.ts      npm installs with the project's package manager
-└── mcp.ts               the MCP server: five tools over stdio; blocks are `kind: "block"`, with JSON Schema and example
+└── mcp.ts               the MCP server: five tools; blocks are `kind: "block"`, with JSON Schema and example.
+                         commands/mcp.ts serves it over stdio, or over HTTP (`--http`): one server and one
+                         transport per POST to /mcp, no session, JSON answers
 ```
 
 - Runs from source in the repository (`pnpm playground ui <cmd>`, with `RASENGAN_UI_REGISTRY=../site/public/r`).

@@ -30,7 +30,7 @@ imports.
 | `diff [name...]`                                         | Show local and registry changes since install                |
 | `update [name...]`                                       | Update installed files, keeping local edits (3-way merge)    |
 | `doctor`                                                 | Check config, CSS imports, versions and dependencies         |
-| `mcp`                                                    | Start the MCP server, for agents (stdio)                     |
+| `mcp`                                                    | Start the MCP server, for agents (stdio, or `--http`)        |
 
 `rasengan-ui <command> --help` lists a command's options.
 

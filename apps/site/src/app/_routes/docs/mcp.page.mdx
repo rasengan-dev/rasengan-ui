@@ -51,6 +51,17 @@ Or, to share it with your team, commit a `.mcp.json` at the project root:
 }
 ```
 
+### Over HTTP
+
+An agent that reaches your project through a port (a container, a remote sandbox) runs the server over HTTP
+instead. It answers at `/mcp`, without sessions: each request stands alone, and the answer is JSON.
+
+```bash
+npx rasengan-ui mcp --http --port 7330 --host 0.0.0.0 --cwd /path/to/project
+```
+
+By default it listens on `127.0.0.1`, this machine only. Listen on `0.0.0.0` only where the port is not public.
+
 ## Tools
 
 | Tool | What it does |
@@ -73,6 +84,9 @@ The read tools also work in a folder without `rasengan-ui.json`: the agent can e
 | --- | --- |
 | `--cwd <path>` | The project, when the client starts the server elsewhere |
 | `--registry <url>` | The registry to read in a folder without `rasengan-ui.json` (a URL or a folder) |
+| `--http` | Serve over Streamable HTTP at `/mcp` instead of stdio |
+| `--port <n>` | With `--http`: the port (default `7330`) |
+| `--host <address>` | With `--http`: the address to listen on (default `127.0.0.1`) |
 
 Ask the agent to build a page with Rasengan UI: the server tells it to look components up before using them, to
 style with the village tokens instead of raw colours, and to install through `add_components`.
