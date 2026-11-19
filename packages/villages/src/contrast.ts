@@ -92,10 +92,40 @@ export function substitute(value: string, tokens: Tokens, depth = 0): string {
 	});
 }
 
-const arithmetic = (expr: string): number => {
-	if (!/^[\d.\s*+\-/()]+$/.test(expr)) throw new Error(`not arithmetic: ${expr}`);
-	return Function(`return (${expr})`)();
-};
+/**
+ * The value of a calc() body once var() is substituted: numbers, + - * /, parentheses and signs. Parsed rather than
+ * evaluated with Function(): workers and pages with a strict CSP refuse code made from strings.
+ */
+export function arithmetic(expr: string): number {
+	const tokens = expr.match(/\d*\.?\d+(?:e[+-]?\d+)?|[-+*/()]|\S/gi) ?? [];
+	let at = 0;
+	const fail = (): never => {
+		throw new Error(`not arithmetic: ${expr}`);
+	};
+	const sum = (): number => {
+		let value = product();
+		while (tokens[at] === "+" || tokens[at] === "-") value = tokens[at++] === "+" ? value + product() : value - product();
+		return value;
+	};
+	const product = (): number => {
+		let value = unary();
+		while (tokens[at] === "*" || tokens[at] === "/") value = tokens[at++] === "*" ? value * unary() : value / unary();
+		return value;
+	};
+	const unary = (): number => {
+		if (tokens[at] === "-" || tokens[at] === "+") return tokens[at++] === "-" ? -unary() : unary();
+		if (tokens[at] === "(") {
+			at++;
+			const value = sum();
+			if (tokens[at++] !== ")") fail();
+			return value;
+		}
+		const value = Number(tokens[at++]);
+		return Number.isFinite(value) ? value : fail();
+	};
+	const value = sum();
+	return at === tokens.length ? value : fail();
+}
 const number = (s: string) => (s.startsWith("calc(") ? arithmetic(s.slice(5, -1)) : s.endsWith("%") ? Number(s.slice(0, -1)) / 100 : Number(s));
 
 /** Linear sRGB channels, 0 to 1, with an alpha. */
