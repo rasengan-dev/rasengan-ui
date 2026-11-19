@@ -8,10 +8,14 @@ import { example } from "./example";
 import type { HeroWordmarkContent } from "./schema";
 
 /**
- * The word's size, from the block's width (`cqi`) and its length, so it fills the width on one line; never below
- * 3.5rem, where a long word wraps to a second line rather than shrinking out of reach (RFC-0009, decision 7).
+ * The word's size, from its length and the width of its own line (the block's width, capped at `max-w-6xl`, 72rem),
+ * so it fills that line once; never below 3.5rem, where a long word wraps to a second line rather than shrinking out
+ * of reach (RFC-0009, decision 7). Sizing from the block's width alone overflowed the 72rem line on wide screens.
  */
-const wordSize = (word: string) => `clamp(3.5rem, ${Math.min(150 / Math.max(word.length, 1), 34).toFixed(1)}cqi, 22rem)`;
+const wordSize = (word: string) => {
+	const share = Math.min(150 / Math.max(word.length, 1), 34) / 100;
+	return `clamp(3.5rem, min(${(share * 100).toFixed(1)}cqi, ${(share * 72).toFixed(2)}rem), 22rem)`;
+};
 
 /**
  * A heading and its actions, a wide photo, and under it the brand (or one word) set across the full width in the

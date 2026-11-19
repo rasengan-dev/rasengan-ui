@@ -78,12 +78,13 @@ flowchart TB
 | `registry/components/<name>/` | ✅ 53 | One folder per component: `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts` (with its category, [ADR-0009](adr/0009-component-categories.md)), demos |
 | `registry/categories.ts` | ✅ | The seven categories, in the site's order: forms, dates, overlays, navigation, display, feedback, motion |
 | `registry/blocks/<name>/` | 🚧 45 | One folder per block ([RFC-0008](rfc/0008-blocks.md)): `<name>.base.tsx`, `schema.ts` (`export const schema`), `example.ts` (`export const example`), `meta.ts` (family, category, `useWhen`…; type imports only), demos. The ten marketing blocks of lot A, the nine storefront blocks of lot B, the six showcase blocks of lot C, and the ten of each of RFC-0009's lots D (storefront) and E (marketing); `hero-wordmark` and `contact-form` are in both families |
-| `registry/placeholders/` | ✅ | Open placeholder images the examples show (a neutral product shot; flat illustrations of dishes, a room, a kitchen and a map; six drawn logo marks with invented names, `logo-*.svg`, [RFC-0009](rfc/0009-blocks-second-wave.md); eleven Unsplash portraits, `person-*.svg` (WebP in an SVG: the registry carries text only), credited in `CREDITS.md`, [ADR-0014](adr/0014-placeholder-photos-from-unsplash.md)); the `rasengan-placeholders` item installs them in `public/placeholders/`, and a block whose example uses one depends on it. The site serves copies at `/placeholders/` |
+| `registry/placeholders/` | ✅ | Open placeholder images the examples show (a real Senbon dashboard made from the components and three drawn product screens; Unsplash photos of six dishes, a kitchen and a dining room, [ADR-0015](adr/0015-placeholder-photos-of-food-and-places.md); a drawn map; six drawn logo marks with invented names, `logo-*.svg`, [RFC-0009](rfc/0009-blocks-second-wave.md); eleven Unsplash portraits, `person-*.svg` (WebP in an SVG: the registry carries text only), credited in `CREDITS.md`, [ADR-0014](adr/0014-placeholder-photos-from-unsplash.md)); the `rasengan-placeholders` item installs them in `public/placeholders/`, and a block whose example uses one depends on it. The site serves copies at `/placeholders/` |
 | `registry/block-categories.ts` | ✅ | The two families (marketing, storefront) and their categories, in the site's order; RFC-0009 added `integrations`, `comparison`, `booking`, `offers` and `team`, and `contact` for marketing |
 | `packages/blocks` | ✅ | The `rasengan-blocks` registry item: `lib/blocks.ts` (`BlockProps`, `heading`, `BlockMeta`, `familiesOf`, `formatMoney`, `messageUrl`, no zod) and `lib/block-fields.ts` (zod field types, RFC-0009's `review`, `staffMember`, `branch`, `offer`, `formChannel`… among them; `defineBlock`), [ADR-0013](adr/0013-blocks-answer-their-container.md); its tests render every block on the server |
 | `packages/core` | ✅ | What every component shares; published as the `rasengan-core` registry item |
-| `packages/villages` | ✅ | The token contract (CSS + TypeScript spec), the villages, the natures, the village engine, the contrast library |
+| `packages/villages` | ✅ | The token contract (CSS + TypeScript spec), the villages, the natures, the village engine, the contrast library; prepared for npm as `@rasengan-ui/villages` ([ADR-0016](adr/0016-villages-published-on-npm.md)) |
 | `packages/motion` | ✅ | The `rasengan-motion` registry item ([RFC-0007](rfc/0007-motion-components.md)): motion modes, the village's motion tokens read from CSS, `Reveal`, `Stagger`, `Presence`, `Parallax`, `Tilt`, `Magnetic`, `splitText`. Used by the five motion components of lot A |
+| `packages/workshop` | ✅ | The `rasengan-workshop` registry item ([ADR-0017](adr/0017-workshop-as-a-shared-registry-item.md)): the village workshop's `RecipePanel`, `Report`, `VillageStatus`, `useVillage` (the engine in a web worker) and its labels in English and French; its tests render the panel and the report on the server in both |
 | `packages/directions` | — | Empty leftover of RFC-0001; to delete |
 | `scripts/registry.mjs` | ✅ | Builds the registry, one per engine (only `base` today); for blocks it also parses each example with its schema, writes the JSON Schema and the gzip weight into the item's meta (budget 6 kB, 12 kB for showcase and bento), and writes `blocks.json` |
 | `apps/site` | ✅ | The docs and catalogue site; serves the registry and its schemas; live at `rasengan-ui.hiraiship.app` |
@@ -141,7 +142,8 @@ flowchart LR
 ```
 
 Built-in villages are recipes too (`villages/*.recipe.json`), reproduced token for token. The same engine runs in the
-CLI (`village create/check/export`) and in the site's workshop (`/villages/create`, in a web worker).
+CLI (`village create/check/export`) and in the workshop (`packages/workshop`, in a web worker), which the site shows at
+`/villages/create` and any project can install ([ADR-0017](adr/0017-workshop-as-a-shared-registry-item.md)).
 Why: [RFC-0006](rfc/0006-custom-villages.md).
 
 ## 4. From a component folder to a user's project
@@ -164,6 +166,8 @@ sequenceDiagram
 
 - Registry URL shape: `/r/<engine>/<name>.json`. Demos are `registry:example` items `<demo>-demo`, listed in the
   component's `meta.examples`, so agents can read them (RFC-0003).
+- `rasengan-workshop` is a shared item made of components: its six files are `registry:component` files, written to
+  `<components alias>/workshop/` ([ADR-0017](adr/0017-workshop-as-a-shared-registry-item.md)).
 - Shared code is published as `registry:lib` items (`rasengan-core`, `rasengan-motion`, `rasengan-blocks`); villages as
   `registry:theme` items, one per village plus `rasengan-natures`.
 - Blocks are `registry:block` items: five files (`<name>.tsx`, a generated `index.ts`, `schema.ts`, `example.ts`,

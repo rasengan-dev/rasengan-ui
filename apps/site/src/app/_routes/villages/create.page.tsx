@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react';
 import { type PageComponent } from 'rasengan';
 import {
-  CheckIcon,
   ChevronsUpDownIcon,
-  CircleAlertIcon,
   Columns2Icon,
   LinkIcon,
-  LoaderIcon,
   MoonIcon,
   RotateCcwIcon,
   ShuffleIcon,
@@ -17,7 +14,6 @@ import { options, recipeFromLink, recipeLink, traitOptions, type Recipe, type Vi
 import { fontInfo, fonts } from '@rasengan-ui/villages/fonts';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { toast } from '@/components/ui/toast';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
@@ -28,9 +24,9 @@ import { DashboardExample } from '@/components/home/dashboard';
 import { SettingsExample } from '@/components/home/settings';
 import { ExportDialog } from '@/components/workshop/export-dialog';
 import { PreviewCards } from '@/components/workshop/preview-cards';
-import { RecipePanel, bases, knobs, swatches } from '@/components/workshop/recipe-panel';
-import { Report } from '@/components/workshop/report';
-import { useVillage, type VillageState } from '@/components/workshop/use-village';
+import { RecipePanel, bases, knobs, swatches } from '@rasengan-ui/workshop/recipe-panel';
+import { useVillage, type VillageState } from '@rasengan-ui/workshop/use-village';
+import { VillageStatus } from '@rasengan-ui/workshop/village-status';
 import { useSettings } from '@/settings';
 
 const initial: Recipe = { name: 'acme', title: 'Acme', base: 'konoha', brand: { color: '#ff5a1f' } };
@@ -88,35 +84,11 @@ function useChrome(): VillageSettings {
   return { village, nature, tint, scheme: 'dark' };
 }
 
+/** The shared status pill, in the workshop's own chrome rather than in the village being made. */
 function Status({ state, chrome }: { state: VillageState; chrome: VillageSettings }) {
-  const { village, error, pending } = state;
-  const failing = village?.problems.length ?? 0;
-  const moved = village?.adjustments.length ?? 0;
-  const bad = Boolean(error) || failing > 0;
-  const label = !village ? 'Making the village…' : error ? 'The recipe needs a fix' : failing ? `${failing} pair${failing > 1 ? 's' : ''} to fix` : 'Accessible';
   return (
     <VillageScope {...chrome} className="pointer-events-auto rounded-xl border-village shadow-lg">
-      <Popover>
-        <PopoverTrigger
-          render={
-            <button
-              type="button"
-              className="flex cursor-pointer items-center gap-2 rounded-xl py-2 ps-2.5 pe-3.5 text-sm font-medium outline-none transition-colors duration-fast hover:bg-accent focus-visible:focus-ring data-[popup-open]:bg-accent"
-            />
-          }
-        >
-          <span className={cn('grid size-6 place-items-center rounded-full', bad ? 'bg-destructive text-destructive-foreground' : 'bg-success text-success-foreground')} aria-hidden>
-            {!village || pending ? <LoaderIcon className="size-3.5 animate-spin" /> : bad ? <CircleAlertIcon className="size-3.5" /> : <CheckIcon className="size-3.5" />}
-          </span>
-          <span role="status" aria-live="polite">
-            {label}
-          </span>
-          {village && moved ? <span className="hidden text-muted-foreground sm:inline">· {moved} adjusted</span> : null}
-        </PopoverTrigger>
-        <PopoverContent side="top" align="start" sideOffset={10} className="hide-scrollbar max-h-[70svh] w-96 max-w-[calc(100vw-2rem)] overflow-y-auto">
-          <Report state={state} />
-        </PopoverContent>
-      </Popover>
+      <VillageStatus state={state} />
     </VillageScope>
   );
 }

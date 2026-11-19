@@ -6,8 +6,15 @@ import type { FooterWordmarkContent } from "./schema";
 
 const link = "rounded-control text-sm text-muted-foreground outline-none hover:text-foreground focus-visible:focus-ring";
 
-/** The word's size from the block's width and its length (`cqi`), never below 3.5rem: a long word wraps instead. */
-const wordSize = (word: string) => `clamp(3.5rem, ${Math.min(150 / Math.max(word.length, 1), 34).toFixed(1)}cqi, 24rem)`;
+/**
+ * The word's size from its length and the width of its own line, the block's width capped at `max-w-6xl` (72rem): a
+ * short word fills that line, never below 3.5rem, where a long word wraps instead (RFC-0009, decision 7). Sizing from
+ * the block's width alone (`cqi`) overflowed the 72rem line on wide screens and broke a short word in two.
+ */
+const wordSize = (word: string) => {
+	const share = Math.min(150 / Math.max(word.length, 1), 34) / 100;
+	return `clamp(3.5rem, min(${(share * 100).toFixed(1)}cqi, ${(share * 72).toFixed(2)}rem), 24rem)`;
+};
 
 /**
  * The page's footer (`<footer>`, its contentinfo landmark), as footer-columns lays it out (the name and tagline, the

@@ -35,6 +35,9 @@ No ADR for what one pull request can undo without consequences.
 | [0012](0012-gallery-and-page-transition-without-motion.md) | Gallery 3D and Page Transition without Motion; the Rasengan.js adapter is documented wiring | Accepted | 2026-11-07 |
 | [0013](0013-blocks-answer-their-container.md) | Blocks lay out by their container's width, and render without zod | Accepted | 2026-11-08 |
 | [0014](0014-placeholder-photos-from-unsplash.md) | The placeholder photos of people come from Unsplash, under the Unsplash License | Accepted | 2026-11-08 |
+| [0015](0015-placeholder-photos-of-food-and-places.md) | Food and places are Unsplash photos too; the dashboard is a real screen made from the components | Accepted | 2026-11-09 |
+| [0016](0016-villages-published-on-npm.md) | `@rasengan-ui/villages` is published on npm; packages build with tsup | Accepted | 2026-11-12 |
+| [0017](0017-workshop-as-a-shared-registry-item.md) | The village workshop's parts are a shared registry item, `rasengan-workshop`, in English and French | Accepted | 2026-11-13 |
 
 ## Template
 

@@ -30,8 +30,8 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "node build.mjs",
-		"prepack": "node build.mjs",
+		"build": "tsup",
+		"prepack": "tsup",
 		"dev": "node src/index.ts",
 		"typecheck": "tsc --noEmit",
 		"test": "node --test \"src/**/*.test.ts\""
@@ -42,7 +42,7 @@
 	"devDependencies": {
 		"@rasengan-ui/villages": "workspace:*",
 		"@types/node": "^22",
-		"esbuild": "^0.28.2",
+		"tsup": "^9.0.0",
 		"typescript": "^5.9.3"
 	},
 	"license": "MIT",

@@ -9,7 +9,7 @@ export const example: HeroPhotoContent = {
 	highlights: ["Open every day", "Delivery in Akwa and Bonapriso", "Since 2009"],
 	image: {
 		src: "/placeholders/dish-stew.svg",
-		alt: "A plate of beef stew with vegetables, on a wooden table, seen from above.",
+		alt: "A bowl of egusi with assorted meats, held in both hands.",
 		width: 1200,
 		height: 900,
 	},
