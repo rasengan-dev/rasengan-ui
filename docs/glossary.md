@@ -109,7 +109,9 @@ write. Runs in the CLI and in the workshop.
 **Ladder** — The steps of lightness a contrast level allows, copied from a built-in village (standard = Konoha,
 soft = Kiri, high = Iwa).
 
-**Workshop** — The site page `/villages/create` where a village is made from a recipe and exported.
+**Workshop** — Where a village is made from a recipe: a recipe panel, a contrast report, the engine in a web worker
+(`packages/workshop`, the `rasengan-workshop` registry item). The site shows it at `/villages/create`, with a preview
+and an export; another project installs the parts and brings its own.
 
 **Founding a village** — Making a custom village (`rasengan-ui village create`).
 

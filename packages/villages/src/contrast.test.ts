@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
-import { checkScope, checkVillages, color, parseSources, ratio, scope } from "./contrast.ts";
+import { arithmetic, checkScope, checkVillages, color, parseSources, ratio, scope } from "./contrast.ts";
 
 const src = import.meta.dirname;
 const read = (path: string) => readFileSync(join(src, path), "utf8");
@@ -58,4 +58,14 @@ test("a village file may declare its own nature", () => {
 	const parsed = parseSources({ ...files, villages: { ...files.villages, acme } });
 	assert.equal(parsed.natures.acme, 38);
 	assert.equal(Object.keys(parsed.natures)[0], "katon", "natures.css keeps its order");
+});
+
+test("calc() bodies are computed without Function(), which workers refuse", () => {
+	assert.equal(arithmetic("0.008 * 1"), 0.008);
+	assert.equal(arithmetic("0.025 * 0"), 0);
+	assert.equal(arithmetic("1 - 2 * 3"), -5);
+	assert.equal(arithmetic("(1 - 2) * 3"), -3);
+	assert.equal(arithmetic("-0.5 + +2 / 4"), 0);
+	assert.equal(arithmetic("1e-3 * 10"), 0.01);
+	for (const bad of ["", "1 +", "(1", "1)", "alert(1)", "1 2"]) assert.throws(() => arithmetic(bad), /not arithmetic/, bad);
 });

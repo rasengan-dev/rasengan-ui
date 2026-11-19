@@ -1,0 +1,36 @@
+{
+	"name": "@rasengan-ui/workshop",
+	"version": "0.1.0",
+	"private": true,
+	"description": "rasengan-workshop (ADR-0017): the village workshop's recipe panel, contrast report, status and engine worker, in English and French. Distributed through the registry; this package is the source.",
+	"type": "module",
+	"exports": {
+		"./recipe-panel": "./src/recipe-panel.tsx",
+		"./report": "./src/report.tsx",
+		"./village-status": "./src/village-status.tsx",
+		"./use-village": "./src/use-village.ts",
+		"./labels": "./src/labels.ts"
+	},
+	"scripts": {
+		"typecheck": "tsc --noEmit",
+		"test": "tsx --test test/*.test.tsx"
+	},
+	"peerDependencies": {
+		"lucide-react": "^1.63.0",
+		"react": "^19.0.0"
+	},
+	"dependencies": {
+		"@rasengan-ui/villages": "workspace:*"
+	},
+	"devDependencies": {
+		"@rasengan-ui/registry": "workspace:*",
+		"@types/node": "^22",
+		"@types/react": "^19.0.0",
+		"@types/react-dom": "^19.0.0",
+		"lucide-react": "^1.63.0",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"tsx": "^4.19.0",
+		"typescript": "^5.9.3"
+	}
+}

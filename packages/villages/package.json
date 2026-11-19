@@ -1,26 +1,88 @@
 {
 	"name": "@rasengan-ui/villages",
-	"version": "0.0.0",
-	"private": true,
-	"description": "The Rasengan UI token contract, its villages and natures. Distributed through the registry; this package is the source.",
+	"version": "0.1.0",
+	"description": "The Rasengan UI token contract, its villages and natures, and the village engine: a recipe in, a checked village CSS file out.",
+	"keywords": [
+		"rasengan",
+		"rasengan-ui",
+		"design-tokens",
+		"theme",
+		"tailwindcss",
+		"oklch",
+		"contrast",
+		"wcag"
+	],
+	"homepage": "https://ui.rasengan.dev/docs/villages",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/rasengan-dev/rasengan-ui.git",
+		"directory": "packages/villages"
+	},
+	"bugs": "https://github.com/rasengan-dev/rasengan-ui/issues",
+	"author": "Dilane Kombou",
+	"license": "MIT",
 	"type": "module",
+	"sideEffects": [
+		"**/*.css"
+	],
 	"exports": {
 		".": "./src/index.ts",
 		"./contract": "./src/contract.ts",
 		"./contrast": "./src/contrast.ts",
 		"./engine": "./src/engine/index.ts",
 		"./fonts": "./src/fonts.ts",
+		"./sources": "./src/sources.ts",
 		"./recipe.schema.json": "./src/engine/recipe.schema.json",
 		"./contract.css": "./src/contract.css",
 		"./natures.css": "./src/natures.css",
 		"./villages/*": "./src/villages/*"
 	},
+	"files": [
+		"dist"
+	],
+	"publishConfig": {
+		"access": "public",
+		"exports": {
+			".": {
+				"types": "./dist/index.d.ts",
+				"default": "./dist/index.js"
+			},
+			"./contract": {
+				"types": "./dist/contract.d.ts",
+				"default": "./dist/contract.js"
+			},
+			"./contrast": {
+				"types": "./dist/contrast.d.ts",
+				"default": "./dist/contrast.js"
+			},
+			"./engine": {
+				"types": "./dist/engine/index.d.ts",
+				"default": "./dist/engine/index.js"
+			},
+			"./fonts": {
+				"types": "./dist/fonts.d.ts",
+				"default": "./dist/fonts.js"
+			},
+			"./sources": {
+				"types": "./dist/sources.d.ts",
+				"default": "./dist/sources.js"
+			},
+			"./recipe.schema.json": "./dist/engine/recipe.schema.json",
+			"./contract.css": "./dist/contract.css",
+			"./natures.css": "./dist/natures.css",
+			"./villages/*": "./dist/villages/*",
+			"./package.json": "./package.json"
+		}
+	},
 	"scripts": {
+		"build": "tsup",
+		"prepack": "tsup",
 		"typecheck": "tsc --noEmit",
 		"test": "node --test \"src/**/*.test.ts\""
 	},
 	"devDependencies": {
 		"@types/node": "^22",
+		"tsup": "^9.0.0",
 		"typescript": "^5.9.3"
 	}
 }

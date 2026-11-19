@@ -9,7 +9,7 @@ export const example: HeroCenteredContent = {
 	note: "Free for 14 days. No card needed.",
 	image: {
 		src: "/placeholders/product-dashboard.svg",
-		alt: "The Senbon dashboard: money owed this month, a chart of payments and a list of recent invoices.",
+		alt: "The Senbon dashboard: this month's invoices, an overdue alert, payments per day and the latest activity.",
 		width: 1280,
 		height: 800,
 	},

@@ -219,6 +219,20 @@ function sharedItems(url) {
 			],
 		},
 		{
+			name: "rasengan-workshop",
+			type: "registry:component",
+			title: "Rasengan UI village workshop",
+			description:
+				"The village workshop's parts (RFC-0006, ADR-0017): RecipePanel (a row per knob of a recipe), Report and VillageStatus (what the engine checked and adjusted), useVillage (the engine in a web worker), and every word in English and French. Bring your own preview and actions.",
+			dependencies: ["@rasengan-ui/villages", "lucide-react"],
+			registryDependencies: [url("rasengan-core"), ...["button", "dropdown-menu", "input", "popover", "slider", "toggle-group"].map(url)],
+			files: ["recipe-panel.tsx", "report.tsx", "village-status.tsx", "use-village.ts", "engine.worker.ts", "labels.ts"].map((file) => ({
+				path: `packages/workshop/src/${file}`,
+				type: "registry:component",
+				target: `components/workshop/${file}`,
+			})),
+		},
+		{
 			name: "rasengan-blocks",
 			type: "registry:lib",
 			title: "Rasengan UI blocks",

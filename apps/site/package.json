@@ -14,6 +14,7 @@
 		"@rasengan-ui/core": "workspace:*",
 		"@rasengan-ui/registry": "workspace:*",
 		"@rasengan-ui/villages": "workspace:*",
+		"@rasengan-ui/workshop": "workspace:*",
 		"@rasenganjs/mdx": "^1.2.2",
 		"@rasenganjs/serve": "^2.0.0",
 		"@tailwindcss/vite": "^4.3.3",

@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-08 (RFC-0008 lot B).
+> Last updated: 2026-11-13 (ADR-0017).
 
 ## Where things stand
 
@@ -15,7 +15,9 @@
 | Villages | Konoha, Kiri, Iwa, Kusa (the contract's lip, [ADR-0008](adr/0008-lip-in-the-token-contract.md)) |
 | Natures | Six, with Onmyōton; neutral tint |
 | Village engine, workshop, `village create/check/export` | Built ([RFC-0006](rfc/0006-custom-villages.md), steps 1 to 4) |
-| CLI | `rasengan-ui` 0.2.1 on npm |
+| CLI | `rasengan-ui` 0.2.2 on npm |
+| `rasengan-workshop` | In the registry: the workshop's parts, in English and French ([ADR-0017](adr/0017-workshop-as-a-shared-registry-item.md)). Usable by other projects once `@rasengan-ui/villages` and the next CLI are on npm |
+| `@rasengan-ui/villages` | Ready to publish at 0.1.0, not published yet: the `@rasengan-ui` scope has to be created on npm first ([ADR-0016](adr/0016-villages-published-on-npm.md)) |
 | MCP server | `rasengan-ui mcp`, five tools ([RFC-0003](rfc/0003-mcp-server.md), steps 1 to 3) |
 | Site | Live at `rasengan-ui.hiraiship.app`, prerendered, with Tag Manager ([ADR-0005](adr/0005-prerendered-site-on-hiraiship.md)) |
 | Project docs | `docs/` in this format since 2026-11-07 ([ADR-0001](adr/0001-project-docs-like-jutsify.md)) |
@@ -37,8 +39,8 @@
   the placeholders (`product-invoice`, `product-payment`), and the example pages linked through a page transition
   (the floating toolbar's switcher). `newsletter-inline` posts to the provider's URL in its content, or to `onSubmit`:
   a newsletter has no message to send to the business. Gallery3D is still in no block: `gallery-grid` is a photo grid
-  with a Dialog lightbox (its cards are portrait). The storefront placeholders are flat SVG illustrations; real open
-  photos could replace them.
+  with a Dialog lightbox (its cards are portrait). The storefront placeholders became real photos on 2026-11-09
+  ([ADR-0015](adr/0015-placeholder-photos-of-food-and-places.md)).
 - **Blocks, second wave** ([RFC-0009](rfc/0009-blocks-second-wave.md), accepted): new categories (`team`, `booking`,
   `offers`, `comparison`, `integrations`), lot D (ten storefront blocks: booking, menu cards, price list, staff,
   reviews…) and lot E (ten marketing blocks: split and wordmark heroes, comparison, integrations, contact form…), from

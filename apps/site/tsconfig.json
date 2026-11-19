@@ -346,7 +346,8 @@
 		"../../packages/core/src",
 		"../../packages/motion/src",
 		"../../packages/blocks/src",
-		"../../packages/villages/src"
+		"../../packages/villages/src",
+		"../../packages/workshop/src"
 	],
 	"extends": "./node_modules/rasengan/tsconfig.base.json"
 }
