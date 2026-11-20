@@ -48,6 +48,7 @@ npx rasengan-ui village create acme --from "https://ui.rasengan.dev/villages/cre
 | `--color <colour>` | The brand colour: `#rrggbb`, `rgb(r g b)` or `oklch(L C H)` |
 | `--hue <degrees>` | A brand hue, when you have no exact colour |
 | `--contrast`, `--radius`, `--density`, `--depth`, `--motion`, `--border` | One knob each (see the recipe below) |
+| `--intensity <0-3>` | How much moves: 0 nothing, 1 fades only, 2 travel and text splits, 3 showcase (default: the one `--motion` gives) |
 | `--font`, `--heading-font` | The body and heading fonts |
 | `--title`, `--description` | How the village is named in lists and in its file |
 | `--dry-run` | Print the report and the CSS, write nothing |
@@ -112,6 +113,7 @@ its bar tabs and inverted highlights unless it says otherwise.
 | `density` | `compact`, `default`, `comfortable` |
 | `depth` | `flat`, `soft`, `raised`, `hard` (offset shadows), `lip` (Kusa's solid edge under controls and surfaces) |
 | `motion` | `quick` (exact, no travel), `calm`, `gentle` (floaty), `bouncy` (springs that overshoot). Each sets the durations and easings, and the spring, travel, stagger and intensity motion components read |
+| `intensity` | `0` nothing moves, `1` fades only, `2` travel and text splits, `3` showcase. Left out: the one `motion` gives (quick 1, calm and gentle 2, bouncy 3) |
 | `border` | 1, 1.5 or 2 (px) |
 | `fonts` | `body`, `heading`, `code`: font family names |
 | `traits` | `tabs` (`segmented`, `bar`), `highlight` (`soft`, `inverted`), `focus` (`halo`, `ring`), `press` (`scale`, `sink`, `drop`: down onto the lip), `labels` (`plain`, `capitals`, `mono-capitals`), `headings` (`plain`, `capitals`), `surfaces` (`solid`, `glass`), `edges` (`soft`, `ink`), `skeleton` (`pulse`, `hatched`) |

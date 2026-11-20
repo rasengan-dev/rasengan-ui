@@ -6,7 +6,7 @@ import type { Tokens } from "../contrast.ts";
 import { fontInfo } from "../fonts.ts";
 import { num, parseColor } from "./color.ts";
 import { densities, type Entry, type Grey, ladders, motions, shadows } from "./ladders.ts";
-import type { BaseRecipe, Knobs, Overrides, Recipe } from "./recipe.ts";
+import type { BaseRecipe, Intensity, Knobs, Overrides, Recipe } from "./recipe.ts";
 
 export interface Foundation {
 	light: Tokens;
@@ -102,7 +102,7 @@ export function foundation(k: Knobs, natures: Record<string, number>): Foundatio
 	light["--motion-spring-damping"] = m.damping;
 	light["--motion-distance"] = m.distance;
 	light["--motion-stagger"] = m.stagger;
-	light["--motion-intensity"] = m.intensity;
+	light["--motion-intensity"] = String(intensityOf(k));
 
 	// Colour: the ladder of the contrast level.
 	const ladder = ladders[k.contrast];
@@ -234,6 +234,7 @@ export function resolveRecipe(recipe: Recipe, base: BaseRecipe, sources: { natur
 		density: recipe.density ?? base.density,
 		depth: recipe.depth ?? base.depth,
 		motion: recipe.motion ?? base.motion,
+		intensity: recipe.intensity ?? base.intensity,
 		border: recipe.border ?? base.border,
 		fonts: { ...base.fonts, ...recipe.fonts },
 		traits: { ...base.traits, ...recipe.traits },
@@ -254,4 +255,9 @@ export function resolveRecipe(recipe: Recipe, base: BaseRecipe, sources: { natur
 		},
 		dropped,
 	};
+}
+
+/** How much moves in a village: its own intensity, or the one its `motion` gives (quick 1, calm 2, gentle 2, bouncy 3). */
+export function intensityOf(knobs: Pick<Knobs, "motion" | "intensity">): Intensity {
+	return knobs.intensity ?? (Number(motions[knobs.motion].intensity) as Intensity);
 }

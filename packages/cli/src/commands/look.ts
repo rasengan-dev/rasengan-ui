@@ -36,6 +36,8 @@ Options for create:
   --color <colour>      The brand colour: #rrggbb, rgb(r g b) or oklch(L C H)
   --hue <degrees>       A brand hue, when you have no exact colour
   --contrast, --radius, --density, --depth, --motion, --border   One knob each (see the docs)
+  --intensity <0-3>     How much moves: 0 nothing, 1 fades only, 2 travel and text splits, 3 showcase
+                        (default: the one --motion gives)
   --font <family>       The body font; --heading-font for headings
   --title, --description
   --update              Regenerate a village you made from its saved recipe (and these options), keeping your edits
@@ -131,6 +133,7 @@ export async function village(argv: string[]) {
 			density: { type: "string" },
 			depth: { type: "string" },
 			motion: { type: "string" },
+			intensity: { type: "string" },
 			border: { type: "string" },
 			font: { type: "string" },
 			"heading-font": { type: "string" },
@@ -207,7 +210,7 @@ async function readRecipe(from: string): Promise<Partial<Recipe>> {
 	return recipe as Partial<Recipe>;
 }
 
-const KNOB_FLAGS = ["base", "color", "hue", "contrast", "radius", "density", "depth", "motion", "border", "font", "heading-font", "title", "description"];
+const KNOB_FLAGS = ["base", "color", "hue", "contrast", "radius", "density", "depth", "motion", "intensity", "border", "font", "heading-font", "title", "description"];
 
 /** The options given on the command line, as recipe fields. Numbers are checked by the engine's validation. */
 function fromFlags(values: Values): Partial<Recipe> {
@@ -218,7 +221,7 @@ function fromFlags(values: Values): Partial<Recipe> {
 	if (text("color")) out.brand = { color: text("color") };
 	else if (text("hue")) out.brand = { hue: number("hue") };
 	for (const key of ["contrast", "density", "depth", "motion", "title", "description"]) if (text(key)) out[key] = text(key);
-	for (const key of ["radius", "border"]) if (text(key) !== undefined) out[key] = number(key);
+	for (const key of ["radius", "border", "intensity"]) if (text(key) !== undefined) out[key] = number(key);
 	if (text("font") || text("heading-font")) out.fonts = { ...(text("font") ? { body: text("font") } : {}), ...(text("heading-font") ? { heading: text("heading-font") } : {}) };
 	return out as Partial<Recipe>;
 }

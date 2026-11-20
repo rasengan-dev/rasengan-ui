@@ -20,7 +20,7 @@ export * from "./color.ts";
 export type { Adjustment, Problem } from "./fix.ts";
 export * from "./link.ts";
 export * from "./recipe.ts";
-export { foundation, resolveRecipe } from "./resolve.ts";
+export { foundation, intensityOf, resolveRecipe } from "./resolve.ts";
 
 /** Konoha, Kiri, Iwa and Kusa as recipes: the engine makes their CSS files token for token. */
 export const builtinRecipes = { konoha, kiri, iwa, kusa } as unknown as Record<Base, BaseRecipe>;

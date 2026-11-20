@@ -10,6 +10,8 @@ import {
 	createBaseVillage,
 	createVillage,
 	foundation,
+	intensities,
+	intensityOf,
 	options,
 	parseColor,
 	RECIPE_SCHEMA,
@@ -173,7 +175,33 @@ test("the JSON schema offers what the engine takes", () => {
 	assert.deepEqual(schema.properties.base.enum, [...bases]);
 	for (const [knob, values] of Object.entries(options)) assert.deepEqual(schema.properties[knob].enum, [...values], knob);
 	for (const [trait, values] of Object.entries(traitOptions)) assert.deepEqual(schema.properties.traits.properties[trait].enum, [...values], trait);
+	assert.deepEqual(schema.properties.intensity.enum, [...intensities]);
 	assert.equal(schema.$id, RECIPE_SCHEMA);
+});
+
+test("intensity sets how much moves, apart from how it moves", () => {
+	// From every token of the village: the file leaves out a value equal to the contract's default (2).
+	const intensityIn = (village: { light: Record<string, string> }) => village.light["--motion-intensity"];
+	// Left out, the motion knob decides, as before: Kiri is gentle (2), and bouncy is 3.
+	assert.equal(intensityIn(createVillage({ name: "acme", base: "kiri" }, { sources })), "2");
+	assert.equal(intensityIn(createVillage({ name: "acme", base: "kiri", motion: "bouncy" }, { sources })), "3");
+	// Set, it wins whatever the motion: a calm village where only fades run, or a quick one that shows off.
+	const calm = createVillage({ name: "acme", base: "kiri", motion: "calm", intensity: 1 }, { sources });
+	assert.equal(intensityIn(calm), "1");
+	assert.match(calm.css, /--motion-intensity:\s*1;/);
+	assert.equal(calm.knobs.intensity, 1);
+	assert.equal(intensityIn(createVillage({ name: "acme", base: "iwa", intensity: 3 }, { sources })), "3");
+	assert.equal(intensityIn(createVillage({ name: "acme", base: "konoha", intensity: 0 }, { sources })), "0");
+	// Only the intensity changes: the durations stay the motion's.
+	const plain = createVillage({ name: "acme", base: "kiri", motion: "calm" }, { sources });
+	assert.equal(calm.light["--motion-base"], plain.light["--motion-base"]);
+	assert.equal(intensityOf({ motion: "quick" }), 1);
+	assert.equal(intensityOf({ motion: "quick", intensity: 3 }), 3);
+});
+
+test("an intensity out of 0 to 3 is refused", () => {
+	for (const intensity of [4, -1, 1.5, "2"]) assert.ok(validateRecipe({ name: "acme", intensity }).some((e) => e.includes('"intensity"')), String(intensity));
+	assert.deepEqual(validateRecipe({ name: "acme", intensity: 0 }), []);
 });
 
 test("a recipe goes into a link and comes back", () => {
