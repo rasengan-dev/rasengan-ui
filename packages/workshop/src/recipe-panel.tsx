@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { ActivityIcon, ContrastIcon, LayersIcon, MapPinIcon, Rows3Icon, Settings2Icon, SquareIcon } from "lucide-react";
-import { builtinRecipes, options, traitOptions, type Base, type BaseRecipe, type Recipe, type Traits } from "@rasengan-ui/villages/engine";
+import { builtinRecipes, intensities, intensityOf, options, traitOptions, type Base, type BaseRecipe, type Recipe, type Traits } from "@rasengan-ui/villages/engine";
 import { fonts } from "@rasengan-ui/villages/fonts";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -23,6 +23,8 @@ export function knobs(recipe: Recipe) {
 		density: recipe.density ?? base.density,
 		depth: recipe.depth ?? base.depth,
 		motion: recipe.motion ?? base.motion,
+		// What the village will write: the recipe's own, or the one its motion gives.
+		intensity: intensityOf({ motion: recipe.motion ?? base.motion, intensity: recipe.intensity ?? base.intensity }),
 		border: recipe.border ?? base.border,
 		fonts: { ...base.fonts, ...recipe.fonts },
 		traits: { ...base.traits, ...recipe.traits },
@@ -270,6 +272,14 @@ export function RecipePanel({ recipe, onChange, nameError, showName = true, acti
 				<MenuRow name={l.density} value={k.density} values={options.density} describe={value} hint={<Rows3Icon />} onChange={(density) => set({ density })} />
 				<MenuRow name={l.depth} value={k.depth} values={options.depth} describe={value} hint={<LayersIcon />} onChange={(depth) => set({ depth })} />
 				<MenuRow name={l.motion} value={k.motion} values={options.motion} describe={value} hint={<ActivityIcon />} onChange={(motion) => set({ motion })} />
+				<MenuRow
+					name={l.intensity}
+					value={k.intensity}
+					values={intensities}
+					describe={(n) => l.intensities[n]}
+					hint={<ActivityIcon />}
+					onChange={(intensity) => set({ intensity })}
+				/>
 
 				<PopoverRow name={l.traits} value={changedTraits ? l.traitsChanged(changedTraits, k.base.title) : l.traitsAsBase(k.base.title)} hint={<Settings2Icon />} description={l.traitsHelp}>
 					<div className="grid gap-3">

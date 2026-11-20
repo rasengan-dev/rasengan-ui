@@ -38,6 +38,7 @@ No ADR for what one pull request can undo without consequences.
 | [0015](0015-placeholder-photos-of-food-and-places.md) | Food and places are Unsplash photos too; the dashboard is a real screen made from the components | Accepted | 2026-11-09 |
 | [0016](0016-villages-published-on-npm.md) | `@rasengan-ui/villages` is published on npm; packages build with tsup | Accepted | 2026-11-12 |
 | [0017](0017-workshop-as-a-shared-registry-item.md) | The village workshop's parts are a shared registry item, `rasengan-workshop`, in English and French | Accepted | 2026-11-13 |
+| [0018](0018-intensity-knob-in-the-recipe.md) | The recipe sets the motion intensity apart from the motion knob | Accepted | 2026-11-20 |
 
 ## Template
 

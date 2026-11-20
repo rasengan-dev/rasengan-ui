@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0
+
+- **`village create --intensity <0-3>`**: how much moves in the village, apart from `--motion` (ADR-0018). The
+  workshop links carry it too.
+- Bundles `@rasengan-ui/villages` 0.2.0.
+
 ## 0.3.0
 
 - **`rasengan-ui mcp --http`**: the MCP server over Streamable HTTP at `/mcp`, for an agent that reaches the project

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+
+- **The recipe's `intensity`** (ADR-0018): 0 nothing moves, 1 fades only, 2 travel and text splits, 3 showcase,
+  written as `--motion-intensity` whatever the `motion` knob. Left out, `motion` decides as before, so existing recipes
+  and the built-in villages give the same files. `intensityOf(knobs)` says which one a village will have; the recipe
+  schema takes it.
+
 ## 0.1.1
 
 - **Fixed:** the package's `exports` point at `dist/`. 0.1.0 was published with `npm publish`, which kept the

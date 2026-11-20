@@ -22,6 +22,13 @@ export const options = {
 	border: [1, 1.5, 2],
 } as const;
 
+/**
+ * How much moves (RFC-0007), apart from how it moves (`motion`): 0 nothing, 1 fades only, 2 travel and text splits,
+ * 3 showcase (tilt, magnetic, 3D, overshoot). Written as --motion-intensity; left out, `motion`'s ladder decides.
+ */
+export const intensities = [0, 1, 2, 3] as const;
+export type Intensity = (typeof intensities)[number];
+
 export const traitOptions = {
 	/** Segmented (a well with a raised active tab) or a bar (a rule with an inverted active tab). */
 	tabs: ["segmented", "bar"],
@@ -87,6 +94,8 @@ export interface Knobs {
 	density: Density;
 	depth: Depth;
 	motion: Motion;
+	/** How much moves; undefined: the one `motion` gives. */
+	intensity?: Intensity;
 	border: Border;
 	fonts: Fonts;
 	traits: Traits;
@@ -113,6 +122,8 @@ export interface Recipe {
 	density?: Density;
 	depth?: Depth;
 	motion?: Motion;
+	/** 0 nothing moves, 1 fades only, 2 travel and text splits, 3 showcase. Left out: the one `motion` gives. */
+	intensity?: Intensity;
 	border?: Border;
 	fonts?: Partial<Fonts>;
 	traits?: Partial<Traits>;
@@ -127,7 +138,7 @@ export function validateRecipe(input: unknown): string[] {
 	if (!isObject(input)) return ["A recipe is a JSON object."];
 	const r = input as Record<string, unknown>;
 	const errors: string[] = [];
-	const known = new Set(["$schema", "name", "title", "description", "base", "brand", "neutrals", "contrast", "radius", "density", "depth", "motion", "border", "fonts", "traits", "overrides"]);
+	const known = new Set(["$schema", "name", "title", "description", "base", "brand", "neutrals", "contrast", "radius", "density", "depth", "motion", "intensity", "border", "fonts", "traits", "overrides"]);
 	for (const key of Object.keys(r)) if (!known.has(key)) errors.push(`Unknown field "${key}".`);
 
 	if (typeof r.name !== "string" || !/^[a-z][a-z0-9-]{0,39}$/.test(r.name))
@@ -162,6 +173,8 @@ export function validateRecipe(input: unknown): string[] {
 	for (const [key, values] of Object.entries(options))
 		if (r[key] !== undefined && !(values as readonly unknown[]).includes(r[key])) errors.push(`"${key}" is one of ${values.join(", ")}.`);
 	if (r.radius !== undefined && !(typeof r.radius === "number" && r.radius >= 0 && r.radius <= 1)) errors.push('"radius" is a number from 0 to 1.');
+	if (r.intensity !== undefined && !(intensities as readonly unknown[]).includes(r.intensity))
+		errors.push('"intensity" is 0 (nothing moves), 1 (fades only), 2 (travel and text splits) or 3 (showcase).');
 
 	if (r.fonts !== undefined) {
 		if (!isObject(r.fonts)) errors.push('"fonts" is an object.');

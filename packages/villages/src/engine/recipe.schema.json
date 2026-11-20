@@ -43,6 +43,7 @@
 		"density": { "enum": ["compact", "default", "comfortable"] },
 		"depth": { "enum": ["flat", "soft", "raised", "hard", "lip"] },
 		"motion": { "enum": ["quick", "calm", "gentle", "bouncy"] },
+		"intensity": { "description": "How much moves: 0 nothing, 1 fades only, 2 travel and text splits, 3 showcase. Left out: the one motion gives.", "enum": [0, 1, 2, 3] },
 		"border": { "description": "Border width in px.", "enum": [1, 1.5, 2] },
 		"fonts": {
 			"type": "object",

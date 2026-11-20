@@ -1,6 +1,6 @@
 {
 	"name": "@rasengan-ui/villages",
-	"version": "0.1.1",
+	"version": "0.2.0",
 	"description": "The Rasengan UI token contract, its villages and natures, and the village engine: a recipe in, a checked village CSS file out.",
 	"keywords": [
 		"rasengan",

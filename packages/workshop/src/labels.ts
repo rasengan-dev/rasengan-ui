@@ -35,6 +35,10 @@ export interface WorkshopLabels {
 	density: string;
 	depth: string;
 	motion: string;
+	/** The intensity knob: how much moves, apart from how. */
+	intensity: string;
+	/** Its four values, 0 to 3. */
+	intensities: [string, string, string, string];
 
 	traits: string;
 	traitsHelp: string;
@@ -109,6 +113,8 @@ export const en: WorkshopLabels = {
 	density: "Density",
 	depth: "Depth",
 	motion: "Motion",
+	intensity: "Motion intensity",
+	intensities: ["None", "Fades only", "Travel", "Showcase"],
 
 	traits: "Traits",
 	traitsHelp: "How tabs, focus, labels, surfaces and other details look. Any you leave come from the base village.",
@@ -221,6 +227,8 @@ export const fr: WorkshopLabels = {
 	density: "Densité",
 	depth: "Relief",
 	motion: "Mouvement",
+	intensity: "Intensité du mouvement",
+	intensities: ["Aucun", "Fondus seulement", "Déplacements", "Spectacle"],
 
 	traits: "Traits",
 	traitsHelp: "L'allure des onglets, du focus, des libellés, des surfaces et d'autres détails. Ceux que vous laissez viennent du village de base.",

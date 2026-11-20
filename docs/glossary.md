@@ -77,10 +77,12 @@ component-specific ones like `underline` or `pills`). Independent of the tone.
 Base UI and Radix. Not to be confused with a component's `variant` prop.
 
 **Motion knob** (`motion` in a recipe) — `quick` (exact, Iwa), `calm` (Konoha), `gentle` (floaty, Kiri), `bouncy`
-(springs that overshoot, Kusa). Sets the village's durations, easings, spring, travel distance, stagger and intensity.
+(springs that overshoot, Kusa). Sets the village's durations, easings, spring, travel distance, stagger, and the intensity unless the recipe sets its
+own.
 
 **Motion intensity** (`--motion-intensity`, `data-motion-intensity`) — How much motion components may do: 0 none, 1
-fades only, 2 travel and splits, 3 showcase (tilt, magnetic, 3D, overshoot). Set by the village, overridable on any
+fades only, 2 travel and splits, 3 showcase (tilt, magnetic, 3D, overshoot). Set by the village (the recipe's
+`intensity`, or the one its `motion` gives, [ADR-0018](adr/0018-intensity-knob-in-the-recipe.md)), overridable on any
 element, 0 under reduced motion.
 
 **Motion mode** (`<html data-motion>`) — `ready` (animate), `final` (every animation in its end state: screenshots,
