@@ -1,0 +1,102 @@
+---
+metadata:
+  title: Horizontal Scroll · Rasengan UI
+  description: "A section that pins while the page scrolls down and moves its row of cards sideways; a native swipeable row on small screens."
+toc: true
+---
+
+# Horizontal Scroll
+
+A section that pins while the page scrolls down and moves its row of cards sideways; a native swipeable row on small
+screens.
+
+<ComponentPreview name="horizontal-scroll" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add horizontal-scroll
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/horizontal-scroll.json
+```
+
+It brings `rasengan-motion` with it. Put its head script and provider in your app once, as the
+[motion setup](/motion#setup-title) shows: `<MotionScript />` in `<head>`, `<MotionProvider>` around the app.
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { HorizontalScroll, HorizontalScrollItem, HorizontalScrollTrack } from "@/components/ui/horizontal-scroll";
+
+export function Usage() {
+  return (
+    <HorizontalScroll aria-label="Recent work">
+      <HorizontalScrollTrack>
+        <HorizontalScrollItem className="w-72">…</HorizontalScrollItem>
+        <HorizontalScrollItem className="w-72">…</HorizontalScrollItem>
+      </HorizontalScrollTrack>
+    </HorizontalScroll>
+  );
+}
+```
+
+On a screen at least 48rem wide (the screen, not the section), the section pins to the top for as long as its row overflows: each pixel scrolled down
+moves the row one pixel sideways, then the page goes on. Give each item a width. `--track-gap` sets the space between
+items, `--track-inset` the space before the first and after the last (by default, it lines the row up with a 72rem
+column).
+
+On a narrower screen the row is a native horizontal scroller that snaps to each item: swiped with a finger, scrolled
+with a trackpad or the keyboard.
+
+A sticky element stops sticking inside an ancestor with `overflow: hidden`. Use `overflow: clip` on the page's
+wrappers instead.
+
+### A moment, drawn
+
+`progress` draws the row at that point, in place, without pinning: for a still picture or a test. Below, at 0, half
+way and at the end.
+
+<ComponentPreview name="horizontal-scroll" demo="horizontal-scroll-still" />
+
+## Villages
+
+Konoha and Kiri pin and move the row; Kusa also lets each card's content drift a little against it. Iwa's intensity is
+1, so the row stays a native scroller. Drawn at three moments in each village:
+
+<VillageGrid name="horizontal-scroll" demo="horizontal-scroll-still" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off`, `?motion=final` or a scope at `data-motion-intensity="0"` or `"1"`, the row is a
+native horizontal scroller. Without JavaScript too.
+
+## Accessibility
+
+- The items stay a list (`ul`, `li`) in their order; name the section with a heading inside it or `aria-label`.
+- Tabbing to an item the row has not reached scrolls the page to bring it into view: the row moves by `transform`,
+  which the browser cannot scroll to by itself.
+- Nothing moves on its own: the row follows the reader's scroll.
+
+## Weight
+
+About 3.8 kB gzip beyond `cn()`, `rasengan-motion` included. Nothing from Motion: the pinning is CSS, and the row
+reads `--scroll-progress`.
+
+## API reference
+
+`HorizontalScroll` renders a `section` and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `progress` | `number` (0–1) | follows the scroll |
+
+| Custom property | Default |
+| --- | --- |
+| `--track-gap` | `1.5rem` |
+| `--track-inset` | lines the row up with a 72rem column, at least `1rem` |
+
+`HorizontalScrollTrack` renders a `ul`, `HorizontalScrollItem` an `li`; both take their props and `className`.

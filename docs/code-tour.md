@@ -238,7 +238,7 @@ src/
 │   └── villages/create.page.tsx   the workshop
 └── components/
     ├── layout/          header, sidebar, search (CommandDialog), mobile menu, footer, docs layout, example toolbar
-    ├── mdx/             code-block, toc, steps, callout, component-preview, block-showcase, content-schema, village-grid, pager
+    ├── mdx/             code-block, toc, steps, callout, component-preview, block-showcase, content-schema, village-grid (`demo` picks another demo), pager
     ├── gallery/         block-thumbnail: a block live, scaled down, rendered once near the viewport
     ├── workshop/        what the site's workshop page adds to `packages/workshop`: preview cards, export dialog
     └── home/            the home page's demo dashboard

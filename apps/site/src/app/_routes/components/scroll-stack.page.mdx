@@ -1,0 +1,101 @@
+---
+metadata:
+  title: Scroll Stack · Rasengan UI
+  description: "Cards that stick under the top of the screen one after another, each shrinking a little as the next one covers it."
+toc: true
+---
+
+# Scroll Stack
+
+Cards that stick under the top of the screen one after another, each shrinking a little as the next one covers it.
+
+<ComponentPreview name="scroll-stack" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add scroll-stack
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/scroll-stack.json
+```
+
+It brings `rasengan-motion` with it. Put its head script and provider in your app once, as the
+[motion setup](/motion#setup-title) shows: `<MotionScript />` in `<head>`, `<MotionProvider>` around the app.
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { ScrollStack, ScrollStackItem } from "@/components/ui/scroll-stack";
+
+export function Usage() {
+  return (
+    <ScrollStack className="[--stack-top:6rem]">
+      <ScrollStackItem>
+        <article className="rounded-lg border bg-background p-6">Tell us about the business</article>
+      </ScrollStackItem>
+      <ScrollStackItem>
+        <article className="rounded-lg border bg-background p-6">Pick a look</article>
+      </ScrollStackItem>
+    </ScrollStack>
+  );
+}
+```
+
+Put one `ScrollStackItem` per card and the card inside it. Every item takes one screen of scroll: the next card slides
+up and lands a little lower than the one before. Two custom properties on the root place them: `--stack-top`, where the
+first card sticks (under a fixed header), and `--stack-gap`, how much of each card stays visible.
+
+A sticky element stops sticking inside an ancestor with `overflow: hidden`. Use `overflow: clip` on the page's
+wrappers instead: it clips the same, and lets sticky work.
+
+The cards cover one another, so give them an opaque background: `bg-background` rather than `bg-card`, which is
+see-through in Kiri and would show the text of the cards behind.
+
+### A moment, drawn
+
+`progress` draws the stack at that point, in place, without scrolling: for a still picture or a test. Below, at 0, half
+way and at the end.
+
+<ComponentPreview name="scroll-stack" demo="scroll-stack-still" />
+
+## Villages
+
+Konoha and Kiri shrink each covered card; Kusa also tips it back. Iwa's intensity is 1: the cards stack without
+shrinking. Drawn half way and at the end in each village:
+
+<VillageGrid name="scroll-stack" demo="scroll-stack-still" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off`, `?motion=final` or a scope at `data-motion-intensity="0"`, the cards are a plain
+list. Without JavaScript too.
+
+## Accessibility
+
+- The cards stay a list (`ul`, `li`) in their order, for screen readers and the keyboard.
+- A focused card comes above the cards that cover it (`:focus-within`), so focus is never hidden.
+- Nothing moves on its own: the stack follows the reader's scroll.
+
+## Weight
+
+About 3.4 kB gzip beyond `cn()`, `rasengan-motion` included. Nothing from Motion: the sticking is CSS, and the shrink
+reads `--scroll-progress`.
+
+## API reference
+
+`ScrollStack` renders a `ul` and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `progress` | `number` (0–1) | follows the scroll |
+
+| Custom property | Default |
+| --- | --- |
+| `--stack-top` | `5rem` |
+| `--stack-gap` | `1rem` |
+
+`ScrollStackItem` renders an `li` and takes its props and `className`.
