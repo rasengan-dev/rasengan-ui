@@ -9,15 +9,18 @@
  *   element's village (contract.css, villages/*.css), so a component inside a VillageScope moves like that village.
  * - Primitives: Reveal, Stagger, Presence, Parallax, Tilt, Magnetic; bezierEasing and stepSpring for components that
  *   animate what CSS cannot (a scroll position, a cursor), without Motion.
+ * - Scroll progress (RFC-0010, ADR-0019): `useScrollProgress` sets `--scroll-progress` (0 to 1) on an element as the
+ *   page scrolls, with CSS scroll timelines where the browser has them and one shared frame loop elsewhere.
  *
  * Put <MotionScript /> in <head> and <MotionProvider> once around the app.
  *
- * Weight: Reveal and Stagger use the browser's Web Animations API and cost nothing from Motion. Presence, Parallax,
- * Tilt and Magnetic use Motion's `m` components, whose DOM features load on demand from `@/lib/motion-features`.
+ * Weight: Reveal, Stagger, Parallax and the scroll progress use the browser's own APIs and cost nothing from Motion.
+ * Presence, Tilt and Magnetic use Motion's `m` components, whose DOM features load on demand from
+ * `@/lib/motion-features`.
  */
 
 import * as React from "react";
-import { AnimatePresence, LazyMotion, m, useMotionValue, useScroll, useSpring, useTransform } from "motion/react";
+import { AnimatePresence, LazyMotion, m, useMotionValue, useSpring } from "motion/react";
 
 /** Motion's DOM features, in their own chunk: fetched the first time a component that needs them renders. */
 const loadFeatures = () => import("@/lib/motion-features").then((module) => module.default);
@@ -367,6 +370,220 @@ function StaggerItem({ as = "div", from, ...rest }: StaggerItemProps) {
 
 export const Stagger = Object.assign(StaggerRoot, { Item: StaggerItem });
 
+// ---- Scroll progress (RFC-0010, ADR-0019) ----------------------------------------------------------------------
+
+/**
+ * Which part of an element's way through the viewport maps to 0–1, as CSS view timelines name them:
+ * - `cover`: from its top entering at the bottom of the viewport to its bottom leaving at the top;
+ * - `entry`: while it comes in, until it is fully in (or fills the viewport);
+ * - `exit`: while it goes out, from the moment it starts to leave (or stops filling the viewport);
+ * - `contain`: while it is fully in, or, taller than the viewport, while it fills it;
+ * - `pin`: `contain`, named for tall sections whose content sticks while they scroll by (scroll-stack, horizontal-scroll);
+ * - `page`: the page's own scroll, from the top to the bottom (scroll-progress).
+ */
+export type ScrollRange = "cover" | "entry" | "exit" | "contain" | "pin" | "page";
+
+const clamp01 = (value: number) => (value < 0 ? 0 : value > 1 ? 1 : value);
+
+/**
+ * Where the element's top sits in the viewport (in px from the viewport's top) when the range starts and ends.
+ * `height` is the element's, `viewport` the viewport's.
+ */
+export function scrollRangeBounds(range: Exclude<ScrollRange, "page">, height: number, viewport: number): [start: number, end: number] {
+	const shorter = Math.min(height, viewport);
+	switch (range) {
+		case "cover":
+			return [viewport, -height];
+		case "entry":
+			return [viewport, viewport - shorter];
+		case "exit": {
+			const start = Math.min(0, viewport - height);
+			return [start, start - shorter];
+		}
+		case "contain":
+		case "pin":
+			return [Math.max(viewport - height, 0), Math.min(viewport - height, 0)];
+	}
+}
+
+/** The progress (0–1) of an element whose top is at `top` in the viewport. What the fallback writes; also for tests. */
+export function scrollProgressAt(range: Exclude<ScrollRange, "page">, top: number, height: number, viewport: number): number {
+	const [start, end] = scrollRangeBounds(range, height, viewport);
+	if (start === end) return top <= start ? 1 : 0;
+	return clamp01((start - top) / (start - end));
+}
+
+/** The page's progress (0–1): how far it has scrolled of what it can scroll. */
+export function pageScrollProgress(scrollY: number, scrollHeight: number, viewport: number): number {
+	const scrollable = scrollHeight - viewport;
+	return scrollable <= 0 ? 0 : clamp01(scrollY / scrollable);
+}
+
+// Scroll timelines are not in TypeScript's DOM library yet.
+type AnyTimeline = AnimationTimeline;
+type TimelineConstructors = {
+	ViewTimeline?: new (options: { subject: Element; axis?: "block" | "inline" }) => AnyTimeline;
+	ScrollTimeline?: new (options: { source: Element; axis?: "block" | "inline" }) => AnyTimeline;
+};
+
+let progressRegistered: boolean | undefined;
+
+/**
+ * Registers `--scroll-progress` as a number, so the browser can animate it and `calc()` can use it. Once per page; a
+ * second registration (two copies of this file, a hot reload) counts as done.
+ */
+function registerScrollProgress(): boolean {
+	if (progressRegistered !== undefined) return progressRegistered;
+	try {
+		CSS.registerProperty({ name: "--scroll-progress", syntax: "<number>", inherits: true, initialValue: "0" });
+		progressRegistered = true;
+	} catch (error) {
+		progressRegistered = error instanceof DOMException && error.name === "InvalidModificationError";
+	}
+	return progressRegistered;
+}
+
+/** Whether the browser drives `--scroll-progress` itself: scroll timelines, and the property registered. */
+export function scrollTimelinesSupported(): boolean {
+	const timelines = globalThis as unknown as TimelineConstructors;
+	return typeof timelines.ViewTimeline === "function" && typeof timelines.ScrollTimeline === "function" && registerScrollProgress();
+}
+
+/** Lets the browser drive the property on its own timeline: no JavaScript per frame. */
+function driveWithTimeline(element: HTMLElement, range: ScrollRange): () => void {
+	const { ViewTimeline, ScrollTimeline } = globalThis as unknown as Required<TimelineConstructors>;
+	const page = range === "page";
+	const timeline = page ? new ScrollTimeline({ source: document.documentElement, axis: "block" }) : new ViewTimeline({ subject: element, axis: "block" });
+	const name = range === "pin" ? "contain" : range;
+	const options = { timeline, fill: "both", easing: "linear", ...(page ? {} : { rangeStart: `${name} 0%`, rangeEnd: `${name} 100%` }) };
+	const animation = element.animate({ "--scroll-progress": [0, 1] } as PropertyIndexedKeyframes, options as KeyframeAnimationOptions);
+	return () => animation.cancel();
+}
+
+// The fallback: one passive scroll listener and one frame for every watched element on the page.
+interface Watched {
+	element: HTMLElement;
+	range: ScrollRange;
+	/** Near the viewport: measured on every frame. */
+	near: boolean;
+	/** Just left or entered: measured once more, so it settles at 0 or 1. */
+	dirty: boolean;
+	last: number;
+}
+
+const watched = new Set<Watched>();
+let frame = 0;
+let nearObserver: IntersectionObserver | null = null;
+
+const requestUpdate = () => {
+	if (!frame) frame = requestAnimationFrame(update);
+};
+
+function update() {
+	frame = 0;
+	const viewport = window.innerHeight;
+	const writes: Array<[Watched, number]> = [];
+	// Every read first, then every write, so the frame lays out once.
+	for (const item of watched) {
+		if (item.range === "page") {
+			writes.push([item, pageScrollProgress(window.scrollY, document.documentElement.scrollHeight, viewport)]);
+		} else if (item.near || item.dirty) {
+			const rect = item.element.getBoundingClientRect();
+			writes.push([item, scrollProgressAt(item.range, rect.top, rect.height, viewport)]);
+		}
+		item.dirty = false;
+	}
+	for (const [item, value] of writes) {
+		const rounded = Math.round(value * 10000) / 10000;
+		if (rounded === item.last) continue;
+		item.last = rounded;
+		item.element.style.setProperty("--scroll-progress", String(rounded));
+	}
+}
+
+/** Writes `--scroll-progress` from JavaScript, for browsers without scroll timelines. */
+function driveWithFrames(element: HTMLElement, range: ScrollRange): () => void {
+	if (watched.size === 0) {
+		window.addEventListener("scroll", requestUpdate, { passive: true });
+		window.addEventListener("resize", requestUpdate);
+		// Measured only within a viewport of the screen, above or below.
+		nearObserver = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					for (const item of watched) {
+						if (item.element !== entry.target) continue;
+						item.near = entry.isIntersecting;
+						item.dirty = true;
+					}
+				}
+				requestUpdate();
+			},
+			{ rootMargin: "100% 0px" },
+		);
+	}
+	const item: Watched = { element, range, near: false, dirty: true, last: Number.NaN };
+	watched.add(item);
+	if (range !== "page") nearObserver?.observe(element);
+	requestUpdate();
+	return () => {
+		watched.delete(item);
+		nearObserver?.unobserve(element);
+		if (watched.size > 0) return;
+		window.removeEventListener("scroll", requestUpdate);
+		window.removeEventListener("resize", requestUpdate);
+		nearObserver?.disconnect();
+		nearObserver = null;
+		if (frame) cancelAnimationFrame(frame);
+		frame = 0;
+	};
+}
+
+export interface ScrollProgressOptions {
+	/** Which part of the element's way through the viewport maps to 0–1. Default `cover`. */
+	range?: ScrollRange;
+	/** Fixes the progress (demos, screenshots, tests): nothing follows the scroll. */
+	progress?: number;
+	/**
+	 * The element moves nothing but itself, and only with the user's scroll (a reading bar): it keeps following the
+	 * scroll under reduced motion (ADR-0020). Leave it out for anything that moves content.
+	 */
+	feedback?: boolean;
+	/** Turn it off where the effect does not run here (an intensity the village does not allow). Default true. */
+	enabled?: boolean;
+}
+
+/**
+ * Sets `--scroll-progress` (0 to 1) on the element as the page scrolls, and `data-scroll-linked` while it does. Read it
+ * in the element's styles or its children's: `scale: calc(1 - var(--scroll-progress) * 0.06)`.
+ *
+ * Measure a box that does not move with the progress (put the moving part inside it), or the effect feeds itself.
+ * Under `pending`, `final` and `off`, nothing is set and the element keeps its static form, except `feedback` under
+ * `off` and a fixed `progress`.
+ */
+export function useScrollProgress(ref: React.RefObject<HTMLElement | null>, { range = "cover", progress, feedback = false, enabled = true }: ScrollProgressOptions = {}) {
+	const mode = useMotionMode();
+	React.useEffect(() => {
+		const element = ref.current;
+		if (!element || !enabled || mode === "pending") return;
+		const drives = progress !== undefined || mode === "ready" || (feedback && mode === "off");
+		if (!drives) return;
+
+		element.setAttribute("data-scroll-linked", "");
+		let stop: () => void;
+		if (progress !== undefined) {
+			element.style.setProperty("--scroll-progress", String(clamp01(progress)));
+			stop = () => {};
+		} else {
+			stop = scrollTimelinesSupported() ? driveWithTimeline(element, range) : driveWithFrames(element, range);
+		}
+		return () => {
+			stop();
+			element.removeAttribute("data-scroll-linked");
+			element.style.removeProperty("--scroll-progress");
+		};
+	}, [ref, mode, range, progress, feedback, enabled]);
+}
+
 // ---- Presence and Parallax -------------------------------------------------------------------------------------
 
 export interface PresenceProps {
@@ -408,20 +625,26 @@ type DivProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onDrag" | "onDragSta
 export interface ParallaxProps extends DivProps {
 	/** How far it drifts while crossing the viewport, as a share of 200px (0.2 → ±40px). */
 	speed?: number;
+	/** Fixes the progress (0–1), for demos and screenshots. */
+	progress?: number;
 }
 
-/** Moves at a different rate than the page while it scrolls past. Intensity 2. */
-export function Parallax({ speed = 0.2, children, ...rest }: ParallaxProps) {
+/**
+ * Moves at a different rate than the page while it scrolls past. Intensity 2. The outer box is measured and stays put;
+ * the inner one drifts, from `speed × 200px` below its place to as much above, following `--scroll-progress`.
+ */
+export function Parallax({ speed = 0.2, progress, children, ...rest }: ParallaxProps) {
 	const ref = React.useRef<HTMLDivElement>(null);
 	const { allows } = useMotion(ref);
-	const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-	const y = useTransform(scrollYProgress, [0, 1], [speed * 200, -speed * 200]);
+	// A fixed progress is a picture, not motion: it shows whatever the mode.
+	const moves = progress !== undefined || allows(2);
+	useScrollProgress(ref, { range: "cover", progress, enabled: moves });
 	return (
-		<Features>
-			<m.div ref={ref} {...rest} style={allows(2) ? { y } : undefined}>
+		<div ref={ref} {...rest}>
+			<div data-slot="parallax-layer" style={moves ? { translate: `0 calc((0.5 - var(--scroll-progress, 0)) * ${speed * 400}px)` } : undefined}>
 				{children}
-			</m.div>
-		</Features>
+			</div>
+		</div>
 	);
 }
 

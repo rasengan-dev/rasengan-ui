@@ -2,7 +2,7 @@
 	"name": "@rasengan-ui/motion",
 	"version": "0.1.0",
 	"private": true,
-	"description": "rasengan-motion (RFC-0007): what motion components share — modes, the village's motion tokens, Reveal, Stagger, Presence, Parallax, Tilt, Magnetic, splitText. Distributed through the registry; this package is the source.",
+	"description": "rasengan-motion (RFC-0007): what motion components share — modes, the village's motion tokens, Reveal, Stagger, Presence, Parallax, Tilt, Magnetic, splitText, the scroll progress. Distributed through the registry; this package is the source.",
 	"type": "module",
 	"exports": {
 		".": "./src/motion.tsx",

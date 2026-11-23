@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { useId, useRef, useState } from 'react';
 import { Link, type PageComponent } from 'rasengan';
 import { RotateCcwIcon, SparklesIcon } from 'lucide-react';
 import { villages, type Village } from '@rasengan-ui/villages';
@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { MotionProvider, Stagger } from '@/lib/motion';
+import { MotionProvider, Parallax, Stagger, useScrollProgress } from '@/lib/motion';
 import { VillageScope } from '@/lib/village-scope';
 import { groups } from '@/catalogue';
 
@@ -26,6 +26,33 @@ const characters: Record<Motion, string> = {
   gentle: 'Slower and floaty, a longer rise.',
   bouncy: 'Springs that overshoot: things drop into place.',
 };
+
+/**
+ * A bar and three layers that follow the page's scroll (RFC-0010, lot 0): the bar reads `--scroll-progress` itself,
+ * the layers drift through Parallax at three speeds.
+ */
+function ScrollDemo() {
+  const ref = useRef<HTMLDivElement>(null);
+  useScrollProgress(ref, { range: 'cover' });
+  return (
+    <div ref={ref} data-slot="scroll-demo" className="mt-5 rounded-lg border-village bg-card p-6">
+      <div aria-hidden="true" className="h-1.5 overflow-hidden rounded-pill bg-muted">
+        <div className="h-full origin-left rounded-pill bg-primary" style={{ transform: 'scaleX(var(--scroll-progress, 0))' }} />
+      </div>
+      <ul className="m-0 mt-8 grid list-none grid-cols-3 gap-4 p-0">
+        {[0.1, 0.25, 0.4].map((speed) => (
+          <li key={speed}>
+            <Parallax speed={speed}>
+              <div className="flex h-28 items-center justify-center rounded-control border-village bg-background text-sm font-medium shadow-sm">
+                speed {speed}
+              </div>
+            </Parallax>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 /**
  * /motion (RFC-0007): the components whose motion is the point, as a gallery of live demos, with a replay button and
@@ -110,6 +137,19 @@ const MotionGallery: PageComponent = () => {
                 );
               })}
             </div>
+          </section>
+
+          <section aria-labelledby="scroll-title" className="mt-12">
+            <h2 id="scroll-title" className="font-display text-[24px] font-semibold tracking-display case-heading">
+              Motion that follows the scroll
+            </h2>
+            <p className="mt-2 max-w-2xl text-[15px] leading-[1.7] text-muted-foreground">
+              Effects tied to the scroll read one value, <code className="font-mono text-[0.9em]">--scroll-progress</code>,
+              from 0 to 1. Browsers with CSS scroll timelines drive it themselves; others get it from one small loop for
+              the whole page. About 1 kB gzip, nothing from Motion. The page scrolls as your browser scrolls it: nothing
+              here smooths or takes over the scroll. With reduced motion, the layers stay in place.
+            </p>
+            <ScrollDemo />
           </section>
 
           <section aria-labelledby="setup-title" className="mt-12">

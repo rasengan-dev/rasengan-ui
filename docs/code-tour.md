@@ -158,17 +158,27 @@ src/
 ├── motion.tsx           installed as @/lib/motion
 │                        modes: motionScript / MotionScript (head), MotionProvider, useMotionMode
 │                        tokens: readMotionTokens(element), useMotion(ref) → { mode, tokens, measured, allows(min) }
-│                        primitives: Reveal, Stagger (Web Animations API), Presence, Parallax, Tilt, Magnetic (Motion's m)
+│                        primitives: Reveal, Stagger (Web Animations API), Parallax (scroll progress),
+│                                    Presence, Tilt, Magnetic (Motion's m)
+│                        scroll progress: useScrollProgress(ref, { range, progress, feedback, enabled }) sets
+│                                    --scroll-progress; scrollProgressAt / scrollRangeBounds / pageScrollProgress (the maths)
 │                        without Motion: bezierEasing (scroll moves), stepSpring / springAtRest (the cursor)
 ├── motion-features.ts   @/lib/motion-features: Motion's domAnimation, imported dynamically (its own chunk)
 └── split-text.tsx       @/lib/split-text: splitText(), <SplitText by="chars|words|lines">
 test/ssr.test.tsx        server render, no hidden state without JavaScript, split text, defaults against the CSS
+test/scroll.test.tsx     scroll ranges, the page's progress, Parallax's static form, no Motion scroll hooks
 ```
 
 - Served as the `rasengan-motion` registry item (three files, npm `motion`); the site and `registry/` reach the sources
   through the `@/lib/motion*` and `@/lib/split-text` aliases (`rasengan.config.js`, tsconfigs).
 - `useMotion(ref)` reads the tokens once mounted; `allows(n)` is true only in mode `ready` with the village's intensity
   at least `n`. Components check it before animating and render their end state otherwise.
+- `useScrollProgress` (RFC-0010, [ADR-0019](adr/0019-scroll-motion-on-css-scroll-timelines.md)) registers
+  `--scroll-progress` and lets the browser drive it with a `ViewTimeline` or `ScrollTimeline` animation where it can
+  (`scrollTimelinesSupported()`); elsewhere one passive scroll listener and one frame for the whole page measure the
+  watched elements near the viewport and write it. It sets `data-scroll-linked` while it drives; under `final` and
+  `off` it sets nothing (except `feedback`, [ADR-0020](adr/0020-scroll-feedback-keeps-working-under-reduced-motion.md)).
+  Measure a box that does not move: Parallax measures its outer box and moves an inner one.
 - Hidden initial states are `[data-reveal]` under `[data-motion="ready"]`, in `contract.css`, with a 3 s failsafe until
   the provider has mounted.
 
