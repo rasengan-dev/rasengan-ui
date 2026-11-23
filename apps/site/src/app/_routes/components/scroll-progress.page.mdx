@@ -1,0 +1,97 @@
+---
+metadata:
+  title: Scroll Progress · Rasengan UI
+  description: "A thin bar that fills as the reader scrolls through the page or an article, in the tone you pick."
+toc: true
+---
+
+# Scroll Progress
+
+A thin bar that fills as the reader scrolls through the page or an article, in the tone you pick.
+
+<ComponentPreview name="scroll-progress" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add scroll-progress
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/scroll-progress.json
+```
+
+It brings `rasengan-motion` with it. Put its head script and provider in your app once, as the
+[motion setup](/motion#setup-title) shows: `<MotionScript />` in `<head>`, `<MotionProvider>` around the app.
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { ScrollProgress } from "@/components/ui/scroll-progress";
+
+export function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <ScrollProgress />
+      {children}
+    </>
+  );
+}
+```
+
+By default the bar is fixed to the top of the viewport and follows the whole page. Give it `target`, a ref to an
+article, and it fills from the article's top reaching the top of the window to its end reaching the bottom.
+`position="inline"` leaves it where you write it: under a sticky header, at the top of a card.
+
+```tsx title="app/article.tsx"
+const article = React.useRef<HTMLElement>(null);
+
+<ScrollProgress target={article} />
+<article ref={article}>…</article>
+```
+
+### Sizes and variants
+
+`size` is `sm`, `default` or `lg`. `variant="track"` shows the rest of the track as a wash of the tone; `default`
+leaves it clear. `tone` colours the bar.
+
+<ComponentPreview name="scroll-progress" demo="scroll-progress-sizes" />
+
+## Villages
+
+The bar takes the village's colours and the nature's. It follows the scroll, not a clock, so it moves the same in every
+village.
+
+<VillageGrid name="scroll-progress" />
+
+## Reduced motion
+
+The bar moves nothing but itself, and only as the reader scrolls, so it keeps working with reduced motion
+([ADR-0020](https://github.com/rasengan-dev/rasengan-ui/blob/main/docs/adr/0020-scroll-feedback-keeps-working-under-reduced-motion.md)).
+Without JavaScript and with `?motion=final`, it is not shown rather than an empty line.
+
+## Accessibility
+
+- Hidden from screen readers (`aria-hidden`): the page's own scroll position already says where the reader is, and a
+  progress bar announcing every change would be noise.
+- It takes no pointer events, so it never covers a link at the top of the page.
+
+## Weight
+
+About 3.5 kB gzip beyond `cn()`, `rasengan-motion` included. Nothing from Motion: browsers with CSS scroll timelines
+drive it themselves; others get it from one small loop for the whole page.
+
+## API reference
+
+`ScrollProgress` renders a `div` and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `target` | `React.RefObject<HTMLElement \| null>` | the page |
+| `position` | `"fixed" \| "inline"` | `"fixed"` |
+| `variant` | `"default" \| "track"` | `"default"` |
+| `tone` | `"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"` | `"primary"` |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` |
+| `progress` | `number` (0–1) | follows the scroll |

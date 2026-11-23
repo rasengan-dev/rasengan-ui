@@ -83,6 +83,9 @@
 			"@/components/ui/gallery-3d": [
 				"./components/gallery-3d/gallery-3d.base.tsx"
 			],
+			"@/components/ui/image-reveal": [
+				"./components/image-reveal/image-reveal.base.tsx"
+			],
 			"@/components/ui/input": [
 				"./components/input/input.base.tsx"
 			],
@@ -125,6 +128,9 @@
 			"@/components/ui/scroll-area": [
 				"./components/scroll-area/scroll-area.base.tsx"
 			],
+			"@/components/ui/scroll-progress": [
+				"./components/scroll-progress/scroll-progress.base.tsx"
+			],
 			"@/components/ui/select": [
 				"./components/select/select.base.tsx"
 			],
@@ -154,6 +160,9 @@
 			],
 			"@/components/ui/text-reveal": [
 				"./components/text-reveal/text-reveal.base.tsx"
+			],
+			"@/components/ui/text-scroll-fill": [
+				"./components/text-scroll-fill/text-scroll-fill.base.tsx"
 			],
 			"@/components/ui/textarea": [
 				"./components/textarea/textarea.base.tsx"

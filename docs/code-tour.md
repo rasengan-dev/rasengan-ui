@@ -160,7 +160,7 @@ src/
 │                        tokens: readMotionTokens(element), useMotion(ref) → { mode, tokens, measured, allows(min) }
 │                        primitives: Reveal, Stagger (Web Animations API), Parallax (scroll progress),
 │                                    Presence, Tilt, Magnetic (Motion's m)
-│                        scroll progress: useScrollProgress(ref, { range, progress, feedback, enabled }) sets
+│                        scroll progress: useScrollProgress(ref, { range, progress, feedback, enabled, subject }) sets
 │                                    --scroll-progress; scrollProgressAt / scrollRangeBounds / pageScrollProgress (the maths)
 │                        without Motion: bezierEasing (scroll moves), stepSpring / springAtRest (the cursor)
 ├── motion-features.ts   @/lib/motion-features: Motion's domAnimation, imported dynamically (its own chunk)

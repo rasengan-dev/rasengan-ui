@@ -450,10 +450,10 @@ export function scrollTimelinesSupported(): boolean {
 }
 
 /** Lets the browser drive the property on its own timeline: no JavaScript per frame. */
-function driveWithTimeline(element: HTMLElement, range: ScrollRange): () => void {
+function driveWithTimeline(element: HTMLElement, subject: Element, range: ScrollRange): () => void {
 	const { ViewTimeline, ScrollTimeline } = globalThis as unknown as Required<TimelineConstructors>;
 	const page = range === "page";
-	const timeline = page ? new ScrollTimeline({ source: document.documentElement, axis: "block" }) : new ViewTimeline({ subject: element, axis: "block" });
+	const timeline = page ? new ScrollTimeline({ source: document.documentElement, axis: "block" }) : new ViewTimeline({ subject, axis: "block" });
 	const name = range === "pin" ? "contain" : range;
 	const options = { timeline, fill: "both", easing: "linear", ...(page ? {} : { rangeStart: `${name} 0%`, rangeEnd: `${name} 100%` }) };
 	const animation = element.animate({ "--scroll-progress": [0, 1] } as PropertyIndexedKeyframes, options as KeyframeAnimationOptions);
@@ -462,7 +462,10 @@ function driveWithTimeline(element: HTMLElement, range: ScrollRange): () => void
 
 // The fallback: one passive scroll listener and one frame for every watched element on the page.
 interface Watched {
+	/** Where the property is written. */
 	element: HTMLElement;
+	/** What is measured: the element itself, or the subject it follows. */
+	subject: Element;
 	range: ScrollRange;
 	/** Near the viewport: measured on every frame. */
 	near: boolean;
@@ -488,7 +491,7 @@ function update() {
 		if (item.range === "page") {
 			writes.push([item, pageScrollProgress(window.scrollY, document.documentElement.scrollHeight, viewport)]);
 		} else if (item.near || item.dirty) {
-			const rect = item.element.getBoundingClientRect();
+			const rect = item.subject.getBoundingClientRect();
 			writes.push([item, scrollProgressAt(item.range, rect.top, rect.height, viewport)]);
 		}
 		item.dirty = false;
@@ -502,7 +505,7 @@ function update() {
 }
 
 /** Writes `--scroll-progress` from JavaScript, for browsers without scroll timelines. */
-function driveWithFrames(element: HTMLElement, range: ScrollRange): () => void {
+function driveWithFrames(element: HTMLElement, subject: Element, range: ScrollRange): () => void {
 	if (watched.size === 0) {
 		window.addEventListener("scroll", requestUpdate, { passive: true });
 		window.addEventListener("resize", requestUpdate);
@@ -511,7 +514,7 @@ function driveWithFrames(element: HTMLElement, range: ScrollRange): () => void {
 			(entries) => {
 				for (const entry of entries) {
 					for (const item of watched) {
-						if (item.element !== entry.target) continue;
+						if (item.subject !== entry.target) continue;
 						item.near = entry.isIntersecting;
 						item.dirty = true;
 					}
@@ -521,13 +524,13 @@ function driveWithFrames(element: HTMLElement, range: ScrollRange): () => void {
 			{ rootMargin: "100% 0px" },
 		);
 	}
-	const item: Watched = { element, range, near: false, dirty: true, last: Number.NaN };
+	const item: Watched = { element, subject, range, near: false, dirty: true, last: Number.NaN };
 	watched.add(item);
-	if (range !== "page") nearObserver?.observe(element);
+	if (range !== "page") nearObserver?.observe(subject);
 	requestUpdate();
 	return () => {
 		watched.delete(item);
-		nearObserver?.unobserve(element);
+		if (![...watched].some((other) => other.subject === subject)) nearObserver?.unobserve(subject);
 		if (watched.size > 0) return;
 		window.removeEventListener("scroll", requestUpdate);
 		window.removeEventListener("resize", requestUpdate);
@@ -550,6 +553,11 @@ export interface ScrollProgressOptions {
 	feedback?: boolean;
 	/** Turn it off where the effect does not run here (an intensity the village does not allow). Default true. */
 	enabled?: boolean;
+	/**
+	 * Measure another element and write the progress on this one: a reading bar fixed to the top of the page that
+	 * follows an article. Default: the element itself.
+	 */
+	subject?: React.RefObject<Element | null>;
 }
 
 /**
@@ -560,11 +568,12 @@ export interface ScrollProgressOptions {
  * Under `pending`, `final` and `off`, nothing is set and the element keeps its static form, except `feedback` under
  * `off` and a fixed `progress`.
  */
-export function useScrollProgress(ref: React.RefObject<HTMLElement | null>, { range = "cover", progress, feedback = false, enabled = true }: ScrollProgressOptions = {}) {
+export function useScrollProgress(ref: React.RefObject<HTMLElement | null>, { range = "cover", progress, feedback = false, enabled = true, subject }: ScrollProgressOptions = {}) {
 	const mode = useMotionMode();
 	React.useEffect(() => {
 		const element = ref.current;
-		if (!element || !enabled || mode === "pending") return;
+		const measured = subject ? subject.current : element;
+		if (!element || !measured || !enabled || mode === "pending") return;
 		const drives = progress !== undefined || mode === "ready" || (feedback && mode === "off");
 		if (!drives) return;
 
@@ -574,14 +583,14 @@ export function useScrollProgress(ref: React.RefObject<HTMLElement | null>, { ra
 			element.style.setProperty("--scroll-progress", String(clamp01(progress)));
 			stop = () => {};
 		} else {
-			stop = scrollTimelinesSupported() ? driveWithTimeline(element, range) : driveWithFrames(element, range);
+			stop = scrollTimelinesSupported() ? driveWithTimeline(element, measured, range) : driveWithFrames(element, measured, range);
 		}
 		return () => {
 			stop();
 			element.removeAttribute("data-scroll-linked");
 			element.style.removeProperty("--scroll-progress");
 		};
-	}, [ref, mode, range, progress, feedback, enabled]);
+	}, [ref, subject, mode, range, progress, feedback, enabled]);
 }
 
 // ---- Presence and Parallax -------------------------------------------------------------------------------------

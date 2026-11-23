@@ -1,0 +1,86 @@
+---
+metadata:
+  title: Text Scroll Fill · Rasengan UI
+  description: "A statement whose words fill with colour one after another as it scrolls into view, readable at every point."
+toc: true
+---
+
+# Text Scroll Fill
+
+A statement whose words fill with colour one after another as it scrolls into view, readable at every point.
+
+<ComponentPreview name="text-scroll-fill" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add text-scroll-fill
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/text-scroll-fill.json
+```
+
+It brings `rasengan-motion` with it. Put its head script and provider in your app once, as the
+[motion setup](/motion#setup-title) shows: `<MotionScript />` in `<head>`, `<MotionProvider>` around the app.
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { TextScrollFill } from "@/components/ui/text-scroll-fill";
+
+export function Usage() {
+  return (
+    <TextScrollFill as="h2" className="text-3xl font-semibold">
+      We cook what the market brings in the morning.
+    </TextScrollFill>
+  );
+}
+```
+
+The text is a string, so it can be split into words. The fill starts as the statement enters the viewport and ends when
+it reaches the upper part of it. It follows the scroll, not a clock: scroll back and the words empty again.
+
+### Tones
+
+`tone="neutral"` (the default) fills to the text colour; `tone="primary"` to the nature's colour for words, which
+passes 4.5:1 on the page. Every word starts in the muted text colour, which is already readable: the statement can be
+read at any point of the fill. Below, both tones half filled.
+
+<ComponentPreview name="text-scroll-fill" demo="text-scroll-fill-tones" />
+
+## Villages
+
+Konoha, Kiri and Kusa fill the words and lift each by a quarter of the village's travel distance. Iwa's intensity is 1, so the
+words fill in place.
+
+<VillageGrid name="text-scroll-fill" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off`, `?motion=final` or a scope at `data-motion-intensity="0"`, the statement is simply
+in its colour. Without JavaScript too.
+
+## Accessibility
+
+- Screen readers read the statement once, in full, from a visually hidden copy; the split words are hidden from them.
+- The element keeps its role: an `h2` stays a heading.
+- Muted words pass 4.5:1, so contrast holds before, during and after the fill.
+
+## Weight
+
+About 4 kB gzip beyond `cn()`, `rasengan-motion` and its `splitText` included. Nothing from Motion: the words read
+`--scroll-progress` in CSS.
+
+## API reference
+
+`TextScrollFill` renders `as` (a `p` by default) and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `children` | `string` | — |
+| `as` | `"h1" \| "h2" \| "h3" \| "h4" \| "p" \| "span" \| "div"` | `"p"` |
+| `tone` | `"neutral" \| "primary"` | `"neutral"` |
+| `progress` | `number` (0–1) | follows the scroll |
