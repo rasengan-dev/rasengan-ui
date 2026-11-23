@@ -3,7 +3,7 @@
 > **Living document.** The rules **nothing may break**, whatever the feature. A pull request that breaks one is
 > refused. Changing an invariant takes an [ADR](adr/README.md), never a side remark in a pull request.
 >
-> Each rule points to the document that decided it. Last updated: 2026-11-07.
+> Each rule points to the document that decided it. Last updated: 2026-11-23.
 
 ## Components
 
@@ -63,6 +63,8 @@
 
 19. **Content is visible without JavaScript and under reduced motion.** Hidden initial states apply only under
     `data-motion="ready"`; `off` (reduced motion) and `final` render every animation in its end state.
+    A component that moves nothing but itself, and only with the user's scroll, keeps working under `off`
+    ([ADR-0020](adr/0020-scroll-feedback-keeps-working-under-reduced-motion.md)).
     — [RFC-0001, Motion](rfc/0001-v2-animated-blocks.md), [RFC-0007](rfc/0007-motion-components.md)
 20. **Motion comes from the village.** Motion components read durations, easings, springs, travel, stagger and
     intensity from the contract's `--motion-*` tokens, never from constants, so they move like the village they are in.
