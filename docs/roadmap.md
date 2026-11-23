@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-13 (ADR-0017).
+> Last updated: 2026-11-23 (RFC-0010 accepted, ADR-0019, ADR-0020).
 
 ## Where things stand
 
@@ -61,6 +61,11 @@
   page (the wordmark for a restaurant, the form for catering, the booking form for a salon). RFC-0009's lots are all
   built; lot F stays a list to pick from.
 
+- **Scroll motion** ([RFC-0010](rfc/0010-scroll-motion.md), accepted, no lot built yet; [ADR-0019](adr/0019-scroll-motion-on-css-scroll-timelines.md), [ADR-0020](adr/0020-scroll-feedback-keeps-working-under-reduced-motion.md)): scroll-progress, image-reveal, text-scroll-fill,
+  scroll-stack, horizontal-scroll and sticky-scroll on one scroll progress in `rasengan-motion`; the first of the RFCs
+  drawn from the [Framer templates survey](surveys/2026-11-23-framer-templates.md), for Jutsify's catalogue of
+  starting sites.
+
 ### Then
 
 - RFC-0006 step 5: the MCP tool `create_village`.
@@ -108,6 +113,13 @@ Numbered by origin, so an ADR can say which one it settles.
 - **0003-Q2**: should `add_components` ask for confirmation itself (MCP elicitation)?
 - **0003-Q3**: a hosted server on `ui.rasengan.dev/mcp`: read-only, or also returning an `add` command per project?
 - **0003-Q4**: publish component docs (anatomy, props, accessibility) in the registry for `get_component`, or link them?
+
+### Scroll motion (RFC-0010)
+
+- **0010-Q4 · Custom property cost**: does animating `--scroll-progress` jank a page with the six components on a
+  low-end phone? Measured in lot 0; if so, components animate `transform` and `opacity` directly.
+- **0010-Q5 · `steps-scroll` rebuilt**: projects that edited it get a three-way merge on update; check the merge on an
+  edited copy in lot C.
 
 ### Components (RFC-0004, RFC-0005)
 
