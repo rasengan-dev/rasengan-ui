@@ -22,7 +22,7 @@ CLI, MCP) are the site, in `apps/site`, served at [ui.rasengan.dev](https://ui.r
 | Kind | Documents | Rule |
 |---|---|---|
 | **Living**: how things are now | `architecture.md`, `invariants.md`, `glossary.md`, `roadmap.md`, `code-tour.md` | Updated **in the same commit** as the code that makes them wrong |
-| **Frozen**: why | accepted `rfc/`, `adr/`, `plans/` | Never rewritten. A decision that changes = a new ADR that replaces the old one |
+| **Frozen**: why | accepted `rfc/`, `adr/`, `plans/`, `surveys/` | Never rewritten. A decision that changes = a new ADR that replaces the old one. `surveys/` keeps dated surveys that feed several RFCs |
 | **Proposals**: before deciding | `rfc/` while Draft or In discussion | Draft → In discussion → Accepted (then ADRs, code) or Rejected |
 
 Fixing a typo or a link broken by a move is allowed in a frozen document. Anything else is a new ADR.
