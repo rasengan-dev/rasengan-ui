@@ -209,7 +209,7 @@ function sharedItems(url) {
 			type: "registry:lib",
 			title: "Rasengan UI motion",
 			description:
-				"What motion components share (RFC-0007): the motion modes (ready, final, off) and their head script, the village's motion tokens read from CSS, Reveal, Stagger, Presence, Parallax, Tilt, Magnetic, and splitText.",
+				"What motion components share (RFC-0007): the motion modes (ready, final, off) and their head script, the village's motion tokens read from CSS, Reveal, Stagger, Presence, Parallax, Tilt, Magnetic, splitText, and the scroll progress (RFC-0010).",
 			dependencies: ["motion"],
 			registryDependencies: [url("rasengan-theme")],
 			files: [

@@ -61,10 +61,12 @@
   page (the wordmark for a restaurant, the form for catering, the booking form for a salon). RFC-0009's lots are all
   built; lot F stays a list to pick from.
 
-- **Scroll motion** ([RFC-0010](rfc/0010-scroll-motion.md), accepted, no lot built yet; [ADR-0019](adr/0019-scroll-motion-on-css-scroll-timelines.md), [ADR-0020](adr/0020-scroll-feedback-keeps-working-under-reduced-motion.md)): scroll-progress, image-reveal, text-scroll-fill,
+- **Scroll motion** ([RFC-0010](rfc/0010-scroll-motion.md), accepted; [ADR-0019](adr/0019-scroll-motion-on-css-scroll-timelines.md), [ADR-0020](adr/0020-scroll-feedback-keeps-working-under-reduced-motion.md)): scroll-progress, image-reveal, text-scroll-fill,
   scroll-stack, horizontal-scroll and sticky-scroll on one scroll progress in `rasengan-motion`; the first of the RFCs
   drawn from the [Framer templates survey](surveys/2026-11-23-framer-templates.md), for Jutsify's catalogue of
-  starting sites.
+  starting sites. **Lot 0 built**: `useScrollProgress` and `--scroll-progress` in `rasengan-motion` (about 1.1 kB
+  gzip beyond the provider), timelines and the frame-loop fallback giving the same values to 0.001 in Chrome;
+  `Parallax` on it (about 1.2 kB, was Motion's `useScroll` and `m`), a scroll demo on `/motion`. Next: lot A.
 
 ### Then
 
@@ -117,7 +119,9 @@ Numbered by origin, so an ADR can say which one it settles.
 ### Scroll motion (RFC-0010)
 
 - **0010-Q4 · Custom property cost**: does animating `--scroll-progress` jank a page with the six components on a
-  low-end phone? Measured in lot 0; if so, components animate `transform` and `opacity` directly.
+  low-end phone? Lot 0 measured `/motion` (four driven elements) with Chrome's CPU slowed six times: 60 frames per
+  second, none over 33 ms, on both paths. To measure again with the six components after lot B; if it janks,
+  components animate `transform` and `opacity` directly.
 - **0010-Q5 · `steps-scroll` rebuilt**: projects that edited it get a three-way merge on update; check the merge on an
   edited copy in lot C.
 

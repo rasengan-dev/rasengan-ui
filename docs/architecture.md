@@ -83,7 +83,7 @@ flowchart TB
 | `packages/blocks` | ✅ | The `rasengan-blocks` registry item: `lib/blocks.ts` (`BlockProps`, `heading`, `BlockMeta`, `familiesOf`, `formatMoney`, `messageUrl`, no zod) and `lib/block-fields.ts` (zod field types, RFC-0009's `review`, `staffMember`, `branch`, `offer`, `formChannel`… among them; `defineBlock`), [ADR-0013](adr/0013-blocks-answer-their-container.md); its tests render every block on the server |
 | `packages/core` | ✅ | What every component shares; published as the `rasengan-core` registry item |
 | `packages/villages` | ✅ | The token contract (CSS + TypeScript spec), the villages, the natures, the village engine, the contrast library; prepared for npm as `@rasengan-ui/villages` ([ADR-0016](adr/0016-villages-published-on-npm.md)) |
-| `packages/motion` | ✅ | The `rasengan-motion` registry item ([RFC-0007](rfc/0007-motion-components.md)): motion modes, the village's motion tokens read from CSS, `Reveal`, `Stagger`, `Presence`, `Parallax`, `Tilt`, `Magnetic`, `splitText`. Used by the five motion components of lot A |
+| `packages/motion` | ✅ | The `rasengan-motion` registry item ([RFC-0007](rfc/0007-motion-components.md)): motion modes, the village's motion tokens read from CSS, `Reveal`, `Stagger`, `Presence`, `Parallax`, `Tilt`, `Magnetic`, `splitText`, and the scroll progress (`useScrollProgress`, [RFC-0010](rfc/0010-scroll-motion.md)). Used by the five motion components of lot A |
 | `packages/workshop` | ✅ | The `rasengan-workshop` registry item ([ADR-0017](adr/0017-workshop-as-a-shared-registry-item.md)): the village workshop's `RecipePanel`, `Report`, `VillageStatus`, `useVillage` (the engine in a web worker) and its labels in English and French; its tests render the panel and the report on the server in both |
 | `packages/directions` | — | Empty leftover of RFC-0001; to delete |
 | `scripts/registry.mjs` | ✅ | Builds the registry, one per engine (only `base` today); for blocks it also parses each example with its schema, writes the JSON Schema and the gzip weight into the item's meta (budget 6 kB, 12 kB for showcase and bento), and writes `blocks.json` |
@@ -129,6 +129,9 @@ flowchart LR
   `contract.css`, so content is visible without JavaScript.
 - Reveals use the Web Animations API; components that need springs use Motion's `m`, whose features load on demand
   ([ADR-0010](adr/0010-motion-weight.md)).
+- Scroll-linked effects read `--scroll-progress` (0 to 1), which the browser drives with CSS scroll timelines where it
+  has them and `useScrollProgress`'s shared frame loop elsewhere; nothing loads Motion for it, and nothing replaces the
+  browser's scroll ([ADR-0019](adr/0019-scroll-motion-on-css-scroll-timelines.md)).
 
 ### The village engine
 
