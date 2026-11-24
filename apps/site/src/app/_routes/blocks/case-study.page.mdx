@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Case study · Rasengan UI
+  description: "One project's page: cover, facts, its story in sections, results that roll in, a gallery that opens full screen, the next one."
+---
+
+<BlockShowcase name="case-study" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add case-study
+```
+
+It installs into `components/blocks/case-study/`, with what it uses (Image Reveal, Number Roll, Lightbox) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/index.page.tsx"
+import { CaseStudy } from "@/components/blocks/case-study";
+import { studio } from "@/content/studio";
+
+export default function Page() {
+  return <CaseStudy content={studio.casestudy} />;
+}
+```
+
+```ts title="content/studio.ts"
+import { example, type CaseStudyContent } from "@/components/blocks/case-study";
+
+export const studio = {
+  casestudy: { ...example } satisfies CaseStudyContent,
+};
+```
+
+One project's page: the `project` the lists show (title, summary, cover, kinds, year, results), plus its facts, one to six sections of plain paragraphs (context, problem, approach, results), a gallery and the next project. On its own page, pass `headingLevel={1}`: the project's title is then the page's heading.
+
+The [portfolio example](/examples/portfolio) uses it, with its content in one file.
+
+## Content
+
+<ContentSchema name="case-study" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `CaseStudyContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"case-study"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the section, for spacing |
+
+## Accessibility
+
+- It is an `<article>` named by the project's title; each section and the results and gallery have a heading one level below.
+- The results roll into place (Number Roll) and are read once, in full; with reduced motion they are simply there.
+- The gallery's pictures open in a Lightbox: arrows, the arrow keys and a swipe move between them; focus returns to the picture.

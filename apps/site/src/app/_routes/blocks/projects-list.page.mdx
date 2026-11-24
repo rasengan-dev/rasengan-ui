@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Projects, list · Rasengan UI
+  description: "Projects as ruled rows: number, title, client, kind and year; the hovered row's cover floats beside the mouse."
+---
+
+<BlockShowcase name="projects-list" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add projects-list
+```
+
+It installs into `components/blocks/projects-list/`, with what it uses (Hover Image List, Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/index.page.tsx"
+import { ProjectsList } from "@/components/blocks/projects-list";
+import { studio } from "@/content/studio";
+
+export default function Page() {
+  return <ProjectsList content={studio.index} />;
+}
+```
+
+```ts title="content/studio.ts"
+import { example, type ProjectsListContent } from "@/components/blocks/projects-list";
+
+export const studio = {
+  index: { ...example } satisfies ProjectsListContent,
+};
+```
+
+Three to twenty projects as ruled rows: a number, the title, then the client, kinds and year, and its line. Hovering a row floats its cover beside the mouse on the village's spring while the other rows step back; keyboard focus shows the cover beside the row. The projects are the same `project` objects as `projects-grid`'s.
+
+The [portfolio example](/examples/portfolio) uses it, with its content in one file.
+
+## Content
+
+<ContentSchema name="projects-list" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `ProjectsListContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"index"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the section, for spacing |
+
+## Accessibility
+
+- Each row is a link named by its text; the number is decoration.
+- The cover is described by its `alt` (Hover Image List's `imageAlt`), since it shows what the row does not say.
+- With reduced motion, the cover appears beside the row without travelling.

@@ -37,6 +37,7 @@ const groups = [
       { label: 'Landing page example', description: 'A startup landing page made only of marketing blocks.', to: '/examples/landing' },
       { label: 'Restaurant example', description: "A restaurant's site made only of storefront blocks.", to: '/examples/restaurant' },
       { label: 'Salon example', description: "A barber and braiding studio's site made only of storefront blocks.", to: '/examples/salon' },
+      { label: 'Portfolio example', description: "A design studio's site and its case studies, made only of portfolio blocks.", to: '/examples/portfolio' },
       { label: 'Motion', description: 'Components whose motion is the point, in a gallery.', to: '/motion' },
     ],
   },

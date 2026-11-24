@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Gallery, horizontal · Rasengan UI
+  description: "Photos in a row that pins and moves sideways as the page scrolls, numbered, each opening full screen; a swipeable row on phones."
+---
+
+<BlockShowcase name="gallery-horizontal" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add gallery-horizontal
+```
+
+It installs into `components/blocks/gallery-horizontal/`, with what it uses (Horizontal Scroll, Lightbox) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/index.page.tsx"
+import { GalleryHorizontal } from "@/components/blocks/gallery-horizontal";
+import { studio } from "@/content/studio";
+
+export default function Page() {
+  return <GalleryHorizontal content={studio.series} />;
+}
+```
+
+```ts title="content/studio.ts"
+import { example, type GalleryHorizontalContent } from "@/components/blocks/gallery-horizontal";
+
+export const studio = {
+  series: { ...example } satisfies GalleryHorizontalContent,
+};
+```
+
+Three to twelve photos, portrait or square read best (shown at 4:5), each with a caption. On a screen 48rem wide or more the row pins and moves sideways as the page scrolls; below, it is a row to swipe. Each photo is numbered (01 — 06) and opens full screen.
+
+The [portfolio example](/examples/portfolio) uses it, with its content in one file.
+
+## Content
+
+<ContentSchema name="gallery-horizontal" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `GalleryHorizontalContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"series"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the section, for spacing |
+
+## Accessibility
+
+- The row is a named region (`labels.photos`); every photo is a button that opens it full screen.
+- With reduced motion the row does not pin: it stays a row to scroll.
+- The numbers are decoration; the captions are read with each photo.

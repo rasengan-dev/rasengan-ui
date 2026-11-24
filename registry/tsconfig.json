@@ -230,11 +230,17 @@
 			"@/components/blocks/about-story": [
 				"./blocks/about-story/about-story.base.tsx"
 			],
+			"@/components/blocks/awards-list": [
+				"./blocks/awards-list/awards-list.base.tsx"
+			],
 			"@/components/blocks/bento-features": [
 				"./blocks/bento-features/bento-features.base.tsx"
 			],
 			"@/components/blocks/booking-form": [
 				"./blocks/booking-form/booking-form.base.tsx"
+			],
+			"@/components/blocks/case-study": [
+				"./blocks/case-study/case-study.base.tsx"
 			],
 			"@/components/blocks/comparison-table": [
 				"./blocks/comparison-table/comparison-table.base.tsx"
@@ -250,6 +256,9 @@
 			],
 			"@/components/blocks/cta-banner": [
 				"./blocks/cta-banner/cta-banner.base.tsx"
+			],
+			"@/components/blocks/experience-timeline": [
+				"./blocks/experience-timeline/experience-timeline.base.tsx"
 			],
 			"@/components/blocks/faq-accordion": [
 				"./blocks/faq-accordion/faq-accordion.base.tsx"
@@ -271,6 +280,9 @@
 			],
 			"@/components/blocks/gallery-grid": [
 				"./blocks/gallery-grid/gallery-grid.base.tsx"
+			],
+			"@/components/blocks/gallery-horizontal": [
+				"./blocks/gallery-horizontal/gallery-horizontal.base.tsx"
 			],
 			"@/components/blocks/gallery-social": [
 				"./blocks/gallery-social/gallery-social.base.tsx"
@@ -331,6 +343,12 @@
 			],
 			"@/components/blocks/pricing-plans": [
 				"./blocks/pricing-plans/pricing-plans.base.tsx"
+			],
+			"@/components/blocks/projects-grid": [
+				"./blocks/projects-grid/projects-grid.base.tsx"
+			],
+			"@/components/blocks/projects-list": [
+				"./blocks/projects-list/projects-list.base.tsx"
 			],
 			"@/components/blocks/reviews-rating": [
 				"./blocks/reviews-rating/reviews-rating.base.tsx"
