@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-24 (RFC-0013 lot I, RFC complete).
+> Last updated: 2026-11-24 (RFC-0014 accepted).
 
 ## Where things stand
 
@@ -184,6 +184,15 @@
   without naming its village), and the testimonials quote cards rather than portrait photos. In passing,
   `scripts/registry.mjs` now adds `rasengan-motion` to any block that imports `@/lib/motion`: `integrations-orbit` did
   without declaring it, so installing it alone did not compile.
+
+- **Commerce and listings blocks** ([RFC-0014](rfc/0014-commerce-and-listings-blocks.md), accepted): seven blocks in two
+  lots, the second sector wave from the [Framer templates survey](surveys/2026-11-23-framer-templates.md):
+  `product-grid`, `product-detail` and `cart-drawer` for shops (family `commerce`), `search-hero`, `filter-bar`,
+  `listing-cards` and `listing-detail` for directories and real estate (family `listings`). No backend: a `useCart` in
+  `rasengan-blocks` kept in the browser, checkout by message, URL or `onCheckout`, filters written in the page's
+  address. Its eight questions were settled before acceptance (its "Decisions"). Every block starts by inspecting its
+  Framer references (the RFC's section 8); the cart's references are static mockups, so its behaviour is designed,
+  not observed. Next: lot J0 (families, field types, `useCart`, placeholders, example skeletons).
 
 ### Then
 
