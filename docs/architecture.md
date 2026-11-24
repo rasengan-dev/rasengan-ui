@@ -41,8 +41,8 @@ flowchart LR
 ```mermaid
 flowchart TB
   subgraph source[Sources]
-    comps["✅ registry/components<br/>70 components, 18 of them motion"]
-    blocks["🚧 registry/blocks<br/>57 blocks: 32 marketing, 21 storefront, 10 portfolio (some in several)"]
+    comps["✅ registry/components<br/>71 components, 18 of them motion"]
+    blocks["🚧 registry/blocks<br/>61 blocks: 36 marketing, 23 storefront, 12 portfolio (some in several)"]
     blockslib["✅ packages/blocks<br/>rasengan-blocks: BlockProps, BlockMeta, field types"]
     core["✅ packages/core<br/>cn, ui-* variants, VillageScope, Field context"]
     villages["✅ packages/villages<br/>contract, villages, natures, engine, contrast"]
@@ -75,9 +75,9 @@ flowchart TB
 
 | Container | State | Role |
 |---|---|---|
-| `registry/components/<name>/` | ✅ 70 | One folder per component: `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts` (with its category, [ADR-0009](adr/0009-component-categories.md)), demos |
+| `registry/components/<name>/` | ✅ 71 | One folder per component: `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts` (with its category, [ADR-0009](adr/0009-component-categories.md)), demos |
 | `registry/categories.ts` | ✅ | The seven categories, in the site's order: forms, dates, overlays, navigation, display, feedback, motion |
-| `registry/blocks/<name>/` | 🚧 57 | One folder per block ([RFC-0008](rfc/0008-blocks.md)): `<name>.base.tsx`, `schema.ts` (`export const schema`), `example.ts` (`export const example`), `meta.ts` (family, category, `useWhen`…; type imports only), demos. The ten marketing blocks of lot A, the nine storefront blocks of lot B, the six showcase blocks of lot C, and the ten of each of RFC-0009's lots D (storefront) and E (marketing), and RFC-0013's six portfolio blocks of lot G and six SaaS blocks of lot H; `hero-wordmark` and `contact-form` are in three families |
+| `registry/blocks/<name>/` | 🚧 61 | One folder per block ([RFC-0008](rfc/0008-blocks.md)): `<name>.base.tsx`, `schema.ts` (`export const schema`), `example.ts` (`export const example`), `meta.ts` (family, category, `useWhen`…; type imports only), demos. The ten marketing blocks of lot A, the nine storefront blocks of lot B, the six showcase blocks of lot C, and the ten of each of RFC-0009's lots D (storefront) and E (marketing), and RFC-0013's six portfolio blocks of lot G six SaaS blocks of lot H and four blocks for every kind of site of lot I; `hero-wordmark` and `contact-form` are in three families |
 | `registry/placeholders/` | ✅ | Open placeholder images the examples show (a real Senbon dashboard made from the components and three drawn product screens; Unsplash photos of six dishes, a kitchen and a dining room, [ADR-0015](adr/0015-placeholder-photos-of-food-and-places.md); a drawn map; six drawn logo marks with invented names, `logo-*.svg`, [RFC-0009](rfc/0009-blocks-second-wave.md); eleven Unsplash portraits, `person-*.svg` (WebP in an SVG: the registry carries text only), credited in `CREDITS.md`, [ADR-0014](adr/0014-placeholder-photos-from-unsplash.md); six Unsplash project covers, `project-*.svg`, [RFC-0013](rfc/0013-portfolio-and-saas-blocks.md)); the `rasengan-placeholders` item installs them in `public/placeholders/`, and a block whose example uses one depends on it. The site serves copies at `/placeholders/` |
 | `registry/block-categories.ts` | ✅ | The three families (marketing, storefront, portfolio) and their categories, in the site's order; RFC-0009 added `integrations`, `comparison`, `booking`, `offers` and `team`, and `contact` for marketing; RFC-0013 added the `portfolio` family with `projects`, `case-study`, `awards` and `experience`, and `changelog`, `waitlist`, `customers`, `trust` and `careers` for marketing, and opened navbar, hero, steps, gallery, team, testimonials, contact and footer to it |
 | `packages/blocks` | ✅ | The `rasengan-blocks` registry item: `lib/blocks.ts` (`BlockProps`, `heading`, `BlockMeta`, `familiesOf`, `formatMoney`, `messageUrl`, no zod) and `lib/block-fields.ts` (zod field types, RFC-0009's `review`, `staffMember`, `branch`, `offer`, `formChannel`… among them; `defineBlock`), [ADR-0013](adr/0013-blocks-answer-their-container.md); its tests render every block on the server |
@@ -86,7 +86,7 @@ flowchart TB
 | `packages/motion` | ✅ | The `rasengan-motion` registry item ([RFC-0007](rfc/0007-motion-components.md)): motion modes, the village's motion tokens read from CSS, `Reveal`, `Stagger`, `Presence`, `Parallax`, `Tilt`, `Magnetic`, `splitText`, and the scroll progress (`useScrollProgress`, [RFC-0010](rfc/0010-scroll-motion.md)). Used by the five motion components of lot A |
 | `packages/workshop` | ✅ | The `rasengan-workshop` registry item ([ADR-0017](adr/0017-workshop-as-a-shared-registry-item.md)): the village workshop's `RecipePanel`, `Report`, `VillageStatus`, `useVillage` (the engine in a web worker) and its labels in English and French; its tests render the panel and the report on the server in both |
 | `packages/directions` | — | Empty leftover of RFC-0001; to delete |
-| `scripts/registry.mjs` | ✅ | Builds the registry, one per engine (only `base` today); for blocks it also parses each example with its schema, writes the JSON Schema and the gzip weight into the item's meta (budget 6 kB, 12 kB for showcase and bento), and writes `blocks.json` |
+| `scripts/registry.mjs` | ✅ | Builds the registry, one per engine (only `base` today); for blocks it also adds `rasengan-motion` when the block imports `@/lib/motion`, parses each example with its schema, writes the JSON Schema and the gzip weight into the item's meta (budget 6 kB, 12 kB for showcase and bento), and writes `blocks.json` |
 | `apps/site` | ✅ | The docs and catalogue site; serves the registry and its schemas; live at `rasengan-ui.hiraiship.app` |
 | `packages/cli` | ✅ | `rasengan-ui` on npm (0.2.1): `init` (`--aliases` for a package of a workspace), `add`, `village`, `nature`, `tint`, `diff`, `update`, `doctor`, `mcp` |
 | `apps/playground` | ✅ | A Rasengan.js starter wired to the local registry |

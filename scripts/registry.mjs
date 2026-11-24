@@ -356,6 +356,8 @@ for (const engine of ENGINES) {
 				url("rasengan-core"),
 				url("rasengan-blocks"),
 				...(JSON.stringify(example).includes("/placeholders/") ? [url("rasengan-placeholders")] : []),
+				// A block that imports the motion library directly (not only through a motion component) brings it along.
+				...(/from\s+"@\/lib\/motion"/.test(read(`${dir}/${meta.name}.${engine}.tsx`)) ? [url("rasengan-motion")] : []),
 				...meta.components.map(url),
 			],
 			files: [`${meta.name}.tsx`, "index.ts", ...BLOCK_FILES].map((file) => ({ path: `${folder}/${file}`, type: "registry:block", target: `components/blocks/${meta.name}/${file}` })),

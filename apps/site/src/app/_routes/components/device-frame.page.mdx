@@ -1,0 +1,69 @@
+---
+metadata:
+  title: Device Frame · Rasengan UI
+  description: "A browser window or a phone around a screenshot, a video or live markup, drawn from the village's tokens."
+toc: true
+---
+
+# Device Frame
+
+A browser window or a phone around a screenshot, a video or live markup, drawn from the village's tokens.
+
+<ComponentPreview name="device-frame" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add device-frame
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/device-frame.json
+```
+
+## Usage
+
+```tsx title="app/hero.tsx"
+import { DeviceFrame } from "@/components/ui/device-frame";
+
+export function Screen() {
+  return (
+    <DeviceFrame url="senbon.app/dashboard">
+      <img src="/screens/dashboard.png" alt="The dashboard: this month's invoices and payments" />
+    </DeviceFrame>
+  );
+}
+```
+
+The browser frame (the default) is a card with a bar: three dots and an address bar showing `url`. Put a screenshot,
+a video or your own markup inside; an image fills the width.
+
+### A phone
+
+`variant="phone"` draws a phone around a portrait screen (390 × 844 reads best): a bezel in the text colour, an
+island and a home bar. Set its width with `className`.
+
+<ComponentPreview name="device-frame" demo="device-frame-phone" />
+
+## Villages
+
+The browser takes the village's large radius and shadow; the phone a radius derived from it, square in Iwa and round
+in Kusa.
+
+<VillageGrid name="device-frame" />
+
+## Accessibility
+
+- The chrome (dots, address bar, island, home bar) is decoration, hidden from screen readers.
+- What you put inside keeps its own `alt` or label: say what the screen shows.
+
+## API reference
+
+`DeviceFrame` renders a `div` and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `variant` | `"browser" \| "phone"` | `"browser"` |
+| `url` | `string`: the address in the browser's bar | — |
