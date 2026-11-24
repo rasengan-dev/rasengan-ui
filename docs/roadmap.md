@@ -3,13 +3,13 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-24 (RFC-0012 lot A).
+> Last updated: 2026-11-24 (RFC-0012 lot B).
 
 ## Where things stand
 
 | Piece | State |
 |---|---|
-| Components | 68, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md), [0010](rfc/0010-scroll-motion.md), [0012](rfc/0012-interface-components.md)) |
+| Components | 70, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md), [0010](rfc/0010-scroll-motion.md), [0012](rfc/0012-interface-components.md)) |
 | Motion components | RFC-0007 complete: text-reveal, typewriter, scramble-text, number-roll, marquee, cursor, gallery-3d, page-transition; carousel (display); Button's `HoldButton` and `ButtonRollingText` ([ADR-0011](adr/0011-carousel-and-cursor-without-motion.md), [ADR-0012](adr/0012-gallery-and-page-transition-without-motion.md)). RFC-0010 complete: scroll-progress, image-reveal, text-scroll-fill, scroll-stack, horizontal-scroll on `--scroll-progress`, and sticky-scroll (display). RFC-0011 complete: text-rotate, shiny-text, Badge's live dot, spotlight, hover-image-list, image-trail ([ADR-0019](adr/0019-scroll-motion-on-css-scroll-timelines.md)). None loads Motion |
 | Variants | `variant` × `tone` × `size` on most components ([plan 002](plans/002-component-variants.md)) |
 | Villages | Konoha, Kiri, Iwa, Kusa (the contract's lip, [ADR-0008](adr/0008-lip-in-the-token-contract.md)) |
@@ -126,7 +126,16 @@
   blocks' pages say to keep the registry's side there. Differences from the RFC: the number field's buttons are named
   with `aria-label` on each part (Base UI says "Decrease" and "Increase" by default), not a `labels` prop; chips are
   `h-control-sm` (`sm`) and `h-control` (`default`), at least as wide as they are tall; `reviews-rating`'s stars are now
-  filled to the tenth, not the half. Next: lot B (`lightbox` and `gallery-grid` on it, `video`).
+  filled to the tenth, not the half. **Lot B built, RFC-0012 complete**: `lightbox` (a full-screen Dialog on the page's
+  background, the photos in a row with native scroll snapping; arrows, arrow keys, Home and End, a swipe; the current
+  photo's `alt` as the title; 2.0 kB gzip beyond `cn()`, Base UI, Dialog and Button) and `video` (poster and a play
+  button, then the browser's controls, nothing loaded before; `autoPlay` as a muted loop with a pause button that waits
+  under reduced motion and `final`; `VideoDialog` that plays on open and stops on close; 3.1 kB). `gallery-grid` opens
+  its photos in a `lightbox`, same schema, and gains the swipe. The demo video is a file the site serves, made from the
+  `restaurant-room` photo ([ADR-0021](adr/0021-demo-video-served-by-the-site.md)). `rasengan-ui update` over an edited
+  `gallery-grid` installs `lightbox` and keeps the edits, but between conflict markers: the block's markup moved one level
+  deeper, inside the Lightbox, so nearly every line changed; its page says so. The video's play button is centred with
+  `inset-0 m-auto`: centred with a translate, `pressable` overwrote it and the button jumped on press.
 
 ### Then
 

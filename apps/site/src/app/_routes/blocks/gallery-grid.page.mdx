@@ -1,7 +1,7 @@
 ---
 metadata:
   title: Gallery, grid · Rasengan UI
-  description: "Three to twelve photos in a grid, the first one large; a photo opens in a dialog with its caption and arrows."
+  description: "Three to twelve photos in a grid, the first one large; a photo opens full screen in a lightbox with its caption, arrows and swipe."
 ---
 
 <BlockShowcase name="gallery-grid" />
@@ -12,7 +12,7 @@ metadata:
 npx rasengan-ui add gallery-grid
 ```
 
-It installs into `components/blocks/gallery-grid/`, with what it uses (Dialog, Button) and `lib/blocks.ts`.
+It installs into `components/blocks/gallery-grid/`, with what it uses ([Lightbox](/components/lightbox), which brings Dialog and Button) and `lib/blocks.ts`.
 
 ## Usage
 
@@ -38,7 +38,12 @@ export const home = {
 };
 ```
 
-The first photo is shown two by two. A photo opens in a Dialog, large, with its caption; the arrows and the arrow keys move to the others. Captions also show over the photo on hover and focus.
+The first photo is shown two by two. A photo opens full screen in a Lightbox, with its caption; the arrows, the arrow keys and a swipe move to the others. Captions also show over the photo on hover and focus.
+
+Since 2026-11-24 the photos open in a [Lightbox](/components/lightbox), no longer in the block's own Dialog. The
+block's markup moved inside the Lightbox, one level deeper, so an edit anywhere in it comes back from
+`rasengan-ui update` between conflict markers rather than merged: nothing is lost. Keep the registry's side and make
+your edit again in it.
 
 ## Content
 
@@ -55,5 +60,5 @@ The first photo is shown two by two. A photo opens in a Dialog, large, with its 
 
 ## Accessibility
 
-- Each photo is a button named by its `alt`; the Dialog traps focus and closes with Escape.
+- Each photo is a button named by its `alt`; the Lightbox is a Dialog: it traps focus, closes with Escape and gives focus back to the photo.
 - The previous and next buttons are named by `labels`.

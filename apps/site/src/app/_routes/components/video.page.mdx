@@ -1,0 +1,95 @@
+---
+metadata:
+  title: Video · Rasengan UI
+  description: "A video with its poster and a play button, then the browser's controls; a muted background loop; or a video in a dialog."
+toc: true
+---
+
+# Video
+
+A video with its poster and a play button, then the browser's controls; a muted background loop; or a video in a
+dialog.
+
+<ComponentPreview name="video" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add video
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/video.json
+```
+
+It brings `rasengan-motion` with it, for the background loop. Put its head script and provider in your app once, as the
+[motion setup](/motion#setup-title) shows.
+
+The demos on this page play a short video served by this site (`/media/restaurant-room.mp4`); the registry carries
+text only, so in your project use your own file.
+
+## Usage
+
+```tsx title="app/tour.tsx"
+import { Video } from "@/components/ui/video";
+
+export function Tour() {
+  return <Video src="/videos/tour.mp4" poster="/videos/tour.jpg" label="A look around the dining room" />;
+}
+```
+
+Until someone plays it, the video shows its poster and a large play button in the `tone`, and downloads nothing but
+the poster. Then it plays with the browser's own controls: seeking, volume, captions, full screen. `label` says what it
+is: the button reads "Play: A look around the dining room". For a video with speech, give `captions` (WebVTT files).
+The frame is 16:9; set another aspect with `className`.
+
+### A background loop
+
+`autoPlay` makes a muted loop that starts on its own, for a hero, with a small pause button in a corner. It does not
+start with reduced motion or `?motion=final`: the poster stays, and the button starts it.
+
+<ComponentPreview name="video" demo="video-background" />
+
+### In a dialog
+
+`VideoDialog`, `VideoDialogTrigger` and `VideoDialogContent` put it behind a button ("Watch the demo"): it plays as soon
+as the dialog opens, and closing the dialog stops it.
+
+<ComponentPreview name="video" demo="video-dialog" />
+
+## Villages
+
+The frame takes the village's radius; the play button stands on its lip in Kusa.
+
+<VillageGrid name="video" />
+
+## Accessibility
+
+- The play button is named by `label`; once playing, the browser's controls are keyboard and screen reader ready.
+- A background loop is muted and has a pause button (WCAG 2.2.2); under reduced motion it waits.
+- In a dialog, the dialog's title is the video's label.
+- Give `captions` for any video with speech.
+
+## API reference
+
+### Video
+
+Renders a `div` around the `video` and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `src` | `string` | — |
+| `poster` | `string` | — |
+| `label` | `string`: what the video is | — |
+| `captions` | `{ src, srcLang, label, default? }[]` | — |
+| `autoPlay` | `boolean`: a muted background loop | `false` |
+| `labels` | `{ play?, pause? }`: the loop's button | English |
+| `tone` | `"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"`: the play button | `"primary"` |
+| `size` | `"sm" \| "default" \| "lg"`: the play button | `"default"` |
+
+### VideoDialog, VideoDialogTrigger, VideoDialogContent
+
+`VideoDialog` and `VideoDialogTrigger` are Dialog's root and trigger. `VideoDialogContent` takes the Video's props
+(without `autoPlay`).

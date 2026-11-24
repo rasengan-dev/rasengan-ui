@@ -1,0 +1,98 @@
+---
+metadata:
+  title: Lightbox · Rasengan UI
+  description: "Photos that open full screen, one at a time, with arrows, the arrow keys, a swipe, a counter and the caption."
+toc: true
+---
+
+# Lightbox
+
+Photos that open full screen, one at a time, with arrows, the arrow keys, a swipe, a counter and the caption.
+
+<ComponentPreview name="lightbox" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add lightbox
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/lightbox.json
+```
+
+## Usage
+
+```tsx title="app/gallery.tsx"
+import { Lightbox, LightboxContent, LightboxTrigger } from "@/components/ui/lightbox";
+
+const photos = [
+  { src: "/photos/room.jpg", alt: "The dining room", caption: "Forty seats upstairs." },
+  { src: "/photos/kitchen.jpg", alt: "The open kitchen" },
+];
+
+export function Gallery() {
+  return (
+    <Lightbox images={photos}>
+      {photos.map((photo, index) => (
+        <LightboxTrigger key={photo.src} index={index}>
+          <img src={photo.src} alt={photo.alt} />
+        </LightboxTrigger>
+      ))}
+      <LightboxContent />
+    </Lightbox>
+  );
+}
+```
+
+`Lightbox` holds the photos; each `LightboxTrigger` opens it at its `index` (a button, or the element you give in
+`render`); `LightboxContent` is the full-screen view, once. The thumbnails are yours to lay out: a grid, a row, a
+single cover photo.
+
+In the view, the photos sit in a row with native scroll snapping: a swipe moves one photo on a touch screen, the arrow
+buttons and the arrow keys elsewhere, Home and End go to the first and the last; the last photo leads back to the
+first. The counter says where you are, the photo's `alt` is the title and its `caption` is shown under it. Photos load
+as they come near, so a set of fifty costs one.
+
+`open`, `onOpenChange`, `index` and `onIndexChange` control it from outside; `labels` names the buttons in the page's
+language.
+
+## Villages
+
+The view is the page's background, with the village's buttons and type.
+
+<VillageGrid name="lightbox" />
+
+## Reduced motion
+
+The row jumps from photo to photo instead of sliding with reduced motion or `?motion=off`; the dialog's own fade
+follows the village.
+
+## Accessibility
+
+- It is a Dialog: focus moves into it and back to the thumbnail that opened it; Escape closes it.
+- The dialog's title is the current photo's `alt`, so a screen reader hears what is shown; only the current photo is
+  in the accessibility tree.
+- The previous, next and close buttons are named by `labels` ("Previous photo", "Next photo", "Close" by default).
+- The text sits on the page's background, not over the photo, so it keeps its contrast.
+
+## API reference
+
+### Lightbox
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `images` | `{ src, alt, width?, height?, caption? }[]` | — |
+| `labels` | `{ previous?, next?, close? }` | English |
+| `open`, `defaultOpen`, `onOpenChange` | the dialog's state | closed |
+| `index`, `onIndexChange` | the photo shown | `0` |
+
+### LightboxTrigger
+
+A `button` (or the element in `render`) with `index`: the photo it opens.
+
+### LightboxContent
+
+The full-screen view; takes `className`.
