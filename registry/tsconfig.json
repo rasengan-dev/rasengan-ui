@@ -26,6 +26,9 @@
 			"@/components/ui/alert-dialog": [
 				"./components/alert-dialog/alert-dialog.base.tsx"
 			],
+			"@/components/ui/announcement-bar": [
+				"./components/announcement-bar/announcement-bar.base.tsx"
+			],
 			"@/components/ui/avatar": [
 				"./components/avatar/avatar.base.tsx"
 			],
@@ -52,6 +55,9 @@
 			],
 			"@/components/ui/checkbox": [
 				"./components/checkbox/checkbox.base.tsx"
+			],
+			"@/components/ui/chip": [
+				"./components/chip/chip.base.tsx"
 			],
 			"@/components/ui/collapsible": [
 				"./components/collapsible/collapsible.base.tsx"
@@ -113,6 +119,9 @@
 			"@/components/ui/navigation-menu": [
 				"./components/navigation-menu/navigation-menu.base.tsx"
 			],
+			"@/components/ui/number-field": [
+				"./components/number-field/number-field.base.tsx"
+			],
 			"@/components/ui/number-roll": [
 				"./components/number-roll/number-roll.base.tsx"
 			],
@@ -130,6 +139,9 @@
 			],
 			"@/components/ui/radio-group": [
 				"./components/radio-group/radio-group.base.tsx"
+			],
+			"@/components/ui/rating": [
+				"./components/rating/rating.base.tsx"
 			],
 			"@/components/ui/scramble-text": [
 				"./components/scramble-text/scramble-text.base.tsx"

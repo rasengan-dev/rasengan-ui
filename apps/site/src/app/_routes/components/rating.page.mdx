@@ -1,0 +1,89 @@
+---
+metadata:
+  title: Rating · Rasengan UI
+  description: "A score as stars, filled to the tenth, and the same stars as an input that posts a whole number."
+toc: true
+---
+
+# Rating
+
+A score as stars, filled to the tenth, and the same stars as an input that posts a whole number.
+
+<ComponentPreview name="rating" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add rating
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/rating.json
+```
+
+## Usage
+
+```tsx title="app/score.tsx"
+import { Rating } from "@/components/ui/rating";
+
+export function Score() {
+  return <Rating value={4.7} showValue />;
+}
+```
+
+`Rating` shows a score: each star is filled to the tenth, and a screen reader hears "4.7 out of 5". `showValue` writes
+the number beside the stars. When the page already writes the score in words, pass `aria-hidden` and the stars are
+only for the eye, as in the [reviews block](/blocks/reviews-rating).
+
+### As an input
+
+`RatingGroup` is a group of radios, one per star: it posts a whole number under `name`, the arrow keys move and pick,
+and hovering previews the score. Name the group with a label (`aria-labelledby`) or `aria-label`.
+
+<ComponentPreview name="rating" demo="rating-input" />
+
+```tsx title="app/review-form.tsx"
+<RatingGroup name="score" aria-label="Your rating" defaultValue={4} />
+```
+
+## Villages
+
+The stars are the tone's colour (`warning`, yellow, by default) in every village; they press as the village presses.
+
+<VillageGrid name="rating" demo="rating-input" />
+
+## Accessibility
+
+- Read-only, the stars are one image whose name is the score ("4.7 out of 5", or `label`).
+- As an input, each star is a radio named "1 star", "2 stars"… (`starLabel` names them in another language). A filled
+  star has an edge in the tone's colour for words and an empty one an outline in the muted text colour, so filled and
+  empty stand apart at 3:1 or more.
+
+## API reference
+
+### Rating
+
+Renders a `span` and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `value` | `number` | — |
+| `max` | `number` | `5` |
+| `showValue` | `boolean` | `false` |
+| `locale` | `string`: the language the score is written in | `"en"` |
+| `label` | `string`: what a screen reader hears | `"4.7 out of 5"` |
+| `tone` | `"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"` | `"warning"` |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` |
+
+### RatingGroup
+
+Takes Base UI's Radio Group props (`name`, `disabled`, `readOnly`, `required`…), `tone` and `size`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `value`, `defaultValue` | `number \| null` | `null` |
+| `onValueChange` | `(value: number) => void` | — |
+| `max` | `number` | `5` |
+| `starLabel` | `(stars: number) => string` | `"1 star"`, `"2 stars"`… |

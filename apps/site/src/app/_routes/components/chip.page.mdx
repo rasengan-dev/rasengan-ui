@@ -1,0 +1,90 @@
+---
+metadata:
+  title: Chip · Rasengan UI
+  description: "Pills to pick (time slots, sizes, popular searches) or to remove (active filters), in one look."
+toc: true
+---
+
+# Chip
+
+Pills to pick (time slots, sizes, popular searches) or to remove (active filters), in one look.
+
+<ComponentPreview name="chip" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add chip
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/chip.json
+```
+
+## Usage
+
+```tsx title="app/slots.tsx"
+import { Chip, ChipGroup } from "@/components/ui/chip";
+
+export function Slots() {
+  return (
+    <ChipGroup aria-label="Time" defaultValue={["19:30"]}>
+      <Chip value="19:00">19:00</Chip>
+      <Chip value="19:30">19:30</Chip>
+      <Chip value="20:00">20:00</Chip>
+    </ChipGroup>
+  );
+}
+```
+
+Inside a `ChipGroup`, chips are toggles: one is picked at a time, or several with `multiple`, and the value is the list
+of picked `value`s. The arrow keys move between them.
+
+### Filters to remove
+
+Outside a group a chip is a tag. Put a `ChipRemove` in it for an active filter, and name what it removes.
+
+<ComponentPreview name="chip" demo="chip-filters" />
+
+### Variants, several at once, links
+
+`variant` is `outline` (the default), `soft` or `solid`; `tone` the colour a picked chip takes; `size` `sm` or
+`default`. A chip with `render={<a href="…" />}` is a link, for popular searches that go somewhere.
+
+<ComponentPreview name="chip" demo="chip-variants" />
+
+## Villages
+
+Chips are pills of the village's control height; picked, they press and stand on their lip as the village does.
+
+<VillageGrid name="chip" />
+
+## Accessibility
+
+- In a group, each chip is a toggle button with `aria-pressed`; the group is named by its `aria-label` or label.
+- `ChipRemove` is a button of its own, "Remove" unless you name it ("Remove Paris").
+- Picked chips use the tone's wash and its colour for words, or its fill and foreground: pairs the contract holds to
+  4.5:1.
+
+## API reference
+
+### ChipGroup
+
+Takes Base UI's Toggle Group props (`value`, `defaultValue`, `onValueChange`, `multiple`, `disabled`…), and `variant`,
+`tone` and `size` for its chips.
+
+### Chip
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `value` | `string`: in a group, what it adds to the value | — |
+| `variant` | `"outline" \| "soft" \| "solid"` | the group's, or `"outline"` |
+| `tone` | `"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"` | the group's, or `"primary"` |
+| `size` | `"sm" \| "default"` | the group's, or `"default"` |
+| `render` | `ReactElement`: outside a group, the element it renders | `span` |
+
+### ChipRemove
+
+A `button`; `aria-label` defaults to `"Remove"`.

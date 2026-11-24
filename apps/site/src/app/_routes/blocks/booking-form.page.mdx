@@ -12,7 +12,7 @@ metadata:
 npx rasengan-ui add booking-form
 ```
 
-It installs into `components/blocks/booking-form/`, with what it uses (Button, Date Picker, Field, Input, Label, Radio Group, Select, Textarea, Time Picker) and `lib/blocks.ts`.
+It installs into `components/blocks/booking-form/`, with what it uses (Button, Date Picker, Field, Input, Label, Number Field, Radio Group, Select, Textarea, Time Picker) and `lib/blocks.ts`.
 
 ## Usage
 
@@ -50,7 +50,11 @@ To use your own backend instead, pass `action`: the form posts `name`, `date` (`
 
 ### A table or an appointment
 
-Give `fields.party` for a restaurant (how many guests, from one to `max`), or `fields.services` for a salon, a barber or a spa (one service to pick, with its duration and price). Either, both, or neither.
+Give `fields.party` for a restaurant (how many guests, from one to `max`, in a Number Field: − and + or typed), or `fields.services` for a salon, a barber or a spa (one service to pick, with its duration and price). Either, both, or neither.
+
+Since 2026-11-24 the party size is a [Number Field](/components/number-field), no longer a Select. If you edited the
+Select's lines, `rasengan-ui update` leaves conflict markers there: keep the registry's side, as the Select's
+`partyItems` is gone.
 
 The same block for a salon, with services and sent by text:
 

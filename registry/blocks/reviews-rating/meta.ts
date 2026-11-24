@@ -12,7 +12,7 @@ export const meta = {
 	avoidWhen: "A handful of long testimonials with photos: testimonials-carousel. No real rating to show.",
 	layout: { columns: "split" },
 	content: { images: 0, minWords: 60, maxWords: 400 },
-	components: ["button"],
+	components: ["button", "rating"],
 	dependencies: ["lucide-react"],
 	pairsWith: ["menu-cards", "booking-form"],
 } as const satisfies BlockMeta;

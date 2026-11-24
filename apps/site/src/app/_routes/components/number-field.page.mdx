@@ -1,0 +1,98 @@
+---
+metadata:
+  title: Number Field · Rasengan UI
+  description: "A number with − and + buttons around it, for a quantity or a number of guests, with keyboard steps and formats."
+toc: true
+---
+
+# Number Field
+
+A number with − and + buttons around it, for a quantity or a number of guests, with keyboard steps and formats.
+
+<ComponentPreview name="number-field" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add number-field
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/number-field.json
+```
+
+## Usage
+
+```tsx title="app/guests.tsx"
+import { Field, FieldLabel } from "@/components/ui/field";
+import {
+  NumberField,
+  NumberFieldDecrement,
+  NumberFieldGroup,
+  NumberFieldIncrement,
+  NumberFieldInput,
+} from "@/components/ui/number-field";
+
+export function Guests() {
+  return (
+    <Field>
+      <FieldLabel>Guests</FieldLabel>
+      <NumberField name="guests" defaultValue={2} min={1} max={12}>
+        <NumberFieldGroup>
+          <NumberFieldDecrement aria-label="Fewer guests" />
+          <NumberFieldInput />
+          <NumberFieldIncrement aria-label="More guests" />
+        </NumberFieldGroup>
+      </NumberField>
+    </Field>
+  );
+}
+```
+
+Base UI's Number Field does the work: `min`, `max` and `step` clamp and round the number; the arrow keys step by
+`step`, with Shift by `largeStep` and Alt by `smallStep`; Page Up and Down, Home and End jump; holding a button repeats.
+The group is Input Group's field, so inside a Field it takes the Field's `size` and `variant`.
+
+### Formats
+
+`format` takes `Intl.NumberFormat`'s options: a currency, a percentage, a unit. The number is typed and posted as a
+plain number; only what is shown is formatted.
+
+<ComponentPreview name="number-field" demo="number-field-format" />
+
+### With a rolling total
+
+Put a [Number Roll](/components/number-roll) beside the field for what follows from the number, a price or a total:
+it rolls to its new value at each step, as the village moves, and stands still with reduced motion. `live="polite"`
+tells a screen reader the new total. The field itself stays a plain input, so typing, forms and screen readers work as
+they do without it.
+
+<ComponentPreview name="number-field" demo="number-field-total" />
+
+## Villages
+
+The field is the village's text field; the buttons press as the village presses: they scale in Konoha and Kiri, sink
+in Iwa and drop in Kusa.
+
+<VillageGrid name="number-field" />
+
+## Accessibility
+
+- The input is a `spinbutton` with its value, minimum and maximum; inside a Field, the label names it.
+- The buttons are "Decrease" and "Increase" to a screen reader: name them for what they count, as above, in the
+  page's language.
+- The buttons are not in the tab order: the keyboard steps the number from the input.
+
+## API reference
+
+The parts take Base UI's Number Field props and `className`. `NumberFieldGroup` also takes:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `variant` | `"default" \| "filled" \| "underline" \| "ghost"` | the Field's, or `"default"` |
+| `size` | `"sm" \| "default" \| "lg"` | the Field's, or `"default"` |
+
+On `NumberField`: `value`, `defaultValue`, `onValueChange`, `min`, `max`, `step`, `smallStep`, `largeStep`, `format`,
+`name`, `disabled`, `readOnly`, `required`, `allowWheelScrub`.

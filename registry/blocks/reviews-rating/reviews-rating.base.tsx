@@ -1,34 +1,9 @@
-import { StarIcon } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
+import { Rating } from "@/components/ui/rating";
 import { type BlockProps, heading } from "@/lib/blocks";
 import { cn } from "@/lib/utils";
 import { example } from "./example";
 import type { ReviewsRatingContent } from "./schema";
-
-/** Five stars, filled up to the rating (a half star from .5); drawn for the eye, the score is written out beside. */
-function Stars({ value, className }: { value: number; className?: string }) {
-	return (
-		<span aria-hidden="true" className={cn("flex gap-0.5", className)}>
-			{[1, 2, 3, 4, 5].map((star) => {
-				const fill = value >= star ? 1 : value >= star - 0.5 ? 0.5 : 0;
-				return (
-					<span key={star} className="relative inline-flex">
-						<StarIcon className="size-[1em] text-border" fill="currentColor" strokeWidth={0} />
-						{fill > 0 && (
-							<StarIcon
-								className="absolute inset-0 size-[1em] tone-warning text-tone"
-								fill="currentColor"
-								strokeWidth={0}
-								style={fill < 1 ? { clipPath: "inset(0 50% 0 0)" } : undefined}
-							/>
-						)}
-					</span>
-				);
-			})}
-		</span>
-	);
-}
 
 /**
  * The rating summary beside the reviews: the average written large with its stars, how many reviews it is over and
@@ -51,7 +26,7 @@ export function ReviewsRating({ content = example, id = "reviews", className, he
 					<div className="flex items-end gap-3">
 						<span className="font-display text-6xl leading-none font-semibold tabular-nums">{score}</span>
 						<span className="flex flex-col gap-1 pb-1">
-							<Stars value={summary.score} className="text-xl" />
+							<Rating value={summary.score} size="lg" aria-hidden />
 							<span className="text-sm text-muted-foreground">{labels.outOf}</span>
 						</span>
 					</div>
@@ -70,7 +45,7 @@ export function ReviewsRating({ content = example, id = "reviews", className, he
 						<li key={`${review.author}-${review.date ?? review.text.slice(0, 12)}`} className="mb-4 break-inside-avoid">
 							<figure className="flex flex-col gap-3 rounded-xl border-village bg-card p-5 text-card-foreground shadow-sm backdrop-blur-surface">
 								<div className="flex items-center gap-2">
-									<Stars value={review.rating} className="text-base" />
+									<Rating value={review.rating} aria-hidden />
 									<span className="sr-only">
 										{review.rating} {labels.outOf}
 									</span>

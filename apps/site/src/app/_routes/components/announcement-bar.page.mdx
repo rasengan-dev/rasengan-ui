@@ -1,0 +1,104 @@
+---
+metadata:
+  title: Announcement Bar · Rasengan UI
+  description: "A band across the top of the page, in the tone: a message and a link, that the visitor can close or that scrolls."
+toc: true
+---
+
+# Announcement Bar
+
+A band across the top of the page, in the tone: a message and a link, that the visitor can close or that scrolls.
+
+<ComponentPreview name="announcement-bar" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add announcement-bar
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/announcement-bar.json
+```
+
+## Usage
+
+```tsx title="app/layout.tsx"
+import { AnnouncementBar, AnnouncementBarClose } from "@/components/ui/announcement-bar";
+
+export function Banner() {
+  return (
+    <AnnouncementBar dismissKey="winter-menu-2026">
+      The winter menu is here. <a href="/menu">See the menu</a>
+      <AnnouncementBarClose />
+    </AnnouncementBar>
+  );
+}
+```
+
+Put it first in the page, above the header. With an `AnnouncementBarClose` inside, the visitor can close it: for this
+page only, or for good with a `dismissKey`, remembered in `localStorage`. Change the key when the message changes, and
+the bar shows again.
+
+### No flash on a prerendered page
+
+A page rendered ahead of time shows the bar before React knows it was closed. Add the script to `<head>`, before the
+page paints, and a closed bar never shows:
+
+```tsx title="src/template.tsx"
+import { AnnouncementBarScript } from "@/components/ui/announcement-bar";
+
+<head>
+  <AnnouncementBarScript />
+</head>
+```
+
+### Tones, sizes, and a message that scrolls
+
+`variant` is `soft` (the default) or `solid`, in any `tone`; `size` is `sm` or `default`. `scrolling` runs the
+message as a [marquee](/components/marquee), with its pause button.
+
+<ComponentPreview name="announcement-bar" demo="announcement-bar-variants" />
+
+## Villages
+
+<VillageGrid name="announcement-bar" demo="announcement-bar-variants" />
+
+## Reduced motion
+
+A scrolling bar follows the marquee: with reduced motion, `?motion=off`, `?motion=final` or at intensity 0, its
+messages stand still and wrap.
+
+## Accessibility
+
+- The bar is a section named "Announcement" (`label`), not a live region: it is there when the page loads, there is
+  nothing to announce.
+- The close button is "Close announcement" unless you name it.
+- Soft and solid use the tone's pairs the contract holds to 4.5:1; links inside are underlined, in the band's colour.
+- A scrolling bar stops on hover and focus and has a pause button.
+
+## API reference
+
+### AnnouncementBar
+
+Renders a `section` and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `variant` | `"soft" \| "solid"` | `"soft"` |
+| `tone` | `"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"` | `"primary"` |
+| `size` | `"sm" \| "default"` | `"default"` |
+| `dismissKey` | `string`: remembers a close | closes for the page |
+| `scrolling` | `boolean` | `false` |
+| `label` | `string` | `"Announcement"` |
+| `onDismiss` | `() => void` | — |
+
+### AnnouncementBarClose
+
+A `button`; `aria-label` defaults to `"Close announcement"`.
+
+### AnnouncementBarScript
+
+A `<script>` for `<head>` (`nonce` for a content security policy); `announcementBarScript` is the same code as a string.
