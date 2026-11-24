@@ -68,8 +68,9 @@ rows: no picture, no dimming. On a touch screen, rows are plain links.
 
 ## Accessibility
 
-- The rows are a list of links; each row's own text says where it goes. The pictures are decoration: `alt=""`, hidden
-  from screen readers, and they never take the pointer.
+- The rows are a list of links; each row's own text says where it goes. The pictures are decoration by default:
+  `alt=""`, hidden from screen readers, and they never take the pointer. Give `imageAlt` when a picture shows what
+  the row does not say (a project's cover): it is then described like any image.
 - Keyboard focus shows the focused row's picture beside it, still.
 - The dimmed rows use the muted text colour, which passes 4.5:1.
 
@@ -96,5 +97,6 @@ Renders a `li` and takes its props and `className`, and:
 | Prop | Type | Default |
 | --- | --- | --- |
 | `image` | `string`: the row's picture | — |
+| `imageAlt` | `string`: describes the picture, when it shows what the row's text does not | decorative |
 | `href` | `string`: makes the row a link | — |
 | `render` | `ReactElement`: replaces the row's element | `a`, or `div` without `href` |

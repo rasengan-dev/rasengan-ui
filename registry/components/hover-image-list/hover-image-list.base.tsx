@@ -182,8 +182,10 @@ export function HoverImageList({ size, active, className, children, onPointerMov
 }
 
 export interface HoverImageListItemProps extends Omit<React.HTMLAttributes<HTMLLIElement>, "children"> {
-	/** The row's picture. Decorative: the row's own text says where it goes. */
+	/** The row's picture. Decorative by default: the row's own text says where it goes. */
 	image: string;
+	/** Describes the picture, when it shows what the row's text does not (a project's cover); it is hidden otherwise. */
+	imageAlt?: string;
 	/** Makes the row a link. */
 	href?: string;
 	/** Replaces the row's element: a router's link, for example (`render={<Link to="/work/akwa" />}`). */
@@ -195,7 +197,7 @@ export interface HoverImageListItemProps extends Omit<React.HTMLAttributes<HTMLL
  * One row of a HoverImageList, with its picture: an `<a>` with `href`, the element given in `render`, or a plain row.
  * Put a `<small>` in it for a quieter line (a year, a kind of work).
  */
-export function HoverImageListItem({ image, href, render, className, children, ...props }: HoverImageListItemProps) {
+export function HoverImageListItem({ image, imageAlt, href, render, className, children, ...props }: HoverImageListItemProps) {
 	const id = React.useId();
 	const current = React.useContext(HoverImageListContext) === id;
 	const row = useRender({
@@ -213,7 +215,7 @@ export function HoverImageListItem({ image, href, render, className, children, .
 	return (
 		<li data-slot="hover-image-list-item" className={cn(hoverImageListStyles.item, className)} {...props}>
 			{row}
-			<img src={image} alt="" aria-hidden="true" loading="lazy" decoding="async" data-slot="hover-image-list-image" data-current={current ? "" : undefined} className={hoverImageListStyles.image} />
+			<img src={image} alt={imageAlt ?? ""} aria-hidden={imageAlt ? undefined : "true"} loading="lazy" decoding="async" data-slot="hover-image-list-image" data-current={current ? "" : undefined} className={hoverImageListStyles.image} />
 		</li>
 	);
 }

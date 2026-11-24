@@ -1,0 +1,58 @@
+---
+metadata:
+  title: Awards, list · Rasengan UI
+  description: "Awards as a ruled table: the year, the award and who gave it, the project, each linking to the project."
+---
+
+<BlockShowcase name="awards-list" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add awards-list
+```
+
+It installs into `components/blocks/awards-list/`, with what it uses (Table) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/index.page.tsx"
+import { AwardsList } from "@/components/blocks/awards-list";
+import { studio } from "@/content/studio";
+
+export default function Page() {
+  return <AwardsList content={studio.awards} />;
+}
+```
+
+```ts title="content/studio.ts"
+import { example, type AwardsListContent } from "@/components/blocks/awards-list";
+
+export const studio = {
+  awards: { ...example } satisfies AwardsListContent,
+};
+```
+
+Two to thirty awards, as you want them read: the year, the award and its result, who gave it, the project and a link to it. Three narrow columns keep it readable on a phone.
+
+The [portfolio example](/examples/portfolio) uses it, with its content in one file.
+
+## Content
+
+<ContentSchema name="awards-list" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `AwardsListContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"awards"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the section, for spacing |
+
+## Accessibility
+
+- A real table, named by the block's title, with column headings (`labels`).
+- A project with a page links to it; one without shows a dash, hidden from screen readers.

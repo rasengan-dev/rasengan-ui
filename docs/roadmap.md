@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-24 (RFC-0013 lot G0).
+> Last updated: 2026-11-24 (RFC-0013 lot G).
 
 ## Where things stand
 
@@ -21,7 +21,7 @@
 | MCP server | `rasengan-ui mcp`, five tools ([RFC-0003](rfc/0003-mcp-server.md), steps 1 to 3) |
 | Site | Live at `rasengan-ui.hiraiship.app`, prerendered, with Tag Manager ([ADR-0005](adr/0005-prerendered-site-on-hiraiship.md)) |
 | Project docs | `docs/` in this format since 2026-11-07 ([ADR-0001](adr/0001-project-docs-like-jutsify.md)) |
-| Blocks | 45 (RFC-0008 lots 0, A, B and C; RFC-0009 lots D0, D and E): 26 marketing (navbar-simple, hero-centered, hero-split, hero-wordmark, logos-marquee, logos-grid, features-grid, features-alternating, bento-features, steps-scroll, showcase-tabs, integrations-orbit, comparison-table, stats-numbers, testimonials-carousel, testimonials-wall, pricing-plans, pricing-comparison, faq-accordion, cta-banner, cta-app, newsletter-inline, team-grid, contact-form, footer-columns, footer-wordmark) and 21 storefront (hero-photo, hero-wordmark, menu-categories, menu-cards, menu-list, services-list, services-pricelist, booking-form, offer-deal, gallery-grid, gallery-social, hours-week, location-map, location-branches, order-banner, about-story, team-staff, reviews-rating, contact-links, contact-form, footer-local), `hero-wordmark` and `contact-form` in both families; the examples `/examples/landing`, `/examples/restaurant` and `/examples/salon`, linked through a page transition; the gallery at `/blocks`; `rasengan-blocks`, `rasengan-placeholders`, `blocks.json`, MCP `kind: "block"` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
+| Blocks | 51 (RFC-0008 lots 0, A, B and C; RFC-0009 lots D0, D and E; RFC-0013 lot G): 26 marketing (navbar-simple, hero-centered, hero-split, hero-wordmark, logos-marquee, logos-grid, features-grid, features-alternating, bento-features, steps-scroll, showcase-tabs, integrations-orbit, comparison-table, stats-numbers, testimonials-carousel, testimonials-wall, pricing-plans, pricing-comparison, faq-accordion, cta-banner, cta-app, newsletter-inline, team-grid, contact-form, footer-columns, footer-wordmark) and 21 storefront (hero-photo, hero-wordmark, menu-categories, menu-cards, menu-list, services-list, services-pricelist, booking-form, offer-deal, gallery-grid, gallery-social, hours-week, location-map, location-branches, order-banner, about-story, team-staff, reviews-rating, contact-links, contact-form, footer-local), and 10 portfolio (navbar-simple, hero-wordmark, projects-grid, projects-list, case-study, gallery-horizontal, awards-list, experience-timeline, contact-form, footer-wordmark), some in several families; the examples `/examples/landing`, `/examples/restaurant`, `/examples/salon` and `/examples/portfolio` (with a case study per project), linked through a page transition; the gallery at `/blocks`; `rasengan-blocks`, `rasengan-placeholders`, `blocks.json`, MCP `kind: "block"` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
 | `packages/motion` | `rasengan-motion` in the registry: motion modes, village motion tokens, primitives, `splitText` ([RFC-0007](rfc/0007-motion-components.md) lot 0) |
 | Categories | Every component has one; the site groups by them and has a Motion section ([ADR-0009](adr/0009-component-categories.md)) |
 
@@ -152,7 +152,16 @@
   `navbar-simple`, `hero-wordmark`, `contact-form` and `footer-wordmark` are in the portfolio family too. Differences
   from the RFC: `award` has a `by` (who gave it) and `trustPoint` a `status` (certified or in progress); a poster and a
   packaging photo with real brands on them were dropped for a ceramics still life and a blank box. `pnpm axe` takes a
-  page path (`pnpm axe /examples/portfolio`). Next: lot G (the six portfolio blocks).
+  page path (`pnpm axe /examples/portfolio`). **Lot G built**: `projects-grid` (chips with a count per kind,
+  every project in the HTML; 2.2 kB), `projects-list` (`hover-image-list` rows; 1.8 kB), `case-study` (facts, sections,
+  results on `number-roll`, a gallery in a `lightbox`, the next project; 2.7 kB), `gallery-horizontal`
+  (`horizontal-scroll` with Savage's counter; 1.4 kB), `awards-list` (a `table`; 1.1 kB) and `experience-timeline`
+  (1.2 kB). Their references were inspected first and the "Observed" notes are in the lot's pull request.
+  `/examples/portfolio` is the whole studio site, and `/examples/portfolio/<slug>` a case study per project with the
+  other projects as a list, all from one `projects` array; it joins the example switcher, the search, the sidebar and
+  the gallery's links. Differences from the RFC, after looking at the references: `experience-timeline` is ruled rows
+  (TITARVL's table), not a vertical line; `projects-grid` has no `spotlight` (a zoom on the cover instead); and
+  `hover-image-list` gains `imageAlt`, so `projects-list` describes its covers. Next: lot H (the six SaaS blocks).
 
 ### Then
 

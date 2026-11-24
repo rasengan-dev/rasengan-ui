@@ -42,7 +42,7 @@ flowchart LR
 flowchart TB
   subgraph source[Sources]
     comps["✅ registry/components<br/>70 components, 18 of them motion"]
-    blocks["🚧 registry/blocks<br/>45 blocks: 26 marketing, 21 storefront (2 in both)"]
+    blocks["🚧 registry/blocks<br/>51 blocks: 26 marketing, 21 storefront, 10 portfolio (some in several)"]
     blockslib["✅ packages/blocks<br/>rasengan-blocks: BlockProps, BlockMeta, field types"]
     core["✅ packages/core<br/>cn, ui-* variants, VillageScope, Field context"]
     villages["✅ packages/villages<br/>contract, villages, natures, engine, contrast"]
@@ -77,7 +77,7 @@ flowchart TB
 |---|---|---|
 | `registry/components/<name>/` | ✅ 70 | One folder per component: `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts` (with its category, [ADR-0009](adr/0009-component-categories.md)), demos |
 | `registry/categories.ts` | ✅ | The seven categories, in the site's order: forms, dates, overlays, navigation, display, feedback, motion |
-| `registry/blocks/<name>/` | 🚧 45 | One folder per block ([RFC-0008](rfc/0008-blocks.md)): `<name>.base.tsx`, `schema.ts` (`export const schema`), `example.ts` (`export const example`), `meta.ts` (family, category, `useWhen`…; type imports only), demos. The ten marketing blocks of lot A, the nine storefront blocks of lot B, the six showcase blocks of lot C, and the ten of each of RFC-0009's lots D (storefront) and E (marketing); `hero-wordmark` and `contact-form` are in both families |
+| `registry/blocks/<name>/` | 🚧 51 | One folder per block ([RFC-0008](rfc/0008-blocks.md)): `<name>.base.tsx`, `schema.ts` (`export const schema`), `example.ts` (`export const example`), `meta.ts` (family, category, `useWhen`…; type imports only), demos. The ten marketing blocks of lot A, the nine storefront blocks of lot B, the six showcase blocks of lot C, and the ten of each of RFC-0009's lots D (storefront) and E (marketing), and RFC-0013's six portfolio blocks of lot G; `hero-wordmark` and `contact-form` are in three families |
 | `registry/placeholders/` | ✅ | Open placeholder images the examples show (a real Senbon dashboard made from the components and three drawn product screens; Unsplash photos of six dishes, a kitchen and a dining room, [ADR-0015](adr/0015-placeholder-photos-of-food-and-places.md); a drawn map; six drawn logo marks with invented names, `logo-*.svg`, [RFC-0009](rfc/0009-blocks-second-wave.md); eleven Unsplash portraits, `person-*.svg` (WebP in an SVG: the registry carries text only), credited in `CREDITS.md`, [ADR-0014](adr/0014-placeholder-photos-from-unsplash.md); six Unsplash project covers, `project-*.svg`, [RFC-0013](rfc/0013-portfolio-and-saas-blocks.md)); the `rasengan-placeholders` item installs them in `public/placeholders/`, and a block whose example uses one depends on it. The site serves copies at `/placeholders/` |
 | `registry/block-categories.ts` | ✅ | The three families (marketing, storefront, portfolio) and their categories, in the site's order; RFC-0009 added `integrations`, `comparison`, `booking`, `offers` and `team`, and `contact` for marketing; RFC-0013 added the `portfolio` family with `projects`, `case-study`, `awards` and `experience`, and opened navbar, hero, steps, gallery, team, testimonials, contact and footer to it |
 | `packages/blocks` | ✅ | The `rasengan-blocks` registry item: `lib/blocks.ts` (`BlockProps`, `heading`, `BlockMeta`, `familiesOf`, `formatMoney`, `messageUrl`, no zod) and `lib/block-fields.ts` (zod field types, RFC-0009's `review`, `staffMember`, `branch`, `offer`, `formChannel`… among them; `defineBlock`), [ADR-0013](adr/0013-blocks-answer-their-container.md); its tests render every block on the server |
@@ -193,7 +193,7 @@ sequenceDiagram
   `/blocks/<name>` (MDX: `BlockShowcase` on top, after shadcnblocks' block pages, then installation, usage with any
   `BlockVariant` (another demo of the block), the
   `ContentSchema` table, props), `/preview/<name>` (one block alone, full window, one page per block from
-  `generatePaths`), `/examples/landing`, `/examples/restaurant` and `/examples/salon` (pages made only of blocks; the restaurant and the salon pass their own content from `src/content/`; their layout wraps them in a `PageTransition`, and the floating toolbar's switcher moves between them behind it), `/motion` (the motion gallery:
+  `generatePaths`), `/examples/landing`, `/examples/restaurant`, `/examples/salon` and `/examples/portfolio` with `/examples/portfolio/<slug>` (pages made only of blocks; the restaurant, the salon and the portfolio pass their own content from `src/content/`; their layout wraps them in a `PageTransition`, and the floating toolbar's switcher moves between them behind it), `/motion` (the motion gallery:
   the village reveal and, from lot A, the motion components), `/villages/create` (the workshop).
 - The blocks pages take the whole window, header included. `/examples/*` and `/preview/*` have no site header and
   a floating toolbar for the theme and the scheme. A block's showcase and the gallery's thumbnails wear a theme of

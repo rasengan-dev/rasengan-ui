@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Projects, grid · Rasengan UI
+  description: "Projects as cards with their cover, title, kind and year, filtered by kind with a count on each filter."
+---
+
+<BlockShowcase name="projects-grid" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add projects-grid
+```
+
+It installs into `components/blocks/projects-grid/`, with what it uses (Chip) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/index.page.tsx"
+import { ProjectsGrid } from "@/components/blocks/projects-grid";
+import { studio } from "@/content/studio";
+
+export default function Page() {
+  return <ProjectsGrid content={studio.work} />;
+}
+```
+
+```ts title="content/studio.ts"
+import { example, type ProjectsGridContent } from "@/components/blocks/projects-grid";
+
+export const studio = {
+  work: { ...example } satisfies ProjectsGridContent,
+};
+```
+
+Two to twenty-four projects, newest first, each with a cover (4:3), its kinds, year and a line. The kinds become the filters, in the order they first appear, each with its count; with one kind, there is no filter. Picking a kind hides the others in place: every project stays in the page, so it works without JavaScript and search engines see them all. Write the projects once in a content file: `projects-list` and `case-study` take the same `project` objects.
+
+The [portfolio example](/examples/portfolio) uses it, with its content in one file.
+
+## Content
+
+<ContentSchema name="projects-grid" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `ProjectsGridContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"work"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the section, for spacing |
+
+## Accessibility
+
+- The filters are a toggle group: arrow keys move between them, Space or Enter picks one, and the number of projects shown is announced.
+- Each card is one link named by the project's title; the cover keeps its `alt`.
+- The count beside the title is decoration, hidden from screen readers.
