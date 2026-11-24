@@ -3,13 +3,13 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-24 (RFC-0013 lot H).
+> Last updated: 2026-11-24 (RFC-0013 lot I, RFC complete).
 
 ## Where things stand
 
 | Piece | State |
 |---|---|
-| Components | 70, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md), [0010](rfc/0010-scroll-motion.md), [0012](rfc/0012-interface-components.md)) |
+| Components | 71, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md), [0010](rfc/0010-scroll-motion.md), [0012](rfc/0012-interface-components.md)) |
 | Motion components | RFC-0007 complete: text-reveal, typewriter, scramble-text, number-roll, marquee, cursor, gallery-3d, page-transition; carousel (display); Button's `HoldButton` and `ButtonRollingText` ([ADR-0011](adr/0011-carousel-and-cursor-without-motion.md), [ADR-0012](adr/0012-gallery-and-page-transition-without-motion.md)). RFC-0010 complete: scroll-progress, image-reveal, text-scroll-fill, scroll-stack, horizontal-scroll on `--scroll-progress`, and sticky-scroll (display). RFC-0011 complete: text-rotate, shiny-text, Badge's live dot, spotlight, hover-image-list, image-trail ([ADR-0019](adr/0019-scroll-motion-on-css-scroll-timelines.md)). None loads Motion |
 | Variants | `variant` × `tone` × `size` on most components ([plan 002](plans/002-component-variants.md)) |
 | Villages | Konoha, Kiri, Iwa, Kusa (the contract's lip, [ADR-0008](adr/0008-lip-in-the-token-contract.md)) |
@@ -21,7 +21,7 @@
 | MCP server | `rasengan-ui mcp`, five tools ([RFC-0003](rfc/0003-mcp-server.md), steps 1 to 3) |
 | Site | Live at `rasengan-ui.hiraiship.app`, prerendered, with Tag Manager ([ADR-0005](adr/0005-prerendered-site-on-hiraiship.md)) |
 | Project docs | `docs/` in this format since 2026-11-07 ([ADR-0001](adr/0001-project-docs-like-jutsify.md)) |
-| Blocks | 57 (RFC-0008 lots 0, A, B and C; RFC-0009 lots D0, D and E; RFC-0013 lots G and H): 32 marketing (changelog, waitlist, customer-stories, security-badges, integrations-grid, careers, navbar-simple, hero-centered, hero-split, hero-wordmark, logos-marquee, logos-grid, features-grid, features-alternating, bento-features, steps-scroll, showcase-tabs, integrations-orbit, comparison-table, stats-numbers, testimonials-carousel, testimonials-wall, pricing-plans, pricing-comparison, faq-accordion, cta-banner, cta-app, newsletter-inline, team-grid, contact-form, footer-columns, footer-wordmark) and 21 storefront (hero-photo, hero-wordmark, menu-categories, menu-cards, menu-list, services-list, services-pricelist, booking-form, offer-deal, gallery-grid, gallery-social, hours-week, location-map, location-branches, order-banner, about-story, team-staff, reviews-rating, contact-links, contact-form, footer-local), and 10 portfolio (navbar-simple, hero-wordmark, projects-grid, projects-list, case-study, gallery-horizontal, awards-list, experience-timeline, contact-form, footer-wordmark), some in several families; the examples `/examples/landing`, `/examples/restaurant`, `/examples/salon`, `/examples/portfolio` (with a case study per project) and `/examples/saas`, linked through a page transition; the gallery at `/blocks`; `rasengan-blocks`, `rasengan-placeholders`, `blocks.json`, MCP `kind: "block"` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
+| Blocks | 61 (RFC-0008 lots 0, A, B and C; RFC-0009 lots D0, D and E; RFC-0013 lots G, H and I): 36 marketing (hero-video, hero-product, process-steps, testimonials-marquee, changelog, waitlist, customer-stories, security-badges, integrations-grid, careers, navbar-simple, hero-centered, hero-split, hero-wordmark, logos-marquee, logos-grid, features-grid, features-alternating, bento-features, steps-scroll, showcase-tabs, integrations-orbit, comparison-table, stats-numbers, testimonials-carousel, testimonials-wall, pricing-plans, pricing-comparison, faq-accordion, cta-banner, cta-app, newsletter-inline, team-grid, contact-form, footer-columns, footer-wordmark) and 21 storefront (hero-photo, hero-wordmark, menu-categories, menu-cards, menu-list, services-list, services-pricelist, booking-form, offer-deal, gallery-grid, gallery-social, hours-week, location-map, location-branches, order-banner, about-story, team-staff, reviews-rating, contact-links, contact-form, footer-local), and 10 portfolio (navbar-simple, hero-wordmark, projects-grid, projects-list, case-study, gallery-horizontal, awards-list, experience-timeline, contact-form, footer-wordmark), some in several families; the examples `/examples/landing`, `/examples/restaurant`, `/examples/salon`, `/examples/portfolio` (with a case study per project) and `/examples/saas`, linked through a page transition; the gallery at `/blocks`; `rasengan-blocks`, `rasengan-placeholders`, `blocks.json`, MCP `kind: "block"` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
 | `packages/motion` | `rasengan-motion` in the registry: motion modes, village motion tokens, primitives, `splitText` ([RFC-0007](rfc/0007-motion-components.md) lot 0) |
 | Categories | Every component has one; the site groups by them and has a Motion section ([ADR-0009](adr/0009-component-categories.md)) |
 
@@ -172,7 +172,18 @@
   `/examples/saas` puts them together for Senbon. `pnpm axe` caught soft tones on muted surfaces under 4.5:1 (a badge
   on a muted tile, a pressed chip in a muted section): Chip's pressed and solid washes are now opaque over the page's
   background, and the security tiles sit on the page's background. The block test counts `status` as a code, not text.
-  Next: lot I (the five blocks for every kind of site, and `device-frame`).
+  **Lot I built, RFC-0013 complete**: `device-frame` (a component, display: a browser window or a phone drawn
+  from the contract), `hero-video` (a muted loop in a rounded frame with its pause button, the text on an opaque panel
+  over the corner, under the video on phones; 1 kB), `hero-product` (the screen in a `device-frame` on a soft glow;
+  1.1 kB), `process-steps` (numbered cards coming in at the village's stagger; 1.1 kB) and `testimonials-marquee`
+  (three columns at their own speeds, one row on phones, each with the marquee's pause button; 1.6 kB), after
+  inspecting their references. `/examples/restaurant` opens on `hero-video`, `/examples/saas` on `hero-product` with
+  `process-steps` and `testimonials-marquee`. `press-logos` moved to RFC-0009's lot F list: no template with an "As
+  seen in" strip was found (about forty demos and a marketplace search, 2026-11-24). Differences from the RFC, after
+  looking: the hero's text sits on a panel rather than straight on a wash (a scheme cannot be forced on part of a page
+  without naming its village), and the testimonials quote cards rather than portrait photos. In passing,
+  `scripts/registry.mjs` now adds `rasengan-motion` to any block that imports `@/lib/motion`: `integrations-orbit` did
+  without declaring it, so installing it alone did not compile.
 
 ### Then
 

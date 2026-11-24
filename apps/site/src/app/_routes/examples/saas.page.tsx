@@ -3,11 +3,13 @@ import { Careers } from '@/components/blocks/careers';
 import { Changelog } from '@/components/blocks/changelog';
 import { CustomerStories } from '@/components/blocks/customer-stories';
 import { FooterColumns } from '@/components/blocks/footer-columns';
-import { HeroSplit } from '@/components/blocks/hero-split';
+import { HeroProduct } from '@/components/blocks/hero-product';
 import { IntegrationsGrid } from '@/components/blocks/integrations-grid';
 import { LogosGrid } from '@/components/blocks/logos-grid';
 import { NavbarSimple } from '@/components/blocks/navbar-simple';
+import { ProcessSteps } from '@/components/blocks/process-steps';
 import { SecurityBadges } from '@/components/blocks/security-badges';
+import { TestimonialsMarquee } from '@/components/blocks/testimonials-marquee';
 import { Waitlist } from '@/components/blocks/waitlist';
 import { navbar } from '@/content/saas';
 
@@ -15,18 +17,21 @@ import { navbar } from '@/content/saas';
 const join = () => new Promise<void>((resolve) => setTimeout(resolve, 800));
 
 /**
- * /examples/saas (RFC-0013, lot H): a SaaS site made only of marketing blocks, around the pages a product grows into:
- * customer stories, integrations, security, a changelog, open roles, and a waitlist for its next plan.
+ * /examples/saas (RFC-0013, lots H and I): a SaaS site made only of marketing blocks, around the pages a product grows
+ * into: its screen and how it works, customer stories, integrations, security, a changelog, what customers say, open
+ * roles, and a waitlist for its next plan.
  */
 const SaasExample: PageComponent = () => (
   <main id="main" className="[&_section]:scroll-mt-16">
     <NavbarSimple content={navbar} className="sticky top-0 z-40" />
-    <HeroSplit />
+    <HeroProduct />
     <LogosGrid />
+    <ProcessSteps />
     <CustomerStories className="bg-muted/50" />
     <IntegrationsGrid />
     <SecurityBadges className="bg-muted/50" />
     <Changelog />
+    <TestimonialsMarquee />
     <Careers className="bg-muted/50" />
     <Waitlist onSubmit={join} />
     <FooterColumns />

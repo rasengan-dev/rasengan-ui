@@ -1,0 +1,58 @@
+---
+metadata:
+  title: Steps, process · Rasengan UI
+  description: "Three to six numbered steps in cards: the number in the tone, a title and a line; they come in one after another."
+---
+
+<BlockShowcase name="process-steps" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add process-steps
+```
+
+It installs into `components/blocks/process-steps/`, with what it uses (Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/index.page.tsx"
+import { ProcessSteps } from "@/components/blocks/process-steps";
+import { home } from "@/content/home";
+
+export default function Page() {
+  return <ProcessSteps content={home.howitworks} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type ProcessStepsContent } from "@/components/blocks/process-steps";
+
+export const home = {
+  howitworks: { ...example } satisfies ProcessStepsContent,
+};
+```
+
+Three to six steps in order, each with a title and a line; they are numbered for you. They come in one after another at the village's stagger, and are simply there with reduced motion.
+
+The [SaaS example](/examples/saas) uses it.
+
+## Content
+
+<ContentSchema name="process-steps" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `ProcessStepsContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"how-it-works"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the section, for spacing |
+
+## Accessibility
+
+- The steps are an ordered list; the numbers are decoration over the list's own order.
+- Each title is a heading one level below the block's.

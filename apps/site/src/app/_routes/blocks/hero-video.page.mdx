@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Hero, video · Rasengan UI
+  description: "A muted video loop in a large rounded frame, with the headline and actions on a panel over its corner and a pause button."
+---
+
+<BlockShowcase name="hero-video" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add hero-video
+```
+
+It installs into `components/blocks/hero-video/`, with what it uses (Video, Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/index.page.tsx"
+import { HeroVideo } from "@/components/blocks/hero-video";
+import { home } from "@/content/home";
+
+export default function Page() {
+  return <HeroVideo content={home.hero} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type HeroVideoContent } from "@/components/blocks/hero-video";
+
+export const home = {
+  hero: { ...example } satisfies HeroVideoContent,
+};
+```
+
+A short muted loop (MP4, H.264, 10 to 20 seconds, under 4 MB), its poster and a label saying what it shows. It plays in a large rounded frame with its pause button, and waits on its poster with reduced motion. The headline and actions sit on a panel over the video's corner, on the page's background, so they read whatever the frame shows; on a phone the panel moves under the video. The example plays a video this site serves (`/media/…`, ADR-0021): use your own file.
+
+The [restaurant example](/examples/restaurant) uses it.
+
+## Content
+
+<ContentSchema name="hero-video" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `HeroVideoContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"hero"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `1` by default |
+| `className` | on the section, for spacing |
+
+## Accessibility
+
+- The video is named by `video.label`; it is muted and has a pause button (WCAG 2.2.2).
+- With reduced motion it does not start: the poster stays, and the button plays it.
+- The text is on an opaque panel, never straight on the video.

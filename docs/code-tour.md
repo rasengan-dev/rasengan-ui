@@ -10,9 +10,9 @@
 rasengan-ui-app/
 ├── registry/
 │   ├── categories.ts        the component categories, in the site's order
-│   ├── components/<name>/   the components (70): source, styles, demos, meta
+│   ├── components/<name>/   the components (71): source, styles, demos, meta
 │   ├── block-categories.ts  the block families and categories, in the site's order (a block may name both families)
-│   ├── blocks/<name>/       the blocks (57): component, schema, example, meta, demo
+│   ├── blocks/<name>/       the blocks (61): component, schema, example, meta, demo
 │   └── placeholders/        open images the block examples show (rasengan-placeholders), credited in CREDITS.md
 ├── packages/
 │   ├── core/                cn(), engine variants, VillageScope, Field context

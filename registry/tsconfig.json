@@ -74,6 +74,9 @@
 			"@/components/ui/date-picker": [
 				"./components/date-picker/date-picker.base.tsx"
 			],
+			"@/components/ui/device-frame": [
+				"./components/device-frame/device-frame.base.tsx"
+			],
 			"@/components/ui/dialog": [
 				"./components/dialog/dialog.base.tsx"
 			],
@@ -302,8 +305,14 @@
 			"@/components/blocks/hero-photo": [
 				"./blocks/hero-photo/hero-photo.base.tsx"
 			],
+			"@/components/blocks/hero-product": [
+				"./blocks/hero-product/hero-product.base.tsx"
+			],
 			"@/components/blocks/hero-split": [
 				"./blocks/hero-split/hero-split.base.tsx"
+			],
+			"@/components/blocks/hero-video": [
+				"./blocks/hero-video/hero-video.base.tsx"
 			],
 			"@/components/blocks/hero-wordmark": [
 				"./blocks/hero-wordmark/hero-wordmark.base.tsx"
@@ -356,6 +365,9 @@
 			"@/components/blocks/pricing-plans": [
 				"./blocks/pricing-plans/pricing-plans.base.tsx"
 			],
+			"@/components/blocks/process-steps": [
+				"./blocks/process-steps/process-steps.base.tsx"
+			],
 			"@/components/blocks/projects-grid": [
 				"./blocks/projects-grid/projects-grid.base.tsx"
 			],
@@ -391,6 +403,9 @@
 			],
 			"@/components/blocks/testimonials-carousel": [
 				"./blocks/testimonials-carousel/testimonials-carousel.base.tsx"
+			],
+			"@/components/blocks/testimonials-marquee": [
+				"./blocks/testimonials-marquee/testimonials-marquee.base.tsx"
 			],
 			"@/components/blocks/testimonials-wall": [
 				"./blocks/testimonials-wall/testimonials-wall.base.tsx"

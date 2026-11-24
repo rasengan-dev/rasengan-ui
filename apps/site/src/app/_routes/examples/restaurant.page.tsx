@@ -4,7 +4,7 @@ import { BookingForm } from '@/components/blocks/booking-form';
 import { ContactLinks } from '@/components/blocks/contact-links';
 import { FooterLocal } from '@/components/blocks/footer-local';
 import { GalleryGrid } from '@/components/blocks/gallery-grid';
-import { HeroPhoto } from '@/components/blocks/hero-photo';
+import { HeroVideo } from '@/components/blocks/hero-video';
 import { HoursWeek } from '@/components/blocks/hours-week';
 import { LocationMap } from '@/components/blocks/location-map';
 import { MenuCards } from '@/components/blocks/menu-cards';
@@ -21,7 +21,7 @@ import { navbar } from '@/content/restaurant';
 const RestaurantExample: PageComponent = () => (
   <main id="main" className="[&_section]:scroll-mt-16">
     <NavbarSimple content={navbar} className="sticky top-0 z-40" />
-    <HeroPhoto />
+    <HeroVideo />
     <MenuCards />
     <MenuCategories className="bg-muted/50" />
     <GalleryGrid />

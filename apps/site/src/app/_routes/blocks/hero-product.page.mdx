@@ -1,0 +1,58 @@
+---
+metadata:
+  title: Hero, product · Rasengan UI
+  description: "A centred headline and actions over the product's screen in a browser frame, on a soft glow of the primary colour."
+---
+
+<BlockShowcase name="hero-product" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add hero-product
+```
+
+It installs into `components/blocks/hero-product/`, with what it uses (Device Frame, Badge, Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/index.page.tsx"
+import { HeroProduct } from "@/components/blocks/hero-product";
+import { home } from "@/content/home";
+
+export default function Page() {
+  return <HeroProduct content={home.hero} />;
+}
+```
+
+```ts title="content/home.ts"
+import { example, type HeroProductContent } from "@/components/blocks/hero-product";
+
+export const home = {
+  hero: { ...example } satisfies HeroProductContent,
+};
+```
+
+A headline, its actions and a note, centred over the product's screen in a browser frame (Device Frame), with the address you give in `url`. A screenshot at 16:10 reads best; it loads first.
+
+The [SaaS example](/examples/saas) uses it.
+
+## Content
+
+<ContentSchema name="hero-product" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `HeroProductContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"hero"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `1` by default |
+| `className` | on the section, for spacing |
+
+## Accessibility
+
+- The screenshot keeps its `alt`: say what the screen shows.
+- The glow and the frame's chrome are decoration.
