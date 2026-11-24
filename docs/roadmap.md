@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-24 (RFC-0012 lot B).
+> Last updated: 2026-11-24 (RFC-0013 accepted).
 
 ## Where things stand
 
@@ -136,6 +136,14 @@
   `gallery-grid` installs `lightbox` and keeps the edits, but between conflict markers: the block's markup moved one level
   deeper, inside the Lightbox, so nearly every line changed; its page says so. The video's play button is centred with
   `inset-0 m-auto`: centred with a translate, `pressable` overwrote it and the button jumped on press.
+
+- **Portfolio and SaaS blocks** ([RFC-0013](rfc/0013-portfolio-and-saas-blocks.md), accepted): seventeen blocks in three
+  lots, the first sector wave drawn from the [Framer templates survey](surveys/2026-11-23-framer-templates.md): a
+  `portfolio` family, shared field types for lists and their pages, `device-frame` in lot I, six new project covers. Its
+  seven questions were settled before acceptance (its "Decisions"). Every block starts by inspecting its Framer
+  references (the RFC's section 7) and writing an "Observed" note in the lot's pull request. `press-logos` has no true
+  reference yet: look again before lot I, or move it to lot F. Next: lot G0 (the family, categories, field types and
+  covers).
 
 ### Then
 
