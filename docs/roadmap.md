@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-23 (RFC-0010 accepted, ADR-0019, ADR-0020).
+> Last updated: 2026-11-24 (RFC-0011 accepted).
 
 ## Where things stand
 
@@ -90,6 +90,10 @@
   title) got conflict markers, as invariant 14 wants. Who keeps their own version of that line loses the highlight: the
   group is now `group/sticky-item`, no longer `group/step`; the block's page says so.
 
+- **Text and pointer motion** ([RFC-0011](rfc/0011-text-and-pointer-motion.md), accepted, no lot built yet): text-rotate, shiny-text,
+  Badge's live dot, spotlight, hover-image-list and image-trail; the second RFC drawn from the
+  [Framer templates survey](surveys/2026-11-23-framer-templates.md).
+
 ### Then
 
 - RFC-0006 step 5: the MCP tool `create_village`.
@@ -137,6 +141,12 @@ Numbered by origin, so an ADR can say which one it settles.
 - **0003-Q2**: should `add_components` ask for confirmation itself (MCP elicitation)?
 - **0003-Q3**: a hosted server on `ui.rasengan.dev/mcp`: read-only, or also returning an `add` command per project?
 - **0003-Q4**: publish component docs (anatomy, props, accessibility) in the registry for `get_component`, or link them?
+
+### Text and pointer motion (RFC-0011)
+
+- **0011-Q5 · `pointermove` cost**: `spotlight` and `hover-image-list` on every card of a grid. Lot 0 measures a grid
+  of twelve spotlight cards and a hover list of twelve rows with Chrome's CPU slowed six times; if it janks, one shared
+  pointer tracker in `rasengan-motion` serves them.
 
 ### Components (RFC-0004, RFC-0005)
 
