@@ -41,7 +41,7 @@ flowchart LR
 ```mermaid
 flowchart TB
   subgraph source[Sources]
-    comps["✅ registry/components<br/>53 components, 8 of them motion"]
+    comps["✅ registry/components<br/>64 components, 18 of them motion"]
     blocks["🚧 registry/blocks<br/>45 blocks: 26 marketing, 21 storefront (2 in both)"]
     blockslib["✅ packages/blocks<br/>rasengan-blocks: BlockProps, BlockMeta, field types"]
     core["✅ packages/core<br/>cn, ui-* variants, VillageScope, Field context"]
@@ -75,7 +75,7 @@ flowchart TB
 
 | Container | State | Role |
 |---|---|---|
-| `registry/components/<name>/` | ✅ 53 | One folder per component: `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts` (with its category, [ADR-0009](adr/0009-component-categories.md)), demos |
+| `registry/components/<name>/` | ✅ 64 | One folder per component: `<name>.base.tsx`, `<name>.styles.ts`, `meta.ts` (with its category, [ADR-0009](adr/0009-component-categories.md)), demos |
 | `registry/categories.ts` | ✅ | The seven categories, in the site's order: forms, dates, overlays, navigation, display, feedback, motion |
 | `registry/blocks/<name>/` | 🚧 45 | One folder per block ([RFC-0008](rfc/0008-blocks.md)): `<name>.base.tsx`, `schema.ts` (`export const schema`), `example.ts` (`export const example`), `meta.ts` (family, category, `useWhen`…; type imports only), demos. The ten marketing blocks of lot A, the nine storefront blocks of lot B, the six showcase blocks of lot C, and the ten of each of RFC-0009's lots D (storefront) and E (marketing); `hero-wordmark` and `contact-form` are in both families |
 | `registry/placeholders/` | ✅ | Open placeholder images the examples show (a real Senbon dashboard made from the components and three drawn product screens; Unsplash photos of six dishes, a kitchen and a dining room, [ADR-0015](adr/0015-placeholder-photos-of-food-and-places.md); a drawn map; six drawn logo marks with invented names, `logo-*.svg`, [RFC-0009](rfc/0009-blocks-second-wave.md); eleven Unsplash portraits, `person-*.svg` (WebP in an SVG: the registry carries text only), credited in `CREDITS.md`, [ADR-0014](adr/0014-placeholder-photos-from-unsplash.md)); the `rasengan-placeholders` item installs them in `public/placeholders/`, and a block whose example uses one depends on it. The site serves copies at `/placeholders/` |

@@ -3,14 +3,14 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-24 (RFC-0011 accepted, lot 0).
+> Last updated: 2026-11-24 (RFC-0011 lot B).
 
 ## Where things stand
 
 | Piece | State |
 |---|---|
-| Components | 61, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md), [0010](rfc/0010-scroll-motion.md)) |
-| Motion components | RFC-0007 complete: text-reveal, typewriter, scramble-text, number-roll, marquee, cursor, gallery-3d, page-transition; carousel (display); Button's `HoldButton` and `ButtonRollingText` ([ADR-0011](adr/0011-carousel-and-cursor-without-motion.md), [ADR-0012](adr/0012-gallery-and-page-transition-without-motion.md)). RFC-0010 complete: scroll-progress, image-reveal, text-scroll-fill, scroll-stack, horizontal-scroll on `--scroll-progress`, and sticky-scroll (display). RFC-0011 lot A: text-rotate, shiny-text, Badge's live dot ([ADR-0019](adr/0019-scroll-motion-on-css-scroll-timelines.md)). None loads Motion |
+| Components | 64, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md), [0010](rfc/0010-scroll-motion.md)) |
+| Motion components | RFC-0007 complete: text-reveal, typewriter, scramble-text, number-roll, marquee, cursor, gallery-3d, page-transition; carousel (display); Button's `HoldButton` and `ButtonRollingText` ([ADR-0011](adr/0011-carousel-and-cursor-without-motion.md), [ADR-0012](adr/0012-gallery-and-page-transition-without-motion.md)). RFC-0010 complete: scroll-progress, image-reveal, text-scroll-fill, scroll-stack, horizontal-scroll on `--scroll-progress`, and sticky-scroll (display). RFC-0011 complete: text-rotate, shiny-text, Badge's live dot, spotlight, hover-image-list, image-trail ([ADR-0019](adr/0019-scroll-motion-on-css-scroll-timelines.md)). None loads Motion |
 | Variants | `variant` × `tone` × `size` on most components ([plan 002](plans/002-component-variants.md)) |
 | Villages | Konoha, Kiri, Iwa, Kusa (the contract's lip, [ADR-0008](adr/0008-lip-in-the-token-contract.md)) |
 | Natures | Six, with Onmyōton; neutral tint |
@@ -103,7 +103,14 @@
   on view or hover, at most what fits in five seconds) and Badge's `indicator="live"`. Differences from the RFC: the
   sheen's band is mixed toward the foreground, not lighter, since a tone's colour for words is often at 4.5:1 exactly
   and any lighter band failed (4.1:1 measured); the live dot's ring runs from intensity 1, with no extra ring at 3.
-  Next: lot B.
+  **Lot B built, RFC-0011 complete**: `spotlight` (a wrapper; it reads the surface's corners and border width, the
+  border lit by a masked gradient from intensity 2, the light on the spring at 3; `at` holds it for screenshots),
+  `hover-image-list` (rows as links, `render` for a router's link; each row carries its picture, placed by the list's
+  custom properties, so pictures cross-fade; `active` holds a row; keyboard focus shows the picture beside the row) and
+  `image-trail` (a pool of `img` on the Web Animations API, from intensity 2). Weights, gzip beyond `cn()` with
+  `class-variance-authority` and `rasengan-motion`: 3.2, 3.8 (plus Base UI's `useRender`) and 2.8 kB, a little over the
+  RFC's 2 to 3 kB. Differences from the RFC: `hover-image-list`'s picture fades in with a CSS transition, not the Web
+  Animations API; its pictures stay out of the page until the list has mounted, since one styled late faded out on load.
 
 ### Then
 

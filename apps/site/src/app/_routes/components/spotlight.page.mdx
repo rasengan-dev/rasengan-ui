@@ -1,0 +1,95 @@
+---
+metadata:
+  title: Spotlight · Rasengan UI
+  description: "A soft glow of the tone that follows the mouse over a card or any surface, and lights its border near the mouse."
+toc: true
+---
+
+# Spotlight
+
+A soft glow of the tone that follows the mouse over a card or any surface, and lights its border near the mouse.
+
+<ComponentPreview name="spotlight" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add spotlight
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/spotlight.json
+```
+
+It brings `rasengan-motion` with it. Put its head script and provider in your app once, as the
+[motion setup](/motion#setup-title) shows.
+
+## Usage
+
+```tsx title="app/features.tsx"
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Spotlight } from "@/components/ui/spotlight";
+
+export function Feature() {
+  return (
+    <Spotlight>
+      <Card>
+        <CardHeader>
+          <CardTitle>Online tonight</CardTitle>
+        </CardHeader>
+      </Card>
+    </Spotlight>
+  );
+}
+```
+
+Spotlight wraps one surface and lays its light over it. It reads the surface's corners and border width, so the
+glow and the lit border fit any Card, pricing plan or bento cell. In a grid, the wrapper is the grid's item and the
+surface fills it.
+
+### Any surface, tones and sizes
+
+`tone` picks the light's colour (`primary` by default); `size` how wide the glow is.
+
+<ComponentPreview name="spotlight" demo="spotlight-tones" />
+
+### A still light
+
+`at` holds the light in one place (0 to 1 across and down the surface) and keeps it lit, for a still picture or a test.
+
+<ComponentPreview name="spotlight" demo="spotlight-still" />
+
+## Villages
+
+At intensity 1 (Iwa) the glow follows the mouse; from 2 the border lights up near it too; at 3 (Kusa) the light
+trails the mouse on the village's spring. It fades in and out over the village's base duration.
+
+<VillageGrid name="spotlight" demo="spotlight-still" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off`, `?motion=final` or a scope at `data-motion-intensity="0"`, the surface is shown as
+it is, with no light. On a touch screen too, and in forced colours.
+
+## Accessibility
+
+- The light is decoration: it never takes the pointer or focus and is hidden from screen readers.
+- The glow is a faint wash of the tone, so the text under it keeps its contrast.
+- With the keyboard or on a touch screen the surface works as it does without Spotlight.
+
+## Weight
+
+About 3.2 kB gzip beyond `cn()`, `rasengan-motion` included. Nothing from Motion: the light is a CSS gradient placed by
+two custom properties, written once per frame.
+
+## API reference
+
+`Spotlight` renders a `div` and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `tone` | `"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"` | `"primary"` |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` |
+| `at` | `{ x: number; y: number }` (0–1): holds the light there | follows the mouse |

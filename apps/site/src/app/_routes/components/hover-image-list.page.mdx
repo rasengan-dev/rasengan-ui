@@ -1,0 +1,100 @@
+---
+metadata:
+  title: Hover Image List · Rasengan UI
+  description: "A list of projects or services whose picture floats beside the mouse over the row it hovers, on the village's spring."
+toc: true
+---
+
+# Hover Image List
+
+A list of projects or services whose picture floats beside the mouse over the row it hovers, on the village's spring.
+
+<ComponentPreview name="hover-image-list" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add hover-image-list
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/hover-image-list.json
+```
+
+It brings `rasengan-motion` with it. Put its head script and provider in your app once, as the
+[motion setup](/motion#setup-title) shows.
+
+## Usage
+
+```tsx title="app/work.tsx"
+import { HoverImageList, HoverImageListItem } from "@/components/ui/hover-image-list";
+
+export function Work() {
+  return (
+    <HoverImageList>
+      <HoverImageListItem href="/work/akwa" image="/work/akwa.jpg">
+        Akwa Dining Room
+        <small>Interior · 2026</small>
+      </HoverImageListItem>
+    </HoverImageList>
+  );
+}
+```
+
+Each row is a link with `href`, a plain row without it, or the element you give in `render` (a router's link:
+`render={<Link to="/work/akwa" />}`). A `<small>` in the row is a quieter line: a year, a kind of work. While a row is
+current, the others step back to the muted colour.
+
+### A still picture
+
+`active` holds a row as current and shows its picture beside it, still, as keyboard focus does. `size` sets the
+picture's width.
+
+<ComponentPreview name="hover-image-list" demo="hover-image-list-still" />
+
+## Villages
+
+At intensity 1 (Iwa) the picture fades in beside the row; from 2 it follows the mouse on the village's spring: exact in
+Iwa, soft in Konoha, floaty in Kiri; at 3 (Kusa) it also tilts with the mouse's speed.
+
+<VillageGrid name="hover-image-list" demo="hover-image-list-still" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off`, `?motion=final` or a scope at `data-motion-intensity="0"`, it is a plain list of
+rows: no picture, no dimming. On a touch screen, rows are plain links.
+
+## Accessibility
+
+- The rows are a list of links; each row's own text says where it goes. The pictures are decoration: `alt=""`, hidden
+  from screen readers, and they never take the pointer.
+- Keyboard focus shows the focused row's picture beside it, still.
+- The dimmed rows use the muted text colour, which passes 4.5:1.
+
+## Weight
+
+About 3.8 kB gzip beyond `cn()` and Base UI's `useRender`, `rasengan-motion` included. Nothing from Motion: the
+picture moves on `stepSpring`, one write per frame, and fades with a CSS transition.
+
+## API reference
+
+### HoverImageList
+
+Renders a `ul` and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `size` | `"sm" \| "default" \| "lg"`: the picture's width | `"default"` |
+| `active` | `number`: holds that row as current | follows the mouse |
+
+### HoverImageListItem
+
+Renders a `li` and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `image` | `string`: the row's picture | — |
+| `href` | `string`: makes the row a link | — |
+| `render` | `ReactElement`: replaces the row's element | `a`, or `div` without `href` |
