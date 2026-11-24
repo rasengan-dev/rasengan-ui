@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-24 (RFC-0011 lot B).
+> Last updated: 2026-11-24 (RFC-0012 accepted).
 
 ## Where things stand
 
@@ -111,6 +111,12 @@
   `class-variance-authority` and `rasengan-motion`: 3.2, 3.8 (plus Base UI's `useRender`) and 2.8 kB, a little over the
   RFC's 2 to 3 kB. Differences from the RFC: `hover-image-list`'s picture fades in with a CSS transition, not the Web
   Animations API; its pictures stay out of the page until the list has mounted, since one styled late faded out on load.
+
+- **Interface components** ([RFC-0012](rfc/0012-interface-components.md), accepted): number-field, rating, chip,
+  announcement-bar, lightbox and video, the survey's P1 interface components, which the next sector blocks are made of;
+  the third RFC drawn from the [Framer templates survey](surveys/2026-11-23-framer-templates.md). Its six questions were
+  settled before acceptance (its "Decisions"). `gallery-grid`, `reviews-rating` and `booking-form`'s party size move
+  onto the new components with the same schemas. Next: lot A (`number-field`, `rating`, `chip`, `announcement-bar`).
 
 ### Then
 
