@@ -21,12 +21,14 @@ export interface LightboxImage {
 }
 
 export interface LightboxLabels {
+	/** The row of photos, which the keyboard can focus and scroll. */
+	photos: string;
 	previous: string;
 	next: string;
 	close: string;
 }
 
-const defaultLabels: LightboxLabels = { previous: "Previous photo", next: "Next photo", close: "Close" };
+const defaultLabels: LightboxLabels = { photos: "Photos", previous: "Previous photo", next: "Next photo", close: "Close" };
 
 interface LightboxContextValue {
 	images: LightboxImage[];
@@ -201,6 +203,9 @@ export function LightboxContent({ className }: { className?: string }) {
 			<div
 				ref={attach}
 				data-slot="lightbox-viewport"
+				role="region"
+				aria-label={labels.photos}
+				tabIndex={0}
 				className={lightboxStyles.viewport}
 				onScroll={onScroll}
 				onScrollEnd={() => {

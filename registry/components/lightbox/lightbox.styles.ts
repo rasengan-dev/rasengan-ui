@@ -2,7 +2,8 @@
  * RFC-0012. The lightbox is a Dialog that fills the window, on the page's background, so its words keep their
  * contrast whatever the photo. The photos sit in a row with native scroll snapping (as the carousel, ADR-0011): a
  * swipe moves one photo on a touch screen, the buttons and arrow keys elsewhere; the row scrolls smoothly unless
- * motion is reduced. Only the current photo is shown to screen readers. The trigger keeps the look you give it.
+ * motion is reduced. The row takes focus (a named region), so the keyboard reaches it. Only the current photo is
+ * shown to screen readers. The trigger keeps the look you give it.
  */
 export const lightboxStyles = {
 	content:
@@ -10,7 +11,7 @@ export const lightboxStyles = {
 	bar: "flex items-center justify-between gap-3 px-4 py-3",
 	counter: "text-sm tabular-nums text-muted-foreground",
 	viewport:
-		"flex min-h-0 snap-x snap-mandatory overflow-x-auto overflow-y-hidden overscroll-x-contain scroll-smooth outline-none [scrollbar-width:none] motion-reduce:scroll-auto [[data-motion=off]_&]:scroll-auto [&::-webkit-scrollbar]:hidden",
+		"flex min-h-0 snap-x snap-mandatory overflow-x-auto overflow-y-hidden overscroll-x-contain scroll-smooth outline-none focus-visible:focus-ring focus-visible:[outline-offset:-4px] [scrollbar-width:none] motion-reduce:scroll-auto [[data-motion=off]_&]:scroll-auto [&::-webkit-scrollbar]:hidden",
 	slide: "m-0 flex w-full shrink-0 snap-center snap-always items-center justify-center px-4 @md:px-16",
 	image: "max-h-full max-w-full rounded-md object-contain",
 	footer: "flex items-center gap-3 px-4 py-3 @md:px-6",
