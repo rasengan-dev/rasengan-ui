@@ -155,6 +155,9 @@
 			"@/components/ui/spinner": [
 				"./components/spinner/spinner.base.tsx"
 			],
+			"@/components/ui/sticky-scroll": [
+				"./components/sticky-scroll/sticky-scroll.base.tsx"
+			],
 			"@/components/ui/switch": [
 				"./components/switch/switch.base.tsx"
 			],
