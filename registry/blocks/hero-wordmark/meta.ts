@@ -3,7 +3,7 @@ import type { BlockMeta } from "@/lib/blocks";
 export const meta = {
 	name: "hero-wordmark",
 	title: "Hero, wordmark",
-	family: ["marketing", "storefront"],
+	family: ["marketing", "storefront", "portfolio"],
 	category: "hero",
 	status: "beta",
 	added: "2026-11-09",

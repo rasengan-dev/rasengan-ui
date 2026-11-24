@@ -40,6 +40,21 @@ kitchen 1000 × 1200), compressed as WebP and wrapped in an SVG like the portrai
 | `kitchen.svg` | Lucas Law | [unsplash.com/photos/CPc-PzFL9H4](https://unsplash.com/photos/CPc-PzFL9H4) |
 | `restaurant-room.svg` | Brands&People | [unsplash.com/photos/iFyLBKmCrmQ](https://unsplash.com/photos/iFyLBKmCrmQ) |
 
+## Project covers
+
+From Unsplash, under the same Unsplash License (Rasengan UI, RFC-0013): the covers of the portfolio examples' projects,
+cropped to 1200 × 900, compressed as WebP and wrapped in an SVG like the others. Chosen without text, brands or
+recognisable people, so they stand in for any studio's work.
+
+| File | Photographer | Source |
+|---|---|---|
+| `project-architecture.svg` | Eduardo Gorghetto | [unsplash.com/photos/Y9uYq6aDHAU](https://unsplash.com/photos/Y9uYq6aDHAU) |
+| `project-interior.svg` | Clay Banks | [unsplash.com/photos/IE0m2PUI4Fg](https://unsplash.com/photos/IE0m2PUI4Fg) |
+| `project-product.svg` | Sofia Lasheva | [unsplash.com/photos/NBVJijwnnV4](https://unsplash.com/photos/NBVJijwnnV4) |
+| `project-ceramics.svg` | Jan-Willem van Braak | [unsplash.com/photos/5o9jDiU4de4](https://unsplash.com/photos/5o9jDiU4de4) |
+| `project-packaging.svg` | Kelli McClintock | [unsplash.com/photos/GopRYASfsOc](https://unsplash.com/photos/GopRYASfsOc) |
+| `project-landscape.svg` | Mojtaba Mohammadi | [unsplash.com/photos/azbFk_fV9_U](https://unsplash.com/photos/azbFk_fV9_U) |
+
 ## Everything else
 
 `product-dashboard` is a real screen made from Rasengan UI's components (the site's dashboard example with Senbon's

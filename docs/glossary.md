@@ -27,9 +27,10 @@ as JSON Schema.
 business, with the request written; the visitor sends it. The booking form, the dish cards and the order links work
 this way.
 
-**Family** and **block category** (`meta.family`, `meta.category`) — A block's audience, `marketing` or `storefront`,
-and its kind within it (`hero`, `pricing`, `menu`…), from `registry/block-categories.ts`. A block that serves both
-names both (`family: ["marketing", "storefront"]`, RFC-0009); `familiesOf(meta)` reads either form as a list.
+**Family** and **block category** (`meta.family`, `meta.category`) — A block's audience, `marketing`, `storefront` or
+`portfolio` (people and studios showing their work, RFC-0013), and its kind within it (`hero`, `pricing`, `menu`,
+`projects`…), from `registry/block-categories.ts`. A block that serves several names them all
+(`family: ["marketing", "storefront"]`, RFC-0009); `familiesOf(meta)` reads either form as a list.
 
 **Container query** — A block lays out by the width of its container (`@container`, `@md:`), not the window's
 ([ADR-0013](adr/0013-blocks-answer-their-container.md)).

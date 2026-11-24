@@ -39,14 +39,14 @@ export function messageUrl(channel: FormChannel, text: string, subject?: string)
 
 // ---- Meta ----------------------------------------------------------------------------------------------------------
 
-export type BlockFamily = "marketing" | "storefront";
+export type BlockFamily = "marketing" | "storefront" | "portfolio";
 
 /** What a block's meta.ts says: for people choosing in the docs, and for agents choosing in the catalog. */
 export interface BlockMeta {
 	/** kebab-case, `<category>-<layout>`, the registry item's name. */
 	name: string;
 	title: string;
-	/** Its family, or its families when it serves both (RFC-0009): `["marketing", "storefront"]`. */
+	/** Its family, or its families when it serves several (RFC-0009): `["marketing", "storefront"]`. */
 	family: BlockFamily | readonly [BlockFamily, ...BlockFamily[]];
 	/** One of registry/block-categories.ts, a category of each of its families. */
 	category: string;

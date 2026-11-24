@@ -168,6 +168,79 @@ export const formChannel = z.object({
 	to: z.string().min(1).max(120).describe("The business's number in international form, or its email address."),
 });
 
+// RFC-0013: portfolios and SaaS sites. A list and its detail block share one type, so the same object feeds both.
+
+const yearMonth = z.string().regex(/^\d{4}(-\d{2})?$/).describe("'YYYY' or 'YYYY-MM'.");
+
+export const project = z.object({
+	title: z.string().min(1).max(48),
+	client: z.string().max(48).optional(),
+	year: z.number().int().min(1900).max(2100),
+	kinds: z.array(z.string().min(1).max(24)).min(1).max(3).describe("What kind of work, used by filters: 'Branding', 'Web', 'Packaging'."),
+	summary: z.string().max(160).describe("One sentence: what was made, for whom."),
+	cover: image,
+	href: z.string().min(1).describe("The project's own page: '/work/akwa'. The project owns its routes."),
+	results: z.array(stat).max(4).optional().describe("What moved: 'Bookings +40%'."),
+});
+
+export const caseSection = z.object({
+	kind: z.enum(["context", "problem", "approach", "results"]),
+	title: z.string().min(1).max(48),
+	paragraphs: z.array(z.string().min(1).max(600)).min(1).max(6).describe("Plain text, one paragraph each: no Markdown."),
+	images: z.array(image).max(4).optional(),
+});
+
+export const release = z.object({
+	version: z.string().min(1).max(16).describe("'2.8.0' or 'v2.8'."),
+	date: z.string().date().describe("'YYYY-MM-DD'."),
+	title: z.string().min(1).max(60),
+	added: z.array(z.string().min(1).max(140)).max(8).optional(),
+	improved: z.array(z.string().min(1).max(140)).max(8).optional(),
+	fixed: z.array(z.string().min(1).max(140)).max(8).optional(),
+	href: z.string().optional().describe("The release's own page, if it has one."),
+});
+
+export const position = z.object({
+	title: z.string().min(1).max(60),
+	team: z.string().min(1).max(32).describe("Positions are grouped by team: 'Engineering', 'Design'."),
+	place: z.string().min(1).max(40).describe("A city, or 'Remote', or both: 'Douala or remote'."),
+	kind: z.enum(["full-time", "part-time", "contract", "internship", "freelance"]),
+	href: z.string().min(1).describe("The position's page or the application form."),
+});
+
+export const award = z.object({
+	year: z.number().int().min(1900).max(2100),
+	name: z.string().min(1).max(60).describe("The award and its result: 'Site of the Day', 'Shortlisted'."),
+	by: z.string().max(40).optional().describe("Who gave it: 'Awwwards'."),
+	project: z.string().max(48).optional(),
+	href: z.string().optional(),
+});
+
+export const timelineEntry = z.object({
+	from: yearMonth,
+	to: z.union([yearMonth, z.literal("now")]).optional().describe("Leave out for a single date; 'now' for the current one."),
+	title: z.string().min(1).max(60).describe("The role, or what happened."),
+	organisation: z.string().max(48).optional(),
+	description: z.string().max(240).optional(),
+});
+
+export const customerStory = z.object({
+	customer: logo,
+	quote: z.string().min(12).max(240).describe("In the customer's words."),
+	name: z.string().min(1).max(48),
+	role: z.string().max(60).optional(),
+	avatar: image.optional(),
+	stat: stat.describe("The one number that moved."),
+	href: z.string().optional().describe("The full story's page."),
+});
+
+export const trustPoint = z.object({
+	name: z.string().min(1).max(32).describe("'SOC 2 Type II', 'GDPR', '99.99% uptime'."),
+	description: z.string().max(140).optional(),
+	icon: z.enum(["shield", "lock", "globe", "server", "check"]).default("shield"),
+	status: z.enum(["certified", "in-progress"]).optional().describe("Say 'in-progress' until it is true: never claim a certification you do not have."),
+});
+
 export type Cta = z.infer<typeof cta>;
 export type Image = z.infer<typeof image>;
 export type Logo = z.infer<typeof logo>;
@@ -189,6 +262,14 @@ export type Offer = z.infer<typeof offer>;
 export type ComparisonRow = z.infer<typeof comparisonRow>;
 export type Integration = z.infer<typeof integration>;
 export type FormChannel = z.infer<typeof formChannel>;
+export type Project = z.infer<typeof project>;
+export type CaseSection = z.infer<typeof caseSection>;
+export type Release = z.infer<typeof release>;
+export type Position = z.infer<typeof position>;
+export type Award = z.infer<typeof award>;
+export type TimelineEntry = z.infer<typeof timelineEntry>;
+export type CustomerStory = z.infer<typeof customerStory>;
+export type TrustPoint = z.infer<typeof trustPoint>;
 
 // ---- Definition ----------------------------------------------------------------------------------------------------
 
