@@ -9,8 +9,8 @@
 
 | Piece | State |
 |---|---|
-| Components | 56, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md), [0010](rfc/0010-scroll-motion.md)) |
-| Motion components | RFC-0007 complete: text-reveal, typewriter, scramble-text, number-roll, marquee, cursor, gallery-3d, page-transition; carousel (display); Button's `HoldButton` and `ButtonRollingText` ([ADR-0011](adr/0011-carousel-and-cursor-without-motion.md), [ADR-0012](adr/0012-gallery-and-page-transition-without-motion.md)). RFC-0010 lot A: scroll-progress, image-reveal, text-scroll-fill, on `--scroll-progress` ([ADR-0019](adr/0019-scroll-motion-on-css-scroll-timelines.md)). None loads Motion |
+| Components | 58, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md), [0010](rfc/0010-scroll-motion.md)) |
+| Motion components | RFC-0007 complete: text-reveal, typewriter, scramble-text, number-roll, marquee, cursor, gallery-3d, page-transition; carousel (display); Button's `HoldButton` and `ButtonRollingText` ([ADR-0011](adr/0011-carousel-and-cursor-without-motion.md), [ADR-0012](adr/0012-gallery-and-page-transition-without-motion.md)). RFC-0010 lots A and B: scroll-progress, image-reveal, text-scroll-fill, scroll-stack, horizontal-scroll, on `--scroll-progress` ([ADR-0019](adr/0019-scroll-motion-on-css-scroll-timelines.md)). None loads Motion |
 | Variants | `variant` × `tone` × `size` on most components ([plan 002](plans/002-component-variants.md)) |
 | Villages | Konoha, Kiri, Iwa, Kusa (the contract's lip, [ADR-0008](adr/0008-lip-in-the-token-contract.md)) |
 | Natures | Six, with Onmyōton; neutral tint |
@@ -70,7 +70,14 @@
   `scroll-progress` (the page or an article through `useScrollProgress`'s new `subject`; keeps working under `off`),
   `image-reveal` (curtain, circle, diagonal; `scrub` at intensity 3), `text-scroll-fill` (muted to the tone's text, a
   rise of a quarter of the travel from intensity 2); 3.5 to 4 kB gzip each beyond `cn()`, `rasengan-motion` included;
-  both scroll paths give the same values in Chrome. Next: lot B.
+  both scroll paths give the same values in Chrome. **Lot B built**: `scroll-stack` (one screen of scroll per card,
+  pinned over the whole stack; `shrink` from intensity 2, `tilt` at 3) and `horizontal-scroll` (pinned on screens of
+  48rem and wider, a native snapping row below; the page scrolls to a focused card), 3.5 and 3.8 kB gzip. Both take a
+  `progress` that draws a moment in place without scrolling (`data-layout="still"`), which the village grid shows
+  (`<VillageGrid demo>`): sticky cannot stick inside its cells. Differences from the RFC's tables: no dimming of
+  covered cards (a `filter` breaks Kiri's glass and its contrast); the row pins by the screen's width, not the
+  section's (`@md`), since the docs column is narrower than 48rem; demo cards use `bg-background`, as `bg-card` is
+  see-through in Kiri and stacked cards would show the text behind. Next: lot C.
 
 ### Then
 
@@ -123,8 +130,9 @@ Numbered by origin, so an ADR can say which one it settles.
 ### Scroll motion (RFC-0010)
 
 - **0010-Q4 · Custom property cost**: does animating `--scroll-progress` jank a page with the six components on a
-  low-end phone? Lot 0 measured `/motion` (four driven elements) with Chrome's CPU slowed six times: 60 frames per
-  second, none over 33 ms, on both paths. To measure again with the six components after lot B; if it janks,
+  low-end phone? With Chrome's CPU slowed six times: `/motion` (lot 0, four driven elements), then the
+  `scroll-stack` and `horizontal-scroll` pages (lot B, each with its village grid of still forms): 60 frames per
+  second, none over 33 ms, on both paths. Left: a page with all six components once lot C is built; if it janks,
   components animate `transform` and `opacity` directly.
 - **0010-Q5 · `steps-scroll` rebuilt**: projects that edited it get a three-way merge on update; check the merge on an
   edited copy in lot C.

@@ -83,6 +83,9 @@
 			"@/components/ui/gallery-3d": [
 				"./components/gallery-3d/gallery-3d.base.tsx"
 			],
+			"@/components/ui/horizontal-scroll": [
+				"./components/horizontal-scroll/horizontal-scroll.base.tsx"
+			],
 			"@/components/ui/image-reveal": [
 				"./components/image-reveal/image-reveal.base.tsx"
 			],
@@ -130,6 +133,9 @@
 			],
 			"@/components/ui/scroll-progress": [
 				"./components/scroll-progress/scroll-progress.base.tsx"
+			],
+			"@/components/ui/scroll-stack": [
+				"./components/scroll-stack/scroll-stack.base.tsx"
 			],
 			"@/components/ui/select": [
 				"./components/select/select.base.tsx"

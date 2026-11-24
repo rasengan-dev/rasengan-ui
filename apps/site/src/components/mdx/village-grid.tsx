@@ -7,9 +7,13 @@ const schemes = ['light', 'dark'] as const;
 /**
  * `<VillageGrid name="button" />`: the demo once per village, light and dark, in the page's
  * nature and tint. Each cell is a VillageScope, so its popups open in that village too.
+ * `demo="scroll-stack-still"` shows another demo of the folder: for components whose main demo needs the page's own
+ * scroll (a cell clips, and sticky stops sticking in it).
  */
-export function VillageGrid({ name }: { name: string }) {
-  const { Demo } = getComponent(name);
+export function VillageGrid({ name, demo }: { name: string; demo?: string }) {
+  const component = getComponent(name);
+  const Demo = demo ? component.demos[demo]?.Demo : component.Demo;
+  if (demo && !Demo) throw new Error(`No demo "${demo}" in registry/components/${name} (expected ${demo}.demo.tsx)`);
   if (!Demo) return null;
   return (
     <div className="my-6 grid gap-3">
