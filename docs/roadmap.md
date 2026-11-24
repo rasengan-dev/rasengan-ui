@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-23 (RFC-0010 accepted, ADR-0019, ADR-0020).
+> Last updated: 2026-11-24 (RFC-0011 accepted, lot 0).
 
 ## Where things stand
 
@@ -89,6 +89,15 @@
   kept, `sticky-scroll`, `rasengan-motion` and the `motion` package came in, and the line both had changed (a step's
   title) got conflict markers, as invariant 14 wants. Who keeps their own version of that line loses the highlight: the
   group is now `group/sticky-item`, no longer `group/step`; the block's page says so.
+
+- **Text and pointer motion** ([RFC-0011](rfc/0011-text-and-pointer-motion.md), accepted, no lot built yet): text-rotate, shiny-text,
+  Badge's live dot, spotlight, hover-image-list and image-trail; the second RFC drawn from the
+  [Framer templates survey](surveys/2026-11-23-framer-templates.md). **Lot 0 done** (0011-Q5 settled, 2026-11-24): a temporary
+  page with twelve glowing cards and a twelve-row list whose picture follows the pointer on the village's spring, one
+  pointer move per frame for eight seconds, Chrome's CPU slowed six times. With a listener per card and with one shared
+  listener: 60 frames per second, none over 33 ms; about 30 to 60 ms of script and 60 ms of style per second. The
+  shared listener saves about 50 ms of script on the grid and nothing on the list: each component keeps its own
+  `pointermove` listener and writes once per frame, no shared tracker in `rasengan-motion`. Next: lot A.
 
 ### Then
 

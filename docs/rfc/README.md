@@ -34,6 +34,7 @@ Accepted ──► Superseded by RFC-NNNN or ADR-NNNN
 | [0008](0008-blocks.md) | Blocks: page sections built on the components | Accepted | 2026-11-07 |
 | [0009](0009-blocks-second-wave.md) | Blocks, second wave: the sections pages keep asking for | Accepted | 2026-11-08 |
 | [0010](0010-scroll-motion.md) | Scroll motion: effects that follow the page as it scrolls | Accepted | 2026-11-23 |
+| [0011](0011-text-and-pointer-motion.md) | Text and pointer motion: rotating words, a sheen, and effects that follow the mouse | Accepted | 2026-11-24 |
 
 RFCs 0001 to 0006 were written before this format and keep their own headers (`- Status:`, `- Author:`…). New RFCs use
 the template below.
