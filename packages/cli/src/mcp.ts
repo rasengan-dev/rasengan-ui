@@ -9,6 +9,9 @@ import { findRoot } from "./project.ts";
 import { type RegistryItem, choices, loadIndex, loadItem, resolveItems } from "./registry.ts";
 import { installedVillages } from "./setup.ts";
 
+/** "a", "a and b", "a, b and c": a block's families in a sentence. */
+const listOf = (words: string[]) => (words.length < 3 ? words.join(" and ") : `${words.slice(0, -1).join(", ")} and ${words.at(-1)}`);
+
 /* The MCP server (RFC-0003): the registry and the project, as tools an agent can call. */
 
 const instructions = `Rasengan UI is a React component system (Base UI, Tailwind CSS v4) installed as source into the project, themed by villages (whole design languages) and natures (accent hues), switchable at runtime.
@@ -74,12 +77,12 @@ export function createServer(options: Options) {
 		{
 			title: "List Rasengan UI components",
 			description:
-				"The items of the Rasengan UI registry with a one-line description: components by default, or blocks (page sections: hero, pricing, menu, opening hours…), villages, examples, or everything. Pass a query to keep the items whose name, title or description contain all its words; a category to keep one family of components (motion: components whose animation is the point) or of blocks (hero, pricing, menu…); a family for blocks (marketing or storefront).",
+				"The items of the Rasengan UI registry with a one-line description: components by default, or blocks (page sections: hero, pricing, menu, opening hours…), villages, examples, or everything. Pass a query to keep the items whose name, title or description contain all its words; a category to keep one family of components (motion: components whose animation is the point) or of blocks (hero, pricing, menu…); a family for blocks (marketing, storefront or portfolio).",
 			inputSchema: {
 				query: z.string().optional().describe('Words to look for, e.g. "menu" or "date input"'),
 				kind: z.enum(["component", "block", "village", "example", "all"]).default("component").describe("Which items to list"),
 				category: z.string().optional().describe('Only items of this category: for components forms, dates, overlays, navigation, display, feedback or motion; for blocks hero, pricing, menu, hours…'),
-				family: z.enum(["marketing", "storefront"]).optional().describe("Blocks only: marketing (landing pages) or storefront (local businesses)"),
+				family: z.enum(["marketing", "storefront", "portfolio"]).optional().describe("Blocks only: marketing (landing pages), storefront (local businesses) or portfolio (people and studios showing their work)"),
 			},
 			annotations: { readOnlyHint: true, openWorldHint: false },
 		},
@@ -99,7 +102,7 @@ export function createServer(options: Options) {
 			}
 			const lines = found.map((item) => {
 				const status = item.meta?.status ? `, ${item.meta.status}` : "";
-				const families = [item.meta?.family].flat().filter(Boolean).join(" and ");
+				const families = listOf([item.meta?.family].flat().filter(Boolean) as string[]);
 				const family = item.meta?.category ? `, ${families ? `${families} ` : ""}${item.meta.category}` : "";
 				// A block also says when to use it and what it weighs, to choose without reading it.
 				const block = item.type === "registry:block" ? ` Use when: ${item.meta?.useWhen ?? ""} (${item.meta?.weightKb ?? "?"} kB)` : "";
@@ -136,7 +139,7 @@ export function createServer(options: Options) {
 			if (index.homepage && item.type === "registry:ui") lines.push(`- Docs: ${index.homepage.replace(/\/$/, "")}/components/${item.name}`);
 			if (item.type === "registry:block") {
 				const meta = item.meta ?? {};
-				lines.push(`- Family and category: ${[meta.family].flat().join(" and ")}, ${meta.category}`, `- Use when: ${meta.useWhen ?? ""}`);
+				lines.push(`- Family and category: ${listOf([meta.family].flat() as string[])}, ${meta.category}`, `- Use when: ${meta.useWhen ?? ""}`);
 				if (meta.avoidWhen) lines.push(`- Avoid when: ${meta.avoidWhen}`);
 				if ((meta.pairsWith as string[] | undefined)?.length) lines.push(`- Reads well before: ${(meta.pairsWith as string[]).join(", ")}`);
 				lines.push(`- Weight: ${meta.weightKb ?? "?"} kB gzip of its own code`);

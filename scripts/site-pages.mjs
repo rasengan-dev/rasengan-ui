@@ -13,12 +13,16 @@ export const blocks = readdirSync(join(root, "registry/blocks")).sort();
 
 /** The components and blocks named on the command line (every one by default), and the --flags. */
 export function parseArgs(argv = process.argv.slice(2)) {
-	const asked = argv.filter((arg) => !arg.startsWith("--"));
+	// A path ("/examples/portfolio") names one page of the site; anything else a component or a block.
+	const paths = argv.filter((arg) => arg.startsWith("/"));
+	const asked = argv.filter((arg) => !arg.startsWith("--") && !arg.startsWith("/"));
 	const unknown = asked.filter((name) => !components.includes(name) && !blocks.includes(name));
 	if (unknown.length) throw new Error(`No component or block named ${unknown.join(", ")}`);
+	const named = asked.length > 0 || paths.length > 0;
 	return {
-		names: asked.length ? asked.filter((name) => components.includes(name)) : components,
-		blockNames: asked.length ? asked.filter((name) => blocks.includes(name)) : blocks,
+		names: named ? asked.filter((name) => components.includes(name)) : components,
+		blockNames: named ? asked.filter((name) => blocks.includes(name)) : blocks,
+		paths,
 		flags: new Set(argv.filter((arg) => arg.startsWith("--"))),
 	};
 }

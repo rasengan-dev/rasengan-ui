@@ -256,7 +256,7 @@ src/
 | `registry.mjs` | For each engine: inline `<name>.styles.ts` into the component, write `.registry/<engine>/registry.json`, run `shadcn build` into `apps/site/public/r/<engine>`, rewrite `$schema`, keep `@/components/ui/*` and `@/components/blocks/*` paths in sync in `registry/` and `apps/site` tsconfigs. Blocks: validate, parse the example, JSON Schema, weight budget, `blocks.json` |
 | `contrast.mjs` | Every token pair, every village × nature × scheme (`packages/villages/src/contrast.ts`) |
 | `site-pages.mjs` | What axe and screenshots share: the components and blocks, the block widths (360, 1440), `open()` that loads a page with `?motion=final` and waits for React hydration |
-| `axe.mjs` | axe-core WCAG 2.2 AA on every page (and `/motion` with motion off, `/blocks` and each block page), village and scheme, overlays open; `.axe/report.md` |
+| `axe.mjs` | axe-core WCAG 2.2 AA on every page (and `/motion` with motion off, `/blocks` and each block page), village and scheme, overlays open; `.axe/report.md`. Names a component or a block to audit only its page, or a path (`/examples/portfolio`) for one page |
 | `screenshots.mjs` | Playwright on system Chrome, pixelmatch against `.screenshots/baseline`; `--accept` |
 | `sitemap.mjs` | `sitemap.xml` and `robots.txt` after the prerender; fails the build if the output is missing |
 

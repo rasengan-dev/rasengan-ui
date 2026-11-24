@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-24 (RFC-0013 accepted).
+> Last updated: 2026-11-24 (RFC-0013 lot G0).
 
 ## Where things stand
 
@@ -142,8 +142,17 @@
   `portfolio` family, shared field types for lists and their pages, `device-frame` in lot I, six new project covers. Its
   seven questions were settled before acceptance (its "Decisions"). Every block starts by inspecting its Framer
   references (the RFC's section 7) and writing an "Observed" note in the lot's pull request. `press-logos` has no true
-  reference yet: look again before lot I, or move it to lot F. Next: lot G0 (the family, categories, field types and
-  covers).
+  reference yet: look again before lot I, or move it to lot F. **Lot G0 built**: the `portfolio` family (in
+  `blocks.json`, the MCP `family` filter and the gallery), the categories `projects`, `case-study`, `awards` and
+  `experience` (the SaaS ones and `press` come with their first blocks, as RFC-0009's rule says), eight field types
+  (`project`, `caseSection`, `release`, `position`, `award`, `timelineEntry`, `customerStory`, `trustPoint`) with
+  their tests, six project covers (`project-*.svg`: architecture, interior, product, ceramics, packaging, landscape),
+  and `/examples/portfolio` as a skeleton (navbar, wordmark hero, contact form, wordmark footer) with its `projects`
+  array in `src/content/portfolio.ts`; it joins the example switcher, the search and the sidebar in lot G.
+  `navbar-simple`, `hero-wordmark`, `contact-form` and `footer-wordmark` are in the portfolio family too. Differences
+  from the RFC: `award` has a `by` (who gave it) and `trustPoint` a `status` (certified or in progress); a poster and a
+  packaging photo with real brands on them were dropped for a ceramics still life and a blank box. `pnpm axe` takes a
+  page path (`pnpm axe /examples/portfolio`). Next: lot G (the six portfolio blocks).
 
 ### Then
 

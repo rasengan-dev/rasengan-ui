@@ -18,15 +18,16 @@ import { blockWidths, closeOverlay, combos as allCombos, dress, isOverlay, launc
 const axeSource = readFileSync(createRequire(import.meta.url).resolve("axe-core/axe.min.js"), "utf8");
 const tags = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 
-const { names, blockNames } = parseArgs();
+const { names, blockNames, paths } = parseArgs();
 /* Named components: only their pages. Otherwise the home page and the index too. */
 const named = process.argv.slice(2).some((arg) => !arg.startsWith("--"));
 // /motion twice: animating, and with motion off (what reduced-motion users get).
 const pages = [
 	...(named ? [] : ["/", "/components", "/motion", "/motion?motion=off"]),
 	...names.map((name) => `/components/${name}`),
-	...(named ? [] : ["/blocks", "/examples/landing", "/examples/restaurant", "/examples/salon"]),
+	...(named ? [] : ["/blocks", "/examples/landing", "/examples/restaurant", "/examples/salon", "/examples/portfolio"]),
 	...blockNames.map((name) => `/blocks/${name}`),
+	...paths,
 ];
 const combos = allCombos({ onmyoton: false });
 
