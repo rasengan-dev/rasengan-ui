@@ -12,6 +12,6 @@ export const meta = {
 	avoidWhen: "Steps without a visual each: a plain numbered list in features-grid reads faster.",
 	layout: { columns: "split" },
 	content: { images: 3, minWords: 40, maxWords: 200 },
-	components: [],
+	components: ["sticky-scroll"],
 	pairsWith: ["features-grid", "pricing-plans"],
 } as const satisfies BlockMeta;

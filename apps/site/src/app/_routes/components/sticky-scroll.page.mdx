@@ -1,0 +1,113 @@
+---
+metadata:
+  title: Sticky Scroll · Rasengan UI
+  description: "Items down one column and a stage beside them that stays in view, showing the media of the item in the middle of the screen."
+toc: true
+---
+
+# Sticky Scroll
+
+Items down one column and a stage beside them that stays in view, showing the media of the item in the middle of the
+screen.
+
+<ComponentPreview name="sticky-scroll" />
+
+This column is narrower than `@3xl`, so the preview shows the list. The
+[steps-scroll](/blocks/steps-scroll) block is built on Sticky Scroll and is shown full width: its stage stays in view.
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add sticky-scroll
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/sticky-scroll.json
+```
+
+It brings `rasengan-motion` with it. Put its head script and provider in your app once, as the
+[motion setup](/motion#setup-title) shows: `<MotionScript />` in `<head>`, `<MotionProvider>` around the app.
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import {
+  StickyScroll,
+  StickyScrollItem,
+  StickyScrollList,
+  StickyScrollMedia,
+  StickyScrollStage,
+} from "@/components/ui/sticky-scroll";
+
+export function Usage() {
+  return (
+    <StickyScroll>
+      <StickyScrollList>
+        {steps.map((step) => (
+          <StickyScrollItem key={step.title}>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+            <StickyScrollMedia>
+              <img src={step.image} alt={step.alt} />
+            </StickyScrollMedia>
+          </StickyScrollItem>
+        ))}
+      </StickyScrollList>
+      <StickyScrollStage>
+        {steps.map((step) => (
+          <img key={step.title} src={step.image} alt="" />
+        ))}
+      </StickyScrollStage>
+    </StickyScroll>
+  );
+}
+```
+
+Each item carries its own media, with its `alt`, in `StickyScrollMedia`; the stage gets the same media in the same
+order, with an empty `alt`: it is hidden from assistive technology. From `@3xl`, the list and the stage sit side by
+side, each item takes most of a screen, and the item crossing the middle of the screen becomes current: it gets
+`data-current` and `aria-current="step"`, and its media takes the stage. Style the current item with the
+`group-data-current/sticky-item:` variant (the item is a `group/sticky-item`). Below `@3xl`, it is a list where each
+item shows its own media.
+
+`--stage-top` sets where the stage sticks; by default, its middle sits near the middle of the screen.
+`onCurrentChange` tells you which item is current.
+
+A sticky element stops sticking inside an ancestor with `overflow: hidden`. Use `overflow: clip` on the page's
+wrappers instead.
+
+## Villages
+
+Iwa's intensity is 1: the stage cuts from one picture to the next. Konoha and Kiri cross-fade at the village's slow
+duration; Kusa also slides the new picture up. The cells below are narrower than `@3xl`, so they show the list.
+
+<VillageGrid name="sticky-scroll" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off`, `?motion=final` or a scope at `data-motion-intensity="0"`, it is the list at every
+width: each item with its own media, nothing pinned. Without JavaScript, the first item's media stays on the stage.
+
+## Accessibility
+
+- The items are an ordered list; the current one has `aria-current="step"`.
+- Each item carries its own media for assistive technology; the stage is `aria-hidden`.
+- Highlighted and muted titles both pass 4.5:1: the muted foreground is never faded further.
+
+## Weight
+
+About 2.5 kB gzip beyond `cn()`, `rasengan-motion` included. Nothing from Motion: an `IntersectionObserver` picks the
+current item and CSS changes the stage.
+
+## API reference
+
+`StickyScroll` renders a `div` and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `onCurrentChange` | `(index: number) => void` | — |
+
+`StickyScrollList` renders an `ol`, `StickyScrollItem` an `li`, `StickyScrollMedia` and `StickyScrollStage` a
+`div`; all take their props and `className`. `StickyScrollStage` takes one child per item, in the same order.
