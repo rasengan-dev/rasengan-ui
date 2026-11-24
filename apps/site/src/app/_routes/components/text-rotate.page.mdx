@@ -1,0 +1,92 @@
+---
+metadata:
+  title: Text Rotate · Rasengan UI
+  description: "One word inside a sentence changes in turn, sliding, fading or rolling, while the sentence stays in place."
+toc: true
+---
+
+# Text Rotate
+
+One word inside a sentence changes in turn, sliding, fading or rolling, while the sentence stays in place.
+
+<ComponentPreview name="text-rotate" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add text-rotate
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/text-rotate.json
+```
+
+It brings `rasengan-motion` and Button with it. Put the motion head script and provider in your app once, as the
+[motion setup](/motion#setup-title) shows.
+
+## Usage
+
+```tsx title="app/hero.tsx"
+import { TextRotate } from "@/components/ui/text-rotate";
+
+export function Hero() {
+  return (
+    <TextRotate as="h1" words={["fast", "friendly", "yours"]}>
+      Websites that are
+    </TextRotate>
+  );
+}
+```
+
+`words` take turns after the sentence, or before it with `position="start"`. Each stays `interval` seconds (2.5 by
+default); the change itself takes the village's slow duration, and the space the words take eases to the new word's
+width. Style the words through `[data-slot=text-rotate-words]`, for instance in the nature's colour.
+
+### When it stops
+
+It shows every word `loops` times (once by default), then stops on the last one. When that takes five seconds or less,
+it needs nothing more. Longer, or with `loops={Infinity}`, it shows a small pause button after the text: moving
+content that lasts needs a way to stop it (WCAG 2.2.2). Hover and focus pause it too.
+
+<ComponentPreview name="text-rotate" demo="text-rotate-loop" />
+
+## Villages
+
+Iwa's intensity is 1: the words fade in place. Konoha and Kiri slide them by the village's travel; Kusa rolls them in
+like a slot machine, with its overshoot.
+
+<VillageGrid name="text-rotate" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off`, `?motion=final` or a scope at `data-motion-intensity="0"`, the first word stays.
+Without JavaScript too.
+
+## Accessibility
+
+- Screen readers read the sentence once, with every word, joined in the page's language: "Websites that are fast,
+  friendly or yours". Set `locale` to the page's language (`"en"` by default). The changing words are hidden from them;
+  nothing is announced at each change.
+- The pause button comes after the text, outside the heading, so it is not part of the heading's name.
+
+## Weight
+
+About 3.7 kB gzip beyond `cn()`, `rasengan-motion` and Button included. Nothing from Motion: the words change with the
+browser's Web Animations API.
+
+## API reference
+
+`TextRotate` renders `as` (a `span` by default) and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `words` | `string[]` | — |
+| `children` | `string`: the rest of the sentence | — |
+| `as` | `"h1" \| "h2" \| "h3" \| "h4" \| "p" \| "span" \| "div"` | `"span"` |
+| `position` | `"start" \| "end"` | `"end"` |
+| `interval` | `number` (seconds) | `2.5` |
+| `loops` | `number` | `1` |
+| `locale` | `string` (BCP 47) | `"en"` |
+| `index` | `number`: fixes the word shown | changes in turn |

@@ -51,6 +51,18 @@ for `tone="destructive"`). `tone` is the colour: `primary` by default, or `neutr
 
 <ComponentPreview name="badge" demo="badge-sizes" />
 
+### Live
+
+`indicator="live"` puts a dot before the label that pulses: for "Live", "Open now", "Available for work". The dot takes
+the badge's text colour; its ring grows and fades every four times the village's slow duration. With reduced motion, at
+intensity 0 or without JavaScript, the dot is there, still.
+
+<ComponentPreview name="badge" demo="badge-live" />
+
+```tsx
+<Badge indicator="live" variant="soft" tone="success">Available for work</Badge>
+```
+
 ### As a link
 
 ```tsx
@@ -65,6 +77,7 @@ Its radius is `--badge-radius`: soft in Konoha, a pill in Kiri, square in Iwa, w
 
 ## Accessibility
 
+- The live dot is hidden from screen readers: the label says what is live.
 - A `<span>`: its text is read in place. A badge that only shows a count needs the thing counted in the text around it, or an `aria-label`.
 
 ## API reference
@@ -76,5 +89,6 @@ The props of `<span>`, plus `render` (any element, through Base UI's `useRender`
 | `variant` | `"default" \| "secondary" \| "outline" \| "soft" \| "destructive"` | `"default"` |
 | `tone` | `"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"` | `"primary"` |
 | `size` | `"sm" \| "default" \| "lg"` | `"default"` |
+| `indicator` | `"live"` | — |
 
 `badgeVariants({ variant, tone, size })` returns the same classes.

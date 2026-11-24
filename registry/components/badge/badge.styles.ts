@@ -35,3 +35,15 @@ export const badgeVariants = cva(
 );
 
 export type BadgeVariantProps = VariantProps<typeof badgeVariants>;
+
+/*
+ * The live dot (RFC-0011): a dot in the badge's text colour, and a ring of the same colour that grows and fades from it,
+ * every four times the village's slow duration. The ring runs only once motion is ready, and its wrapper takes the
+ * village's intensity as opacity: none at 0, so the dot stays, still. Hidden from screen readers: the label says it.
+ */
+export const badgeIndicatorStyles = {
+	root: "relative inline-flex size-1.5 shrink-0",
+	ring: "absolute inset-0 [opacity:clamp(0,var(--motion-intensity,1),1)]",
+	ping: "absolute inset-0 rounded-pill bg-current opacity-75 [[data-motion=ready]_&]:animate-ping [[data-motion=ready]_&]:[animation-duration:calc(var(--motion-slow)*4)]",
+	dot: "relative inline-flex size-1.5 rounded-pill bg-current",
+};
