@@ -15,6 +15,9 @@
 			"@/components/ui/alert-dialog": [
 				"../../registry/components/alert-dialog/alert-dialog.base.tsx"
 			],
+			"@/components/ui/announcement-bar": [
+				"../../registry/components/announcement-bar/announcement-bar.base.tsx"
+			],
 			"@/components/ui/avatar": [
 				"../../registry/components/avatar/avatar.base.tsx"
 			],
@@ -41,6 +44,9 @@
 			],
 			"@/components/ui/checkbox": [
 				"../../registry/components/checkbox/checkbox.base.tsx"
+			],
+			"@/components/ui/chip": [
+				"../../registry/components/chip/chip.base.tsx"
 			],
 			"@/components/ui/collapsible": [
 				"../../registry/components/collapsible/collapsible.base.tsx"
@@ -102,6 +108,9 @@
 			"@/components/ui/navigation-menu": [
 				"../../registry/components/navigation-menu/navigation-menu.base.tsx"
 			],
+			"@/components/ui/number-field": [
+				"../../registry/components/number-field/number-field.base.tsx"
+			],
 			"@/components/ui/number-roll": [
 				"../../registry/components/number-roll/number-roll.base.tsx"
 			],
@@ -119,6 +128,9 @@
 			],
 			"@/components/ui/radio-group": [
 				"../../registry/components/radio-group/radio-group.base.tsx"
+			],
+			"@/components/ui/rating": [
+				"../../registry/components/rating/rating.base.tsx"
 			],
 			"@/components/ui/scramble-text": [
 				"../../registry/components/scramble-text/scramble-text.base.tsx"

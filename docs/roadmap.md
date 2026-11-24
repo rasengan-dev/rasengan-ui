@@ -3,13 +3,13 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-24 (RFC-0012 accepted).
+> Last updated: 2026-11-24 (RFC-0012 lot A).
 
 ## Where things stand
 
 | Piece | State |
 |---|---|
-| Components | 64, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md), [0010](rfc/0010-scroll-motion.md)) |
+| Components | 68, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md), [0010](rfc/0010-scroll-motion.md), [0012](rfc/0012-interface-components.md)) |
 | Motion components | RFC-0007 complete: text-reveal, typewriter, scramble-text, number-roll, marquee, cursor, gallery-3d, page-transition; carousel (display); Button's `HoldButton` and `ButtonRollingText` ([ADR-0011](adr/0011-carousel-and-cursor-without-motion.md), [ADR-0012](adr/0012-gallery-and-page-transition-without-motion.md)). RFC-0010 complete: scroll-progress, image-reveal, text-scroll-fill, scroll-stack, horizontal-scroll on `--scroll-progress`, and sticky-scroll (display). RFC-0011 complete: text-rotate, shiny-text, Badge's live dot, spotlight, hover-image-list, image-trail ([ADR-0019](adr/0019-scroll-motion-on-css-scroll-timelines.md)). None loads Motion |
 | Variants | `variant` × `tone` × `size` on most components ([plan 002](plans/002-component-variants.md)) |
 | Villages | Konoha, Kiri, Iwa, Kusa (the contract's lip, [ADR-0008](adr/0008-lip-in-the-token-contract.md)) |
@@ -116,7 +116,17 @@
   announcement-bar, lightbox and video, the survey's P1 interface components, which the next sector blocks are made of;
   the third RFC drawn from the [Framer templates survey](surveys/2026-11-23-framer-templates.md). Its six questions were
   settled before acceptance (its "Decisions"). `gallery-grid`, `reviews-rating` and `booking-form`'s party size move
-  onto the new components with the same schemas. Next: lot A (`number-field`, `rating`, `chip`, `announcement-bar`).
+  onto the new components with the same schemas. **Lot A built**: `number-field` (Base UI's, in Input Group's field; 0.8 kB
+  gzip beyond `cn()`, Base UI and Input Group), `rating` (`Rating` filled to the tenth, `RatingGroup` on radios; 1.6 kB),
+  `chip` (`ChipGroup` on Toggle Group, `ChipRemove`, link chips through `render`; 1.6 kB) and `announcement-bar` (soft or
+  solid, `dismissKey` in `localStorage` with `AnnouncementBarScript` for `<head>`, `scrolling` on Marquee; 1.8 kB beyond
+  Marquee). `booking-form`'s party size is a `number-field` and `reviews-rating`'s stars are `Rating`, same schemas;
+  `rasengan-ui update` over both blocks, each edited in two places, kept the edits outside the changed lines, brought in
+  `number-field` and `rating`, and left conflict markers on the two lines both sides had changed (invariant 14); the
+  blocks' pages say to keep the registry's side there. Differences from the RFC: the number field's buttons are named
+  with `aria-label` on each part (Base UI says "Decrease" and "Increase" by default), not a `labels` prop; chips are
+  `h-control-sm` (`sm`) and `h-control` (`default`), at least as wide as they are tall; `reviews-rating`'s stars are now
+  filled to the tenth, not the half. Next: lot B (`lightbox` and `gallery-grid` on it, `video`).
 
 ### Then
 

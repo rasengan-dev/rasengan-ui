@@ -52,5 +52,7 @@ The summary and the reviews are content you copy in: nothing is fetched. Quote r
 
 ## Accessibility
 
-- Every score is written out ("4.8 out of 5"); the stars are decoration.
+- Every score is written out ("4.8 out of 5"); the stars are decoration, drawn by [Rating](/components/rating) and filled to the tenth.
+- Since 2026-11-24 the stars are [Rating](/components/rating), no longer a `Stars` function in the block. If you edited
+  a line that drew them, `rasengan-ui update` leaves conflict markers there: keep the registry's side.
 - Reviews are `figure`s with a `blockquote` and a caption naming the author.

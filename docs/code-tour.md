@@ -10,7 +10,7 @@
 rasengan-ui-app/
 ├── registry/
 │   ├── categories.ts        the component categories, in the site's order
-│   ├── components/<name>/   the components (64): source, styles, demos, meta
+│   ├── components/<name>/   the components (68): source, styles, demos, meta
 │   ├── block-categories.ts  the block families and categories, in the site's order (a block may name both families)
 │   ├── blocks/<name>/       the blocks (45): component, schema, example, meta, demo
 │   └── placeholders/        open images the block examples show (rasengan-placeholders), credited in CREDITS.md

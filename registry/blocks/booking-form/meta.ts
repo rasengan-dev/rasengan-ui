@@ -12,6 +12,6 @@ export const meta = {
 	avoidWhen: "Live availability or payment at booking: embed the booking system instead.",
 	layout: { columns: "split" },
 	content: { images: 1, minWords: 20, maxWords: 120 },
-	components: ["button", "date-picker", "field", "input", "label", "radio-group", "select", "textarea", "time-picker"],
+	components: ["button", "date-picker", "field", "input", "label", "number-field", "radio-group", "select", "textarea", "time-picker"],
 	pairsWith: ["hours-week", "location-map"],
 } as const satisfies BlockMeta;

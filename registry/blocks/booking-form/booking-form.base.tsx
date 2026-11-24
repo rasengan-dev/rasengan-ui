@@ -7,6 +7,7 @@ import { DatePicker } from "@/components/ui/date-picker";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label, labelStyles } from "@/components/ui/label";
+import { NumberField, NumberFieldDecrement, NumberFieldGroup, NumberFieldIncrement, NumberFieldInput } from "@/components/ui/number-field";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
@@ -64,7 +65,7 @@ export function BookingForm({ content = example, id = "booking", className, head
 	const interval = content.interval ?? 30;
 	const [date, setDate] = useState<Date | null>(null);
 	const [time, setTime] = useState<string | null>(null);
-	const [party, setParty] = useState<string | null>(fields.party ? "2" : null);
+	const [party, setParty] = useState<number | null>(fields.party ? 2 : null);
 	const [service, setService] = useState<string | null>(null);
 	const [missing, setMissing] = useState<Set<string>>(new Set());
 	const [sent, setSent] = useState(false);
@@ -78,10 +79,6 @@ export function BookingForm({ content = example, id = "booking", className, head
 		const closed = jsDays.map((day, index) => (slotsFor(content.hours, day, interval).length === 0 ? index : -1)).filter((index) => index >= 0);
 		return [{ before: today }, { after: last }, { dayOfWeek: closed }];
 	}, [content.hours, content.daysAhead, interval]);
-	const partyItems = useMemo(
-		() => (fields.party ? Object.fromEntries(Array.from({ length: fields.party.max }, (_, i) => [String(i + 1), String(i + 1)])) : {}),
-		[fields.party],
-	);
 
 	function submit(event: FormEvent<HTMLFormElement>) {
 		const form = new FormData(event.currentTarget);
@@ -94,7 +91,14 @@ export function BookingForm({ content = example, id = "booking", className, head
 		if (empty.size > 0 || !date || !time) return event.preventDefault();
 		if (action) return;
 		event.preventDefault();
-		const values: BookingValues = { name, date: isoDay(date), time, party: party ?? undefined, service: service ?? undefined, note: note || undefined };
+		const values: BookingValues = {
+			name,
+			date: isoDay(date),
+			time,
+			party: party === null ? undefined : String(party),
+			service: service ?? undefined,
+			note: note || undefined,
+		};
 		if (onSubmit) return onSubmit(values);
 
 		const timeLabel = slots.find((slot) => slot.value === time)?.label ?? time;
@@ -190,18 +194,13 @@ export function BookingForm({ content = example, id = "booking", className, head
 						{fields.party && (
 							<Field>
 								<FieldLabel>{fields.party.label}</FieldLabel>
-								<Select name="party" items={partyItems} value={party} onValueChange={(next) => setParty(next as string | null)}>
-									<SelectTrigger className="w-full @md:w-40">
-										<SelectValue />
-									</SelectTrigger>
-									<SelectContent alignItemWithTrigger={false} className="max-h-72">
-										{Object.keys(partyItems).map((value) => (
-											<SelectItem key={value} value={value}>
-												{value}
-											</SelectItem>
-										))}
-									</SelectContent>
-								</Select>
+								<NumberField name="party" value={party} onValueChange={setParty} min={1} max={fields.party.max} className="w-full @md:w-40">
+									<NumberFieldGroup>
+										<NumberFieldDecrement />
+										<NumberFieldInput />
+										<NumberFieldIncrement />
+									</NumberFieldGroup>
+								</NumberField>
 							</Field>
 						)}
 						{fields.services && (
