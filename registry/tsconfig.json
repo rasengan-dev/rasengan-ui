@@ -86,8 +86,14 @@
 			"@/components/ui/horizontal-scroll": [
 				"./components/horizontal-scroll/horizontal-scroll.base.tsx"
 			],
+			"@/components/ui/hover-image-list": [
+				"./components/hover-image-list/hover-image-list.base.tsx"
+			],
 			"@/components/ui/image-reveal": [
 				"./components/image-reveal/image-reveal.base.tsx"
+			],
+			"@/components/ui/image-trail": [
+				"./components/image-trail/image-trail.base.tsx"
 			],
 			"@/components/ui/input": [
 				"./components/input/input.base.tsx"
@@ -157,6 +163,9 @@
 			],
 			"@/components/ui/spinner": [
 				"./components/spinner/spinner.base.tsx"
+			],
+			"@/components/ui/spotlight": [
+				"./components/spotlight/spotlight.base.tsx"
 			],
 			"@/components/ui/sticky-scroll": [
 				"./components/sticky-scroll/sticky-scroll.base.tsx"

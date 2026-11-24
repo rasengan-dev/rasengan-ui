@@ -1,0 +1,79 @@
+---
+metadata:
+  title: Image Trail · Rasengan UI
+  description: "Pictures that drop behind the mouse as it moves over an area, then fade and shrink away."
+toc: true
+---
+
+# Image Trail
+
+Pictures that drop behind the mouse as it moves over an area, then fade and shrink away.
+
+<ComponentPreview name="image-trail" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add image-trail
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/image-trail.json
+```
+
+It brings `rasengan-motion` with it. Put its head script and provider in your app once, as the
+[motion setup](/motion#setup-title) shows.
+
+## Usage
+
+```tsx title="app/hero.tsx"
+import { ImageTrail } from "@/components/ui/image-trail";
+
+const images = ["/trail/1.jpg", "/trail/2.jpg", "/trail/3.jpg"];
+
+export function Hero() {
+  return (
+    <ImageTrail images={images} className="h-96">
+      <h1>A table for tonight, by the water</h1>
+    </ImageTrail>
+  );
+}
+```
+
+The area shows its children; the pictures drop over them, in turn, one every `spacing` pixels of mouse travel (80 by
+default), at most `max` at a time (6). The area clips them. `size` sets their width.
+
+## Villages
+
+Each picture lives for the village's slow duration times four: quick in Iwa, slow in Kiri. Iwa's intensity is 1, so
+it drops nothing; at 3 (Kusa) the pictures land turned a little.
+
+<VillageGrid name="image-trail" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off`, `?motion=final`, at intensity 1 and below, or on a touch screen, the area shows its
+content alone.
+
+## Accessibility
+
+- The pictures are decoration: `alt=""`, hidden from screen readers, and they never take the pointer or focus.
+- Nothing moves unless the mouse does, and it stops when the mouse leaves.
+
+## Weight
+
+About 2.8 kB gzip beyond `cn()`, `rasengan-motion` included. Nothing from Motion: a pool of `img`, each animated by the
+Web Animations API.
+
+## API reference
+
+`ImageTrail` renders a `div` and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `images` | `string[]` | — |
+| `spacing` | `number`: pixels of travel between two pictures | `80` |
+| `max` | `number`: pictures on screen at once | `6` |
+| `size` | `"sm" \| "default" \| "lg"`: the pictures' width | `"default"` |
