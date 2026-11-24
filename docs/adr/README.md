@@ -41,6 +41,7 @@ No ADR for what one pull request can undo without consequences.
 | [0018](0018-intensity-knob-in-the-recipe.md) | The recipe sets the motion intensity apart from the motion knob | Accepted | 2026-11-20 |
 | [0019](0019-scroll-motion-on-css-scroll-timelines.md) | Scroll motion runs on CSS scroll timelines, with a fallback of our own; no smooth scrolling | Accepted | 2026-11-23 |
 | [0020](0020-scroll-feedback-keeps-working-under-reduced-motion.md) | Under reduced motion, scroll feedback keeps working; scroll-linked content is static | Accepted | 2026-11-23 |
+| [0021](0021-demo-video-served-by-the-site.md) | The demo video is a file the site serves, made from a placeholder photo | Accepted | 2026-11-24 |
 
 ## Template
 

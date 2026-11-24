@@ -102,6 +102,9 @@
 			"@/components/ui/label": [
 				"../../registry/components/label/label.base.tsx"
 			],
+			"@/components/ui/lightbox": [
+				"../../registry/components/lightbox/lightbox.base.tsx"
+			],
 			"@/components/ui/marquee": [
 				"../../registry/components/marquee/marquee.base.tsx"
 			],
@@ -209,6 +212,9 @@
 			],
 			"@/components/ui/typewriter": [
 				"../../registry/components/typewriter/typewriter.base.tsx"
+			],
+			"@/components/ui/video": [
+				"../../registry/components/video/video.base.tsx"
 			],
 			"@/components/blocks/about-story": [
 				"../../registry/blocks/about-story/about-story.base.tsx"
