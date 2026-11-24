@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Customer stories · Rasengan UI
+  description: "Customer cards: their logo, one number that moved and rolls in, a quote, the person, and a link to the full story."
+---
+
+<BlockShowcase name="customer-stories" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add customer-stories
+```
+
+It installs into `components/blocks/customer-stories/`, with what it uses (Number Roll) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/index.page.tsx"
+import { CustomerStories } from "@/components/blocks/customer-stories";
+import { product } from "@/content/product";
+
+export default function Page() {
+  return <CustomerStories content={product.customers} />;
+}
+```
+
+```ts title="content/product.ts"
+import { example, type CustomerStoriesContent } from "@/components/blocks/customer-stories";
+
+export const product = {
+  customers: { ...example } satisfies CustomerStoriesContent,
+};
+```
+
+Two to six customers who agreed to be quoted: their logo and name, one number that moved (it rolls into place), the quote, the person and a link to the full story. Numbers are written in `locale`.
+
+The [SaaS example](/examples/saas) uses it.
+
+## Content
+
+<ContentSchema name="customer-stories" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `CustomerStoriesContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"customers"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the section, for spacing |
+
+## Accessibility
+
+- Each quote is a `<blockquote>` in a `<figure>` with the person as its caption.
+- The number is read once, in full; with reduced motion it is simply there.
+- "Read the story" links name the customer.

@@ -1,0 +1,58 @@
+---
+metadata:
+  title: Security, badges · Rasengan UI
+  description: "Security and compliance points as tiles: an icon, the name, a line, and whether it is certified or in progress."
+---
+
+<BlockShowcase name="security-badges" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add security-badges
+```
+
+It installs into `components/blocks/security-badges/`, with what it uses (Badge, Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/index.page.tsx"
+import { SecurityBadges } from "@/components/blocks/security-badges";
+import { product } from "@/content/product";
+
+export default function Page() {
+  return <SecurityBadges content={product.security} />;
+}
+```
+
+```ts title="content/product.ts"
+import { example, type SecurityBadgesContent } from "@/components/blocks/security-badges";
+
+export const product = {
+  security: { ...example } satisfies SecurityBadgesContent,
+};
+```
+
+Two to eight points, each with an icon from a fixed set (shield, lock, globe, server, check), a name, a line and a status: `certified`, or `in-progress` while an audit is under way. There is no slot for a certification body's seal on purpose: say what is true today, and link to your security page for the evidence.
+
+The [SaaS example](/examples/saas) uses it.
+
+## Content
+
+<ContentSchema name="security-badges" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `SecurityBadgesContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"security"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the section, for spacing |
+
+## Accessibility
+
+- Icons are decoration; the name says what the point is.
+- The status is a word, not only a colour.

@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Integrations, grid · Rasengan UI
+  description: "Integration cards in a grid: logo, name, category and a line, filtered by category and by a search, each to its page."
+---
+
+<BlockShowcase name="integrations-grid" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add integrations-grid
+```
+
+It installs into `components/blocks/integrations-grid/`, with what it uses (Chip, Badge, Input) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/index.page.tsx"
+import { IntegrationsGrid } from "@/components/blocks/integrations-grid";
+import { product } from "@/content/product";
+
+export default function Page() {
+  return <IntegrationsGrid content={product.integrations} />;
+}
+```
+
+```ts title="content/product.ts"
+import { example, type IntegrationsGridContent } from "@/components/blocks/integrations-grid";
+
+export const product = {
+  integrations: { ...example } satisfies IntegrationsGridContent,
+};
+```
+
+Three to forty-eight integrations, each with a logo, a category, a line and its page; `isNew` adds a badge. Chips filter by category, with a count each, and the search filters by name, category and line as you type. Every card stays in the page, and an empty state says when nothing matches.
+
+The [SaaS example](/examples/saas) uses it.
+
+## Content
+
+<ContentSchema name="integrations-grid" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `IntegrationsGridContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"integrations"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the section, for spacing |
+
+## Accessibility
+
+- The categories are a toggle group and the search field has a label; the number shown is announced.
+- Logos are decoration next to the integration's name.
+- "Learn more" links name the integration.

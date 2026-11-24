@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-24 (RFC-0013 lot G).
+> Last updated: 2026-11-24 (RFC-0013 lot H).
 
 ## Where things stand
 
@@ -21,7 +21,7 @@
 | MCP server | `rasengan-ui mcp`, five tools ([RFC-0003](rfc/0003-mcp-server.md), steps 1 to 3) |
 | Site | Live at `rasengan-ui.hiraiship.app`, prerendered, with Tag Manager ([ADR-0005](adr/0005-prerendered-site-on-hiraiship.md)) |
 | Project docs | `docs/` in this format since 2026-11-07 ([ADR-0001](adr/0001-project-docs-like-jutsify.md)) |
-| Blocks | 51 (RFC-0008 lots 0, A, B and C; RFC-0009 lots D0, D and E; RFC-0013 lot G): 26 marketing (navbar-simple, hero-centered, hero-split, hero-wordmark, logos-marquee, logos-grid, features-grid, features-alternating, bento-features, steps-scroll, showcase-tabs, integrations-orbit, comparison-table, stats-numbers, testimonials-carousel, testimonials-wall, pricing-plans, pricing-comparison, faq-accordion, cta-banner, cta-app, newsletter-inline, team-grid, contact-form, footer-columns, footer-wordmark) and 21 storefront (hero-photo, hero-wordmark, menu-categories, menu-cards, menu-list, services-list, services-pricelist, booking-form, offer-deal, gallery-grid, gallery-social, hours-week, location-map, location-branches, order-banner, about-story, team-staff, reviews-rating, contact-links, contact-form, footer-local), and 10 portfolio (navbar-simple, hero-wordmark, projects-grid, projects-list, case-study, gallery-horizontal, awards-list, experience-timeline, contact-form, footer-wordmark), some in several families; the examples `/examples/landing`, `/examples/restaurant`, `/examples/salon` and `/examples/portfolio` (with a case study per project), linked through a page transition; the gallery at `/blocks`; `rasengan-blocks`, `rasengan-placeholders`, `blocks.json`, MCP `kind: "block"` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
+| Blocks | 57 (RFC-0008 lots 0, A, B and C; RFC-0009 lots D0, D and E; RFC-0013 lots G and H): 32 marketing (changelog, waitlist, customer-stories, security-badges, integrations-grid, careers, navbar-simple, hero-centered, hero-split, hero-wordmark, logos-marquee, logos-grid, features-grid, features-alternating, bento-features, steps-scroll, showcase-tabs, integrations-orbit, comparison-table, stats-numbers, testimonials-carousel, testimonials-wall, pricing-plans, pricing-comparison, faq-accordion, cta-banner, cta-app, newsletter-inline, team-grid, contact-form, footer-columns, footer-wordmark) and 21 storefront (hero-photo, hero-wordmark, menu-categories, menu-cards, menu-list, services-list, services-pricelist, booking-form, offer-deal, gallery-grid, gallery-social, hours-week, location-map, location-branches, order-banner, about-story, team-staff, reviews-rating, contact-links, contact-form, footer-local), and 10 portfolio (navbar-simple, hero-wordmark, projects-grid, projects-list, case-study, gallery-horizontal, awards-list, experience-timeline, contact-form, footer-wordmark), some in several families; the examples `/examples/landing`, `/examples/restaurant`, `/examples/salon`, `/examples/portfolio` (with a case study per project) and `/examples/saas`, linked through a page transition; the gallery at `/blocks`; `rasengan-blocks`, `rasengan-placeholders`, `blocks.json`, MCP `kind: "block"` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
 | `packages/motion` | `rasengan-motion` in the registry: motion modes, village motion tokens, primitives, `splitText` ([RFC-0007](rfc/0007-motion-components.md) lot 0) |
 | Categories | Every component has one; the site groups by them and has a Motion section ([ADR-0009](adr/0009-component-categories.md)) |
 
@@ -161,7 +161,18 @@
   other projects as a list, all from one `projects` array; it joins the example switcher, the search, the sidebar and
   the gallery's links. Differences from the RFC, after looking at the references: `experience-timeline` is ruled rows
   (TITARVL's table), not a vertical line; `projects-grid` has no `spotlight` (a zoom on the cover instead); and
-  `hover-image-list` gains `imageAlt`, so `projects-list` describes its covers. Next: lot H (the six SaaS blocks).
+  `hover-image-list` gains `imageAlt`, so `projects-list` describes its covers. **Lot H built**: `changelog`
+  (releases with a version and date rail, added, improved and fixed lists, a screenshot, a filter by kind; 2.2 kB),
+  `waitlist` (posts to the provider, or `onSubmit` with sending, joined and failed in a status line; 1.8 kB),
+  `customer-stories` (one rolling number per customer; 1.8 kB), `security-badges` (an icon from a fixed set and a
+  certified or in-progress status, never a seal; 1.3 kB), `integrations-grid` (category chips and a search, an empty
+  state; 2.1 kB) and `careers` (grouped by team, a filter, an empty state; 1.8 kB), after inspecting their references
+  (the "Observed" notes are in the lot's pull request). The categories `changelog`, `waitlist`, `customers`, `trust` and
+  `careers` came with them; `release` gained an `image`, `integration` a `description`, an `href` and `isNew`.
+  `/examples/saas` puts them together for Senbon. `pnpm axe` caught soft tones on muted surfaces under 4.5:1 (a badge
+  on a muted tile, a pressed chip in a muted section): Chip's pressed and solid washes are now opaque over the page's
+  background, and the security tiles sit on the page's background. The block test counts `status` as a code, not text.
+  Next: lot I (the five blocks for every kind of site, and `device-frame`).
 
 ### Then
 

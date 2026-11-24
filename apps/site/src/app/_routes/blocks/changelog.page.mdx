@@ -1,0 +1,59 @@
+---
+metadata:
+  title: Changelog · Rasengan UI
+  description: "Releases newest first: version and date in a rail, what was added, improved and fixed, a screenshot, a filter by kind."
+---
+
+<BlockShowcase name="changelog" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add changelog
+```
+
+It installs into `components/blocks/changelog/`, with what it uses (Chip, Badge, Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/index.page.tsx"
+import { Changelog } from "@/components/blocks/changelog";
+import { product } from "@/content/product";
+
+export default function Page() {
+  return <Changelog content={product.changelog} />;
+}
+```
+
+```ts title="content/product.ts"
+import { example, type ChangelogContent } from "@/components/blocks/changelog";
+
+export const product = {
+  changelog: { ...example } satisfies ChangelogContent,
+};
+```
+
+One to thirty releases, newest first: a version, an ISO date, a title, an optional screenshot, and what was added, improved and fixed. Chips filter by kind, with how many releases hold each; every release stays in the page. Each version is an anchor (`#v2-8-0`) you can link to, and a release with an `href` links to its own page. Dates are written in `locale`, the same on the server and in the browser.
+
+The [SaaS example](/examples/saas) uses it.
+
+## Content
+
+<ContentSchema name="changelog" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `ChangelogContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"changelog"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the section, for spacing |
+
+## Accessibility
+
+- The kinds are a toggle group; the number of releases shown is announced as you filter.
+- Each release is an article whose title is a heading one level below the block's; its date is a `<time>`.
+- "Read the release" links say which release they open.

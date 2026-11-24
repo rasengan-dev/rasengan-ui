@@ -1,0 +1,58 @@
+---
+metadata:
+  title: Careers · Rasengan UI
+  description: "Open roles grouped by team, with where and how, filtered by team, each linking to its page; says so when none are open."
+---
+
+<BlockShowcase name="careers" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add careers
+```
+
+It installs into `components/blocks/careers/`, with what it uses (Chip, Badge, Button) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/index.page.tsx"
+import { Careers } from "@/components/blocks/careers";
+import { product } from "@/content/product";
+
+export default function Page() {
+  return <Careers content={product.careers} />;
+}
+```
+
+```ts title="content/product.ts"
+import { example, type CareersContent } from "@/components/blocks/careers";
+
+export const product = {
+  careers: { ...example } satisfies CareersContent,
+};
+```
+
+The open roles, grouped by team in the order the teams first appear, each with where, the kind of position (written by `labels.kinds`) and its page. Chips filter by team. With no role open, pass an empty list: the block says so in `labels.none`, and the link below stays for people who want to write anyway.
+
+The [SaaS example](/examples/saas) uses it.
+
+## Content
+
+<ContentSchema name="careers" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `CareersContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"careers"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the section, for spacing |
+
+## Accessibility
+
+- Each team is a labelled group with a heading one level below the block's.
+- Each row is one link; its arrow is decoration, and "View the role" is read with it.

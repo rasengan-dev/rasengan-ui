@@ -239,8 +239,14 @@
 			"@/components/blocks/booking-form": [
 				"./blocks/booking-form/booking-form.base.tsx"
 			],
+			"@/components/blocks/careers": [
+				"./blocks/careers/careers.base.tsx"
+			],
 			"@/components/blocks/case-study": [
 				"./blocks/case-study/case-study.base.tsx"
+			],
+			"@/components/blocks/changelog": [
+				"./blocks/changelog/changelog.base.tsx"
 			],
 			"@/components/blocks/comparison-table": [
 				"./blocks/comparison-table/comparison-table.base.tsx"
@@ -256,6 +262,9 @@
 			],
 			"@/components/blocks/cta-banner": [
 				"./blocks/cta-banner/cta-banner.base.tsx"
+			],
+			"@/components/blocks/customer-stories": [
+				"./blocks/customer-stories/customer-stories.base.tsx"
 			],
 			"@/components/blocks/experience-timeline": [
 				"./blocks/experience-timeline/experience-timeline.base.tsx"
@@ -301,6 +310,9 @@
 			],
 			"@/components/blocks/hours-week": [
 				"./blocks/hours-week/hours-week.base.tsx"
+			],
+			"@/components/blocks/integrations-grid": [
+				"./blocks/integrations-grid/integrations-grid.base.tsx"
 			],
 			"@/components/blocks/integrations-orbit": [
 				"./blocks/integrations-orbit/integrations-orbit.base.tsx"
@@ -353,6 +365,9 @@
 			"@/components/blocks/reviews-rating": [
 				"./blocks/reviews-rating/reviews-rating.base.tsx"
 			],
+			"@/components/blocks/security-badges": [
+				"./blocks/security-badges/security-badges.base.tsx"
+			],
 			"@/components/blocks/services-list": [
 				"./blocks/services-list/services-list.base.tsx"
 			],
@@ -379,6 +394,9 @@
 			],
 			"@/components/blocks/testimonials-wall": [
 				"./blocks/testimonials-wall/testimonials-wall.base.tsx"
+			],
+			"@/components/blocks/waitlist": [
+				"./blocks/waitlist/waitlist.base.tsx"
 			],
 			"@/components/blocks/*": [
 				"./blocks/*"

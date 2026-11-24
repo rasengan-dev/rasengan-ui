@@ -25,7 +25,7 @@ const named = process.argv.slice(2).some((arg) => !arg.startsWith("--"));
 const pages = [
 	...(named ? [] : ["/", "/components", "/motion", "/motion?motion=off"]),
 	...names.map((name) => `/components/${name}`),
-	...(named ? [] : ["/blocks", "/examples/landing", "/examples/restaurant", "/examples/salon", "/examples/portfolio"]),
+	...(named ? [] : ["/blocks", "/examples/landing", "/examples/restaurant", "/examples/salon", "/examples/portfolio", "/examples/saas"]),
 	...blockNames.map((name) => `/blocks/${name}`),
 	...paths,
 ];
