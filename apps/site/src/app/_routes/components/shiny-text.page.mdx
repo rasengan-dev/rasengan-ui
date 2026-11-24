@@ -1,0 +1,86 @@
+---
+metadata:
+  title: Shiny Text · Rasengan UI
+  description: "A sheen that crosses a word or a label once or twice, then rests, in the tone's colour."
+toc: true
+---
+
+# Shiny Text
+
+A sheen that crosses a word or a label once or twice, then rests, in the tone's colour.
+
+<ComponentPreview name="shiny-text" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add shiny-text
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/shiny-text.json
+```
+
+It brings `rasengan-motion` with it. Put its head script and provider in your app once, as the
+[motion setup](/motion#setup-title) shows.
+
+## Usage
+
+```tsx title="app/hero.tsx"
+import { ShinyText } from "@/components/ui/shiny-text";
+
+export function Hero() {
+  return (
+    <h1>
+      Your site, <ShinyText tone="primary">online tonight</ShinyText>
+    </h1>
+  );
+}
+```
+
+The text keeps its place and its type; Shiny Text only colours it. By default it sweeps twice when it comes into view,
+then rests. `times` sets how many sweeps, never more than fit in five seconds. `tone` picks the colour for words of
+any tone; `neutral` is the text colour.
+
+### On hover
+
+`on="hover"` sweeps when the pointer or keyboard focus reaches it, or the link or button around it.
+
+<ComponentPreview name="shiny-text" demo="shiny-text-hover" />
+
+## Villages
+
+Each sweep takes four times the village's slow duration: quick in Iwa, slow and soft in Kiri. Iwa's intensity is 1, so
+it sweeps once.
+
+<VillageGrid name="shiny-text" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off`, `?motion=final` or a scope at `data-motion-intensity="0"`, the text is plain, in its
+colour. Without JavaScript too, and in forced colours.
+
+## Accessibility
+
+- At rest, and on both sides of the band, the text is in the tone's colour for words, which passes 4.5:1. The band is
+  that colour mixed half way toward the text colour, so it only gains contrast: a band lighter than the tone's colour
+  would fall under 4.5:1. On a dark page it reads as a light sheen, on a light page as a deeper one.
+- It never moves for more than five seconds, so it needs no pause control.
+
+## Weight
+
+About 2.6 kB gzip beyond `cn()`, `rasengan-motion` included. Nothing from Motion: the band moves with the browser's Web
+Animations API.
+
+## API reference
+
+`ShinyText` renders a `span` and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `tone` | `"neutral" \| "primary" \| "success" \| "warning" \| "info" \| "destructive"` | `"neutral"` |
+| `on` | `"view" \| "hover"` | `"view"` |
+| `times` | `number` | `2` |
+| `progress` | `number` (0–1): fixes the band's place | sweeps |

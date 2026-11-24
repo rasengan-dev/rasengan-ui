@@ -9,8 +9,8 @@
 
 | Piece | State |
 |---|---|
-| Components | 59, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md), [0010](rfc/0010-scroll-motion.md)) |
-| Motion components | RFC-0007 complete: text-reveal, typewriter, scramble-text, number-roll, marquee, cursor, gallery-3d, page-transition; carousel (display); Button's `HoldButton` and `ButtonRollingText` ([ADR-0011](adr/0011-carousel-and-cursor-without-motion.md), [ADR-0012](adr/0012-gallery-and-page-transition-without-motion.md)). RFC-0010 complete: scroll-progress, image-reveal, text-scroll-fill, scroll-stack, horizontal-scroll on `--scroll-progress`, and sticky-scroll (display) ([ADR-0019](adr/0019-scroll-motion-on-css-scroll-timelines.md)). None loads Motion |
+| Components | 61, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md), [0010](rfc/0010-scroll-motion.md)) |
+| Motion components | RFC-0007 complete: text-reveal, typewriter, scramble-text, number-roll, marquee, cursor, gallery-3d, page-transition; carousel (display); Button's `HoldButton` and `ButtonRollingText` ([ADR-0011](adr/0011-carousel-and-cursor-without-motion.md), [ADR-0012](adr/0012-gallery-and-page-transition-without-motion.md)). RFC-0010 complete: scroll-progress, image-reveal, text-scroll-fill, scroll-stack, horizontal-scroll on `--scroll-progress`, and sticky-scroll (display). RFC-0011 lot A: text-rotate, shiny-text, Badge's live dot ([ADR-0019](adr/0019-scroll-motion-on-css-scroll-timelines.md)). None loads Motion |
 | Variants | `variant` × `tone` × `size` on most components ([plan 002](plans/002-component-variants.md)) |
 | Villages | Konoha, Kiri, Iwa, Kusa (the contract's lip, [ADR-0008](adr/0008-lip-in-the-token-contract.md)) |
 | Natures | Six, with Onmyōton; neutral tint |
@@ -90,14 +90,20 @@
   title) got conflict markers, as invariant 14 wants. Who keeps their own version of that line loses the highlight: the
   group is now `group/sticky-item`, no longer `group/step`; the block's page says so.
 
-- **Text and pointer motion** ([RFC-0011](rfc/0011-text-and-pointer-motion.md), accepted, no lot built yet): text-rotate, shiny-text,
+- **Text and pointer motion** ([RFC-0011](rfc/0011-text-and-pointer-motion.md), accepted): text-rotate, shiny-text,
   Badge's live dot, spotlight, hover-image-list and image-trail; the second RFC drawn from the
   [Framer templates survey](surveys/2026-11-23-framer-templates.md). **Lot 0 done** (0011-Q5 settled, 2026-11-24): a temporary
   page with twelve glowing cards and a twelve-row list whose picture follows the pointer on the village's spring, one
   pointer move per frame for eight seconds, Chrome's CPU slowed six times. With a listener per card and with one shared
   listener: 60 frames per second, none over 33 ms; about 30 to 60 ms of script and 60 ms of style per second. The
   shared listener saves about 50 ms of script on the grid and nothing on the list: each component keeps its own
-  `pointermove` listener and writes once per frame, no shared tracker in `rasengan-motion`. Next: lot A.
+  `pointermove` listener and writes once per frame, no shared tracker in `rasengan-motion`. **Lot A built**:
+  `text-rotate` (3.7 kB gzip with Button; the words' space eases to each word; stops on the last word, or shows a pause
+  button when it runs past five seconds; screen readers get the sentence with `Intl.ListFormat`), `shiny-text` (2.6 kB;
+  on view or hover, at most what fits in five seconds) and Badge's `indicator="live"`. Differences from the RFC: the
+  sheen's band is mixed toward the foreground, not lighter, since a tone's colour for words is often at 4.5:1 exactly
+  and any lighter band failed (4.1:1 measured); the live dot's ring runs from intensity 1, with no extra ring at 3.
+  Next: lot B.
 
 ### Then
 

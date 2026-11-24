@@ -135,6 +135,9 @@
 			"@/components/ui/sheet": [
 				"../../registry/components/sheet/sheet.base.tsx"
 			],
+			"@/components/ui/shiny-text": [
+				"../../registry/components/shiny-text/shiny-text.base.tsx"
+			],
 			"@/components/ui/skeleton": [
 				"../../registry/components/skeleton/skeleton.base.tsx"
 			],
@@ -158,6 +161,9 @@
 			],
 			"@/components/ui/text-reveal": [
 				"../../registry/components/text-reveal/text-reveal.base.tsx"
+			],
+			"@/components/ui/text-rotate": [
+				"../../registry/components/text-rotate/text-rotate.base.tsx"
 			],
 			"@/components/ui/text-scroll-fill": [
 				"../../registry/components/text-scroll-fill/text-scroll-fill.base.tsx"
