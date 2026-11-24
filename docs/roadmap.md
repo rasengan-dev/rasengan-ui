@@ -9,8 +9,8 @@
 
 | Piece | State |
 |---|---|
-| Components | 58, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md), [0010](rfc/0010-scroll-motion.md)) |
-| Motion components | RFC-0007 complete: text-reveal, typewriter, scramble-text, number-roll, marquee, cursor, gallery-3d, page-transition; carousel (display); Button's `HoldButton` and `ButtonRollingText` ([ADR-0011](adr/0011-carousel-and-cursor-without-motion.md), [ADR-0012](adr/0012-gallery-and-page-transition-without-motion.md)). RFC-0010 lots A and B: scroll-progress, image-reveal, text-scroll-fill, scroll-stack, horizontal-scroll, on `--scroll-progress` ([ADR-0019](adr/0019-scroll-motion-on-css-scroll-timelines.md)). None loads Motion |
+| Components | 59, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md), [0010](rfc/0010-scroll-motion.md)) |
+| Motion components | RFC-0007 complete: text-reveal, typewriter, scramble-text, number-roll, marquee, cursor, gallery-3d, page-transition; carousel (display); Button's `HoldButton` and `ButtonRollingText` ([ADR-0011](adr/0011-carousel-and-cursor-without-motion.md), [ADR-0012](adr/0012-gallery-and-page-transition-without-motion.md)). RFC-0010 complete: scroll-progress, image-reveal, text-scroll-fill, scroll-stack, horizontal-scroll on `--scroll-progress`, and sticky-scroll (display) ([ADR-0019](adr/0019-scroll-motion-on-css-scroll-timelines.md)). None loads Motion |
 | Variants | `variant` × `tone` × `size` on most components ([plan 002](plans/002-component-variants.md)) |
 | Villages | Konoha, Kiri, Iwa, Kusa (the contract's lip, [ADR-0008](adr/0008-lip-in-the-token-contract.md)) |
 | Natures | Six, with Onmyōton; neutral tint |
@@ -77,7 +77,18 @@
   (`<VillageGrid demo>`): sticky cannot stick inside its cells. Differences from the RFC's tables: no dimming of
   covered cards (a `filter` breaks Kiri's glass and its contrast); the row pins by the screen's width, not the
   section's (`@md`), since the docs column is narrower than 48rem; demo cards use `bg-background`, as `bg-card` is
-  see-through in Kiri and stacked cards would show the text behind. Next: lot C.
+  see-through in Kiri and stacked cards would show the text behind. **Lot C built, RFC-0010 complete**:
+  `sticky-scroll` (display, 2.5 kB gzip: `StickyScrollList`, `StickyScrollItem`, `StickyScrollMedia`,
+  `StickyScrollStage`; a list part was added to the RFC's four, to number the items; the stage cuts at intensity 1,
+  fades at 2, slides at 3; a list at intensity 0, with reduced motion and `final`) and `steps-scroll` rebuilt on it
+  (same schema and look, 30 lines shorter; `components: ["sticky-scroll"]`). The site's block showcase clipped with
+  `overflow: hidden`, so `steps-scroll`'s stage never stuck on its own page: it now uses `overflow: clip`. The six
+  components on one page, Chrome's CPU slowed six times: 60 frames per second, none over 33 ms, on both paths (0010-Q4
+  settled: the custom property stays). 0010-Q5 settled on 2026-11-24: a project with lot B's `steps-scroll`, edited in
+  two places, then `rasengan-ui update steps-scroll` against lot C's registry. The edit outside the changed lines was
+  kept, `sticky-scroll`, `rasengan-motion` and the `motion` package came in, and the line both had changed (a step's
+  title) got conflict markers, as invariant 14 wants. Who keeps their own version of that line loses the highlight: the
+  group is now `group/sticky-item`, no longer `group/step`; the block's page says so.
 
 ### Then
 
@@ -126,16 +137,6 @@ Numbered by origin, so an ADR can say which one it settles.
 - **0003-Q2**: should `add_components` ask for confirmation itself (MCP elicitation)?
 - **0003-Q3**: a hosted server on `ui.rasengan.dev/mcp`: read-only, or also returning an `add` command per project?
 - **0003-Q4**: publish component docs (anatomy, props, accessibility) in the registry for `get_component`, or link them?
-
-### Scroll motion (RFC-0010)
-
-- **0010-Q4 · Custom property cost**: does animating `--scroll-progress` jank a page with the six components on a
-  low-end phone? With Chrome's CPU slowed six times: `/motion` (lot 0, four driven elements), then the
-  `scroll-stack` and `horizontal-scroll` pages (lot B, each with its village grid of still forms): 60 frames per
-  second, none over 33 ms, on both paths. Left: a page with all six components once lot C is built; if it janks,
-  components animate `transform` and `opacity` directly.
-- **0010-Q5 · `steps-scroll` rebuilt**: projects that edited it get a three-way merge on update; check the merge on an
-  edited copy in lot C.
 
 ### Components (RFC-0004, RFC-0005)
 

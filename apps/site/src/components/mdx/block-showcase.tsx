@@ -163,7 +163,7 @@ export function BlockShowcase({ name }: { name: string }) {
         </p>
       </header>
 
-      <div className="mt-6 overflow-hidden rounded-xl border-village bg-card">
+      <div className="mt-6 overflow-clip rounded-xl border-village bg-card">
         <div className="flex flex-wrap items-center gap-2 border-b-(length:--border-width) px-3 py-2">
           <nav aria-label="Breadcrumb" className="min-w-0 text-sm">
             <ol className="flex items-center gap-1.5 text-muted-foreground">
@@ -277,7 +277,7 @@ export function BlockShowcase({ name }: { name: string }) {
             <div
               data-width={width}
               style={{ width: widths[width].width }}
-              className="mx-auto max-w-full overflow-hidden transition-[width] duration-(--duration-normal) ease-(--ease-out) md:rounded-lg md:border-village"
+              className="mx-auto max-w-full overflow-clip transition-[width] duration-(--duration-normal) ease-(--ease-out) md:rounded-lg md:border-village"
             >
               <ScopedTheme value={theme.value}>{block.Demo ? <block.Demo /> : null}</ScopedTheme>
             </div>
