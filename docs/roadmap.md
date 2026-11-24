@@ -84,7 +84,11 @@
   (same schema and look, 30 lines shorter; `components: ["sticky-scroll"]`). The site's block showcase clipped with
   `overflow: hidden`, so `steps-scroll`'s stage never stuck on its own page: it now uses `overflow: clip`. The six
   components on one page, Chrome's CPU slowed six times: 60 frames per second, none over 33 ms, on both paths (0010-Q4
-  settled: the custom property stays).
+  settled: the custom property stays). 0010-Q5 settled on 2026-11-24: a project with lot B's `steps-scroll`, edited in
+  two places, then `rasengan-ui update steps-scroll` against lot C's registry. The edit outside the changed lines was
+  kept, `sticky-scroll`, `rasengan-motion` and the `motion` package came in, and the line both had changed (a step's
+  title) got conflict markers, as invariant 14 wants. Who keeps their own version of that line loses the highlight: the
+  group is now `group/sticky-item`, no longer `group/step`; the block's page says so.
 
 ### Then
 
@@ -133,11 +137,6 @@ Numbered by origin, so an ADR can say which one it settles.
 - **0003-Q2**: should `add_components` ask for confirmation itself (MCP elicitation)?
 - **0003-Q3**: a hosted server on `ui.rasengan.dev/mcp`: read-only, or also returning an `add` command per project?
 - **0003-Q4**: publish component docs (anatomy, props, accessibility) in the registry for `get_component`, or link them?
-
-### Scroll motion (RFC-0010)
-
-- **0010-Q5 · `steps-scroll` rebuilt**: projects that edited it get a three-way merge on update (lot C changed its
-  file and its `components`). Not tried yet on an edited copy: run `rasengan-ui update steps-scroll` on one.
 
 ### Components (RFC-0004, RFC-0005)
 

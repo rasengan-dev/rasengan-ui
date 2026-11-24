@@ -14,6 +14,11 @@ npx rasengan-ui add steps-scroll
 
 It installs into `components/blocks/steps-scroll/`, with `lib/blocks.ts`.
 
+Since 2026-11-24 the block is built on [Sticky Scroll](/components/sticky-scroll), which `add` and `update` bring
+with it. If you edited the block before then, `rasengan-ui update steps-scroll` merges the change into your copy. Where
+it leaves conflict markers and you keep your own lines, rename `group-data-current/step:` to
+`group-data-current/sticky-item:`: each step is now a `group/sticky-item`.
+
 ## Usage
 
 Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example with one field changed):
