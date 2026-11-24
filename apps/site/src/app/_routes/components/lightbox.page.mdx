@@ -76,6 +76,8 @@ follows the village.
 - The dialog's title is the current photo's `alt`, so a screen reader hears what is shown; only the current photo is
   in the accessibility tree.
 - The previous, next and close buttons are named by `labels` ("Previous photo", "Next photo", "Close" by default).
+- The row of photos is a region named "Photos" (`labels.photos`) that takes focus, so the keyboard can reach and scroll
+  it; the arrow keys then move a whole photo.
 - The text sits on the page's background, not over the photo, so it keeps its contrast.
 
 ## API reference
@@ -85,7 +87,7 @@ follows the village.
 | Prop | Type | Default |
 | --- | --- | --- |
 | `images` | `{ src, alt, width?, height?, caption? }[]` | — |
-| `labels` | `{ previous?, next?, close? }` | English |
+| `labels` | `{ photos?, previous?, next?, close? }` | English |
 | `open`, `defaultOpen`, `onOpenChange` | the dialog's state | closed |
 | `index`, `onIndexChange` | the photo shown | `0` |
 

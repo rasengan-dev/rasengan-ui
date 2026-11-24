@@ -100,6 +100,12 @@ const openers = {
 	"time-picker": (preview) => preview.locator('[data-slot="select-trigger"]').first().click(),
 	"navigation-menu": (preview) => preview.locator('[data-slot="navigation-menu-trigger"]').first().click(),
 	tooltip: (preview) => firstButton(preview).hover(),
+	lightbox: (preview) => preview.locator('[data-slot="lightbox-trigger"]').first().click(),
+	// The video's dialog is in its own demo; it plays on open, so it is paused at its start for a still picture.
+	video: async (_preview, page) => {
+		await page.locator('[data-slot="component-preview"][data-demo="video-dialog"] button').first().click();
+		await page.waitForSelector('[data-slot="video-dialog-content"] video');
+	},
 	toast: async (preview) => {
 		await preview.getByRole("button", { name: "Send invite" }).click();
 		await preview.getByRole("button", { name: "Fail a save" }).click();
@@ -125,6 +131,12 @@ export const extraDemos = (name) =>
 export async function openOverlay(page, name) {
 	await openers[name](preview(page), page);
 	if (name === "tooltip") await page.waitForSelector('[data-slot="tooltip-content"]');
+	if (name === "video")
+		await page.evaluate(() => {
+			const video = document.querySelector('[data-slot="video-dialog-content"] video');
+			video.pause();
+			video.currentTime = 0;
+		});
 	if (name === "toast")
 		await page.waitForFunction(() => {
 			const shown = [...document.querySelectorAll('[data-sonner-toast][data-mounted="true"]:not([data-removed="true"])')];
