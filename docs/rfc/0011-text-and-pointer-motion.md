@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | Accepted (2026-11-24). Questions 1 to 4 settled, see "Decisions"; question 5 is measured in lot 0; progress in the [roadmap](../roadmap.md) |
+| Status | Accepted (2026-11-24). Questions 1 to 4 settled, see "Decisions"; question 5 settled by lot 0's measurement (no shared pointer tracker); progress in the [roadmap](../roadmap.md) |
 | Date | 2026-11-24 |
 | Author | Dilane Kombou |
 | Builds on | RFC-0007 (motion components, accessibility, quality gate), ADR-0010 to ADR-0012 (motion without Motion where the browser is enough), ADR-0009 (categories), invariant 21 (a pause control for what moves on its own), the [Framer templates survey](../surveys/2026-11-23-framer-templates.md) |

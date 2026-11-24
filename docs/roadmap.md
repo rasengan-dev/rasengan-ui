@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-24 (RFC-0011 accepted).
+> Last updated: 2026-11-24 (RFC-0011 accepted, lot 0).
 
 ## Where things stand
 
@@ -92,7 +92,12 @@
 
 - **Text and pointer motion** ([RFC-0011](rfc/0011-text-and-pointer-motion.md), accepted, no lot built yet): text-rotate, shiny-text,
   Badge's live dot, spotlight, hover-image-list and image-trail; the second RFC drawn from the
-  [Framer templates survey](surveys/2026-11-23-framer-templates.md).
+  [Framer templates survey](surveys/2026-11-23-framer-templates.md). **Lot 0 done** (0011-Q5 settled, 2026-11-24): a temporary
+  page with twelve glowing cards and a twelve-row list whose picture follows the pointer on the village's spring, one
+  pointer move per frame for eight seconds, Chrome's CPU slowed six times. With a listener per card and with one shared
+  listener: 60 frames per second, none over 33 ms; about 30 to 60 ms of script and 60 ms of style per second. The
+  shared listener saves about 50 ms of script on the grid and nothing on the list: each component keeps its own
+  `pointermove` listener and writes once per frame, no shared tracker in `rasengan-motion`. Next: lot A.
 
 ### Then
 
@@ -141,12 +146,6 @@ Numbered by origin, so an ADR can say which one it settles.
 - **0003-Q2**: should `add_components` ask for confirmation itself (MCP elicitation)?
 - **0003-Q3**: a hosted server on `ui.rasengan.dev/mcp`: read-only, or also returning an `add` command per project?
 - **0003-Q4**: publish component docs (anatomy, props, accessibility) in the registry for `get_component`, or link them?
-
-### Text and pointer motion (RFC-0011)
-
-- **0011-Q5 · `pointermove` cost**: `spotlight` and `hover-image-list` on every card of a grid. Lot 0 measures a grid
-  of twelve spotlight cards and a hover list of twelve rows with Chrome's CPU slowed six times; if it janks, one shared
-  pointer tracker in `rasengan-motion` serves them.
 
 ### Components (RFC-0004, RFC-0005)
 
