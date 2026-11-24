@@ -1,0 +1,93 @@
+---
+metadata:
+  title: Image Reveal · Rasengan UI
+  description: "An image uncovered by a mask as it comes into view: a curtain from one side, a growing circle or a diagonal, with a slight zoom."
+toc: true
+---
+
+# Image Reveal
+
+An image uncovered by a mask as it comes into view: a curtain from one side, a growing circle or a diagonal, with a
+slight zoom.
+
+<ComponentPreview name="image-reveal" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add image-reveal
+```
+
+Or with the shadcn CLI, from the registry:
+
+```bash title="Terminal"
+npx shadcn@latest add https://ui.rasengan.dev/r/base/image-reveal.json
+```
+
+It brings `rasengan-motion` with it. Put its head script and provider in your app once, as the
+[motion setup](/motion#setup-title) shows: `<MotionScript />` in `<head>`, `<MotionProvider>` around the app.
+
+## Usage
+
+```tsx title="app/usage.tsx"
+import { ImageReveal } from "@/components/ui/image-reveal";
+
+export function Usage() {
+  return (
+    <ImageReveal effect="curtain" from="left" className="aspect-[4/3] rounded-lg">
+      <img src="/room.jpg" alt="The dining room" />
+    </ImageReveal>
+  );
+}
+```
+
+Give the root its size (an aspect ratio, a height): the image, picture or video inside fills it, so nothing shifts when
+the mask opens. Round its corners on the root.
+
+### Effects
+
+`curtain` opens from `from` (`left`, `right`, `top`, `bottom`); `circle` grows from the middle; `diagonal` opens from
+the top corner. The image settles from a slight zoom while the mask opens. Below, the three masks half open.
+
+<ComponentPreview name="image-reveal" demo="image-reveal-effects" />
+
+### Scrub
+
+With `scrub`, the mask follows the scroll instead of playing once: it opens as the image comes in and closes again if
+the reader scrolls back. It needs intensity 3 (Kusa, or `data-motion-intensity="3"`); below, the image plays once.
+
+## Villages
+
+Each village times it: Konoha opens smoothly, Kiri slower, Kusa can scrub. Iwa's intensity is 1, so the image fades in
+place, without a mask.
+
+<VillageGrid name="image-reveal" />
+
+## Reduced motion
+
+With reduced motion, `?motion=off`, `?motion=final` or a scope at `data-motion-intensity="0"`, the image is simply
+there. Without JavaScript too: the hidden starting state only applies once motion is ready.
+
+## Accessibility
+
+- The image keeps its `alt`; Image Reveal adds no role and no text.
+- The mask is a `clip-path` on the root, never a cover on top: the image stays selectable and a link around it
+  clickable.
+
+## Weight
+
+About 3.5 kB gzip beyond `cn()`, `rasengan-motion` included. Nothing from Motion: the mask animates with the browser's
+Web Animations API, and a scrubbed mask reads `--scroll-progress`.
+
+## API reference
+
+`ImageReveal` renders a `div` and takes its props and `className`, and:
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `children` | the media | — |
+| `effect` | `"curtain" \| "circle" \| "diagonal"` | `"curtain"` |
+| `from` | `"left" \| "right" \| "top" \| "bottom"` | `"left"` |
+| `delay` | `number` (seconds) | `0` |
+| `scrub` | `boolean` | `false` |
+| `progress` | `number` (0–1) | plays when in view |

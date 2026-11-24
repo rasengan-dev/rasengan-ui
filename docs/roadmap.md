@@ -9,8 +9,8 @@
 
 | Piece | State |
 |---|---|
-| Components | 53, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md)) |
-| Motion components | RFC-0007 complete: text-reveal, typewriter, scramble-text, number-roll, marquee, cursor, gallery-3d, page-transition; carousel (display); Button's `HoldButton` and `ButtonRollingText` ([ADR-0011](adr/0011-carousel-and-cursor-without-motion.md), [ADR-0012](adr/0012-gallery-and-page-transition-without-motion.md)); none loads Motion |
+| Components | 56, on Base UI, in `registry/components` ([RFC-0002](rfc/0002-villages.md), [0004](rfc/0004-v1-components.md), [0005](rfc/0005-dates-and-times.md), [0007](rfc/0007-motion-components.md), [0010](rfc/0010-scroll-motion.md)) |
+| Motion components | RFC-0007 complete: text-reveal, typewriter, scramble-text, number-roll, marquee, cursor, gallery-3d, page-transition; carousel (display); Button's `HoldButton` and `ButtonRollingText` ([ADR-0011](adr/0011-carousel-and-cursor-without-motion.md), [ADR-0012](adr/0012-gallery-and-page-transition-without-motion.md)). RFC-0010 lot A: scroll-progress, image-reveal, text-scroll-fill, on `--scroll-progress` ([ADR-0019](adr/0019-scroll-motion-on-css-scroll-timelines.md)). None loads Motion |
 | Variants | `variant` × `tone` × `size` on most components ([plan 002](plans/002-component-variants.md)) |
 | Villages | Konoha, Kiri, Iwa, Kusa (the contract's lip, [ADR-0008](adr/0008-lip-in-the-token-contract.md)) |
 | Natures | Six, with Onmyōton; neutral tint |
@@ -66,7 +66,11 @@
   drawn from the [Framer templates survey](surveys/2026-11-23-framer-templates.md), for Jutsify's catalogue of
   starting sites. **Lot 0 built**: `useScrollProgress` and `--scroll-progress` in `rasengan-motion` (about 1.1 kB
   gzip beyond the provider), timelines and the frame-loop fallback giving the same values to 0.001 in Chrome;
-  `Parallax` on it (about 1.2 kB, was Motion's `useScroll` and `m`), a scroll demo on `/motion`. Next: lot A.
+  `Parallax` on it (about 1.2 kB, was Motion's `useScroll` and `m`), a scroll demo on `/motion`. **Lot A built**:
+  `scroll-progress` (the page or an article through `useScrollProgress`'s new `subject`; keeps working under `off`),
+  `image-reveal` (curtain, circle, diagonal; `scrub` at intensity 3), `text-scroll-fill` (muted to the tone's text, a
+  rise of a quarter of the travel from intensity 2); 3.5 to 4 kB gzip each beyond `cn()`, `rasengan-motion` included;
+  both scroll paths give the same values in Chrome. Next: lot B.
 
 ### Then
 
