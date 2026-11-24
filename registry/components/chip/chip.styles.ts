@@ -3,7 +3,8 @@ import { cva, type VariantProps } from "class-variance-authority";
 /*
  * RFC-0012. One look for the chips you pick and the chips you remove: a pill of the control's height, in the tone.
  * At rest a chip is outline (the input's edge), soft (a muted well) or solid (the tone's wash); picked (`ui-pressed`)
- * it takes the tone: soft and outline turn to the tone's wash and words, solid to the tone's fill. A chip that does
+ * it takes the tone: soft and outline turn to the tone's wash (made opaque over the page's background, so the words
+ * keep 4.5:1 on a muted section too) and words, solid to the tone's fill. A chip that does
  * something is pressable, so it scales, sinks or drops onto its lip as the village presses. ChipRemove is a small
  * round button at the end.
  */
@@ -21,9 +22,9 @@ export const chipVariants = cva(
 	{
 		variants: {
 			variant: {
-				outline: "border-input bg-input-bg shadow-lip-sm [:is(button,a)&]:hover:bg-accent ui-pressed:border-tone-edge ui-pressed:bg-tone-soft ui-pressed:text-tone-text ui-pressed:lip-soft ui-pressed:hover:bg-tone-soft/70",
-				soft: "border-transparent bg-muted [:is(button,a)&]:hover:bg-accent ui-pressed:border-tone-edge ui-pressed:bg-tone-soft ui-pressed:text-tone-text ui-pressed:shadow-lip-sm ui-pressed:lip-soft",
-				solid: "border-tone-edge bg-tone-soft text-tone-text shadow-lip-sm lip-soft [:is(button,a)&]:hover:bg-tone-soft/70 ui-pressed:border-transparent ui-pressed:bg-tone ui-pressed:text-tone-foreground ui-pressed:lip-tone ui-pressed:hover:bg-tone/90",
+				outline: "border-input bg-input-bg shadow-lip-sm [:is(button,a)&]:hover:bg-accent ui-pressed:border-tone-edge ui-pressed:bg-[color-mix(in_oklab,var(--tone)_var(--soft-alpha),var(--background))] ui-pressed:text-tone-text ui-pressed:lip-soft",
+				soft: "border-transparent bg-muted [:is(button,a)&]:hover:bg-accent ui-pressed:border-tone-edge ui-pressed:bg-[color-mix(in_oklab,var(--tone)_var(--soft-alpha),var(--background))] ui-pressed:text-tone-text ui-pressed:shadow-lip-sm ui-pressed:lip-soft",
+				solid: "border-tone-edge bg-[color-mix(in_oklab,var(--tone)_var(--soft-alpha),var(--background))] text-tone-text shadow-lip-sm lip-soft [:is(button,a)&]:hover:bg-tone-soft ui-pressed:border-transparent ui-pressed:bg-tone ui-pressed:text-tone-foreground ui-pressed:lip-tone ui-pressed:hover:bg-tone/90",
 			},
 			tone: tones,
 			size: {

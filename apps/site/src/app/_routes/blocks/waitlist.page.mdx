@@ -1,0 +1,60 @@
+---
+metadata:
+  title: Waitlist · Rasengan UI
+  description: "A centred card to join a waitlist: a pill, the promise, the email field, the people already waiting, and its states."
+---
+
+<BlockShowcase name="waitlist" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add waitlist
+```
+
+It installs into `components/blocks/waitlist/`, with what it uses (Badge, Button, Field, Input, Number Roll) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/index.page.tsx"
+import { Waitlist } from "@/components/blocks/waitlist";
+import { product } from "@/content/product";
+
+export default function Page() {
+  return <Waitlist content={product.waitlist} />;
+}
+```
+
+```ts title="content/product.ts"
+import { example, type WaitlistContent } from "@/components/blocks/waitlist";
+
+export const product = {
+  waitlist: { ...example } satisfies WaitlistContent,
+};
+```
+
+The form posts to your waitlist provider's URL (`form.action`), as an embedded form would. Pass `onSubmit` instead to send the address from your own code: the block shows it sending, then joined or failed. The count is only for a real number; it rolls in beside up to four faces of people on the list. The block never keeps the address.
+
+The [SaaS example](/examples/saas) uses it.
+
+## Content
+
+<ContentSchema name="waitlist" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `WaitlistContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"waitlist"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the section, for spacing |
+| `onSubmit` | `(email) => void \| Promise<void>`: send the address yourself; a rejected promise shows `labels.failed` |
+
+## Accessibility
+
+- The field has a label (visually hidden) and catches an address that does not look like one before sending.
+- Sending, joined and failed are written in a status line screen readers hear.
+- The faces are described by their `alt`; leave them out if the people did not agree to be shown.

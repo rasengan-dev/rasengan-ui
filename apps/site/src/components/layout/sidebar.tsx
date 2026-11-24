@@ -77,6 +77,9 @@ function BlocksSidebar({ current }: { current: string }) {
         <Item to="/examples/portfolio" active={false}>
           Example: portfolio
         </Item>
+        <Item to="/examples/saas" active={false}>
+          Example: SaaS
+        </Item>
         <Item to="/components" active={false}>
           Components
         </Item>

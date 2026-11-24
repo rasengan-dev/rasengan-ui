@@ -161,6 +161,9 @@ export const integration = z.object({
 	name: z.string().min(1).max(32),
 	logo: logo.optional(),
 	category: z.string().max(24).optional().describe("'Payments', 'Calendar'."),
+	description: z.string().max(120).optional().describe("What it does with the product, in one line."),
+	href: z.string().optional().describe("The integration's own page."),
+	isNew: z.boolean().optional().describe("Shows a 'New' badge."),
 });
 
 export const formChannel = z.object({
@@ -194,6 +197,7 @@ export const release = z.object({
 	version: z.string().min(1).max(16).describe("'2.8.0' or 'v2.8'."),
 	date: z.string().date().describe("'YYYY-MM-DD'."),
 	title: z.string().min(1).max(60),
+	image: image.optional().describe("A screenshot of what changed."),
 	added: z.array(z.string().min(1).max(140)).max(8).optional(),
 	improved: z.array(z.string().min(1).max(140)).max(8).optional(),
 	fixed: z.array(z.string().min(1).max(140)).max(8).optional(),
