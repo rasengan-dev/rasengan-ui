@@ -1,0 +1,61 @@
+---
+metadata:
+  title: Product grid · Rasengan UI
+  description: "Products as cards (photo, a second on hover, badge, rating, price and was), filtered by category and sorted, both kept in the address."
+---
+
+<BlockShowcase name="product-grid" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add product-grid
+```
+
+It installs into `components/blocks/product-grid/`, with what it uses (Chip, Select, Badge, Rating) and `lib/blocks.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/shop/index.page.tsx"
+import { ProductGrid } from "@/components/blocks/product-grid";
+import { shop } from "@/content/shop";
+
+export default function Page() {
+  return <ProductGrid content={shop.grid} headingLevel={1} />;
+}
+```
+
+```ts title="content/shop.ts"
+import { example, type ProductGridContent } from "@/components/blocks/product-grid";
+
+export const shop = {
+  grid: { ...example } satisfies ProductGridContent,
+};
+```
+
+Write the products once, as an array of `Product`s, and give the same objects to the grid and to each product's page ([product-detail](/blocks/product-detail)): the grid links to `href`, the page shows the rest. A product's first photo is the card's; a second one shows on hover.
+
+Chips filter by `category`, each with its count, and a select sorts by price or rating (offered when a product has one). Both are written in the page's address (`?category=Ceramics&sort=price-low`) and read back when the page loads, so a selection can be shared. Every product is in the prerendered page: filtering hides cards in place. `controls: false` hides both, for a short "You may also like" row.
+
+The [shop example](/examples/shop) uses it, on the shop's page and under each product.
+
+## Content
+
+<ContentSchema name="product-grid" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `ProductGridContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"products"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default, `1` when it opens the page |
+| `className` | on the section, for spacing |
+
+## Accessibility
+
+- Each card is one link, named by the product's title; its photos keep their `alt`.
+- A struck price is read as "Was" and the amount; the stars as "4.8 out of 5".
+- The chips are a named group of toggles; how many products show is announced when the filter changes.

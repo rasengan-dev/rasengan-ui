@@ -1,20 +1,25 @@
 import type { PageComponent } from 'rasengan';
+import { CartDrawer } from '@/components/blocks/cart-drawer';
 import { ContactForm } from '@/components/blocks/contact-form';
 import { FaqAccordion } from '@/components/blocks/faq-accordion';
 import { FooterColumns } from '@/components/blocks/footer-columns';
 import { NavbarSimple } from '@/components/blocks/navbar-simple';
-import { contact, faq, footer, navbar } from '@/content/shop';
+import { ProductGrid } from '@/components/blocks/product-grid';
+import { cart, contact, faq, footer, grid, navbar } from '@/content/shop';
 
 /**
- * /examples/shop (RFC-0014, lot J0): a home goods shop made only of blocks, with its content in src/content/shop.ts. A
- * skeleton for now: lot J adds the products grid from the same `products` array, a page per product and the cart.
+ * /examples/shop (RFC-0014, lot J): a home goods shop made only of blocks, with its content in src/content/shop.ts.
+ * The grid opens a page per product (/examples/shop/<slug>); the cart, shared by both, orders on WhatsApp. Its button
+ * sits above the example toolbar.
  */
 const ShopExample: PageComponent = () => (
   <main id="main" className="[&_section]:scroll-mt-16">
     <NavbarSimple content={navbar} className="sticky top-0 z-40" />
-    <FaqAccordion content={faq} id="faq" />
-    <ContactForm content={contact} id="contact" className="bg-muted/50" />
+    <ProductGrid content={grid} headingLevel={1} />
+    <FaqAccordion content={faq} id="faq" className="bg-muted/50" />
+    <ContactForm content={contact} id="contact" />
     <FooterColumns content={footer} />
+    <CartDrawer content={cart} className="bottom-20" />
   </main>
 );
 

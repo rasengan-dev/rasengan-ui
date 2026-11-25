@@ -59,7 +59,8 @@ recognisable people, so they stand in for any studio's work.
 
 From Unsplash, under the same Unsplash License (Rasengan UI, RFC-0014): the shop example's products, cropped to
 1000 × 1250, and the listings example's homes and places, cropped to 1200 × 900; WebP in an SVG like the others. Chosen
-without brands or recognisable people.
+without brands or recognisable people. The four `-detail` files are close-ups cropped from the photo of the same name
+(lot J), for a product's second picture and its gallery.
 
 | File | Photographer | Source |
 |---|---|---|
@@ -69,6 +70,10 @@ without brands or recognisable people.
 | `shop-lamp.svg` | Adam Hornyak | [unsplash.com/photos/6BPimmrsqxE](https://unsplash.com/photos/6BPimmrsqxE) |
 | `shop-baskets.svg` | Zachary Staines | [unsplash.com/photos/0kvS01RVKQI](https://unsplash.com/photos/0kvS01RVKQI) |
 | `shop-cushion.svg` | Veronika Martinelli | [unsplash.com/photos/jerLmkgxQhA](https://unsplash.com/photos/jerLmkgxQhA) |
+| `shop-vase-detail.svg` | Yana Hurska | [unsplash.com/photos/zeGT9j4ltRA](https://unsplash.com/photos/zeGT9j4ltRA) |
+| `shop-chair-detail.svg` | Hongly Oung | [unsplash.com/photos/iBxQvOLuKb4](https://unsplash.com/photos/iBxQvOLuKb4) |
+| `shop-baskets-detail.svg` | Zachary Staines | [unsplash.com/photos/0kvS01RVKQI](https://unsplash.com/photos/0kvS01RVKQI) |
+| `shop-cushion-detail.svg` | Veronika Martinelli | [unsplash.com/photos/jerLmkgxQhA](https://unsplash.com/photos/jerLmkgxQhA) |
 | `place-living-room.svg` | Danilo Rios | [unsplash.com/photos/AgK_XAqSbfk](https://unsplash.com/photos/AgK_XAqSbfk) |
 | `place-house.svg` | GoodLifeConstruction | [unsplash.com/photos/MUiv6OcHoto](https://unsplash.com/photos/MUiv6OcHoto) |
 | `place-bedroom.svg` | Juliana Morales Ramírez | [unsplash.com/photos/1_tx9_Hxv9E](https://unsplash.com/photos/1_tx9_Hxv9E) |

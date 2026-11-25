@@ -78,7 +78,7 @@ async function audit(path) {
 	try {
 		await open(page, path);
 		await page.addScriptTag({ content: axeSource });
-		const name = path.startsWith("/components/") ? path.slice("/components/".length) : undefined;
+		const name = /^\/(components|blocks)\//.test(path) ? path.split("/")[2] : undefined;
 		for (const combo of combos) {
 			await dress(page, combo);
 			const where = `${path} · ${combo.village} ${combo.scheme}`;

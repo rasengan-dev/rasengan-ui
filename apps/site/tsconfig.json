@@ -234,6 +234,9 @@
 			"@/components/blocks/careers": [
 				"../../registry/blocks/careers/careers.base.tsx"
 			],
+			"@/components/blocks/cart-drawer": [
+				"../../registry/blocks/cart-drawer/cart-drawer.base.tsx"
+			],
 			"@/components/blocks/case-study": [
 				"../../registry/blocks/case-study/case-study.base.tsx"
 			],
@@ -356,6 +359,12 @@
 			],
 			"@/components/blocks/process-steps": [
 				"../../registry/blocks/process-steps/process-steps.base.tsx"
+			],
+			"@/components/blocks/product-detail": [
+				"../../registry/blocks/product-detail/product-detail.base.tsx"
+			],
+			"@/components/blocks/product-grid": [
+				"../../registry/blocks/product-grid/product-grid.base.tsx"
 			],
 			"@/components/blocks/projects-grid": [
 				"../../registry/blocks/projects-grid/projects-grid.base.tsx"

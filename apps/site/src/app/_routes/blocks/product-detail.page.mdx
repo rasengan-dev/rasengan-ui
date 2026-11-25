@@ -1,0 +1,68 @@
+---
+metadata:
+  title: Product detail · Rasengan UI
+  description: "A product's page: gallery with thumbnails and full screen, price, rating, variants as chips, quantity, add to cart, notes and details."
+---
+
+<BlockShowcase name="product-detail" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add product-detail
+```
+
+It installs into `components/blocks/product-detail/`, with what it uses (Lightbox, Chip, Number Field, Rating, Button, Badge), `lib/blocks.ts` and `lib/cart.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/shop/[product].page.tsx"
+import { ProductDetail } from "@/components/blocks/product-detail";
+import { CartDrawer } from "@/components/blocks/cart-drawer";
+import { shop } from "@/content/shop";
+
+export default function Page() {
+  return (
+    <>
+      <ProductDetail content={shop.product} />
+      <CartDrawer content={shop.cart} />
+    </>
+  );
+}
+```
+
+```ts title="content/shop.ts"
+import { example, type ProductDetailContent } from "@/components/blocks/product-detail";
+
+export const shop = {
+  product: { ...example } satisfies ProductDetailContent,
+};
+```
+
+`product` is the same object [product-grid](/blocks/product-grid) shows. The large photo opens the gallery full screen; the thumbnails under it change it. Each variant is a row of chips: an option in `soldOut` shows struck and cannot be picked, and an option with a single choice in stock is picked from the start.
+
+"Add to bag" puts a line in the shop's cart (`useCart(shop)`, kept in the browser), says so, and asks a [cart-drawer](/blocks/cart-drawer) on the page to open. When an option is missing, it names it and moves the focus there instead. Give both blocks the same `shop`. To use your own cart, pass `cart` (the shape `useCart` returns).
+
+The [shop example](/examples/shop) uses it on each product's page.
+
+## Content
+
+<ContentSchema name="product-detail" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `ProductDetailContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"product"` by default |
+| `headingLevel` | `1`, `2` or `3`: the title's tag; `1` by default, as it opens the page |
+| `className` | on the section, for spacing |
+| `cart` | your own cart instead of the shop's `useCart` |
+
+## Accessibility
+
+- The thumbnails are buttons that say which is shown (`aria-pressed`); each photo keeps its `alt`.
+- Each variant's chips are a group named by the variant; a sold-out option says so to a screen reader.
+- A missing option is announced and focused; "Added to your bag" is announced.

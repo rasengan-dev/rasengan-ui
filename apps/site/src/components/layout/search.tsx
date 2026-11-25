@@ -39,6 +39,7 @@ const groups = [
       { label: 'Salon example', description: "A barber and braiding studio's site made only of storefront blocks.", to: '/examples/salon' },
       { label: 'SaaS example', description: 'A SaaS site with customer stories, integrations, security, changelog, careers and a waitlist.', to: '/examples/saas' },
       { label: 'Portfolio example', description: "A design studio's site and its case studies, made only of portfolio blocks.", to: '/examples/portfolio' },
+      { label: 'Shop example', description: 'A home goods shop: its products, a page per product and a cart that orders on WhatsApp.', to: '/examples/shop' },
       { label: 'Motion', description: 'Components whose motion is the point, in a gallery.', to: '/motion' },
     ],
   },
