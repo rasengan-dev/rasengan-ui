@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1
+
+- **Fixed:** the MCP server's `list_components` takes the block families `portfolio`, `commerce` and `listings`;
+  0.4.0 refused them, so an agent could not list those blocks by family. A block in several families reads "a, b and
+  c".
+
 ## 0.4.0
 
 - **`village create --intensity <0-3>`**: how much moves in the village, apart from `--motion` (ADR-0018). The
