@@ -3,7 +3,7 @@ import type { BlockMeta } from "@/lib/blocks";
 export const meta = {
 	name: "contact-form",
 	title: "Contact, form",
-	family: ["marketing", "storefront", "portfolio"],
+	family: ["marketing", "storefront", "portfolio", "commerce", "listings"],
 	category: "contact",
 	status: "beta",
 	added: "2026-11-09",

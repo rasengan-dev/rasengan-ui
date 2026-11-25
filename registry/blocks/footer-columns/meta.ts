@@ -3,7 +3,7 @@ import type { BlockMeta } from "@/lib/blocks";
 export const meta = {
 	name: "footer-columns",
 	title: "Footer, columns",
-	family: "marketing",
+	family: ["marketing", "commerce", "listings"],
 	category: "footer",
 	status: "beta",
 	added: "2026-11-08",

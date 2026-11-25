@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-24 (RFC-0014 accepted).
+> Last updated: 2026-11-25 (RFC-0014 lot J0).
 
 ## Where things stand
 
@@ -192,7 +192,16 @@
   `rasengan-blocks` kept in the browser, checkout by message, URL or `onCheckout`, filters written in the page's
   address. Its eight questions were settled before acceptance (its "Decisions"). Every block starts by inspecting its
   Framer references (the RFC's section 8); the cart's references are static mockups, so its behaviour is designed,
-  not observed. Next: lot J0 (families, field types, `useCart`, placeholders, example skeletons).
+  not observed. **Lot J0 built**: the `commerce` and `listings` families (in `blocks.json`, the MCP `family` filter
+  and the gallery) with the categories `products`, `product`, `cart`, `search` and `listing`; `navbar-simple`,
+  `footer-columns`, `faq-accordion` and `contact-form` join both. Field types `product`, `listing`, `facet` and
+  `cartLine` with their tests; `lib/cart.ts` in `rasengan-blocks` (`useCart` on `useSyncExternalStore`, one
+  `localStorage` key per shop, kept in step across tabs, empty on the server; `lineId`, `orderText`), with its tests.
+  Twelve Unsplash photos: six products (`shop-*.svg`, 1000 × 1250) and six homes and places (`place-*.svg`).
+  `/examples/shop` (Kaya, a home goods shop) and `/examples/homes` (Nyanga, a property agency) as skeletons with their
+  `products` and `listings` arrays; they join the site's menus in lots J and K. Differences from the RFC: `listing`'s
+  facts are numbers with a label (`{ label: 'beds', value: 3 }`) so filters can count them, and product photos are
+  named `shop-*` (`product-*` already names the product screens). Next: lot J (commerce).
 
 ### Then
 

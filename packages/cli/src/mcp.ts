@@ -77,12 +77,12 @@ export function createServer(options: Options) {
 		{
 			title: "List Rasengan UI components",
 			description:
-				"The items of the Rasengan UI registry with a one-line description: components by default, or blocks (page sections: hero, pricing, menu, opening hours…), villages, examples, or everything. Pass a query to keep the items whose name, title or description contain all its words; a category to keep one family of components (motion: components whose animation is the point) or of blocks (hero, pricing, menu…); a family for blocks (marketing, storefront or portfolio).",
+				"The items of the Rasengan UI registry with a one-line description: components by default, or blocks (page sections: hero, pricing, menu, opening hours…), villages, examples, or everything. Pass a query to keep the items whose name, title or description contain all its words; a category to keep one family of components (motion: components whose animation is the point) or of blocks (hero, pricing, menu…); a family for blocks (marketing, storefront, portfolio, commerce or listings).",
 			inputSchema: {
 				query: z.string().optional().describe('Words to look for, e.g. "menu" or "date input"'),
 				kind: z.enum(["component", "block", "village", "example", "all"]).default("component").describe("Which items to list"),
 				category: z.string().optional().describe('Only items of this category: for components forms, dates, overlays, navigation, display, feedback or motion; for blocks hero, pricing, menu, hours…'),
-				family: z.enum(["marketing", "storefront", "portfolio"]).optional().describe("Blocks only: marketing (landing pages), storefront (local businesses) or portfolio (people and studios showing their work)"),
+				family: z.enum(["marketing", "storefront", "portfolio", "commerce", "listings"]).optional().describe("Blocks only: marketing (landing pages), storefront (local businesses), portfolio (people and studios), commerce (online shops) or listings (directories, real estate)"),
 			},
 			annotations: { readOnlyHint: true, openWorldHint: false },
 		},

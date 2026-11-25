@@ -431,6 +431,9 @@
 			"@/lib/blocks": [
 				"../packages/blocks/src/blocks.ts"
 			],
+			"@/lib/cart": [
+				"../packages/blocks/src/cart.ts"
+			],
 			"@/lib/block-fields": [
 				"../packages/blocks/src/block-fields.ts"
 			],

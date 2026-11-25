@@ -245,6 +245,69 @@ export const trustPoint = z.object({
 	status: z.enum(["certified", "in-progress"]).optional().describe("Say 'in-progress' until it is true: never claim a certification you do not have."),
 });
 
+// RFC-0014: online shops and listings. A list and its page share one type, as in RFC-0013.
+
+export const product = z.object({
+	title: z.string().min(1).max(60),
+	sku: z.string().min(1).max(40).describe("The product's own code: it keys the cart's lines."),
+	price: money,
+	was: money.optional().describe("The usual price, shown struck through."),
+	images: z.array(image).min(1).max(8).describe("The first is the card's; the second shows on hover; all are in the product's gallery."),
+	badge: z.string().max(16).optional().describe("'New', 'Bestseller'. Short."),
+	category: z.string().max(24).optional().describe("Used by the grid's filter: 'Skincare', 'Chairs'."),
+	variants: z
+		.array(
+			z.object({
+				name: z.string().min(1).max(16).describe("'Size', 'Colour'"),
+				options: z.array(z.string().min(1).max(24)).min(1).max(12),
+				soldOut: z.array(z.string().min(1).max(24)).optional().describe("Options out of stock: shown, not pickable."),
+			}),
+		)
+		.max(3)
+		.optional(),
+	rating: ratingSummary.optional(),
+	summary: z.string().max(160).optional().describe("One line under the title."),
+	details: z.array(z.string().min(1).max(600)).max(6).optional().describe("Plain paragraphs: materials, care, sizing."),
+	href: z.string().min(1).describe("The product's own page: '/shop/arlo-side-table'."),
+});
+
+export const listing = z.object({
+	title: z.string().min(1).max(60),
+	kind: z.string().max(24).optional().describe("'Apartment', 'Villa', 'Café'. Used by filters."),
+	status: z.string().max(16).optional().describe("'For sale', 'To let', 'Open now'."),
+	place: z.string().min(1).max(48).describe("Area and city: 'Bonapriso, Douala'. Used by filters."),
+	price: money.optional(),
+	period: z.enum(["once", "month", "week", "night"]).default("once").describe("What the price is for."),
+	facts: z
+		.array(z.object({ label: z.string().min(1).max(16), value: z.number() }))
+		.max(4)
+		.optional()
+		.describe("Numbers that filters can use: { label: 'beds', value: 3 }, { label: 'm²', value: 120 }."),
+	images: z.array(image).min(1).max(12),
+	rating: ratingSummary.optional(),
+	tags: z.array(z.string().min(1).max(20)).max(4).optional(),
+	summary: z.string().max(200).optional(),
+	href: z.string().min(1).describe("The listing's own page."),
+});
+
+export const facet = z.object({
+	key: z.string().min(1).max(24).describe("What it filters on: 'kind', 'place', 'price', or a fact's label ('beds')."),
+	label: z.string().min(1).max(24).describe("'Area', 'Price', 'Bedrooms'"),
+	kind: z.enum(["choice", "range", "atLeast"]).describe("choice: chips; range: a slider between two values; atLeast: a number field."),
+	options: z.array(z.string().min(1).max(32)).max(16).optional().describe("For choice: the values offered, in order. Left out, the items' own values."),
+	step: z.number().positive().optional().describe("For range and atLeast."),
+});
+
+export const cartLine = z.object({
+	sku: z.string().min(1).max(40),
+	title: z.string().min(1).max(60),
+	variant: z.string().max(60).optional().describe("The picked options, written out: 'Size M, Sand'."),
+	price: money,
+	quantity: z.number().int().min(1).max(99),
+	image: image.optional(),
+	href: z.string().optional(),
+});
+
 export type Cta = z.infer<typeof cta>;
 export type Image = z.infer<typeof image>;
 export type Logo = z.infer<typeof logo>;
@@ -274,6 +337,10 @@ export type Award = z.infer<typeof award>;
 export type TimelineEntry = z.infer<typeof timelineEntry>;
 export type CustomerStory = z.infer<typeof customerStory>;
 export type TrustPoint = z.infer<typeof trustPoint>;
+export type Product = z.infer<typeof product>;
+export type Listing = z.infer<typeof listing>;
+export type Facet = z.infer<typeof facet>;
+export type CartLine = z.infer<typeof cartLine>;
 
 // ---- Definition ----------------------------------------------------------------------------------------------------
 
