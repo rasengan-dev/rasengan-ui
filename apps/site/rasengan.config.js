@@ -54,6 +54,7 @@ export default defineConfig(async () => {
           { find: /^@\/components\/blocks\/([^/]+)$/, replacement: '../../registry/blocks/$1/$1.base.tsx' },
           { find: /^@\/components\/blocks\/(.+)$/, replacement: '../../registry/blocks/$1' },
           { find: '@/lib/blocks', replacement: '../../packages/blocks/src/blocks.ts' },
+          { find: '@/lib/cart', replacement: '../../packages/blocks/src/cart.ts' },
           { find: '@/lib/block-fields', replacement: '../../packages/blocks/src/block-fields.ts' },
           { find: '@/lib/motion-features', replacement: '../../packages/motion/src/motion-features.ts' },
           { find: '@/lib/motion', replacement: '../../packages/motion/src/motion.tsx' },

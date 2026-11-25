@@ -39,7 +39,7 @@ export function messageUrl(channel: FormChannel, text: string, subject?: string)
 
 // ---- Meta ----------------------------------------------------------------------------------------------------------
 
-export type BlockFamily = "marketing" | "storefront" | "portfolio";
+export type BlockFamily = "marketing" | "storefront" | "portfolio" | "commerce" | "listings";
 
 /** What a block's meta.ts says: for people choosing in the docs, and for agents choosing in the catalog. */
 export interface BlockMeta {

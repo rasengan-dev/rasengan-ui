@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
-import { award, caseSection, customerStory, position, project, release, timelineEntry, trustPoint } from "../src/block-fields";
+import { award, cartLine, caseSection, customerStory, facet, listing, position, product, project, release, timelineEntry, trustPoint } from "../src/block-fields";
 
 /*
  * RFC-0013's field types, before any block uses them: a typical value parses, and the limits that carry a design choice
@@ -59,4 +59,37 @@ test("a customer story and a trust point", () => {
 	);
 	assert.equal(trustPoint.parse({ name: "GDPR" }).icon, "shield");
 	assert.throws(() => trustPoint.parse({ name: "SOC 2", status: "pending" }), "certified or in-progress only");
+});
+
+// RFC-0014
+
+test("a product parses, with its variants and what is sold out", () => {
+	const value = product.parse({
+		title: "Arlo side table",
+		sku: "ARLO-OAK",
+		price: { amount: 85000, currency: "XAF" },
+		was: { amount: 98000, currency: "XAF" },
+		images: [cover],
+		variants: [{ name: "Wood", options: ["Oak", "Walnut"], soldOut: ["Walnut"] }],
+		href: "/shop/arlo",
+	});
+	assert.deepEqual(value.variants?.[0].soldOut, ["Walnut"]);
+	assert.throws(() => product.parse({ ...value, images: [] }), "at least one image");
+});
+
+test("a listing, a facet and a cart line", () => {
+	const home = listing.parse({
+		title: "Bonapriso flat",
+		place: "Bonapriso, Douala",
+		price: { amount: 450000, currency: "XAF" },
+		period: "month",
+		facts: [{ label: "beds", value: 2 }],
+		images: [cover],
+		href: "/homes/bonapriso",
+	});
+	assert.equal(home.period, "month");
+	assert.equal(listing.parse({ ...home, period: undefined }).period, "once");
+	assert.ok(facet.parse({ key: "beds", label: "Bedrooms", kind: "atLeast" }));
+	assert.throws(() => facet.parse({ key: "beds", label: "Bedrooms", kind: "slider" }));
+	assert.throws(() => cartLine.parse({ sku: "A", title: "A", price: { amount: 1, currency: "XAF" }, quantity: 0 }), "at least one");
 });

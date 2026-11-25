@@ -12,6 +12,6 @@ export const meta = {
 	avoidWhen: "Three or four long quotes: testimonials-carousel gives each room.",
 	layout: { columns: "grid" },
 	content: { images: 9, minWords: 80, maxWords: 500 },
-	components: ["marquee"],
+	components: ["marquee", "button"],
 	pairsWith: ["logos-grid", "pricing-plans"],
 } as const satisfies BlockMeta;

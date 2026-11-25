@@ -18,7 +18,7 @@ rasengan-ui-app/
 │   ├── core/                cn(), engine variants, VillageScope, Field context
 │   ├── villages/            the token contract, villages, natures, village engine, contrast
 │   ├── motion/              rasengan-motion: motion modes, village motion tokens, primitives, splitText
-│   ├── blocks/              rasengan-blocks: BlockProps, BlockMeta, formatMoney; zod field types; block tests
+│   ├── blocks/              rasengan-blocks: BlockProps, BlockMeta, formatMoney; zod field types; the cart; block tests
 │   ├── cli/                 `rasengan-ui`: commands and the MCP server
 │   └── directions/          empty leftover of RFC-0001
 ├── apps/
@@ -223,7 +223,7 @@ src/
 ├── settings.ts          one store for village, nature, tint, scheme (<html> attributes + localStorage)
 ├── catalogue.ts         the component list (meta + demos), sorted by category, and `groups`, for the sidebar, pager, index, search
 ├── components/theme-scope.tsx  useScopedTheme and ScopedTheme: a theme for part of the page (showcase, thumbnails)
-├── content/             the example pages' content: restaurant.ts (its navbar), salon.ts (every block but the team), portfolio.ts (one projects array for the grid, the lists and the case studies)
+├── content/             the example pages' content: restaurant.ts (its navbar), salon.ts (every block but the team), portfolio.ts (one projects array for the grid, the lists and the case studies), shop.ts and homes.ts (one products array, one listings array)
 ├── blocks-catalogue.ts  the block list (meta, demo, source, schema, example), by family and category, and `blockGroups`
 ├── app/_routes/
 │   ├── layout.tsx       header
@@ -232,7 +232,7 @@ src/
 │   ├── components/      one <name>.page.mdx per component, plus the index
 │   ├── blocks/          one <name>.page.mdx per block; index.page.tsx, the gallery
 │   ├── preview/         [name].page.tsx: one block full window, a page per block (generatePaths)
-│   ├── examples/        landing.page.tsx, restaurant.page.tsx, salon.page.tsx, saas.page.tsx, portfolio/ (index and [project]): pages made only of blocks; layout.tsx wraps them in a PageTransition and
+│   ├── examples/        landing.page.tsx, restaurant.page.tsx, salon.page.tsx, saas.page.tsx, shop.page.tsx, homes.page.tsx, portfolio/ (index and [project]): pages made only of blocks; layout.tsx wraps them in a PageTransition and
 │   │                    adds the floating toolbar with its example switcher (the root layout drops the site header on /examples)
 │   ├── motion/          index.page.tsx: the motion gallery (replay, reduced-motion switch)
 │   └── villages/create.page.tsx   the workshop

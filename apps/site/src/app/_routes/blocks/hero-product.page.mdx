@@ -1,7 +1,7 @@
 ---
 metadata:
   title: Hero, product · Rasengan UI
-  description: "A centred headline and actions over the product's screen in a browser frame, on a soft glow of the primary colour."
+  description: "A stage of the primary colour: centred headline and actions, and the product's screen in a browser frame rising out of it, settling (and straightening from a tilt) as the page scrolls."
 ---
 
 <BlockShowcase name="hero-product" />
@@ -12,7 +12,7 @@ metadata:
 npx rasengan-ui add hero-product
 ```
 
-It installs into `components/blocks/hero-product/`, with what it uses (Device Frame, Badge, Button) and `lib/blocks.ts`.
+It installs into `components/blocks/hero-product/`, with what it uses (Device Frame, Badge, Button), `lib/blocks.ts` and `lib/motion.ts`.
 
 ## Usage
 
@@ -35,7 +35,11 @@ export const home = {
 };
 ```
 
-A headline, its actions and a note, centred over the product's screen in a browser frame (Device Frame), with the address you give in `url`. A screenshot at 16:10 reads best; it loads first.
+A headline, its actions and a note on a soft panel of the primary colour, and the product's screen in a browser frame (Device Frame) rising out of it, with the address you give in `url`. The screen is wider than the text and the panel's bottom edge cuts it, where it fades: put what matters in its top two thirds. A screenshot at 16:10 reads best; it loads first.
+
+As the page scrolls the screen settles into place, at rest once it reaches the middle of the viewport: it grows and rises in every village that allows travel (intensity 2), and straightens from a tilt in the showcase ones (intensity 3). With reduced motion it is at rest from the start.
+
+For a still screenshot under the headline, use [hero-centered](/blocks/hero-centered).
 
 The [SaaS example](/examples/saas) uses it.
 
@@ -55,4 +59,5 @@ The [SaaS example](/examples/saas) uses it.
 ## Accessibility
 
 - The screenshot keeps its `alt`: say what the screen shows.
-- The glow and the frame's chrome are decoration.
+- The panel and the frame's chrome are decoration.
+- The screen moves only with the reader's scroll, and not at all with reduced motion.

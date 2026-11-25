@@ -55,6 +55,27 @@ recognisable people, so they stand in for any studio's work.
 | `project-packaging.svg` | Kelli McClintock | [unsplash.com/photos/GopRYASfsOc](https://unsplash.com/photos/GopRYASfsOc) |
 | `project-landscape.svg` | Mojtaba Mohammadi | [unsplash.com/photos/azbFk_fV9_U](https://unsplash.com/photos/azbFk_fV9_U) |
 
+## Products and places
+
+From Unsplash, under the same Unsplash License (Rasengan UI, RFC-0014): the shop example's products, cropped to
+1000 × 1250, and the listings example's homes and places, cropped to 1200 × 900; WebP in an SVG like the others. Chosen
+without brands or recognisable people.
+
+| File | Photographer | Source |
+|---|---|---|
+| `shop-vase.svg` | Yana Hurska | [unsplash.com/photos/zeGT9j4ltRA](https://unsplash.com/photos/zeGT9j4ltRA) |
+| `shop-mug.svg` | Brunxs | [unsplash.com/photos/VegtG-B3Odc](https://unsplash.com/photos/VegtG-B3Odc) |
+| `shop-chair.svg` | Hongly Oung | [unsplash.com/photos/iBxQvOLuKb4](https://unsplash.com/photos/iBxQvOLuKb4) |
+| `shop-lamp.svg` | Adam Hornyak | [unsplash.com/photos/6BPimmrsqxE](https://unsplash.com/photos/6BPimmrsqxE) |
+| `shop-baskets.svg` | Zachary Staines | [unsplash.com/photos/0kvS01RVKQI](https://unsplash.com/photos/0kvS01RVKQI) |
+| `shop-cushion.svg` | Veronika Martinelli | [unsplash.com/photos/jerLmkgxQhA](https://unsplash.com/photos/jerLmkgxQhA) |
+| `place-living-room.svg` | Danilo Rios | [unsplash.com/photos/AgK_XAqSbfk](https://unsplash.com/photos/AgK_XAqSbfk) |
+| `place-house.svg` | GoodLifeConstruction | [unsplash.com/photos/MUiv6OcHoto](https://unsplash.com/photos/MUiv6OcHoto) |
+| `place-bedroom.svg` | Juliana Morales Ramírez | [unsplash.com/photos/1_tx9_Hxv9E](https://unsplash.com/photos/1_tx9_Hxv9E) |
+| `place-kitchen.svg` | Jason Briscoe | [unsplash.com/photos/AQl-J19ocWE](https://unsplash.com/photos/AQl-J19ocWE) |
+| `place-villa.svg` | John Fornander | [unsplash.com/photos/y3_AHHrxUBY](https://unsplash.com/photos/y3_AHHrxUBY) |
+| `place-cafe.svg` | Clement Proust | [unsplash.com/photos/nD2kZmE6dMQ](https://unsplash.com/photos/nD2kZmE6dMQ) |
+
 ## Everything else
 
 `product-dashboard` is a real screen made from Rasengan UI's components (the site's dashboard example with Senbon's

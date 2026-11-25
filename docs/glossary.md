@@ -27,10 +27,14 @@ as JSON Schema.
 business, with the request written; the visitor sends it. The booking form, the dish cards and the order links work
 this way.
 
-**Family** and **block category** (`meta.family`, `meta.category`) — A block's audience, `marketing`, `storefront` or
-`portfolio` (people and studios showing their work, RFC-0013), and its kind within it (`hero`, `pricing`, `menu`,
-`projects`…), from `registry/block-categories.ts`. A block that serves several names them all
+**Family** and **block category** (`meta.family`, `meta.category`) — A block's audience, `marketing`, `storefront`,
+`portfolio` (people and studios showing their work, RFC-0013), `commerce` (online shops) or `listings` (directories,
+real estate, RFC-0014), and its kind within it (`hero`, `pricing`, `menu`, `projects`, `products`…), from `registry/block-categories.ts`. A block that serves several names them all
 (`family: ["marketing", "storefront"]`, RFC-0009); `familiesOf(meta)` reads either form as a list.
+
+**Cart** (`useCart`, `@/lib/cart`) — A shop's cart, kept in the browser (one `localStorage` key per shop) and shared by
+the blocks of a page (RFC-0014). Lines are a product in a variant (`lineId`); an order is handed off by message
+(`orderText`), to a URL, or to the project's code. Empty on the server.
 
 **Container query** — A block lays out by the width of its container (`@container`, `@md:`), not the window's
 ([ADR-0013](adr/0013-blocks-answer-their-container.md)).

@@ -3,7 +3,7 @@ import type { BlockMeta } from "@/lib/blocks";
 export const meta = {
 	name: "navbar-simple",
 	title: "Navbar, simple",
-	family: ["marketing", "portfolio"],
+	family: ["marketing", "portfolio", "commerce", "listings"],
 	category: "navbar",
 	status: "beta",
 	added: "2026-11-08",

@@ -12,7 +12,7 @@ metadata:
 npx rasengan-ui add testimonials-wall
 ```
 
-It installs into `components/blocks/testimonials-wall/`, with what it uses (Marquee) and `lib/blocks.ts`.
+It installs into `components/blocks/testimonials-wall/`, with what it uses (Marquee, Button), `lib/blocks.ts` and `lib/motion.ts`.
 
 ## Usage
 
@@ -35,7 +35,7 @@ export const home = {
 };
 ```
 
-On a wide screen the three columns drift slowly upwards together, inside one Marquee: it stops on hover and focus and has a pause button. With motion off, or at intensity 0, the wall stands still and scrolls inside its height. On a narrow screen it is one or two still columns. Mix short and long quotes; nine or more fill the wall.
+On a wide screen the three columns drift slowly upwards at the same speed, each in its own Marquee so it loops on its own length without a gap; a column stops on hover and focus, and one pause button stops all three. With motion off, or at intensity 0, the wall stands still and scrolls inside its height. On a narrow screen it is one or two still columns. Mix short and long quotes; nine or more fill the wall.
 
 ## Content
 

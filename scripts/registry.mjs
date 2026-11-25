@@ -236,11 +236,12 @@ function sharedItems(url) {
 			name: "rasengan-blocks",
 			type: "registry:lib",
 			title: "Rasengan UI blocks",
-			description: "What blocks share (RFC-0008, RFC-0009): BlockProps, BlockMeta, familiesOf and formatMoney in lib/blocks.ts; the content field types in zod (cta, image, stat, pricePlan, menuItem, openingHours, review, offer, formChannel…) in lib/block-fields.ts, which only schemas import.",
+			description: "What blocks share (RFC-0008, RFC-0009): BlockProps, BlockMeta, familiesOf and formatMoney in lib/blocks.ts; the content field types in zod (cta, image, stat, pricePlan, menuItem, openingHours, review, offer, formChannel…) in lib/block-fields.ts, which only schemas import; and the shop cart (RFC-0014) in lib/cart.ts.",
 			dependencies: ["zod@^3.25.76"],
 			files: [
 				{ path: "packages/blocks/src/blocks.ts", type: "registry:lib", target: "lib/blocks.ts" },
 				{ path: "packages/blocks/src/block-fields.ts", type: "registry:lib", target: "lib/block-fields.ts" },
+				{ path: "packages/blocks/src/cart.ts", type: "registry:lib", target: "lib/cart.ts" },
 			],
 		},
 		{

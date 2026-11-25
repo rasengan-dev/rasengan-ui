@@ -29,55 +29,44 @@ function Quote({ testimonial, className }: { testimonial: Testimonial; className
 	);
 }
 
-/** Three columns, each at its own speed and direction, so the wall never moves in step. */
-const columns = [
-	{ direction: "up", speed: 22 },
-	{ direction: "down", speed: 30 },
-	{ direction: "up", speed: 26 },
+/** Two rows that slide in opposite directions at different speeds, so the band never moves in step. */
+const rows = [
+	{ direction: "left", speed: 36 },
+	{ direction: "right", speed: 30 },
 ] as const;
 
 /**
- * A heading and the quotes as a living wall: from `@3xl`, three columns that scroll at their own pace (Marquee, each
- * with its pause button, stopping on hover and focus); below, one row that scrolls sideways. With reduced motion, the
- * columns stand still and the row wraps. Marquee's copies are hidden from screen readers, so each quote is read once.
+ * A heading and the quotes as two bands that slide sideways in opposite directions, fading into the edges (Marquee,
+ * each band with its pause button, stopping on hover and focus). The quotes alternate between the bands, so each
+ * shows once. With reduced motion the bands stand still and wrap. Marquee's copies are hidden from screen readers, so
+ * each quote is read once.
  */
 export function TestimonialsMarquee({ content = example, id = "testimonials", className, headingLevel = 2 }: BlockProps<TestimonialsMarqueeContent>) {
 	const Heading = heading(headingLevel);
-	const { testimonials } = content;
-	const split = columns.map((_, column) => testimonials.filter((__, index) => index % columns.length === column));
+	const split = rows.map((_, row) => content.testimonials.filter((__, index) => index % rows.length === row));
 	return (
-		<section id={id} aria-labelledby={`${id}-title`} data-slot="block" data-block="testimonials-marquee" className={cn("@container px-4 py-16 @3xl:py-24", className)}>
-			<div className="mx-auto max-w-6xl">
-				<div className="mx-auto flex max-w-2xl flex-col items-center gap-3 text-center">
-					{content.eyebrow && <p className="m-0 text-sm font-medium tone-primary text-tone-text">{content.eyebrow}</p>}
-					<Heading id={`${id}-title`} className="font-display text-3xl font-semibold tracking-display text-balance case-heading @2xl:text-4xl">
-						{content.title}
-					</Heading>
-					{content.subline && <p className="m-0 text-lg text-balance text-muted-foreground">{content.subline}</p>}
-				</div>
-				<div className="mt-12 hidden gap-4 @3xl:grid @3xl:grid-cols-3">
-					{split.map((quotes, column) => (
-						<Marquee
-							key={columns[column].direction + column}
-							direction={columns[column].direction}
-							speed={columns[column].speed}
-							gap="1rem"
-							label={`${content.labels.region}, ${column + 1}`}
-							className="h-[36rem]"
-						>
-							{quotes.map((testimonial) => (
-								<Quote key={testimonial.name} testimonial={testimonial} />
-							))}
-						</Marquee>
-					))}
-				</div>
-				<div className="mt-10 @3xl:hidden">
-					<Marquee speed={28} gap="1rem" label={content.labels.region}>
-						{testimonials.map((testimonial) => (
-							<Quote key={testimonial.name} testimonial={testimonial} className="w-72" />
+		<section id={id} aria-labelledby={`${id}-title`} data-slot="block" data-block="testimonials-marquee" className={cn("@container py-16 @3xl:py-24", className)}>
+			<div className="mx-auto flex max-w-2xl flex-col items-center gap-3 px-4 text-center">
+				{content.eyebrow && <p className="m-0 text-sm font-medium tone-primary text-tone-text">{content.eyebrow}</p>}
+				<Heading id={`${id}-title`} className="font-display text-3xl font-semibold tracking-display text-balance case-heading @2xl:text-4xl">
+					{content.title}
+				</Heading>
+				{content.subline && <p className="m-0 text-lg text-balance text-muted-foreground">{content.subline}</p>}
+			</div>
+			<div className="mt-12 flex flex-col gap-4 @3xl:gap-6">
+				{split.map((quotes, row) => (
+					<Marquee
+						key={row}
+						direction={rows[row].direction}
+						speed={rows[row].speed}
+						gap="1rem"
+						label={`${content.labels.region}, ${row + 1}`}
+					>
+						{quotes.map((testimonial) => (
+							<Quote key={testimonial.name} testimonial={testimonial} className="w-72 self-stretch @3xl:w-96" />
 						))}
 					</Marquee>
-				</div>
+				))}
 			</div>
 		</section>
 	);
