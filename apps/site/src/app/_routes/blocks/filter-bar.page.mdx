@@ -1,0 +1,69 @@
+---
+metadata:
+  title: Filter bar · Rasengan UI
+  description: "Facets from the content above a list: chips with counts, a price range, 'at least' numbers, words, a sort and a reset, all in the address."
+---
+
+<BlockShowcase name="filter-bar" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add filter-bar
+```
+
+It installs into `components/blocks/filter-bar/`, with what it uses (Chip, Slider, Number Field, Select, Input, Button), `lib/blocks.ts` and `lib/filters.ts).
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/homes/index.page.tsx"
+import { FilterBar } from "@/components/blocks/filter-bar";
+import { ListingCards } from "@/components/blocks/listing-cards";
+import { homes } from "@/content/homes";
+
+export default function Page() {
+  return (
+    <>
+      <FilterBar content={homes.filters} />
+      <ListingCards content={homes.cards} />
+    </>
+  );
+}
+```
+
+```ts title="content/homes.ts"
+import { example, type FilterBarContent } from "@/components/blocks/filter-bar";
+
+export const homes = {
+  filters: { ...example } satisfies FilterBarContent,
+};
+```
+
+The facets are declared in the content, in order:
+
+- **`choice`**: a row of chips on `kind`, `status`, `place` or `tags`, each with how many listings hold it; several can be picked. Its values are `options`, or the listings' own.
+- **`range`**: a two-thumbed slider over the listings' prices, written when let go.
+- **`atLeast`**: a number on a fact's label (`beds`): two keeps the listings with two or more.
+
+Give `items` the same listings as [listing-cards](/blocks/listing-cards): the bar counts them, bounds the prices and says how many show; it filters nothing itself. Everything goes in the page's address (`?status=To%20let&beds=2&sort=price-low`, through `lib/filters.ts`), so a filtered list is a link to send, and a reload keeps it.
+
+The [homes example](/examples/homes) uses it.
+
+## Content
+
+<ContentSchema name="filter-bar" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `FilterBarContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"filters"` by default |
+| `className` | on the section, for spacing |
+
+## Accessibility
+
+- It is a region named by `labels.filters`; each facet's chips are a group named by its label.
+- How many listings show is announced as it changes; Reset is disabled while nothing is filtered.

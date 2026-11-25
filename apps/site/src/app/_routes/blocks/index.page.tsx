@@ -104,6 +104,7 @@ const BlockGallery: PageComponent = () => {
             { to: '/examples/portfolio', label: 'a portfolio' },
             { to: '/examples/saas', label: 'a SaaS site' },
             { to: '/examples/shop', label: 'a shop' },
+            { to: '/examples/homes', label: 'a property agency' },
           ].map((example) => (
             <Link
               key={example.to}

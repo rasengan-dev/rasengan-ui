@@ -1,0 +1,60 @@
+---
+metadata:
+  title: Listing cards · Rasengan UI
+  description: "Listings as cards (photo, status, kind and place, title, facts, price per period, rating), filtered in place by the address."
+---
+
+<BlockShowcase name="listing-cards" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add listing-cards
+```
+
+It installs into `components/blocks/listing-cards/`, with what it uses (Badge, Rating, Button), `lib/blocks.ts` and `lib/filters.ts).
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/homes/index.page.tsx"
+import { ListingCards } from "@/components/blocks/listing-cards";
+import { homes } from "@/content/homes";
+
+export default function Page() {
+  return <ListingCards content={homes.cards} />;
+}
+```
+
+```ts title="content/homes.ts"
+import { example, type ListingCardsContent } from "@/components/blocks/listing-cards";
+
+export const homes = {
+  cards: { ...example } satisfies ListingCardsContent,
+};
+```
+
+One card shape for homes, places and rentals: the facts are numbers with their label (`2 beds · 1 baths · 95 m²`), and the price says its period (`a month`, `a night`; nothing for a sale). Write the listings once and give the same objects to each listing's page ([listing-detail](/blocks/listing-detail)).
+
+The cards follow the filters in the page's address, written by [search-hero](/blocks/search-hero) and [filter-bar](/blocks/filter-bar): every listing is in the prerendered page, and the ones that do not match are hidden in place. When none match, a button clears the filters.
+
+The [homes example](/examples/homes) uses it.
+
+## Content
+
+<ContentSchema name="listing-cards" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `ListingCardsContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"listings"` by default |
+| `headingLevel` | `1`, `2` or `3`: the heading's tag; `2` by default |
+| `className` | on the section, for spacing |
+
+## Accessibility
+
+- Each card is one link, named by the listing's title; its photo keeps its `alt`.
+- How many listings show is announced when the filters change.

@@ -284,6 +284,9 @@
 			"@/components/blocks/features-grid": [
 				"./blocks/features-grid/features-grid.base.tsx"
 			],
+			"@/components/blocks/filter-bar": [
+				"./blocks/filter-bar/filter-bar.base.tsx"
+			],
 			"@/components/blocks/footer-columns": [
 				"./blocks/footer-columns/footer-columns.base.tsx"
 			],
@@ -328,6 +331,12 @@
 			],
 			"@/components/blocks/integrations-orbit": [
 				"./blocks/integrations-orbit/integrations-orbit.base.tsx"
+			],
+			"@/components/blocks/listing-cards": [
+				"./blocks/listing-cards/listing-cards.base.tsx"
+			],
+			"@/components/blocks/listing-detail": [
+				"./blocks/listing-detail/listing-detail.base.tsx"
 			],
 			"@/components/blocks/location-branches": [
 				"./blocks/location-branches/location-branches.base.tsx"
@@ -386,6 +395,9 @@
 			"@/components/blocks/reviews-rating": [
 				"./blocks/reviews-rating/reviews-rating.base.tsx"
 			],
+			"@/components/blocks/search-hero": [
+				"./blocks/search-hero/search-hero.base.tsx"
+			],
 			"@/components/blocks/security-badges": [
 				"./blocks/security-badges/security-badges.base.tsx"
 			],
@@ -442,6 +454,9 @@
 			],
 			"@/lib/cart": [
 				"../packages/blocks/src/cart.ts"
+			],
+			"@/lib/filters": [
+				"../packages/blocks/src/filters.ts"
 			],
 			"@/lib/block-fields": [
 				"../packages/blocks/src/block-fields.ts"

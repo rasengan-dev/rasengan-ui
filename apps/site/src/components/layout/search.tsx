@@ -40,6 +40,7 @@ const groups = [
       { label: 'SaaS example', description: 'A SaaS site with customer stories, integrations, security, changelog, careers and a waitlist.', to: '/examples/saas' },
       { label: 'Portfolio example', description: "A design studio's site and its case studies, made only of portfolio blocks.", to: '/examples/portfolio' },
       { label: 'Shop example', description: 'A home goods shop: its products, a page per product and a cart that orders on WhatsApp.', to: '/examples/shop' },
+      { label: 'Homes example', description: "A property agency: a search, filters in the address, the homes and each home's page.", to: '/examples/homes' },
       { label: 'Motion', description: 'Components whose motion is the point, in a gallery.', to: '/motion' },
     ],
   },
