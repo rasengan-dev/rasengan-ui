@@ -77,18 +77,26 @@ export function createServer(options: Options) {
 		{
 			title: "List Rasengan UI components",
 			description:
-				"The items of the Rasengan UI registry with a one-line description: components by default, or blocks (page sections: hero, pricing, menu, opening hours…), villages, examples, or everything. Pass a query to keep the items whose name, title or description contain all its words; a category to keep one family of components (motion: components whose animation is the point) or of blocks (hero, pricing, menu…); a family for blocks (marketing, storefront, portfolio, commerce or listings).",
+				"The items of the Rasengan UI registry with a one-line description: components by default, or blocks (page sections: hero, pricing, menu, opening hours…), villages, examples, or everything. Pass a query to keep the items whose name, title or description contain all its words; a category to keep one family of components (motion: components whose animation is the point) or of blocks (hero, pricing, menu…); a family for blocks (marketing, storefront, portfolio, commerce, listings… the registry says which).",
 			inputSchema: {
 				query: z.string().optional().describe('Words to look for, e.g. "menu" or "date input"'),
 				kind: z.enum(["component", "block", "village", "example", "all"]).default("component").describe("Which items to list"),
 				category: z.string().optional().describe('Only items of this category: for components forms, dates, overlays, navigation, display, feedback or motion; for blocks hero, pricing, menu, hours…'),
-				family: z.enum(["marketing", "storefront", "portfolio", "commerce", "listings"]).optional().describe("Blocks only: marketing (landing pages), storefront (local businesses), portfolio (people and studios), commerce (online shops) or listings (directories, real estate)"),
+				// Any name: the registry knows its families, so a new one needs no new CLI. An unknown one is answered with the list.
+				family: z
+					.string()
+					.optional()
+					.describe("Blocks only, e.g. marketing (landing pages), storefront (local businesses), portfolio (people and studios), commerce (online shops) or listings (directories, real estate)"),
 			},
 			annotations: { readOnlyHint: true, openWorldHint: false },
 		},
 		async ({ query, kind, category, family: blockFamily }) => {
 			const { root, config } = project(options);
 			const { items } = await loadIndex(config, root);
+			const families = [...new Set(items.flatMap((item) => [item.meta?.family].flat().filter(Boolean) as string[]))].sort();
+			if (blockFamily && !families.includes(blockFamily)) {
+				return text(`No block family is named "${blockFamily}". The registry's families: ${listOf(families) || "none"}.`);
+			}
 			const words = query?.toLowerCase().split(/\s+/).filter(Boolean) ?? [];
 			const found = items
 				.filter(kinds[kind])
@@ -97,8 +105,8 @@ export function createServer(options: Options) {
 				.filter((item) => !blockFamily || [item.meta?.family].flat().includes(blockFamily))
 				.filter((item) => words.every((word) => `${item.name} ${item.title ?? ""} ${item.description ?? ""}`.toLowerCase().includes(word)));
 			if (found.length === 0) {
-				const what = [query && `"${query}"`, category && `the ${category} category`].filter(Boolean).join(" in ");
-				return text(`No ${kind === "all" ? "item" : kind} matches ${what || "this"}. Try fewer words or no category.`);
+				const what = [query && `"${query}"`, category && `the ${category} category`, blockFamily && `the ${blockFamily} family`].filter(Boolean).join(" in ");
+				return text(`No ${kind === "all" ? "item" : kind} matches ${what || "this"}. Try fewer words, no category or no family.`);
 			}
 			const lines = found.map((item) => {
 				const status = item.meta?.status ? `, ${item.meta.status}` : "";
