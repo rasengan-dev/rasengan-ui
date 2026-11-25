@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-25 (CLI 0.4.1 ready to publish).
+> Last updated: 2026-11-25 (CLI 0.4.1 on npm).
 
 ## Where things stand
 
@@ -15,7 +15,7 @@
 | Villages | Konoha, Kiri, Iwa, Kusa (the contract's lip, [ADR-0008](adr/0008-lip-in-the-token-contract.md)) |
 | Natures | Six, with Onmyōton; neutral tint |
 | Village engine, workshop, `village create/check/export` | Built ([RFC-0006](rfc/0006-custom-villages.md), steps 1 to 4) |
-| CLI | `rasengan-ui` 0.4.0 on npm (`village create --intensity`, ADR-0018); 0.4.1 ready to publish: the MCP `family` filter takes portfolio, commerce and listings |
+| CLI | `rasengan-ui` 0.4.1 on npm: `village create --intensity` (0.4.0, ADR-0018), and the MCP `family` filter takes any family the registry has, so a new block family needs no CLI release |
 | `rasengan-workshop` | In the registry: the workshop's parts, in English and French ([ADR-0017](adr/0017-workshop-as-a-shared-registry-item.md)). Usable by other projects since `@rasengan-ui/villages` 0.2.0 and CLI 0.4.0 are on npm |
 | `@rasengan-ui/villages` | 0.2.0 on npm ([ADR-0016](adr/0016-villages-published-on-npm.md)), with the recipe's `intensity` ([ADR-0018](adr/0018-intensity-knob-in-the-recipe.md)); 0.1.0 deprecated, its `exports` pointed at `src/`. Publishing refuses anything but `pnpm publish` |
 | MCP server | `rasengan-ui mcp`, five tools ([RFC-0003](rfc/0003-mcp-server.md), steps 1 to 3) |

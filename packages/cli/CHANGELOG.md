@@ -2,9 +2,9 @@
 
 ## 0.4.1
 
-- **Fixed:** the MCP server's `list_components` takes the block families `portfolio`, `commerce` and `listings`;
-  0.4.0 refused them, so an agent could not list those blocks by family. A block in several families reads "a, b and
-  c".
+- **Fixed:** the MCP server's `list_components` takes any block family the registry has: `portfolio`, `commerce` and
+  `listings`, which 0.4.0 refused, and the families still to come, without a new CLI. An unknown family is answered
+  with the registry's list. A block in several families reads "a, b and c".
 
 ## 0.4.0
 
