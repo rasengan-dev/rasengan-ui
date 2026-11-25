@@ -18,7 +18,7 @@ rasengan-ui-app/
 │   ├── core/                cn(), engine variants, VillageScope, Field context
 │   ├── villages/            the token contract, villages, natures, village engine, contrast
 │   ├── motion/              rasengan-motion: motion modes, village motion tokens, primitives, splitText
-│   ├── blocks/              rasengan-blocks: BlockProps, BlockMeta, formatMoney; zod field types; the cart; block tests
+│   ├── blocks/              rasengan-blocks: BlockProps, BlockMeta, formatMoney; zod field types; the cart; filters in the address; block tests
 │   ├── cli/                 `rasengan-ui`: commands and the MCP server
 │   └── directions/          empty leftover of RFC-0001
 ├── apps/
@@ -232,7 +232,7 @@ src/
 │   ├── components/      one <name>.page.mdx per component, plus the index
 │   ├── blocks/          one <name>.page.mdx per block; index.page.tsx, the gallery
 │   ├── preview/         [name].page.tsx: one block full window, a page per block (generatePaths)
-│   ├── examples/        landing.page.tsx, restaurant.page.tsx, salon.page.tsx, saas.page.tsx, homes.page.tsx, portfolio/ and shop/ (index and [project] / [product]): pages made only of blocks; layout.tsx wraps them in a PageTransition and
+│   ├── examples/        landing.page.tsx, restaurant.page.tsx, salon.page.tsx, saas.page.tsx, homes.page.tsx, portfolio/, shop/ and homes/ (index and [project] / [product] / [listing]): pages made only of blocks; layout.tsx wraps them in a PageTransition and
 │   │                    adds the floating toolbar with its example switcher (the root layout drops the site header on /examples)
 │   ├── motion/          index.page.tsx: the motion gallery (replay, reduced-motion switch)
 │   └── villages/create.page.tsx   the workshop
@@ -256,7 +256,7 @@ src/
 | `registry.mjs` | For each engine: inline `<name>.styles.ts` into the component, write `.registry/<engine>/registry.json`, run `shadcn build` into `apps/site/public/r/<engine>`, rewrite `$schema`, keep `@/components/ui/*` and `@/components/blocks/*` paths in sync in `registry/` and `apps/site` tsconfigs. Blocks: validate, parse the example, JSON Schema, weight budget, `blocks.json` |
 | `contrast.mjs` | Every token pair, every village × nature × scheme (`packages/villages/src/contrast.ts`) |
 | `site-pages.mjs` | What axe and screenshots share: the components and blocks, the block widths (360, 1440), `open()` that loads a page with `?motion=final` and waits for React hydration |
-| `axe.mjs` | axe-core WCAG 2.2 AA on every page (and `/motion` with motion off, `/blocks` and each block page), village and scheme, overlays open (and the overlays of product-detail and cart-drawer on their pages); `.axe/report.md`. Names a component or a block to audit only its page, or a path (`/examples/portfolio`) for one page |
+| `axe.mjs` | axe-core WCAG 2.2 AA on every page (and `/motion` with motion off, `/blocks` and each block page), village and scheme, overlays open (and the overlays of product-detail, cart-drawer and listing-detail on their pages); `.axe/report.md`. Names a component or a block to audit only its page, or a path (`/examples/portfolio`) for one page |
 | `screenshots.mjs` | Playwright on system Chrome, pixelmatch against `.screenshots/baseline`; `--accept` |
 | `sitemap.mjs` | `sitemap.xml` and `robots.txt` after the prerender; fails the build if the output is missing |
 

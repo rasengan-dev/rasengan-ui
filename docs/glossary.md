@@ -19,6 +19,11 @@ folder in the user's project (`@/components/blocks/<name>/`).
 zod, built from the **field types**); `example.ts` is a valid content the block shows by default. Agents get the schema
 as JSON Schema.
 
+**Filters in the address** (`useFilters`, `setFilters`, `@/lib/filters`) — A list's filters kept in the page's query
+(`?q=garden&kind=House,Villa&price=0-500000&beds=2&sort=price-low`), so a shortlist is a link (RFC-0014). search-hero
+and filter-bar write them, listing-cards reads them and filters in place; the format matches without knowing the facets.
+None on the server, so the prerendered list shows everything.
+
 **Field type** — A shared piece of content schema in `@/lib/block-fields` (`cta`, `image`, `money`, `pricePlan`,
 `menuItem`, `openingHours`…), so a field means the same in every block.
 

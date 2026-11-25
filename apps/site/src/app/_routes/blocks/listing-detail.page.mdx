@@ -1,0 +1,62 @@
+---
+metadata:
+  title: Listing detail · Rasengan UI
+  description: "A listing's page: title, status and price, a mosaic of photos in full screen, facts, description, amenities, and an enquiry sent by message."
+---
+
+<BlockShowcase name="listing-detail" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add listing-detail
+```
+
+It installs into `components/blocks/listing-detail/`, with what it uses (Lightbox, Field, Input, Textarea, Button, Badge, Rating) and `lib/blocks.ts).
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/homes/[listing].page.tsx"
+import { ListingDetail } from "@/components/blocks/listing-detail";
+import { homes } from "@/content/homes";
+
+export default function Page() {
+  return <ListingDetail content={homes.listing} />;
+}
+```
+
+```ts title="content/homes.ts"
+import { example, type ListingDetailContent } from "@/components/blocks/listing-detail";
+
+export const homes = {
+  listing: { ...example } satisfies ListingDetailContent,
+};
+```
+
+`listing` is the same object [listing-cards](/blocks/listing-cards) shows; the page adds its description, what it comes with and other details. The first three photos make a mosaic (one large, two beside it); each, and the "All photos" button, opens the gallery full screen.
+
+The enquiry asks a name, a phone and a message, and opens the visitor's WhatsApp, texts or mail app with the listing named, addressed to you (no backend). Pass `action` to post it instead (with the listing's `href`), or `onSubmit` to take it in code.
+
+The [homes example](/examples/homes) uses it.
+
+## Content
+
+<ContentSchema name="listing-detail" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `ListingDetailContent`; the example when left out |
+| `id` | the section's id, for anchor links; `"listing"` by default |
+| `headingLevel` | `1`, `2` or `3`: the title's tag; `1` by default |
+| `className` | on the section, for spacing |
+| `action` | posts the enquiry to this URL |
+| `onSubmit` | `(values) => void`: takes the enquiry in code |
+
+## Accessibility
+
+- Each photo tile is a button that says which photo it opens; the photos keep their `alt`.
+- Missing name or phone is said beside the field; once sent, a status line says what happens next.

@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-25 (RFC-0014 lot J).
+> Last updated: 2026-11-25 (RFC-0014 lot K, RFC complete).
 
 ## Where things stand
 
@@ -21,7 +21,7 @@
 | MCP server | `rasengan-ui mcp`, five tools ([RFC-0003](rfc/0003-mcp-server.md), steps 1 to 3) |
 | Site | Live at `rasengan-ui.hiraiship.app`, prerendered, with Tag Manager ([ADR-0005](adr/0005-prerendered-site-on-hiraiship.md)) |
 | Project docs | `docs/` in this format since 2026-11-07 ([ADR-0001](adr/0001-project-docs-like-jutsify.md)) |
-| Blocks | 64 (RFC-0008 lots 0, A, B and C; RFC-0009 lots D0, D and E; RFC-0013 lots G, H and I; RFC-0014 lot J): 36 marketing (hero-video, hero-product, process-steps, testimonials-marquee, changelog, waitlist, customer-stories, security-badges, integrations-grid, careers, navbar-simple, hero-centered, hero-split, hero-wordmark, logos-marquee, logos-grid, features-grid, features-alternating, bento-features, steps-scroll, showcase-tabs, integrations-orbit, comparison-table, stats-numbers, testimonials-carousel, testimonials-wall, pricing-plans, pricing-comparison, faq-accordion, cta-banner, cta-app, newsletter-inline, team-grid, contact-form, footer-columns, footer-wordmark) and 21 storefront (hero-photo, hero-wordmark, menu-categories, menu-cards, menu-list, services-list, services-pricelist, booking-form, offer-deal, gallery-grid, gallery-social, hours-week, location-map, location-branches, order-banner, about-story, team-staff, reviews-rating, contact-links, contact-form, footer-local), and 10 portfolio (navbar-simple, hero-wordmark, projects-grid, projects-list, case-study, gallery-horizontal, awards-list, experience-timeline, contact-form, footer-wordmark), and 7 commerce (navbar-simple, product-grid, product-detail, cart-drawer, faq-accordion, contact-form, footer-columns), some in several families; the examples `/examples/landing`, `/examples/restaurant`, `/examples/salon`, `/examples/portfolio` (with a case study per project), `/examples/saas` and `/examples/shop` (with a page per product), linked through a page transition; the gallery at `/blocks`; `rasengan-blocks`, `rasengan-placeholders`, `blocks.json`, MCP `kind: "block"` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
+| Blocks | 68 (RFC-0008 lots 0, A, B and C; RFC-0009 lots D0, D and E; RFC-0013 lots G, H and I; RFC-0014 lots J and K): 36 marketing (hero-video, hero-product, process-steps, testimonials-marquee, changelog, waitlist, customer-stories, security-badges, integrations-grid, careers, navbar-simple, hero-centered, hero-split, hero-wordmark, logos-marquee, logos-grid, features-grid, features-alternating, bento-features, steps-scroll, showcase-tabs, integrations-orbit, comparison-table, stats-numbers, testimonials-carousel, testimonials-wall, pricing-plans, pricing-comparison, faq-accordion, cta-banner, cta-app, newsletter-inline, team-grid, contact-form, footer-columns, footer-wordmark) and 21 storefront (hero-photo, hero-wordmark, menu-categories, menu-cards, menu-list, services-list, services-pricelist, booking-form, offer-deal, gallery-grid, gallery-social, hours-week, location-map, location-branches, order-banner, about-story, team-staff, reviews-rating, contact-links, contact-form, footer-local), and 10 portfolio (navbar-simple, hero-wordmark, projects-grid, projects-list, case-study, gallery-horizontal, awards-list, experience-timeline, contact-form, footer-wordmark), and 7 commerce (navbar-simple, product-grid, product-detail, cart-drawer, faq-accordion, contact-form, footer-columns), and 8 listings (navbar-simple, search-hero, filter-bar, listing-cards, listing-detail, faq-accordion, contact-form, footer-columns), some in several families; the examples `/examples/landing`, `/examples/restaurant`, `/examples/salon`, `/examples/portfolio` (with a case study per project), `/examples/saas` `/examples/shop` (with a page per product) and `/examples/homes` (with a page per home), linked through a page transition; the gallery at `/blocks`; `rasengan-blocks`, `rasengan-placeholders`, `blocks.json`, MCP `kind: "block"` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
 | `packages/motion` | `rasengan-motion` in the registry: motion modes, village motion tokens, primitives, `splitText` ([RFC-0007](rfc/0007-motion-components.md) lot 0) |
 | Categories | Every component has one; the site groups by them and has a Motion section ([ADR-0009](adr/0009-component-categories.md)) |
 
@@ -224,7 +224,28 @@
   / Top rated (Dewly), "Pick a size first" (Scoop), adding opens the bag drawer with a free-delivery bar, "Size 38"
   under the line, a stepper and Remove, then subtotal, "Taxes and delivery are worked out at checkout" and Checkout
   (Scoop). Differences from the RFC: Scoop shows no sizes on its grid, so the grid has none; product details stay
-  paragraphs (Luxevaro's table of materials and dimensions is not in `product`). Next: lot K (listings).
+  paragraphs (Luxevaro's table of materials and dimensions is not in `product`). **Lot K built, RFC-0014 complete**:
+  `lib/filters.ts` in `rasengan-blocks` (`useFilters` on `useSyncExternalStore` over the query, `setFilters` with
+  `replaceState`, `matchesFilters`, `sortListings`; a format that matches without the facets: `q` words, comma lists
+  for kind, status, place and tags, `min-max` for the price, a fact's label for "at least"; tested). `search-hero` (a
+  GET form to the list page, so it works without JavaScript, filtering in place on that page and scrolling to the list;
+  popular searches as chip links; 2 kB), `filter-bar` (facets from the content: chips with counts, a two-thumbed price
+  slider written when let go, "at least" numbers, words, a sort, a reset and the count; `items` is the same listings,
+  counted, not shown; 2.8 kB), `listing-cards` (one card for homes and places, facts and price per period, hidden in
+  place by the address, an empty state that clears the filters; 2.4 kB) and `listing-detail` (title, status, tags and
+  price, a mosaic of three photos in the Lightbox, facts, description, amenities, details, and an enquiry by message
+  that stays in view; 3.6 kB). `/examples/homes` (search, filters, homes) and `/examples/homes/<slug>` with three other
+  homes; the agency joins the site's menus. The block test skips `options`, `key` and `items` (not shown as text).
+  Observed (Listora, Urbangrid, Realtora): Listora's search panel over the bottom of a wide photo writes
+  `?hero-search-query=` and filters in place, with a side panel of checkboxes and counts; Urbangrid's bar (words,
+  area, type and status selects, a two-thumbed price slider, beds, Reset, sort buttons) writes `?area=shoreditch`, and
+  its cards read "For Sale · Shoreditch / Loft · 2 bed · 1 bath · 1,105 sq ft · price"; Realtora's page (title, line,
+  a mosaic of one large and two photos, price, status, type, quick facts, an enquiry of name, phone and email beside
+  the overview); Urbangrid's page (status and price beside the title, "What it comes with", a table of details).
+  Differences from the RFC: choices are chips (as the RFC says) rather than Urbangrid's selects; a listing's page text,
+  amenities and details are in listing-detail's content, not in `listing`; the agency example has no price slider, as
+  a night's rent and a sale price do not share one scale. Next: RFC-0014 is complete; the next sector wave (hotels and
+  travel, events, content, health) needs its own RFC.
 
 ### Then
 

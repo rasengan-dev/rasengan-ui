@@ -112,6 +112,7 @@ const openers = {
 	},
 	// Blocks whose overlay is the point: the gallery full screen, and the cart with a line in it.
 	"product-detail": (preview) => preview.locator('[data-slot="lightbox-trigger"]').first().click(),
+	"listing-detail": (preview) => preview.locator('[data-slot="lightbox-trigger"]').first().click(),
 	"cart-drawer": async (preview) => {
 		// The demo's button adds a line and opens the cart, as product-detail does.
 		await preview.getByRole("button", { name: "Add a cushion" }).click();
