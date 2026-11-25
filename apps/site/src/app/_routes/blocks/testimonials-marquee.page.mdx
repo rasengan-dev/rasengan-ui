@@ -1,7 +1,7 @@
 ---
 metadata:
   title: Testimonials, marquee · Rasengan UI
-  description: "Quotes in three columns that scroll at their own pace (one row on phones), each with a pause button; they stand still with reduced motion."
+  description: "Quotes in two rows that slide sideways in opposite directions, fading at the edges, each with a pause button; they stand still with reduced motion."
 ---
 
 <BlockShowcase name="testimonials-marquee" />
@@ -35,7 +35,9 @@ export const home = {
 };
 ```
 
-Six to twenty-four short quotes. On a wide container they run in three columns, each at its own speed and direction; on a narrow one, in a single row. Each list stops on hover and focus and has a pause button; with reduced motion they stand still.
+Six to twenty-four short quotes, alternating between two rows that slide in opposite directions at different speeds and fade into the edges. Each row stops on hover and focus and has a pause button; with reduced motion the rows stand still and wrap.
+
+For quotes in columns that drift upwards together, use [testimonials-wall](/blocks/testimonials-wall).
 
 The [SaaS example](/examples/saas) uses it.
 

@@ -174,7 +174,7 @@
   background, and the security tiles sit on the page's background. The block test counts `status` as a code, not text.
   **Lot I built, RFC-0013 complete**: `device-frame` (a component, display: a browser window or a phone drawn
   from the contract), `hero-video` (a muted loop in a rounded frame with its pause button, the text on an opaque panel
-  over the corner, under the video on phones; 1 kB), `hero-product` (the screen in a `device-frame` on a soft glow;
+  over the corner, under the video on phones; 1 kB), `hero-product` (the screen in a `device-frame` on a soft glow, reworked after lot J0;
   1.1 kB), `process-steps` (numbered cards coming in at the village's stagger; 1.1 kB) and `testimonials-marquee`
   (three columns at their own speeds, one row on phones, each with the marquee's pause button; 1.6 kB), after
   inspecting their references. `/examples/restaurant` opens on `hero-video`, `/examples/saas` on `hero-product` with
@@ -201,7 +201,15 @@
   `/examples/shop` (Kaya, a home goods shop) and `/examples/homes` (Nyanga, a property agency) as skeletons with their
   `products` and `listings` arrays; they join the site's menus in lots J and K. Differences from the RFC: `listing`'s
   facts are numbers with a label (`{ label: 'beds', value: 3 }`) so filters can count them, and product photos are
-  named `shop-*` (`product-*` already names the product screens). Next: lot J (commerce).
+  named `shop-*` (`product-*` already names the product screens).
+  Two of lot I's blocks reworked, as they looked like older ones: `hero-product` (like `hero-centered`) is now a
+  stage, a soft panel of the primary colour with the screen rising out of it, wider than the text and cut and faded
+  by the panel's edge, settling as the page scrolls (it grows and rises from intensity 2, straightens from an 18° tilt
+  at 3; observed on Dreelio: about 7° and 0.94 at load, flat after 300px); `testimonials-marquee` (like
+  `testimonials-wall`) is now two rows sliding sideways in opposite directions, faded at the edges (Dreelio's masked
+  row: 386px cards, 24px apart, about 40px/s). Their content schemas are unchanged. `testimonials-wall` left gaps at the end of its shorter columns (one Marquee
+  moved the three as one block, as long as the longest): each column now loops in its own Marquee at the same speed,
+  with one pause button for the three, through Marquee's new `paused` prop. Next: lot J (commerce).
 
 ### Then
 

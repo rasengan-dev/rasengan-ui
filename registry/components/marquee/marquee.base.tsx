@@ -20,6 +20,8 @@ export interface MarqueeProps extends React.HTMLAttributes<HTMLDivElement> {
 	pauseOnHover?: boolean;
 	/** Show a pause button. Moving content needs a way to stop it (WCAG 2.2.2): turn it off only if the page has another. */
 	controls?: boolean;
+	/** Paused from outside: several marquees that share one pause button (with `controls={false}`). */
+	paused?: boolean;
 	/** Names the region for screen readers, e.g. "Companies using Lumen". */
 	label?: string;
 }
@@ -36,6 +38,7 @@ export function Marquee({
 	fade = true,
 	pauseOnHover = true,
 	controls = true,
+	paused: pausedFromOutside,
 	label,
 	className,
 	style,
@@ -94,7 +97,7 @@ export function Marquee({
 		};
 	}, [running, size.copy, speed, direction, vertical]);
 
-	const halted = paused || (pauseOnHover && hovered);
+	const halted = paused || pausedFromOutside === true || (pauseOnHover && hovered);
 	React.useEffect(() => {
 		const animation = animationRef.current;
 		if (!animation) return;
