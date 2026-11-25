@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-25 (CLI 0.4.1 on npm).
+> Last updated: 2026-11-25 (RFC-0015 drafted).
 
 ## Where things stand
 
@@ -244,8 +244,14 @@
   the overview); Urbangrid's page (status and price beside the title, "What it comes with", a table of details).
   Differences from the RFC: choices are chips (as the RFC says) rather than Urbangrid's selects; a listing's page text,
   amenities and details are in listing-detail's content, not in `listing`; the agency example has no price slider, as
-  a night's rent and a sale price do not share one scale. Next: RFC-0014 is complete; the next sector wave (hotels and
-  travel, events, content, health) needs its own RFC.
+  a night's rent and a sale price do not share one scale. RFC-0014 is complete.
+
+- **Hospitality and events blocks** ([RFC-0015](rfc/0015-hospitality-and-events-blocks.md), draft): thirteen blocks in
+  two lots, the third sector wave from the [Framer templates survey](surveys/2026-11-23-framer-templates.md): rooms,
+  a room's page, a stay request, tours and a tour's page, private hire (family `hospitality`), and an event hero with a
+  countdown, the agenda, speakers, tickets, sponsors, an RSVP and a dated story (family `events`); a `countdown`
+  component that `offer-deal` moves onto. Its nine questions wait for the maintainer; they move here once it is
+  accepted. Content (blog, media, podcasts) and health come in later RFCs.
 
 ### Then
 

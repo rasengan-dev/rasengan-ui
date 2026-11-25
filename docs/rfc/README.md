@@ -38,6 +38,7 @@ Accepted ──► Superseded by RFC-NNNN or ADR-NNNN
 | [0012](0012-interface-components.md) | Interface components: the six pieces the next blocks are made of | Accepted | 2026-11-24 |
 | [0013](0013-portfolio-and-saas-blocks.md) | Portfolio and SaaS blocks: the first sector wave | Accepted | 2026-11-24 |
 | [0014](0014-commerce-and-listings-blocks.md) | Commerce and listings blocks: the second sector wave | Accepted | 2026-11-24 |
+| [0015](0015-hospitality-and-events-blocks.md) | Hospitality and events blocks: the third sector wave | Draft | 2026-11-25 |
 
 RFCs 0001 to 0006 were written before this format and keep their own headers (`- Status:`, `- Author:`…). New RFCs use
 the template below.
