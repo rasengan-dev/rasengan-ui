@@ -3,7 +3,7 @@
 > **Living document**: where the project stands, what is left to build, what is left to decide. It is **the only list
 > of open questions**: RFCs point here. A settled question is removed from here and becomes an [ADR](adr/README.md).
 >
-> Last updated: 2026-11-25 (RFC-0014 lot J0).
+> Last updated: 2026-11-25 (RFC-0014 lot J).
 
 ## Where things stand
 
@@ -21,7 +21,7 @@
 | MCP server | `rasengan-ui mcp`, five tools ([RFC-0003](rfc/0003-mcp-server.md), steps 1 to 3) |
 | Site | Live at `rasengan-ui.hiraiship.app`, prerendered, with Tag Manager ([ADR-0005](adr/0005-prerendered-site-on-hiraiship.md)) |
 | Project docs | `docs/` in this format since 2026-11-07 ([ADR-0001](adr/0001-project-docs-like-jutsify.md)) |
-| Blocks | 61 (RFC-0008 lots 0, A, B and C; RFC-0009 lots D0, D and E; RFC-0013 lots G, H and I): 36 marketing (hero-video, hero-product, process-steps, testimonials-marquee, changelog, waitlist, customer-stories, security-badges, integrations-grid, careers, navbar-simple, hero-centered, hero-split, hero-wordmark, logos-marquee, logos-grid, features-grid, features-alternating, bento-features, steps-scroll, showcase-tabs, integrations-orbit, comparison-table, stats-numbers, testimonials-carousel, testimonials-wall, pricing-plans, pricing-comparison, faq-accordion, cta-banner, cta-app, newsletter-inline, team-grid, contact-form, footer-columns, footer-wordmark) and 21 storefront (hero-photo, hero-wordmark, menu-categories, menu-cards, menu-list, services-list, services-pricelist, booking-form, offer-deal, gallery-grid, gallery-social, hours-week, location-map, location-branches, order-banner, about-story, team-staff, reviews-rating, contact-links, contact-form, footer-local), and 10 portfolio (navbar-simple, hero-wordmark, projects-grid, projects-list, case-study, gallery-horizontal, awards-list, experience-timeline, contact-form, footer-wordmark), some in several families; the examples `/examples/landing`, `/examples/restaurant`, `/examples/salon`, `/examples/portfolio` (with a case study per project) and `/examples/saas`, linked through a page transition; the gallery at `/blocks`; `rasengan-blocks`, `rasengan-placeholders`, `blocks.json`, MCP `kind: "block"` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
+| Blocks | 64 (RFC-0008 lots 0, A, B and C; RFC-0009 lots D0, D and E; RFC-0013 lots G, H and I; RFC-0014 lot J): 36 marketing (hero-video, hero-product, process-steps, testimonials-marquee, changelog, waitlist, customer-stories, security-badges, integrations-grid, careers, navbar-simple, hero-centered, hero-split, hero-wordmark, logos-marquee, logos-grid, features-grid, features-alternating, bento-features, steps-scroll, showcase-tabs, integrations-orbit, comparison-table, stats-numbers, testimonials-carousel, testimonials-wall, pricing-plans, pricing-comparison, faq-accordion, cta-banner, cta-app, newsletter-inline, team-grid, contact-form, footer-columns, footer-wordmark) and 21 storefront (hero-photo, hero-wordmark, menu-categories, menu-cards, menu-list, services-list, services-pricelist, booking-form, offer-deal, gallery-grid, gallery-social, hours-week, location-map, location-branches, order-banner, about-story, team-staff, reviews-rating, contact-links, contact-form, footer-local), and 10 portfolio (navbar-simple, hero-wordmark, projects-grid, projects-list, case-study, gallery-horizontal, awards-list, experience-timeline, contact-form, footer-wordmark), and 7 commerce (navbar-simple, product-grid, product-detail, cart-drawer, faq-accordion, contact-form, footer-columns), some in several families; the examples `/examples/landing`, `/examples/restaurant`, `/examples/salon`, `/examples/portfolio` (with a case study per project), `/examples/saas` and `/examples/shop` (with a page per product), linked through a page transition; the gallery at `/blocks`; `rasengan-blocks`, `rasengan-placeholders`, `blocks.json`, MCP `kind: "block"` ([ADR-0013](adr/0013-blocks-answer-their-container.md)) |
 | `packages/motion` | `rasengan-motion` in the registry: motion modes, village motion tokens, primitives, `splitText` ([RFC-0007](rfc/0007-motion-components.md) lot 0) |
 | Categories | Every component has one; the site groups by them and has a Motion section ([ADR-0009](adr/0009-component-categories.md)) |
 
@@ -209,7 +209,22 @@
   `testimonials-wall`) is now two rows sliding sideways in opposite directions, faded at the edges (Dreelio's masked
   row: 386px cards, 24px apart, about 40px/s). Their content schemas are unchanged. `testimonials-wall` left gaps at the end of its shorter columns (one Marquee
   moved the three as one block, as long as the longest): each column now loops in its own Marquee at the same speed,
-  with one pause button for the three, through Marquee's new `paused` prop. Next: lot J (commerce).
+  with one pause button for the three, through Marquee's new `paused` prop. **Lot J built**: `product-grid` (cards
+  with a second photo on hover, badge, rating, price and was; category chips with counts and a sort, both in the address,
+  `?category=…&sort=…`; `controls: false` for a "you may also like" row; 3.2 kB), `product-detail` (a large photo that
+  opens the Lightbox, thumbnails that change it, variants as chips with sold-out options struck and not pickable, a
+  single option in stock picked from the start, quantity, "Add to bag · total", a missing option named and focused;
+  adds to `useCart` and opens the cart; 3.3 kB) and `cart-drawer` (a Sheet from the side: lines with quantity and
+  remove, a bar toward free delivery, the subtotal, the order by message, to a URL or to `onCheckout`; its button
+  floating or inline; 2.2 kB). `lib/cart.ts` gained `openCart` and `onCartOpen`. Four close-ups cropped from the
+  product photos (`shop-*-detail.svg`). `/examples/shop` shows the grid, and `/examples/shop/<slug>` a page per
+  product with four others under it, both with the cart; the shop joins the site's menus. axe opens product-detail's
+  gallery and cart-drawer on their pages. Observed before building (Dewly, Scoop, Luxevaro): 4:5 photos with a
+  second on hover (Dewly), the category in the address (`?category=`, Dewly), the sort as Featured / Lowest / Highest
+  / Top rated (Dewly), "Pick a size first" (Scoop), adding opens the bag drawer with a free-delivery bar, "Size 38"
+  under the line, a stepper and Remove, then subtotal, "Taxes and delivery are worked out at checkout" and Checkout
+  (Scoop). Differences from the RFC: Scoop shows no sizes on its grid, so the grid has none; product details stay
+  paragraphs (Luxevaro's table of materials and dimensions is not in `product`). Next: lot K (listings).
 
 ### Then
 

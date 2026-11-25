@@ -12,6 +12,7 @@ const examples = [
   { to: '/examples/salon', label: 'Salon' },
   { to: '/examples/portfolio', label: 'Portfolio' },
   { to: '/examples/saas', label: 'SaaS' },
+  { to: '/examples/shop', label: 'Shop' },
 ];
 
 /** The example pages, linked through the page transition: only inside a `PageTransition`. */

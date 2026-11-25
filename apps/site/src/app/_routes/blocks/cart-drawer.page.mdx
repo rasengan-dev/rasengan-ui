@@ -1,0 +1,76 @@
+---
+metadata:
+  title: Cart drawer · Rasengan UI
+  description: "The cart in a side sheet: lines with quantity and remove, a free-delivery bar, the subtotal, and the order sent by message or to a URL."
+---
+
+<BlockShowcase name="cart-drawer" />
+
+## Installation
+
+```bash title="Terminal"
+npx rasengan-ui add cart-drawer
+```
+
+It installs into `components/blocks/cart-drawer/`, with what it uses (Sheet, Number Field, Button, Progress), `lib/blocks.ts` and `lib/cart.ts`.
+
+## Usage
+
+Without `content`, the block shows its example. Pass your own, typed by the block's schema, from a content file (here, the example as it is):
+
+```tsx title="app/_routes/shop/layout.tsx"
+import { CartDrawer } from "@/components/blocks/cart-drawer";
+import { shop } from "@/content/shop";
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      {children}
+      <CartDrawer content={shop.cart} />
+    </>
+  );
+}
+```
+
+```ts title="content/shop.ts"
+import { example, type CartDrawerContent } from "@/components/blocks/cart-drawer";
+
+export const shop = {
+  cart: { ...example } satisfies CartDrawerContent,
+};
+```
+
+Place it once on every shop page. Its button shows how many items the cart holds, fixed in the window's corner by default, or where you put the block with `trigger="inline"` (beside a navbar). [product-detail](/blocks/product-detail) opens it after adding: give both the same `shop`.
+
+The cart lives in the visitor's browser (`useCart` in `lib/cart.ts`, one `localStorage` key per shop), so it survives a reload and follows across tabs, with no server. It is empty in the prerendered page and fills once the page loads.
+
+Where an order goes is in `checkout`:
+
+- **`message`** (the default): the order written out, a line per product and the total, opened in the visitor's WhatsApp, texts or mail app, addressed to the shop. They send it; the shop confirms and asks for payment.
+- **`url`**: a link to a payment page or an external checkout.
+- **`onCheckout`**: a prop, for your own code to take the lines.
+
+With `freeDelivery`, a bar shows how far the subtotal is from free delivery.
+
+The [shop example](/examples/shop) uses it on every page.
+
+## Content
+
+<ContentSchema name="cart-drawer" />
+
+## Props
+
+| Prop | Notes |
+| --- | --- |
+| `content` | `CartDrawerContent`; the example when left out |
+| `id` | the block's id; `"cart"` by default |
+| `trigger` | `"floating"` (default) or `"inline"` |
+| `cart` | your own cart instead of the shop's `useCart` |
+| `onCheckout` | `(lines) => void`: replaces the content's checkout |
+| `className` | on the block; with `floating`, to move the button (`bottom-20`) |
+
+## Accessibility
+
+- The button's name says what it opens and how many items it holds.
+- The sheet is a dialog: focus moves into it and back to the button when it closes; Escape closes it.
+- Each line's quantity and remove button name the product.

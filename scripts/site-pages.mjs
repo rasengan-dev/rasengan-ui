@@ -110,6 +110,12 @@ const openers = {
 		await page.locator('[data-slot="component-preview"][data-demo="video-dialog"] button').first().click();
 		await page.waitForSelector('[data-slot="video-dialog-content"] video');
 	},
+	// Blocks whose overlay is the point: the gallery full screen, and the cart with a line in it.
+	"product-detail": (preview) => preview.locator('[data-slot="lightbox-trigger"]').first().click(),
+	"cart-drawer": async (preview) => {
+		// The demo's button adds a line and opens the cart, as product-detail does.
+		await preview.getByRole("button", { name: "Add a cushion" }).click();
+	},
 	toast: async (preview) => {
 		await preview.getByRole("button", { name: "Send invite" }).click();
 		await preview.getByRole("button", { name: "Fail a save" }).click();
@@ -121,9 +127,11 @@ const closers = {
 };
 
 export const isOverlay = (name) => name in openers;
-/** A page's main preview (its first); `demo` picks another one, as `<ComponentPreview demo>` names it. */
+/** A page's main preview (its first, a component's or a block's); `demo` picks another one, as `<ComponentPreview demo>` names it. */
 export const preview = (page, demo) =>
-	demo ? page.locator(`[data-slot="component-preview"][data-demo="${demo}"]`) : page.locator('[data-slot="component-preview"]').first();
+	demo
+		? page.locator(`[data-slot="component-preview"][data-demo="${demo}"]`)
+		: page.locator('[data-slot="component-preview"], [data-slot="block-preview"]').first();
 
 /** A component's other demos (`button-sizes.demo.tsx` → "button-sizes"), each shown in its own preview on the page. */
 export const extraDemos = (name) =>

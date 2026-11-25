@@ -127,6 +127,22 @@ export function useCart(shop = "shop"): Cart {
 	}, [lines, shop]);
 }
 
+const openEvent = "rasengan-ui:cart-open";
+
+/** Asks the shop's cart drawer to open: product-detail calls it after adding a line. Does nothing on the server. */
+export function openCart(shop = "shop") {
+	if (typeof window !== "undefined") window.dispatchEvent(new CustomEvent(openEvent, { detail: shop }));
+}
+
+/** Calls `open` whenever something asks the shop's cart to open (`openCart`); returns the clean-up. */
+export function onCartOpen(shop: string, open: () => void): () => void {
+	const listener = (event: Event) => {
+		if ((event as CustomEvent<string>).detail === shop) open();
+	};
+	window.addEventListener(openEvent, listener);
+	return () => window.removeEventListener(openEvent, listener);
+}
+
 /** The order written out, for a message: one line per product, then the total. */
 export function orderText(lines: CartLine[], labels: { intro: string; total: string }, locale?: string): string {
 	const rows = lines.map((line) => {

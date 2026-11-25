@@ -34,7 +34,8 @@ real estate, RFC-0014), and its kind within it (`hero`, `pricing`, `menu`, `proj
 
 **Cart** (`useCart`, `@/lib/cart`) — A shop's cart, kept in the browser (one `localStorage` key per shop) and shared by
 the blocks of a page (RFC-0014). Lines are a product in a variant (`lineId`); an order is handed off by message
-(`orderText`), to a URL, or to the project's code. Empty on the server.
+(`orderText`), to a URL, or to the project's code. Empty on the server. `openCart(shop)` asks the page's cart-drawer to
+open (product-detail calls it after adding).
 
 **Container query** — A block lays out by the width of its container (`@container`, `@md:`), not the window's
 ([ADR-0013](adr/0013-blocks-answer-their-container.md)).
